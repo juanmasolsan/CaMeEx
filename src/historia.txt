@@ -1,3 +1,6 @@
-+ 1.0.0.1
-- [NEW]   (20230406) Agregada licencia MIT
-- [NEW]   (20230406) Creación básica del programa
+
+
++ 1.0.0.3
+- [NEW]   (20230406) Agregada la licencia MIT a las unidades de desarrollo.
+- [NEW]   (20230406) Agregada licencia MIT.
+- [NEW]   (20230406) Creación básica del programa.
