@@ -1,0 +1,9 @@
+{
+// Nombre proyecto
+"lazrus_proyecto": "/src/cameex.lpr",
+
+// Exe para depurar y ejecutar
+"run_win_x64": "cameex-x86_64-win64.exe",
+"run_win_x86": "cameex-i386-win32.exe",
+"cSpell.enabled": true,
+}

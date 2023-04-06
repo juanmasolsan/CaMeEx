@@ -1,0 +1,29 @@
++ Crear estructura de directorio de la app.
++ Poder programar desde vscode
++ Agregar Git - Crear .gitignore
++ Agregar datos de info de la app.
+- Agregar Git - Agregar remoto a Gitea
+- Agregar Git - Agregar remoto a GitHub
+- Agregar icono de la aplicación.
+- Formularios - Base Cargar/guardar la configuración de la app
+- Formularios - Que la config admita configuración portable
+- Formularios - Guardar posición y estado de los formularios
+- Formularios - Poder cerrar los formularios pulsando la tecla estructura
+- Formularios - Poder marcar Labels como si fuesen url, que sean clickable
+- Agregar Sqlite3 - Versiones x64 y x86
+- Agregar Sqlite3 - Crear base de datos
+- Agregar Sqlite3 - Crear tablas
+- Agregar Sqlite3 - Crear métodos de inserción
+- Agregar Sqlite3 - Crear métodos de actualización
+- Agregar Sqlite3 - Crear métodos de eliminación
+- Agregar menú principal
+- Agregar Toolbar principal
+- Agregar barra de estado
+- Agregar árbol de directorios (Medios y que cada uno tenga sus directorios)
+- Agregar lista de archivos y de directorios con todos sus datos
+- Agregar cajon de búsqueda en la barra de herramientas
+- Crear Acerca de.
+- Motor de escaneo de dispositivos y directorios
+- Motor de búsqueda simple.
+- Motor de búsqueda avanzado.
+- Sistema de exportación.
