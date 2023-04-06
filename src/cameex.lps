@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
         <CursorPos X="29" Y="14"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -23,14 +23,14 @@
         <EditorIndex Value="4"/>
         <TopLine Value="57"/>
         <CursorPos X="118" Y="64"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -39,7 +39,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="20" Y="7"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -49,19 +49,22 @@
         <UnitName Value="AppInfo"/>
         <EditorIndex Value="2"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Formulario_Avanzado"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="900"/>
+        <CursorPos X="55" Y="914"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="8">
+    <JumpHistory HistoryIndex="10">
       <Position>
         <Filename Value="cameex.lpr"/>
         <Caret Line="19"/>
@@ -96,6 +99,14 @@
       <Position>
         <Filename Value="unidadprincipal.pas"/>
         <Caret Line="81" Column="5" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_formulario_avanzado.pas"/>
+        <Caret Line="147" Column="61" TopLine="118"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_formulario_avanzado.pas"/>
+        <Caret Line="1526" TopLine="1497"/>
       </Position>
     </JumpHistory>
     <RunParams>

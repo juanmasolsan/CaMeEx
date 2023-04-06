@@ -33,7 +33,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus,
-  ComCtrls, ExtCtrls, laz.VirtualTrees;
+  ComCtrls, ExtCtrls, laz.VirtualTrees
+  , Control_Formulario_Avanzado
+  ;
 
 type
 
@@ -98,6 +100,12 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   Caption                 := Get_Titulo_Ventana(true, '', true);
   Application.Title       := Get_Titulo_Ventana(true, '', false);
+
+  // Opciones avanzadas
+  ActivarArchivoConfig('cameex_config.ini', false, true, false, NOMBRE_PROGRAMA);
+  ActivarGuardadoPosicion;
+
+
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
