@@ -53,6 +53,9 @@ type
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -65,6 +68,23 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  //
+end;
+
+procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  //
+end;
+
+procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  //
+end;
 
 end.
 

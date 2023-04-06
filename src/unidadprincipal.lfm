@@ -7,13 +7,18 @@ object Form1: TForm1
   ClientHeight = 479
   ClientWidth = 687
   Menu = MainMenu1
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   LCLVersion = '2.2.6.0'
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
     Top = 456
     Width = 687
+    Color = clWindow
     Panels = <>
+    ParentColor = False
   end
   object ToolBar1: TToolBar
     Left = 0
@@ -21,6 +26,9 @@ object Form1: TForm1
     Top = 0
     Width = 687
     Caption = 'ToolBar1'
+    Color = clWindow
+    EdgeBorders = []
+    ParentColor = False
     TabOrder = 1
     object ToolButton1: TToolButton
       Left = 1
@@ -34,6 +42,7 @@ object Form1: TForm1
     Top = 26
     Width = 232
     Align = alLeft
+    Color = clWindow
     Header.AutoSizeIndex = 0
     Header.Columns = <>
     Header.MainColumn = -1
@@ -45,6 +54,7 @@ object Form1: TForm1
     Top = 26
     Width = 450
     Align = alClient
+    Color = clWindow
     Header.AutoSizeIndex = 0
     Header.Columns = <>
     Header.MainColumn = -1
@@ -55,10 +65,12 @@ object Form1: TForm1
     Height = 430
     Top = 26
     Width = 5
+    Color = clWindow
+    ParentColor = False
   end
   object MainMenu1: TMainMenu
-    Left = 31
-    Top = 22
+    Left = 592
+    Top = 64
     object MenuItem1: TMenuItem
       Caption = 'Archivo'
       object MenuItem2: TMenuItem
