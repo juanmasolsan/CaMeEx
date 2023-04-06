@@ -2,8 +2,8 @@
 + Poder programar desde vscode
 + Agregar Git - Crear .gitignore
 + Agregar datos de info de la app.
-- Agregar Git - Agregar remoto a Gitea
-- Agregar Git - Agregar remoto a GitHub
++ Agregar Git - Agregar remoto a Gitea
++ Agregar Git - Agregar remoto a GitHub
 - Agregar icono de la aplicación.
 - Formularios - Base Cargar/guardar la configuración de la app
 - Formularios - Que la config admita configuración portable
