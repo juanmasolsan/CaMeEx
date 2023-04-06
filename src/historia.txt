@@ -1,6 +1,7 @@
 
 
-+ 1.0.0.3
++ 1.0.0.4
+- [NEW]   (20230406) Agregado icono de la aplicación
 - [NEW]   (20230406) Agregada la licencia MIT a las unidades de desarrollo.
 - [NEW]   (20230406) Agregada licencia MIT.
 - [NEW]   (20230406) Creación básica del programa.
