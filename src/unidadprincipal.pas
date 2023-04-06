@@ -32,14 +32,27 @@ unit UnidadPrincipal;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus,
+  ComCtrls, ExtCtrls, laz.VirtualTrees;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
+    Arbol: TLazVirtualDrawTree;
+    Lista: TLazVirtualDrawTree;
+    MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItemAcercaDe: TMenuItem;
+    MenuItemSalir: TMenuItem;
+    Separator1: TMenuItem;
+    Splitter1: TSplitter;
+    StatusBar1: TStatusBar;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
   private
 
   public

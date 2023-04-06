@@ -38,6 +38,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="laz.virtualtreeview_package"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>

@@ -1,18 +1,81 @@
 object Form1: TForm1
-  Left = 456
-  Height = 240
-  Top = 206
-  Width = 320
+  Left = 355
+  Height = 499
+  Top = 124
+  Width = 687
   Caption = 'Form1'
-  ClientHeight = 240
-  ClientWidth = 320
+  ClientHeight = 479
+  ClientWidth = 687
+  Menu = MainMenu1
   LCLVersion = '2.2.6.0'
-  object Button1: TButton
-    Left = 112
-    Height = 25
-    Top = 87
-    Width = 75
-    Caption = 'Button1'
-    TabOrder = 0
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 456
+    Width = 687
+    Panels = <>
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 687
+    Caption = 'ToolBar1'
+    TabOrder = 1
+    object ToolButton1: TToolButton
+      Left = 1
+      Top = 2
+      Caption = 'ToolButton1'
+    end
+  end
+  object Arbol: TLazVirtualDrawTree
+    Left = 0
+    Height = 430
+    Top = 26
+    Width = 232
+    Align = alLeft
+    Header.AutoSizeIndex = 0
+    Header.Columns = <>
+    Header.MainColumn = -1
+    TabOrder = 2
+  end
+  object Lista: TLazVirtualDrawTree
+    Left = 237
+    Height = 430
+    Top = 26
+    Width = 450
+    Align = alClient
+    Header.AutoSizeIndex = 0
+    Header.Columns = <>
+    Header.MainColumn = -1
+    TabOrder = 3
+  end
+  object Splitter1: TSplitter
+    Left = 232
+    Height = 430
+    Top = 26
+    Width = 5
+  end
+  object MainMenu1: TMainMenu
+    Left = 31
+    Top = 22
+    object MenuItem1: TMenuItem
+      Caption = 'Archivo'
+      object MenuItem2: TMenuItem
+        Caption = 'MenuItem2'
+      end
+      object Separator1: TMenuItem
+        Caption = '-'
+      end
+      object MenuItemSalir: TMenuItem
+        Caption = 'Salir'
+      end
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Ayuda'
+      object MenuItemAcercaDe: TMenuItem
+        Caption = 'Acerca de...'
+      end
+    end
   end
 end

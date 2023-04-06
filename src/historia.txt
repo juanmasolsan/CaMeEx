@@ -1,6 +1,11 @@
 
 
-+ 1.0.0.4
++ 1.0.0.9
+- [NEW]   (20230406) Agregado menú principal
+- [NEW]   (20230406) Agregado Toolbar principal
+- [NEW]   (20230406) Agregado barra de estado
+- [NEW]   (20230406) Agregado de directorios (Medios y que cada uno tenga sus directorios)
+- [NEW]   (20230406) Agregado lista de archivos y de directorios con todos sus datos
 - [NEW]   (20230406) Agregado icono de la aplicación
 - [NEW]   (20230406) Agregada la licencia MIT a las unidades de desarrollo.
 - [NEW]   (20230406) Agregada licencia MIT.

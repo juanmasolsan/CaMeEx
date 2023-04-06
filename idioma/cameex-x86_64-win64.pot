@@ -1,11 +1,35 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-#: tform1.button1.caption
-msgid "Button1"
-msgstr ""
-
 #: tform1.caption
 msgid "Form1"
+msgstr ""
+
+#: tform1.menuitem1.caption
+msgid "Archivo"
+msgstr ""
+
+#: tform1.menuitem2.caption
+msgid "MenuItem2"
+msgstr ""
+
+#: tform1.menuitem3.caption
+msgid "Ayuda"
+msgstr ""
+
+#: tform1.menuitemacercade.caption
+msgid "Acerca de..."
+msgstr ""
+
+#: tform1.menuitemsalir.caption
+msgid "Salir"
+msgstr ""
+
+#: tform1.toolbar1.caption
+msgid "ToolBar1"
+msgstr ""
+
+#: tform1.toolbutton1.caption
+msgid "ToolButton1"
 msgstr ""
 
