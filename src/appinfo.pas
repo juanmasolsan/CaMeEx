@@ -39,6 +39,9 @@ const
   FECHA_PROGRAMA       = '20230406 20:17:41';
   NOMBRE_PROGRAMA      = 'CaMeEx';
   NOMBRE_AUTOR         = 'Juan Manuel Soltero Sánchez';
+  APP_WEB              = 'https://github.com/juanmasolsan/CaMeEx';
+  AUTOR_EMAIL          = 'test@etest.es';
+
 
 
 implementation

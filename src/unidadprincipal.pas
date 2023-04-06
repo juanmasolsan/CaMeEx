@@ -58,6 +58,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemAcercaDeClick(Sender: TObject);
   private
 
   public
@@ -70,6 +71,7 @@ var
 implementation
 
 uses appinfo
+, Control_About
 ;
 
 {$R *.lfm}
@@ -106,6 +108,11 @@ begin
   ActivarGuardadoPosicion;
 
 
+end;
+
+procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
+begin
+  Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);

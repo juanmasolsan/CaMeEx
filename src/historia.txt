@@ -1,7 +1,7 @@
 
 
-
-- [NEW]   (20230406) Agregado a los formularios métodos para mejorar ciertas acciones.
+- [NEW]   (20230407) Agregado Acerca de.
+- [NEW]   (20230407) Agregado a los formularios métodos para mejorar ciertas acciones.
 
 + 1.0.1.0
 - [NEW]   (20230406) Agregado funcionalidad de confeccionar el título de la ventana principal y de la aplicación.

@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
         <CursorPos X="29" Y="14"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -21,16 +21,16 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadPrincipal"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="57"/>
+        <TopLine Value="58"/>
         <CursorPos X="118" Y="64"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -39,7 +39,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="20" Y="7"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -49,7 +49,7 @@
         <UnitName Value="AppInfo"/>
         <EditorIndex Value="2"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -58,13 +58,13 @@
         <UnitName Value="Control_Formulario_Avanzado"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="900"/>
-        <CursorPos X="55" Y="914"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="32"/>
+        <CursorPos X="57" Y="45"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="10">
+    <JumpHistory HistoryIndex="11">
       <Position>
         <Filename Value="cameex.lpr"/>
         <Caret Line="19"/>
@@ -108,10 +108,25 @@
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <Caret Line="1526" TopLine="1497"/>
       </Position>
+      <Position>
+        <Filename Value="components\control_formulario_avanzado.pas"/>
+        <Caret Line="914" Column="55" TopLine="900"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="components\control_formulario_avanzado.pas"/>
+        <Line Value="42"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>
