@@ -70,6 +70,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppInfo"/>
       </Unit>
+      <Unit>
+        <Filename Value="components\control_formulario_avanzado.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Control_Formulario_Avanzado"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

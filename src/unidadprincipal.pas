@@ -67,13 +67,37 @@ var
 
 implementation
 
+uses appinfo
+;
+
 {$R *.lfm}
+
+function Get_Titulo_Ventana(MostarTituloApp : boolean; Extra : string = ''; Version : boolean = true): string;
+begin
+  Result := '';
+
+  if MostarTituloApp then
+    begin
+      Result := NOMBRE_PROGRAMA;
+      if Version then
+        Result := Result + ' v.' + VERSION_PROGRAMA;
+    end;
+
+  if Extra <> '' then
+    if Result <> '' then
+      Result := Result + ' - ' + Extra
+    else
+      Result := Extra;
+end;
+
+
 
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  //
+  Caption                 := Get_Titulo_Ventana(true, '', true);
+  Application.Title       := Get_Titulo_Ventana(true, '', false);
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);

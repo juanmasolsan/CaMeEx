@@ -1,6 +1,7 @@
 
 
-+ 1.0.0.9
++ 1.0.1.0
+- [NEW]   (20230406) Agregado funcionalidad de confeccionar el título de la ventana principal y de la aplicación.
 - [NEW]   (20230406) Agregado menú principal
 - [NEW]   (20230406) Agregado Toolbar principal
 - [NEW]   (20230406) Agregado barra de estado
