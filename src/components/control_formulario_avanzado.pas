@@ -66,7 +66,7 @@ type
     procedure KeyUp(var Key: Word; Shift: TShiftState); override;
     procedure Do_Corregir_Colores_Controles;
     procedure DoGuardarPosicioForm();
-    procedure DoRestaurarPosicionForm();
+    procedure DoRestaurarPosicionForm(SoloPosicion : boolean = false);
   public
     destructor Destroy; override;
     function CloseQuery: boolean; override;
@@ -211,7 +211,7 @@ begin
 
     if FGuardarPosicion_Activar then
     begin
-      DoRestaurarPosicionForm();
+      DoRestaurarPosicionForm(SoloPosicion);
     end;
 
   finally
@@ -273,14 +273,19 @@ begin
   end;
 end;
 
-procedure TForm_Avanzado_Custom.DoRestaurarPosicionForm();
+procedure TForm_Avanzado_Custom.DoRestaurarPosicionForm(SoloPosicion : boolean = false);
 begin
   if not assigned(FArchivoConfiguracion) then exit;
   try
     Left   := FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'X0', Left);
     Top    := FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'Y0', Top);
-    Width  := FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'X1', Width);
-    Height := FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'Y1', Height);
+
+    if not SoloPosicion then
+    begin
+      Width  := FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'X1', Width);
+      Height := FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'Y1', Height);
+    end;
+
   except
   end;
 end;
