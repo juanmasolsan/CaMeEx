@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
         <CursorPos X="29" Y="14"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -22,15 +22,15 @@
         <UnitName Value="UnidadPrincipal"/>
         <EditorIndex Value="4"/>
         <TopLine Value="57"/>
-        <CursorPos X="102" Y="64"/>
-        <UsageCount Value="26"/>
+        <CursorPos X="99" Y="65"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -39,7 +39,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="20" Y="7"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -49,18 +49,17 @@
         <UnitName Value="AppInfo"/>
         <EditorIndex Value="2"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Formulario_Avanzado"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="31"/>
         <CursorPos X="57" Y="45"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -69,15 +68,36 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Control_About"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="91"/>
         <CursorPos X="25" Y="97"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="motorscan.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MotorScan"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="92"/>
+        <CursorPos X="7" Y="89"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="modelos\modelodatofromfile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ModeloDatoFromFile"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="9"/>
+        <CursorPos X="30" Y="15"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="13">
+    <JumpHistory HistoryIndex="14">
       <Position>
         <Filename Value="cameex.lpr"/>
         <Caret Line="19"/>
@@ -132,6 +152,10 @@
       <Position>
         <Filename Value="unidadprincipal.pas"/>
         <Caret Line="64" Column="102" TopLine="57"/>
+      </Position>
+      <Position>
+        <Filename Value="motorscan.pas"/>
+        <Caret Line="26" Column="41"/>
       </Position>
     </JumpHistory>
     <RunParams>

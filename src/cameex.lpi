@@ -77,6 +77,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Formulario_Avanzado"/>
       </Unit>
+      <Unit>
+        <Filename Value="motorscan.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MotorScan"/>
+      </Unit>
+      <Unit>
+        <Filename Value="modelos\modelodatofromfile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ModeloDatoFromFile"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -87,7 +97,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="components;components\about"/>
+      <OtherUnitFiles Value="components;components\about;components\scan;modelos"/>
       <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

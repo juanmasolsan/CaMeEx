@@ -24,31 +24,37 @@ SOFTWARE.
 
 }
 
-program cameex;
+unit MotorScan;
 
-{$mode objfpc}{$H+}
+{$mode ObjFPC}{$H+}
+
+interface
 
 uses
-  {$IFDEF UNIX}
-  cthreads,
-  {$ENDIF}
-  {$IFDEF HASAMIGA}
-  athreads,
-  {$ENDIF}
-  Interfaces, // this includes the LCL widgetset
-  Forms
-  , UnidadPrincipal, AppInfo, Control_Formulario_Avanzado, MotorScan,
-ModeloDatoFromFile
-  { you can add units after this };
+  Classes
+  , SysUtils;
 
-{$R *.res}
+type
+  { TMotorScanCustom }
+  TMotorScanCustom = class
+  private
+  protected
+  public
+    procedure ScanDir(Directorio : RawByteString);
+  end;
 
+
+type
+  { TMotorScan }
+  TMotorScan = class(TMotorScanCustom);
+
+
+implementation
+
+procedure TMotorScanCustom.ScanDir(Directorio : RawByteString);
 begin
-  RequireDerivedFormResource:=True;
-  Application.Title:='CaMeEx';
-  Application.Scaled:=True;
-  Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
-  Application.Run;
+  //
+end;
+
 end.
 

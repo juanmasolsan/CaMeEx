@@ -17,17 +17,35 @@
 + Formularios - Poder marcar Labels como si fuesen url, que sean clickable
 + Crear Acerca de.
 
-- Formularios - Posición - Que recuerde si estaba maximizado o no
-- Agregar Sqlite3 - Versiones x64 y x86
-- Agregar Sqlite3 - Crear base de datos
-- Agregar Sqlite3 - Crear tablas
-- Agregar Sqlite3 - Crear métodos de inserción
-- Agregar Sqlite3 - Crear métodos de actualización
-- Agregar Sqlite3 - Crear métodos de eliminación
-- Agregar cajon de búsqueda en la barra de herramientas
+- Hito 1: Escaneo de medios y guardado en la base de datos de la información extraída de los mismos.
+-         Motor de escaneo de dispositivos y directorios
+-         Agregar Sqlite3 - Versiones x64 y x86
+-         Agregar Sqlite3 - Crear base de datos
+-         Agregar Sqlite3 - Crear tablas
+-         Agregar Sqlite3 - Crear métodos de inserción
+-         Agregar Sqlite3 - Crear métodos de actualización
+-         Agregar Sqlite3 - Crear métodos de eliminación
 
-- Motor de escaneo de dispositivos y directorios
-- Motor de búsqueda simple.
-- Motor de búsqueda avanzado.
-- Sistema de exportación.
+- Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
+-         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app
+-         Poder mostrar las columnas que el usuario quiera.
+-         Poder ordenar la lista de archivos, por sus diferentes columnas.
+
+- Hito 3: Búsqueda y filtrado de datos.
+-         Agregar cajon de búsqueda en la barra de herramientas
+-         Motor de búsqueda simple.
+-         Motor de búsqueda avanzado.
+
+- Hito 4: Exportación de datos a formato html, xml o csv. Tanto de los datos seleccionados, como los resultados de búsqueda.
+-         Sistema de exportación - Base.
+-         Sistema de exportación - Html.
+-         Sistema de exportación - Xml.
+-         Sistema de exportación - Xsv.
+-         Sistema de exportación - Txt.
+
+- Hito 5: Adicionalmente, la aplicación contará con un modo de visualización de datos para Ubuntu/Linux Mint.
+
+
+
+- Formularios - Posición - Que recuerde si estaba maximizado o no
 - Agregar comentarios.

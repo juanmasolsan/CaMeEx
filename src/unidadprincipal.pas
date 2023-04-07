@@ -72,6 +72,7 @@ implementation
 
 uses appinfo
 , Control_About
+, MotorScan
 ;
 
 {$R *.lfm}
