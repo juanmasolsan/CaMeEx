@@ -1,6 +1,9 @@
 
++ 1.0.1.7
+- [FIX]   (20230408) Limpieza de dependencias en el archivo lpr
+- [NEW]   (20230408) Agregado al motor básico de escaneo la obtención de datos
 
-
++ 1.0.1.5
 - [NEW]   (20230407) Agregado motor básico de escaneo recursivo.
 - [FIX]   (20230407) Corregido que recuerde si están maximizadas o no las ventanas.
 

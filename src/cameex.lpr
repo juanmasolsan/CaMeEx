@@ -37,8 +37,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
-  , UnidadPrincipal, AppInfo, Control_Formulario_Avanzado, MotorScan,
-ModeloDatoFromFile, ModeloItemData;
+  , UnidadPrincipal;
 
 {$R *.res}
 
