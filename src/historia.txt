@@ -1,4 +1,6 @@
 
+- [FIX]   (20230407) Corregido que recuerde si están maximizadas o no las ventanas.
+
 + 1.0.1.3
 - [FIX]   (20230407) Corregido restaurar solo la posición de los formularios.
 - [NEW]   (20230407) Agregado Acerca de.

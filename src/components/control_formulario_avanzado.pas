@@ -47,20 +47,21 @@ uses
 
 
 type
+
+  { TWindowStates }
+  TWindowStates = set of TWindowState;
+
   { TForm_Avanzado_Custom }
   TForm_Avanzado_Custom = class(TForm)
   private
-    FCurdir : String;
-    FArchivoConfiguracion : TMemInifile;
-    FDirectorio_Aplicacion : string;
-    FIsPostable            : boolean;
-
-    FGuardarPosicion_Activar  : boolean;
-    FIsPreShow                : boolean;
-
-    FCerrarConESC : boolean;
-
-
+    FCurdir                  : String;
+    FArchivoConfiguracion    : TMemInifile;
+    FDirectorio_Aplicacion   : string;
+    FIsPostable              : boolean;
+    FGuardarPosicion_Activar : boolean;
+    FIsPreShow               : boolean;
+    FCerrarConESC            : boolean;
+    FEstadosAdmitidos        : TWindowStates;
   protected
     procedure DoCreate; override;
     procedure KeyUp(var Key: Word; Shift: TShiftState); override;
@@ -80,7 +81,7 @@ type
     property DirectorioConfig     : String read FDirectorio_Aplicacion;
     property IsPostable           : boolean read FIsPostable;
 
-    procedure ActivarGuardadoPosicion(SoloPosicion : boolean = false); virtual;
+    procedure ActivarGuardadoPosicion(SoloPosicion : boolean = false; EstadoVentanaAdmitidos : TWindowStates = [wsNormal, wsMaximized, wsFullScreen]); virtual;
 
     procedure ActivarCerrarConESC; virtual;
 
@@ -138,6 +139,8 @@ end;
 
 procedure TForm_Avanzado_Custom.DoCreate;
 begin
+  FEstadosAdmitidos := [wsNormal, wsMinimized, wsMaximized, wsFullScreen];
+
   if FForzarColorFormularioActivo then
     Color := FForzarColorFormularioColor;
 
@@ -203,11 +206,13 @@ begin
   Objeto.Cursor := crHandPoint
 end;
 
-procedure TForm_Avanzado_Custom.ActivarGuardadoPosicion(SoloPosicion : boolean = false);
+procedure TForm_Avanzado_Custom.ActivarGuardadoPosicion(SoloPosicion : boolean = false;  EstadoVentanaAdmitidos : TWindowStates = [wsNormal, wsMaximized, wsFullScreen]);
 begin
   DisableAlign;
   try
     FGuardarPosicion_Activar  := true;
+
+    FEstadosAdmitidos := EstadoVentanaAdmitidos;
 
     if FGuardarPosicion_Activar then
     begin
@@ -264,10 +269,16 @@ procedure TForm_Avanzado_Custom.DoGuardarPosicioForm();
 begin
   if not assigned(FArchivoConfiguracion) then exit;
   try
-    FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'X0', Left);
-    FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'Y0', Top);
-    FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'X1', Width);
-    FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'Y1', Height);
+    FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'ST', integer(WindowState));
+
+    if WindowState = wsNormal then
+      begin
+        FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'X0', Left);
+        FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'Y0', Top);
+        FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'X1', Width);
+        FArchivoConfiguracion.WriteInteger('Posicion Ventana ' + Name, 'Y1', Height);
+      end;
+
     FArchivoConfiguracion.UpdateFile;
   except
   end;
@@ -286,6 +297,7 @@ begin
       Height := FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'Y1', Height);
     end;
 
+    WindowState := TWindowState(FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'ST', integer(WindowState)));
   except
   end;
 end;
