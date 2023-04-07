@@ -85,6 +85,7 @@ implementation
 uses appinfo
 , Control_About
 , MotorScan
+, ItemData
 ;
 
 {$R *.lfm}
@@ -139,20 +140,49 @@ begin
 end;
 
 procedure TForm1.ToolButton1Click(Sender: TObject);
+
+  procedure ProcesarHijo(Ruta: string; Item : TDatoItem);
+  var
+    t, total : integer;
+    Actual : TDatoItem;
+  begin
+    if item <> nil then
+    begin
+      total := item.HijosCount()-1;
+      for t := 0 to total do
+      begin
+        Actual := item.GetHijo(t);
+
+        SynEdit1.Lines.Add(Ruta + Actual.Nombre);
+
+        ProcesarHijo(Ruta + IncludeTrailingBackslash(Actual.Nombre), Actual);
+      end;
+    end;
+  end;
+
 var
-  Scan : TMotorScan;
+  Scan     : TMotorScan;
+  t, total : integer;
+  Item     : TDatoItem;
 begin
   //
 
   Scan := TMotorScan.Create;
   try
-    Scan.ScanDir(Curdir, TStringList(SynEdit1.Lines));
+    Scan.ScanDir(Curdir);
+    total := Scan.Root.HijosCount()-1;
+    for t := 0 to total do
+    begin
+      Item := Scan.Root.GetHijo(t);
+      if item <> nil then
+      begin
+        SynEdit1.Lines.Add(Item.Nombre);
+        ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
+      end;
+    end;
   finally
     Scan.Free;
   end;
 end;
 
-
-
 end.
-

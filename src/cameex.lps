@@ -8,9 +8,10 @@
       <Unit>
         <Filename Value="cameex.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
-        <CursorPos X="29" Y="14"/>
-        <UsageCount Value="29"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="20"/>
+        <CursorPos X="69" Y="40"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,17 +21,17 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadPrincipal"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="102"/>
         <CursorPos Y="135"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -39,7 +40,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="52" Y="20"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -47,19 +48,19 @@
         <Filename Value="appinfo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppInfo"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Formulario_Avanzado"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="31"/>
         <CursorPos X="57" Y="45"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -69,16 +70,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="30"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloDatoFromFile"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="9"/>
-        <CursorPos X="30" Y="15"/>
-        <UsageCount Value="22"/>
+        <CursorPos Y="10"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -87,10 +88,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Control_About"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="91"/>
         <CursorPos X="25" Y="97"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -99,13 +100,29 @@
         <UnitName Value="MotorScan"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="41"/>
-        <CursorPos X="76" Y="58"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="121"/>
+        <CursorPos X="74" Y="144"/>
+        <UsageCount Value="14"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="modelos\modeloitemdata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ModeloItemData"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\sysutils\filutilh.inc"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="60"/>
+        <CursorPos X="9" Y="70"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="16">
+    <JumpHistory HistoryIndex="19">
       <Position>
         <Filename Value="cameex.lpr"/>
         <Caret Line="19"/>
@@ -172,6 +189,18 @@
       <Position>
         <Filename Value="por_hacer.txt"/>
         <Caret Line="20" Column="52"/>
+      </Position>
+      <Position>
+        <Filename Value="cameex.lpr"/>
+        <Caret Line="40" Column="69" TopLine="20"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\motorscan.pas"/>
+        <Caret Line="128" Column="26" TopLine="121"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\sysutils\filutilh.inc"/>
+        <Caret Line="89" Column="3" TopLine="72"/>
       </Position>
     </JumpHistory>
     <RunParams>

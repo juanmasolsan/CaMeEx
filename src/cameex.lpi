@@ -90,6 +90,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloDatoFromFile"/>
       </Unit>
+      <Unit>
+        <Filename Value="modelos\modeloitemdata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ModeloItemData"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -106,6 +111,7 @@
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2Set"/>
+        <UseHeaptrc Value="True"/>
         <StripSymbols Value="True"/>
         <UseExternalDbgSyms Value="True"/>
       </Debugging>

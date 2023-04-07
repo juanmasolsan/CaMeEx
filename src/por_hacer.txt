@@ -20,7 +20,7 @@
 
 - Hito 1: Escaneo de medios y guardado en la base de datos de la información extraída de los mismos.
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente
--         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Obtener datos
++         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Obtener datos
 -         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder detenerlo
 -         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder ver que archivo o directorio está procesando
 -         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Total archivos y carpetas
@@ -63,3 +63,5 @@
 - Agregar comentarios.
 - Agregar temas oscuro y claro
 - Compilar para windows x86
+- Comprobar memory leaks (1)
+- Sistema Log para registrar errores y eventos

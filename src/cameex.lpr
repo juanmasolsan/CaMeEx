@@ -38,8 +38,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   , UnidadPrincipal, AppInfo, Control_Formulario_Avanzado, MotorScan,
-ModeloDatoFromFile
-  { you can add units after this };
+ModeloDatoFromFile, ModeloItemData;
 
 {$R *.res}
 

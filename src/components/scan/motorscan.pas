@@ -38,6 +38,7 @@ uses
   , FileUtil
   , LazFileUtils
   , LazUTF8
+  , ItemData
   ;
 
 
@@ -47,25 +48,33 @@ type
   private
     FDetener_Escaneo_Busqueda_Archivos : boolean;
     FMascaraArchivo : RawByteString;
+    FRoot  : TDatoItem;
   protected
     // Devuelve la ruta a procesar, incluyendo la máscara de archivo
     function GetRutaProcesar(Ruta : RawByteString): RawByteString; virtual;
 
+    // Procesa un archivo o directorio encontrado
+    function DoProcesarItem(const SearchRec: TSearchRec; const Padre: TDatoItem) : TDatoItem; virtual;
+
     // Realiza un escaneo de archivos y directorios recursivo de un directorio dado
-    procedure DoScanDir(Directorio : RawByteString; ListaSalida : TStringList);
+    procedure DoScanDir(Directorio : RawByteString; Padre: TDatoItem);
 
   public
     // Constructor de la clase
     constructor Create();
 
+    // Destructor de la clase
+    destructor Destroy(); override;
+
     // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado
-    procedure ScanDir(Directorio : RawByteString; ListaSalida : TStringList); virtual;
+    procedure ScanDir(Directorio : RawByteString); virtual;
 
     // Métodos de la clase - Detiene el escaneo de archivos y directorios
     procedure StopScan(); virtual;
 
     // Propiedades de la clase
     property MascaraArchivo : RawByteString read FMascaraArchivo write FMascaraArchivo;
+    property Root  : TDatoItem read FRoot;
   end;
 
 type
@@ -79,9 +88,21 @@ implementation
 constructor TMotorScanCustom.Create();
 begin
   inherited Create();
+
+  FRoot                              := TDatoItem.create(TDatoItemTipo.Root);
   FDetener_Escaneo_Busqueda_Archivos := false;
-  FMascaraArchivo := '*';
+  FMascaraArchivo                    := '*';
 end;
+
+destructor TMotorScanCustom.Destroy();
+begin
+  // Eliminar el objeto raíz
+  FRoot.Free;
+
+  // Llamar al destructor de la clase base
+  inherited Destroy();
+end;
+
 
 // Devuelve la ruta a procesar, incluyendo la máscara de archivo
 function TMotorScanCustom.GetRutaProcesar(Ruta : RawByteString): RawByteString;
@@ -101,24 +122,23 @@ begin
 end;
 
 // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado
-procedure TMotorScanCustom.ScanDir(Directorio : RawByteString; ListaSalida : TStringList);
+procedure TMotorScanCustom.ScanDir(Directorio : RawByteString);
 begin
-  ListaSalida.Clear;
-
   // Indica que no se debe detener el escaneo
   FDetener_Escaneo_Busqueda_Archivos := false;
 
-  DoScanDir(Directorio, ListaSalida);
-
+  // Inicia el escaneo de archivos y directorios
+  DoScanDir(Directorio, FRoot);
 end;
 
 // Inicia un escaneo de archivos y directorios de un directorio dado
-procedure TMotorScanCustom.DoScanDir(Directorio : RawByteString; ListaSalida : TStringList);
+procedure TMotorScanCustom.DoScanDir(Directorio : RawByteString; Padre: TDatoItem);
 var
   RootName   : RawByteString;
   DosError   : Integer;
   SearchRec  : TSearchRec;
   FlagsDir   : Integer = faAnyFile;
+  Actual     : TDatoItem;
 
 begin
   // Obtener la ruta a procesar con la MascaraArchivo
@@ -137,13 +157,12 @@ begin
         //TODO: Poder excluir del scan con patrones
 
         //TODO: Procesar o guardar el archivo o directorio encontrado
-        ListaSalida.Add(IncludeTrailingBackslash(Directorio) + SearchRec.Name);
+        Actual := DoProcesarItem(SearchRec, Padre);
 
         // Si es un directorio, llamar recursivamente a la función para procesar su contenido
         if (SearchRec.Attr and faDirectory)= faDirectory then
-          DoScanDir(IncludeTrailingBackslash(Directorio) + SearchRec.Name, ListaSalida);
+          DoScanDir(IncludeTrailingBackslash(Directorio) + SearchRec.Name, Actual);
       end;
-
 
       // Obtener el siguiente archivo o directorio
       DosError := FindNextUtf8(SearchRec);
@@ -158,6 +177,37 @@ begin
     FindCloseUtf8(SearchRec);
   end;
 end;
+
+// Procesa un archivo o directorio encontrado
+function TMotorScanCustom.DoProcesarItem(const SearchRec: TSearchRec; const Padre: TDatoItem) : TDatoItem;
+var
+  Item : TDatoItem;
+  Tipo : TDatoItemTipo;
+  Id   : int64 = -1;
+begin
+
+  // Determinar el tipo de archivo o directorio
+  if (SearchRec.Attr and faDirectory)= faDirectory then
+    Tipo := TDatoItemTipo.Directorio
+  else
+    Tipo := TDatoItemTipo.Archivo;
+
+  // Crear el objeto TDatoItem
+  //TODO: Generar el ID del objeto
+  Item := TDatoItem.Create(Id,
+                            Tipo,
+                            SearchRec.Attr,
+                            FileDateToDateTime(SearchRec.Time),
+                            SearchRec.Size,
+                            SearchRec.Name);
+
+  // Añadir el objeto TDatoItem al padre
+  Padre.AddHijo(Item);
+
+  // Devolver el objeto TDatoItem
+  Result := Item;
+end;
+
 
 end.
 
