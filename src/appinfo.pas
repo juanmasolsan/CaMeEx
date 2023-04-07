@@ -35,8 +35,8 @@ uses
 
 // Inicio de programación  20230406
 const
-  VERSION_PROGRAMA     = '1.0.1.3' + {$IFDEF CPUX64}' x64'{$ELSE}' x86'{$ENDIF};
-  FECHA_PROGRAMA       = '20230407 00:42:41';
+  VERSION_PROGRAMA     = '1.0.1.7' + {$IFDEF CPUX64}' x64'{$ELSE}' x86'{$ENDIF};
+  FECHA_PROGRAMA       = '20230408 00:36:41';
   NOMBRE_PROGRAMA      = 'CaMeEx';
   NOMBRE_AUTOR         = 'Juan Manuel Soltero Sánchez';
   APP_WEB              = 'https://github.com/juanmasolsan/CaMeEx';
