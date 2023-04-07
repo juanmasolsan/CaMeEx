@@ -16,9 +16,17 @@
 + Formularios - Poder cerrar los formularios pulsando la tecla estructura
 + Formularios - Poder marcar Labels como si fuesen url, que sean clickable
 + Crear Acerca de.
++ Formularios - Posición - Que recuerde si estaba maximizado o no
 
 - Hito 1: Escaneo de medios y guardado en la base de datos de la información extraída de los mismos.
--         Motor de escaneo de dispositivos y directorios
++         Motor de escaneo de dispositivos y directorios - Listar recursivamente
+-         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Obtener datos
+-         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder detenerlo
+-         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder ver que archivo o directorio está procesando
+-         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Total archivos y carpetas
+-         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Total tamaño detectado con la suma de todos los tamaños de los archivos
+-         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder excluir del scan con patrones.
+-         Motor de escaneo de dispositivos y directorios - Multi hilo o por lo menos en un hilo separado de la UI
 -         Agregar Sqlite3 - Versiones x64 y x86
 -         Agregar Sqlite3 - Crear base de datos
 -         Agregar Sqlite3 - Crear tablas
@@ -30,6 +38,8 @@
 -         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app
 -         Poder mostrar las columnas que el usuario quiera.
 -         Poder ordenar la lista de archivos, por sus diferentes columnas.
+-         Tamaño de los archivos - Con puntos para separar los miles.
+-         Tamaño de los archivos - Poder seleccionar unidad en la que mostrar los tamaños, bytes, kb, mb, gb, tb, etc.
 
 - Hito 3: Búsqueda y filtrado de datos.
 -         Agregar cajon de búsqueda en la barra de herramientas
@@ -44,9 +54,12 @@
 -         Sistema de exportación - Txt.
 
 - Hito 5: Adicionalmente, la aplicación contará con un modo de visualización de datos para Ubuntu/Linux Mint.
+-         Comprobar que se puede compilar
+-         Comprobar que se puede cargar la base de datos de la versión de windows
+-         Comprobar la carga de la versión portable
 
 
 
-- Formularios - Posición - Que recuerde si estaba maximizado o no
 - Agregar comentarios.
-- Agregar temas de colores
+- Agregar temas oscuro y claro
+- Compilar para windows x86

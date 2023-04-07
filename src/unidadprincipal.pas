@@ -32,8 +32,18 @@ unit UnidadPrincipal;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus,
-  ComCtrls, ExtCtrls, laz.VirtualTrees
+  Classes
+  , SysUtils
+  , Forms
+  , Controls
+  , Graphics
+  , Dialogs
+  , StdCtrls
+  , Menus
+  , ComCtrls
+  , ExtCtrls
+  , laz.VirtualTrees
+  , SynEdit
   , Control_Formulario_Avanzado
   ;
 
@@ -53,12 +63,14 @@ type
     Separator1: TMenuItem;
     Splitter1: TSplitter;
     StatusBar1: TStatusBar;
+    SynEdit1: TSynEdit;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
+    procedure ToolButton1Click(Sender: TObject);
   private
 
   public
@@ -125,6 +137,22 @@ procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   //
 end;
+
+procedure TForm1.ToolButton1Click(Sender: TObject);
+var
+  Scan : TMotorScan;
+begin
+  //
+
+  Scan := TMotorScan.Create;
+  try
+    Scan.ScanDir(Curdir, TStringList(SynEdit1.Lines));
+  finally
+    Scan.Free;
+  end;
+end;
+
+
 
 end.
 
