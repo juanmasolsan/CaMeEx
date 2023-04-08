@@ -36,6 +36,9 @@ unit ItemData;
 
 interface
 
+{$notes off}
+{$hints off}
+
 uses
   Classes
   , SysUtils
@@ -43,7 +46,6 @@ uses
   ;
 
 type
-
   // Predefinicón de la clase
   { TDatoItem }
   TDatoItem = class;
