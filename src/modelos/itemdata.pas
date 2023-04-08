@@ -1,3 +1,9 @@
+(**
+ * @Author: Juan Manuel Soltero Sánchez
+ * @Date:   2023-04-07 21:59:18
+ * @Last Modified by:   Juan Manuel Soltero Sánchez
+ * @Last Modified time: 2023-04-08 17:42:12
+ *)
 {
 
 MIT License

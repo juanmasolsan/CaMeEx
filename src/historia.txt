@@ -1,4 +1,7 @@
 
+
+- [NEW]   (20230408) Agregado Utilidades para gestionar diversos datos
+
 + 1.0.1.7
 - [FIX]   (20230408) Limpieza de dependencias en el archivo lpr
 - [NEW]   (20230408) Agregado al motor básico de escaneo la obtención de datos
