@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 17:42:55
+ * @Last Modified time: 2023-04-08 18:00:17
  *)
 {
 
@@ -52,9 +52,11 @@ type
   { TMotorScanCustom }
   TMotorScanCustom = class
   private
-    FDetener_Escaneo_Busqueda_Archivos : boolean;
-    FMascaraArchivo : RawByteString;
-    FRoot  : TDatoItem;
+    FDetener_Escaneo_Busqueda_Archivos: boolean;
+    FMascaraArchivo                   : RawByteString;
+    FRoot                             : TDatoItem;
+    FTotalArchivos                    : Integer;
+    FTotalDirectorios                 : Integer;
   protected
     // Devuelve la ruta a procesar, incluyendo la máscara de archivo
     function GetRutaProcesar(Ruta : RawByteString): RawByteString; virtual;
@@ -81,6 +83,10 @@ type
     // Propiedades de la clase
     property MascaraArchivo : RawByteString read FMascaraArchivo write FMascaraArchivo;
     property Root  : TDatoItem read FRoot;
+
+    // Contadores de archivos y directorios encontrados
+    property TotalArchivos    : Integer read FTotalArchivos;
+    property TotalDirectorios : Integer read FTotalDirectorios;
   end;
 
 type
@@ -132,6 +138,11 @@ procedure TMotorScanCustom.ScanDir(Directorio : RawByteString);
 begin
   // Indica que no se debe detener el escaneo
   FDetener_Escaneo_Busqueda_Archivos := false;
+
+  // Inicializar los contadores de archivos y directorios
+  FTotalArchivos                     := 0;
+  FTotalDirectorios                  := 0;
+
 
   // Inicia el escaneo de archivos y directorios
   DoScanDir(Directorio, FRoot);
@@ -194,9 +205,15 @@ begin
 
   // Determinar el tipo de archivo o directorio
   if (SearchRec.Attr and faDirectory)= faDirectory then
-    Tipo := TDatoItemTipo.Directorio
+    begin
+      Tipo := TDatoItemTipo.Directorio;
+      FTotalDirectorios += 1;
+    end
   else
-    Tipo := TDatoItemTipo.Archivo;
+    begin
+      Tipo := TDatoItemTipo.Archivo;
+      FTotalArchivos += 1;
+    end;
 
   // Crear el objeto TDatoItem
   //TODO: Generar el ID del objeto
