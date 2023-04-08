@@ -111,6 +111,9 @@ type
     // Obtiene un hijo
     function GetHijo(Index : Integer) : TDatoItem; virtual;
 
+    // Devuielve los datos del item en una string
+    function ToString() : string; override;
+
     // Propiedades
     property Id               : int64 read FId;
     property Tipo             : TDatoItemTipo read FTipo;
@@ -235,6 +238,14 @@ function TDatoItem.GetHijo(Index : Integer) : TDatoItem;
 begin
   Result := FHijos[Index];
 end;
+
+function TDatoItem.ToString() : string;
+begin
+  Result := 'Id: ' + IntToStr(FId) + ' Tipo: ' + IntToStr(Ord(FTipo)) + ' Atributos: ' + IntToStr(FAtributos) + ' DateTime: ' + DateTimeToStr(FDateTime) + ' Size: ' + IntToStr(FSize) + ' Nombre: ' + FNombre + ' Extension: ' + FExtension + ' ImageIndex: ' + IntToStr(FImageIndex) + ' ImageIndexSistema: ' + IntToStr(FImageIndexSistema) + ' ParentId: ' + IntToStr(FParentId);
+end;
+
+
+
 
 
 end.

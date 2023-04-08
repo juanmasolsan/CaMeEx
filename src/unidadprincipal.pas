@@ -53,17 +53,21 @@ type
 
   TForm1 = class(TForm)
     Arbol: TLazVirtualDrawTree;
+    ImageListToolbar: TImageList;
     Lista: TLazVirtualDrawTree;
-    MainMenu1: TMainMenu;
+    MenuPrincipal: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItemAcercaDe: TMenuItem;
     MenuItemSalir: TMenuItem;
+    PanelInferior: TPanel;
+    PanelPrincipal: TPanel;
     Separator1: TMenuItem;
     Splitter1: TSplitter;
+    Splitter2: TSplitter;
     StatusBar1: TStatusBar;
-    SynEdit1: TSynEdit;
+    SalidaLog: TSynEdit;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -120,8 +124,6 @@ begin
   // Opciones avanzadas
   ActivarArchivoConfig('cameex_config.ini', false, true, false, NOMBRE_PROGRAMA);
   ActivarGuardadoPosicion;
-
-
 end;
 
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
@@ -153,7 +155,7 @@ procedure TForm1.ToolButton1Click(Sender: TObject);
       begin
         Actual := item.GetHijo(t);
 
-        SynEdit1.Lines.Add(Ruta + Actual.Nombre);
+        SalidaLog.Lines.Add(Ruta + Actual.Nombre + ' ' + Actual.ToString());
 
         ProcesarHijo(Ruta + IncludeTrailingBackslash(Actual.Nombre), Actual);
       end;
@@ -176,7 +178,8 @@ begin
       Item := Scan.Root.GetHijo(t);
       if item <> nil then
       begin
-        SynEdit1.Lines.Add(Item.Nombre);
+        SalidaLog.Lines.Add(Item.Nombre);
+        SalidaLog.Lines.Add(Item.Nombre + ' ' + Item.ToString());
         ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
       end;
     end;
