@@ -694,4 +694,11 @@ object Form1: TForm1
       83DC9CFF1B1EFFCBF66FCA66C986
     }
   end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = Timer1Timer
+    Left = 776
+    Top = 72
+  end
 end

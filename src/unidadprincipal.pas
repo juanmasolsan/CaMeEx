@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 18:16:54
+ * @Last Modified time: 2023-04-08 22:10:14
  *)
 {
 
@@ -50,6 +50,7 @@ uses
   , laz.VirtualTrees
   , SynEdit
   , Control_Formulario_Avanzado
+  , MotorScan
   ;
 
 type
@@ -73,15 +74,17 @@ type
     Splitter2: TSplitter;
     StatusBar1: TStatusBar;
     SalidaLog: TSynEdit;
+    Timer1: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
   private
-
+    FScan     : TMotorScan;
   public
 
   end;
@@ -93,7 +96,6 @@ implementation
 
 uses appinfo
 , Control_About
-, MotorScan
 , ItemData
 , Utilidades
 ;
@@ -169,19 +171,17 @@ procedure TForm1.ToolButton1Click(Sender: TObject);
   end;
 
 var
-  Scan     : TMotorScan;
   t, total : integer;
   Item     : TDatoItem;
 begin
   //
-
-  Scan := TMotorScan.Create;
+  FScan := TMotorScan.Create;
   try
-    Scan.ScanDir(Curdir);
-    total := Scan.Root.HijosCount()-1;
+    FScan.ScanDir(Curdir);
+    total := FScan.Root.HijosCount()-1;
     for t := 0 to total do
     begin
-      Item := Scan.Root.GetHijo(t);
+      Item := FScan.Root.GetHijo(t);
       if item <> nil then
       begin
         //SalidaLog.Lines.Add(Item.Nombre);
@@ -191,17 +191,28 @@ begin
     end;
 
     SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Total Directorios :' + #9 + IntToStr(Scan.TotalDirectorios));
-    SalidaLog.lines.Add('Total Archivos :' + #9 + IntToStr(Scan.TotalArchivos));
+    SalidaLog.lines.Add('Total Directorios :' + #9 + IntToStr(FScan.TotalDirectorios));
+    SalidaLog.lines.Add('Total Archivos :' + #9 + IntToStr(FScan.TotalArchivos));
 
     SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(Scan.TotalSize) + ' (' + ConvertirSizeEx(Scan.TotalSize, ',##', '.0' ) + ')');
+    SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
 
 
 
   finally
-    Scan.Free;
+    FScan.Free;
+    FScan := nil;
   end;
 end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+Timer1.Enabled := false;
+  if assigned(FScan) then
+  begin
+    FScan.StopScan();
+  end;
+end;
+
 
 end.

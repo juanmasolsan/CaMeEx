@@ -22,8 +22,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadPrincipal"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="64"/>
-        <CursorPos X="56" Y="79"/>
+        <TopLine Value="136"/>
+        <CursorPos X="8" Y="144"/>
         <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -38,8 +38,9 @@
       <Unit>
         <Filename Value="por_hacer.txt"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="52" Y="20"/>
+        <CursorPos X="59" Y="10"/>
         <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -128,10 +129,9 @@
       <Unit>
         <Filename Value="modelos\itemdata.pas"/>
         <UnitName Value="ItemData"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="21"/>
-        <CursorPos X="16" Y="38"/>
+        <CursorPos X="70" Y="31"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -144,14 +144,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="137" TopLine="104"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="129" Column="42" TopLine="105"/>
-      </Position>
       <Position>
         <Filename Value="unidadprincipal.pas"/>
         <Caret Line="182" Column="42" TopLine="158"/>
@@ -263,6 +255,14 @@
       <Position>
         <Filename Value="modelos\itemdata.pas"/>
         <Caret Line="174" Column="29" TopLine="157"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="79" Column="56" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="80" Column="56" TopLine="64"/>
       </Position>
     </JumpHistory>
     <RunParams>

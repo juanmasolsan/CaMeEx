@@ -21,7 +21,7 @@
 - Hito 1: Escaneo de medios y guardado en la base de datos de la información extraída de los mismos.
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Obtener datos
--         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder detenerlo
++         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder detenerlo
 -         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder ver que archivo o directorio está procesando
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Total archivos y carpetas
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Total tamaño detectado con la suma de todos los tamaños de los archivos

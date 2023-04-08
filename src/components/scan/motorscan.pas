@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 18:20:59
+ * @Last Modified time: 2023-04-08 22:13:48
  *)
 {
 
@@ -46,6 +46,7 @@ uses
   , LazFileUtils
   , LazUTF8
   , ItemData
+  , Forms  //TODO: Eliminar solo lo necesito para probar que se puede cancelar el escaneo
   ;
 
 
@@ -237,6 +238,9 @@ begin
 
   // Devolver el objeto TDatoItem
   Result := Item;
+
+  Sleep(100);
+  Application.processMessages;
 end;
 
 
