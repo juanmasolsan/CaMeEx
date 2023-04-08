@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 22:13:48
+ * @Last Modified time: 2023-04-08 22:58:26
  *)
 {
 
@@ -59,7 +59,16 @@ type
     FRoot                             : TDatoItem;
     FTotalArchivos                    : Integer;
     FTotalDirectorios                 : Integer;
-    FtotalSize                        : Int64;
+    FTotalSize                        : Int64;
+
+    FCriticalSection_Totales          : TCriticalSection;
+    FCriticalSection_InfoProgreso     : TCriticalSection;
+
+    // Getters
+    function GetTotalArchivos(): Integer;
+    function GetTotalDirectorios(): Integer;
+    function GetTotalSize(): Int64;
+
   protected
     // Devuelve la ruta a procesar, incluyendo la máscara de archivo
     function GetRutaProcesar(Ruta : RawByteString): RawByteString; virtual;
@@ -88,11 +97,11 @@ type
     property Root  : TDatoItem read FRoot;
 
     // Contadores de archivos y directorios encontrados
-    property TotalArchivos    : Integer read FTotalArchivos;
-    property TotalDirectorios : Integer read FTotalDirectorios;
+    property TotalArchivos    : Integer read GetTotalArchivos;
+    property TotalDirectorios : Integer read GetTotalDirectorios;
 
     // Tamaño total de los archivos encontrados
-    property TotalSize        : Int64 read FtotalSize;
+    property TotalSize        : Int64 read GetTotalSize;
   end;
 
 type
@@ -110,12 +119,24 @@ begin
   FRoot                              := TDatoItem.create(TDatoItemTipo.Root);
   FDetener_Escaneo_Busqueda_Archivos := false;
   FMascaraArchivo                    := '*';
+
+  // Inicializar el objeto de sincronización
+  InitializeCriticalSection(FCriticalSection_Totales);
+
+  // Inicializar el objeto de sincronización
+  InitializeCriticalSection(FCriticalSection_InfoProgreso);
 end;
 
 destructor TMotorScanCustom.Destroy();
 begin
   // Eliminar el objeto raíz
   FRoot.Free;
+
+  // Eliminar el objeto de sincronización
+  DeleteCriticalSection(FCriticalSection_Totales);
+
+  // Eliminar el objeto de sincronización
+  DeleteCriticalSection(FCriticalSection_InfoProgreso);
 
   // Llamar al destructor de la clase base
   inherited Destroy();
@@ -150,7 +171,7 @@ begin
   FTotalDirectorios                  := 0;
 
   // Inicializar el tamaño total de los archivos encontrados
-  FtotalSize                         := 0;
+  FTotalSize                         := 0;
 
   // Inicia el escaneo de archivos y directorios
   DoScanDir(Directorio, FRoot);
@@ -214,14 +235,28 @@ begin
   // Determinar el tipo de archivo o directorio
   if (SearchRec.Attr and faDirectory)= faDirectory then
     begin
-      Tipo              := TDatoItemTipo.Directorio;
-      FTotalDirectorios += 1;
+      Tipo := TDatoItemTipo.Directorio;
+
+      // Protección de acceso concurrente
+      EnterCriticalSection(FCriticalSection_Totales);
+      try
+        FTotalDirectorios += 1;
+      finally
+        LeaveCriticalSection(FCriticalSection_Totales);
+      end;
     end
   else
     begin
-      Tipo           := TDatoItemTipo.Archivo;
-      FTotalArchivos += 1;
-      FtotalSize     += SearchRec.Size;
+      Tipo := TDatoItemTipo.Archivo;
+
+      // Protección de acceso concurrente
+      EnterCriticalSection(FCriticalSection_Totales);
+      try
+        FTotalArchivos += 1;
+        FTotalSize     += SearchRec.Size;
+      finally
+        LeaveCriticalSection(FCriticalSection_Totales);
+      end;
     end;
 
   // Crear el objeto TDatoItem
@@ -239,10 +274,41 @@ begin
   // Devolver el objeto TDatoItem
   Result := Item;
 
-  Sleep(100);
+  Sleep(100); //TODO: Eliminar solo es para probar el funcionamiento con directorios pequeños
   Application.processMessages;
 end;
 
+// Getter
+function TMotorScanCustom.GetTotalArchivos(): Integer;
+begin
+  EnterCriticalSection(FCriticalSection_Totales);
+  try
+    Result := FTotalArchivos;
+  finally
+    LeaveCriticalSection(FCriticalSection_Totales);
+  end;
+end;
+
+// Getter
+function TMotorScanCustom.GetTotalDirectorios(): Integer;
+begin
+  EnterCriticalSection(FCriticalSection_Totales);
+  try
+    Result := FTotalDirectorios;
+  finally
+    LeaveCriticalSection(FCriticalSection_Totales);
+  end;
+end;
+
+// Getter
+function TMotorScanCustom.GetTotalSize(): Int64;
+begin
+  EnterCriticalSection(FCriticalSection_Totales);
+  try
+    Result := FTotalSize;
+  finally
+    LeaveCriticalSection(FCriticalSection_Totales);
+  end;
+end;
 
 end.
-

@@ -1,4 +1,7 @@
 
+
+
+- [NEW]   (20230408) Agregado a TMotorScanCustom Critical Sections para evitar problemas de concurrencia.
 - [FIX]   (20230408) Eliminado hints y notes del código
 - [NEW]   (20230408) Agregado al motor básico de escaneo la detención de la ejecución.
 - [FIX]   (20230408) Eliminado warnings del código

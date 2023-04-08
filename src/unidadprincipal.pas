@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 22:10:14
+ * @Last Modified time: 2023-04-08 23:00:26
  *)
 {
 
@@ -75,6 +75,7 @@ type
     StatusBar1: TStatusBar;
     SalidaLog: TSynEdit;
     Timer1: TTimer;
+    Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
@@ -82,6 +83,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure Timer_UpdateUITimer(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
   private
     FScan     : TMotorScan;
@@ -175,6 +177,8 @@ var
   Item     : TDatoItem;
 begin
   //
+
+  Timer1.Enabled := true;
   FScan := TMotorScan.Create;
   try
     FScan.ScanDir(Curdir);
@@ -212,6 +216,12 @@ Timer1.Enabled := false;
   begin
     FScan.StopScan();
   end;
+end;
+
+procedure TForm1.Timer_UpdateUITimer(Sender: TObject);
+begin
+  //
+  //SalidaLog.Lines.add('Timer_UpdateUITimer');
 end;
 
 
