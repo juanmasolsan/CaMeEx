@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 17:56:09
+ * @Last Modified time: 2023-04-08 18:16:54
  *)
 {
 
@@ -96,6 +96,7 @@ uses appinfo
 , Control_About
 , MotorScan
 , ItemData
+, Utilidades
 ;
 
 {$R *.lfm}
@@ -191,8 +192,13 @@ begin
     end;
 
     SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('total Directorios :' + #9 + IntToStr(Scan.TotalDirectorios));
-    SalidaLog.lines.Add('total Archivos :' + #9 + IntToStr(Scan.TotalArchivos));
+    SalidaLog.lines.Add('Total Directorios :' + #9 + IntToStr(Scan.TotalDirectorios));
+    SalidaLog.lines.Add('Total Archivos :' + #9 + IntToStr(Scan.TotalArchivos));
+
+    SalidaLog.lines.Add('------------------------------------------');
+    SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(Scan.TotalSize) + ' (' + ConvertirSizeEx(Scan.TotalSize, ',##', '.0' ) + ')');
+
+
 
   finally
     Scan.Free;

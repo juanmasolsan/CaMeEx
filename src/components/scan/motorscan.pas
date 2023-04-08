@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 18:00:17
+ * @Last Modified time: 2023-04-08 18:20:59
  *)
 {
 
@@ -29,6 +29,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 }
+
 
 unit MotorScan;
 
@@ -57,6 +58,7 @@ type
     FRoot                             : TDatoItem;
     FTotalArchivos                    : Integer;
     FTotalDirectorios                 : Integer;
+    FtotalSize                        : Int64;
   protected
     // Devuelve la ruta a procesar, incluyendo la máscara de archivo
     function GetRutaProcesar(Ruta : RawByteString): RawByteString; virtual;
@@ -87,6 +89,9 @@ type
     // Contadores de archivos y directorios encontrados
     property TotalArchivos    : Integer read FTotalArchivos;
     property TotalDirectorios : Integer read FTotalDirectorios;
+
+    // Tamaño total de los archivos encontrados
+    property TotalSize        : Int64 read FtotalSize;
   end;
 
 type
@@ -143,6 +148,8 @@ begin
   FTotalArchivos                     := 0;
   FTotalDirectorios                  := 0;
 
+  // Inicializar el tamaño total de los archivos encontrados
+  FtotalSize                         := 0;
 
   // Inicia el escaneo de archivos y directorios
   DoScanDir(Directorio, FRoot);
@@ -206,13 +213,14 @@ begin
   // Determinar el tipo de archivo o directorio
   if (SearchRec.Attr and faDirectory)= faDirectory then
     begin
-      Tipo := TDatoItemTipo.Directorio;
+      Tipo              := TDatoItemTipo.Directorio;
       FTotalDirectorios += 1;
     end
   else
     begin
-      Tipo := TDatoItemTipo.Archivo;
+      Tipo           := TDatoItemTipo.Archivo;
       FTotalArchivos += 1;
+      FtotalSize     += SearchRec.Size;
     end;
 
   // Crear el objeto TDatoItem
