@@ -7,4 +7,7 @@
 "run_win_x86": "cameex-i386-win32.exe",
 "cSpell.enabled": true,
 "fpctoolkit.lsp.initializationOptions.program": "C:\\DAM_02\\comun\\tareas\\proyecto\\Cameex\\src\\",
+"omnipascal.defaultDevelopmentEnvironment": "FreePascal",
+"omnipascal.searchPath": "C:/DAM_02/comun/programas/pascal/src/lazarus/2.2.6/*;C:/DAM_02/comun/tareas/proyecto/Cameex/src/*",
+"omnipascal.freePascalSourcePath": "C:\\DAM_02\\comun\\programas\\pascal\\src\\fpc\\fpc-3.2.2\\",
 }

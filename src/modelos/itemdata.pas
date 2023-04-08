@@ -135,6 +135,17 @@ type
 
 implementation
 
+uses
+  TypInfo,
+  Utilidades;
+
+// Convierte el nombre de un TDatoItemTipo a string
+function TDatoItemTipoToString(Value: TDatoItemTipo): string;
+begin
+  Result := GetEnumName(typeInfo(TDatoItemTipo), Ord(Value));
+end;
+
+
 
 { TArrayDatoItem }
 // Destructor de la clase
@@ -244,7 +255,7 @@ end;
 
 function TDatoItem.ToString() : string;
 begin
-  Result := GetFullPath();//'Id: ' + IntToStr(FId) + ' Tipo: ' + IntToStr(Ord(FTipo)) + ' Atributos: ' + IntToStr(FAtributos) + ' DateTime: ' + DateTimeToStr(FDateTime) + ' Size: ' + IntToStr(FSize) + ' Nombre: ' + FNombre + ' Extension: ' + FExtension + ' ImageIndex: ' + IntToStr(FImageIndex) + ' ImageIndexSistema: ' + IntToStr(FImageIndexSistema) + ' ParentId: ' + IntToStr(FParentId);
+  Result := '[Id: ' + IntToStr(FId) + '] [Tipo: ' + AgregarEspaciosAlFinal(TDatoItemTipoToString(FTipo), 10) +'] [Atributos: ' + AgregarEspaciosAlInicio(AtributosToStr(FAtributos, false), 6) + '] [DateTime: ' + FechaToStr(FDateTime)  + '] [Size: ' + AgregarEspaciosAlInicio(PuntearNumeracion(FSize, true), 10)  + '] [ImageIndex: ' + IntToStr(FImageIndex) + '] [ImageIndexSistema: ' + IntToStr(FImageIndexSistema)+ '] [' + GetFullPath()+ ']';
 end;
 
 // Obtiene la ruta completa del item
@@ -268,6 +279,7 @@ begin
       Padre := Padre.FParent;
     end;
 end;
+
 
 
 

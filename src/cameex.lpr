@@ -37,7 +37,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
-  , UnidadPrincipal;
+  , UnidadPrincipal, Utilidades;
 
 {$R *.res}
 

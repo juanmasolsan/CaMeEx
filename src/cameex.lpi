@@ -95,6 +95,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
       </Unit>
+      <Unit>
+        <Filename Value="utilidades.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Utilidades"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
