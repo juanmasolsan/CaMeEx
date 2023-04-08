@@ -25,9 +25,11 @@
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder ver que archivo o directorio está procesando
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Total archivos y carpetas
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Total tamaño detectado con la suma de todos los tamaños de los archivos
--         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder excluir del scan con patrones.
 +         Motor de escaneo de dispositivos y directorios - Multi hilo o por lo menos en un hilo separado de la UI
+-         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder excluir del scan con patrones.
 -         Motor de escaneo de dispositivos y directorios - Control de excepciones
+-         Motor de escaneo de dispositivos y directorios - Ventana de progreso
+-         Motor de escaneo de dispositivos y directorios - Ventana de progreso - Con posibilidad de poder cancelar el escaneo
 -         Agregar Sqlite3 - Versiones x64 y x86
 -         Agregar Sqlite3 - Crear base de datos
 -         Agregar Sqlite3 - Crear tablas

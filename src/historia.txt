@@ -1,4 +1,4 @@
-
++ 1.0.2.9
 - [NEW]   (20230409) Agregado al motor básico de escaneo generación del id de cada item.
 - [NEW]   (20230409) Agregado al motor básico de escaneo realizar el scan en un hilo separado.
 - [NEW]   (20230408) Agregado al motor básico de escaneo el informar que archivo o directorio está procesando.
