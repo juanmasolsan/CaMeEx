@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-08 16:21:30
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 17:41:26
+ * @Last Modified time: 2023-04-08 18:13:03
  *)
 {
 
@@ -54,6 +54,9 @@ function PuntearNumeracion(Entrada : int64; Puntear : Boolean = true): String;
 
 // Convierte una fecha en una cadena de caracteres
 function FechaToStr(fecha : TDateTime): String;
+
+// Convierte un tamaño en bytes en una cadena de caracteres leible por humanos
+function ConvertirSizeEx(Entrada : int64; Decimal1 : string = ',##'; Decimal2 : string = '.00' ): String;
 
 
 implementation
@@ -157,6 +160,37 @@ const
 begin
   Result := FormatDateTime(FORMATO_FECHA_HORA, fecha);
 end;
+
+// Convierte un tamaño en bytes en una cadena de caracteres leible por humanos
+function ConvertirSizeEx(Entrada : int64; Decimal1 : string = ',##'; Decimal2 : string = '.00' ): String;
+const
+  CKiloByte = 1024;
+  CMegaByte = CKiloByte * 1024;
+  CGygaByte = CMegaByte * 1024;
+  CTeraByte = CGygaByte * 1024;
+
+var
+  Mirar : string;
+begin
+  Mirar := '#'+Decimal1+'0'+Decimal2;
+
+  if Entrada < CKiloByte then
+    Result := FormatFloat(Mirar+' B',Entrada)
+  else
+    if Entrada < CMegaByte then
+    Result := FormatFloat(Mirar+' KB', Entrada / CKiloByte)
+    else
+    if Entrada < CGygaByte then
+      Result := FormatFloat(Mirar+' MB', Entrada / CMegaByte)
+    else
+      if Entrada < CTeraByte then
+      Result := FormatFloat(Mirar+' GB', Entrada / CGygaByte)
+      else
+      Result := FormatFloat(Mirar+' TB', Entrada / CTeraByte)
+end;
+
+
+
 
 end.
 
