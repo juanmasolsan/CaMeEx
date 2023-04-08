@@ -38,7 +38,6 @@ interface
 uses
   LCLIntf
   , LCLType
-  , LMessages
   , Classes
   , SysUtils
   , Controls

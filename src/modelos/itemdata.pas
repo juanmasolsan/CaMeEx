@@ -169,7 +169,7 @@ begin
   total := count -1;
   for _t := total downto 0 do
     begin
-      Items[_t].Free;
+      {%H-}Items[_t].Free;
     end;
 end;
 
@@ -244,7 +244,7 @@ begin
   Hijo.FParentId := FId;
   Hijo.FParent   := Self;
 
-  Result := FHijos.Add(Hijo);
+  Result := FHijos{%H-}.Add(Hijo);
 end;
 
 // Obtiene el número de hijos
@@ -256,7 +256,7 @@ end;
 // Obtiene un hijo
 function TDatoItem.GetHijo(Index : Integer) : TDatoItem;
 begin
-  Result := FHijos[Index];
+  Result := FHijos{%H-}[Index];
 end;
 
 function TDatoItem.ToString() : string;

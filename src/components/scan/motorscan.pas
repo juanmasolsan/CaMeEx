@@ -169,7 +169,7 @@ begin
   RootName := GetRutaProcesar(Directorio);
 
   // Inicializar el enumerador
-  DosError := FindFirstUtf8(RootName, faAnyFile, SearchRec);
+  DosError := FindFirstUtf8(RootName, FlagsDir, SearchRec);
   try
     // Procesar el primer archivo o directorio encontrado
     while DosError = 0 do

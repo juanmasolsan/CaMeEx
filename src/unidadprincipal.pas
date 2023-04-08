@@ -44,7 +44,6 @@ uses
   , Controls
   , Graphics
   , Dialogs
-  , StdCtrls
   , Menus
   , ComCtrls
   , ExtCtrls
@@ -76,8 +75,8 @@ type
     SalidaLog: TSynEdit;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
+    procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);

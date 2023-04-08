@@ -1,4 +1,6 @@
 
+
+- [FIX]   (20230408) Eliminado warnings del código
 - [NEW]   (20230408) Agregado al motor básico de escaneo el cálculo total de lo que ocupa en bytes un directorio.
 - [NEW]   (20230408) Agregado Utilidades.ConvertirSizeEx
 - [NEW]   (20230408) Agregado al motor básico de escaneo el cálculo total archivos y carpetas que contiene un directorio.
