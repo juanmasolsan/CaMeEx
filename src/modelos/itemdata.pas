@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 21:59:18
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 00:25:06
+ * @Last Modified time: 2023-04-09 00:42:00
  *)
 {
 
@@ -80,7 +80,7 @@ type
   { TDatoItem }
   TDatoItem = class
   private
-    FId                  : int64;
+    FId                  : Qword;
     FTipo                : TDatoItemTipo;
     FAtributos           : Integer;
     FDateTime            : TDateTime;
@@ -92,7 +92,7 @@ type
 
     FHijos               : TArrayDatoItem;
 
-    FParentId            : int64;
+    FParentId            : Qword;
     FParent              : TDatoItem;
 
 
@@ -104,7 +104,7 @@ type
     function GetImageIndexSistema() : Integer; virtual;
   public
     // Constructores de la clase
-    constructor Create(const AId: int64; const ATipo: TDatoItemTipo; const AAtributos: Integer; const ADateTime: TDateTime; const ASize: int64; const ANombre: RawByteString);
+    constructor Create(const AId: Qword; const ATipo: TDatoItemTipo; const AAtributos: Integer; const ADateTime: TDateTime; const ASize: int64; const ANombre: RawByteString);
     constructor Create(ATipo: TDatoItemTipo);
 
     // Destructor de la clase
@@ -126,9 +126,9 @@ type
     function ToString() : string; override;
 
     // Propiedades
-    property Id               : int64 read FId;
+    property Id               : Qword read FId;
     property Tipo             : TDatoItemTipo read FTipo;
-    property Atributos       : Integer read FAtributos;
+    property Atributos        : Integer read FAtributos;
     property DateTime         : TDateTime read FDateTime;
     property Size             : int64 read FSize;
     property Nombre           : RawByteString read FNombre;
@@ -136,7 +136,7 @@ type
     property ImageIndex       : Integer read FImageIndex;
     property ImageIndexSistema: Integer read FImageIndexSistema write FImageIndexSistema;
 
-    property ParentId         : int64 read FParentId;
+    property ParentId         : Qword read FParentId;
     property Parent           : TDatoItem read FParent;
   end;
 
@@ -184,7 +184,7 @@ end;
 
 {TDatoItem}
 // Constructor de la clase
-constructor TDatoItem.Create(const AId: int64; const ATipo: TDatoItemTipo; const AAtributos: Integer; const ADateTime: TDateTime; const ASize: int64; const ANombre: RawByteString);
+constructor TDatoItem.Create(const AId: Qword; const ATipo: TDatoItemTipo; const AAtributos: Integer; const ADateTime: TDateTime; const ASize: int64; const ANombre: RawByteString);
 begin
   // Llamamos al constructor de la clase padre
   inherited Create;
@@ -263,7 +263,7 @@ end;
 
 function TDatoItem.ToString() : string;
 begin
-  Result := '[Id: ' + IntToStr(FId) + '] [Tipo: ' + AgregarEspaciosAlFinal(TDatoItemTipoToString(FTipo), 10) +'] [Atributos: ' + AgregarEspaciosAlInicio(AtributosToStr(FAtributos, false), 6) + '] [DateTime: ' + FechaToStr(FDateTime)  + '] [Size: ' + AgregarEspaciosAlInicio(PuntearNumeracion(FSize, true), 10)  + '] [ImageIndex: ' + IntToStr(FImageIndex) + '] [ImageIndexSistema: ' + IntToStr(FImageIndexSistema)+ '] [' + GetFullPath()+ ']';
+  Result := '[Id: ' + AgregarEspaciosAlInicio(IntToStr(FId), 20) + '] [Tipo: ' + AgregarEspaciosAlFinal(TDatoItemTipoToString(FTipo), 10) +'] [Atributos: ' + AgregarEspaciosAlInicio(AtributosToStr(FAtributos, false), 6) + '] [DateTime: ' + FechaToStr(FDateTime)  + '] [Size: ' + AgregarEspaciosAlInicio(PuntearNumeracion(FSize, true), 10)  + '] [ImageIndex: ' + IntToStr(FImageIndex) + '] [ImageIndexSistema: ' + IntToStr(FImageIndexSistema)+ '] [' + GetFullPath()+ ']';
 end;
 
 // Obtiene la ruta completa del item

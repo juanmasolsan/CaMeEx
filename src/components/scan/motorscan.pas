@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 00:23:59
+ * @Last Modified time: 2023-04-09 00:55:44
  *)
 {
 
@@ -127,6 +127,10 @@ type
   TMotorScan = class(TMotorScanCustom);
 
 implementation
+
+uses
+crc
+;
 
 
 type
@@ -282,9 +286,11 @@ end;
 // Procesa un archivo o directorio encontrado
 function TMotorScanCustom.DoProcesarItem(const SearchRec: TSearchRec; const Padre: TDatoItem) : TDatoItem;
 var
-  Item : TDatoItem;
-  Tipo : TDatoItemTipo;
-  Id   : int64 = -1;
+  Item        : TDatoItem;
+  Tipo        : TDatoItemTipo;
+  Id          : Qword = 0;
+  IdData      : RawByteString;
+  RutaCompleta: RawByteString;
 begin
 
   // Determinar el tipo de archivo o directorio
@@ -314,8 +320,18 @@ begin
       end;
     end;
 
+  // Generar la string que identifica al archivo o directorio
+  RutaCompleta := IncludeTrailingBackslash(Padre.GetFullPath()) +  SearchRec.Name;
+  IdData := lowercase(RutaCompleta) + '|' +
+            IntToStr(SearchRec.Size) + '|' +
+            IntToStr(SearchRec.Time) + '|' +
+            IntToStr(SearchRec.Attr);
+
+  // Generar el Id a partir de la string anterior (Basado en CRC64)
+  Id := crc64(0,nil,0);
+  Id := crc64(Id, @IdData[1], length(IdData));
+
   // Crear el objeto TDatoItem
-  //TODO: Generar el ID del objeto
   Item := TDatoItem.Create(Id,
                             Tipo,
                             SearchRec.Attr,
