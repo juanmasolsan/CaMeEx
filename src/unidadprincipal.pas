@@ -155,7 +155,7 @@ procedure TForm1.ToolButton1Click(Sender: TObject);
       begin
         Actual := item.GetHijo(t);
 
-        SalidaLog.Lines.Add(Ruta + Actual.Nombre + ' ' + Actual.ToString());
+        SalidaLog.Lines.Add(Actual.ToString());
 
         ProcesarHijo(Ruta + IncludeTrailingBackslash(Actual.Nombre), Actual);
       end;
@@ -178,8 +178,8 @@ begin
       Item := Scan.Root.GetHijo(t);
       if item <> nil then
       begin
-        SalidaLog.Lines.Add(Item.Nombre);
-        SalidaLog.Lines.Add(Item.Nombre + ' ' + Item.ToString());
+        //SalidaLog.Lines.Add(Item.Nombre);
+        SalidaLog.Lines.Add(Item.ToString());
         ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
       end;
     end;

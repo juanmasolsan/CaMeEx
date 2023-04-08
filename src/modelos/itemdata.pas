@@ -111,6 +111,9 @@ type
     // Obtiene un hijo
     function GetHijo(Index : Integer) : TDatoItem; virtual;
 
+    // Obtiene la ruta completa del item
+    function GetFullPath() : string; virtual;
+
     // Devuielve los datos del item en una string
     function ToString() : string; override;
 
@@ -241,10 +244,30 @@ end;
 
 function TDatoItem.ToString() : string;
 begin
-  Result := 'Id: ' + IntToStr(FId) + ' Tipo: ' + IntToStr(Ord(FTipo)) + ' Atributos: ' + IntToStr(FAtributos) + ' DateTime: ' + DateTimeToStr(FDateTime) + ' Size: ' + IntToStr(FSize) + ' Nombre: ' + FNombre + ' Extension: ' + FExtension + ' ImageIndex: ' + IntToStr(FImageIndex) + ' ImageIndexSistema: ' + IntToStr(FImageIndexSistema) + ' ParentId: ' + IntToStr(FParentId);
+  Result := GetFullPath();//'Id: ' + IntToStr(FId) + ' Tipo: ' + IntToStr(Ord(FTipo)) + ' Atributos: ' + IntToStr(FAtributos) + ' DateTime: ' + DateTimeToStr(FDateTime) + ' Size: ' + IntToStr(FSize) + ' Nombre: ' + FNombre + ' Extension: ' + FExtension + ' ImageIndex: ' + IntToStr(FImageIndex) + ' ImageIndexSistema: ' + IntToStr(FImageIndexSistema) + ' ParentId: ' + IntToStr(FParentId);
 end;
 
+// Obtiene la ruta completa del item
+function TDatoItem.GetFullPath() : string;
+var
+  Padre : TDatoItem;
+begin
+  // Inicializamos la ruta
+  Result := FNombre;
 
+  // Obtenemos el padre
+  Padre := FParent;
+
+  // Recorremos los padres
+  while ((Padre <> nil) and (Padre.FNombre <> '') and ((Padre.FTipo <> TDatoItemTipo.NoDefinido) or (Padre.FTipo <> TDatoItemTipo.Root))) do
+    begin
+      // Añadimos el nombre del padre
+      Result :=  IncludeTrailingBackslash(Padre.FNombre) + Result;
+
+      // Obtenemos el padre del padre
+      Padre := Padre.FParent;
+    end;
+end;
 
 
 
