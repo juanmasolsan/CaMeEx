@@ -1,19 +1,19 @@
 
 
-
+- [NEW]   (20230408) Agregado al motor básico de escaneo el informar que archivo o directorio está procesando.
 - [NEW]   (20230408) Agregado a TMotorScanCustom Critical Sections para evitar problemas de concurrencia.
-- [FIX]   (20230408) Eliminado hints y notes del código
+- [FIX]   (20230408) Eliminado hints y notes del código.
 - [NEW]   (20230408) Agregado al motor básico de escaneo la detención de la ejecución.
-- [FIX]   (20230408) Eliminado warnings del código
+- [FIX]   (20230408) Eliminado warnings del código.
 - [NEW]   (20230408) Agregado al motor básico de escaneo el cálculo total de lo que ocupa en bytes un directorio.
-- [NEW]   (20230408) Agregado Utilidades.ConvertirSizeEx
+- [NEW]   (20230408) Agregado Utilidades.ConvertirSizeEx.
 - [NEW]   (20230408) Agregado al motor básico de escaneo el cálculo total archivos y carpetas que contiene un directorio.
-- [NEW]   (20230408) Agregado header a las unidades de Pascal
-- [NEW]   (20230408) Agregado Utilidades para gestionar diversos datos
+- [NEW]   (20230408) Agregado header a las unidades de Pascal.
+- [NEW]   (20230408) Agregado Utilidades para gestionar diversos datos.
 
 + 1.0.1.7
-- [FIX]   (20230408) Limpieza de dependencias en el archivo lpr
-- [NEW]   (20230408) Agregado al motor básico de escaneo la obtención de datos
+- [FIX]   (20230408) Limpieza de dependencias en el archivo lpr.
+- [NEW]   (20230408) Agregado al motor básico de escaneo la obtención de datos.
 
 + 1.0.1.5
 - [NEW]   (20230407) Agregado motor básico de escaneo recursivo.
@@ -26,12 +26,12 @@
 
 + 1.0.1.0
 - [NEW]   (20230406) Agregado funcionalidad de confeccionar el título de la ventana principal y de la aplicación.
-- [NEW]   (20230406) Agregado menú principal
-- [NEW]   (20230406) Agregado Toolbar principal
-- [NEW]   (20230406) Agregado barra de estado
-- [NEW]   (20230406) Agregado de directorios (Medios y que cada uno tenga sus directorios)
-- [NEW]   (20230406) Agregado lista de archivos y de directorios con todos sus datos
-- [NEW]   (20230406) Agregado icono de la aplicación
+- [NEW]   (20230406) Agregado menú principal.
+- [NEW]   (20230406) Agregado Toolbar principal.
+- [NEW]   (20230406) Agregado barra de estado.
+- [NEW]   (20230406) Agregado de directorios (Medios y que cada uno tenga sus directorios).
+- [NEW]   (20230406) Agregado lista de archivos y de directorios con todos sus datos.
+- [NEW]   (20230406) Agregado icono de la aplicación.
 - [NEW]   (20230406) Agregada la licencia MIT a las unidades de desarrollo.
 - [NEW]   (20230406) Agregada licencia MIT.
 - [NEW]   (20230406) Creación básica del programa.

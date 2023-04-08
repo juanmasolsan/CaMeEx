@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 23:00:26
+ * @Last Modified time: 2023-04-08 23:23:49
  *)
 {
 
@@ -222,6 +222,10 @@ procedure TForm1.Timer_UpdateUITimer(Sender: TObject);
 begin
   //
   //SalidaLog.Lines.add('Timer_UpdateUITimer');
+  if assigned(FScan) then
+  begin
+    StatusBar1.simpleText := 'Procesando : ' + FScan.Procesando;
+  end;
 end;
 
 

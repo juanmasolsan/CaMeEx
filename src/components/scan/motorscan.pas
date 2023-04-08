@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 22:58:26
+ * @Last Modified time: 2023-04-08 23:09:08
  *)
 {
 
@@ -60,6 +60,7 @@ type
     FTotalArchivos                    : Integer;
     FTotalDirectorios                 : Integer;
     FTotalSize                        : Int64;
+    FProcesando                       : RawByteString;
 
     FCriticalSection_Totales          : TCriticalSection;
     FCriticalSection_InfoProgreso     : TCriticalSection;
@@ -68,6 +69,7 @@ type
     function GetTotalArchivos(): Integer;
     function GetTotalDirectorios(): Integer;
     function GetTotalSize(): Int64;
+    function GetProcesando(): RawByteString;
 
   protected
     // Devuelve la ruta a procesar, incluyendo la máscara de archivo
@@ -102,6 +104,9 @@ type
 
     // Tamaño total de los archivos encontrados
     property TotalSize        : Int64 read GetTotalSize;
+
+    // Información de progreso
+    property Procesando       : RawByteString read GetProcesando;
   end;
 
 type
@@ -202,7 +207,15 @@ begin
       begin
         //TODO: Poder excluir del scan con patrones
 
-        //TODO: Procesar o guardar el archivo o directorio encontrado
+        // Actualizar el proceso actual protegido para evitar problemas de concurrencia
+        EnterCriticalSection(FCriticalSection_InfoProgreso);
+        try
+          FProcesando := IncludeTrailingBackslash(Directorio) + SearchRec.Name;
+        finally
+          LeaveCriticalSection(FCriticalSection_InfoProgreso);
+        end;
+
+        // Procesar el archivo o directorio encontrado
         Actual := DoProcesarItem(SearchRec, Padre);
 
         // Si es un directorio, llamar recursivamente a la función para procesar su contenido
@@ -310,5 +323,16 @@ begin
     LeaveCriticalSection(FCriticalSection_Totales);
   end;
 end;
+
+function TMotorScanCustom.GetProcesando(): RawByteString;
+begin
+  EnterCriticalSection(FCriticalSection_InfoProgreso);
+  try
+    Result := FProcesando;
+  finally
+    LeaveCriticalSection(FCriticalSection_InfoProgreso);
+  end;
+end;
+
 
 end.
