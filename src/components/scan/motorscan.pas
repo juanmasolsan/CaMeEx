@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 23:09:08
+ * @Last Modified time: 2023-04-09 00:23:59
  *)
 {
 
@@ -46,11 +46,13 @@ uses
   , LazFileUtils
   , LazUTF8
   , ItemData
-  , Forms  //TODO: Eliminar solo lo necesito para probar que se puede cancelar el escaneo
   ;
 
 
 type
+  { TOnTerminarScanAsync }
+  TOnTerminarScanAsync = procedure() of object;
+
   { TMotorScanCustom }
   TMotorScanCustom = class
   private
@@ -64,6 +66,8 @@ type
 
     FCriticalSection_Totales          : TCriticalSection;
     FCriticalSection_InfoProgreso     : TCriticalSection;
+
+    FOnTerminarScanAsync              : TOnTerminarScanAsync;
 
     // Getters
     function GetTotalArchivos(): Integer;
@@ -81,6 +85,9 @@ type
     // Realiza un escaneo de archivos y directorios recursivo de un directorio dado
     procedure DoScanDir(Directorio : RawByteString; Padre: TDatoItem);
 
+    // Evento que se ejecuta cuando termina el escaneo Async
+    procedure DoTerminarScanAsync(); virtual;
+
   public
     // Constructor de la clase
     constructor Create();
@@ -90,6 +97,9 @@ type
 
     // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado
     procedure ScanDir(Directorio : RawByteString); virtual;
+
+    // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado de forma asíncrona
+    procedure ScanDirAsync(Directorio : RawByteString; OnTerminarScan : TOnTerminarScanAsync); virtual;
 
     // Métodos de la clase - Detiene el escaneo de archivos y directorios
     procedure StopScan(); virtual;
@@ -107,15 +117,47 @@ type
 
     // Información de progreso
     property Procesando       : RawByteString read GetProcesando;
+
+    // Evento que se ejecuta cuando termina el escaneo Async
+    property OnTerminarScanAsync : TOnTerminarScanAsync read FOnTerminarScanAsync write FOnTerminarScanAsync;
   end;
 
 type
   { TMotorScan }
   TMotorScan = class(TMotorScanCustom);
 
-
 implementation
 
+
+type
+  { TTMotorScanDirThread }
+  TMotorScanDirThread = class(TThread)
+    private
+      FDirectorio : RawByteString;
+      FScan       : TMotorScanCustom;
+    protected
+      procedure Execute; override;
+    public
+      Constructor Create(CreateSuspended : boolean; Scan : TMotorScanCustom; Directorio : RawByteString);
+    end;
+
+{ TMotorScanDirThread }
+constructor TMotorScanDirThread.Create(CreateSuspended : boolean; Scan : TMotorScanCustom; Directorio : RawByteString);
+begin
+  FDirectorio     := Directorio;
+  FScan           := Scan;
+  FreeOnTerminate := true;
+  inherited Create(CreateSuspended);
+end;
+
+procedure TMotorScanDirThread.Execute;
+begin
+  FScan.DoScanDir(FDirectorio, FScan.Root);
+  FScan.DoTerminarScanAsync();
+end;
+
+
+{ TMotorScanCustom }
 // Constructor de la clase
 constructor TMotorScanCustom.Create();
 begin
@@ -287,8 +329,7 @@ begin
   // Devolver el objeto TDatoItem
   Result := Item;
 
-  Sleep(100); //TODO: Eliminar solo es para probar el funcionamiento con directorios pequeños
-  Application.processMessages;
+  Sleep(10); //TODO: Eliminar solo es para probar el funcionamiento con directorios pequeños
 end;
 
 // Getter
@@ -324,6 +365,7 @@ begin
   end;
 end;
 
+// Getter
 function TMotorScanCustom.GetProcesando(): RawByteString;
 begin
   EnterCriticalSection(FCriticalSection_InfoProgreso);
@@ -333,6 +375,26 @@ begin
     LeaveCriticalSection(FCriticalSection_InfoProgreso);
   end;
 end;
+
+// Evento que se ejecuta cuando termina el escaneo Async
+procedure TMotorScanCustom.DoTerminarScanAsync();
+begin
+  if Assigned(FOnTerminarScanAsync) then
+    FOnTerminarScanAsync();
+end;
+
+// Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado de forma asíncrona
+procedure TMotorScanCustom.ScanDirAsync(Directorio : RawByteString; OnTerminarScan : TOnTerminarScanAsync);
+var
+  ScanDirThread : TMotorScanDirThread;
+begin
+  // Inicializa el evento que se ejecuta cuando termina el escaneo
+  FOnTerminarScanAsync := OnTerminarScan;
+
+  // Inicializa el hilo que ejecuta el escaneo de archivos y directorios
+  ScanDirThread := TMotorScanDirThread.create(false, Self, Directorio);
+end;
+
 
 
 end.

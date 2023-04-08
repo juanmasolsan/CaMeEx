@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 23:23:49
+ * @Last Modified time: 2023-04-09 00:18:44
  *)
 {
 
@@ -87,6 +87,8 @@ type
     procedure ToolButton1Click(Sender: TObject);
   private
     FScan     : TMotorScan;
+  protected
+    procedure DoOnTerminarScanAsync();
   public
 
   end;
@@ -134,6 +136,9 @@ begin
   // Opciones avanzadas
   ActivarArchivoConfig('cameex_config.ini', false, true, false, NOMBRE_PROGRAMA);
   ActivarGuardadoPosicion;
+
+  // Inicializar el Motor de Escaneo
+  FScan := TMotorScan.Create;
 end;
 
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
@@ -152,6 +157,34 @@ begin
 end;
 
 procedure TForm1.ToolButton1Click(Sender: TObject);
+begin
+  // Timer1.Enabled := true;
+  //FScan.ScanDir(Curdir);
+  //DoOnTerminarScanAsync();
+  FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync);
+  Timer1.Enabled := true;
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+Timer1.Enabled := false;
+  if assigned(FScan) then
+  begin
+    FScan.StopScan();
+  end;
+end;
+
+procedure TForm1.Timer_UpdateUITimer(Sender: TObject);
+begin
+  //
+  //SalidaLog.Lines.add('Timer_UpdateUITimer');
+  if assigned(FScan) then
+  begin
+    StatusBar1.simpleText := 'Procesando : ' + FScan.Procesando;
+  end;
+end;
+
+procedure TForm1.DoOnTerminarScanAsync();
 
   procedure ProcesarHijo(Ruta: string; Item : TDatoItem);
   var
@@ -176,57 +209,24 @@ var
   t, total : integer;
   Item     : TDatoItem;
 begin
-  //
-
-  Timer1.Enabled := true;
-  FScan := TMotorScan.Create;
-  try
-    FScan.ScanDir(Curdir);
-    total := FScan.Root.HijosCount()-1;
-    for t := 0 to total do
+  total := FScan.Root.HijosCount()-1;
+  for t := 0 to total do
+  begin
+    Item := FScan.Root.GetHijo(t);
+    if item <> nil then
     begin
-      Item := FScan.Root.GetHijo(t);
-      if item <> nil then
-      begin
-        //SalidaLog.Lines.Add(Item.Nombre);
-        SalidaLog.Lines.Add(Item.ToString());
-        ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
-      end;
+      //SalidaLog.Lines.Add(Item.Nombre);
+      SalidaLog.Lines.Add(Item.ToString());
+      ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
     end;
-
-    SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Total Directorios :' + #9 + IntToStr(FScan.TotalDirectorios));
-    SalidaLog.lines.Add('Total Archivos :' + #9 + IntToStr(FScan.TotalArchivos));
-
-    SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
-
-
-
-  finally
-    FScan.Free;
-    FScan := nil;
   end;
-end;
 
-procedure TForm1.Timer1Timer(Sender: TObject);
-begin
-Timer1.Enabled := false;
-  if assigned(FScan) then
-  begin
-    FScan.StopScan();
-  end;
-end;
+  SalidaLog.lines.Add('------------------------------------------');
+  SalidaLog.lines.Add('Total Directorios :' + #9 + IntToStr(FScan.TotalDirectorios));
+  SalidaLog.lines.Add('Total Archivos :' + #9 + IntToStr(FScan.TotalArchivos));
 
-procedure TForm1.Timer_UpdateUITimer(Sender: TObject);
-begin
-  //
-  //SalidaLog.Lines.add('Timer_UpdateUITimer');
-  if assigned(FScan) then
-  begin
-    StatusBar1.simpleText := 'Procesando : ' + FScan.Procesando;
-  end;
+  SalidaLog.lines.Add('------------------------------------------');
+  SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
 end;
-
 
 end.

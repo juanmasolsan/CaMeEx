@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230409) Agregado al motor básico de escaneo realizar el scan en un hilo separado.
 - [NEW]   (20230408) Agregado al motor básico de escaneo el informar que archivo o directorio está procesando.
 - [NEW]   (20230408) Agregado a TMotorScanCustom Critical Sections para evitar problemas de concurrencia.
 - [FIX]   (20230408) Eliminado hints y notes del código.

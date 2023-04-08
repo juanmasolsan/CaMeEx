@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 21:59:18
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 17:42:12
+ * @Last Modified time: 2023-04-09 00:25:06
  *)
 {
 
@@ -68,13 +68,13 @@ type
   // Tipos de items
   TDatoItemTipo = (
                     NoDefinido,
-                    //TODO: Definir los distintos tipos de Root (DVD, USB, HDD, Carpeta, Unidad  de red, etc)
                     Root,
                     Directorio,
                     Archivo,
                     ArchivoExe
   );
 
+  //TODO: Definir los distintos tipos de Root (DVD, USB, HDD, Carpeta, Unidad  de red, etc)
 
   // Clase que contiene los datos de un item del catálogo
   { TDatoItem }
