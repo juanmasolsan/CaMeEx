@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-09 11:51:16
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 18:06:52
+ * @Last Modified time: 2023-04-09 18:44:55
  *)
 {
 
@@ -187,13 +187,11 @@ end;
 // Cancelar el escaneo
 function TFormScan.DoCancelar() : boolean;
 begin
+  // Pregunta si realmente quiere cancelar el escaneo
   Result := IsMessageBoxInfo('Escaneo en progreso.' + #13 + '¿Realmente quiere cancelar el escaneo actual?', 'Atención');
 
   if Result then
   begin
-    // Indica que se ha terminado el escaneo
-    Result := false;
-
     // Cancela el escaneo
     FScanActivo.StopScan();
   end;

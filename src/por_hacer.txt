@@ -31,7 +31,7 @@
 +         Motor de escaneo de dispositivos y directorios - Ventana de progreso - Mostrar el total de archivos y carpetas que se están procesando
 +         Motor de escaneo de dispositivos y directorios - Ventana de progreso - Mostrar el total del tamaño de los archivos que se están procesando
 +         Motor de escaneo de dispositivos y directorios - Ventana de progreso - El archivo actual que se está procesando
--         Motor de escaneo de dispositivos y directorios - Ventana de progreso - Con posibilidad de poder cancelar el escaneo
++         Motor de escaneo de dispositivos y directorios - Ventana de progreso - Con posibilidad de poder cancelar el escaneo
 -         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder excluir del scan con patrones.
 -         Motor de escaneo de dispositivos y directorios - Control de excepciones
 -         Agregar Sqlite3 - Versiones x64 y x86

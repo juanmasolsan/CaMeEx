@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 18:29:24
+ * @Last Modified time: 2023-04-09 18:38:47
  *)
 {
 
@@ -255,8 +255,8 @@ begin
       end;
     {$ENDIF}
     SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Total Directorios      :  ' + IntToStr(FScan.TotalDirectorios));
-    SalidaLog.lines.Add('Total Archivos         :  ' + IntToStr(FScan.TotalArchivos));
+    SalidaLog.lines.Add('Total Directorios      :  ' + PuntearNumeracion(FScan.TotalDirectorios));
+    SalidaLog.lines.Add('Total Archivos         :  ' + PuntearNumeracion(FScan.TotalArchivos));
 
     SalidaLog.lines.Add('------------------------------------------');
     SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
