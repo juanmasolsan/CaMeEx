@@ -53,7 +53,7 @@ begin
   Application.Title:='CaMeEx';
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TFormScan, FormScan);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.
 

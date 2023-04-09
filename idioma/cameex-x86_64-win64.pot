@@ -34,7 +34,7 @@ msgid "ToolButton1"
 msgstr ""
 
 #: tformscan.caption
-msgid "FormScan"
+msgid "Escaneo en progreso ..."
 msgstr ""
 
 #: tformscan.label1.caption
@@ -49,12 +49,18 @@ msgstr ""
 msgid "Procesando :"
 msgstr ""
 
-#: tformscan.label_archivo.caption
-msgid "..."
-msgstr ""
-
 #: tformscan.label_tiempo.caption
 msgid "00:00:00"
+msgstr ""
+
+#: tformscan.label_total_archivos.caption
+msgctxt "tformscan.label_total_archivos.caption"
+msgid "0"
+msgstr ""
+
+#: tformscan.label_total_archivos.hint
+msgctxt "tformscan.label_total_archivos.hint"
+msgid "Total archivos encontrados."
 msgstr ""
 
 #: tformscan.label_total_carpetas.caption
@@ -66,21 +72,13 @@ msgstr ""
 msgid "Total carpetas encontradas."
 msgstr ""
 
-#: tformscan.label_total_carpetas1.caption
-msgctxt "tformscan.label_total_carpetas1.caption"
+#: tformscan.label_total_size.caption
+msgctxt "tformscan.label_total_size.caption"
 msgid "0"
 msgstr ""
 
-#: tformscan.label_total_carpetas1.hint
-msgid "Total archivos encontrados."
-msgstr ""
-
-#: tformscan.label_total_carpetas2.caption
-msgctxt "tformscan.label_total_carpetas2.caption"
-msgid "0"
-msgstr ""
-
-#: tformscan.label_total_carpetas2.hint
+#: tformscan.label_total_size.hint
+msgctxt "tformscan.label_total_size.hint"
 msgid "Total tamaño procesado."
 msgstr ""
 

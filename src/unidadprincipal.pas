@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 00:52:22
+ * @Last Modified time: 2023-04-09 17:41:08
  *)
 {
 
@@ -51,6 +51,7 @@ uses
   , SynEdit
   , Control_Formulario_Avanzado
   , MotorScan
+  , UnidadScan
   ;
 
 type
@@ -86,7 +87,8 @@ type
     procedure Timer_UpdateUITimer(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
   private
-    FScan     : TMotorScan;
+    FScan        : TMotorScan;
+    FVentanaScan : TFormScan;
   protected
     procedure DoOnTerminarScanAsync();
   public
@@ -165,7 +167,11 @@ begin
   //FScan.ScanDir(Curdir);
   //DoOnTerminarScanAsync();
   FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync);
-  Timer1.Enabled := true;
+//  Timer1.Enabled := true;
+
+  FVentanaScan := TFormScan.Create(self, FScan);
+  FVentanaScan.ShowModal;
+
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
@@ -212,6 +218,19 @@ var
   t, total : integer;
   Item     : TDatoItem;
 begin
+
+  if assigned(FVentanaScan) then
+  begin
+    // Indica que ya termino el escaneo
+    FVentanaScan.Terminar();
+
+    // Libera la asignación de memoria
+    FVentanaScan := nil;
+  end;
+
+
+  SalidaLog.Clear;
+
   total := FScan.Root.HijosCount()-1;
   for t := 0 to total do
   begin
@@ -225,11 +244,14 @@ begin
   end;
 
   SalidaLog.lines.Add('------------------------------------------');
-  SalidaLog.lines.Add('Total Directorios :' + #9 + IntToStr(FScan.TotalDirectorios));
-  SalidaLog.lines.Add('Total Archivos :' + #9 + IntToStr(FScan.TotalArchivos));
+  SalidaLog.lines.Add('Total Directorios      :  ' + IntToStr(FScan.TotalDirectorios));
+  SalidaLog.lines.Add('Total Archivos         :  ' + IntToStr(FScan.TotalArchivos));
 
   SalidaLog.lines.Add('------------------------------------------');
   SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
+
+  SalidaLog.lines.Add('------------------------------------------');
+  SalidaLog.lines.Add('Tiempo de escaneo      :  ' + MostrarTiempoTranscurrido(FScan.ScanInicio, FScan.ScanFinal));
 end;
 
 end.

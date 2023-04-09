@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-08 16:21:30
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 18:13:03
+ * @Last Modified time: 2023-04-09 17:37:57
  *)
 {
 
@@ -57,6 +57,13 @@ function FechaToStr(fecha : TDateTime): String;
 
 // Convierte un tamaño en bytes en una cadena de caracteres leible por humanos
 function ConvertirSizeEx(Entrada : int64; Decimal1 : string = ',##'; Decimal2 : string = '.00' ): String;
+
+// Devuelve el tiempo transcurrido desde el inicio
+function MostrarTiempoTranscurrido(Inicio : TDateTime; MarcaTiempo : string = 'hh:mm:ss') : string;
+
+// Devuelve el tiempo transcurrido desde el inicio hasta el final
+function MostrarTiempoTranscurrido(Inicio : TDateTime; Final : TDateTime; MarcaTiempo : string = 'hh:mm:ss') : string;
+
 
 
 implementation
@@ -189,7 +196,23 @@ begin
       Result := FormatFloat(Mirar+' TB', Entrada / CTeraByte)
 end;
 
+// Devuelve el tiempo transcurrido desde el inicio
+function MostrarTiempoTranscurrido(Inicio : TDateTime; MarcaTiempo : string = 'hh:mm:ss') : string;
+var
+  TiempoTranscurrido : TDateTime;
+begin
+  TiempoTranscurrido := Now - Inicio;
+  Result := FormatDateTime(MarcaTiempo, TiempoTranscurrido);
+end;
 
+// Devuelve el tiempo transcurrido desde el inicio hasta el final
+function MostrarTiempoTranscurrido(Inicio : TDateTime; Final : TDateTime; MarcaTiempo : string = 'hh:mm:ss') : string;
+var
+  TiempoTranscurrido : TDateTime;
+begin
+  TiempoTranscurrido := Final - Inicio;
+  Result := FormatDateTime(MarcaTiempo, TiempoTranscurrido);
+end;
 
 
 end.

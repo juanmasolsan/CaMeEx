@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-09 11:51:16
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 12:27:24
+ * @Last Modified time: 2023-04-09 17:27:38
  *)
 {
 
@@ -40,6 +40,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, ExtCtrls,
   StdCtrls
   , Control_Formulario_Avanzado
+  , MotorScan
   ;
 
 type
@@ -52,11 +53,11 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label_Archivo: TLabel;
     Label_Total_Carpetas: TLabel;
     Label_Tiempo: TLabel;
-    Label_Total_Carpetas1: TLabel;
-    Label_Total_Carpetas2: TLabel;
+    Label_Total_Archivos: TLabel;
+    Label_Total_Size: TLabel;
+    Info_Archivo: TMemo;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
@@ -64,12 +65,22 @@ type
     SpeedButton5: TSpeedButton;
     TimerUpdateUI: TTimer;
     TimerAnimacion: TTimer;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure TimerAnimacionTimer(Sender: TObject);
+    procedure TimerUpdateUITimer(Sender: TObject);
   private
     FAnimacionFrames : Integer;
+    FInicio          : TDateTime;
+    FScanActivo      : TMotorScan;
+    FTerminar        : Boolean;
   public
+    // Constructor
+    constructor Create(TheOwner: TComponent; ScanActivo : TMotorScan);
 
+    // Indica que se ha terminado el escaneo
+    procedure Terminar();
   end;
 
 var
@@ -77,23 +88,91 @@ var
 
 implementation
 
+uses
+  utilidades
+  ;
+
+
 {$R *.lfm}
 
 { TFormScan }
+constructor TFormScan.Create(TheOwner: TComponent; ScanActivo : TMotorScan);
+begin
+  // Asigna el motor de escaneo activo
+  FScanActivo      := ScanActivo;
+
+  // Inicializa el contador de tiempo
+  FInicio          := FScanActivo.ScanInicio;
+
+  // Inicializa el estado de terminación
+  FTerminar        := False;
+
+  // Llama al constructor de la clase padre
+  inherited Create(TheOwner);
+end;
+
 
 procedure TFormScan.FormCreate(Sender: TObject);
 begin
-  //
+  // Opciones avanzadas
+  ActivarGuardadoPosicion;
+
+  // Inicializar el contador interno para la animación
   TimerAnimacion.interval := 100;
-  FAnimacionFrames := ImageListSpinner.Count;
+
+  // Obtiene el número total de frames de la animación
+  FAnimacionFrames        := ImageListSpinner.Count;
+
+  // Inicia el contador de tiempo
+  FInicio                 := Now;
+  TimerUpdateUI.Enabled   := True;
+end;
+
+procedure TFormScan.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  //
+end;
+
+procedure TFormScan.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  CloseAction := TCloseAction.caFree;
 end;
 
 
 procedure TFormScan.TimerAnimacionTimer(Sender: TObject);
 begin
-  //
+  // Actualiza el índice de la imagen de la animación
   SpeedButton1.ImageIndex := (SpeedButton1.ImageIndex + 1) mod FAnimacionFrames;
+  Application.ProcessMessages;
 end;
+
+procedure TFormScan.TimerUpdateUITimer(Sender: TObject);
+begin
+  // Si se ha marcado para cerrar que no actualice nada
+  if FTerminar then exit;
+
+  // Actualiza el tiempo transcurrido
+  Label_Tiempo.caption := MostrarTiempoTranscurrido(FInicio);
+
+  // Actualiza los datos del escaneo
+  Label_Total_Carpetas.caption := PuntearNumeracion(FScanActivo.TotalDirectorios);
+  Label_Total_Archivos.caption := PuntearNumeracion(FScanActivo.TotalArchivos);
+  Label_Total_Size.caption     := ConvertirSizeEx(FScanActivo.TotalSize);
+
+  // Actualiza la información del archivo actual
+  Info_Archivo.Lines.Text      := FScanActivo.Procesando;
+end;
+
+
+procedure TFormScan.Terminar();
+begin
+  // Indica que se ha terminado el escaneo
+  FTerminar := true;
+
+  // Cierra el formulario
+  close();
+end;
+
 
 
 end.

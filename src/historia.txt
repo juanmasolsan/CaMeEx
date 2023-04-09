@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230409) Agregada a la Ventana de progreso visualización de datos del escaneo que se está realizando.
 - [FIX]   (20230409) Reescrito el sistema multi hio del motor básico de escaneo y agregado captura de Inicio y Final del mismo.
 - [NEW]   (20230409) Agregada Ventana de progreso de escaneo.
 

@@ -1,15 +1,17 @@
 object FormScan: TFormScan
-  Left = 510
+  Left = 405
   Height = 243
-  Top = 313
+  Top = 223
   Width = 514
   BorderIcons = [biSystemMenu]
-  Caption = 'FormScan'
+  Caption = 'Escaneo en progreso ...'
   ClientHeight = 243
   ClientWidth = 514
   Color = clWindow
   Constraints.MinHeight = 243
   Constraints.MinWidth = 514
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   LCLVersion = '2.2.6.0'
   object SpeedButton1: TSpeedButton
@@ -294,42 +296,33 @@ object FormScan: TFormScan
     Height = 15
     Hint = 'Total carpetas encontradas.'
     Top = 96
-    Width = 6
+    Width = 7
     Caption = '0'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
-  object Label_Total_Carpetas1: TLabel
+  object Label_Total_Archivos: TLabel
     Left = 280
     Height = 15
     Hint = 'Total archivos encontrados.'
     Top = 96
-    Width = 6
+    Width = 7
     Caption = '0'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
-  object Label_Total_Carpetas2: TLabel
+  object Label_Total_Size: TLabel
     Left = 416
     Height = 15
     Hint = 'Total tamaño procesado.'
     Top = 96
-    Width = 6
+    Width = 7
     Caption = '0'
-    ParentColor = False
-  end
-  object Label_Archivo: TLabel
-    Left = 112
-    Height = 57
-    Top = 127
-    Width = 360
-    Anchors = [akTop, akLeft, akRight]
-    AutoSize = False
-    Caption = '...'
-    Color = clDefault
-    Font.Color = clBlue
+    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
-    Transparent = False
-    WordWrap = True
   end
   object Bevel1: TBevel
     Left = 16
@@ -486,6 +479,18 @@ object FormScan: TFormScan
     }
     Transparent = False
     ParentFont = False
+  end
+  object Info_Archivo: TMemo
+    Left = 16
+    Height = 64
+    Top = 120
+    Width = 480
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderStyle = bsNone
+    Color = clWindow
+    Font.Color = clBlue
+    ParentFont = False
+    TabOrder = 0
   end
   object ImageListSpinner: TImageList
     Height = 64
@@ -656,6 +661,8 @@ object FormScan: TFormScan
   end
   object TimerUpdateUI: TTimer
     Enabled = False
+    Interval = 500
+    OnTimer = TimerUpdateUITimer
     Left = 480
     Top = 144
   end
