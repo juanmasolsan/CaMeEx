@@ -59,7 +59,7 @@
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Formulario_Avanzado"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="26"/>
         <CursorPos X="60" Y="39"/>
         <UsageCount Value="44"/>
@@ -94,7 +94,7 @@
         <Filename Value="utilidades.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utilidades"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit>
@@ -107,8 +107,8 @@
         <UnitName Value="UnidadScan"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="144"/>
-        <CursorPos X="138" Y="156"/>
+        <TopLine Value="175"/>
+        <CursorPos X="11" Y="195"/>
         <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -119,7 +119,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Control_About"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="91"/>
         <CursorPos X="25" Y="97"/>
         <UsageCount Value="20"/>
@@ -145,7 +145,7 @@
       <Unit>
         <Filename Value="modelos\itemdata.pas"/>
         <UnitName Value="ItemData"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="205"/>
         <CursorPos X="10" Y="220"/>
         <UsageCount Value="13"/>
@@ -158,24 +158,16 @@
         <CursorPos Y="963"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="2146"/>
+        <CursorPos Y="2161"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="modelos\itemdata.pas"/>
-        <Caret Line="261" TopLine="254"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\itemdata.pas"/>
-        <Caret Line="264" TopLine="254"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\itemdata.pas"/>
-        <Caret Line="260" TopLine="254"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\itemdata.pas"/>
-        <Caret Line="261" Column="28" TopLine="254"/>
-      </Position>
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <Caret Line="41" Column="52" TopLine="31"/>
@@ -278,6 +270,22 @@
       <Position>
         <Filename Value="unidadscan.pas"/>
         <Caret Line="144" Column="114" TopLine="134"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadscan.pas"/>
+        <Caret Line="162" Column="138" TopLine="150"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadscan.pas"/>
+        <Caret Line="135" Column="43" TopLine="125"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadscan.pas"/>
+        <Caret Line="185" Column="40" TopLine="174"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
+        <Caret Line="2161" TopLine="2146"/>
       </Position>
     </JumpHistory>
     <RunParams>

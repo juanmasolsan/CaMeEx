@@ -82,8 +82,8 @@ msgctxt "tformscan.label_total_size.hint"
 msgid "Total tamaño procesado."
 msgstr ""
 
-#: tformscan.speedbutton5.caption
-msgctxt "tformscan.speedbutton5.caption"
+#: tformscan.speedbuttoncancelar.caption
+msgctxt "tformscan.speedbuttoncancelar.caption"
 msgid "Cancelar"
 msgstr ""
 

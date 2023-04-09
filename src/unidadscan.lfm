@@ -332,7 +332,7 @@ object FormScan: TFormScan
     Shape = bsTopLine
     Visible = False
   end
-  object SpeedButton5: TSpeedButton
+  object SpeedButtonCancelar: TSpeedButton
     Left = 16
     Height = 40
     Top = 192
@@ -478,6 +478,7 @@ object FormScan: TFormScan
       0000000000000000000000000000000000000000000000000000
     }
     Transparent = False
+    OnClick = SpeedButtonCancelarClick
     ParentFont = False
   end
   object Info_Archivo: TMemo

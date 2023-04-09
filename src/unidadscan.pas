@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-09 11:51:16
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 17:27:38
+ * @Last Modified time: 2023-04-09 18:06:52
  *)
 {
 
@@ -62,12 +62,13 @@ type
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
-    SpeedButton5: TSpeedButton;
+    SpeedButtonCancelar: TSpeedButton;
     TimerUpdateUI: TTimer;
     TimerAnimacion: TTimer;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
+    procedure SpeedButtonCancelarClick(Sender: TObject);
     procedure TimerAnimacionTimer(Sender: TObject);
     procedure TimerUpdateUITimer(Sender: TObject);
   private
@@ -75,6 +76,9 @@ type
     FInicio          : TDateTime;
     FScanActivo      : TMotorScan;
     FTerminar        : Boolean;
+  protected
+    // Cancelar el escaneo
+    function DoCancelar() : boolean; virtual;
   public
     // Constructor
     constructor Create(TheOwner: TComponent; ScanActivo : TMotorScan);
@@ -128,9 +132,16 @@ begin
   TimerUpdateUI.Enabled   := True;
 end;
 
+procedure TFormScan.SpeedButtonCancelarClick(Sender: TObject);
+begin
+  // Cancela el escaneo
+  DoCancelar();
+end;
+
 procedure TFormScan.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-  //
+  if FTerminar then exit;
+  CanClose := DoCancelar();
 end;
 
 procedure TFormScan.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -173,6 +184,21 @@ begin
   close();
 end;
 
+// Cancelar el escaneo
+function TFormScan.DoCancelar() : boolean;
+begin
+  Result := IsMessageBoxInfo('Escaneo en progreso.' + #13 + '¿Realmente quiere cancelar el escaneo actual?', 'Atención');
+
+  if Result then
+  begin
+    // Indica que se ha terminado el escaneo
+    Result := false;
+
+    // Cancela el escaneo
+    FScanActivo.StopScan();
+  end;
+
+end;
 
 
 end.

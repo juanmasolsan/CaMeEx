@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-06 22:40:12
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-08 17:42:18
+ * @Last Modified time: 2023-04-09 17:58:21
  *)
 {
 
@@ -91,6 +91,10 @@ type
     procedure ActivarCerrarConESC; virtual;
 
     procedure Corregir_Colores_Controles;
+
+    // Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
+    function IsMessageBoxInfo(Mensaje, Titulo : String) : boolean;
+
   end;
 
 
@@ -313,6 +317,14 @@ begin
 end;
 
 
+// Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
+function TForm_Avanzado_Custom.IsMessageBoxInfo(Mensaje, Titulo : String) : boolean;
+var
+ MensajeDialogo : longint;
+begin
+ MensajeDialogo := MessageBox(handle, Pchar(Mensaje), Pchar(Titulo), MB_YESNOCANCEL or MB_ICONINFORMATION);
+ Result := MensajeDialogo = IDYES;
+end;
 
 
 

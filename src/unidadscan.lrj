@@ -10,5 +10,5 @@
 {"hash":48,"name":"tformscan.label_total_archivos.caption","sourcebytes":[48],"value":"0"},
 {"hash":265067086,"name":"tformscan.label_total_size.hint","sourcebytes":[84,111,116,97,108,32,116,97,109,97,195,177,111,32,112,114,111,99,101,115,97,100,111,46],"value":"Total tama\u00F1o procesado."},
 {"hash":48,"name":"tformscan.label_total_size.caption","sourcebytes":[48],"value":"0"},
-{"hash":139052562,"name":"tformscan.speedbutton5.caption","sourcebytes":[67,97,110,99,101,108,97,114],"value":"Cancelar"}
+{"hash":139052562,"name":"tformscan.speedbuttoncancelar.caption","sourcebytes":[67,97,110,99,101,108,97,114],"value":"Cancelar"}
 ]}
