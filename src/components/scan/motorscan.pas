@@ -411,14 +411,12 @@ end;
 
 // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado de forma asíncrona
 procedure TMotorScanCustom.ScanDirAsync(Directorio : RawByteString; OnTerminarScan : TOnTerminarScanAsync);
-var
-  ScanDirThread : TMotorScanDirThread;
 begin
   // Inicializa el evento que se ejecuta cuando termina el escaneo
   FOnTerminarScanAsync := OnTerminarScan;
 
   // Inicializa el hilo que ejecuta el escaneo de archivos y directorios
-  ScanDirThread := TMotorScanDirThread.create(false, Self, Directorio);
+  TMotorScanDirThread.create(false, Self, Directorio);
 end;
 
 // Resetea los datos del escaneo

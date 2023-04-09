@@ -217,7 +217,7 @@ end;
 constructor TDatoItem.Create(ATipo: TDatoItemTipo);
 begin
   //TODO: El nombre en el root sea el nombre del dispositivo/medio
-  Create(-1, ATipo, 0, 0, 0, '');
+  Create(0, ATipo, 0, 0, 0, '');
 end;
 
 // Destructor de la clase

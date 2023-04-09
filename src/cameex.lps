@@ -21,9 +21,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadPrincipal"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="41"/>
-        <CursorPos Y="52"/>
+        <TopLine Value="147"/>
+        <CursorPos Y="172"/>
         <UsageCount Value="45"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -105,10 +106,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadScan"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="175"/>
-        <CursorPos X="11" Y="195"/>
+        <TopLine Value="97"/>
+        <CursorPos X="22" Y="103"/>
         <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -130,8 +130,8 @@
         <Filename Value="components\scan\motorscan.pas"/>
         <UnitName Value="MotorScan"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="307"/>
-        <CursorPos X="55" Y="314"/>
+        <TopLine Value="400"/>
+        <CursorPos X="3" Y="419"/>
         <UsageCount Value="18"/>
         <Loaded Value="True"/>
       </Unit>
@@ -147,7 +147,7 @@
         <UnitName Value="ItemData"/>
         <EditorIndex Value="8"/>
         <TopLine Value="205"/>
-        <CursorPos X="10" Y="220"/>
+        <CursorPos X="11" Y="220"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
@@ -167,31 +167,7 @@
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="components\control_formulario_avanzado.pas"/>
-        <Caret Line="41" Column="52" TopLine="31"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\motorscan.pas"/>
-        <Caret Line="210" Column="25" TopLine="195"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\motorscan.pas"/>
-        <Caret Line="202" Column="71" TopLine="196"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_formulario_avanzado.pas"/>
-        <Caret Line="41" TopLine="26"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_formulario_avanzado.pas"/>
-        <Caret Line="39" Column="60" TopLine="26"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\itemdata.pas"/>
-        <Caret Line="172" Column="12" TopLine="157"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="unidadprincipal.pas"/>
         <Caret Line="47" TopLine="32"/>
@@ -284,8 +260,32 @@
         <Caret Line="185" Column="40" TopLine="174"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
-        <Caret Line="2161" TopLine="2146"/>
+        <Filename Value="unidadscan.pas"/>
+        <Caret Line="183" Column="45" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\itemdata.pas"/>
+        <Caret Line="220" Column="11" TopLine="205"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\motorscan.pas"/>
+        <Caret Line="419" Column="3" TopLine="400"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadscan.pas"/>
+        <Caret Line="103" Column="22" TopLine="99"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="52" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="91" Column="29" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="172" Column="37" TopLine="147"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -81,7 +81,7 @@ type
     function DoCancelar() : boolean; virtual;
   public
     // Constructor
-    constructor Create(TheOwner: TComponent; ScanActivo : TMotorScan);
+    constructor CreateEx(TheOwner: TComponent; ScanActivo : TMotorScan);
 
     // Indica que se ha terminado el escaneo
     procedure Terminar();
@@ -100,7 +100,7 @@ uses
 {$R *.lfm}
 
 { TFormScan }
-constructor TFormScan.Create(TheOwner: TComponent; ScanActivo : TMotorScan);
+constructor TFormScan.CreateEx(TheOwner: TComponent; ScanActivo : TMotorScan);
 begin
   // Asigna el motor de escaneo activo
   FScanActivo      := ScanActivo;

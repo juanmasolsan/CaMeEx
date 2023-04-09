@@ -169,7 +169,7 @@ begin
   FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync);
 //  Timer1.Enabled := true;
 
-  FVentanaScan := TFormScan.Create(self, FScan);
+  FVentanaScan := TFormScan.CreateEx(self, FScan);
   FVentanaScan.ShowModal;
 
 end;
