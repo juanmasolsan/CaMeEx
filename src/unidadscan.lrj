@@ -1,0 +1,15 @@
+{"version":1,"strings":[
+{"hash":110271918,"name":"tformscan.caption","sourcebytes":[70,111,114,109,83,99,97,110],"value":"FormScan"},
+{"hash":152381278,"name":"tformscan.label1.caption","sourcebytes":[80,111,114,32,102,97,118,111,114,32,101,115,112,101,114,101,44,32,101,115,99,97,110,101,111,32,101,110,32,112,114,111,103,114,101,115,111,46,46,46],"value":"Por favor espere, escaneo en progreso..."},
+{"hash":144461630,"name":"tformscan.label2.caption","sourcebytes":[68,101,112,101,110,100,105,101,110,100,111,32,100,101,32,108,97,32,118,101,108,111,99,105,100,97,100,32,100,101,108,32,109,101,100,105,111,32,112,117,101,100,101,32,113,117,101,32,116,101,114,109,105,110,101,32,114,195,161,112,105,100,111,32,111,32,112,111,114,32,101,108,32,99,111,110,116,114,97,114,105,111,32,116,97,114,100,101,32,109,195,161,115,46,32,83,101,97,32,112,97,99,105,101,110,116,101,46],"value":"Dependiendo de la velocidad del medio puede que termine r\u00E1pido o por el contrario tarde m\u00E1s. Sea paciente."},
+{"hash":64175616,"name":"tformscan.label_tiempo.caption","sourcebytes":[48,48,58,48,48,58,48,48],"value":"00:00:00"},
+{"hash":203294970,"name":"tformscan.label3.caption","sourcebytes":[80,114,111,99,101,115,97,110,100,111,32,58],"value":"Procesando :"},
+{"hash":238127294,"name":"tformscan.label_total_carpetas.hint","sourcebytes":[84,111,116,97,108,32,99,97,114,112,101,116,97,115,32,101,110,99,111,110,116,114,97,100,97,115,46],"value":"Total carpetas encontradas."},
+{"hash":48,"name":"tformscan.label_total_carpetas.caption","sourcebytes":[48],"value":"0"},
+{"hash":246159294,"name":"tformscan.label_total_carpetas1.hint","sourcebytes":[84,111,116,97,108,32,97,114,99,104,105,118,111,115,32,101,110,99,111,110,116,114,97,100,111,115,46],"value":"Total archivos encontrados."},
+{"hash":48,"name":"tformscan.label_total_carpetas1.caption","sourcebytes":[48],"value":"0"},
+{"hash":265067086,"name":"tformscan.label_total_carpetas2.hint","sourcebytes":[84,111,116,97,108,32,116,97,109,97,195,177,111,32,112,114,111,99,101,115,97,100,111,46],"value":"Total tama\u00F1o procesado."},
+{"hash":48,"name":"tformscan.label_total_carpetas2.caption","sourcebytes":[48],"value":"0"},
+{"hash":12558,"name":"tformscan.label_archivo.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":139052562,"name":"tformscan.speedbutton5.caption","sourcebytes":[67,97,110,99,101,108,97,114],"value":"Cancelar"}
+]}

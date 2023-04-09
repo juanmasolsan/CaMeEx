@@ -43,7 +43,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
-  , UnidadPrincipal
+  , UnidadPrincipal, UnidadScan
   ;
 
 {$R *.res}
@@ -53,7 +53,7 @@ begin
   Application.Title:='CaMeEx';
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormScan, FormScan);
   Application.Run;
 end.
 

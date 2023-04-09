@@ -33,3 +33,59 @@ msgstr ""
 msgid "ToolButton1"
 msgstr ""
 
+#: tformscan.caption
+msgid "FormScan"
+msgstr ""
+
+#: tformscan.label1.caption
+msgid "Por favor espere, escaneo en progreso..."
+msgstr ""
+
+#: tformscan.label2.caption
+msgid "Dependiendo de la velocidad del medio puede que termine rápido o por el contrario tarde más. Sea paciente."
+msgstr ""
+
+#: tformscan.label3.caption
+msgid "Procesando :"
+msgstr ""
+
+#: tformscan.label_archivo.caption
+msgid "..."
+msgstr ""
+
+#: tformscan.label_tiempo.caption
+msgid "00:00:00"
+msgstr ""
+
+#: tformscan.label_total_carpetas.caption
+msgctxt "tformscan.label_total_carpetas.caption"
+msgid "0"
+msgstr ""
+
+#: tformscan.label_total_carpetas.hint
+msgid "Total carpetas encontradas."
+msgstr ""
+
+#: tformscan.label_total_carpetas1.caption
+msgctxt "tformscan.label_total_carpetas1.caption"
+msgid "0"
+msgstr ""
+
+#: tformscan.label_total_carpetas1.hint
+msgid "Total archivos encontrados."
+msgstr ""
+
+#: tformscan.label_total_carpetas2.caption
+msgctxt "tformscan.label_total_carpetas2.caption"
+msgid "0"
+msgstr ""
+
+#: tformscan.label_total_carpetas2.hint
+msgid "Total tamaño procesado."
+msgstr ""
+
+#: tformscan.speedbutton5.caption
+msgctxt "tformscan.speedbutton5.caption"
+msgid "Cancelar"
+msgstr ""
+

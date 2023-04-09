@@ -100,6 +100,14 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utilidades"/>
       </Unit>
+      <Unit>
+        <Filename Value="unidadscan.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormScan"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UnidadScan"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
