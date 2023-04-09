@@ -1,4 +1,5 @@
 
+- [FIX]   (20230409) Reescrito el sistema multi hio del motor básico de escaneo y agregado captura de Inicio y Final del mismo.
 - [NEW]   (20230409) Agregada Ventana de progreso de escaneo.
 
 + 1.0.2.9

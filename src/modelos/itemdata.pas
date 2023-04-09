@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 21:59:18
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 00:42:00
+ * @Last Modified time: 2023-04-09 16:19:27
  *)
 {
 
@@ -118,6 +118,10 @@ type
 
     // Obtiene un hijo
     function GetHijo(Index : Integer) : TDatoItem; virtual;
+
+    // Limpia la lista de hijos
+    procedure HijosClear(); virtual;
+
 
     // Obtiene la ruta completa del item
     function GetFullPath() : string; virtual;
@@ -260,6 +264,13 @@ function TDatoItem.GetHijo(Index : Integer) : TDatoItem;
 begin
   Result := FHijos{%H-}[Index];
 end;
+
+// Limpia la lista de hijos
+procedure TDatoItem.HijosClear();
+begin
+  FHijos.Clear;
+end;
+
 
 function TDatoItem.ToString() : string;
 begin

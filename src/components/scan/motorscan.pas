@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 00:55:44
+ * @Last Modified time: 2023-04-09 16:40:00
  *)
 {
 
@@ -69,6 +69,10 @@ type
 
     FOnTerminarScanAsync              : TOnTerminarScanAsync;
 
+    FScanInicio                       : TDateTime;
+    FScanFinal                        : TDateTime;
+
+
     // Getters
     function GetTotalArchivos(): Integer;
     function GetTotalDirectorios(): Integer;
@@ -88,6 +92,8 @@ type
     // Evento que se ejecuta cuando termina el escaneo Async
     procedure DoTerminarScanAsync(); virtual;
 
+    // Resetea los datos del escaneo
+    procedure DoResetData();
   public
     // Constructor de la clase
     constructor Create();
@@ -117,6 +123,10 @@ type
 
     // Información de progreso
     property Procesando       : RawByteString read GetProcesando;
+
+    // Tiempo de escaneo
+    property ScanInicio       : TDateTime read FScanInicio;
+    property ScanFinal        : TDateTime read FScanFinal;
 
     // Evento que se ejecuta cuando termina el escaneo Async
     property OnTerminarScanAsync : TOnTerminarScanAsync read FOnTerminarScanAsync write FOnTerminarScanAsync;
@@ -156,8 +166,8 @@ end;
 
 procedure TMotorScanDirThread.Execute;
 begin
-  FScan.DoScanDir(FDirectorio, FScan.Root);
-  FScan.DoTerminarScanAsync();
+  // Realizar el escaneo
+  FScan.ScanDir(FDirectorio);
 end;
 
 
@@ -214,18 +224,14 @@ end;
 // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado
 procedure TMotorScanCustom.ScanDir(Directorio : RawByteString);
 begin
-  // Indica que no se debe detener el escaneo
-  FDetener_Escaneo_Busqueda_Archivos := false;
-
-  // Inicializar los contadores de archivos y directorios
-  FTotalArchivos                     := 0;
-  FTotalDirectorios                  := 0;
-
-  // Inicializar el tamaño total de los archivos encontrados
-  FTotalSize                         := 0;
+  // Inicializa los datos
+  DoResetData();
 
   // Inicia el escaneo de archivos y directorios
   DoScanDir(Directorio, FRoot);
+
+  // Terminar el escaneo
+  DoTerminarScanAsync();
 end;
 
 // Inicia un escaneo de archivos y directorios de un directorio dado
@@ -395,6 +401,10 @@ end;
 // Evento que se ejecuta cuando termina el escaneo Async
 procedure TMotorScanCustom.DoTerminarScanAsync();
 begin
+  // Actualiza la fecha y hora de finalización del escaneo
+  FScanFinal := Now;
+
+  // Ejecuta el evento que se ejecuta cuando termina el escaneo
   if Assigned(FOnTerminarScanAsync) then
     FOnTerminarScanAsync();
 end;
@@ -411,6 +421,26 @@ begin
   ScanDirThread := TMotorScanDirThread.create(false, Self, Directorio);
 end;
 
+// Resetea los datos del escaneo
+procedure TMotorScanCustom.DoResetData();
+begin
+  // Limpia el Root
+  FRoot.HijosClear();
+
+  // Indica que no se debe detener el escaneo
+  FDetener_Escaneo_Busqueda_Archivos := false;
+
+  // Inicializar los contadores de archivos y directorios
+  FTotalArchivos                     := 0;
+  FTotalDirectorios                  := 0;
+
+  // Inicializar el tamaño total de los archivos encontrados
+  FTotalSize                         := 0;
+
+  // Inicializar la información de progreso
+  FScanInicio                        := Now();
+  FScanFinal                         := Now();
+end;
 
 
 end.
