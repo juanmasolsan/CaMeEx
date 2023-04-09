@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 17:41:08
+ * @Last Modified time: 2023-04-09 18:29:24
  *)
 {
 
@@ -29,6 +29,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 }
+
+//TODO: Eliminar, solo es para pruebas
+{$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
 
 
 unit UnidadPrincipal;
@@ -166,7 +169,12 @@ begin
   // Timer1.Enabled := true;
   //FScan.ScanDir(Curdir);
   //DoOnTerminarScanAsync();
+
+  {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
   FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync);
+  {$ELSE}
+  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync);
+  {$ENDIF}
 //  Timer1.Enabled := true;
 
   FVentanaScan := TFormScan.CreateEx(self, FScan);
@@ -229,29 +237,35 @@ begin
   end;
 
 
-  SalidaLog.Clear;
+  SalidaLog.lines.beginUpdate();
+  try
+    SalidaLog.Clear;
 
-  total := FScan.Root.HijosCount()-1;
-  for t := 0 to total do
-  begin
-    Item := FScan.Root.GetHijo(t);
-    if item <> nil then
-    begin
-      //SalidaLog.Lines.Add(Item.Nombre);
-      SalidaLog.Lines.Add(Item.ToString());
-      ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
-    end;
+    {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
+      total := FScan.Root.HijosCount()-1;
+      for t := 0 to total do
+      begin
+        Item := FScan.Root.GetHijo(t);
+        if item <> nil then
+        begin
+          //SalidaLog.Lines.Add(Item.Nombre);
+          SalidaLog.Lines.Add(Item.ToString());
+          ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
+        end;
+      end;
+    {$ENDIF}
+    SalidaLog.lines.Add('------------------------------------------');
+    SalidaLog.lines.Add('Total Directorios      :  ' + IntToStr(FScan.TotalDirectorios));
+    SalidaLog.lines.Add('Total Archivos         :  ' + IntToStr(FScan.TotalArchivos));
+
+    SalidaLog.lines.Add('------------------------------------------');
+    SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
+
+    SalidaLog.lines.Add('------------------------------------------');
+    SalidaLog.lines.Add('Tiempo de escaneo      :  ' + MostrarTiempoTranscurrido(FScan.ScanInicio, FScan.ScanFinal));
+  finally
+    SalidaLog.lines.endUpdate();
   end;
-
-  SalidaLog.lines.Add('------------------------------------------');
-  SalidaLog.lines.Add('Total Directorios      :  ' + IntToStr(FScan.TotalDirectorios));
-  SalidaLog.lines.Add('Total Archivos         :  ' + IntToStr(FScan.TotalArchivos));
-
-  SalidaLog.lines.Add('------------------------------------------');
-  SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
-
-  SalidaLog.lines.Add('------------------------------------------');
-  SalidaLog.lines.Add('Tiempo de escaneo      :  ' + MostrarTiempoTranscurrido(FScan.ScanInicio, FScan.ScanFinal));
 end;
 
 end.

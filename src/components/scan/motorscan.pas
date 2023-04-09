@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 17:36:54
+ * @Last Modified time: 2023-04-09 18:25:34
  *)
 {
 
@@ -351,7 +351,7 @@ begin
   // Devolver el objeto TDatoItem
   Result := Item;
 
-  Sleep(10); //TODO: Eliminar solo es para probar el funcionamiento con directorios pequeños
+  //Sleep(10); //TODO: Eliminar solo es para probar el funcionamiento con directorios pequeños
 end;
 
 // Getter
