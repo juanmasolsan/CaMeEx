@@ -1,4 +1,7 @@
 
+
+- [NEW]   (20230410) Agregado al motor de escaneo poder excluir del scan con patrones.
+- [NEW]   (20230410) Agregado búsqueda de patrones sencillos
 - [FIX]   (20230409) Arreglado en la Ventana de progreso el cancelar el escaneo al cerrar la ventana.
 - [FIX]   (20230408) Eliminado warnings hints y notes del código.
 - [NEW]   (20230409) Agregada a la Ventana de progreso la posibilidad de poder cancelar el escaneo.

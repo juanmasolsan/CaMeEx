@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 18:38:47
+ * @Last Modified time: 2023-04-10 22:44:29
  *)
 {
 
@@ -31,7 +31,7 @@ SOFTWARE.
 }
 
 //TODO: Eliminar, solo es para pruebas
-{$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
+{.$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
 
 
 unit UnidadPrincipal;
@@ -171,7 +171,7 @@ begin
   //DoOnTerminarScanAsync();
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-  FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync);
+  FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
   {$ELSE}
   FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync);
   {$ENDIF}

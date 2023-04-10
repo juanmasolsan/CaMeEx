@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 18:25:34
+ * @Last Modified time: 2023-04-10 22:40:22
  *)
 {
 
@@ -72,6 +72,8 @@ type
     FScanInicio                       : TDateTime;
     FScanFinal                        : TDateTime;
 
+    FListaExclusion                   : TStringList;
+
 
     // Getters
     function GetTotalArchivos(): Integer;
@@ -93,7 +95,7 @@ type
     procedure DoTerminarScanAsync(); virtual;
 
     // Resetea los datos del escaneo
-    procedure DoResetData();
+    procedure DoResetData(Excluir : string);
   public
     // Constructor de la clase
     constructor Create();
@@ -102,13 +104,16 @@ type
     destructor Destroy(); override;
 
     // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado
-    procedure ScanDir(Directorio : RawByteString); virtual;
+    procedure ScanDir(Directorio : RawByteString; Excluir : string); virtual;
 
     // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado de forma asíncrona
-    procedure ScanDirAsync(Directorio : RawByteString; OnTerminarScan : TOnTerminarScanAsync); virtual;
+    procedure ScanDirAsync(Directorio : RawByteString; OnTerminarScan : TOnTerminarScanAsync; Excluir : string); virtual;
 
     // Métodos de la clase - Detiene el escaneo de archivos y directorios
     procedure StopScan(); virtual;
+
+    // Métodos de la clase - Devuelve si un archivo o directorio debe ser excluido
+    function IsExcluido(Actual : string) : boolean;
 
     // Propiedades de la clase
     property MascaraArchivo : RawByteString read FMascaraArchivo write FMascaraArchivo;
@@ -140,6 +145,7 @@ implementation
 
 uses
 crc
+, Control_Contine
 ;
 
 
@@ -149,25 +155,27 @@ type
     private
       FDirectorio : RawByteString;
       FScan       : TMotorScanCustom;
+      FExcluir    : string;
     protected
       procedure Execute; override;
     public
-      Constructor Create(CreateSuspended : boolean; Scan : TMotorScanCustom; Directorio : RawByteString);
+      Constructor Create(CreateSuspended : boolean; Scan : TMotorScanCustom; Directorio : RawByteString; Excluir : string);
     end;
 
 { TMotorScanDirThread }
-constructor TMotorScanDirThread.Create(CreateSuspended : boolean; Scan : TMotorScanCustom; Directorio : RawByteString);
+constructor TMotorScanDirThread.Create(CreateSuspended : boolean; Scan : TMotorScanCustom; Directorio : RawByteString; Excluir : string);
 begin
   FDirectorio     := Directorio;
   FScan           := Scan;
   FreeOnTerminate := true;
+  FExcluir        := Excluir;
   inherited Create(CreateSuspended);
 end;
 
 procedure TMotorScanDirThread.Execute;
 begin
   // Realizar el escaneo
-  FScan.ScanDir(FDirectorio);
+  FScan.ScanDir(FDirectorio, FExcluir);
 end;
 
 
@@ -180,6 +188,8 @@ begin
   FRoot                              := TDatoItem.create(TDatoItemTipo.Root);
   FDetener_Escaneo_Busqueda_Archivos := false;
   FMascaraArchivo                    := '*';
+  FListaExclusion                    := TStringList.Create;
+
 
   // Inicializar el objeto de sincronización
   InitializeCriticalSection(FCriticalSection_Totales);
@@ -192,6 +202,9 @@ destructor TMotorScanCustom.Destroy();
 begin
   // Eliminar el objeto raíz
   FRoot.Free;
+
+  // Eliminar la lista de exclusiones
+  FListaExclusion.Free;
 
   // Eliminar el objeto de sincronización
   DeleteCriticalSection(FCriticalSection_Totales);
@@ -222,10 +235,10 @@ begin
 end;
 
 // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado
-procedure TMotorScanCustom.ScanDir(Directorio : RawByteString);
+procedure TMotorScanCustom.ScanDir(Directorio : RawByteString; Excluir : string);
 begin
   // Inicializa los datos
-  DoResetData();
+  DoResetData(Excluir);
 
   // Inicia el escaneo de archivos y directorios
   DoScanDir(Directorio, FRoot);
@@ -271,7 +284,7 @@ begin
         Actual := DoProcesarItem(SearchRec, Padre);
 
         // Si es un directorio, llamar recursivamente a la función para procesar su contenido
-        if (SearchRec.Attr and faDirectory)= faDirectory then
+        if (Actual <> nil) and ((SearchRec.Attr and faDirectory)= faDirectory) then
           DoScanDir(IncludeTrailingBackslash(Directorio) + SearchRec.Name, Actual);
       end;
 
@@ -328,6 +341,15 @@ begin
 
   // Generar la string que identifica al archivo o directorio
   RutaCompleta := IncludeTrailingBackslash(Padre.GetFullPath()) +  SearchRec.Name;
+
+  if IsExcluido(RutaCompleta) then
+  begin
+    result := nil;
+    exit;
+  end;
+
+
+
   IdData := lowercase(RutaCompleta) + '|' +
             IntToStr(SearchRec.Size) + '|' +
             IntToStr(SearchRec.Time) + '|' +
@@ -410,20 +432,23 @@ begin
 end;
 
 // Métodos de la clase - Inicia un escaneo de archivos y directorios de un directorio dado de forma asíncrona
-procedure TMotorScanCustom.ScanDirAsync(Directorio : RawByteString; OnTerminarScan : TOnTerminarScanAsync);
+procedure TMotorScanCustom.ScanDirAsync(Directorio : RawByteString; OnTerminarScan : TOnTerminarScanAsync; Excluir : string);
 begin
   // Inicializa el evento que se ejecuta cuando termina el escaneo
   FOnTerminarScanAsync := OnTerminarScan;
 
   // Inicializa el hilo que ejecuta el escaneo de archivos y directorios
-  TMotorScanDirThread.create(false, Self, Directorio);
+  TMotorScanDirThread.create(false, Self, Directorio, Excluir);
 end;
 
 // Resetea los datos del escaneo
-procedure TMotorScanCustom.DoResetData();
+procedure TMotorScanCustom.DoResetData(Excluir : string);
 begin
   // Limpia el Root
   FRoot.HijosClear();
+
+  // Inicializa la lista de excluidos
+  FListaExclusion.text := stringReplace(Excluir, ';', #13, [rfReplaceAll]).ToLower().Replace('\', '/');
 
   // Indica que no se debe detener el escaneo
   FDetener_Escaneo_Busqueda_Archivos := false;
@@ -438,6 +463,29 @@ begin
   // Inicializar la información de progreso
   FScanInicio                        := Now();
   FScanFinal                         := Now();
+end;
+
+// Métodos de la clase - Devuelve si un archivo o directorio debe ser excluido
+function TMotorScanCustom.IsExcluido(Actual : string) : boolean;
+var
+  t, total : integer;
+begin
+  // Se convierte a minisculas y se reemplazan los separadores de directorios
+  Actual := Actual.ToLower().Replace('\', '/');
+
+  total := FListaExclusion.count - 1;
+  for t := 0 to total do
+  begin
+    // Si el archivo o directorio actual contiene la cadena de la lista de excluidos
+    if IsContiene(Actual, FListaExclusion[t]) then
+    begin
+      // Debe ser excluido
+      result := true;
+      exit;
+    end;
+  end;
+
+  result := false;
 end;
 
 

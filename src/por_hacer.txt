@@ -32,8 +32,9 @@
 +         Motor de escaneo de dispositivos y directorios - Ventana de progreso - Mostrar el total del tamaño de los archivos que se están procesando
 +         Motor de escaneo de dispositivos y directorios - Ventana de progreso - El archivo actual que se está procesando
 +         Motor de escaneo de dispositivos y directorios - Ventana de progreso - Con posibilidad de poder cancelar el escaneo
--         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder excluir del scan con patrones.
++         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder excluir del scan con patrones.
 -         Motor de escaneo de dispositivos y directorios - Control de excepciones
+-         Motor de escaneo de dispositivos y directorios - Comprobar nombre Unicode, como el chino o el japonés.
 -         Agregar Sqlite3 - Versiones x64 y x86
 -         Agregar Sqlite3 - Crear base de datos
 -         Agregar Sqlite3 - Crear tablas

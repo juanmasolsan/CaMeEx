@@ -8,10 +8,10 @@
       <Unit>
         <Filename Value="cameex.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="20"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="18"/>
         <CursorPos X="60" Y="34"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -22,18 +22,18 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadPrincipal"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="147"/>
-        <CursorPos Y="172"/>
-        <UsageCount Value="45"/>
+        <CursorPos X="16" Y="153"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="65" Y="17"/>
-        <UsageCount Value="45"/>
+        <CursorPos Y="46"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -43,7 +43,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="11"/>
         <CursorPos X="59" Y="10"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -51,19 +51,19 @@
         <Filename Value="appinfo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppInfo"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Formulario_Avanzado"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="26"/>
         <CursorPos X="60" Y="39"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -73,7 +73,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="44"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -82,21 +82,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="43"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="39"/>
       </Unit>
       <Unit>
         <Filename Value="utilidades.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utilidades"/>
-        <EditorIndex Value="9"/>
-        <UsageCount Value="27"/>
+        <EditorIndex Value="11"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -106,10 +106,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadScan"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="97"/>
-        <CursorPos X="22" Y="103"/>
-        <UsageCount Value="25"/>
+        <CursorPos X="85" Y="102"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -119,10 +119,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Control_About"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="91"/>
-        <CursorPos X="25" Y="97"/>
-        <UsageCount Value="20"/>
+        <CursorPos Y="97"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -130,9 +130,9 @@
         <Filename Value="components\scan\motorscan.pas"/>
         <UnitName Value="MotorScan"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="400"/>
-        <CursorPos X="3" Y="419"/>
-        <UsageCount Value="18"/>
+        <TopLine Value="315"/>
+        <CursorPos Y="335"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -145,10 +145,10 @@
       <Unit>
         <Filename Value="modelos\itemdata.pas"/>
         <UnitName Value="ItemData"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="205"/>
         <CursorPos X="11" Y="220"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -160,132 +160,151 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="2146"/>
         <CursorPos Y="2161"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="components\control_contine.pas"/>
+        <UnitName Value="Control_Contine"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="107"/>
+        <CursorPos X="55" Y="118"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
+        <UnitName Value="Contnrs"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="224"/>
+        <CursorPos X="19" Y="256"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="28">
       <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="47" TopLine="32"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="140" TopLine="108"/>
       </Position>
       <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="79" Column="56" TopLine="64"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="141" TopLine="108"/>
       </Position>
       <Position>
-        <Filename Value="components\scan\motorscan.pas"/>
-        <Caret Line="172" Column="47" TopLine="149"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="90" TopLine="69"/>
       </Position>
       <Position>
-        <Filename Value="modelos\itemdata.pas"/>
-        <Caret Line="174" Column="29" TopLine="157"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="80" TopLine="66"/>
       </Position>
       <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="79" Column="56" TopLine="64"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="80" Column="56" TopLine="64"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="207" Column="66" TopLine="195"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="7" Column="17"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="19" Column="79"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="9" Column="72"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="34" Column="58" TopLine="28"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="37" Column="52" TopLine="28"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="135" TopLine="133"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="80" Column="23" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\itemdata.pas"/>
-        <Caret Line="220" Column="10" TopLine="205"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="80" Column="17" TopLine="65"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="84" Column="32" TopLine="65"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="83" Column="32" TopLine="64"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="144" Column="114" TopLine="134"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="162" Column="138" TopLine="150"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="135" Column="43" TopLine="125"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="185" Column="40" TopLine="174"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="183" Column="45" TopLine="175"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\itemdata.pas"/>
-        <Caret Line="220" Column="11" TopLine="205"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="79" Column="22" TopLine="66"/>
       </Position>
       <Position>
         <Filename Value="components\scan\motorscan.pas"/>
-        <Caret Line="419" Column="3" TopLine="400"/>
+        <Caret Line="333" TopLine="314"/>
       </Position>
       <Position>
-        <Filename Value="unidadscan.pas"/>
-        <Caret Line="103" Column="22" TopLine="99"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="79" TopLine="66"/>
       </Position>
       <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="52" TopLine="41"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="80" TopLine="66"/>
       </Position>
       <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="91" Column="29" TopLine="67"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="81" TopLine="66"/>
       </Position>
       <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="172" Column="37" TopLine="147"/>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="78" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="83" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="118" TopLine="98"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="119" TopLine="98"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="92" TopLine="71"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="122" TopLine="102"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="90" Column="36" TopLine="69"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="123" TopLine="103"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="134" TopLine="102"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="129" TopLine="102"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="143" TopLine="109"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="129" TopLine="109"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="143" TopLine="109"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\motorscan.pas"/>
+        <Caret Line="341" TopLine="314"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\motorscan.pas"/>
+        <Caret Line="333" TopLine="314"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="106" Column="51" TopLine="92"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="79" Column="64" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_contine.pas"/>
+        <Caret Line="147" Column="14" TopLine="111"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
+        <Caret Line="242" Column="16" TopLine="232"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
+        <Caret Line="256" Column="19" TopLine="233"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
+        <Caret Line="1568" Column="3" TopLine="1559"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -293,4 +312,22 @@
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="components\control_contine.pas"/>
+        <Line Value="128"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="unidadprincipal.pas"/>
+        <Line Value="153"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>

@@ -43,19 +43,19 @@ object Form1: TForm1
   end
   object PanelPrincipal: TPanel
     Left = 0
-    Height = 128
+    Height = 372
     Top = 28
     Width = 899
     Align = alClient
     BevelOuter = bvNone
-    ClientHeight = 128
+    ClientHeight = 372
     ClientWidth = 899
     Color = clWindow
     ParentColor = False
     TabOrder = 2
     object Arbol: TLazVirtualDrawTree
       Left = 0
-      Height = 128
+      Height = 372
       Top = 0
       Width = 232
       Align = alLeft
@@ -67,7 +67,7 @@ object Form1: TForm1
     end
     object Splitter1: TSplitter
       Left = 232
-      Height = 128
+      Height = 372
       Top = 0
       Width = 5
       Color = clWindow
@@ -75,7 +75,7 @@ object Form1: TForm1
     end
     object Lista: TLazVirtualDrawTree
       Left = 237
-      Height = 128
+      Height = 372
       Top = 0
       Width = 662
       Align = alClient
@@ -88,19 +88,19 @@ object Form1: TForm1
   end
   object PanelInferior: TPanel
     Left = 0
-    Height = 444
-    Top = 161
+    Height = 200
+    Top = 405
     Width = 899
     Align = alBottom
     BevelOuter = bvNone
-    ClientHeight = 444
+    ClientHeight = 200
     ClientWidth = 899
     Color = clWhite
     ParentColor = False
     TabOrder = 3
     inline SalidaLog: TSynEdit
       Left = 0
-      Height = 444
+      Height = 200
       Top = 0
       Width = 899
       Align = alClient
@@ -609,7 +609,7 @@ object Form1: TForm1
     Cursor = crVSplit
     Left = 0
     Height = 5
-    Top = 156
+    Top = 400
     Width = 899
     Align = alBottom
     Color = clWindow
