@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-10 22:44:29
+ * @Last Modified time: 2023-04-10 22:57:51
  *)
 {
 
@@ -170,6 +170,8 @@ begin
   //FScan.ScanDir(Curdir);
   //DoOnTerminarScanAsync();
 
+  FVentanaScan := TFormScan.CreateEx(self, FScan);
+
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
   FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
   {$ELSE}
@@ -177,7 +179,8 @@ begin
   {$ENDIF}
 //  Timer1.Enabled := true;
 
-  FVentanaScan := TFormScan.CreateEx(self, FScan);
+
+  // Muestra la ventana de escaneo
   FVentanaScan.ShowModal;
 
 end;

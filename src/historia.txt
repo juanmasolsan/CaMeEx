@@ -1,5 +1,6 @@
 
 
+- [FIX]   (20230410) Corregido la correcta desaparición de la ventana de progreso al terminar el mismo.
 - [NEW]   (20230410) Agregado al motor de escaneo poder excluir del scan con patrones.
 - [NEW]   (20230410) Agregado búsqueda de patrones sencillos
 - [FIX]   (20230409) Arreglado en la Ventana de progreso el cancelar el escaneo al cerrar la ventana.
