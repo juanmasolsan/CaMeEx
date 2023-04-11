@@ -8,10 +8,10 @@
       <Unit>
         <Filename Value="cameex.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="18"/>
         <CursorPos X="60" Y="34"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -21,10 +21,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadPrincipal"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="147"/>
-        <CursorPos Y="153"/>
-        <UsageCount Value="51"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="163"/>
+        <CursorPos X="20" Y="183"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,7 +33,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <CursorPos Y="46"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -42,7 +43,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="11"/>
         <CursorPos X="59" Y="10"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -50,19 +51,19 @@
         <Filename Value="appinfo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppInfo"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Formulario_Avanzado"/>
-        <EditorIndex Value="13"/>
-        <TopLine Value="26"/>
+        <EditorIndex Value="14"/>
+        <TopLine Value="66"/>
         <CursorPos X="60" Y="39"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -72,7 +73,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="46"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -81,21 +82,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="utilidades.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utilidades"/>
-        <EditorIndex Value="11"/>
-        <UsageCount Value="33"/>
+        <EditorIndex Value="12"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -105,12 +106,22 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadScan"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="97"/>
         <CursorPos X="85" Y="102"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="components\control_logger.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Control_Logger"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="189"/>
+        <CursorPos X="45" Y="202"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -118,10 +129,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Control_About"/>
-        <EditorIndex Value="12"/>
-        <TopLine Value="91"/>
-        <CursorPos Y="97"/>
-        <UsageCount Value="23"/>
+        <EditorIndex Value="13"/>
+        <TopLine Value="154"/>
+        <CursorPos X="3" Y="186"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -131,7 +142,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="315"/>
         <CursorPos Y="335"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -144,10 +155,10 @@
       <Unit>
         <Filename Value="modelos\itemdata.pas"/>
         <UnitName Value="ItemData"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="205"/>
         <CursorPos X="11" Y="220"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -159,73 +170,38 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="2146"/>
         <CursorPos Y="2161"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_contine.pas"/>
         <UnitName Value="Control_Contine"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="107"/>
         <CursorPos X="23" Y="117"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
         <UnitName Value="Contnrs"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="224"/>
         <CursorPos X="19" Y="256"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\win\syswinh.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="12" Y="17"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="140" TopLine="108"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="141" TopLine="108"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="90" TopLine="69"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="80" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="79" Column="22" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\motorscan.pas"/>
-        <Caret Line="333" TopLine="314"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="79" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="80" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="81" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="78" TopLine="66"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="components\control_contine.pas"/>
         <Caret Line="83" TopLine="66"/>
@@ -303,8 +279,48 @@
         <Caret Line="256" Column="19" TopLine="233"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
-        <Caret Line="1568" Column="3" TopLine="1559"/>
+        <Filename Value="components\control_logger.pas"/>
+        <Caret Line="107" Column="52" TopLine="86"/>
+      </Position>
+      <Position>
+        <Filename Value="components\about\control_about.pas"/>
+        <Caret Line="98" TopLine="92"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="154" TopLine="148"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="143" Column="33" TopLine="137"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="145" Column="33" TopLine="139"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="182" Column="21" TopLine="157"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_logger.pas"/>
+        <Caret Line="80" Column="26" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_logger.pas"/>
+        <Caret Line="121" Column="25" TopLine="117"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_logger.pas"/>
+        <Caret Line="67" Column="26" TopLine="48"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_logger.pas"/>
+        <Caret Line="202" Column="45" TopLine="189"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="179" Column="10" TopLine="160"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -320,6 +336,13 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="components\control_contine.pas"/>
         <Line Value="128"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="components\control_logger.pas"/>
+        <Line Value="190"/>
       </Item>
     </BreakPoints>
   </Debugging>

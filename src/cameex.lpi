@@ -108,6 +108,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadScan"/>
       </Unit>
+      <Unit>
+        <Filename Value="components\control_logger.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Control_Logger"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

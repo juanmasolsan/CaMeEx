@@ -17,6 +17,7 @@
 + Formularios - Poder marcar Labels como si fuesen url, que sean clickable
 + Crear Acerca de.
 + Formularios - Posición - Que recuerde si estaba maximizado o no
++ Sistema Log para registrar errores y eventos
 
 - Hito 1: Escaneo de medios y guardado en la base de datos de la información extraída de los mismos.
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente
@@ -34,7 +35,7 @@
 +         Motor de escaneo de dispositivos y directorios - Ventana de progreso - Con posibilidad de poder cancelar el escaneo
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder excluir del scan con patrones.
 -         Motor de escaneo de dispositivos y directorios - Control de excepciones
--         Motor de escaneo de dispositivos y directorios - Comprobar nombre Unicode, como el chino o el japonés.
++         Motor de escaneo de dispositivos y directorios - Comprobar nombre Unicode, como el chino o el japonés.
 -         Agregar Sqlite3 - Versiones x64 y x86
 -         Agregar Sqlite3 - Crear base de datos
 -         Agregar Sqlite3 - Crear tablas
@@ -73,4 +74,4 @@
 - Agregar temas oscuro y claro
 - Compilar para windows x86
 - Comprobar memory leaks (1)
-- Sistema Log para registrar errores y eventos
+- Crear el diagrama de clases

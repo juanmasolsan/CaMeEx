@@ -1,4 +1,4 @@
-
+- [NEW]   (20230411) Agregado sistema Log para registrar errores y eventos
 - [NEW]   (20230411) Revisado el motor de escaneo con compatibilidad Unicode.
 
 + 1.0.3.8

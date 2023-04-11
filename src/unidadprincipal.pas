@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-10 22:57:51
+ * @Last Modified time: 2023-04-11 17:34:47
  *)
 {
 
@@ -49,9 +49,10 @@ uses
   , Dialogs
   , Menus
   , ComCtrls
-  , ExtCtrls
+  , ExtCtrls, StdCtrls
   , laz.VirtualTrees
   , SynEdit
+  , Control_Logger
   , Control_Formulario_Avanzado
   , MotorScan
   , UnidadScan
@@ -63,6 +64,7 @@ type
 
   TForm1 = class(TForm)
     Arbol: TLazVirtualDrawTree;
+    Button1: TButton;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualDrawTree;
     MenuPrincipal: TMainMenu;
@@ -82,9 +84,11 @@ type
     Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
@@ -142,8 +146,19 @@ begin
   ActivarArchivoConfig('cameex_config.ini', false, true, false, NOMBRE_PROGRAMA);
   ActivarGuardadoPosicion;
 
+  // Inicializar el Logger
+
+  LogCreate(IncludeTrailingBackslash(DirectorioConfig) + NOMBRE_PROGRAMA + '.log' , TLogLevel.all, true);
+
+  LogAdd(TLogLevel.info, 'Iniciando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
+
   // Inicializar el Motor de Escaneo
   FScan := TMotorScan.Create;
+end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+  LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 end;
 
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
@@ -156,6 +171,18 @@ begin
   if assigned(FScan) then
   begin
     FScan.free;
+  end;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  a : integer;
+  b : integer = 0;
+begin
+  try
+     a := 100 div b;
+  except
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
