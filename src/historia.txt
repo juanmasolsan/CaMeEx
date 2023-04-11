@@ -1,4 +1,6 @@
 
+- [NEW]   (20230411) Revisado el motor de escaneo con compatibilidad Unicode.
+
 + 1.0.3.8
 - [FIX]   (20230410) Corregido la correcta desaparición de la ventana de progreso al terminar el mismo.
 - [NEW]   (20230410) Agregado al motor de escaneo poder excluir del scan con patrones.
