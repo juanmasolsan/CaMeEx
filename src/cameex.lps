@@ -23,8 +23,8 @@
         <UnitName Value="UnidadPrincipal"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="163"/>
-        <CursorPos X="20" Y="183"/>
+        <TopLine Value="160"/>
+        <CursorPos X="24" Y="181"/>
         <UsageCount Value="52"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -140,8 +140,8 @@
         <Filename Value="components\scan\motorscan.pas"/>
         <UnitName Value="MotorScan"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="315"/>
-        <CursorPos Y="335"/>
+        <TopLine Value="246"/>
+        <CursorPos Y="263"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit>
@@ -202,22 +202,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="83" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="118" TopLine="98"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="119" TopLine="98"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="92" TopLine="71"/>
-      </Position>
       <Position>
         <Filename Value="components\control_contine.pas"/>
         <Caret Line="122" TopLine="102"/>
@@ -321,6 +305,22 @@
       <Position>
         <Filename Value="unidadprincipal.pas"/>
         <Caret Line="179" Column="10" TopLine="160"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="175" Column="88" TopLine="163"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\motorscan.pas"/>
+        <Caret Line="263" TopLine="246"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="179" Column="3" TopLine="160"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="181" Column="20" TopLine="160"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -1,5 +1,5 @@
 
-
++ 1.0.4.1
 - [NEW]   (20230411) Agregado al motor de escaneo control de excepciones.
 - [NEW]   (20230411) Agregado sistema Log para registrar errores y eventos.
 - [NEW]   (20230411) Revisado el motor de escaneo con compatibilidad Unicode.

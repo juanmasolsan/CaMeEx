@@ -261,10 +261,6 @@ var
   FlagsDir   : Integer = faAnyFile;
   Actual     : TDatoItem;
 
-var
-  a : integer;
-  b : integer = 0;
-
 begin
   // Obtener la ruta a procesar con la MascaraArchivo
   RootName := GetRutaProcesar(Directorio);
