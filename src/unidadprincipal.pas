@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-11 17:34:47
+ * @Last Modified time: 2023-04-11 22:28:15
  *)
 {
 
@@ -180,7 +180,7 @@ var
   b : integer = 0;
 begin
   try
-     a := 100 div b;
+    a := 100 div b;
   except
     on E: Exception do LogAddException('Excepción Detectada', E);
   end;

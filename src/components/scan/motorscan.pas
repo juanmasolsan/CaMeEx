@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-10 22:40:22
+ * @Last Modified time: 2023-04-11 22:47:38
  *)
 {
 
@@ -146,6 +146,7 @@ implementation
 uses
 crc
 , Control_Contine
+, Control_Logger
 ;
 
 
@@ -240,8 +241,12 @@ begin
   // Inicializa los datos
   DoResetData(Excluir);
 
-  // Inicia el escaneo de archivos y directorios
-  DoScanDir(Directorio, FRoot);
+  try
+    // Inicia el escaneo de archivos y directorios
+    DoScanDir(Directorio, FRoot);
+  except
+    on e: Exception do LogAddException('Excepción Detectada Procesando Ruta : ' + Directorio, e);
+  end;
 
   // Terminar el escaneo
   DoTerminarScanAsync();
@@ -255,6 +260,10 @@ var
   SearchRec  : TSearchRec;
   FlagsDir   : Integer = faAnyFile;
   Actual     : TDatoItem;
+
+var
+  a : integer;
+  b : integer = 0;
 
 begin
   // Obtener la ruta a procesar con la MascaraArchivo
@@ -285,7 +294,13 @@ begin
 
         // Si es un directorio, llamar recursivamente a la función para procesar su contenido
         if (Actual <> nil) and ((SearchRec.Attr and faDirectory)= faDirectory) then
-          DoScanDir(IncludeTrailingBackslash(Directorio) + SearchRec.Name, Actual);
+        begin
+          try
+            DoScanDir(IncludeTrailingBackslash(Directorio) + SearchRec.Name, Actual);
+          except
+            on e: Exception do LogAddException('Excepción Detectada Procesando Ruta : ' + IncludeTrailingBackslash(Directorio) + SearchRec.Name, e);
+          end;
+        end;
       end;
 
       // Obtener el siguiente archivo o directorio
