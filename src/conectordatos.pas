@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-12 19:18:25
+ * @Last Modified time: 2023-04-12 23:49:22
  *)
 {
 
@@ -83,16 +83,49 @@ begin
                   IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64'{$ELSE} 'x86'{$ENDIF} + '/sqlite3.dll');
 
   SQL := 'CREATE TABLE IF NOT EXISTS Catalogos (';
-  SQL := SQL + 'Id INTEGER PRIMARY KEY AUTOINCREMENT ';
+  SQL := SQL + 'Id INTEGER(8) PRIMARY KEY ';
   SQL := SQL + ', Nombre TEXT NOT NULL';
   SQL := SQL + ', Descripcion TEXT';
   SQL := SQL + ', FechaCreacion DATE NOT NULL';
   SQL := SQL + ', TotalArchivos INTEGER NOT NULL';
   SQL := SQL + ', TotalDirectorios INTEGER NOT NULL';
-  SQL := SQL + ', TotalSize UNSIGNED BIG INT NOT NULL';
+  SQL := SQL + ', TotalSize INTEGER(8) NOT NULL';
   SQL := SQL + ')';
 
   FDataBase.SQL(SQL);
+
+  SQL := 'CREATE TABLE IF NOT EXISTS Extensiones (';
+  SQL := SQL + 'Id INTEGER(8) PRIMARY KEY ';
+  SQL := SQL + ', Extension TEXT NOT NULL';
+  SQL := SQL + ', Descripcion TEXT NOT NULL';
+  SQL := SQL + ')';
+
+  FDataBase.SQL(SQL);
+
+
+  SQL := 'CREATE TABLE IF NOT EXISTS RutaCompleta (';
+  SQL := SQL + 'Id INTEGER(8) PRIMARY KEY ';
+  SQL := SQL + ', IdCatalogo INTEGER(8) ';
+  SQL := SQL + ', Ruta TEXT NOT NULL';
+  SQL := SQL + ')';
+
+  FDataBase.SQL(SQL);
+
+  SQL := 'CREATE TABLE IF NOT EXISTS Datos (';
+  SQL := SQL + 'Id INTEGER(8) PRIMARY KEY ';
+  SQL := SQL + ', Tipo INTEGER NOT NULL';
+  SQL := SQL + ', Atributos INTEGER NOT NULL';
+  SQL := SQL + ', DateTime DATE NOT NULL';
+  SQL := SQL + ', Size INTEGER NOT NULL';
+  SQL := SQL + ', Nombre TEXT NOT NULL';
+  SQL := SQL + ', ImageIndex INTEGER NOT NULL';
+  SQL := SQL + ', IdExtension INTEGER(8)';
+  SQL := SQL + ', IdRutaCompleta INTEGER(8) NOT NULL';
+  SQL := SQL + ', IdCatalogo INTEGER(8) NOT NULL';
+  SQL := SQL + ');';
+
+  FDataBase.SQL(SQL);
+
 end;
 
 

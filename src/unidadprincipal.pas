@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-12 18:57:51
+ * @Last Modified time: 2023-04-12 22:54:52
  *)
 {
 
@@ -158,6 +158,8 @@ begin
 
   // Inicializar el Motor de Escaneo
   FScan := TMotorScan.Create;
+
+  SalidaLog.Lines.add(inttostr(high(Qword)));
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
