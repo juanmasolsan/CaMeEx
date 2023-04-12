@@ -113,6 +113,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Logger"/>
       </Unit>
+      <Unit>
+        <Filename Value="components\iconectordatos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IConectorDatos"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -1,1 +1,12 @@
-https://sqlite.org/download.html
+SqlLite
+-------------------------------------------------
+Descarga       : https://sqlite.org/download.html
+
+Tipos          : https://sqlite.org/datatype3.html
+
+
+FreePascal
+-------------------------------------------------
+Interfaces     : https://wiki.freepascal.org/Interfaces
+
+SQLite         : https://wiki.freepascal.org/SQLite/es

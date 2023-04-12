@@ -1,8 +1,8 @@
 (**
  * @Author: Juan Manuel Soltero Sánchez
- * @Date:   2023-04-05 21:58:26
+ * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-12 17:03:33
+ * @Last Modified time: 2023-04-12 18:56:42
  *)
 {
 
@@ -30,31 +30,20 @@ SOFTWARE.
 
 }
 
-program cameex;
+unit InterfaceConectorDatos;
 
-{$mode objfpc}{$H+}
+{$mode ObjFPC}{$H+}
 
-uses
-  {$IFDEF UNIX}
-  cthreads,
-  {$ENDIF}
-  {$IFDEF HASAMIGA}
-  athreads,
-  {$ENDIF}
-  Interfaces, // this includes the LCL widgetset
-  Forms
-  , UnidadPrincipal
-  , Control_DB, IConectorDatos
-  ;
+interface
 
-{$R *.res}
+type
+  { IConectorDatos }
+  IConectorDatos = interface
+    procedure Iniciar(Curdir: string; SaveDir : string);
+    procedure Finalizar();
+  end;
 
-begin
-  RequireDerivedFormResource:=True;
-  Application.Title:='CaMeEx';
-  Application.Scaled:=True;
-  Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
-  Application.Run;
+implementation
+
 end.
 

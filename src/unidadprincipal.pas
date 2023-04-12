@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-11 22:28:15
+ * @Last Modified time: 2023-04-12 18:57:51
  *)
 {
 
@@ -56,6 +56,7 @@ uses
   , Control_Formulario_Avanzado
   , MotorScan
   , UnidadScan
+  , InterfaceConectorDatos
   ;
 
 type
@@ -96,6 +97,7 @@ type
   private
     FScan        : TMotorScan;
     FVentanaScan : TFormScan;
+    FGestorDatos : IConectorDatos;
   protected
     procedure DoOnTerminarScanAsync();
   public
@@ -111,6 +113,7 @@ uses appinfo
 , Control_About
 , ItemData
 , Utilidades
+, ConectorDatos
 ;
 
 {$R *.lfm}
@@ -133,10 +136,7 @@ begin
       Result := Extra;
 end;
 
-
-
 { TForm1 }
-
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   Caption                 := Get_Titulo_Ventana(true, '', true);
@@ -152,12 +152,19 @@ begin
 
   LogAdd(TLogLevel.info, 'Iniciando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 
+  // Inicializar el Gestor de Datos
+  FGestorDatos := TConectorDatos.Create;
+  FGestorDatos.Iniciar(Curdir, DirectorioConfig);
+
   // Inicializar el Motor de Escaneo
   FScan := TMotorScan.Create;
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
+  // Finalizar el Gestor de Datos
+  FGestorDatos.Finalizar();
+
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 end;
 
