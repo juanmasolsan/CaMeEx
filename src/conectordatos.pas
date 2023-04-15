@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 15:57:19
+ * @Last Modified time: 2023-04-15 16:19:20
  *)
 {
 
@@ -41,14 +41,15 @@ uses
   , SysUtils
   , InterfaceConectorDatos
   , ItemExtension
+  , ItemRutaCompleta
   ;
 
 
 
 
 const
-  SQL_INSERT_EXTENSION = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
-
+  SQL_INSERT_EXTENSION     = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
+  SQL_INSERT_RUTA_COMPLETA = 'INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
 
 type
   { TConectorDatos }
@@ -75,6 +76,8 @@ type
     // Añade una extension a la base de datos
     procedure AddExtension(Extension : TItemExtension);
 
+    // Añade una ruta completa a la base de datos
+    procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
 
     // Para testear sentencias
     procedure TestSentencias();
@@ -216,8 +219,8 @@ begin
       FDataBase.Query.SQL.Add(SQL_INSERT_EXTENSION);
 
       // Hace la inserción con un prepared statement
-      FDataBase.Query.ParamByName('ID').AsLargeInt := Extension.Id;
-      FDataBase.Query.ParamByName('EXTENSION').AsString := Extension.Nombre;
+      FDataBase.Query.ParamByName('ID').AsLargeInt        := Extension.Id;
+      FDataBase.Query.ParamByName('EXTENSION').AsString   := Extension.Nombre;
       FDataBase.Query.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
 
       // Realiza la inserción
@@ -229,6 +232,31 @@ begin
   end;
 end;
 
+
+// Añade una ruta completa a la base de datos
+procedure TConectorDatos.AddRutaCompleta(Ruta : TItemRutaCompleta);
+begin
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Prepara la query
+      FDataBase.Query.Close;
+      FDataBase.Query.SQL.Clear;
+      FDataBase.Query.SQL.Add(SQL_INSERT_RUTA_COMPLETA);
+
+      // Hace la inserción con un prepared statement
+      FDataBase.Query.ParamByName('ID').AsLargeInt         := Ruta.Id;
+      FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Ruta.IdCatalogo;
+      FDataBase.Query.ParamByName('RUTA').AsString         := Ruta.Nombre;
+
+      // Realiza la inserción
+      FDataBase.Query.ExecSQL;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
 
 
 
@@ -253,12 +281,32 @@ procedure TConectorDatos.TestSentencias();
     end;
   end;
 
+  procedure InsertarRutasCompletas();
+  var
+    i  : integer;
+    max: integer = 10;
+    ruta: TItemRutaCompleta;
+
+  begin
+    for i := 0 to max do
+    begin
+      ruta := TItemRutaCompleta.Create('directorio/loquesea_' + inttostr(i), 1);
+      try
+        AddRutaCompleta(ruta);
+      finally
+        ruta.Free;
+      end;
+    end;
+  end;
+
+
 begin
 
   // Inserta extensiones
-  InsertarExtensiones();
+  //InsertarExtensiones();
 
-
+  // Inserta rutas  completas
+  InsertarRutasCompletas();
 end;
 
 
