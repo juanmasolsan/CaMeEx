@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 16:19:20
+ * @Last Modified time: 2023-04-15 17:27:33
  *)
 {
 
@@ -42,6 +42,7 @@ uses
   , InterfaceConectorDatos
   , ItemExtension
   , ItemRutaCompleta
+  , ItemCatalogo
   ;
 
 
@@ -50,6 +51,10 @@ uses
 const
   SQL_INSERT_EXTENSION     = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
   SQL_INSERT_RUTA_COMPLETA = 'INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
+  SQL_INSERT_CATALOGO      = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, FechaCreacion, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHACREACION, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
+
+
+
 
 type
   { TConectorDatos }
@@ -79,6 +84,9 @@ type
     // Añade una ruta completa a la base de datos
     procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
 
+    // Añade un catálogo a la base de datos
+    procedure AddCatalogo(Catalogo : TItemCatalogo);
+
     // Para testear sentencias
     procedure TestSentencias();
   end;
@@ -91,6 +99,7 @@ uses
   , sqldb
   , Control_DB
   , Control_CRC
+  , ItemBaseDatos
   ;
 
 var
@@ -258,6 +267,39 @@ begin
   end;
 end;
 
+// Añade un catálogo a la base de datos
+procedure TConectorDatos.AddCatalogo(Catalogo : TItemCatalogo);
+begin
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Prepara la query
+      FDataBase.Query.Close;
+      FDataBase.Query.SQL.Clear;
+      FDataBase.Query.SQL.Add(SQL_INSERT_CATALOGO);
+
+      // Hace la inserción con un prepared statement
+      FDataBase.Query.ParamByName('ID').AsLargeInt               := Catalogo.Id;
+      FDataBase.Query.ParamByName('NOMBRE').AsString             := Catalogo.Nombre;
+      FDataBase.Query.ParamByName('DESCRIPCION').AsString        := Catalogo.Descripcion;
+      FDataBase.Query.ParamByName('TIPO').AsInteger              := integer(Catalogo.Tipo);
+      FDataBase.Query.ParamByName('FECHACREACION').AsDateTime    := Catalogo.Fecha;
+      FDataBase.Query.ParamByName('TOTALARCHIVOS').AsLargeInt    := Catalogo.TotalArchivos;
+      FDataBase.Query.ParamByName('TOTALDIRECTORIOS').AsLargeInt := Catalogo.TotalDirectorios;
+      FDataBase.Query.ParamByName('TOTALSIZE').AsLargeInt        := Catalogo.Size;
+
+//  SQL_INSERT_CATALOGO      = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, FechaCreacion, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
+
+
+      // Realiza la inserción
+      FDataBase.Query.ExecSQL;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
+
 
 
 
@@ -299,6 +341,25 @@ procedure TConectorDatos.TestSentencias();
     end;
   end;
 
+  procedure InsertarCatalogo();
+  var
+    i  : integer;
+    max: integer = 0;
+    Catalogo: TItemCatalogo;
+
+  begin
+    for i := 0 to max do
+    begin
+      Catalogo := TItemCatalogo.Create('Catalogo_' + inttostr(i), TItemDatoTipo.Root, now, 300, 'Descripcion del catalogo ' + inttostr(i), 1 + i, 1 + i );
+      try
+        AddCatalogo(Catalogo);
+      finally
+        Catalogo.Free;
+      end;
+    end;
+  end;
+
+
 
 begin
 
@@ -306,7 +367,11 @@ begin
   //InsertarExtensiones();
 
   // Inserta rutas  completas
-  InsertarRutasCompletas();
+  //InsertarRutasCompletas();
+
+  // Inserta rutas  completas
+  InsertarCatalogo();
+
 end;
 
 

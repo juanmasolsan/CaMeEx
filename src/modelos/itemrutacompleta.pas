@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 16:02:15
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 16:17:53
+ * @Last Modified time: 2023-04-15 16:52:17
  *)
 {
 
@@ -48,7 +48,7 @@ type
     FIdCatalogo        : Qword;
   protected
     // Para poder Generar el Id
-    function DoGenerarId(): Qword; override;
+    function DoGenerarId(const extra: string): Qword; override;
   public
     // Constructor de la clase
     constructor Create(const ANombre: RawByteString; const AIdCatalogo: Qword);
@@ -60,10 +60,6 @@ type
 
 implementation
 
-uses
-  Control_CRC
-;
-
 { TItemRutaCompleta }
 constructor TItemRutaCompleta.Create(const ANombre: RawByteString; const AIdCatalogo: Qword);
 begin
@@ -72,9 +68,9 @@ begin
 end;
 
 // Para poder Generar el Id
-function TItemRutaCompleta.DoGenerarId(): Qword;
+function TItemRutaCompleta.DoGenerarId(const extra: string): Qword;
 begin
-  Result := CRC64_From_String(Nombre + ' | ' +  inttostr(FIdCatalogo));
+  Result := inherited DoGenerarId(' | ' +  inttostr(FIdCatalogo));
 end;
 
 end.

@@ -1,4 +1,5 @@
 
+- [NEW]   (20230415) Agregado a ConectorDatos.AddCatalogo
 - [NEW]   (20230415) Agregado a ConectorDatos.AddRutaCompleta
 - [NEW]   (20230415) Agregado ItemBase como la base padre de la mayoría de los modelos
 - [NEW]   (20230415) Agregado a ConectorDatos.AddExtension

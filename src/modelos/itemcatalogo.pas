@@ -1,8 +1,8 @@
 (**
  * @Author: Juan Manuel Soltero Sánchez
- * @Date:   2023-04-15 15:47:48
+ * @Date:   2023-04-15 16:39:00
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 16:56:30
+ * @Last Modified time: 2023-04-15 17:28:19
  *)
 {
 
@@ -30,29 +30,37 @@ SOFTWARE.
 
 }
 
-unit ItemBase;
+unit ItemCatalogo;
 
 {$mode ObjFPC}{$H+}
 
 interface
 
+uses
+  SysUtils
+  , ItemBase
+  , ItemBaseDatos
+;
 
 type
-  { TItemBase }
-  TItemBase = class
+
+  { TItemCatalogo }
+  TItemCatalogo = class(TItemBaseDatos)
   private
-    FId                  : Qword;
-    FNombre              : RawByteString;
+    FDescripcion     : RawByteString;
+    FTotalArchivos   : Qword;
+    FTotalDirectorios: Qword;
   protected
     // Para poder Generar el Id
-    function DoGenerarId(const extra: string): Qword; virtual;
+    function DoGenerarId(const extra: string): Qword; override;
   public
     // Constructor de la clase
-    constructor Create(const ANombre: RawByteString);
+    constructor Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64; const ADescripcion: RawByteString = ''; ATotalArchivos: Qword = 0; ATotalDirectorios: Qword = 0);
 
     // Propiedades
-    property Id               : Qword read FId;
-    property Nombre           : RawByteString read FNombre;
+    property Descripcion     : RawByteString read FDescripcion;
+    property TotalArchivos   : Qword         read FTotalArchivos;
+    property TotalDirectorios: Qword         read FTotalDirectorios;
   end;
 
 
@@ -62,21 +70,21 @@ uses
   Control_CRC
 ;
 
-{ TItemBase }
-constructor TItemBase.Create(const ANombre: RawByteString);
-begin
-  inherited Create;
-  FNombre      := ANombre;
 
-  // Generamos el Id
-  FId          := DoGenerarId('');
+{ TItemCatalogo }
+constructor TItemCatalogo.Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64; const ADescripcion: RawByteString = ''; ATotalArchivos: Qword = 0; ATotalDirectorios: Qword = 0);
+begin
+  FDescripcion      := ADescripcion;
+  FTotalArchivos    := ATotalArchivos;
+  FTotalDirectorios := ATotalDirectorios;
+
+  inherited Create(ANombre, ATipo, AFecha, ASize);
 end;
 
 // Para poder Generar el Id
-function TItemBase.DoGenerarId(const extra: string): Qword;
+function TItemCatalogo.DoGenerarId(const extra: string): Qword;
 begin
-  Result := CRC64_From_String(FNombre + ' | ' + extra);
+  Result := inherited DoGenerarId('');
 end;
-
 
 end.

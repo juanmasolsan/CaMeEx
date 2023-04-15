@@ -231,8 +231,8 @@
         <UnitName Value="DB"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="10"/>
-        <TopLine Value="89"/>
-        <CursorPos X="19" Y="110"/>
+        <TopLine Value="91"/>
+        <CursorPos X="24" Y="95"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
