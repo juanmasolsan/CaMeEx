@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 13:51:44
+ * @Last Modified time: 2023-04-15 15:23:45
  *)
 {
 
@@ -37,7 +37,18 @@ unit ConectorDatos;
 interface
 
 uses
-  Classes, SysUtils, InterfaceConectorDatos;
+  Classes
+  , SysUtils
+  , InterfaceConectorDatos
+  , ItemExtension
+  ;
+
+
+
+
+const
+  SQL_INSERT_EXTENSION = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
+
 
 type
   { TConectorDatos }
@@ -60,12 +71,23 @@ type
 
     // Elimina todas las tablas de la base de datos
     procedure EliminarAllTablas();
+
+    // Añade una extension a la base de datos
+    procedure AddExtension(Extension : TItemExtension);
+
+
+    // Para testear sentencias
+    procedure TestSentencias();
   end;
+
 
 implementation
 
 uses
-  Control_DB
+  db
+  , sqldb
+  , Control_DB
+  , Control_CRC
   ;
 
 var
@@ -90,6 +112,9 @@ begin
 
   // Crea las tablas si no existen
   CrearTablas();
+
+
+  TestSentencias();
 end;
 
 // Desconecta de la base de datos
@@ -177,6 +202,66 @@ begin
   EliminarTabla('RutaCompleta');
   EliminarTabla('Catalogos');
 end;
+
+
+// Añade una extension a la base de datos
+procedure TConectorDatos.AddExtension(Extension : TItemExtension);
+begin
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Prepara la query
+      FDataBase.Query.Close;
+      FDataBase.Query.SQL.Clear;
+      FDataBase.Query.SQL.Add(SQL_INSERT_EXTENSION);
+
+      // Hace la inserción con un prepared statement
+      FDataBase.Query.ParamByName('ID').AsLargeInt := Extension.Id;
+      FDataBase.Query.ParamByName('EXTENSION').AsString := Extension.Extension;
+      FDataBase.Query.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
+
+      // Realiza la inserción
+      FDataBase.Query.ExecSQL;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
+
+
+
+
+
+procedure TConectorDatos.TestSentencias();
+
+  procedure InsertarExtensiones();
+  var
+    i  : integer;
+    max: integer = 10;
+    ext: TItemExtension;
+
+  begin
+    for i := 0 to max do
+    begin
+      ext := TItemExtension.Create('.ext_'+ inttostr(i), 'Descripcion de la extension ' + inttostr(i));
+      try
+        AddExtension(ext);
+      finally
+        ext.Free;
+      end;
+    end;
+  end;
+
+begin
+
+  // Inserta extensiones
+  InsertarExtensiones();
+
+
+end;
+
+
 
 
 end.

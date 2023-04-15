@@ -8,10 +8,10 @@
       <Unit>
         <Filename Value="cameex.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="18"/>
         <CursorPos X="60" Y="34"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -21,10 +21,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadPrincipal"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="160"/>
-        <CursorPos X="24" Y="181"/>
-        <UsageCount Value="53"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="87"/>
+        <CursorPos X="14" Y="116"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,7 +32,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <CursorPos Y="46"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -42,7 +42,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="11"/>
         <CursorPos X="59" Y="10"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -50,20 +50,19 @@
         <Filename Value="appinfo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppInfo"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Formulario_Avanzado"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="60" Y="39"/>
-        <UsageCount Value="52"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="53"/>
       </Unit>
       <Unit>
         <Filename Value="motorscan.pas"/>
@@ -72,7 +71,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -81,22 +80,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="46"/>
+        <UsageCount Value="47"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
       </Unit>
       <Unit>
         <Filename Value="utilidades.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utilidades"/>
-        <EditorIndex Value="13"/>
-        <UsageCount Value="35"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="36"/>
       </Unit>
       <Unit>
         <Filename Value="unidadscan.pas"/>
@@ -105,22 +103,28 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadScan"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="97"/>
         <CursorPos X="85" Y="102"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="34"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_logger.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Control_Logger"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="189"/>
         <CursorPos X="45" Y="202"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="components\iconectordatos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IConectorDatos"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="5" Y="11"/>
+        <UsageCount Value="21"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -128,12 +132,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Control_About"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="154"/>
         <CursorPos X="3" Y="186"/>
         <UsageCount Value="24"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\scan\motorscan.pas"/>
@@ -154,11 +156,10 @@
       <Unit>
         <Filename Value="modelos\itemdata.pas"/>
         <UnitName Value="ItemData"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="205"/>
         <CursorPos X="11" Y="220"/>
         <UsageCount Value="17"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
@@ -169,16 +170,15 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2146"/>
         <CursorPos Y="2161"/>
         <UsageCount Value="14"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_contine.pas"/>
         <UnitName Value="Control_Contine"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="107"/>
         <CursorPos X="23" Y="117"/>
         <UsageCount Value="12"/>
@@ -187,7 +187,7 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
         <UnitName Value="Contnrs"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="224"/>
         <CursorPos X="19" Y="256"/>
         <UsageCount Value="12"/>
@@ -200,41 +200,52 @@
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="components\iconectordatos.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="IConectorDatos"/>
+        <Filename Value="conectordatos.pas"/>
+        <UnitName Value="ConectorDatos"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="200"/>
+        <CursorPos X="34" Y="212"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="components\control_db.pas"/>
+        <UnitName Value="Control_DB"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="51"/>
+        <CursorPos X="32" Y="57"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
+        <UnitName Value="SQLDB"/>
+        <EditorIndex Value="13"/>
+        <TopLine Value="572"/>
+        <CursorPos X="14" Y="589"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
+        <UnitName Value="DB"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <CursorPos X="5" Y="11"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="89"/>
+        <CursorPos X="19" Y="110"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\dsparams.inc"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="780"/>
+        <CursorPos X="3" Y="782"/>
+        <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="90" Column="36" TopLine="69"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="123" TopLine="103"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="134" TopLine="102"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="129" TopLine="102"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="143" TopLine="109"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="129" TopLine="109"/>
-      </Position>
       <Position>
         <Filename Value="components\control_contine.pas"/>
         <Caret Line="143" TopLine="109"/>
@@ -270,10 +281,6 @@
       <Position>
         <Filename Value="components\control_logger.pas"/>
         <Caret Line="107" Column="52" TopLine="86"/>
-      </Position>
-      <Position>
-        <Filename Value="components\about\control_about.pas"/>
-        <Caret Line="98" TopLine="92"/>
       </Position>
       <Position>
         <Filename Value="unidadprincipal.pas"/>
@@ -328,8 +335,36 @@
         <Caret Line="181" Column="20" TopLine="160"/>
       </Position>
       <Position>
-        <Filename Value="components\iconectordatos.pas"/>
-        <Caret Line="12" Column="7"/>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="116" Column="14" TopLine="87"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="68" Column="13" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="components\control_db.pas"/>
+        <Caret Line="57" Column="32" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
+        <Caret Line="542" Column="40" TopLine="528"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="212" Column="34" TopLine="200"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
+        <Caret Line="1259" Column="74" TopLine="1255"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
+        <Caret Line="1221" Column="15" TopLine="1203"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\dsparams.inc"/>
+        <Caret Line="782" Column="3" TopLine="780"/>
       </Position>
     </JumpHistory>
     <RunParams>
