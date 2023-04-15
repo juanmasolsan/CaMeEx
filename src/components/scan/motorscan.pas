@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-11 22:47:38
+ * @Last Modified time: 2023-04-15 14:32:15
  *)
 {
 
@@ -147,6 +147,7 @@ uses
 crc
 , Control_Contine
 , Control_Logger
+, Control_CRC
 ;
 
 
@@ -367,8 +368,7 @@ begin
             IntToStr(SearchRec.Attr);
 
   // Generar el Id a partir de la string anterior (Basado en CRC64)
-  Id := crc64(0,nil,0);
-  Id := crc64(Id, @IdData[1], length(IdData));
+  Id := CRC64_From_String(IdData);
 
   // Crear el objeto TDatoItem
   Item := TDatoItem.Create(Id,
