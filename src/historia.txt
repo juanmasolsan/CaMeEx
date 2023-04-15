@@ -1,4 +1,8 @@
 
+
+- [NEW]   (20230415) Agregado a ConectorDatos la creación y eliminación de las tablas
+
++ 1.0.4.4
 - [NEW]   (20230412) Agregado a ConectorDatos la creación de la base de datos Sqlite3
 - [NEW]   (20230412) Agregado ConectorDatos para conectarse en este caso a Sqlite3
 - [NEW]   (20230412) Agregado base para usar Sqlite3 - Librerías de x64 y x86 versión 3.41.2

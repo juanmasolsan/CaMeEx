@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-12 23:49:22
+ * @Last Modified time: 2023-04-15 13:51:44
  *)
 {
 
@@ -51,6 +51,15 @@ type
 
     // Desconecta de la base de datos
     procedure Finalizar();
+
+    // Crea las tablas de la base de datos
+    procedure CrearTablas();
+
+    // Elimina una tabla de la base de datos
+    procedure EliminarTabla(tabla : String);
+
+    // Elimina todas las tablas de la base de datos
+    procedure EliminarAllTablas();
   end;
 
 implementation
@@ -71,9 +80,6 @@ end;
 
 // Conecta con la base de datos
 procedure TConectorDatos.Iniciar(Curdir: string; SaveDir : string);
-var
-  SQL : string;
-
 begin
   FDataBase := TConexion_DB.Create(IncludeTrailingBackslash(SaveDir) + 'catalogos.db',
                   'sqlite-3',
@@ -82,52 +88,9 @@ begin
                   //TODO: revisar para poder usarse en linux
                   IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64'{$ELSE} 'x86'{$ENDIF} + '/sqlite3.dll');
 
-  SQL := 'CREATE TABLE IF NOT EXISTS Catalogos (';
-  SQL := SQL + 'Id INTEGER(8) PRIMARY KEY ';
-  SQL := SQL + ', Nombre TEXT NOT NULL';
-  SQL := SQL + ', Descripcion TEXT';
-  SQL := SQL + ', FechaCreacion DATE NOT NULL';
-  SQL := SQL + ', TotalArchivos INTEGER NOT NULL';
-  SQL := SQL + ', TotalDirectorios INTEGER NOT NULL';
-  SQL := SQL + ', TotalSize INTEGER(8) NOT NULL';
-  SQL := SQL + ')';
-
-  FDataBase.SQL(SQL);
-
-  SQL := 'CREATE TABLE IF NOT EXISTS Extensiones (';
-  SQL := SQL + 'Id INTEGER(8) PRIMARY KEY ';
-  SQL := SQL + ', Extension TEXT NOT NULL';
-  SQL := SQL + ', Descripcion TEXT NOT NULL';
-  SQL := SQL + ')';
-
-  FDataBase.SQL(SQL);
-
-
-  SQL := 'CREATE TABLE IF NOT EXISTS RutaCompleta (';
-  SQL := SQL + 'Id INTEGER(8) PRIMARY KEY ';
-  SQL := SQL + ', IdCatalogo INTEGER(8) ';
-  SQL := SQL + ', Ruta TEXT NOT NULL';
-  SQL := SQL + ')';
-
-  FDataBase.SQL(SQL);
-
-  SQL := 'CREATE TABLE IF NOT EXISTS Datos (';
-  SQL := SQL + 'Id INTEGER(8) PRIMARY KEY ';
-  SQL := SQL + ', Tipo INTEGER NOT NULL';
-  SQL := SQL + ', Atributos INTEGER NOT NULL';
-  SQL := SQL + ', DateTime DATE NOT NULL';
-  SQL := SQL + ', Size INTEGER NOT NULL';
-  SQL := SQL + ', Nombre TEXT NOT NULL';
-  SQL := SQL + ', ImageIndex INTEGER NOT NULL';
-  SQL := SQL + ', IdExtension INTEGER(8)';
-  SQL := SQL + ', IdRutaCompleta INTEGER(8) NOT NULL';
-  SQL := SQL + ', IdCatalogo INTEGER(8) NOT NULL';
-  SQL := SQL + ');';
-
-  FDataBase.SQL(SQL);
-
+  // Crea las tablas si no existen
+  CrearTablas();
 end;
-
 
 // Desconecta de la base de datos
 procedure TConectorDatos.Finalizar;
@@ -136,6 +99,84 @@ begin
   FDataBase.Free;
 end;
 
+// Conecta con la base de datos
+procedure TConectorDatos.CrearTablas();
+var
+  SQL : string;
+
+begin
+
+  // Crea la tabla de catalogos
+  SQL := 'CREATE TABLE Catalogos (' +
+    'Id               INTEGER (8) PRIMARY KEY,' +
+    'Nombre           TEXT        NOT NULL,' +
+    'Descripcion      TEXT        NOT NULL,' +
+    'Tipo             INTEGER     NOT NULL,' +
+    'FechaCreacion    DATETIME    NOT NULL,' +
+    'TotalArchivos    INTEGER     NOT NULL,' +
+    'TotalDirectorios INTEGER     NOT NULL,' +
+    'TotalSize        INTEGER (8) NOT NULL' +
+    ');';
+
+  FDataBase.SQL(SQL);
+
+  // Crea la tabla de extensiones
+  SQL := 'CREATE TABLE Extensiones (' +
+    'Id          INTEGER (8) PRIMARY KEY,' +
+    'Extension   TEXT        NOT NULL UNIQUE,' +
+    'Descripcion TEXT        NOT NULL' +
+    ');';
+
+
+  FDataBase.SQL(SQL);
+
+  // Inserta la extension sin extension
+  SQL := 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
+  FDataBase.SQL(SQL);
+
+  // Crea la tabla de rutas completas
+  SQL := 'CREATE TABLE RutaCompleta (' +
+    'Id         INTEGER (8) PRIMARY KEY,' +
+    'IdCatalogo INTEGER (8) CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+    'Ruta       TEXT        NOT NULL' +
+    ');';
+
+  FDataBase.SQL(SQL);
+
+  // Crea la tabla de datos
+  SQL := 'CREATE TABLE Datos (' +
+    'Id             INTEGER (8) PRIMARY KEY,' +
+    'Tipo           INTEGER     NOT NULL,' +
+    'Atributos      INTEGER     NOT NULL,' +
+    'DateTime       DATETIME    NOT NULL,' +
+    'Size           INTEGER     NOT NULL,' +
+    'Nombre         TEXT        NOT NULL,' +
+    'ImageIndex     INTEGER     NOT NULL,' +
+    'IdExtension    INTEGER (8) CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+    'IdRutaCompleta INTEGER (8) CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+    'IdCatalogo     INTEGER (8) NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+    'IdPadre        INTEGER (8) CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE' +
+    ');';
+
+  FDataBase.SQL(SQL);
+
+end;
+
+
+// Elimina una tabla de la base de datos
+procedure TConectorDatos.EliminarTabla(tabla : String);
+begin
+  FDataBase.SQL('DROP TABLE IF EXISTS ' + tabla);
+end;
+
+// Elimina todas las tablas de la base de datos
+procedure TConectorDatos.EliminarAllTablas();
+begin
+  EliminarTabla('Datos');
+  EliminarTabla('Extensiones');
+  EliminarTabla('RutaCompleta');
+  EliminarTabla('Catalogos');
+end;
 
 
 end.
