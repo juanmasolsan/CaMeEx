@@ -38,7 +38,6 @@ interface
 
 uses
   SysUtils
-  , ItemBase
   , ItemBaseDatos
 ;
 
@@ -66,10 +65,6 @@ type
 
 implementation
 
-uses
-  Control_CRC
-;
-
 
 { TItemCatalogo }
 constructor TItemCatalogo.Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64; const ADescripcion: RawByteString = ''; ATotalArchivos: Qword = 0; ATotalDirectorios: Qword = 0);
@@ -84,7 +79,7 @@ end;
 // Para poder Generar el Id
 function TItemCatalogo.DoGenerarId(const extra: string): Qword;
 begin
-  Result := inherited DoGenerarId('');
+  Result := inherited DoGenerarId(extra);
 end;
 
 end.

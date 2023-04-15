@@ -42,6 +42,7 @@
 +         Agregar Sqlite3 - Crear métodos de inserción
 -         Agregar Sqlite3 - Crear métodos de actualización
 +         Agregar Sqlite3 - Crear métodos de eliminación
+-         Normalizar el nombre de las columnas de fechas en la base de datos
 -         Agregar Sqlite3 - Control de excepciones
 
 - Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.

@@ -38,7 +38,6 @@ interface
 uses
   Classes
   , SysUtils
-  , strutils
   ;
 
 // Calcular el crc64 de un string

@@ -144,8 +144,7 @@ type
 implementation
 
 uses
-crc
-, Control_Contine
+ Control_Contine
 , Control_Logger
 , Control_CRC
 ;

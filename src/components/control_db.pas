@@ -81,12 +81,8 @@ type
     // Metodo para realizar sentencias SQL protegidas para concurrencia
     procedure SQL(const DataSQL : string; iQuery : TSQLQuery = nil);
 
-    // Metodo para crear una tabla
-    procedure CrearTabla(const Tabla, DataSQL : string);
-
     // Metodo para optimizar una tabla
     procedure SQLite3_OptimizarTabla({%H-}Cache_Size : longint = 8; {%H-}Page_Size : longint = 8); virtual;
-
 
     // Propiedades
     property  Query : TSQLQuery read FQuery;
@@ -287,13 +283,6 @@ procedure TConexion_DB_Base.SQL(const DataSQL : string; iQuery : TSQLQuery = nil
 begin
   Internal_SQL(Self, DataSQL, FCriticalSection, iQuery);
 end;
-
-// Metodo para crear una tabla
-procedure TConexion_DB_Base.CrearTabla(const Tabla, DataSQL : string);
-begin
-  SQL(DataSQL);
-end;
-
 
 { TConexion_DB_001 }
 // Metodo para optimizar las tablas

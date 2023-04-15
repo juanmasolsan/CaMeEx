@@ -57,10 +57,6 @@ type
 
 implementation
 
-uses
-  Control_CRC
-;
-
 { TItemExtension }
 constructor TItemExtension.Create(const ANombre: RawByteString; const ADescripcion: RawByteString);
 begin

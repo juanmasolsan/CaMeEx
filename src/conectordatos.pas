@@ -103,7 +103,6 @@ uses
   db
   , sqldb
   , Control_DB
-  , Control_CRC
   , ItemBaseDatos
   ;
 
@@ -397,8 +396,6 @@ procedure TConectorDatos.TestSentencias();
 
   procedure InsertarDatos();
   var
-    i  : integer;
-    max: integer = 0;
     Dato: TItemDato;
 
   begin

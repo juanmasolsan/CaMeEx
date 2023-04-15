@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:26
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-12 17:03:33
+ * @Last Modified time: 2023-04-15 18:44:29
  *)
 {
 
@@ -44,7 +44,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   , UnidadPrincipal
-  , Control_DB, IConectorDatos
+
   ;
 
 {$R *.res}

@@ -70,7 +70,7 @@ end;
 // Para poder Generar el Id
 function TItemRutaCompleta.DoGenerarId(const extra: string): Qword;
 begin
-  Result := inherited DoGenerarId(' | ' +  inttostr(FIdCatalogo));
+  Result := inherited DoGenerarId(extra + ' | ' +  inttostr(FIdCatalogo));
 end;
 
 end.
