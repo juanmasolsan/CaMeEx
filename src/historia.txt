@@ -1,5 +1,5 @@
 
-
++ 1.0.5.3
 - [FIX]   (20230415) Eliminado warnings hints y notes del código.
 - [NEW]   (20230415) Agregado a ConectorDatos los métodos de inserción.
 - [NEW]   (20230415) Agregado a ConectorDatos.AddDato.
