@@ -11,7 +11,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="18"/>
         <CursorPos X="60" Y="34"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -24,7 +24,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="87"/>
         <CursorPos X="14" Y="116"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,7 +32,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <CursorPos Y="46"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -42,7 +42,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="11"/>
         <CursorPos X="59" Y="10"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -52,7 +52,7 @@
         <UnitName Value="AppInfo"/>
         <EditorIndex Value="6"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -62,7 +62,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="60" Y="39"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
       </Unit>
       <Unit>
         <Filename Value="motorscan.pas"/>
@@ -71,7 +71,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="49"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -80,21 +80,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="44"/>
       </Unit>
       <Unit>
         <Filename Value="utilidades.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utilidades"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="36"/>
+        <UsageCount Value="37"/>
       </Unit>
       <Unit>
         <Filename Value="unidadscan.pas"/>
@@ -106,7 +106,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="97"/>
         <CursorPos X="85" Y="102"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="35"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_logger.pas"/>
@@ -115,7 +115,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="189"/>
         <CursorPos X="45" Y="202"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -124,7 +124,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -203,15 +203,15 @@
         <Filename Value="conectordatos.pas"/>
         <UnitName Value="ConectorDatos"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="200"/>
-        <CursorPos X="34" Y="212"/>
+        <TopLine Value="334"/>
+        <CursorPos X="35" Y="356"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_db.pas"/>
         <UnitName Value="Control_DB"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="51"/>
         <CursorPos X="32" Y="57"/>
         <UsageCount Value="10"/>
@@ -220,7 +220,7 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
         <UnitName Value="SQLDB"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="572"/>
         <CursorPos X="14" Y="589"/>
         <UsageCount Value="10"/>
@@ -229,8 +229,7 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
         <UnitName Value="DB"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="91"/>
         <CursorPos X="24" Y="95"/>
         <UsageCount Value="10"/>
@@ -238,22 +237,24 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\dsparams.inc"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="780"/>
         <CursorPos X="3" Y="782"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="modelos\itemcatalogo.pas"/>
+        <UnitName Value="ItemCatalogo"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="40"/>
+        <CursorPos X="17" Y="58"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="components\control_contine.pas"/>
-        <Caret Line="143" TopLine="109"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\motorscan.pas"/>
-        <Caret Line="341" TopLine="314"/>
-      </Position>
       <Position>
         <Filename Value="components\scan\motorscan.pas"/>
         <Caret Line="333" TopLine="314"/>
@@ -365,6 +366,14 @@
       <Position>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\dsparams.inc"/>
         <Caret Line="782" Column="3" TopLine="780"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
+        <Caret Line="95" Column="24" TopLine="91"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="356" Column="35" TopLine="334"/>
       </Position>
     </JumpHistory>
     <RunParams>

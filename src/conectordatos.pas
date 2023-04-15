@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 17:27:33
+ * @Last Modified time: 2023-04-15 18:29:09
  *)
 {
 
@@ -43,6 +43,7 @@ uses
   , ItemExtension
   , ItemRutaCompleta
   , ItemCatalogo
+  , ItemDato
   ;
 
 
@@ -52,7 +53,7 @@ const
   SQL_INSERT_EXTENSION     = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
   SQL_INSERT_RUTA_COMPLETA = 'INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
   SQL_INSERT_CATALOGO      = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, FechaCreacion, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHACREACION, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
-
+  SQL_INSERT_DATO          = 'INSERT INTO Datos (Id, Tipo, Atributos, DateTime, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :DATETIME, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
 
 
 
@@ -86,6 +87,10 @@ type
 
     // Añade un catálogo a la base de datos
     procedure AddCatalogo(Catalogo : TItemCatalogo);
+
+    // Añade un dato a la base de datos
+    procedure AddDato(Dato : TItemDato);
+
 
     // Para testear sentencias
     procedure TestSentencias();
@@ -288,8 +293,39 @@ begin
       FDataBase.Query.ParamByName('TOTALDIRECTORIOS').AsLargeInt := Catalogo.TotalDirectorios;
       FDataBase.Query.ParamByName('TOTALSIZE').AsLargeInt        := Catalogo.Size;
 
-//  SQL_INSERT_CATALOGO      = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, FechaCreacion, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
+      // Realiza la inserción
+      FDataBase.Query.ExecSQL;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
 
+
+// Añade un dato a la base de datos
+procedure TConectorDatos.AddDato(Dato : TItemDato);
+begin
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Prepara la query
+      FDataBase.Query.Close;
+      FDataBase.Query.SQL.Clear;
+      FDataBase.Query.SQL.Add(SQL_INSERT_DATO);
+
+      // Hace la inserción con un prepared statement
+      FDataBase.Query.ParamByName('ID').AsLargeInt             := Dato.Id;
+      FDataBase.Query.ParamByName('TIPO').AsInteger            := integer(Dato.Tipo);
+      FDataBase.Query.ParamByName('ATRIBUTOS').AsInteger       := Dato.Atributos;
+      FDataBase.Query.ParamByName('DATETIME').AsDateTime       := Dato.Fecha;
+      FDataBase.Query.ParamByName('SIZE').AsLargeInt           := Dato.Size;
+      FDataBase.Query.ParamByName('NOMBRE').AsString           := Dato.Nombre;
+      FDataBase.Query.ParamByName('IMAGEINDEX').AsInteger      := Dato.ImageIndex;
+      FDataBase.Query.ParamByName('IDEXTENSION').AsLargeInt    := Dato.IdExtension;
+      FDataBase.Query.ParamByName('IDRUTACOMPLETA').AsLargeInt := Dato.IdRutaCompleta;
+      FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt     := Dato.IdCatalogo;
+      FDataBase.Query.ParamByName('IDPADRE').AsLargeInt        := Dato.IdPadre;
 
       // Realiza la inserción
       FDataBase.Query.ExecSQL;
@@ -359,6 +395,49 @@ procedure TConectorDatos.TestSentencias();
     end;
   end;
 
+  procedure InsertarDatos();
+  var
+    i  : integer;
+    max: integer = 0;
+    Dato: TItemDato;
+
+  begin
+
+      Dato := TItemDato.create('prueba.txt', TItemDatoTipo.Archivo, now, 1204,
+        100,
+        '',
+        0,
+        0,
+        0,
+        1,
+        1);
+      try
+        AddDato(Dato);
+      finally
+        Dato.Free;
+      end;
+
+
+      Dato := TItemDato.create('prueba.dir', TItemDatoTipo.Directorio, now, 0,
+        100,
+        '',
+        0,
+        0,
+        0,
+        1,
+        1);
+      try
+        AddDato(Dato);
+      finally
+        Dato.Free;
+      end;
+
+
+  end;
+
+
+
+
 
 
 begin
@@ -369,8 +448,11 @@ begin
   // Inserta rutas  completas
   //InsertarRutasCompletas();
 
-  // Inserta rutas  completas
-  InsertarCatalogo();
+  // Inserta Catalogo
+  //InsertarCatalogo();
+
+  // Inserta datos
+  InsertarDatos();
 
 end;
 
