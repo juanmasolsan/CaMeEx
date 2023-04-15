@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230415) Agregado ItemBase como la base padre de la mayoría de los modelos
 - [NEW]   (20230415) Agregado a ConectorDatos.AddExtension
 - [NEW]   (20230415) Agregado Unidad para cálculo de CRC64.
 - [NEW]   (20230415) Agregado a ConectorDatos la creación y eliminación de las tablas

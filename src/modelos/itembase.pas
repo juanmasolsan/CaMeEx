@@ -1,8 +1,8 @@
 (**
  * @Author: Juan Manuel Soltero Sánchez
- * @Date:   2023-04-15 15:04:15
+ * @Date:   2023-04-15 15:47:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 15:55:22
+ * @Last Modified time: 2023-04-15 15:56:43
  *)
 {
 
@@ -30,28 +30,29 @@ SOFTWARE.
 
 }
 
-unit ItemExtension;
+unit ItemBase;
 
 {$mode ObjFPC}{$H+}
 
 interface
 
-uses
-  ItemBase
-;
 
 type
-  { TItemExtension }
-  TItemExtension = class(TItemBase)
+  { TItemBase }
+  TItemBase = class
   private
-    FDescripcion         : RawByteString;
+    FId                  : Qword;
+    FNombre              : RawByteString;
   protected
+    // Para poder Generar el Id
+    function DoGenerarId(): Qword; virtual;
   public
     // Constructor de la clase
-    constructor Create(const ANombre: RawByteString; const ADescripcion: RawByteString);
+    constructor Create(const ANombre: RawByteString);
 
     // Propiedades
-    property Descripcion      : RawByteString read FDescripcion;
+    property Id               : Qword read FId;
+    property Nombre           : RawByteString read FNombre;
   end;
 
 
@@ -61,11 +62,21 @@ uses
   Control_CRC
 ;
 
-{ TItemExtension }
-constructor TItemExtension.Create(const ANombre: RawByteString; const ADescripcion: RawByteString);
+{ TItemBase }
+constructor TItemBase.Create(const ANombre: RawByteString);
 begin
-  inherited Create(ANombre);
-  FDescripcion := ADescripcion;
+  inherited Create;
+  FNombre      := ANombre;
+
+  // Generamos el Id
+  FId          := DoGenerarId();
 end;
+
+// Para poder Generar el Id
+function TItemBase.DoGenerarId(): Qword;
+begin
+  Result := CRC64_From_String(FNombre);
+end;
+
 
 end.

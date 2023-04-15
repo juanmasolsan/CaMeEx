@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 15:23:45
+ * @Last Modified time: 2023-04-15 15:57:19
  *)
 {
 
@@ -217,7 +217,7 @@ begin
 
       // Hace la inserción con un prepared statement
       FDataBase.Query.ParamByName('ID').AsLargeInt := Extension.Id;
-      FDataBase.Query.ParamByName('EXTENSION').AsString := Extension.Extension;
+      FDataBase.Query.ParamByName('EXTENSION').AsString := Extension.Nombre;
       FDataBase.Query.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
 
       // Realiza la inserción
