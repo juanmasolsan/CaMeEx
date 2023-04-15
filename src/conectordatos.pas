@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 18:29:09
+ * @Last Modified time: 2023-04-15 23:11:49
  *)
 {
 
@@ -33,6 +33,8 @@ SOFTWARE.
 unit ConectorDatos;
 
 {$mode ObjFPC}{$H+}
+{.$DEFINE TESTEARSENTENCIAS}
+
 
 interface
 
@@ -52,8 +54,8 @@ uses
 const
   SQL_INSERT_EXTENSION     = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
   SQL_INSERT_RUTA_COMPLETA = 'INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
-  SQL_INSERT_CATALOGO      = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, FechaCreacion, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHACREACION, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
-  SQL_INSERT_DATO          = 'INSERT INTO Datos (Id, Tipo, Atributos, DateTime, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :DATETIME, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
+  SQL_INSERT_CATALOGO      = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
+  SQL_INSERT_DATO          = 'INSERT INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
 
 
 
@@ -129,8 +131,10 @@ begin
   // Crea las tablas si no existen
   CrearTablas();
 
-
+{$IFDEF TESTEARSENTENCIAS}
+  //
   TestSentencias();
+{$ENDIF TESTEARSENTENCIAS}
 end;
 
 // Desconecta de la base de datos
@@ -153,7 +157,7 @@ begin
     'Nombre           TEXT        NOT NULL,' +
     'Descripcion      TEXT        NOT NULL,' +
     'Tipo             INTEGER     NOT NULL,' +
-    'FechaCreacion    DATETIME    NOT NULL,' +
+    'Fecha            DATETIME    NOT NULL,' +
     'TotalArchivos    INTEGER     NOT NULL,' +
     'TotalDirectorios INTEGER     NOT NULL,' +
     'TotalSize        INTEGER (8) NOT NULL' +
@@ -189,7 +193,7 @@ begin
     'Id             INTEGER (8) PRIMARY KEY,' +
     'Tipo           INTEGER     NOT NULL,' +
     'Atributos      INTEGER     NOT NULL,' +
-    'DateTime       DATETIME    NOT NULL,' +
+    'Fecha          DATETIME    NOT NULL,' +
     'Size           INTEGER     NOT NULL,' +
     'Nombre         TEXT        NOT NULL,' +
     'ImageIndex     INTEGER     NOT NULL,' +
@@ -287,7 +291,7 @@ begin
       FDataBase.Query.ParamByName('NOMBRE').AsString             := Catalogo.Nombre;
       FDataBase.Query.ParamByName('DESCRIPCION').AsString        := Catalogo.Descripcion;
       FDataBase.Query.ParamByName('TIPO').AsInteger              := integer(Catalogo.Tipo);
-      FDataBase.Query.ParamByName('FECHACREACION').AsDateTime    := Catalogo.Fecha;
+      FDataBase.Query.ParamByName('FECHA').AsDateTime            := Catalogo.Fecha;
       FDataBase.Query.ParamByName('TOTALARCHIVOS').AsLargeInt    := Catalogo.TotalArchivos;
       FDataBase.Query.ParamByName('TOTALDIRECTORIOS').AsLargeInt := Catalogo.TotalDirectorios;
       FDataBase.Query.ParamByName('TOTALSIZE').AsLargeInt        := Catalogo.Size;
@@ -317,7 +321,7 @@ begin
       FDataBase.Query.ParamByName('ID').AsLargeInt             := Dato.Id;
       FDataBase.Query.ParamByName('TIPO').AsInteger            := integer(Dato.Tipo);
       FDataBase.Query.ParamByName('ATRIBUTOS').AsInteger       := Dato.Atributos;
-      FDataBase.Query.ParamByName('DATETIME').AsDateTime       := Dato.Fecha;
+      FDataBase.Query.ParamByName('FECHA').AsDateTime          := Dato.Fecha;
       FDataBase.Query.ParamByName('SIZE').AsLargeInt           := Dato.Size;
       FDataBase.Query.ParamByName('NOMBRE').AsString           := Dato.Nombre;
       FDataBase.Query.ParamByName('IMAGEINDEX').AsInteger      := Dato.ImageIndex;
@@ -440,13 +444,13 @@ procedure TConectorDatos.TestSentencias();
 begin
 
   // Inserta extensiones
-  //InsertarExtensiones();
+  InsertarExtensiones();
 
   // Inserta rutas  completas
-  //InsertarRutasCompletas();
+  InsertarRutasCompletas();
 
   // Inserta Catalogo
-  //InsertarCatalogo();
+  InsertarCatalogo();
 
   // Inserta datos
   InsertarDatos();
