@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-12 18:56:42
+ * @Last Modified time: 2023-04-15 18:37:05
  *)
 {
 
@@ -36,11 +36,31 @@ unit InterfaceConectorDatos;
 
 interface
 
+uses
+  ItemExtension, ItemRutaCompleta, ItemCatalogo, ItemDato;
+
 type
   { IConectorDatos }
   IConectorDatos = interface
+
+    // Inicializa el conector de datos
     procedure Iniciar(Curdir: string; SaveDir : string);
+
+    // Finaliza el conector de datos
     procedure Finalizar();
+
+    // Añade una extension
+    procedure AddExtension(Extension : TItemExtension);
+
+    // Añade una ruta completa
+    procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
+
+    // Añade un catálogo
+    procedure AddCatalogo(Catalogo : TItemCatalogo);
+
+    // Añade un dato
+    procedure AddDato(Dato : TItemDato);
+
   end;
 
 implementation

@@ -39,7 +39,7 @@
 +         Agregar Sqlite3 - Versiones x64 y x86
 +         Agregar Sqlite3 - Crear base de datos
 +         Agregar Sqlite3 - Crear tablas
--         Agregar Sqlite3 - Crear métodos de inserción
++         Agregar Sqlite3 - Crear métodos de inserción
 -         Agregar Sqlite3 - Crear métodos de actualización
 +         Agregar Sqlite3 - Crear métodos de eliminación
 -         Agregar Sqlite3 - Control de excepciones

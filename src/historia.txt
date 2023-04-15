@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230415) Agregado a ConectorDatos los métodos de inserción
 - [NEW]   (20230415) Agregado a ConectorDatos.AddDato
 - [NEW]   (20230415) Agregado a ConectorDatos.AddCatalogo
 - [NEW]   (20230415) Agregado a ConectorDatos.AddRutaCompleta
