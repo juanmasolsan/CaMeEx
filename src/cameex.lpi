@@ -156,6 +156,9 @@
       <Item>
         <Name Value="EFOpenError"/>
       </Item>
+      <Item>
+        <Name Value="ESQLDatabaseError"/>
+      </Item>
     </Exceptions>
   </Debugging>
 </CONFIG>

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 18:15:53
+ * @Last Modified time: 2023-04-17 18:41:47
  *)
 {
 
@@ -46,21 +46,24 @@ uses
   , ItemRutaCompleta
   , ItemCatalogo
   , ItemDato
-;
+, sqldb;
 
 
 
 const
-  SQL_INSERT_EXTENSION     = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
-  SQL_INSERT_RUTA_COMPLETA = 'INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
-  SQL_INSERT_CATALOGO      = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
-  SQL_INSERT_DATO          = 'INSERT INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
-
+  SQL_INSERT_EXTENSION      = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
+  SQL_INSERT_RUTA_COMPLETA  = 'INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
+  SQL_INSERT_CATALOGO       = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
+  SQL_INSERT_DATO           = 'INSERT INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
+  SQL_SELECT_CATALOGO_ALL   = 'SELECT * FROM Catalogos;';
+  SQL_SELECT_CATALOGO_BY_ID = 'SELECT * FROM Catalogos WHERE ID = :ID;';
 
 
 type
   { TConectorDatos }
   TConectorDatos = class(TInterfacedObject, IConectorDatos)
+  protected
+    function DoGetCatalogoFromquery(Query : TSQLQuery) : TItemCatalogo;
   public
     // Destructor
     destructor Destroy; override;
@@ -92,6 +95,9 @@ type
     // Añade un dato a la base de datos
     procedure AddDato(Dato : TItemDato);
 
+    // Devuelve todos los catalogos
+    function GetAllCatalogos() : TArrayItemDato;
+
 
 {$IFDEF TESTEAR_SENTENCIAS}
     // Para testear sentencias
@@ -105,7 +111,6 @@ implementation
 
 uses
   db
-  , sqldb
   , Control_DB
   , ItemBaseDatos
   ;
@@ -349,6 +354,76 @@ begin
   end;
 end;
 
+function TConectorDatos.DoGetCatalogoFromquery(Query : TSQLQuery) : TItemCatalogo;
+begin
+  Result := TItemCatalogo.Create(
+    FDataBase.Query.FieldByName('NOMBRE').AsString,
+    TItemDatoTipo(FDataBase.Query.FieldByName('TIPO').AsInteger),
+    FDataBase.Query.FieldByName('FECHA').AsDateTime,
+    FDataBase.Query.FieldByName('TOTALSIZE').AsLargeInt,
+    FDataBase.Query.FieldByName('DESCRIPCION').AsString,
+    FDataBase.Query.FieldByName('TOTALARCHIVOS').AsLargeInt,
+    FDataBase.Query.FieldByName('TOTALDIRECTORIOS').AsLargeInt
+  );
+
+  // Añade el id
+  Result.Id := QWord(FDataBase.Query.FieldByName('ID').AsLargeInt);
+end;
+
+
+
+// Devuelve todos los catalogos
+function TConectorDatos.GetAllCatalogos() : TArrayItemDato;
+var
+  catalogo: TItemCatalogo;
+  ii : int64;
+begin
+  // Inicializa el resultado
+  Result := nil;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Prepara la query
+      FDataBase.Query.Close;
+      FDataBase.Query.SQL.Clear;
+
+      // Ejecuta la sentencia
+      FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
+      try
+        // Comprueba que tiene datos
+        if FDataBase.Query.IsEmpty then exit;
+
+        // Inicializa el resultado
+        Result := TArrayItemDato.Create();
+
+        // Obtinene el primer registro
+        FDataBase.Query.First;
+
+        // Recorre los registros
+        while not FDataBase.Query.EOF do
+        begin
+          // Crea el catalogo
+          catalogo := DoGetCatalogoFromquery(FDataBase.Query);
+
+          // Añade el catalogo al resultado
+          Result.Add(catalogo);
+
+          // Pasa al siguiente registro
+          FDataBase.Query.Next;
+        end;
+
+      finally
+        // Cierra la query
+        FDataBase.Query.ClearFields;
+        FDataBase.Query.Close;
+      end;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
+
 
 
 
@@ -445,6 +520,15 @@ procedure TConectorDatos.TestSentencias();
       end;
   end;
 
+
+  var
+    catalogos: TArrayItemDato;
+
+  procedure GetTodosCatalogos();
+  begin
+    catalogos := GetAllCatalogos();
+  end;
+
 begin
 
   // Inserta extensiones
@@ -458,6 +542,18 @@ begin
 
   // Inserta datos
   InsertarDatos();
+
+  // Obtiene todos los catalogos
+  GetTodosCatalogos();
+  try
+    //
+  finally
+    if catalogos <> nil then
+    begin
+      catalogos.Free;
+    end;
+  end;
+
 end;
 
 {$ENDIF TESTEAR_SENTENCIAS}

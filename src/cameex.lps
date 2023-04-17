@@ -21,10 +21,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnidadPrincipal"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="10"/>
         <TopLine Value="169"/>
-        <CursorPos X="29" Y="179"/>
+        <CursorPos X="69" Y="183"/>
         <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -203,9 +202,10 @@
       <Unit>
         <Filename Value="conectordatos.pas"/>
         <UnitName Value="ConectorDatos"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="88"/>
-        <CursorPos Y="106"/>
+        <TopLine Value="496"/>
+        <CursorPos Y="532"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -282,10 +282,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="components\scan\motorscan.pas"/>
-        <Caret Line="263" TopLine="246"/>
-      </Position>
       <Position>
         <Filename Value="unidadprincipal.pas"/>
         <Caret Line="179" Column="3" TopLine="160"/>
@@ -401,6 +397,10 @@
       <Position>
         <Filename Value="conectordatos.pas"/>
         <Caret Line="106" TopLine="88"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="183" Column="69" TopLine="169"/>
       </Position>
     </JumpHistory>
     <RunParams>

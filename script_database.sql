@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 16:35:44
+ * @Last Modified time: 2023-04-17 18:08:37
  */
 
 --Borrar tablas.
@@ -13,21 +13,21 @@ DROP TABLE IF EXISTS Catalogos;
 
 -- Crear tabla Catálogos
 CREATE TABLE Catalogos (
-    Id               INTEGER (8) PRIMARY KEY,
-    Nombre           TEXT        NOT NULL,
-    Descripcion      TEXT        NOT NULL,
-    Tipo             INTEGER     NOT NULL,
-    Fecha            DATETIME    NOT NULL,
-    TotalArchivos    INTEGER     NOT NULL,
-    TotalDirectorios INTEGER     NOT NULL,
-    TotalSize        INTEGER (8) NOT NULL
+    Id               BIGINT PRIMARY KEY,
+    Nombre           TEXT     NOT NULL,
+    Descripcion      TEXT     NOT NULL,
+    Tipo             INTEGER  NOT NULL,
+    Fecha            DATETIME NOT NULL,
+    TotalArchivos    INTEGER  NOT NULL,
+    TotalDirectorios INTEGER  NOT NULL,
+    TotalSize        BIGINT NOT NULL
 );
 
 -- Crear tabla Extensiones
 CREATE TABLE Extensiones (
-    Id          INTEGER (8) PRIMARY KEY,
-    Extension   TEXT        NOT NULL UNIQUE,
-    Descripcion TEXT        NOT NULL
+    Id          BIGINT PRIMARY KEY,
+    Extension   TEXT NOT NULL UNIQUE,
+    Descripcion TEXT NOT NULL
 );
 
 -- Insertar datos en la tabla Extensiones
@@ -36,9 +36,9 @@ INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");
 
 -- Crear tabla RutaCompleta
 CREATE TABLE RutaCompleta (
-    Id         INTEGER (8) PRIMARY KEY,
-    IdCatalogo INTEGER (8) CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,
-    Ruta       TEXT        NOT NULL
+    Id         BIGINT PRIMARY KEY,
+    IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,
+    Ruta       TEXT NOT NULL
 );
 
 -- Crear índices
@@ -46,17 +46,17 @@ CREATE INDEX RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);
 
 -- Crear tabla Datos
 CREATE TABLE Datos (
-    Id             INTEGER (8) PRIMARY KEY,
-    Tipo           INTEGER     NOT NULL,
-    Atributos      INTEGER     NOT NULL,
-    Fecha          DATETIME    NOT NULL,
-    Size           INTEGER     NOT NULL,
-    Nombre         TEXT        NOT NULL,
-    ImageIndex     INTEGER     NOT NULL,
-    IdExtension    INTEGER (8) CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    IdRutaCompleta INTEGER (8) CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE CASCADE ON UPDATE CASCADE,
-    IdCatalogo     INTEGER (8) NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,
-    IdPadre        INTEGER (8) CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE
+    Id             BIGINT PRIMARY KEY,
+    Tipo           INTEGER  NOT NULL,
+    Atributos      INTEGER  NOT NULL,
+    Fecha          DATETIME NOT NULL,
+    Size           INTEGER  NOT NULL,
+    Nombre         TEXT     NOT NULL,
+    ImageIndex     INTEGER  NOT NULL,
+    IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE CASCADE ON UPDATE CASCADE,
+    IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,
+    IdPadre        BIGINT CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Crear índices
@@ -103,4 +103,5 @@ SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt
     JOIN Extensiones AS ex ON dt.IdExtension = ex.Id
     ;
 
-
+-- Actualiza el nombre y la descripción del catalogo con el id 1
+UPDATE Catalogos SET Nombre="Disco 1 - Update", Descripcion="Descripción - Disco 1 - Update", Tipo=1, Fecha=20230413 WHERE Id=1;

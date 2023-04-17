@@ -1,5 +1,7 @@
 
 
+- [NEW]   (20230417) Agregado a TConectorDatos.GetAllCatalogos
+- [FIX]   (20230417) Ahora TArrayItemDato es una lista de TItemBaseDatos
 - [FIX]   (20230417) A TItemBase se le puede modificar el Id una vez creado
 - [FIX]   (20230417) Cambiada la definición de INTEGER(8) a BIGINT para que free pascal no se lie
 - [NEW]   (20230417) Agregado a ConectorDatos la creación de indices de las tablas de Datos y RutaCompleta
