@@ -23,7 +23,7 @@
         <UnitName Value="UnidadPrincipal"/>
         <EditorIndex Value="10"/>
         <TopLine Value="169"/>
-        <CursorPos X="69" Y="183"/>
+        <CursorPos X="3" Y="188"/>
         <UsageCount Value="57"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -204,8 +204,8 @@
         <UnitName Value="ConectorDatos"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="495"/>
-        <CursorPos Y="532"/>
+        <TopLine Value="427"/>
+        <CursorPos X="62" Y="438"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
@@ -282,26 +282,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="179" Column="3" TopLine="160"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="181" Column="20" TopLine="160"/>
-      </Position>
-      <Position>
-        <Filename Value="unidadprincipal.pas"/>
-        <Caret Line="116" Column="14" TopLine="87"/>
-      </Position>
-      <Position>
-        <Filename Value="conectordatos.pas"/>
-        <Caret Line="68" Column="13" TopLine="51"/>
-      </Position>
-      <Position>
-        <Filename Value="components\control_db.pas"/>
-        <Caret Line="57" Column="32" TopLine="51"/>
-      </Position>
       <Position>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
         <Caret Line="542" Column="40" TopLine="528"/>
@@ -401,6 +381,26 @@
       <Position>
         <Filename Value="unidadprincipal.pas"/>
         <Caret Line="183" Column="69" TopLine="169"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="521" Column="59" TopLine="495"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="71" Column="36" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="424" Column="3" TopLine="422"/>
+      </Position>
+      <Position>
+        <Filename Value="unidadprincipal.pas"/>
+        <Caret Line="188" Column="3" TopLine="169"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="478" Column="13" TopLine="460"/>
       </Position>
     </JumpHistory>
     <RunParams>

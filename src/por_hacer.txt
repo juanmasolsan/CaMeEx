@@ -47,8 +47,8 @@
 +         Normalizar el nombre de las columnas de fechas en la base de datos
 +         Agregar Sqlite3 - Protección a concurrencia
 -         Agregar Sqlite3 - Control de excepciones
--         Agregar Sqlite3 - Al crear las tablas que verifique si ya existen
--         Agregar Sqlite3 - Al crear los indices que verifique si ya existen
++         Agregar Sqlite3 - Al crear las tablas que verifique si ya existen
++         Agregar Sqlite3 - Al crear los indices que verifique si ya existen
 
 - Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
 -         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app

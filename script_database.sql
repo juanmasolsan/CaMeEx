@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 18:08:37
+ * @Last Modified time: 2023-04-17 19:12:28
  */
 
 --Borrar tablas.
@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS RutaCompleta;
 DROP TABLE IF EXISTS Catalogos;
 
 -- Crear tabla Catálogos
-CREATE TABLE Catalogos (
+CREATE TABLE IF NOT EXISTS Catalogos (
     Id               BIGINT PRIMARY KEY,
     Nombre           TEXT     NOT NULL,
     Descripcion      TEXT     NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE Catalogos (
 );
 
 -- Crear tabla Extensiones
-CREATE TABLE Extensiones (
+CREATE TABLE IF NOT EXISTS Extensiones (
     Id          BIGINT PRIMARY KEY,
     Extension   TEXT NOT NULL UNIQUE,
     Descripcion TEXT NOT NULL
@@ -35,17 +35,17 @@ INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");
 
 
 -- Crear tabla RutaCompleta
-CREATE TABLE RutaCompleta (
+CREATE TABLE IF NOT EXISTS RutaCompleta (
     Id         BIGINT PRIMARY KEY,
     IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,
     Ruta       TEXT NOT NULL
 );
 
 -- Crear índices
-CREATE INDEX RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);
+CREATE INDEX IF NOT EXISTS RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);
 
 -- Crear tabla Datos
-CREATE TABLE Datos (
+CREATE TABLE IF NOT EXISTS Datos (
     Id             BIGINT PRIMARY KEY,
     Tipo           INTEGER  NOT NULL,
     Atributos      INTEGER  NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE Datos (
 );
 
 -- Crear índices
-CREATE INDEX Datos_Nombre_IDX ON Datos (Nombre);
+CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);
 
 ----------------------------------------------------------------------------------------
 ------------------------------- OPERACIONES DE TEST ------------------------------------

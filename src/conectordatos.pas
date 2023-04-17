@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 19:03:57
+ * @Last Modified time: 2023-04-17 19:14:19
  *)
 {
 
@@ -184,7 +184,7 @@ begin
   EnterCriticalSection(FCriticalSection);
   try
     // Crea la tabla de catalogos
-    SQL := 'CREATE TABLE Catalogos (' +
+    SQL := 'CREATE TABLE IF NOT EXISTS Catalogos (' +
       'Id               BIGINT PRIMARY KEY,' +
       'Nombre           TEXT        NOT NULL,' +
       'Descripcion      TEXT        NOT NULL,' +
@@ -198,7 +198,7 @@ begin
     FDataBase.SQL(SQL);
 
     // Crea la tabla de extensiones
-    SQL := 'CREATE TABLE Extensiones (' +
+    SQL := 'CREATE TABLE IF NOT EXISTS Extensiones (' +
       'Id          BIGINT PRIMARY KEY,' +
       'Extension   TEXT NOT NULL UNIQUE,' +
       'Descripcion TEXT NOT NULL' +
@@ -212,7 +212,7 @@ begin
     FDataBase.SQL(SQL);
 
     // Crea la tabla de rutas completas
-    SQL := 'CREATE TABLE RutaCompleta (' +
+    SQL := 'CREATE TABLE IF NOT EXISTS RutaCompleta (' +
       'Id         BIGINT PRIMARY KEY,' +
       'IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
       'Ruta       TEXT   NOT NULL' +
@@ -221,11 +221,11 @@ begin
     FDataBase.SQL(SQL);
 
     // Crea el indice de la tabla de rutas completas
-    SQL := 'CREATE INDEX RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);';
+    SQL := 'CREATE INDEX IF NOT EXISTS RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);';
     FDataBase.SQL(SQL);
 
     // Crea la tabla de datos
-    SQL := 'CREATE TABLE Datos (' +
+    SQL := 'CREATE TABLE IF NOT EXISTS Datos (' +
       'Id             BIGINT PRIMARY KEY,' +
       'Tipo           INTEGER     NOT NULL,' +
       'Atributos      INTEGER     NOT NULL,' +
@@ -242,7 +242,7 @@ begin
     FDataBase.SQL(SQL);
 
     // Crea el índice de la tabla de datos
-    SQL := 'CREATE INDEX Datos_Nombre_IDX ON Datos (Nombre);';
+    SQL := 'CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);';
     FDataBase.SQL(SQL);
 
   finally

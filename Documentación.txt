@@ -4,6 +4,10 @@ Descarga       : https://sqlite.org/download.html
 
 Tipos          : https://sqlite.org/datatype3.html
 
+CREATE TABLE IF NOT EXISTS : https://www.sqlite.org/lang_createtable.html
+
+CREATE INDEX IF NOT EXISTS : https://www.sqlite.org/lang_createindex.html
+
 
 FreePascal
 -------------------------------------------------
