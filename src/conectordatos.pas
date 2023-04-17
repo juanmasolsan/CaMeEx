@@ -423,13 +423,13 @@ function TConectorDatos.DoGetCatalogoFromquery(Query : TSQLQuery) : TItemCatalog
 begin
   // Crea el catalogo
   Result := TItemCatalogo.Create(
-    FDataBase.Query.FieldByName('NOMBRE').AsString,
-    TItemDatoTipo(FDataBase.Query.FieldByName('TIPO').AsInteger),
-    FDataBase.Query.FieldByName('FECHA').AsDateTime,
-    FDataBase.Query.FieldByName('TOTALSIZE').AsLargeInt,
-    FDataBase.Query.FieldByName('DESCRIPCION').AsString,
-    FDataBase.Query.FieldByName('TOTALARCHIVOS').AsLargeInt,
-    FDataBase.Query.FieldByName('TOTALDIRECTORIOS').AsLargeInt
+    Query.FieldByName('NOMBRE').AsString,
+    TItemDatoTipo(Query.FieldByName('TIPO').AsInteger),
+    Query.FieldByName('FECHA').AsDateTime,
+    Query.FieldByName('TOTALSIZE').AsLargeInt,
+    Query.FieldByName('DESCRIPCION').AsString,
+    Query.FieldByName('TOTALARCHIVOS').AsLargeInt,
+    Query.FieldByName('TOTALDIRECTORIOS').AsLargeInt
   );
 
   // Añade el id
@@ -442,7 +442,6 @@ end;
 function TConectorDatos.GetAllCatalogos() : TArrayItemDato;
 var
   catalogo: TItemCatalogo;
-  ii : int64;
 begin
   // Inicializa el resultado
   Result := nil;
@@ -475,7 +474,7 @@ begin
             catalogo := DoGetCatalogoFromquery(FDataBase.Query);
 
             // Añade el catalogo al resultado
-            Result.Add(catalogo);
+            {%H-}Result.Add(catalogo);
 
             // Pasa al siguiente registro
             FDataBase.Query.Next;
