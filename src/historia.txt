@@ -1,5 +1,7 @@
 
 
+
+- [NEW]   (20230417) Agregado a TConectorDatos Critical Sections para evitar problemas de concurrencia.
 - [NEW]   (20230417) Agregado a TConectorDatos.GetAllCatalogos
 - [FIX]   (20230417) Ahora TArrayItemDato es una lista de TItemBaseDatos
 - [FIX]   (20230417) A TItemBase se le puede modificar el Id una vez creado

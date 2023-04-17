@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 18:41:47
+ * @Last Modified time: 2023-04-17 19:03:57
  *)
 {
 
@@ -39,7 +39,10 @@ unit ConectorDatos;
 interface
 
 uses
-  Classes
+  LCLProc
+  , LCLType
+  , LCLIntf
+  , Classes
   , SysUtils
   , InterfaceConectorDatos
   , ItemExtension
@@ -62,9 +65,14 @@ const
 type
   { TConectorDatos }
   TConectorDatos = class(TInterfacedObject, IConectorDatos)
+  private
+    FCriticalSection: TCriticalSection;
   protected
     function DoGetCatalogoFromquery(Query : TSQLQuery) : TItemCatalogo;
   public
+    // Constructor
+    constructor Create;
+
     // Destructor
     destructor Destroy; override;
 
@@ -118,9 +126,23 @@ uses
 var
   FDataBase : TConexion_DB = nil;
 
+
+// Constructor
+constructor TConectorDatos.Create;
+begin
+  // Llama al constructor de la clase padre
+  inherited Create;
+
+  // Inicializa la seccion critica
+  InitializeCriticalSection(FCriticalSection);
+end;
+
 // Destructor
 destructor TConectorDatos.Destroy;
 begin
+  // Destruimos la seccion critica
+  DeleteCriticalSection(FCriticalSection);
+
   // Llama al destructor de la clase padre
   inherited Destroy;
 end;
@@ -158,67 +180,75 @@ var
 
 begin
 
-  // Crea la tabla de catalogos
-  SQL := 'CREATE TABLE Catalogos (' +
-    'Id               BIGINT PRIMARY KEY,' +
-    'Nombre           TEXT        NOT NULL,' +
-    'Descripcion      TEXT        NOT NULL,' +
-    'Tipo             INTEGER     NOT NULL,' +
-    'Fecha            DATETIME    NOT NULL,' +
-    'TotalArchivos    INTEGER     NOT NULL,' +
-    'TotalDirectorios INTEGER     NOT NULL,' +
-    'TotalSize        BIGINT NOT NULL' +
-    ');';
+  // Se inicia la seccion critica
+  EnterCriticalSection(FCriticalSection);
+  try
+    // Crea la tabla de catalogos
+    SQL := 'CREATE TABLE Catalogos (' +
+      'Id               BIGINT PRIMARY KEY,' +
+      'Nombre           TEXT        NOT NULL,' +
+      'Descripcion      TEXT        NOT NULL,' +
+      'Tipo             INTEGER     NOT NULL,' +
+      'Fecha            DATETIME    NOT NULL,' +
+      'TotalArchivos    INTEGER     NOT NULL,' +
+      'TotalDirectorios INTEGER     NOT NULL,' +
+      'TotalSize        BIGINT NOT NULL' +
+      ');';
 
-  FDataBase.SQL(SQL);
+    FDataBase.SQL(SQL);
 
-  // Crea la tabla de extensiones
-  SQL := 'CREATE TABLE Extensiones (' +
-    'Id          BIGINT PRIMARY KEY,' +
-    'Extension   TEXT NOT NULL UNIQUE,' +
-    'Descripcion TEXT NOT NULL' +
-    ');';
+    // Crea la tabla de extensiones
+    SQL := 'CREATE TABLE Extensiones (' +
+      'Id          BIGINT PRIMARY KEY,' +
+      'Extension   TEXT NOT NULL UNIQUE,' +
+      'Descripcion TEXT NOT NULL' +
+      ');';
 
 
-  FDataBase.SQL(SQL);
+    FDataBase.SQL(SQL);
 
-  // Inserta la extension sin extension
-  SQL := 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
-  FDataBase.SQL(SQL);
+    // Inserta la extension sin extension
+    SQL := 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
+    FDataBase.SQL(SQL);
 
-  // Crea la tabla de rutas completas
-  SQL := 'CREATE TABLE RutaCompleta (' +
-    'Id         BIGINT PRIMARY KEY,' +
-    'IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
-    'Ruta       TEXT   NOT NULL' +
-    ');';
+    // Crea la tabla de rutas completas
+    SQL := 'CREATE TABLE RutaCompleta (' +
+      'Id         BIGINT PRIMARY KEY,' +
+      'IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+      'Ruta       TEXT   NOT NULL' +
+      ');';
 
-  FDataBase.SQL(SQL);
+    FDataBase.SQL(SQL);
 
-  // Crea el indice de la tabla de rutas completas
-  SQL := 'CREATE INDEX RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);';
-  FDataBase.SQL(SQL);
+    // Crea el indice de la tabla de rutas completas
+    SQL := 'CREATE INDEX RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);';
+    FDataBase.SQL(SQL);
 
-  // Crea la tabla de datos
-  SQL := 'CREATE TABLE Datos (' +
-    'Id             BIGINT PRIMARY KEY,' +
-    'Tipo           INTEGER     NOT NULL,' +
-    'Atributos      INTEGER     NOT NULL,' +
-    'Fecha          DATETIME    NOT NULL,' +
-    'Size           INTEGER     NOT NULL,' +
-    'Nombre         TEXT        NOT NULL,' +
-    'ImageIndex     INTEGER     NOT NULL,' +
-    'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-    'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
-    'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
-    'IdPadre        BIGINT CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE' +
-    ');';
+    // Crea la tabla de datos
+    SQL := 'CREATE TABLE Datos (' +
+      'Id             BIGINT PRIMARY KEY,' +
+      'Tipo           INTEGER     NOT NULL,' +
+      'Atributos      INTEGER     NOT NULL,' +
+      'Fecha          DATETIME    NOT NULL,' +
+      'Size           INTEGER     NOT NULL,' +
+      'Nombre         TEXT        NOT NULL,' +
+      'ImageIndex     INTEGER     NOT NULL,' +
+      'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+      'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+      'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+      'IdPadre        BIGINT CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE' +
+      ');';
 
-  FDataBase.SQL(SQL);
+    FDataBase.SQL(SQL);
 
-  // Crea el índice de la tabla de datos
-  SQL := 'CREATE INDEX Datos_Nombre_IDX ON Datos (Nombre);';
-  FDataBase.SQL(SQL);
+    // Crea el índice de la tabla de datos
+    SQL := 'CREATE INDEX Datos_Nombre_IDX ON Datos (Nombre);';
+    FDataBase.SQL(SQL);
+
+  finally
+    // Se finaliza la seccion critica
+    LeaveCriticalSection(FCriticalSection);
+  end;
 
 end;
 
@@ -226,7 +256,14 @@ end;
 // Elimina una tabla de la base de datos
 procedure TConectorDatos.EliminarTabla(tabla : String);
 begin
-  FDataBase.SQL('DROP TABLE IF EXISTS ' + tabla);
+  // Se inicia la seccion critica
+  EnterCriticalSection(FCriticalSection);
+  try
+    FDataBase.SQL('DROP TABLE IF EXISTS ' + tabla);
+  finally
+    // Se finaliza la seccion critica
+    LeaveCriticalSection(FCriticalSection);
+  end;
 end;
 
 // Elimina todas las tablas de la base de datos
@@ -245,18 +282,25 @@ begin
   try
     if FDataBase.Query <> nil then
     begin
-      // Prepara la query
-      FDataBase.Query.Close;
-      FDataBase.Query.SQL.Clear;
-      FDataBase.Query.SQL.Add(SQL_INSERT_EXTENSION);
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+        FDataBase.Query.SQL.Add(SQL_INSERT_EXTENSION);
 
-      // Hace la inserción con un prepared statement
-      FDataBase.Query.ParamByName('ID').AsLargeInt        := Extension.Id;
-      FDataBase.Query.ParamByName('EXTENSION').AsString   := Extension.Nombre;
-      FDataBase.Query.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('ID').AsLargeInt        := Extension.Id;
+        FDataBase.Query.ParamByName('EXTENSION').AsString   := Extension.Nombre;
+        FDataBase.Query.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
 
-      // Realiza la inserción
-      FDataBase.Query.ExecSQL;
+        // Realiza la inserción
+        FDataBase.Query.ExecSQL;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
     end;
   except
     //TODO: Añadir Gestión de Excepción
@@ -264,25 +308,31 @@ begin
   end;
 end;
 
-
 // Añade una ruta completa a la base de datos
 procedure TConectorDatos.AddRutaCompleta(Ruta : TItemRutaCompleta);
 begin
   try
     if FDataBase.Query <> nil then
     begin
-      // Prepara la query
-      FDataBase.Query.Close;
-      FDataBase.Query.SQL.Clear;
-      FDataBase.Query.SQL.Add(SQL_INSERT_RUTA_COMPLETA);
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+        FDataBase.Query.SQL.Add(SQL_INSERT_RUTA_COMPLETA);
 
-      // Hace la inserción con un prepared statement
-      FDataBase.Query.ParamByName('ID').AsLargeInt         := Ruta.Id;
-      FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Ruta.IdCatalogo;
-      FDataBase.Query.ParamByName('RUTA').AsString         := Ruta.Nombre;
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('ID').AsLargeInt         := Ruta.Id;
+        FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Ruta.IdCatalogo;
+        FDataBase.Query.ParamByName('RUTA').AsString         := Ruta.Nombre;
 
-      // Realiza la inserción
-      FDataBase.Query.ExecSQL;
+        // Realiza la inserción
+        FDataBase.Query.ExecSQL;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
     end;
   except
     //TODO: Añadir Gestión de Excepción
@@ -296,23 +346,31 @@ begin
   try
     if FDataBase.Query <> nil then
     begin
-      // Prepara la query
-      FDataBase.Query.Close;
-      FDataBase.Query.SQL.Clear;
-      FDataBase.Query.SQL.Add(SQL_INSERT_CATALOGO);
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
 
-      // Hace la inserción con un prepared statement
-      FDataBase.Query.ParamByName('ID').AsLargeInt               := Catalogo.Id;
-      FDataBase.Query.ParamByName('NOMBRE').AsString             := Catalogo.Nombre;
-      FDataBase.Query.ParamByName('DESCRIPCION').AsString        := Catalogo.Descripcion;
-      FDataBase.Query.ParamByName('TIPO').AsInteger              := integer(Catalogo.Tipo);
-      FDataBase.Query.ParamByName('FECHA').AsDateTime            := Catalogo.Fecha;
-      FDataBase.Query.ParamByName('TOTALARCHIVOS').AsLargeInt    := Catalogo.TotalArchivos;
-      FDataBase.Query.ParamByName('TOTALDIRECTORIOS').AsLargeInt := Catalogo.TotalDirectorios;
-      FDataBase.Query.ParamByName('TOTALSIZE').AsLargeInt        := Catalogo.Size;
+          // Prepara la query
+          FDataBase.Query.Close;
+          FDataBase.Query.SQL.Clear;
+          FDataBase.Query.SQL.Add(SQL_INSERT_CATALOGO);
 
-      // Realiza la inserción
-      FDataBase.Query.ExecSQL;
+          // Hace la inserción con un prepared statement
+          FDataBase.Query.ParamByName('ID').AsLargeInt               := Catalogo.Id;
+          FDataBase.Query.ParamByName('NOMBRE').AsString             := Catalogo.Nombre;
+          FDataBase.Query.ParamByName('DESCRIPCION').AsString        := Catalogo.Descripcion;
+          FDataBase.Query.ParamByName('TIPO').AsInteger              := integer(Catalogo.Tipo);
+          FDataBase.Query.ParamByName('FECHA').AsDateTime            := Catalogo.Fecha;
+          FDataBase.Query.ParamByName('TOTALARCHIVOS').AsLargeInt    := Catalogo.TotalArchivos;
+          FDataBase.Query.ParamByName('TOTALDIRECTORIOS').AsLargeInt := Catalogo.TotalDirectorios;
+          FDataBase.Query.ParamByName('TOTALSIZE').AsLargeInt        := Catalogo.Size;
+
+          // Realiza la inserción
+          FDataBase.Query.ExecSQL;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
     end;
   except
     //TODO: Añadir Gestión de Excepción
@@ -327,26 +385,33 @@ begin
   try
     if FDataBase.Query <> nil then
     begin
-      // Prepara la query
-      FDataBase.Query.Close;
-      FDataBase.Query.SQL.Clear;
-      FDataBase.Query.SQL.Add(SQL_INSERT_DATO);
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+        FDataBase.Query.SQL.Add(SQL_INSERT_DATO);
 
-      // Hace la inserción con un prepared statement
-      FDataBase.Query.ParamByName('ID').AsLargeInt             := Dato.Id;
-      FDataBase.Query.ParamByName('TIPO').AsInteger            := integer(Dato.Tipo);
-      FDataBase.Query.ParamByName('ATRIBUTOS').AsInteger       := Dato.Atributos;
-      FDataBase.Query.ParamByName('FECHA').AsDateTime          := Dato.Fecha;
-      FDataBase.Query.ParamByName('SIZE').AsLargeInt           := Dato.Size;
-      FDataBase.Query.ParamByName('NOMBRE').AsString           := Dato.Nombre;
-      FDataBase.Query.ParamByName('IMAGEINDEX').AsInteger      := Dato.ImageIndex;
-      FDataBase.Query.ParamByName('IDEXTENSION').AsLargeInt    := Dato.IdExtension;
-      FDataBase.Query.ParamByName('IDRUTACOMPLETA').AsLargeInt := Dato.IdRutaCompleta;
-      FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt     := Dato.IdCatalogo;
-      FDataBase.Query.ParamByName('IDPADRE').AsLargeInt        := Dato.IdPadre;
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('ID').AsLargeInt             := Dato.Id;
+        FDataBase.Query.ParamByName('TIPO').AsInteger            := integer(Dato.Tipo);
+        FDataBase.Query.ParamByName('ATRIBUTOS').AsInteger       := Dato.Atributos;
+        FDataBase.Query.ParamByName('FECHA').AsDateTime          := Dato.Fecha;
+        FDataBase.Query.ParamByName('SIZE').AsLargeInt           := Dato.Size;
+        FDataBase.Query.ParamByName('NOMBRE').AsString           := Dato.Nombre;
+        FDataBase.Query.ParamByName('IMAGEINDEX').AsInteger      := Dato.ImageIndex;
+        FDataBase.Query.ParamByName('IDEXTENSION').AsLargeInt    := Dato.IdExtension;
+        FDataBase.Query.ParamByName('IDRUTACOMPLETA').AsLargeInt := Dato.IdRutaCompleta;
+        FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt     := Dato.IdCatalogo;
+        FDataBase.Query.ParamByName('IDPADRE').AsLargeInt        := Dato.IdPadre;
 
-      // Realiza la inserción
-      FDataBase.Query.ExecSQL;
+        // Realiza la inserción
+        FDataBase.Query.ExecSQL;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
     end;
   except
     //TODO: Añadir Gestión de Excepción
@@ -356,6 +421,7 @@ end;
 
 function TConectorDatos.DoGetCatalogoFromquery(Query : TSQLQuery) : TItemCatalogo;
 begin
+  // Crea el catalogo
   Result := TItemCatalogo.Create(
     FDataBase.Query.FieldByName('NOMBRE').AsString,
     TItemDatoTipo(FDataBase.Query.FieldByName('TIPO').AsInteger),
@@ -383,39 +449,46 @@ begin
   try
     if FDataBase.Query <> nil then
     begin
-      // Prepara la query
-      FDataBase.Query.Close;
-      FDataBase.Query.SQL.Clear;
-
-      // Ejecuta la sentencia
-      FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
       try
-        // Comprueba que tiene datos
-        if FDataBase.Query.IsEmpty then exit;
-
-        // Inicializa el resultado
-        Result := TArrayItemDato.Create();
-
-        // Obtinene el primer registro
-        FDataBase.Query.First;
-
-        // Recorre los registros
-        while not FDataBase.Query.EOF do
-        begin
-          // Crea el catalogo
-          catalogo := DoGetCatalogoFromquery(FDataBase.Query);
-
-          // Añade el catalogo al resultado
-          Result.Add(catalogo);
-
-          // Pasa al siguiente registro
-          FDataBase.Query.Next;
-        end;
-
-      finally
-        // Cierra la query
-        FDataBase.Query.ClearFields;
+        // Prepara la query
         FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+
+        // Ejecuta la sentencia
+        FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
+        try
+          // Comprueba que tiene datos
+          if FDataBase.Query.IsEmpty then exit;
+
+          // Inicializa el resultado
+          Result := TArrayItemDato.Create();
+
+          // Obtinene el primer registro
+          FDataBase.Query.First;
+
+          // Recorre los registros
+          while not FDataBase.Query.EOF do
+          begin
+            // Crea el catalogo
+            catalogo := DoGetCatalogoFromquery(FDataBase.Query);
+
+            // Añade el catalogo al resultado
+            Result.Add(catalogo);
+
+            // Pasa al siguiente registro
+            FDataBase.Query.Next;
+          end;
+
+        finally
+          // Cierra la query
+          FDataBase.Query.ClearFields;
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
       end;
     end;
   except
@@ -423,8 +496,6 @@ begin
     //on e: Exception do
   end;
 end;
-
-
 
 
 {$IFDEF TESTEAR_SENTENCIAS}
