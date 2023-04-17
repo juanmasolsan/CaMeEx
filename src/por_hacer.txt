@@ -40,6 +40,7 @@
 +         Agregar Sqlite3 - Crear base de datos
 +         Agregar Sqlite3 - Crear tablas
 +         Agregar Sqlite3 - Crear métodos de inserción
+-         Agregar Sqlite3 - Crear métodos de recuperar los datos
 -         Agregar Sqlite3 - Crear métodos de actualización
 -         Agregar Sqlite3 - Crear métodos de eliminación
 +         Agregar Sqlite3 - Agregar indices para acelerar las búsqueda

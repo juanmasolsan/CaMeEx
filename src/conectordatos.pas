@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 16:34:45
+ * @Last Modified time: 2023-04-17 18:15:53
  *)
 {
 
@@ -33,7 +33,7 @@ SOFTWARE.
 unit ConectorDatos;
 
 {$mode ObjFPC}{$H+}
-{.$DEFINE TESTEARSENTENCIAS}
+{$DEFINE TESTEAR_SENTENCIAS}
 
 
 interface
@@ -46,8 +46,7 @@ uses
   , ItemRutaCompleta
   , ItemCatalogo
   , ItemDato
-  ;
-
+;
 
 
 
@@ -94,8 +93,11 @@ type
     procedure AddDato(Dato : TItemDato);
 
 
+{$IFDEF TESTEAR_SENTENCIAS}
     // Para testear sentencias
     procedure TestSentencias();
+{$ENDIF TESTEAR_SENTENCIAS}
+
   end;
 
 
@@ -131,10 +133,10 @@ begin
   // Crea las tablas si no existen
   CrearTablas();
 
-{$IFDEF TESTEARSENTENCIAS}
+{$IFDEF TESTEAR_SENTENCIAS}
   //
   TestSentencias();
-{$ENDIF TESTEARSENTENCIAS}
+{$ENDIF TESTEAR_SENTENCIAS}
 end;
 
 // Desconecta de la base de datos
@@ -153,23 +155,23 @@ begin
 
   // Crea la tabla de catalogos
   SQL := 'CREATE TABLE Catalogos (' +
-    'Id               INTEGER (8) PRIMARY KEY,' +
+    'Id               BIGINT PRIMARY KEY,' +
     'Nombre           TEXT        NOT NULL,' +
     'Descripcion      TEXT        NOT NULL,' +
     'Tipo             INTEGER     NOT NULL,' +
     'Fecha            DATETIME    NOT NULL,' +
     'TotalArchivos    INTEGER     NOT NULL,' +
     'TotalDirectorios INTEGER     NOT NULL,' +
-    'TotalSize        INTEGER (8) NOT NULL' +
+    'TotalSize        BIGINT NOT NULL' +
     ');';
 
   FDataBase.SQL(SQL);
 
   // Crea la tabla de extensiones
   SQL := 'CREATE TABLE Extensiones (' +
-    'Id          INTEGER (8) PRIMARY KEY,' +
-    'Extension   TEXT        NOT NULL UNIQUE,' +
-    'Descripcion TEXT        NOT NULL' +
+    'Id          BIGINT PRIMARY KEY,' +
+    'Extension   TEXT NOT NULL UNIQUE,' +
+    'Descripcion TEXT NOT NULL' +
     ');';
 
 
@@ -181,9 +183,9 @@ begin
 
   // Crea la tabla de rutas completas
   SQL := 'CREATE TABLE RutaCompleta (' +
-    'Id         INTEGER (8) PRIMARY KEY,' +
-    'IdCatalogo INTEGER (8) CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
-    'Ruta       TEXT        NOT NULL' +
+    'Id         BIGINT PRIMARY KEY,' +
+    'IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+    'Ruta       TEXT   NOT NULL' +
     ');';
 
   FDataBase.SQL(SQL);
@@ -194,17 +196,17 @@ begin
 
   // Crea la tabla de datos
   SQL := 'CREATE TABLE Datos (' +
-    'Id             INTEGER (8) PRIMARY KEY,' +
+    'Id             BIGINT PRIMARY KEY,' +
     'Tipo           INTEGER     NOT NULL,' +
     'Atributos      INTEGER     NOT NULL,' +
     'Fecha          DATETIME    NOT NULL,' +
     'Size           INTEGER     NOT NULL,' +
     'Nombre         TEXT        NOT NULL,' +
     'ImageIndex     INTEGER     NOT NULL,' +
-    'IdExtension    INTEGER (8) CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-    'IdRutaCompleta INTEGER (8) CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
-    'IdCatalogo     INTEGER (8) NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
-    'IdPadre        INTEGER (8) CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE' +
+    'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+    'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+    'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+    'IdPadre        BIGINT CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE' +
     ');';
 
   FDataBase.SQL(SQL);
@@ -350,6 +352,7 @@ end;
 
 
 
+{$IFDEF TESTEAR_SENTENCIAS}
 procedure TConectorDatos.TestSentencias();
 
   procedure InsertarExtensiones();
@@ -440,14 +443,7 @@ procedure TConectorDatos.TestSentencias();
       finally
         Dato.Free;
       end;
-
-
   end;
-
-
-
-
-
 
 begin
 
@@ -462,10 +458,9 @@ begin
 
   // Inserta datos
   InsertarDatos();
-
 end;
 
-
+{$ENDIF TESTEAR_SENTENCIAS}
 
 
 end.
