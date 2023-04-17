@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 18:17:27
+ * @Last Modified time: 2023-04-17 17:10:37
  *)
 {
 
@@ -53,7 +53,7 @@ type
 
   // Clase que puede contener una lista de TItemDato
   { TArrayItemDato }
-  TArrayItemDato = class(specialize TFPGList<TItemDato>)
+  TArrayItemDato = class(specialize TFPGList<TItemBaseDatos>)
   private
   protected
     // Limpia internamente la lista
@@ -262,7 +262,7 @@ end;
 // Obtiene un hijo
 function TItemDato.GetHijo(Index : Integer) : TItemDato;
 begin
-  Result := FHijos{%H-}[Index];
+  Result := TItemDato(FHijos{%H-}[Index]);
 end;
 
 // Limpia la lista de hijos
