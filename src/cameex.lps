@@ -31,6 +31,7 @@
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
+        <TopLine Value="7"/>
         <CursorPos Y="46"/>
         <UsageCount Value="57"/>
         <Loaded Value="True"/>
@@ -40,7 +41,7 @@
         <Filename Value="por_hacer.txt"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="31"/>
+        <TopLine Value="20"/>
         <CursorPos X="30" Y="20"/>
         <UsageCount Value="57"/>
         <Loaded Value="True"/>
@@ -204,8 +205,8 @@
         <UnitName Value="ConectorDatos"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="459"/>
-        <CursorPos X="49" Y="479"/>
+        <TopLine Value="460"/>
+        <CursorPos X="46" Y="478"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
@@ -282,18 +283,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="modelos\itemcatalogo.pas"/>
-        <Caret Line="87" Column="40" TopLine="53"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\itemcatalogo.pas"/>
-        <Caret Line="41" TopLine="22"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\itemcatalogo.pas"/>
-        <Caret Line="68" TopLine="48"/>
-      </Position>
       <Position>
         <Filename Value="conectordatos.pas"/>
         <Caret Line="400" Column="5" TopLine="381"/>
@@ -401,6 +390,18 @@
       <Position>
         <Filename Value="conectordatos.pas"/>
         <Caret Line="445" TopLine="426"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="478" Column="54" TopLine="459"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="486" TopLine="460"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="485" TopLine="460"/>
       </Position>
     </JumpHistory>
     <RunParams>

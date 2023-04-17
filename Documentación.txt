@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS : https://www.sqlite.org/lang_createtable.html
 
 CREATE INDEX IF NOT EXISTS : https://www.sqlite.org/lang_createindex.html
 
+INSERT OR IGNORE : https://www.sqlite.org/lang_insert.html
+
 
 FreePascal
 -------------------------------------------------

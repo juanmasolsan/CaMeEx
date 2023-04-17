@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 19:14:19
+ * @Last Modified time: 2023-04-17 19:28:49
  *)
 {
 
@@ -54,10 +54,10 @@ uses
 
 
 const
-  SQL_INSERT_EXTENSION      = 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
-  SQL_INSERT_RUTA_COMPLETA  = 'INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
-  SQL_INSERT_CATALOGO       = 'INSERT INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
-  SQL_INSERT_DATO           = 'INSERT INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
+  SQL_INSERT_EXTENSION      = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
+  SQL_INSERT_RUTA_COMPLETA  = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
+  SQL_INSERT_CATALOGO       = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
+  SQL_INSERT_DATO           = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
   SQL_SELECT_CATALOGO_ALL   = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID = 'SELECT * FROM Catalogos WHERE ID = :ID;';
 
@@ -208,7 +208,7 @@ begin
     FDataBase.SQL(SQL);
 
     // Inserta la extension sin extension
-    SQL := 'INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
+    SQL := 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
     FDataBase.SQL(SQL);
 
     // Crea la tabla de rutas completas
@@ -482,7 +482,6 @@ begin
 
         finally
           // Cierra la query
-          FDataBase.Query.ClearFields;
           FDataBase.Query.Close;
         end;
       finally
