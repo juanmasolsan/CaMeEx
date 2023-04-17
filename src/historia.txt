@@ -1,5 +1,9 @@
 
 
+
+- [NEW]   (20230417) Agregado a ConectorDatos la creación de indices de las tablas de Datos y RutaCompleta
+
++ 1.0.5.4
 - [FIX]   (20230415) Normalizado el nombre de las columnas de fechas en algunas tablas
 
 + 1.0.5.3

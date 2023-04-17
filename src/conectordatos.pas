@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 23:11:49
+ * @Last Modified time: 2023-04-17 16:34:45
  *)
 {
 
@@ -188,6 +188,10 @@ begin
 
   FDataBase.SQL(SQL);
 
+  // Crea el indice de la tabla de rutas completas
+  SQL := 'CREATE INDEX RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);';
+  FDataBase.SQL(SQL);
+
   // Crea la tabla de datos
   SQL := 'CREATE TABLE Datos (' +
     'Id             INTEGER (8) PRIMARY KEY,' +
@@ -203,6 +207,10 @@ begin
     'IdPadre        INTEGER (8) CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE' +
     ');';
 
+  FDataBase.SQL(SQL);
+
+  // Crea el índice de la tabla de datos
+  SQL := 'CREATE INDEX Datos_Nombre_IDX ON Datos (Nombre);';
   FDataBase.SQL(SQL);
 
 end;

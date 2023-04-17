@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 23:07:51
+ * @Last Modified time: 2023-04-17 16:35:44
  */
 
 --Borrar tablas.
@@ -41,6 +41,9 @@ CREATE TABLE RutaCompleta (
     Ruta       TEXT        NOT NULL
 );
 
+-- Crear índices
+CREATE INDEX RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);
+
 -- Crear tabla Datos
 CREATE TABLE Datos (
     Id             INTEGER (8) PRIMARY KEY,
@@ -56,6 +59,8 @@ CREATE TABLE Datos (
     IdPadre        INTEGER (8) CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- Crear índices
+CREATE INDEX Datos_Nombre_IDX ON Datos (Nombre);
 
 ----------------------------------------------------------------------------------------
 ------------------------------- OPERACIONES DE TEST ------------------------------------
