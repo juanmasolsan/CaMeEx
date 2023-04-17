@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 15:47:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 16:56:30
+ * @Last Modified time: 2023-04-17 17:39:05
  *)
 {
 
@@ -51,7 +51,7 @@ type
     constructor Create(const ANombre: RawByteString);
 
     // Propiedades
-    property Id               : Qword read FId;
+    property Id               : Qword read FId write FId;
     property Nombre           : RawByteString read FNombre;
   end;
 
