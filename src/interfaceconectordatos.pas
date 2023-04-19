@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 18:37:05
+ * @Last Modified time: 2023-04-19 18:36:36
  *)
 {
 
@@ -61,6 +61,14 @@ type
     // Añade un dato
     procedure AddDato(Dato : TItemDato);
 
+    // Devuelve todos los catalogos
+    function GetAllCatalogos() : TArrayItemDato;
+
+    // Devuelve un catalogo por su id
+    function GetCatalogosById(id : qword) : TItemCatalogo;
+
+    // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
+    function GetDatos(IdCatalogo : qword; IdPadre : qword) : TArrayItemDato;
   end;
 
 implementation

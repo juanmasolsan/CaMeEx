@@ -1,6 +1,6 @@
 
 
-
+- [NEW]   (20230417) Actualizado métodos del interfaz InterfaceConectorDatos.
 - [NEW]   (20230417) Agregado a TConectorDatos.GetDatos.
 - [NEW]   (20230417) Agregado a TConectorDatos.GetCatalogosById.
 
