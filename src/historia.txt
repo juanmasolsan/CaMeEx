@@ -1,4 +1,8 @@
 
+
+- [NEW]   (20230417) Agregado a TConectorDatos.GetCatalogosById
+
++ 1.0.6.3
 - [FIX]   (20230417) Arreglado excepciones en TConectorDatos cuando se inserta un dato que ya existe.
 - [FIX]   (20230417) Eliminado warnings hints y notes del código.
 - [FIX]   (20230417) Agregado a TConectorDatos que verifique si existen tablas e indices al crearlos.

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 19:28:49
+ * @Last Modified time: 2023-04-19 17:05:48
  *)
 {
 
@@ -105,6 +105,9 @@ type
 
     // Devuelve todos los catalogos
     function GetAllCatalogos() : TArrayItemDato;
+
+    // Devuelve un catalogo por su id
+    function GetCatalogosById(id : qword) : TItemCatalogo;
 
 
 {$IFDEF TESTEAR_SENTENCIAS}
@@ -495,6 +498,67 @@ begin
   end;
 end;
 
+function TConectorDatos.GetCatalogosById(id : qword) : TItemCatalogo;
+var
+  catalogo: TItemCatalogo;
+begin
+  // Inicializa el resultado
+  Result := nil;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+        FDataBase.Query.SQL.Add(SQL_SELECT_CATALOGO_BY_ID);
+
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('ID').AsLargeInt             := Id;
+
+        // Ejecuta la sentencia
+        //FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
+        FDataBase.Query.Open;
+        try
+          // Comprueba que tiene datos
+          if FDataBase.Query.IsEmpty then exit;
+
+          // Inicializa el resultado
+          Result := nil;
+
+          // Obtinene el primer registro
+          FDataBase.Query.First;
+
+          // Recorre los registros
+          while not FDataBase.Query.EOF do
+          begin
+            // Crea el catalogo
+            Result := DoGetCatalogoFromquery(FDataBase.Query);
+
+            // Pasa al siguiente registro
+            FDataBase.Query.Next;
+          end;
+
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
+
+
+
+
 
 {$IFDEF TESTEAR_SENTENCIAS}
 procedure TConectorDatos.TestSentencias();
@@ -592,6 +656,7 @@ procedure TConectorDatos.TestSentencias();
 
   var
     catalogos: TArrayItemDato;
+    Cat : TItemCatalogo;
 
   procedure GetTodosCatalogos();
   begin
@@ -615,7 +680,18 @@ begin
   // Obtiene todos los catalogos
   GetTodosCatalogos();
   try
-    //
+    if catalogos <> nil then
+    begin
+        Cat := GetCatalogosById(catalogos[0].Id);
+
+        if Cat <> nil then
+        begin
+          Cat.Free;
+        end;
+
+
+    end;
+
   finally
     if catalogos <> nil then
     begin

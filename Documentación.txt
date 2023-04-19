@@ -18,5 +18,6 @@ Interfaces     : https://wiki.freepascal.org/Interfaces
 SQLite         : https://wiki.freepascal.org/SQLite/es
 
 ¿Cómo utilizar parámetros en una consulta? : https://wiki.freepascal.org/SQLite/es#Ejemplo_de_uso_de_par.C3.A1metros_en_una_consulta
+                                             https://wiki.freepascal.org/SqlDBHowto/es#.C2.BFC.C3.B3mo_utilizar_par.C3.A1metros_en_una_consulta.3F
 
 SQLite3 y Fechas : https://wiki.freepascal.org/SQLite/es#SQLite3_y_Fechas
