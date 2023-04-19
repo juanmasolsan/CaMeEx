@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 19:12:28
+ * @Last Modified time: 2023-04-19 17:56:52
  */
 
 --Borrar tablas.
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS Datos (
     Tipo           INTEGER  NOT NULL,
     Atributos      INTEGER  NOT NULL,
     Fecha          DATETIME NOT NULL,
-    Size           INTEGER  NOT NULL,
+    Size           BIGINT   NOT NULL,
     Nombre         TEXT     NOT NULL,
     ImageIndex     INTEGER  NOT NULL,
     IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,

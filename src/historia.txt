@@ -1,6 +1,8 @@
 
 
-- [NEW]   (20230417) Agregado a TConectorDatos.GetCatalogosById
+
+- [NEW]   (20230417) Agregado a TConectorDatos.GetDatos.
+- [NEW]   (20230417) Agregado a TConectorDatos.GetCatalogosById.
 
 + 1.0.6.3
 - [FIX]   (20230417) Arreglado excepciones en TConectorDatos cuando se inserta un dato que ya existe.

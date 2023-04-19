@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-19 17:05:48
+ * @Last Modified time: 2023-04-19 18:34:35
  *)
 {
 
@@ -58,9 +58,11 @@ const
   SQL_INSERT_RUTA_COMPLETA  = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
   SQL_INSERT_CATALOGO       = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
   SQL_INSERT_DATO           = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
-  SQL_SELECT_CATALOGO_ALL   = 'SELECT * FROM Catalogos;';
-  SQL_SELECT_CATALOGO_BY_ID = 'SELECT * FROM Catalogos WHERE ID = :ID;';
 
+  SQL_SELECT_CATALOGO_ALL             = 'SELECT * FROM Catalogos;';
+  SQL_SELECT_CATALOGO_BY_ID           = 'SELECT * FROM Catalogos WHERE id = :ID;';
+  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID = 'SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id JOIN Extensiones AS ex ON dt.IdExtension = ex.Id WHERE dt.IdCatalogo = :IDCATALOGO';
+  SQL_SELECT_DATOS_ALL_BY_PARENT_ID   = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND dt.IdPadre = :IDPADRE';
 
 type
   { TConectorDatos }
@@ -68,7 +70,8 @@ type
   private
     FCriticalSection: TCriticalSection;
   protected
-    function DoGetCatalogoFromquery(Query : TSQLQuery) : TItemCatalogo;
+    function DoGetCatalogoFromQuery(Query : TSQLQuery) : TItemCatalogo;
+    function DoGetDatoFromQuery(Query : TSQLQuery) : TItemDato;
   public
     // Constructor
     constructor Create;
@@ -108,6 +111,9 @@ type
 
     // Devuelve un catalogo por su id
     function GetCatalogosById(id : qword) : TItemCatalogo;
+
+    // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
+    function GetDatos(IdCatalogo : qword; IdPadre : qword) : TArrayItemDato;
 
 
 {$IFDEF TESTEAR_SENTENCIAS}
@@ -233,7 +239,7 @@ begin
       'Tipo           INTEGER     NOT NULL,' +
       'Atributos      INTEGER     NOT NULL,' +
       'Fecha          DATETIME    NOT NULL,' +
-      'Size           INTEGER     NOT NULL,' +
+      'Size           BIGINT      NOT NULL,' +
       'Nombre         TEXT        NOT NULL,' +
       'ImageIndex     INTEGER     NOT NULL,' +
       'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
@@ -422,7 +428,7 @@ begin
   end;
 end;
 
-function TConectorDatos.DoGetCatalogoFromquery(Query : TSQLQuery) : TItemCatalogo;
+function TConectorDatos.DoGetCatalogoFromQuery(Query : TSQLQuery) : TItemCatalogo;
 begin
   // Crea el catalogo
   Result := TItemCatalogo.Create(
@@ -438,6 +444,30 @@ begin
   // Añade el id
   Result.Id := QWord(FDataBase.Query.FieldByName('ID').AsLargeInt);
 end;
+
+function TConectorDatos.DoGetDatoFromQuery(Query : TSQLQuery) : TItemDato;
+begin
+  // Crea el Dato
+  Result := TItemDato.Create(
+          Query.FieldByName('NOMBRE').AsString,
+          TItemDatoTipo(Query.FieldByName('TIPO').AsInteger),
+          Query.FieldByName('FECHA').AsDateTime,
+          Query.FieldByName('SIZE').AsLargeInt,
+          Query.FieldByName('ATRIBUTOS').AsInteger,
+          Query.FieldByName('DESCRIPCION').AsString,
+          Query.FieldByName('ImageIndex').AsInteger,
+
+
+          Query.FieldByName('IDEXTENSION').AsLargeInt,
+          Query.FieldByName('IDRUTACOMPLETA').AsLargeInt,
+          Query.FieldByName('IDCATALOGO').AsLargeInt,
+          Query.FieldByName('IDPADRE').AsLargeInt
+  );
+
+  // Añade el id
+  Result.Id := QWord(FDataBase.Query.FieldByName('ID').AsLargeInt);
+end;
+
 
 
 
@@ -498,9 +528,8 @@ begin
   end;
 end;
 
+// Devuelve un catalogo por su id
 function TConectorDatos.GetCatalogosById(id : qword) : TItemCatalogo;
-var
-  catalogo: TItemCatalogo;
 begin
   // Inicializa el resultado
   Result := nil;
@@ -556,8 +585,79 @@ begin
   end;
 end;
 
+// Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
+function TConectorDatos.GetDatos(IdCatalogo : qword; IdPadre : qword) : TArrayItemDato;
+var
+  dato: TItemDato;
+begin
+  // Inicializa el resultado
+  Result := nil;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
 
+        // Ejecuta la sentencia
+        //FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
 
+        // Prepara la query
+        if IdPadre = 0 then
+        begin
+          FDataBase.Query.SQL.Add(SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID);
+        end
+        else
+        begin
+          FDataBase.Query.SQL.Add(SQL_SELECT_DATOS_ALL_BY_PARENT_ID);
+        end;
+
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := IdCatalogo;
+        FDataBase.Query.ParamByName('IDPADRE').AsLargeInt    := IdPadre;
+
+        // Ejecuta la sentencia
+        FDataBase.Query.Open;
+        try
+          // Comprueba que tiene datos
+          if FDataBase.Query.IsEmpty then exit;
+
+          // Inicializa el resultado
+          Result := TArrayItemDato.Create();
+
+          // Obtinene el primer registro
+          FDataBase.Query.First;
+
+          // Recorre los registros
+          while not FDataBase.Query.EOF do
+          begin
+            // Crea el catalogo
+            dato := DoGetDatoFromquery(FDataBase.Query);
+
+            // Añade el catalogo al resultado
+            {%H-}Result.Add(dato);
+
+            // Pasa al siguiente registro
+            FDataBase.Query.Next;
+          end;
+
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
 
 
 {$IFDEF TESTEAR_SENTENCIAS}
@@ -657,6 +757,7 @@ procedure TConectorDatos.TestSentencias();
   var
     catalogos: TArrayItemDato;
     Cat : TItemCatalogo;
+    Datos : TArrayItemDato;
 
   procedure GetTodosCatalogos();
   begin
@@ -682,16 +783,27 @@ begin
   try
     if catalogos <> nil then
     begin
-        Cat := GetCatalogosById(catalogos[0].Id);
+        Cat := GetCatalogosById(catalogos[0]{%H-}.Id);
 
         if Cat <> nil then
         begin
           Cat.Free;
         end;
 
+      // Obtiene todos los datos del catalogo 0
+      Datos := GetDatos(catalogos[0]{%H-}.Id, 0);
+      if Datos <> nil then
+      begin
+        Datos.Free;
+      end;
 
+      // Obtiene todos los datos del catalogo 0 hijos del dato 1
+      Datos := GetDatos(catalogos[0]{%H-}.Id, 200);
+      if Datos <> nil then
+      begin
+        Datos.Free;
+      end;
     end;
-
   finally
     if catalogos <> nil then
     begin
