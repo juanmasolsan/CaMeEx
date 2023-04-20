@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:15:29
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-12 17:57:31
+ * @Last Modified time: 2023-04-20 17:16:46
  *)
 {
 
@@ -136,7 +136,7 @@ begin
 
   // Detecta si es una lectura
   Entrada.FIsReading := IsDML;
-  try
+
     // Se inicia la seccion critica
     EnterCriticalSection(CriticalSection);
     try
@@ -145,9 +145,6 @@ begin
     finally
       LeaveCriticalSection(CriticalSection);
     end;
-  except
-    //
-  end;
 end;
 
 
@@ -298,15 +295,14 @@ var
 begin
   // Se añaden las mejoras a la tabla
   DoSQL('PRAGMA journal_mode = TRUNCATE;');
-  _DoSQL('PRAGMA wal_autocheckpoint = 16;');   //* number of 32KiB pages in a 512KiB journal */
-  _DoSQL('PRAGMA journal_size_limit = 1536;'); //* 512KiB * 3 */
-  _DoSQL('COMMIT; PRAGMA synchronous = OFF;');
-  _DoSQL('PRAGMA page_size = ' + inttostr(Page_Size * 1024) + ';');
-  _DoSQL('PRAGMA cache_size = ' + inttostr((1024 * 1024) * Cache_Size) + ';');
-  _DoSQL('PRAGMA count_changes = OFF;');
+  DoSQL('PRAGMA wal_autocheckpoint = 16;');   //* number of 32KiB pages in a 512KiB journal */
+  DoSQL('PRAGMA journal_size_limit = 1536;'); //* 512KiB * 3 */
+  DoSQL('PRAGMA page_size = ' + inttostr(Page_Size * 1024) + ';');
+  DoSQL('PRAGMA cache_size = ' + inttostr((1024 * 1024) * Cache_Size) + ';');
+  DoSQL('PRAGMA count_changes = OFF;');
 
-  // Se hacen efectivas las mejoras
-  FConnection.ExecuteDirect('COMMIT;'+Salida+'BEGIN');
+  // Enabling Foreign Key
+  DoSQL('PRAGMA foreign_keys = ON;');
 end;
 
 // Metodo para iniciar una transaccion

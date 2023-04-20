@@ -1,8 +1,13 @@
 
 
-- [NEW]   (20230417) Actualizado métodos del interfaz InterfaceConectorDatos.
-- [NEW]   (20230417) Agregado a TConectorDatos.GetDatos.
-- [NEW]   (20230417) Agregado a TConectorDatos.GetCatalogosById.
+
+- [FIX]   (20230420) Activado Enabling Foreign Key en sqlite3
+- [FIX]   (20230420) Cambiado restricciones en la base de datos de CASCADE a RESTRICT
+
++ 1.0.6.6
+- [NEW]   (20230419) Actualizado métodos del interfaz InterfaceConectorDatos.
+- [NEW]   (20230419) Agregado a TConectorDatos.GetDatos.
+- [NEW]   (20230419) Agregado a TConectorDatos.GetCatalogosById.
 
 + 1.0.6.3
 - [FIX]   (20230417) Arreglado excepciones en TConectorDatos cuando se inserta un dato que ya existe.
