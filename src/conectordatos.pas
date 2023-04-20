@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-19 18:34:35
+ * @Last Modified time: 2023-04-20 15:46:34
  *)
 {
 
@@ -223,7 +223,7 @@ begin
     // Crea la tabla de rutas completas
     SQL := 'CREATE TABLE IF NOT EXISTS RutaCompleta (' +
       'Id         BIGINT PRIMARY KEY,' +
-      'IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
+      'IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
       'Ruta       TEXT   NOT NULL' +
       ');';
 
@@ -243,9 +243,9 @@ begin
       'Nombre         TEXT        NOT NULL,' +
       'ImageIndex     INTEGER     NOT NULL,' +
       'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-      'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
-      'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE CASCADE ON UPDATE CASCADE,' +
-      'IdPadre        BIGINT CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE CASCADE' +
+      'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+      'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+      'IdPadre        BIGINT CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +
       ');';
 
     FDataBase.SQL(SQL);
