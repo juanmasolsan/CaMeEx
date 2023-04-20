@@ -1,6 +1,6 @@
 
-
-
+- [FIX]   (20230420) Arreglado correcta activación de Enabling Foreign Key en sqlite3
+- [FIX]   (20230420) Reescrito TConexion_DB_001.SQLite3_OptimizarTabla para evitar fugas de memoria
 - [FIX]   (20230420) Activado Enabling Foreign Key en sqlite3
 - [FIX]   (20230420) Cambiado restricciones en la base de datos de CASCADE a RESTRICT
 

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:15:29
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-20 17:55:09
+ * @Last Modified time: 2023-04-20 18:46:19
  *)
 {
 
@@ -293,10 +293,7 @@ var
   end;
 
 begin
-  // Enabling Foreign Key
-  DoSQL('PRAGMA foreign_keys = ON;');
-
-// Se añaden las mejoras a la tabla
+  // Se añaden las mejoras a la tabla
   DoSQL('PRAGMA journal_mode = TRUNCATE;');
   _DoSQL('PRAGMA wal_autocheckpoint = 16;');   //* number of 32KiB pages in a 512KiB journal */
   _DoSQL('PRAGMA journal_size_limit = 1536;'); //* 512KiB * 3 */
@@ -307,6 +304,9 @@ begin
 
   // Se hacen efectivas las mejoras
   FConnection.ExecuteDirect('COMMIT;'+Salida+'BEGIN');
+
+    // Enabling Foreign Key
+  DoSQL('PRAGMA foreign_keys = ON;');
 end;
 
 // Metodo para iniciar una transaccion
