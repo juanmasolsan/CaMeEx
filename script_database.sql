@@ -2,8 +2,15 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-20 15:45:46
+ * @Last Modified time: 2023-04-20 16:57:55
  */
+
+
+-- Enabling Foreign Key
+PRAGMA foreign_keys = ON;
+
+-- Comprueba el estado
+PRAGMA foreign_keys;
 
 --Borrar tablas.
 DROP TABLE IF EXISTS Datos;
@@ -53,10 +60,10 @@ CREATE TABLE IF NOT EXISTS Datos (
     Size           BIGINT   NOT NULL,
     Nombre         TEXT     NOT NULL,
     ImageIndex     INTEGER  NOT NULL,
+    IdPadre        BIGINT,
     IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
     IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    IdPadre        BIGINT CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT
+    IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 -- Crear índices

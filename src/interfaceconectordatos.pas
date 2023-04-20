@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-19 18:36:36
+ * @Last Modified time: 2023-04-20 18:57:01
  *)
 {
 
@@ -69,6 +69,12 @@ type
 
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
     function GetDatos(IdCatalogo : qword; IdPadre : qword) : TArrayItemDato;
+
+    // Elimina todos los catalogos
+    function DeleteAllCatalogos() : boolean;
+
+    // Elimina un catalogo
+    function DeleteCatalogo(IdCatalogo : qword) : boolean;
   end;
 
 implementation

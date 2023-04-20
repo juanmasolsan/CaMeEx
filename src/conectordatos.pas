@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-20 15:46:34
+ * @Last Modified time: 2023-04-20 18:51:45
  *)
 {
 
@@ -64,6 +64,16 @@ const
   SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID = 'SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id JOIN Extensiones AS ex ON dt.IdExtension = ex.Id WHERE dt.IdCatalogo = :IDCATALOGO';
   SQL_SELECT_DATOS_ALL_BY_PARENT_ID   = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND dt.IdPadre = :IDPADRE';
 
+  SQL_DELETE_CATALOGO_BY_ID           = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
+
+  SQL_DELETE_DATOS_BY_ID_CATALOGO     = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO;';
+
+  SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO  = 'DELETE FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO;';
+
+
+
+  //DELETE FROM Extensiones WHERE Id = 1111
+
 type
   { TConectorDatos }
   TConectorDatos = class(TInterfacedObject, IConectorDatos)
@@ -72,6 +82,7 @@ type
   protected
     function DoGetCatalogoFromQuery(Query : TSQLQuery) : TItemCatalogo;
     function DoGetDatoFromQuery(Query : TSQLQuery) : TItemDato;
+    function DoDeleteFromTableByIdParametro(Id : qword; Sql : string; const Parametro : string) : boolean;
   public
     // Constructor
     constructor Create;
@@ -115,6 +126,11 @@ type
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
     function GetDatos(IdCatalogo : qword; IdPadre : qword) : TArrayItemDato;
 
+    // Elimina todos los catalogos
+    function DeleteAllCatalogos() : boolean;
+
+    // Elimina un catalogo
+    function DeleteCatalogo(IdCatalogo : qword) : boolean;
 
 {$IFDEF TESTEAR_SENTENCIAS}
     // Para testear sentencias
@@ -242,10 +258,11 @@ begin
       'Size           BIGINT      NOT NULL,' +
       'Nombre         TEXT        NOT NULL,' +
       'ImageIndex     INTEGER     NOT NULL,' +
+      'IdPadre        BIGINT,' +
       'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
       'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-      'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-      'IdPadre        BIGINT CONSTRAINT FK_DATOS_PADRE REFERENCES Datos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +
+      'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +
+
       ');';
 
     FDataBase.SQL(SQL);
@@ -613,11 +630,12 @@ begin
         else
         begin
           FDataBase.Query.SQL.Add(SQL_SELECT_DATOS_ALL_BY_PARENT_ID);
+          FDataBase.Query.ParamByName('IDPADRE').AsLargeInt    := IdPadre;
         end;
 
         // Hace la inserción con un prepared statement
         FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := IdCatalogo;
-        FDataBase.Query.ParamByName('IDPADRE').AsLargeInt    := IdPadre;
+
 
         // Ejecuta la sentencia
         FDataBase.Query.Open;
@@ -659,6 +677,77 @@ begin
   end;
 end;
 
+// Elimina todos los catalogos
+function TConectorDatos.DeleteAllCatalogos() : boolean;
+begin
+    // Elimina todas las tablas de la base de datos
+    EliminarAllTablas();
+
+    // Crea las tablas de la base de datos
+    CrearTablas();
+
+    // Inicializa el resultado
+    Result := true;
+end;
+
+// Elimina un catalogo
+function TConectorDatos.DeleteCatalogo(IdCatalogo : qword) : boolean;
+begin
+  // Inicializa el resultado
+  Result := false;
+
+  // Elimina los datos que pertenecen al catalogo
+  if DoDeleteFromTableByIdParametro(IdCatalogo, SQL_DELETE_DATOS_BY_ID_CATALOGO, 'IDCATALOGO') then
+    // Elimina los rutas completas que pertenecen al catalogo
+    if DoDeleteFromTableByIdParametro(IdCatalogo, SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO, 'IDCATALOGO') then
+      // Elimina el catalogo
+      result := DoDeleteFromTableByIdParametro(IdCatalogo, SQL_DELETE_CATALOGO_BY_ID, 'IDCATALOGO');
+end;
+
+
+// Elimina datos de una tabla a partir de un parametro
+function TConectorDatos.DoDeleteFromTableByIdParametro(Id : qword; Sql : string; const Parametro : string) : boolean;
+begin
+  // Inicializa el resultado
+  Result := false;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+
+        // Prepara la query
+        FDataBase.Query.SQL.Text := Sql;
+        try
+          // Hace la inserción con un prepared statement
+          FDataBase.Query.ParamByName(Parametro).AsLargeInt := Id;
+
+          // Ejecuta la sentencia
+          FDataBase.Query.ExecSQL;
+
+          // Inicializa el resultado
+          Result := true;
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
+
+
+
 
 {$IFDEF TESTEAR_SENTENCIAS}
 procedure TConectorDatos.TestSentencias();
@@ -681,7 +770,7 @@ procedure TConectorDatos.TestSentencias();
     end;
   end;
 
-  procedure InsertarRutasCompletas();
+  procedure InsertarRutasCompletas(IdCatalogo : Qword);
   var
     i  : integer;
     max: integer = 10;
@@ -690,7 +779,7 @@ procedure TConectorDatos.TestSentencias();
   begin
     for i := 0 to max do
     begin
-      ruta := TItemRutaCompleta.Create('directorio/loquesea_' + inttostr(i), 1);
+      ruta := TItemRutaCompleta.Create('directorio/loquesea_' + inttostr(i), IdCatalogo);
       try
         AddRutaCompleta(ruta);
       finally
@@ -717,7 +806,7 @@ procedure TConectorDatos.TestSentencias();
     end;
   end;
 
-  procedure InsertarDatos();
+  procedure InsertarDatos(IdCatalogo : Qword);
   var
     Dato: TItemDato;
 
@@ -729,8 +818,8 @@ procedure TConectorDatos.TestSentencias();
         0,
         0,
         0,
-        1,
-        1);
+        IdCatalogo,
+        0);
       try
         AddDato(Dato);
       finally
@@ -744,8 +833,8 @@ procedure TConectorDatos.TestSentencias();
         0,
         0,
         0,
-        1,
-        1);
+        IdCatalogo,
+        0);
       try
         AddDato(Dato);
       finally
@@ -765,18 +854,11 @@ procedure TConectorDatos.TestSentencias();
   end;
 
 begin
-
   // Inserta extensiones
   InsertarExtensiones();
 
-  // Inserta rutas  completas
-  InsertarRutasCompletas();
-
   // Inserta Catalogo
   InsertarCatalogo();
-
-  // Inserta datos
-  InsertarDatos();
 
   // Obtiene todos los catalogos
   GetTodosCatalogos();
@@ -790,10 +872,17 @@ begin
           Cat.Free;
         end;
 
+      // Inserta rutas  completas
+      InsertarRutasCompletas(catalogos[0]{%H-}.Id);
+
+      // Inserta datos
+      InsertarDatos(catalogos[0]{%H-}.Id);
+
       // Obtiene todos los datos del catalogo 0
       Datos := GetDatos(catalogos[0]{%H-}.Id, 0);
       if Datos <> nil then
       begin
+      Datos.Clear;
         Datos.Free;
       end;
 
@@ -803,6 +892,11 @@ begin
       begin
         Datos.Free;
       end;
+
+      DeleteCatalogo(catalogos[0]{%H-}.Id);
+      DeleteCatalogo(catalogos[0]{%H-}.Id);
+      DeleteCatalogo(catalogos[0]{%H-}.Id);
+
     end;
   finally
     if catalogos <> nil then

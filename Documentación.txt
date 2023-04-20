@@ -10,6 +10,8 @@ CREATE INDEX IF NOT EXISTS : https://www.sqlite.org/lang_createindex.html
 
 INSERT OR IGNORE : https://www.sqlite.org/lang_insert.html
 
+Enabling Foreign Key Support : https://sqlite.org/foreignkeys.html#fk_enable
+
 
 FreePascal
 -------------------------------------------------
