@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-24 19:19:17
+ * @Last Modified time: 2023-04-24 19:32:29
  *)
 {
 
@@ -125,13 +125,13 @@ type
     function GetCatalogosById(id : qword) : TItemCatalogo;
 
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
-    function GetDatos(IdCatalogo : qword; IdPadre : qword) : TArrayItemDato;
+    function GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato) : TArrayItemDato;
 
     // Elimina todos los catalogos
     function DeleteAllCatalogos() : boolean;
 
     // Elimina un catalogo
-    function DeleteCatalogo(IdCatalogo : qword) : boolean;
+    function DeleteCatalogo(Catalogo : TItemCatalogo) : boolean;
 
     // Elimina un dato
     function DeleteDato(Dato : TItemDato) : boolean;
@@ -630,10 +630,19 @@ begin
 end;
 
 // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
-function TConectorDatos.GetDatos(IdCatalogo : qword; IdPadre : qword) : TArrayItemDato;
+function TConectorDatos.GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato) : TArrayItemDato;
 var
   dato: TItemDato;
+  IdCatalogo : qword;
+  IdPadre : qword = 0;
 begin
+  IdCatalogo := Catalogo.Id;
+
+  if Padre <> nil then
+  begin
+    IdPadre := Padre.Id;
+  end;
+
   // Inicializa el resultado
   Result := nil;
   try
@@ -645,9 +654,6 @@ begin
         // Prepara la query
         FDataBase.Query.Close;
         FDataBase.Query.SQL.Clear;
-
-        // Ejecuta la sentencia
-        //FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
 
         // Prepara la query
         if IdPadre = 0 then
@@ -662,7 +668,6 @@ begin
 
         // Hace la inserción con un prepared statement
         FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := IdCatalogo;
-
 
         // Ejecuta la sentencia
         FDataBase.Query.Open;
@@ -718,17 +723,17 @@ begin
 end;
 
 // Elimina un catalogo
-function TConectorDatos.DeleteCatalogo(IdCatalogo : qword) : boolean;
+function TConectorDatos.DeleteCatalogo(Catalogo : TItemCatalogo) : boolean;
 begin
   // Inicializa el resultado
   Result := false;
 
   // Elimina los datos que pertenecen al catalogo
-  if DoDeleteFromTableByIdParametro(IdCatalogo, SQL_DELETE_DATOS_BY_ID_CATALOGO, 'IDCATALOGO') then
+  if DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_DATOS_BY_ID_CATALOGO, 'IDCATALOGO') then
     // Elimina los rutas completas que pertenecen al catalogo
-    if DoDeleteFromTableByIdParametro(IdCatalogo, SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO, 'IDCATALOGO') then
+    if DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO, 'IDCATALOGO') then
       // Elimina el catalogo
-      result := DoDeleteFromTableByIdParametro(IdCatalogo, SQL_DELETE_CATALOGO_BY_ID, 'IDCATALOGO');
+      result := DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_CATALOGO_BY_ID, 'IDCATALOGO');
 end;
 
 
@@ -943,20 +948,11 @@ begin
       InsertarDatos(catalogos[0]{%H-}.Id);
 
       // Obtiene todos los datos del catalogo 0
-      Datos := GetDatos(catalogos[0]{%H-}.Id, 0);
+      Datos := GetDatos(TItemCatalogo(catalogos[0]), nil);
       if (Datos <> nil) And (Datos.count >= 1) then
         begin
           DeleteDato(TItemDato(Datos[1]));
           Datos.Clear;
-          Datos.Free;
-        end;
-
-      // Obtiene todos los datos del catalogo 0 hijos del dato 200
-      Datos := GetDatos(catalogos[0]{%H-}.Id, 200);
-      if (Datos <> nil) And (Datos.count >= 1) then
-        begin
-          DeleteDato(TItemDato(Datos[1]));
-
           Datos.Free;
         end;
 

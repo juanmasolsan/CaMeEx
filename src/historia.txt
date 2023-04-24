@@ -1,14 +1,18 @@
 
-- [FIX]   (20230420) Corregido como insertar un dato escoge la sentencia sql dependiendo si tiene padre o no
-- [FIX]   (20230420) Corregido como insertar un catalogo y que este añada su raíz a tabla de RutasCompletas
-- [NEW]   (20230420) Agregado a TConectorDatos.DeleteDato
++ 1.0.7.5
+- [FIX]   (20230424) Ahora algunos métodos tienen como parámetros objetos en vez del id de los mismos.
+
++ 1.0.7.4
+- [FIX]   (20230424) Corregido como insertar un dato escoge la sentencia sql dependiendo si tiene padre o no.
+- [FIX]   (20230424) Corregido como insertar un catalogo y que este añada su raíz a tabla de RutasCompletas.
+- [NEW]   (20230424) Agregado a TConectorDatos.DeleteDato.
 
 + 1.0.7.1
-- [NEW]   (20230420) Agregado a TConectorDatos.DeleteCatalogo
-- [FIX]   (20230420) Arreglado correcta activación de Enabling Foreign Key en sqlite3
-- [FIX]   (20230420) Reescrito TConexion_DB_001.SQLite3_OptimizarTabla para evitar fugas de memoria
-- [FIX]   (20230420) Activado Enabling Foreign Key en sqlite3
-- [FIX]   (20230420) Cambiado restricciones en la base de datos de CASCADE a RESTRICT
+- [NEW]   (20230420) Agregado a TConectorDatos.DeleteCatalogo.
+- [FIX]   (20230420) Arreglado correcta activación de Enabling Foreign Key en sqlite3.
+- [FIX]   (20230420) Reescrito TConexion_DB_001.SQLite3_OptimizarTabla para evitar fugas de memoria.
+- [FIX]   (20230420) Activado Enabling Foreign Key en sqlite3.
+- [FIX]   (20230420) Cambiado restricciones en la base de datos de CASCADE a RESTRICT.
 
 + 1.0.6.6
 - [NEW]   (20230419) Actualizado métodos del interfaz InterfaceConectorDatos.

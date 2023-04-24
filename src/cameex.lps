@@ -11,7 +11,7 @@
         <EditorIndex Value="9"/>
         <TopLine Value="18"/>
         <CursorPos X="60" Y="34"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -24,16 +24,17 @@
         <EditorIndex Value="10"/>
         <TopLine Value="147"/>
         <CursorPos Y="168"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="7"/>
         <CursorPos Y="46"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -43,7 +44,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="20"/>
         <CursorPos X="30" Y="20"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -53,7 +54,7 @@
         <UnitName Value="AppInfo"/>
         <EditorIndex Value="8"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -63,7 +64,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="60" Y="39"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="60"/>
       </Unit>
       <Unit>
         <Filename Value="motorscan.pas"/>
@@ -72,7 +73,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -81,21 +82,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
       </Unit>
       <Unit>
         <Filename Value="utilidades.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utilidades"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
       </Unit>
       <Unit>
         <Filename Value="unidadscan.pas"/>
@@ -107,7 +108,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="97"/>
         <CursorPos X="85" Y="102"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_logger.pas"/>
@@ -116,7 +117,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="183"/>
         <CursorPos X="43" Y="199"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -125,7 +126,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="28"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -144,7 +145,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="128"/>
         <CursorPos Y="147"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -167,7 +168,7 @@
         <EditorIndex Value="13"/>
         <TopLine Value="909"/>
         <CursorPos Y="928"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -175,7 +176,7 @@
         <EditorIndex Value="12"/>
         <TopLine Value="941"/>
         <CursorPos Y="960"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -184,7 +185,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="107"/>
         <CursorPos X="23" Y="117"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -193,7 +194,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="224"/>
         <CursorPos X="19" Y="256"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -205,11 +206,10 @@
       <Unit>
         <Filename Value="conectordatos.pas"/>
         <UnitName Value="ConectorDatos"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="789"/>
-        <CursorPos X="42" Y="805"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="391"/>
+        <CursorPos Y="409"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -218,7 +218,7 @@
         <EditorIndex Value="18"/>
         <TopLine Value="301"/>
         <CursorPos Y="322"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -227,7 +227,7 @@
         <EditorIndex Value="19"/>
         <TopLine Value="572"/>
         <CursorPos X="14" Y="589"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -236,7 +236,7 @@
         <EditorIndex Value="16"/>
         <TopLine Value="91"/>
         <CursorPos X="24" Y="95"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -244,7 +244,7 @@
         <EditorIndex Value="17"/>
         <TopLine Value="780"/>
         <CursorPos X="3" Y="782"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -253,7 +253,7 @@
         <EditorIndex Value="14"/>
         <TopLine Value="48"/>
         <CursorPos Y="68"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -262,7 +262,7 @@
         <EditorIndex Value="15"/>
         <TopLine Value="22"/>
         <CursorPos Y="41"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -271,7 +271,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="30"/>
         <CursorPos Y="60"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -280,26 +280,11 @@
         <EditorIndex Value="4"/>
         <TopLine Value="39"/>
         <CursorPos X="43" Y="73"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="conectordatos.pas"/>
-        <Caret Line="895" TopLine="874"/>
-      </Position>
-      <Position>
-        <Filename Value="conectordatos.pas"/>
-        <Caret Line="421" Column="55" TopLine="412"/>
-      </Position>
-      <Position>
-        <Filename Value="conectordatos.pas"/>
-      </Position>
-      <Position>
-        <Filename Value="conectordatos.pas"/>
-        <Caret Line="409" TopLine="378"/>
-      </Position>
       <Position>
         <Filename Value="conectordatos.pas"/>
         <Caret Line="412" TopLine="382"/>
@@ -404,6 +389,22 @@
         <Filename Value="conectordatos.pas"/>
         <Caret Line="450" TopLine="432"/>
       </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="805" Column="42" TopLine="789"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="409" TopLine="391"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="412" TopLine="391"/>
+      </Position>
+      <Position>
+        <Filename Value="conectordatos.pas"/>
+        <Caret Line="787" Column="47" TopLine="770"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -418,20 +419,6 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="components\control_contine.pas"/>
         <Line Value="128"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="conectordatos.pas"/>
-        <Line Value="789"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="conectordatos.pas"/>
-        <Line Value="409"/>
       </Item>
     </BreakPoints>
   </Debugging>
