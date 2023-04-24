@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-20 16:57:55
+ * @Last Modified time: 2023-04-24 17:46:24
  */
 
 
@@ -109,6 +109,13 @@ SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt
     JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id
     JOIN Extensiones AS ex ON dt.IdExtension = ex.Id
     ;
+
+-- Elimina el registro con el id 1000
+---DELETE FROM Datos WHERE IdCatalogo = 1 AND (Id = 1000 OR IdPadre = 1000);
+
+-- Elimina el registro con el id 200
+--DELETE FROM Datos WHERE IdCatalogo = 1 AND (Id = 200 OR IdPadre = 200);
+
 
 -- Actualiza el nombre y la descripción del catalogo con el id 1
 UPDATE Catalogos SET Nombre="Disco 1 - Update", Descripcion="Descripción - Disco 1 - Update", Tipo=1, Fecha=20230413 WHERE Id=1;

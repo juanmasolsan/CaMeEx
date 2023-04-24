@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-20 18:51:45
+ * @Last Modified time: 2023-04-24 19:19:17
  *)
 {
 
@@ -57,22 +57,20 @@ const
   SQL_INSERT_EXTENSION      = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
   SQL_INSERT_RUTA_COMPLETA  = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
   SQL_INSERT_CATALOGO       = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
-  SQL_INSERT_DATO           = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
+  SQL_INSERT_DATO_PADRE     = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
+  SQL_INSERT_DATO           = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO);';
 
   SQL_SELECT_CATALOGO_ALL             = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID           = 'SELECT * FROM Catalogos WHERE id = :ID;';
   SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID = 'SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id JOIN Extensiones AS ex ON dt.IdExtension = ex.Id WHERE dt.IdCatalogo = :IDCATALOGO';
   SQL_SELECT_DATOS_ALL_BY_PARENT_ID   = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND dt.IdPadre = :IDPADRE';
 
-  SQL_DELETE_CATALOGO_BY_ID           = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
-
-  SQL_DELETE_DATOS_BY_ID_CATALOGO     = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO;';
-
+  SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
+  SQL_DELETE_DATOS_BY_ID_CATALOGO          = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO';
+  SQL_DELETE_DATO_BY_IDS                   = SQL_DELETE_DATOS_BY_ID_CATALOGO + ' AND (Id = :ID OR IdPadre = :ID);';
   SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO  = 'DELETE FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO;';
+  SQL_DELETE_RUTA_COMPLETA_BY_IDS          = SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO + ' AND Id = :ID;';
 
-
-
-  //DELETE FROM Extensiones WHERE Id = 1111
 
 type
   { TConectorDatos }
@@ -83,6 +81,9 @@ type
     function DoGetCatalogoFromQuery(Query : TSQLQuery) : TItemCatalogo;
     function DoGetDatoFromQuery(Query : TSQLQuery) : TItemDato;
     function DoDeleteFromTableByIdParametro(Id : qword; Sql : string; const Parametro : string) : boolean;
+
+    // Elimina un Item de una tabla
+    function DoDeleteItemFromTableById(IdCatalogo : qword; Id : qword; Sql : string) : boolean;
   public
     // Constructor
     constructor Create;
@@ -131,6 +132,9 @@ type
 
     // Elimina un catalogo
     function DeleteCatalogo(IdCatalogo : qword) : boolean;
+
+    // Elimina un dato
+    function DeleteDato(Dato : TItemDato) : boolean;
 
 {$IFDEF TESTEAR_SENTENCIAS}
     // Para testear sentencias
@@ -204,6 +208,11 @@ var
   SQL : string;
 
 begin
+
+{$IFDEF TESTEAR_SENTENCIAS}
+  // Al estar activo esto, elimina todas las tablas
+  EliminarAllTablas();
+{$ENDIF TESTEAR_SENTENCIAS}
 
   // Se inicia la seccion critica
   EnterCriticalSection(FCriticalSection);
@@ -393,6 +402,15 @@ begin
 
           // Realiza la inserción
           FDataBase.Query.ExecSQL;
+
+          // Prepara la query
+          FDataBase.Query.Close;
+          FDataBase.Query.SQL.Clear;
+          FDataBase.Query.SQL.Add('INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, ' + inttostr(int64(Catalogo.Id)) + ', "/");');
+
+          // Realiza la inserción
+          FDataBase.Query.ExecSQL;
+
       finally
         // Se finaliza la seccion critica
         LeaveCriticalSection(FCriticalSection);
@@ -417,7 +435,16 @@ begin
         // Prepara la query
         FDataBase.Query.Close;
         FDataBase.Query.SQL.Clear;
-        FDataBase.Query.SQL.Add(SQL_INSERT_DATO);
+
+        if Dato.IdPadre = 0 then
+        begin
+         FDataBase.Query.SQL.Add(SQL_INSERT_DATO);
+        end
+        else
+        begin
+          FDataBase.Query.SQL.Add(SQL_INSERT_DATO_PADRE);
+          FDataBase.Query.ParamByName('IDPADRE').AsLargeInt      := Dato.IdPadre;
+        end;
 
         // Hace la inserción con un prepared statement
         FDataBase.Query.ParamByName('ID').AsLargeInt             := Dato.Id;
@@ -430,7 +457,7 @@ begin
         FDataBase.Query.ParamByName('IDEXTENSION').AsLargeInt    := Dato.IdExtension;
         FDataBase.Query.ParamByName('IDRUTACOMPLETA').AsLargeInt := Dato.IdRutaCompleta;
         FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt     := Dato.IdCatalogo;
-        FDataBase.Query.ParamByName('IDPADRE').AsLargeInt        := Dato.IdPadre;
+
 
         // Realiza la inserción
         FDataBase.Query.ExecSQL;
@@ -723,7 +750,7 @@ begin
         // Prepara la query
         FDataBase.Query.SQL.Text := Sql;
         try
-          // Hace la inserción con un prepared statement
+          // Hace la eliminación con un prepared statement
           FDataBase.Query.ParamByName(Parametro).AsLargeInt := Id;
 
           // Ejecuta la sentencia
@@ -746,6 +773,55 @@ begin
   end;
 end;
 
+
+// Elimina un Item de una tabla
+function TConectorDatos.DoDeleteItemFromTableById(IdCatalogo : qword; Id : qword; Sql : string) : boolean;
+begin
+  // Inicializa el resultado
+  Result := false;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+
+        // Prepara la query
+        FDataBase.Query.SQL.Text := Sql;
+        try
+          // Hace la eliminación con un prepared statement
+          FDataBase.Query.ParamByName('ID').AsLargeInt         := Id;
+          FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := IdCatalogo;
+
+          // Ejecuta la sentencia
+          FDataBase.Query.ExecSQL;
+
+          // Inicializa el resultado
+          Result := true;
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
+
+
+// Elimina un dato
+function TConectorDatos.DeleteDato(Dato : TItemDato) : boolean;
+begin
+  Result := DoDeleteItemFromTableById(Dato.IdCatalogo, Dato.Id, SQL_DELETE_DATO_BY_IDS);
+end;
 
 
 
@@ -809,10 +885,12 @@ procedure TConectorDatos.TestSentencias();
   procedure InsertarDatos(IdCatalogo : Qword);
   var
     Dato: TItemDato;
-
+    i  : integer;
+    max: integer = 100;
   begin
-
-      Dato := TItemDato.create('prueba.txt', TItemDatoTipo.Archivo, now, 1204,
+    for i := 0 to max do
+    begin
+      Dato := TItemDato.Create('prueba_' + inttostr(i) + '.txt', TItemDatoTipo.Archivo, now, 1204,
         100,
         '',
         0,
@@ -825,21 +903,7 @@ procedure TConectorDatos.TestSentencias();
       finally
         Dato.Free;
       end;
-
-
-      Dato := TItemDato.create('prueba.dir', TItemDatoTipo.Directorio, now, 0,
-        100,
-        '',
-        0,
-        0,
-        0,
-        IdCatalogo,
-        0);
-      try
-        AddDato(Dato);
-      finally
-        Dato.Free;
-      end;
+    end;
   end;
 
 
@@ -880,22 +944,25 @@ begin
 
       // Obtiene todos los datos del catalogo 0
       Datos := GetDatos(catalogos[0]{%H-}.Id, 0);
-      if Datos <> nil then
-      begin
-      Datos.Clear;
-        Datos.Free;
-      end;
+      if (Datos <> nil) And (Datos.count >= 1) then
+        begin
+          DeleteDato(TItemDato(Datos[1]));
+          Datos.Clear;
+          Datos.Free;
+        end;
 
-      // Obtiene todos los datos del catalogo 0 hijos del dato 1
+      // Obtiene todos los datos del catalogo 0 hijos del dato 200
       Datos := GetDatos(catalogos[0]{%H-}.Id, 200);
-      if Datos <> nil then
-      begin
-        Datos.Free;
-      end;
+      if (Datos <> nil) And (Datos.count >= 1) then
+        begin
+          DeleteDato(TItemDato(Datos[1]));
 
-      DeleteCatalogo(catalogos[0]{%H-}.Id);
-      DeleteCatalogo(catalogos[0]{%H-}.Id);
-      DeleteCatalogo(catalogos[0]{%H-}.Id);
+          Datos.Free;
+        end;
+
+      //DeleteCatalogo(catalogos[0]{%H-}.Id);
+      //DeleteCatalogo(catalogos[0]{%H-}.Id);
+      //DeleteCatalogo(catalogos[0]{%H-}.Id);
 
     end;
   finally
@@ -906,7 +973,6 @@ begin
   end;
 
 end;
-
 {$ENDIF TESTEAR_SENTENCIAS}
 
 
