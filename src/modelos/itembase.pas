@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 15:47:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 17:39:05
+ * @Last Modified time: 2023-04-25 19:05:40
  *)
 {
 
@@ -52,7 +52,7 @@ type
 
     // Propiedades
     property Id               : Qword read FId write FId;
-    property Nombre           : RawByteString read FNombre;
+    property Nombre           : RawByteString read FNombre write FNombre;
   end;
 
 

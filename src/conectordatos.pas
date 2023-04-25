@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-25 18:31:36
+ * @Last Modified time: 2023-04-25 19:08:52
  *)
 {
 
@@ -72,6 +72,8 @@ const
   SQL_DELETE_RUTA_COMPLETA_BY_IDS          = SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO + ' AND Id = :ID;';
   SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS = 'DELETE FROM RutaCompleta WHERE Id = :ID AND IdCatalogo = :IDCATALOGO AND NOT EXISTS (SELECT 1 FROM Datos WHERE IdRutaCompleta = :ID);';
 
+  SQL_UPDATE_CATALOGO                      = 'UPDATE Catalogos SET Nombre=:NOMBRE, Descripcion=:DESCRIPCION, Tipo=:TIPO, Fecha=:FECHA WHERE Id=:ID;';
+
 
 type
   { TConectorDatos }
@@ -88,6 +90,10 @@ type
 
     // Elimina las rutas completas que no tengan referencias en la tabla Datos
     function DoDeleteRutasCompletasSinReferencias(Dato : TItemDato) : boolean;
+
+    // Añade/Actualiza un catálogo a la base de datos
+    procedure DoInserteUpdateCatalogo(Catalogo : TItemCatalogo; IsUpdate : boolean);
+
   public
     // Constructor
     constructor Create;
@@ -139,6 +145,9 @@ type
 
     // Elimina un dato
     function DeleteDato(Dato : TItemDato) : boolean;
+
+    // Actualiza un catálogo
+    procedure UpdateCatalogo(Catalogo : TItemCatalogo);
 
 {$IFDEF TESTEAR_SENTENCIAS}
     // Para testear sentencias
@@ -382,48 +391,7 @@ end;
 // Añade un catálogo a la base de datos
 procedure TConectorDatos.AddCatalogo(Catalogo : TItemCatalogo);
 begin
-  try
-    if FDataBase.Query <> nil then
-    begin
-      // Se inicia la seccion critica
-      EnterCriticalSection(FCriticalSection);
-      try
-
-          // Prepara la query
-          FDataBase.Query.Close;
-          FDataBase.Query.SQL.Clear;
-          FDataBase.Query.SQL.Add(SQL_INSERT_CATALOGO);
-
-          // Hace la inserción con un prepared statement
-          FDataBase.Query.ParamByName('ID').AsLargeInt               := Catalogo.Id;
-          FDataBase.Query.ParamByName('NOMBRE').AsString             := Catalogo.Nombre;
-          FDataBase.Query.ParamByName('DESCRIPCION').AsString        := Catalogo.Descripcion;
-          FDataBase.Query.ParamByName('TIPO').AsInteger              := integer(Catalogo.Tipo);
-          FDataBase.Query.ParamByName('FECHA').AsDateTime            := Catalogo.Fecha;
-          FDataBase.Query.ParamByName('TOTALARCHIVOS').AsLargeInt    := Catalogo.TotalArchivos;
-          FDataBase.Query.ParamByName('TOTALDIRECTORIOS').AsLargeInt := Catalogo.TotalDirectorios;
-          FDataBase.Query.ParamByName('TOTALSIZE').AsLargeInt        := Catalogo.Size;
-
-          // Realiza la inserción
-          FDataBase.Query.ExecSQL;
-
-          // Prepara la query
-          FDataBase.Query.Close;
-          FDataBase.Query.SQL.Clear;
-          FDataBase.Query.SQL.Add('INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, ' + inttostr(int64(Catalogo.Id)) + ', "/");');
-
-          // Realiza la inserción
-          FDataBase.Query.ExecSQL;
-
-      finally
-        // Se finaliza la seccion critica
-        LeaveCriticalSection(FCriticalSection);
-      end;
-    end;
-  except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
-  end;
+  DoInserteUpdateCatalogo(Catalogo, false);
 end;
 
 
@@ -878,6 +846,74 @@ begin
   end;
 end;
 
+// Actualiza un catálogo
+procedure TConectorDatos.UpdateCatalogo(Catalogo : TItemCatalogo);
+begin
+  DoInserteUpdateCatalogo(Catalogo, true);
+end;
+
+
+// Añade/Actualiza un catálogo a la base de datos
+procedure TConectorDatos.DoInserteUpdateCatalogo(Catalogo : TItemCatalogo; IsUpdate : boolean);
+begin
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+
+          // Prepara la query
+          FDataBase.Query.Close;
+          FDataBase.Query.SQL.Clear;
+
+          if not IsUpdate then
+            FDataBase.Query.SQL.Add(SQL_INSERT_CATALOGO)
+          else
+            FDataBase.Query.SQL.Add(SQL_UPDATE_CATALOGO);
+
+          // Hace la inserción con un prepared statement
+          FDataBase.Query.ParamByName('ID').AsLargeInt               := Catalogo.Id;
+          FDataBase.Query.ParamByName('NOMBRE').AsString             := Catalogo.Nombre;
+          FDataBase.Query.ParamByName('DESCRIPCION').AsString        := Catalogo.Descripcion;
+          FDataBase.Query.ParamByName('TIPO').AsInteger              := integer(Catalogo.Tipo);
+          FDataBase.Query.ParamByName('FECHA').AsDateTime            := Catalogo.Fecha;
+
+          if not IsUpdate then
+          begin
+            FDataBase.Query.ParamByName('TOTALARCHIVOS').AsLargeInt    := Catalogo.TotalArchivos;
+            FDataBase.Query.ParamByName('TOTALDIRECTORIOS').AsLargeInt := Catalogo.TotalDirectorios;
+            FDataBase.Query.ParamByName('TOTALSIZE').AsLargeInt        := Catalogo.Size;
+          end;
+
+          // Realiza la inserción
+          FDataBase.Query.ExecSQL;
+
+          if not IsUpdate then
+          begin
+            // Prepara la query
+            FDataBase.Query.Close;
+            FDataBase.Query.SQL.Clear;
+            FDataBase.Query.SQL.Add('INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, ' + inttostr(int64(Catalogo.Id)) + ', "/");');
+
+            // Realiza la inserción
+            FDataBase.Query.ExecSQL;
+          end;
+
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
+
+
+
+
 {$IFDEF TESTEAR_SENTENCIAS}
 procedure TConectorDatos.TestSentencias();
 
@@ -986,6 +1022,12 @@ begin
 
         if Cat <> nil then
         begin
+          Cat.Nombre      := Cat.Nombre + ' - modificado desde el test';
+          Cat.Descripcion := Cat.Descripcion + ' - modificada desde el test';
+          Cat.Fecha       := now;
+
+          UpdateCatalogo(Cat);
+
           Cat.Free;
         end;
 

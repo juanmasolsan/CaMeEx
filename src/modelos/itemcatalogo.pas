@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 16:39:00
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 17:28:19
+ * @Last Modified time: 2023-04-25 19:05:58
  *)
 {
 
@@ -57,7 +57,7 @@ type
     constructor Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64; const ADescripcion: RawByteString = ''; ATotalArchivos: Qword = 0; ATotalDirectorios: Qword = 0);
 
     // Propiedades
-    property Descripcion     : RawByteString read FDescripcion;
+    property Descripcion     : RawByteString read FDescripcion write FDescripcion;
     property TotalArchivos   : Qword         read FTotalArchivos;
     property TotalDirectorios: Qword         read FTotalDirectorios;
   end;

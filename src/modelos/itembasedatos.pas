@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 16:25:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 17:29:54
+ * @Last Modified time: 2023-04-25 19:06:14
  *)
 {
 
@@ -75,7 +75,7 @@ type
 
     // Propiedades
     property Tipo  : TItemDatoTipo read FTipo;
-    property Fecha : TDateTime read FFecha;
+    property Fecha : TDateTime read FFecha write FFecha;
     property Size  : int64 read FSize;
   end;
 

@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230425) Agregado a TConectorDatos.UpdateCatalogo.
 - [NEW]   (20230425) Al eliminar una fila de la tabla Datos elimina de la Tabla RutaCompleta la misma si no hay referencias a ella.
 
 + 1.0.7.5

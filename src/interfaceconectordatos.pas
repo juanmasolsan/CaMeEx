@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-24 19:28:53
+ * @Last Modified time: 2023-04-25 19:00:02
  *)
 {
 
@@ -78,6 +78,9 @@ type
 
     // Elimina un dato
     function DeleteDato(Dato : TItemDato) : boolean;
+
+    // Actualiza un catálogo
+    procedure UpdateCatalogo(Catalogo : TItemCatalogo);
 
   end;
 
