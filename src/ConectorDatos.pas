@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-25 22:58:30
+ * @Last Modified time: 2023-04-25 23:17:16
  *)
 {
 
@@ -33,12 +33,12 @@ SOFTWARE.
 unit ConectorDatos;
 
 {$mode ObjFPC}{$H+}
-{.$DEFINE TESTEAR_SENTENCIAS}
+{$DEFINE TESTEAR_SENTENCIAS}
 
 {$IFDEF TESTEAR_SENTENCIAS}
   {-$DEFINE TESTEAR_SENTENCIAS_ELIMINAR_TABLAS}
-  {.$DEFINE TESTEAR_SENTENCIAS_INSERTAR_EXTENSIONES}
-  {.$DEFINE TESTEAR_SENTENCIAS_INSERTAR_CATALOGO}
+  {$DEFINE TESTEAR_SENTENCIAS_INSERTAR_EXTENSIONES}
+  {$DEFINE TESTEAR_SENTENCIAS_INSERTAR_CATALOGO}
   {$DEFINE TESTEAR_SENTENCIAS_UPDATE_CATALOGO}
   {$DEFINE TESTEAR_SENTENCIAS_INSERTAR_RUTAS_COMPLETAS}
   {$DEFINE TESTEAR_SENTENCIAS_INSERTAR_DATOS}
@@ -172,7 +172,9 @@ implementation
 uses
   db
   , Control_DB
+  , Control_Logger
   , ItemBaseDatos
+
   ;
 
 var
@@ -202,20 +204,25 @@ end;
 // Conecta con la base de datos
 procedure TConectorDatos.Iniciar(Curdir: string; SaveDir : string);
 begin
-  FDataBase := TConexion_DB.Create(IncludeTrailingBackslash(SaveDir) + 'catalogos.db',
-                  'sqlite-3',
-                  '',
-                  '',
-                  //TODO: revisar para poder usarse en linux
-                  IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64'{$ELSE} 'x86'{$ENDIF} + '/sqlite3.dll');
+  try
+    FDataBase := TConexion_DB.Create(IncludeTrailingBackslash(SaveDir) + 'catalogos.db',
+                    'sqlite-3',
+                    '',
+                    '',
+                    //TODO: revisar para poder usarse en linux
+                    IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64'{$ELSE} 'x86'{$ENDIF} + '/sqlite3.dll');
 
-  // Crea las tablas si no existen
-  CrearTablas();
+    // Crea las tablas si no existen
+    CrearTablas();
 
-{$IFDEF TESTEAR_SENTENCIAS}
-  //
-  TestSentencias();
-{$ENDIF TESTEAR_SENTENCIAS}
+  {$IFDEF TESTEAR_SENTENCIAS}
+    //
+    TestSentencias();
+  {$ENDIF TESTEAR_SENTENCIAS}
+  except
+    on E: Exception do LogAddException('Excepción Detectada', E);
+  end;
+
 end;
 
 // Desconecta de la base de datos
@@ -372,8 +379,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -410,8 +416,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -470,8 +475,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -567,8 +571,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -624,8 +627,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -704,8 +706,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -772,8 +773,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -814,8 +814,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -867,8 +866,7 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
 
@@ -945,12 +943,9 @@ begin
       end;
     end;
   except
-    //TODO: Añadir Gestión de Excepción
-    //on e: Exception do
+    on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
-
-
 
 
 {$IFDEF TESTEAR_SENTENCIAS}

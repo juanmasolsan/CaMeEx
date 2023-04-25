@@ -48,7 +48,7 @@
 +         Agregar Sqlite3 - Agregar indices para acelerar las búsqueda
 +         Normalizar el nombre de las columnas de fechas en la base de datos
 +         Agregar Sqlite3 - Protección a concurrencia
--         Agregar Sqlite3 - Control de excepciones
++         Agregar Sqlite3 - Control de excepciones
 +         Agregar Sqlite3 - Al crear las tablas que verifique si ya existen
 +         Agregar Sqlite3 - Al crear los indices que verifique si ya existen
 +         Agregar Sqlite3 - Que se cierren todas las conexiones tras usarse
