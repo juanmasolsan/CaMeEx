@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-25 19:08:52
+ * @Last Modified time: 2023-04-25 22:58:30
  *)
 {
 
@@ -33,8 +33,18 @@ SOFTWARE.
 unit ConectorDatos;
 
 {$mode ObjFPC}{$H+}
-{$DEFINE TESTEAR_SENTENCIAS}
+{.$DEFINE TESTEAR_SENTENCIAS}
 
+{$IFDEF TESTEAR_SENTENCIAS}
+  {-$DEFINE TESTEAR_SENTENCIAS_ELIMINAR_TABLAS}
+  {.$DEFINE TESTEAR_SENTENCIAS_INSERTAR_EXTENSIONES}
+  {.$DEFINE TESTEAR_SENTENCIAS_INSERTAR_CATALOGO}
+  {$DEFINE TESTEAR_SENTENCIAS_UPDATE_CATALOGO}
+  {$DEFINE TESTEAR_SENTENCIAS_INSERTAR_RUTAS_COMPLETAS}
+  {$DEFINE TESTEAR_SENTENCIAS_INSERTAR_DATOS}
+  {$DEFINE TESTEAR_SENTENCIAS_DELETE_DATOS}
+  {.$DEFINE TESTEAR_SENTENCIAS_DELETE_CATALOGOS}
+{$ENDIF}
 
 interface
 
@@ -222,76 +232,81 @@ var
 
 begin
 
-{$IFDEF TESTEAR_SENTENCIAS}
+{$IFDEF TESTEAR_SENTENCIAS_ELIMINAR_TABLAS}
   // Al estar activo esto, elimina todas las tablas
-  //EliminarAllTablas();
-{$ENDIF TESTEAR_SENTENCIAS}
+  EliminarAllTablas();
+{$ENDIF}
 
   // Se inicia la seccion critica
   EnterCriticalSection(FCriticalSection);
   try
-    // Crea la tabla de catalogos
-    SQL := 'CREATE TABLE IF NOT EXISTS Catalogos (' +
-      'Id               BIGINT PRIMARY KEY,' +
-      'Nombre           TEXT        NOT NULL,' +
-      'Descripcion      TEXT        NOT NULL,' +
-      'Tipo             INTEGER     NOT NULL,' +
-      'Fecha            DATETIME    NOT NULL,' +
-      'TotalArchivos    INTEGER     NOT NULL,' +
-      'TotalDirectorios INTEGER     NOT NULL,' +
-      'TotalSize        BIGINT NOT NULL' +
-      ');';
+    try
+      // Crea la tabla de catalogos
+      SQL := 'CREATE TABLE IF NOT EXISTS Catalogos (' +
+        'Id               BIGINT PRIMARY KEY,' +
+        'Nombre           TEXT        NOT NULL,' +
+        'Descripcion      TEXT        NOT NULL,' +
+        'Tipo             INTEGER     NOT NULL,' +
+        'Fecha            DATETIME    NOT NULL,' +
+        'TotalArchivos    INTEGER     NOT NULL,' +
+        'TotalDirectorios INTEGER     NOT NULL,' +
+        'TotalSize        BIGINT NOT NULL' +
+        ');';
 
-    FDataBase.SQL(SQL);
+      FDataBase.SQL(SQL);
 
-    // Crea la tabla de extensiones
-    SQL := 'CREATE TABLE IF NOT EXISTS Extensiones (' +
-      'Id          BIGINT PRIMARY KEY,' +
-      'Extension   TEXT NOT NULL UNIQUE,' +
-      'Descripcion TEXT NOT NULL' +
-      ');';
+      // Crea la tabla de extensiones
+      SQL := 'CREATE TABLE IF NOT EXISTS Extensiones (' +
+        'Id          BIGINT PRIMARY KEY,' +
+        'Extension   TEXT NOT NULL UNIQUE,' +
+        'Descripcion TEXT NOT NULL' +
+        ');';
 
 
-    FDataBase.SQL(SQL);
+      FDataBase.SQL(SQL);
 
-    // Inserta la extension sin extension
-    SQL := 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
-    FDataBase.SQL(SQL);
+      // Inserta la extension sin extension
+      SQL := 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
+      FDataBase.SQL(SQL);
 
-    // Crea la tabla de rutas completas
-    SQL := 'CREATE TABLE IF NOT EXISTS RutaCompleta (' +
-      'Id         BIGINT PRIMARY KEY,' +
-      'IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-      'Ruta       TEXT   NOT NULL' +
-      ');';
+      // Crea la tabla de rutas completas
+      SQL := 'CREATE TABLE IF NOT EXISTS RutaCompleta (' +
+        'Id         BIGINT PRIMARY KEY,' +
+        'IdCatalogo BIGINT CONSTRAINT FK_CATALOGO REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+        'Ruta       TEXT   NOT NULL' +
+        ');';
 
-    FDataBase.SQL(SQL);
+      FDataBase.SQL(SQL);
 
-    // Crea el indice de la tabla de rutas completas
-    SQL := 'CREATE INDEX IF NOT EXISTS RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);';
-    FDataBase.SQL(SQL);
+      // Crea el indice de la tabla de rutas completas
+      SQL := 'CREATE INDEX IF NOT EXISTS RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);';
+      FDataBase.SQL(SQL);
 
-    // Crea la tabla de datos
-    SQL := 'CREATE TABLE IF NOT EXISTS Datos (' +
-      'Id             BIGINT PRIMARY KEY,' +
-      'Tipo           INTEGER     NOT NULL,' +
-      'Atributos      INTEGER     NOT NULL,' +
-      'Fecha          DATETIME    NOT NULL,' +
-      'Size           BIGINT      NOT NULL,' +
-      'Nombre         TEXT        NOT NULL,' +
-      'ImageIndex     INTEGER     NOT NULL,' +
-      'IdPadre        BIGINT,' +
-      'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-      'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-      'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +
+      // Crea la tabla de datos
+      SQL := 'CREATE TABLE IF NOT EXISTS Datos (' +
+        'Id             BIGINT PRIMARY KEY,' +
+        'Tipo           INTEGER     NOT NULL,' +
+        'Atributos      INTEGER     NOT NULL,' +
+        'Fecha          DATETIME    NOT NULL,' +
+        'Size           BIGINT      NOT NULL,' +
+        'Nombre         TEXT        NOT NULL,' +
+        'ImageIndex     INTEGER     NOT NULL,' +
+        'IdPadre        BIGINT,' +
+        'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+        'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+        'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +
+        ');';
 
-      ');';
+      FDataBase.SQL(SQL);
 
-    FDataBase.SQL(SQL);
+      // Crea el índice de la tabla de datos
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);';
+      FDataBase.SQL(SQL);
 
-    // Crea el índice de la tabla de datos
-    SQL := 'CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);';
-    FDataBase.SQL(SQL);
+    finally
+      // Cierra la query
+      FDataBase.Query.Close;
+    end;
 
   finally
     // Se finaliza la seccion critica
@@ -343,8 +358,14 @@ begin
         FDataBase.Query.ParamByName('EXTENSION').AsString   := Extension.Nombre;
         FDataBase.Query.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
 
-        // Realiza la inserción
-        FDataBase.Query.ExecSQL;
+        try
+          // Realiza la inserción
+          FDataBase.Query.ExecSQL;
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+
       finally
         // Se finaliza la seccion critica
         LeaveCriticalSection(FCriticalSection);
@@ -375,8 +396,14 @@ begin
         FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Ruta.IdCatalogo;
         FDataBase.Query.ParamByName('RUTA').AsString         := Ruta.Nombre;
 
-        // Realiza la inserción
-        FDataBase.Query.ExecSQL;
+        try
+          // Realiza la inserción
+          FDataBase.Query.ExecSQL;
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+
       finally
         // Se finaliza la seccion critica
         LeaveCriticalSection(FCriticalSection);
@@ -394,7 +421,6 @@ begin
   DoInserteUpdateCatalogo(Catalogo, false);
 end;
 
-
 // Añade un dato a la base de datos
 procedure TConectorDatos.AddDato(Dato : TItemDato);
 begin
@@ -410,7 +436,7 @@ begin
 
         if Dato.IdPadre = 0 then
         begin
-         FDataBase.Query.SQL.Add(SQL_INSERT_DATO);
+          FDataBase.Query.SQL.Add(SQL_INSERT_DATO);
         end
         else
         begin
@@ -430,9 +456,14 @@ begin
         FDataBase.Query.ParamByName('IDRUTACOMPLETA').AsLargeInt := Dato.IdRutaCompleta;
         FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt     := Dato.IdCatalogo;
 
+        try
+          // Realiza la inserción
+          FDataBase.Query.ExecSQL;
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
 
-        // Realiza la inserción
-        FDataBase.Query.ExecSQL;
       finally
         // Se finaliza la seccion critica
         LeaveCriticalSection(FCriticalSection);
@@ -483,9 +514,6 @@ begin
   // Añade el id
   Result.Id := QWord(FDataBase.Query.FieldByName('ID').AsLargeInt);
 end;
-
-
-
 
 // Devuelve todos los catalogos
 function TConectorDatos.GetAllCatalogos() : TArrayItemDato;
@@ -708,7 +736,6 @@ begin
       result := DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_CATALOGO_BY_ID, 'IDCATALOGO');
 end;
 
-
 // Elimina datos de una tabla a partir de un parametro
 function TConectorDatos.DoDeleteFromTableByIdParametro(Id : qword; Sql : string; const Parametro : string) : boolean;
 begin
@@ -749,7 +776,6 @@ begin
     //on e: Exception do
   end;
 end;
-
 
 // Elimina un Item de una tabla
 function TConectorDatos.DoDeleteItemFromTableById(IdCatalogo : qword; Id : qword; Sql : string) : boolean;
@@ -852,7 +878,6 @@ begin
   DoInserteUpdateCatalogo(Catalogo, true);
 end;
 
-
 // Añade/Actualiza un catálogo a la base de datos
 procedure TConectorDatos.DoInserteUpdateCatalogo(Catalogo : TItemCatalogo; IsUpdate : boolean);
 begin
@@ -886,18 +911,32 @@ begin
             FDataBase.Query.ParamByName('TOTALSIZE').AsLargeInt        := Catalogo.Size;
           end;
 
-          // Realiza la inserción
-          FDataBase.Query.ExecSQL;
+
+          try
+            // Realiza la inserción
+            FDataBase.Query.ExecSQL;
+
+          finally
+            // Cierra la query
+            FDataBase.Query.Close;
+          end;
+
 
           if not IsUpdate then
           begin
             // Prepara la query
             FDataBase.Query.Close;
             FDataBase.Query.SQL.Clear;
-            FDataBase.Query.SQL.Add('INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, ' + inttostr(int64(Catalogo.Id)) + ', "/");');
 
-            // Realiza la inserción
-            FDataBase.Query.ExecSQL;
+            // Prepara la query
+            FDataBase.Query.SQL.Add('INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, ' + inttostr(int64(Catalogo.Id)) + ', "/");');
+            try
+              // Realiza la inserción
+              FDataBase.Query.ExecSQL;
+            finally
+              // Cierra la query
+              FDataBase.Query.Close;
+            end;
           end;
 
       finally
@@ -915,6 +954,9 @@ end;
 
 
 {$IFDEF TESTEAR_SENTENCIAS}
+
+//TODO: Que tenga directivas de compilación para que no se incluya en la versión final
+
 procedure TConectorDatos.TestSentencias();
 
   procedure InsertarExtensiones();
@@ -1007,11 +1049,16 @@ procedure TConectorDatos.TestSentencias();
   end;
 
 begin
-  // Inserta extensiones
-  // InsertarExtensiones();
 
+{$IFDEF TESTEAR_SENTENCIAS_INSERTAR_EXTENSIONES}
+  // Inserta extensiones
+  InsertarExtensiones();
+{$ENDIF TESTEAR_SENTENCIAS_INSERTAR_EXTENSIONES}
+
+{$IFDEF TESTEAR_SENTENCIAS_INSERTAR_CATALOGO}
   // Inserta Catalogo
-  // InsertarCatalogo();
+  InsertarCatalogo();
+{$ENDIF TESTEAR_SENTENCIAS_INSERTAR_CATALOGO}
 
   // Obtiene todos los catalogos
   GetTodosCatalogos();
@@ -1022,33 +1069,43 @@ begin
 
         if Cat <> nil then
         begin
-          Cat.Nombre      := Cat.Nombre + ' - modificado desde el test';
-          Cat.Descripcion := Cat.Descripcion + ' - modificada desde el test';
-          Cat.Fecha       := now;
-
-          UpdateCatalogo(Cat);
-
+          {$IFDEF TESTEAR_SENTENCIAS_UPDATE_CATALOGO}
+            Cat.Nombre      := Cat.Nombre + ' - modificado desde el test';
+            Cat.Descripcion := Cat.Descripcion + ' - modificada desde el test';
+            Cat.Fecha       := now;
+            UpdateCatalogo(Cat);
+          {$ENDIF TESTEAR_SENTENCIAS_UPDATE_CATALOGO}
           Cat.Free;
         end;
 
+{$IFDEF TESTEAR_SENTENCIAS_INSERTAR_RUTAS_COMPLETAS}
       // Inserta rutas  completas
-      //InsertarRutasCompletas(catalogos[0]{%H-}.Id);
+      InsertarRutasCompletas(catalogos[0]{%H-}.Id);
+{$ENDIF TESTEAR_SENTENCIAS_INSERTAR_RUTAS_COMPLETAS}
 
+
+
+{$IFDEF TESTEAR_SENTENCIAS_INSERTAR_DATOS}
       // Inserta datos
-      //InsertarDatos(catalogos[0]{%H-}.Id);
+      InsertarDatos(catalogos[0]{%H-}.Id);
+{$ENDIF TESTEAR_SENTENCIAS_INSERTAR_DATOS}
+
 
       // Obtiene todos los datos del catalogo 0
       Datos := GetDatos(TItemCatalogo(catalogos[0]), nil);
       if (Datos <> nil) And (Datos.count >= 1) then
         begin
+{$IFDEF TESTEAR_SENTENCIAS_DELETE_DATOS}
           DeleteDato(TItemDato(Datos[0]));
+{$ENDIF TESTEAR_SENTENCIAS_DELETE_DATOS}
+
           Datos.Clear;
           Datos.Free;
         end;
 
-      //DeleteCatalogo(catalogos[0]{%H-}.Id);
-      //DeleteCatalogo(catalogos[0]{%H-}.Id);
-      //DeleteCatalogo(catalogos[0]{%H-}.Id);
+{$IFDEF TESTEAR_SENTENCIAS_DELETE_CATALOGOS}
+      DeleteCatalogo(catalogos[0]{%H-}.Id);
+{$ENDIF TESTEAR_SENTENCIAS_DELETE_CATALOGOS}
 
     end;
   finally

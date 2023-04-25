@@ -1,4 +1,7 @@
 
++ 1.0.7.9
+- [NEW]   (20230425) Agregado directivas de compilación para activar los test de sentencias
+- [FIX]   (20230425) Cierra todas las conexiones a la base de datos al terminar las cada acción sobre la misma.
 - [NEW]   (20230425) Agregado a TConectorDatos.UpdateCatalogo.
 - [NEW]   (20230425) Al eliminar una fila de la tabla Datos elimina de la Tabla RutaCompleta la misma si no hay referencias a ella.
 
