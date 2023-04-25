@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-25 23:17:16
+ * @Last Modified time: 2023-04-25 23:51:43
  *)
 {
 
@@ -927,7 +927,7 @@ begin
             FDataBase.Query.SQL.Clear;
 
             // Prepara la query
-            FDataBase.Query.SQL.Add('INSERT INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, ' + inttostr(int64(Catalogo.Id)) + ', "/");');
+            FDataBase.Query.SQL.Add('INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, ' + inttostr(int64(Catalogo.Id)) + ', "/");');
             try
               // Realiza la inserción
               FDataBase.Query.ExecSQL;

@@ -1,5 +1,6 @@
 
-+ 1.0.8.0
++ 1.0.8.1
+- [FIX]   (20230425) Fix Test de insertar RutasCompletas
 - [NEW]   (20230425) Agregado a Sqlite3 - Control de excepciones.
 - [NEW]   (20230425) Agregado directivas de compilación para activar los test de sentencias
 - [FIX]   (20230425) Cierra todas las conexiones a la base de datos al terminar las cada acción sobre la misma.
