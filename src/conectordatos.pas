@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-24 19:32:29
+ * @Last Modified time: 2023-04-25 18:31:36
  *)
 {
 
@@ -54,22 +54,23 @@ uses
 
 
 const
-  SQL_INSERT_EXTENSION      = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
-  SQL_INSERT_RUTA_COMPLETA  = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
-  SQL_INSERT_CATALOGO       = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
-  SQL_INSERT_DATO_PADRE     = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
-  SQL_INSERT_DATO           = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO);';
+  SQL_INSERT_EXTENSION                     = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
+  SQL_INSERT_RUTA_COMPLETA                 = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
+  SQL_INSERT_CATALOGO                      = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
+  SQL_INSERT_DATO_PADRE                    = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
+  SQL_INSERT_DATO                          = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO);';
 
-  SQL_SELECT_CATALOGO_ALL             = 'SELECT * FROM Catalogos;';
-  SQL_SELECT_CATALOGO_BY_ID           = 'SELECT * FROM Catalogos WHERE id = :ID;';
-  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID = 'SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id JOIN Extensiones AS ex ON dt.IdExtension = ex.Id WHERE dt.IdCatalogo = :IDCATALOGO';
-  SQL_SELECT_DATOS_ALL_BY_PARENT_ID   = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND dt.IdPadre = :IDPADRE';
+  SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
+  SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
+  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      = 'SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id JOIN Extensiones AS ex ON dt.IdExtension = ex.Id WHERE dt.IdCatalogo = :IDCATALOGO';
+  SQL_SELECT_DATOS_ALL_BY_PARENT_ID        = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND dt.IdPadre = :IDPADRE';
 
   SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
   SQL_DELETE_DATOS_BY_ID_CATALOGO          = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO';
   SQL_DELETE_DATO_BY_IDS                   = SQL_DELETE_DATOS_BY_ID_CATALOGO + ' AND (Id = :ID OR IdPadre = :ID);';
   SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO  = 'DELETE FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO;';
   SQL_DELETE_RUTA_COMPLETA_BY_IDS          = SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO + ' AND Id = :ID;';
+  SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS = 'DELETE FROM RutaCompleta WHERE Id = :ID AND IdCatalogo = :IDCATALOGO AND NOT EXISTS (SELECT 1 FROM Datos WHERE IdRutaCompleta = :ID);';
 
 
 type
@@ -84,6 +85,9 @@ type
 
     // Elimina un Item de una tabla
     function DoDeleteItemFromTableById(IdCatalogo : qword; Id : qword; Sql : string) : boolean;
+
+    // Elimina las rutas completas que no tengan referencias en la tabla Datos
+    function DoDeleteRutasCompletasSinReferencias(Dato : TItemDato) : boolean;
   public
     // Constructor
     constructor Create;
@@ -211,7 +215,7 @@ begin
 
 {$IFDEF TESTEAR_SENTENCIAS}
   // Al estar activo esto, elimina todas las tablas
-  EliminarAllTablas();
+  //EliminarAllTablas();
 {$ENDIF TESTEAR_SENTENCIAS}
 
   // Se inicia la seccion critica
@@ -821,14 +825,58 @@ begin
   end;
 end;
 
-
 // Elimina un dato
 function TConectorDatos.DeleteDato(Dato : TItemDato) : boolean;
 begin
   Result := DoDeleteItemFromTableById(Dato.IdCatalogo, Dato.Id, SQL_DELETE_DATO_BY_IDS);
+  if Result then
+    begin
+      // Elimina las rutas completas que no tengan referencias en la tabla Datos
+      DoDeleteRutasCompletasSinReferencias(Dato);
+    end;
 end;
 
+// Elimina las rutas completas que no tengan referencias en la tabla Datos
+function TConectorDatos.DoDeleteRutasCompletasSinReferencias(Dato : TItemDato) : boolean;
+begin
+  // Inicializa el resultado
+  Result := false;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
 
+        // Prepara la query
+        FDataBase.Query.SQL.Text := SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS;
+        try
+          // Hace la eliminación con un prepared statement
+          FDataBase.Query.ParamByName('ID').AsLargeInt         := Dato.IdRutaCompleta;
+          FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Dato.IdCatalogo;
+
+          // Ejecuta la sentencia
+          FDataBase.Query.ExecSQL;
+
+          // Inicializa el resultado
+          Result := true;
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    //TODO: Añadir Gestión de Excepción
+    //on e: Exception do
+  end;
+end;
 
 {$IFDEF TESTEAR_SENTENCIAS}
 procedure TConectorDatos.TestSentencias();
@@ -924,10 +972,10 @@ procedure TConectorDatos.TestSentencias();
 
 begin
   // Inserta extensiones
-  InsertarExtensiones();
+  // InsertarExtensiones();
 
   // Inserta Catalogo
-  InsertarCatalogo();
+  // InsertarCatalogo();
 
   // Obtiene todos los catalogos
   GetTodosCatalogos();
@@ -942,16 +990,16 @@ begin
         end;
 
       // Inserta rutas  completas
-      InsertarRutasCompletas(catalogos[0]{%H-}.Id);
+      //InsertarRutasCompletas(catalogos[0]{%H-}.Id);
 
       // Inserta datos
-      InsertarDatos(catalogos[0]{%H-}.Id);
+      //InsertarDatos(catalogos[0]{%H-}.Id);
 
       // Obtiene todos los datos del catalogo 0
       Datos := GetDatos(TItemCatalogo(catalogos[0]), nil);
       if (Datos <> nil) And (Datos.count >= 1) then
         begin
-          DeleteDato(TItemDato(Datos[1]));
+          DeleteDato(TItemDato(Datos[0]));
           Datos.Clear;
           Datos.Free;
         end;

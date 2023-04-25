@@ -1,4 +1,7 @@
 
+
+- [NEW]   (20230425) Al eliminar una fila de la tabla Datos elimina de la Tabla RutaCompleta la misma si no hay referencias a ella.
+
 + 1.0.7.5
 - [FIX]   (20230424) Ahora algunos métodos tienen como parámetros objetos en vez del id de los mismos.
 
