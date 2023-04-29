@@ -40,7 +40,7 @@
 -         Motor de escaneo de dispositivos y directorios - Extraer id de la ruta completa.
 -         Motor de escaneo de dispositivos y directorios - Extraer id de la extensión.
 -         Motor de escaneo de dispositivos y directorios - Extraer id de la imagen que ha de mostrar por defecto.
--         Motor de escaneo de dispositivos y directorios - Que la ruta completa no incluya el nombre del catalogo.
++         Motor de escaneo de dispositivos y directorios - Que la ruta completa no incluya el nombre del catalogo.
 
 +         Agregar Sqlite3 - Versiones x64 y x86
 +         Agregar Sqlite3 - Crear base de datos

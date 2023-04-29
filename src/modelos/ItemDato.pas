@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-29 17:05:38
+ * @Last Modified time: 2023-04-29 18:08:44
  *)
 {
 
@@ -305,7 +305,7 @@ begin
   Padre := FParent;
 
   // Recorremos los padres
-  while ((Padre <> nil) and (Padre.Nombre <> '') and ((Padre.Tipo <> TItemDatoTipo.NoDefinido) or (Padre.Tipo <> TItemDatoTipo.Root))) do
+  while ((Padre <> nil) and (Padre.Nombre <> '') and (Padre.Tipo < TItemDatoTipo.Root)) do
     begin
       // Añadimos el nombre del padre
       Result :=  IncludeTrailingBackslash(Padre.Nombre) + Result;
@@ -313,6 +313,8 @@ begin
       // Obtenemos el padre del padre
       Padre := Padre.FParent;
     end;
+
+
 end;
 
 

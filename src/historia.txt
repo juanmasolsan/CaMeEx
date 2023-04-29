@@ -1,5 +1,5 @@
 
-
+- [FIX]   (20230429) Al obtener la ruta completa de un dato no se incluye el nombre del catalogo.
 - [NEW]   (20230429) Agregado a TMotorScan los nuevos tipos de datos
 - [NEW]   (20230429) Ofuscada la contraseña de la base de datos
 - [NEW]   (20230429) Agregado soporte para usar sqlcipher
