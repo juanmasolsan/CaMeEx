@@ -31,7 +31,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="33" Y="9"/>
+        <CursorPos X="61" Y="16"/>
         <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -96,11 +96,12 @@
         <UsageCount Value="43"/>
       </Unit>
       <Unit>
-        <Filename Value="UnidadScan.pas"/>
+        <Filename Value="unidadscan.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormScan"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UnidadScan"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="97"/>
         <CursorPos X="85" Y="102"/>

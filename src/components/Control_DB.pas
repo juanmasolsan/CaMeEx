@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:15:29
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-20 18:46:19
+ * @Last Modified time: 2023-04-29 14:04:57
  *)
 {
 
@@ -215,7 +215,13 @@ begin
 
   // Se asignan las propiedades
   FConnection.DatabaseName    := FArchivoDB;
-  FConnection.Connected       := True;
+  ///FConnection.Connected       := True;
+
+  //FConnection.Password        := '123456';
+  FConnection.LoginPrompt     := true;
+
+
+  FConnection.Open;
 
   // Se optimitan las tablas
   SQLite3_OptimizarTabla;
@@ -293,6 +299,9 @@ var
   end;
 
 begin
+
+  DoSQL('PRAGMA key = "'+ FPassword + '";');
+
   // Se añaden las mejoras a la tabla
   DoSQL('PRAGMA journal_mode = TRUNCATE;');
   _DoSQL('PRAGMA wal_autocheckpoint = 16;');   //* number of 32KiB pages in a 512KiB journal */

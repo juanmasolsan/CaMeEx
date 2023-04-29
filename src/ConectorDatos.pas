@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-25 23:51:43
+ * @Last Modified time: 2023-04-29 14:21:41
  *)
 {
 
@@ -33,6 +33,8 @@ SOFTWARE.
 unit ConectorDatos;
 
 {$mode ObjFPC}{$H+}
+
+{$DEFINE USAR_SQLCIPHER}
 {$DEFINE TESTEAR_SENTENCIAS}
 
 {$IFDEF TESTEAR_SENTENCIAS}
@@ -203,14 +205,27 @@ end;
 
 // Conecta con la base de datos
 procedure TConectorDatos.Iniciar(Curdir: string; SaveDir : string);
+var
+  ArchivoDB : string = 'catalogos.cme';
+  Libreria : string = 'sqlite3.dll';
+
 begin
+
+  {$IFDEF USAR_SQLCIPHER}
+    // si está activa la directiva de compilación, usamos sqlcipher
+    ArchivoDB := 'catalogos.cmes';
+    Libreria  := 'sqlcipher.dll';
+  {$ENDIF}
+
   try
-    FDataBase := TConexion_DB.Create(IncludeTrailingBackslash(SaveDir) + 'catalogos.db',
+    FDataBase := TConexion_DB.Create(IncludeTrailingBackslash(SaveDir) + ArchivoDB,
                     'sqlite-3',
                     '',
-                    '',
+                    'CaMeEx',
                     //TODO: revisar para poder usarse en linux
-                    IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64'{$ELSE} 'x86'{$ENDIF} + '/sqlite3.dll');
+                    //IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64'{$ELSE} 'x86'{$ENDIF} + '/sqlite3.dll'
+                    IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64/'{$ELSE} 'x86/'{$ENDIF} + Libreria
+                    );
 
     // Crea las tablas si no existen
     CrearTablas();

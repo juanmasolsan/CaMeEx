@@ -1,4 +1,7 @@
 
+
+- [NEW]   (20230425) Agregado soporte para usar sqlcipher
+
 + 1.0.8.1
 - [FIX]   (20230425) Fix Test de insertar RutasCompletas
 - [NEW]   (20230425) Agregado a Sqlite3 - Control de excepciones.
