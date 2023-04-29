@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 16:39:00
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-25 19:05:58
+ * @Last Modified time: 2023-04-29 17:15:28
  *)
 {
 
@@ -39,12 +39,13 @@ interface
 uses
   SysUtils
   , ItemBaseDatos
+  , ItemDato
 ;
 
 type
 
   { TItemCatalogo }
-  TItemCatalogo = class(TItemBaseDatos)
+  TItemCatalogo = class(TItemDato)
   private
     FDescripcion     : RawByteString;
     FTotalArchivos   : Qword;

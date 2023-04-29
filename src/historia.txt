@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230429) Agregado a TMotorScan los nuevos tipos de datos
 - [NEW]   (20230429) Ofuscada la contraseña de la base de datos
 - [NEW]   (20230429) Agregado soporte para usar sqlcipher
 

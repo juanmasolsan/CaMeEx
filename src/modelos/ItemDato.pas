@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-17 17:10:37
+ * @Last Modified time: 2023-04-29 17:05:38
  *)
 {
 
@@ -105,6 +105,9 @@ type
       AIdCatalogo          : Qword;
       AIdPadre             : Qword
     );
+
+    // Constructores de la clase
+    constructor Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64 = 0);
 
     // Destructor de la clase
     destructor Destroy; override;
@@ -218,6 +221,19 @@ begin
 
   // Inicializamos la lista de hijos
   FHijos             := TArrayItemDato.Create;
+end;
+
+constructor TItemDato.Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64 = 0);
+begin
+  Create(ANombre, ATipo, AFecha, ASize,
+      0,
+      '',
+      0,
+      0,
+      0,
+      0,
+      0
+      );
 end;
 
 // Destructor de la clase

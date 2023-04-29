@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-12 22:54:52
+ * @Last Modified time: 2023-04-29 17:25:09
  *)
 {
 
@@ -111,9 +111,13 @@ implementation
 
 uses appinfo
 , Control_About
-, ItemData
+
 , Utilidades
 , ConectorDatos
+, ItemBaseDatos
+, ItemCatalogo
+, ItemDato
+
 ;
 
 {$R *.lfm}
@@ -242,10 +246,10 @@ end;
 
 procedure TForm1.DoOnTerminarScanAsync();
 
-  procedure ProcesarHijo(Ruta: string; Item : TDatoItem);
+  procedure ProcesarHijo(Ruta: string; Item : TItemDato);
   var
     t, total : integer;
-    Actual : TDatoItem;
+    Actual : TItemDato;
   begin
     if item <> nil then
     begin
@@ -263,7 +267,7 @@ procedure TForm1.DoOnTerminarScanAsync();
 
 var
   t, total : integer;
-  Item     : TDatoItem;
+  Item     : TItemDato;
 begin
 
   if assigned(FVentanaScan) then

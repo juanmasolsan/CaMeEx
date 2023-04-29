@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 14:32:15
+ * @Last Modified time: 2023-04-29 17:42:34
  *)
 {
 
@@ -45,7 +45,11 @@ uses
   , FileUtil
   , LazFileUtils
   , LazUTF8
-  , ItemData
+  , ItemBaseDatos
+  , ItemCatalogo
+  , ItemDato
+
+
   ;
 
 
@@ -58,7 +62,7 @@ type
   private
     FDetener_Escaneo_Busqueda_Archivos: boolean;
     FMascaraArchivo                   : RawByteString;
-    FRoot                             : TDatoItem;
+    FRoot                             : TItemCatalogo;
     FTotalArchivos                    : Integer;
     FTotalDirectorios                 : Integer;
     FTotalSize                        : Int64;
@@ -86,10 +90,10 @@ type
     function GetRutaProcesar(Ruta : RawByteString): RawByteString; virtual;
 
     // Procesa un archivo o directorio encontrado
-    function DoProcesarItem(const SearchRec: TSearchRec; const Padre: TDatoItem) : TDatoItem; virtual;
+    function DoProcesarItem(const SearchRec: TSearchRec; const Padre: TItemDato) : TItemDato; virtual;
 
     // Realiza un escaneo de archivos y directorios recursivo de un directorio dado
-    procedure DoScanDir(Directorio : RawByteString; Padre: TDatoItem);
+    procedure DoScanDir(Directorio : RawByteString; Padre: TItemDato);
 
     // Evento que se ejecuta cuando termina el escaneo Async
     procedure DoTerminarScanAsync(); virtual;
@@ -116,8 +120,8 @@ type
     function IsExcluido(Actual : string) : boolean;
 
     // Propiedades de la clase
-    property MascaraArchivo : RawByteString read FMascaraArchivo write FMascaraArchivo;
-    property Root  : TDatoItem read FRoot;
+    property MascaraArchivo   : RawByteString read FMascaraArchivo write FMascaraArchivo;
+    property Root             : TItemCatalogo read FRoot;
 
     // Contadores de archivos y directorios encontrados
     property TotalArchivos    : Integer read GetTotalArchivos;
@@ -186,7 +190,8 @@ constructor TMotorScanCustom.Create();
 begin
   inherited Create();
 
-  FRoot                              := TDatoItem.create(TDatoItemTipo.Root);
+  //TODO: Pasarle un nombre, el tipo de objeto y la descripcion
+  FRoot                              := TItemCatalogo.create('ROOT', TItemDatoTipo.Root, now(), 0, 'Descripcion', 0, 0);
   FDetener_Escaneo_Busqueda_Archivos := false;
   FMascaraArchivo                    := '*';
   FListaExclusion                    := TStringList.Create;
@@ -253,13 +258,13 @@ begin
 end;
 
 // Inicia un escaneo de archivos y directorios de un directorio dado
-procedure TMotorScanCustom.DoScanDir(Directorio : RawByteString; Padre: TDatoItem);
+procedure TMotorScanCustom.DoScanDir(Directorio : RawByteString; Padre: TItemDato);
 var
   RootName   : RawByteString;
   DosError   : Integer;
   SearchRec  : TSearchRec;
   FlagsDir   : Integer = faAnyFile;
-  Actual     : TDatoItem;
+  Actual     : TItemDato;
 
 begin
   // Obtener la ruta a procesar con la MascaraArchivo
@@ -314,10 +319,10 @@ begin
 end;
 
 // Procesa un archivo o directorio encontrado
-function TMotorScanCustom.DoProcesarItem(const SearchRec: TSearchRec; const Padre: TDatoItem) : TDatoItem;
+function TMotorScanCustom.DoProcesarItem(const SearchRec: TSearchRec; const Padre: TItemDato) : TItemDato;
 var
-  Item        : TDatoItem;
-  Tipo        : TDatoItemTipo;
+  Item        : TItemDato;
+  Tipo        : TItemDatoTipo;
   Id          : Qword = 0;
   IdData      : RawByteString;
   RutaCompleta: RawByteString;
@@ -326,7 +331,7 @@ begin
   // Determinar el tipo de archivo o directorio
   if (SearchRec.Attr and faDirectory)= faDirectory then
     begin
-      Tipo := TDatoItemTipo.Directorio;
+      Tipo := TItemDatoTipo.Directorio;
 
       // Protección de acceso concurrente
       EnterCriticalSection(FCriticalSection_Totales);
@@ -338,7 +343,7 @@ begin
     end
   else
     begin
-      Tipo := TDatoItemTipo.Archivo;
+      Tipo := TItemDatoTipo.Archivo;
 
       // Protección de acceso concurrente
       EnterCriticalSection(FCriticalSection_Totales);
@@ -369,18 +374,25 @@ begin
   // Generar el Id a partir de la string anterior (Basado en CRC64)
   Id := CRC64_From_String(IdData);
 
-  // Crear el objeto TDatoItem
-  Item := TDatoItem.Create(Id,
+  // Crear el objeto TItemDato
+  Item := TItemDato.Create(SearchRec.Name,
                             Tipo,
-                            SearchRec.Attr,
                             FileDateToDateTime(SearchRec.Time),
                             SearchRec.Size,
-                            SearchRec.Name);
+                            SearchRec.Attr,
+                            //TODO: Conseguir todos los datos del item
+                            '',
+                            0,
+                            0,
+                            0,
+                            FRoot.Id,
+                            0
+    );
 
-  // Añadir el objeto TDatoItem al padre
+  // Añadir el objeto TItemDato al padre
   Padre.AddHijo(Item);
 
-  // Devolver el objeto TDatoItem
+  // Devolver el objeto TItemDato
   Result := Item;
 
   //Sleep(10); //TODO: Eliminar solo es para probar el funcionamiento con directorios pequeños

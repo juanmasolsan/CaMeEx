@@ -55,12 +55,11 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="unidadprincipal.pas"/>
+        <Filename Value="UnidadPrincipal.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="UnidadPrincipal"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
@@ -71,9 +70,8 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="appinfo.pas"/>
+        <Filename Value="AppInfo.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="AppInfo"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
@@ -101,17 +99,15 @@
         <UnitName Value="Utilidades"/>
       </Unit>
       <Unit>
-        <Filename Value="unidadscan.pas"/>
+        <Filename Value="UnidadScan.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormScan"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="UnidadScan"/>
       </Unit>
       <Unit>
-        <Filename Value="components\control_logger.pas"/>
+        <Filename Value="components\Control_Logger.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Control_Logger"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
