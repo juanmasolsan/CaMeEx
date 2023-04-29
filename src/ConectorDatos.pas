@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-29 14:21:41
+ * @Last Modified time: 2023-04-29 15:52:37
  *)
 {
 
@@ -86,6 +86,16 @@ const
 
   SQL_UPDATE_CATALOGO                      = 'UPDATE Catalogos SET Nombre=:NOMBRE, Descripcion=:DESCRIPCION, Tipo=:TIPO, Fecha=:FECHA WHERE Id=:ID;';
 
+
+Type
+  TPass = array[1..8] of char;
+
+const
+  // Clave para codificar y ofuscar la contraseña de la base de datos
+  PASS_ENCODE_PASSWORD =  $0123456789012345;
+
+  // Pasword para usar en la base de datos (ofuscada): Ca_Me_Ex
+  PASSWORD_DB = $78455F654D5F6143 + $0123456789012345; // Sumo PASS_ENCODE_PASSWORD para que quede ofuscada la contraseña en el ejecutable
 
 type
   { TConectorDatos }
@@ -206,8 +216,10 @@ end;
 // Conecta con la base de datos
 procedure TConectorDatos.Iniciar(Curdir: string; SaveDir : string);
 var
-  ArchivoDB : string = 'catalogos.cme';
+  ArchivoDB: string = 'catalogos.cme';
   Libreria : string = 'sqlite3.dll';
+  Pass     : TPass;
+  entrada  : Qword = PASSWORD_DB;
 
 begin
 
@@ -218,10 +230,16 @@ begin
   {$ENDIF}
 
   try
+    // Desencripta la contraseña
+    entrada -= PASS_ENCODE_PASSWORD;
+
+    // int64 to array of Char
+    Move(entrada, Pointer(@Pass)^, SizeOf(TPass));
+
     FDataBase := TConexion_DB.Create(IncludeTrailingBackslash(SaveDir) + ArchivoDB,
                     'sqlite-3',
                     '',
-                    'CaMeEx',
+                    String(Pass),
                     //TODO: revisar para poder usarse en linux
                     //IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64'{$ELSE} 'x86'{$ENDIF} + '/sqlite3.dll'
                     IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64/'{$ELSE} 'x86/'{$ENDIF} + Libreria

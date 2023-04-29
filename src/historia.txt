@@ -1,6 +1,6 @@
 
-
-- [NEW]   (20230425) Agregado soporte para usar sqlcipher
+- [NEW]   (20230429) Ofuscada la contraseña de la base de datos
+- [NEW]   (20230429) Agregado soporte para usar sqlcipher
 
 + 1.0.8.1
 - [FIX]   (20230425) Fix Test de insertar RutasCompletas
