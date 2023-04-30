@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 18:18:36
+ * @Last Modified time: 2023-04-30 18:42:00
  *)
 {
 
@@ -214,9 +214,10 @@ begin
   FVentanaScan := TFormScan.CreateEx(self, FScan);
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-  FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
+  //FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
+  FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '');
   {$ELSE}
-  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync);
+  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '');
   {$ENDIF}
 //  Timer1.Enabled := true;
 
@@ -316,8 +317,32 @@ begin
 end;
 
 procedure TForm1.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
+
+  procedure ProcesarHijo(Item : TItemDato);
+  var
+    t, total : integer;
+    Actual : TItemDato;
+  begin
+    if item <> nil then
+    begin
+      total := item.HijosCount()-1;
+      for t := 0 to total do
+      begin
+        Actual := item.GetHijo(t);
+
+        // Guarda los datos del archivo o directorio
+        SistemaGuardado.AddDato(Actual);
+
+        // Guarda los datos de todo los hijos
+        ProcesarHijo(Actual);
+      end;
+    end;
+  end;
+
+
 var
   t, total : integer;
+  Item     : TItemDato;
 begin
   if assigned(Scan) then
   begin
@@ -343,6 +368,23 @@ begin
     begin
       SistemaGuardado.AddRutaCompleta(TItemRutaCompleta(Scan.ListaRutaCompleta.Items[t]));
     end;
+
+
+    // Guarda los datos de los archivos y directorios
+    total := FScan.Root.HijosCount()-1;
+    for t := 0 to total do
+    begin
+      Item := FScan.Root.GetHijo(t);
+      if item <> nil then
+      begin
+        // Guarda los datos del archivo o directorio
+        SistemaGuardado.AddDato(Item);
+
+        // Guarda los datos de todo los hijos
+        ProcesarHijo(Item);
+      end;
+    end;
+
 
   end;
 end;

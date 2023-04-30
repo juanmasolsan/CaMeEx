@@ -36,12 +36,13 @@
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder excluir del scan con patrones.
 +         Motor de escaneo de dispositivos y directorios - Control de excepciones
 +         Motor de escaneo de dispositivos y directorios - Comprobar nombre Unicode, como el chino o el japonés.
--         Motor de escaneo de dispositivos y directorios - Guardado en la base de datos.
++         Motor de escaneo de dispositivos y directorios - Guardado en la base de datos.
 +         Motor de escaneo de dispositivos y directorios - Extraer id de la ruta completa.
 +         Motor de escaneo de dispositivos y directorios - Extraer id de la extensión.
 +         Motor de escaneo de dispositivos y directorios - Extraer id de la imagen que ha de mostrar por defecto.
 +         Motor de escaneo de dispositivos y directorios - Que la ruta completa no incluya el nombre del catalogo.
 -         Motor de escaneo de dispositivos y directorios - Al Extraer la ruta completa que convierta las \ en /.
+-         Motor de escaneo de dispositivos y directorios - Discrepancias entre el total encontrado y el total de items que guarda en la bd
 
 +         Agregar Sqlite3 - Versiones x64 y x86
 +         Agregar Sqlite3 - Crear base de datos
