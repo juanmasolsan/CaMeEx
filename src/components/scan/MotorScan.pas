@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 17:42:42
+ * @Last Modified time: 2023-04-30 23:24:45
  *)
 {
 
@@ -631,13 +631,20 @@ var
   datoRutaCompleta : TItemRutaCompleta;
 
 begin
+  // Se elimina el último separador de directorios
   RutaCompleta := ExtractFilePath(ExcludeTrailingPathDelimiter(RutaCompleta));
 
-  if (RutaCompleta = '') then
+  // Se convierte \ en /
+  RutaCompleta := StringReplace(RutaCompleta, '\', '/', [rfReplaceAll]);
+
+  // Si la ruta es vacía o es el directorio raíz
+  if (RutaCompleta = '') or (RutaCompleta = '/')
+  then
   begin
     result := 0;
     exit;
   end;
+
   // Si no existe la RutaCompleta en la lista de RutaCompleta
   datoRutaCompleta := TItemRutaCompleta(FListaRutaCompleta.Find(RutaCompleta));
   if datoRutaCompleta = nil then
