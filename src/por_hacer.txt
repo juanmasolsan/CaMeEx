@@ -42,7 +42,7 @@
 +         Motor de escaneo de dispositivos y directorios - Extraer id de la imagen que ha de mostrar por defecto.
 +         Motor de escaneo de dispositivos y directorios - Que la ruta completa no incluya el nombre del catalogo.
 +         Motor de escaneo de dispositivos y directorios - Al Extraer la ruta completa que convierta las \ en /.
--         Motor de escaneo de dispositivos y directorios - Discrepancias entre el total encontrado y el total de items que guarda en la bd
++         Motor de escaneo de dispositivos y directorios - Discrepancias entre el total encontrado y el total de items que guarda en la bd
 
 +         Agregar Sqlite3 - Versiones x64 y x86
 +         Agregar Sqlite3 - Crear base de datos

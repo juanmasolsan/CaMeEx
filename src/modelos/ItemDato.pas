@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 17:32:57
+ * @Last Modified time: 2023-05-01 00:08:48
  *)
 {
 
@@ -82,15 +82,12 @@ type
 
     FHijos               : TArrayItemDato;
     FParent              : TItemDato;
-
-
-
-
-
-
   protected
     // Obtiene el índice de la imagen del sistema
     function GetImageIndexSistema() : Integer; virtual;
+
+    // Para poder Generar el Id
+    function DoGenerarId(const extra: string): Qword; override;
   public
     // Constructores de la clase
     constructor Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64;
@@ -190,15 +187,6 @@ constructor TItemDato.Create(const ANombre: RawByteString; ATipo : TItemDatoTipo
     AIdPadre             : Qword
     );
 begin
-
-  // Inicializamos las propiedades
-  //FAtributos         := AAtributos;
-  //TODO: El nombre en el root sea el nombre del dispositivo/medio
-  //FNombre            := ANombre;
-
-  //TODO: Obtener la extensión del nombre
-  //FExtension         := AExtension;
-
   // Obtenemos los índices de las imágenes
   FImageIndex        := AImageIndex;
   FImageIndexSistema := GetImageIndexSistema();
@@ -211,10 +199,8 @@ begin
   FIdCatalogo        := AIdCatalogo;
   FIdPadre           := 0;
 
-
   // Llamamos al constructor de la clase padre
   inherited Create(ANombre, ATipo, AFecha, ASize);
-
 
   // Inicializamos la lista de hijos
   FHijos             := TArrayItemDato.Create;
@@ -311,11 +297,21 @@ begin
       // Obtenemos el padre del padre
       Padre := Padre.FParent;
     end;
-
-
 end;
 
-
+// Para poder Generar el Id
+function TItemDato.DoGenerarId(const extra: string): Qword;
+begin
+  Result := inherited DoGenerarId(extra
+    +  '|' + IntToStr(FAtributos)
+    +  '|' + FExtension
+    +  '|' + IntToStr(FImageIndex)
+    +  '|' + IntToStr(FImageIndexSistema)
+    +  '|' + IntToStr(FIdExtension)
+    +  '|' + IntToStr(FIdRutaCompleta)
+    +  '|' + IntToStr(FIdCatalogo)
+    +  '|' + IntToStr(FIdPadre));
+end;
 
 
 end.
