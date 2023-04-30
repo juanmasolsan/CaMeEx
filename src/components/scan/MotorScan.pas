@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 17:08:37
+ * @Last Modified time: 2023-04-30 17:42:42
  *)
 {
 
@@ -80,6 +80,7 @@ type
     FListaExclusion                   : TStringList;
 
     FListaExtensiones                 : TFPHashList;
+    FListaRutaCompleta                : TFPHashList;
 
 
     // Getters
@@ -109,6 +110,12 @@ type
 
     // Limpiar la lista de extensiones
     procedure DoLimpiarListaExtensiones();
+
+    // Devuelve el id de la ruta completa
+    function GetIdRutaCompleta(RutaCompleta: RawByteString; IdCatalog : Qword): qword;
+
+    // Limpiar la lista de rutas completas
+    procedure DoLimpiarListaRutaCompleta();
 
   public
     // Constructor de la clase
@@ -148,7 +155,10 @@ type
     property ScanFinal        : TDateTime read FScanFinal;
 
     // Lista de extensiones
-    property ListaExtensiones : TFPHashList read FListaExtensiones;
+    property ListaExtensiones  : TFPHashList read FListaExtensiones;
+
+    // Lista de Rutas Completas
+    property ListaRutaCompleta : TFPHashList read FListaRutaCompleta;
 
     // Evento que se ejecuta cuando termina el escaneo Async
     property OnTerminarScanAsync : TOnTerminarScanAsync read FOnTerminarScanAsync write FOnTerminarScanAsync;
@@ -170,7 +180,7 @@ uses
   Control_Contine
 , Control_Logger
 , Control_CRC
-, ItemExtension;
+, ItemExtension, ItemRutaCompleta;
 
 
 function IsExeByExtension(Ext: RawByteString): Boolean;
@@ -247,6 +257,7 @@ begin
   FMascaraArchivo                    := '*';
   FListaExclusion                    := TStringList.Create;
   FListaExtensiones                  := TFPHashList.Create;
+  FListaRutaCompleta                 := TFPHashList.Create;
 
   // Inicializar el objeto de sincronización
   InitializeCriticalSection(FCriticalSection_Totales);
@@ -266,6 +277,10 @@ begin
   // Eliminar la lista de extensiones
   DoLimpiarListaExtensiones();
   FListaExtensiones.Free;
+
+  // Eliminar la lista de rutas completas
+  DoLimpiarListaRutaCompleta();
+  FListaRutaCompleta.Free;
 
   // Eliminar el objeto de sincronización
   DeleteCriticalSection(FCriticalSection_Totales);
@@ -445,31 +460,16 @@ begin
                             Extension,
                             GetImageIndex(Extension, Tipo = TItemDatoTipo.Directorio),
                             GetIdExtension(Extension, Tipo = TItemDatoTipo.Directorio),
-                            0,
+                            GetIdRutaCompleta(RutaCompleta, FRoot.Id),
                             FRoot.Id,
                             0
     );
-
-
-(*
-
-    ++++++++++++++AAtributos           : Integer;
-    ++++++++++++++AExtension           : RawByteString;
-    ++++++++++++++AImageIndex          : Integer;
-    ++++++++++++++AIdExtension         : Qword;
-    AIdRutaCompleta      : Qword;
-    AIdCatalogo          : Qword;
-    AIdPadre             : Qword
-
-*)
 
   // Añadir el objeto TItemDato al padre
   Padre.AddHijo(Item);
 
   // Devolver el objeto TItemDato
   Result := Item;
-
-  //Sleep(10); //TODO: Eliminar solo es para probar el funcionamiento con directorios pequeños
 end;
 
 // Getter
@@ -625,6 +625,42 @@ begin
   FListaExtensiones.Clear();
 end;
 
+// Devuelve el id de la ruta completa
+function TMotorScanCustom.GetIdRutaCompleta(RutaCompleta: RawByteString; IdCatalog : Qword): qword;
+var
+  datoRutaCompleta : TItemRutaCompleta;
+
+begin
+  RutaCompleta := ExtractFilePath(ExcludeTrailingPathDelimiter(RutaCompleta));
+
+  if (RutaCompleta = '') then
+  begin
+    result := 0;
+    exit;
+  end;
+  // Si no existe la RutaCompleta en la lista de RutaCompleta
+  datoRutaCompleta := TItemRutaCompleta(FListaRutaCompleta.Find(RutaCompleta));
+  if datoRutaCompleta = nil then
+  begin
+    // Se crea el objeto TItemRutaCompleta y se añade a la lista de RutaCompleta
+    datoRutaCompleta := TItemRutaCompleta.Create(RutaCompleta, IdCatalog);
+    FListaRutaCompleta.Add(RutaCompleta, datoRutaCompleta);
+  end;
+
+  // Se devuelve el id de la extensión
+  result := datoRutaCompleta.Id;
+end;
+
+// Limpiar la lista de rutas completas
+procedure TMotorScanCustom.DoLimpiarListaRutaCompleta();
+var
+  t : integer;
+begin
+  for t := 0 to FListaRutaCompleta.Count - 1 do
+    TItemExtension(FListaRutaCompleta.Items[t]).Free();
+
+  FListaRutaCompleta.Clear();
+end;
 
 
 end.

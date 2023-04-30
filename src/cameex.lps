@@ -11,7 +11,7 @@
         <EditorIndex Value="11"/>
         <TopLine Value="18"/>
         <CursorPos X="60" Y="34"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -23,7 +23,7 @@
         <EditorIndex Value="12"/>
         <TopLine Value="147"/>
         <CursorPos Y="168"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -31,7 +31,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="49" Y="14"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -41,7 +41,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="20"/>
         <CursorPos X="30" Y="20"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -50,7 +50,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="10"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -60,7 +60,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="60" Y="39"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="motorscan.pas"/>
@@ -69,7 +69,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="56"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -78,21 +78,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
       </Unit>
       <Unit>
         <Filename Value="utilidades.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utilidades"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="44"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadScan.pas"/>
@@ -103,7 +103,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="97"/>
         <CursorPos X="85" Y="102"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
@@ -111,7 +111,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="183"/>
         <CursorPos X="43" Y="199"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -120,7 +120,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -137,8 +137,8 @@
         <Filename Value="components\scan\MotorScan.pas"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="440"/>
-        <CursorPos X="58" Y="457"/>
+        <TopLine Value="463"/>
+        <CursorPos Y="481"/>
         <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit>
@@ -274,7 +274,7 @@
         <Filename Value="modelos\ItemDato.pas"/>
         <EditorIndex Value="1"/>
         <TopLine Value="236"/>
-        <CursorPos X="29" Y="244"/>
+        <CursorPos Y="256"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -290,123 +290,123 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="65" Column="10" TopLine="46"/>
+        <Caret Line="436" TopLine="423"/>
       </Position>
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="124" Column="57" TopLine="94"/>
+        <Caret Line="438" TopLine="423"/>
       </Position>
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="194" TopLine="163"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="235" Column="8" TopLine="218"/>
+        <Caret Line="439" TopLine="423"/>
       </Position>
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="194" TopLine="163"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemCatalogo.pas"/>
-        <Caret Line="77" Column="13" TopLine="48"/>
+        <Caret Line="401" TopLine="382"/>
       </Position>
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="194" TopLine="183"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemCatalogo.pas"/>
-        <Caret Line="72" TopLine="48"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemCatalogo.pas"/>
-        <Caret Line="73" TopLine="48"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemCatalogo.pas"/>
-        <Caret Line="74" TopLine="48"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemCatalogo.pas"/>
-        <Caret Line="75" TopLine="48"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemCatalogo.pas"/>
-        <Caret Line="77" TopLine="48"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="227" TopLine="218"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="228" TopLine="218"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="206" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="207" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="210" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="211" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="212" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="213" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="214" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="215" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="219" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="223" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="197" Column="65" TopLine="176"/>
+        <Caret Line="431" TopLine="413"/>
       </Position>
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="469" TopLine="450"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="286" TopLine="267"/>
-      </Position>
-      <Position>
-        <Filename Value="modelos\ItemDato.pas"/>
-        <Caret Line="287" TopLine="267"/>
+        <Caret Line="463" TopLine="445"/>
       </Position>
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="464" TopLine="440"/>
+        <Caret Line="649" TopLine="630"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="651" TopLine="630"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="655" TopLine="630"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="657" TopLine="630"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="481" TopLine="463"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="463" TopLine="445"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="649" TopLine="630"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="651" TopLine="630"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="655" TopLine="630"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="663" TopLine="653"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="664" TopLine="653"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="667" TopLine="653"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="668" TopLine="653"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="672" TopLine="653"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="463" TopLine="445"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="655" TopLine="632"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="657" TopLine="632"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="658" TopLine="632"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="649" TopLine="632"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="673" TopLine="653"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="481" TopLine="457"/>
       </Position>
       <Position>
         <Filename Value="modelos\ItemDato.pas"/>
         <Caret Line="255" TopLine="236"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="256" TopLine="236"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="194" TopLine="175"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -422,27 +422,6 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="components\control_contine.pas"/>
         <Line Value="128"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="components\scan\MotorScan.pas"/>
-        <Line Value="469"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="components\scan\MotorScan.pas"/>
-        <Line Value="194"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="components\scan\MotorScan.pas"/>
-        <Line Value="464"/>
       </Item>
     </BreakPoints>
   </Debugging>

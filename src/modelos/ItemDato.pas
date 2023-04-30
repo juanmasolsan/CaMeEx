@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 16:26:58
+ * @Last Modified time: 2023-04-30 17:32:57
  *)
 {
 
@@ -288,6 +288,14 @@ function TItemDato.GetFullPath() : string;
 var
   Padre : TItemDato;
 begin
+
+  if (Nombre = '') or (Tipo >= TItemDatoTipo.Root)  then
+    begin
+      Result := '';
+      Exit;
+    end;
+
+
   // Inicializamos la ruta
   Result := Nombre;
 
