@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 14:21:18
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 14:36:05
+ * @Last Modified time: 2023-05-01 01:26:53
  *)
 {
 
@@ -46,6 +46,9 @@ function CRC64_From_String(const Data : String) : int64;
 // Calcular el crc64 de un puntero de bytes
 function CRC64_From_PByte(Data : PByte; Size : Longint) : int64;
 
+// Calcular el crc64 de un string y devolverlo en formato string
+function Get_CRC64ToString(Entrada : string) : string;
+
 
 implementation
 
@@ -64,6 +67,15 @@ function CRC64_From_PByte(Data : PByte; Size : Longint) : int64;
 begin
   Result := crc64(0,nil,0);
   Result := crc64(Result, Data, Size);
+end;
+
+// Calcular el crc64 de un string y devolverlo en formato string
+function Get_CRC64ToString(Entrada : string) : string;
+var
+  CRC : int64;
+begin
+  CRC := CRC64_From_String(Entrada);
+  Result := IntToHex(CRC, 16);
 end;
 
 

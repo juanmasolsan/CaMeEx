@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 23:24:45
+ * @Last Modified time: 2023-05-01 01:41:25
  *)
 {
 
@@ -38,6 +38,10 @@ unit MotorScan;
 interface
 
 uses
+{$IFDEF WINDOWS}
+  Windows,
+  ShellApi,
+{$ENDIF}
     LCLIntf
   , LCLType
   , Classes
@@ -94,7 +98,7 @@ type
     function GetRutaProcesar(Ruta : RawByteString): RawByteString; virtual;
 
     // Procesa un archivo o directorio encontrado
-    function DoProcesarItem(const SearchRec: TSearchRec; const Padre: TItemDato) : TItemDato; virtual;
+    function DoProcesarItem(const SearchRec: TSearchRec; const Padre: TItemDato; RealPath : RawByteString) : TItemDato; virtual;
 
     // Realiza un escaneo de archivos y directorios recursivo de un directorio dado
     procedure DoScanDir(Directorio : RawByteString; Padre: TItemDato);
@@ -106,7 +110,7 @@ type
     procedure DoResetData(Excluir : string);
 
     // Devuelve el id de la extensión
-    function GetIdExtension(Ext: RawByteString; Dir : Boolean): qword;
+    function GetIdExtension(RutaCompleta: RawByteString; Ext: RawByteString; Dir : Boolean): qword;
 
     // Limpiar la lista de extensiones
     procedure DoLimpiarListaExtensiones();
@@ -212,7 +216,26 @@ begin
   end;
 end;
 
+{$IFDEF WINDOWS}
 
+// Devuelve el tipo de archivo/directorio
+function GetGenericFileType(AExtension: RawByteString; IsDir : boolean = false): RawByteString;
+var
+  AInfo: SHFileInfoW;
+  attr : Dword;
+begin
+  if IsDir then
+    attr := FILE_ATTRIBUTE_DIRECTORY
+  else
+    attr := FILE_ATTRIBUTE_NORMAL;
+
+  if SHGetFileInfo(PWideChar(UTF8Decode(AExtension)), attr, AInfo, SizeOf(AInfo), SHGFI_TYPENAME or SHGFI_USEFILEATTRIBUTES) <> 0 then
+    Result :=  AInfo.szTypeName
+  else
+    Result := '';
+end;
+
+{$ENDIF}
 
 
 type
@@ -361,7 +384,7 @@ begin
         end;
 
         // Procesar el archivo o directorio encontrado
-        Actual := DoProcesarItem(SearchRec, Padre);
+        Actual := DoProcesarItem(SearchRec, Padre, IncludeTrailingBackslash(Directorio) + SearchRec.Name);
 
         // Si es un directorio, llamar recursivamente a la función para procesar su contenido
         if (Actual <> nil) and ((SearchRec.Attr and faDirectory)= faDirectory) then
@@ -389,7 +412,7 @@ begin
 end;
 
 // Procesa un archivo o directorio encontrado
-function TMotorScanCustom.DoProcesarItem(const SearchRec: TSearchRec; const Padre: TItemDato) : TItemDato;
+function TMotorScanCustom.DoProcesarItem(const SearchRec: TSearchRec; const Padre: TItemDato; RealPath : RawByteString) : TItemDato;
 var
   Item        : TItemDato;
   Tipo        : TItemDatoTipo;
@@ -439,10 +462,6 @@ begin
     exit;
   end;
 
-
-
-
-
   IdData := lowercase(RutaCompleta) + '|' +
             IntToStr(SearchRec.Size) + '|' +
             IntToStr(SearchRec.Time) + '|' +
@@ -459,7 +478,7 @@ begin
                             SearchRec.Attr,
                             Extension,
                             GetImageIndex(Extension, Tipo = TItemDatoTipo.Directorio),
-                            GetIdExtension(Extension, Tipo = TItemDatoTipo.Directorio),
+                            GetIdExtension(RealPath, Extension, Tipo = TItemDatoTipo.Directorio),
                             GetIdRutaCompleta(RutaCompleta, FRoot.Id),
                             FRoot.Id,
                             0
@@ -585,26 +604,40 @@ begin
 end;
 
 // Devuelve el id de la extensión
-function TMotorScanCustom.GetIdExtension(Ext: RawByteString; Dir : Boolean): qword;
+function TMotorScanCustom.GetIdExtension(RutaCompleta: RawByteString; Ext: RawByteString; Dir : Boolean): qword;
 var
   datoExtension   : TItemExtension;
-  textoDescripcion: RawByteString;
+  textoDescripcion: RawByteString = '';
 begin
 
-  if (Ext = '') OR Dir then
+  if (Ext = '') and not Dir then
   begin
     result := 0;
     exit;
   end;
 
-  //TODO: Obtener la descripción de la extensión del sistema
-  // Se construye la descripción de la extensión
-  textoDescripcion := 'Archivo del tipo ' + Ext ;
+  if Dir then
+    Ext := RutaCompleta;
 
   // Si no existe la extensión en la lista de extensiones
   datoExtension := TItemExtension(FListaExtensiones.Find(Ext));
   if datoExtension = nil then
   begin
+    {$IFDEF WINDOWS}
+      // Se obtiene la descripción de la extensión desde el sistema
+      textoDescripcion := GetGenericFileType(Ext, Dir);
+    {$ENDIF}
+
+    if textoDescripcion = ''  then
+      if not Dir then
+        textoDescripcion := 'Archivo del tipo ' + Ext
+      else
+        textoDescripcion := 'Carpeta de archivos';
+
+    // Si es un directorio la ext es especial
+    if Dir then
+      Ext := '<dir>';
+
     // Se crea el objeto TItemExtension y se añade a la lista de extensiones
     datoExtension := TItemExtension.Create(Ext, textoDescripcion);
     FListaExtensiones.Add(Ext, datoExtension);

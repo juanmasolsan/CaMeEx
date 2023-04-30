@@ -43,6 +43,8 @@
 +         Motor de escaneo de dispositivos y directorios - Que la ruta completa no incluya el nombre del catalogo.
 +         Motor de escaneo de dispositivos y directorios - Al Extraer la ruta completa que convierta las \ en /.
 +         Motor de escaneo de dispositivos y directorios - Discrepancias entre el total encontrado y el total de items que guarda en la bd
+-         Motor de escaneo de dispositivos y directorios - Que obtenga el icono de las extensiones y los exes
+
 
 +         Agregar Sqlite3 - Versiones x64 y x86
 +         Agregar Sqlite3 - Crear base de datos
@@ -59,6 +61,7 @@
 +         Agregar Sqlite3 - Al crear las tablas que verifique si ya existen
 +         Agregar Sqlite3 - Al crear los indices que verifique si ya existen
 +         Agregar Sqlite3 - Que se cierren todas las conexiones tras usarse
+-         Agregar Sqlite3 - Crea tabla de iconos de las extensiones
 
 - Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
 -         Ventana para seleccionar el dispositivo/directorio a escanear.
@@ -66,6 +69,7 @@
 -         Listar los archivos en la lista.
 -         Que el árbol se pueda colapsar y expandir los items.
 -         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app
+-         Los iconos de lista de archivos y árbol de directorios puedan recuperar los iconos de los catalogos
 -         Poder mostrar las columnas que el usuario quiera.
 -         Poder ordenar la lista de archivos, por sus diferentes columnas.
 -         Tamaño de los archivos - Con puntos para separar los miles.

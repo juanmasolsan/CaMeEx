@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 18:42:00
+ * @Last Modified time: 2023-05-01 00:42:19
  *)
 {
 
@@ -214,8 +214,8 @@ begin
   FVentanaScan := TFormScan.CreateEx(self, FScan);
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-  //FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
-  FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '');
+  FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
+  //FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '');
   {$ELSE}
   FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '');
   {$ENDIF}
