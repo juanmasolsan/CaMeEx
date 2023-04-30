@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-25 18:03:38
+ * @Last Modified time: 2023-04-30 17:53:41
  */
 
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS Extensiones (
 );
 
 -- Insertar datos en la tabla Extensiones
-INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");
+INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, '.', '');
 
 
 -- Crear tabla RutaCompleta
@@ -74,22 +74,22 @@ CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);
 ----------------------------------------------------------------------------------------
 
 -- Insertar datos en la tabla Catálogos
-INSERT OR IGNORE INTO Catalogos(Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (1, "Disco 1", "Descripción", 1, 20230413, 1, 1, 100);
+INSERT OR IGNORE INTO Catalogos(Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (1, 'Disco 1', 'Descripción', 1, 20230413, 1, 1, 100);
 
 -- Insertar datos en la tabla RutaCompleta
-INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, 1, "/");
-INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (1, 1, "prueba/");
+INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, 1, '/');
+INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (1, 1, 'prueba/');
 
 -- Insertar datos en la tabla Extensiones
-INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (1111, ".txt", "Archivo de texto");
+INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (1111, '.txt', 'Archivo de texto');
 
 -- Insertar datos en la tabla Datos
-INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta,IdCatalogo) VALUES (200, 2, 200, 20230303, 0, "prueba", 0, 0, 0, 1);
-INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (1000, 1, 100, 20230403, 1024, "Archivo.txt", 1, 1111, 1, 1, 200);
+INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta,IdCatalogo) VALUES (200, 2, 200, 20230303, 0, 'prueba', 0, 0, 0, 1);
+INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (1000, 1, 100, 20230403, 1024, 'Archivo.txt', 1, 1111, 1, 1, 200);
 
 -- Insertar datos en la tabla Datos
-INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta,IdCatalogo) VALUES (201, 2, 200, 20230303, 0, "prueba2", 0, 0, 0, 1);
-INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo) VALUES (1001, 1, 100, 20230403, 1024, "Archivo2.txt", 1, 1111, 1, 1);
+INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta,IdCatalogo) VALUES (201, 2, 200, 20230303, 0, 'prueba2', 0, 0, 0, 1);
+INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo) VALUES (1001, 1, 100, 20230403, 1024, 'Archivo2.txt', 1, 1111, 1, 1);
 
 
 
@@ -129,4 +129,4 @@ DELETE FROM Datos WHERE IdCatalogo = 1 AND (Id = 201 OR IdPadre = 201);
 DELETE FROM RutaCompleta WHERE Id = 0 AND IdCatalogo = 1 AND NOT EXISTS (SELECT 1 FROM Datos WHERE IdRutaCompleta = 0);
 
 -- Actualiza el nombre y la descripción del catalogo con el id 1
-UPDATE Catalogos SET Nombre="Disco 1 - Update", Descripcion="Descripción - Disco 1 - Update", Tipo=1, Fecha=20230413 WHERE Id=1;
+UPDATE Catalogos SET Nombre='Disco 1 - Update', Descripcion='Descripción - Disco 1 - Update', Tipo=1, Fecha=20230413 WHERE Id=1;
