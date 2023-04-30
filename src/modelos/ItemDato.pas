@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-29 18:08:44
+ * @Last Modified time: 2023-04-30 16:26:58
  *)
 {
 
@@ -89,9 +89,6 @@ type
 
 
   protected
-    // Obtiene el índice de la imagen
-    function GetImageIndex() : Integer; virtual;
-
     // Obtiene el índice de la imagen del sistema
     function GetImageIndexSistema() : Integer; virtual;
   public
@@ -203,7 +200,7 @@ begin
   //FExtension         := AExtension;
 
   // Obtenemos los índices de las imágenes
-  FImageIndex        := GetImageIndex();
+  FImageIndex        := AImageIndex;
   FImageIndexSistema := GetImageIndexSistema();
 
   // Inicializamos los identificadores
@@ -244,13 +241,6 @@ begin
 
   // Llamamos al destructor de la clase padre
   inherited Destroy;
-end;
-
-// Obtiene el índice de la imagen
-function TItemDato.GetImageIndex() : Integer;
-begin
-  //TODO: Implementar
-  Result := -1;
 end;
 
 // Obtiene el índice de la imagen del sistema

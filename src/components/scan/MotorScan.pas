@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-29 17:42:34
+ * @Last Modified time: 2023-04-30 17:08:37
  *)
 {
 
@@ -45,6 +45,7 @@ uses
   , FileUtil
   , LazFileUtils
   , LazUTF8
+  , Contnrs
   , ItemBaseDatos
   , ItemCatalogo
   , ItemDato
@@ -78,6 +79,8 @@ type
 
     FListaExclusion                   : TStringList;
 
+    FListaExtensiones                 : TFPHashList;
+
 
     // Getters
     function GetTotalArchivos(): Integer;
@@ -100,6 +103,13 @@ type
 
     // Resetea los datos del escaneo
     procedure DoResetData(Excluir : string);
+
+    // Devuelve el id de la extensión
+    function GetIdExtension(Ext: RawByteString; Dir : Boolean): qword;
+
+    // Limpiar la lista de extensiones
+    procedure DoLimpiarListaExtensiones();
+
   public
     // Constructor de la clase
     constructor Create();
@@ -137,6 +147,9 @@ type
     property ScanInicio       : TDateTime read FScanInicio;
     property ScanFinal        : TDateTime read FScanFinal;
 
+    // Lista de extensiones
+    property ListaExtensiones : TFPHashList read FListaExtensiones;
+
     // Evento que se ejecuta cuando termina el escaneo Async
     property OnTerminarScanAsync : TOnTerminarScanAsync read FOnTerminarScanAsync write FOnTerminarScanAsync;
   end;
@@ -145,13 +158,51 @@ type
   { TMotorScan }
   TMotorScan = class(TMotorScanCustom);
 
+
+// Funciones auxiliares
+function IsExeByExtension(Ext: RawByteString): Boolean;
+function GetImageIndex(Ext: RawByteString; Dir : Boolean): Integer;
+
+
 implementation
 
 uses
- Control_Contine
+  Control_Contine
 , Control_Logger
 , Control_CRC
-;
+, ItemExtension;
+
+
+function IsExeByExtension(Ext: RawByteString): Boolean;
+var
+  _ext : RawByteString;
+begin
+  result := false;
+  _ext := lowerCase(ext);
+  if (_ext = '.exe') or (_ext = '.com') or (_ext = '.bat') or (_ext = '.pif') or (_ext = '.cmd') or (_ext = '.sh') then
+    begin
+      result := true;
+    end;
+end;
+
+function GetImageIndex(Ext: RawByteString; Dir : Boolean): Integer;
+begin
+  result := -1;
+
+  if dir then
+    begin
+      result := 0;
+      exit;
+    end;
+
+  if IsExeByExtension(Ext) then
+  begin
+    result := 3;
+    exit;
+  end;
+end;
+
+
 
 
 type
@@ -195,7 +246,7 @@ begin
   FDetener_Escaneo_Busqueda_Archivos := false;
   FMascaraArchivo                    := '*';
   FListaExclusion                    := TStringList.Create;
-
+  FListaExtensiones                  := TFPHashList.Create;
 
   // Inicializar el objeto de sincronización
   InitializeCriticalSection(FCriticalSection_Totales);
@@ -211,6 +262,10 @@ begin
 
   // Eliminar la lista de exclusiones
   FListaExclusion.Free;
+
+  // Eliminar la lista de extensiones
+  DoLimpiarListaExtensiones();
+  FListaExtensiones.Free;
 
   // Eliminar el objeto de sincronización
   DeleteCriticalSection(FCriticalSection_Totales);
@@ -326,6 +381,8 @@ var
   Id          : Qword = 0;
   IdData      : RawByteString;
   RutaCompleta: RawByteString;
+  Extension   : RawByteString;
+
 begin
 
   // Determinar el tipo de archivo o directorio
@@ -358,11 +415,16 @@ begin
   // Generar la string que identifica al archivo o directorio
   RutaCompleta := IncludeTrailingBackslash(Padre.GetFullPath()) +  SearchRec.Name;
 
+  // Obtener la extensión del archivo
+  Extension    := LowerCase(ExtractFileExt(SearchRec.Name));
+
   if IsExcluido(RutaCompleta) then
   begin
     result := nil;
     exit;
   end;
+
+
 
 
 
@@ -380,14 +442,26 @@ begin
                             FileDateToDateTime(SearchRec.Time),
                             SearchRec.Size,
                             SearchRec.Attr,
-                            //TODO: Conseguir todos los datos del item
-                            '',
-                            0,
-                            0,
+                            Extension,
+                            GetImageIndex(Extension, Tipo = TItemDatoTipo.Directorio),
+                            GetIdExtension(Extension, Tipo = TItemDatoTipo.Directorio),
                             0,
                             FRoot.Id,
                             0
     );
+
+
+(*
+
+    ++++++++++++++AAtributos           : Integer;
+    ++++++++++++++AExtension           : RawByteString;
+    ++++++++++++++AImageIndex          : Integer;
+    ++++++++++++++AIdExtension         : Qword;
+    AIdRutaCompleta      : Qword;
+    AIdCatalogo          : Qword;
+    AIdPadre             : Qword
+
+*)
 
   // Añadir el objeto TItemDato al padre
   Padre.AddHijo(Item);
@@ -509,6 +583,48 @@ begin
 
   result := false;
 end;
+
+// Devuelve el id de la extensión
+function TMotorScanCustom.GetIdExtension(Ext: RawByteString; Dir : Boolean): qword;
+var
+  datoExtension   : TItemExtension;
+  textoDescripcion: RawByteString;
+begin
+
+  if (Ext = '') OR Dir then
+  begin
+    result := 0;
+    exit;
+  end;
+
+  //TODO: Obtener la descripción de la extensión del sistema
+  // Se construye la descripción de la extensión
+  textoDescripcion := 'Archivo del tipo ' + Ext ;
+
+  // Si no existe la extensión en la lista de extensiones
+  datoExtension := TItemExtension(FListaExtensiones.Find(Ext));
+  if datoExtension = nil then
+  begin
+    // Se crea el objeto TItemExtension y se añade a la lista de extensiones
+    datoExtension := TItemExtension.Create(Ext, textoDescripcion);
+    FListaExtensiones.Add(Ext, datoExtension);
+  end;
+
+  // Se devuelve el id de la extensión
+  result := datoExtension.Id;
+end;
+
+// Limpiar la lista de extensiones
+procedure TMotorScanCustom.DoLimpiarListaExtensiones();
+var
+  t : integer;
+begin
+  for t := 0 to FListaExtensiones.Count - 1 do
+    TItemExtension(FListaExtensiones.Items[t]).Free();
+
+  FListaExtensiones.Clear();
+end;
+
 
 
 end.

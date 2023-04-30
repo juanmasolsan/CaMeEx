@@ -38,8 +38,8 @@
 +         Motor de escaneo de dispositivos y directorios - Comprobar nombre Unicode, como el chino o el japonés.
 -         Motor de escaneo de dispositivos y directorios - Guardado en la base de datos.
 -         Motor de escaneo de dispositivos y directorios - Extraer id de la ruta completa.
--         Motor de escaneo de dispositivos y directorios - Extraer id de la extensión.
--         Motor de escaneo de dispositivos y directorios - Extraer id de la imagen que ha de mostrar por defecto.
++         Motor de escaneo de dispositivos y directorios - Extraer id de la extensión.
++         Motor de escaneo de dispositivos y directorios - Extraer id de la imagen que ha de mostrar por defecto.
 +         Motor de escaneo de dispositivos y directorios - Que la ruta completa no incluya el nombre del catalogo.
 
 +         Agregar Sqlite3 - Versiones x64 y x86
@@ -59,11 +59,16 @@
 +         Agregar Sqlite3 - Que se cierren todas las conexiones tras usarse
 
 - Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
+-         Ventana para seleccionar el dispositivo/directorio a escanear.
+-         Listar los dispositivos/directorios en un árbol.
+-         Listar los archivos en la lista.
+-         Que el árbol se pueda colapsar y expandir los items.
 -         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app
 -         Poder mostrar las columnas que el usuario quiera.
 -         Poder ordenar la lista de archivos, por sus diferentes columnas.
 -         Tamaño de los archivos - Con puntos para separar los miles.
 -         Tamaño de los archivos - Poder seleccionar unidad en la que mostrar los tamaños, bytes, kb, mb, gb, tb, etc.
+-         Agregar breadcrumbs.
 
 - Hito 3: Búsqueda y filtrado de datos.
 -         Agregar cajon de búsqueda en la barra de herramientas

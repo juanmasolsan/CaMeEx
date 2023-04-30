@@ -1,4 +1,8 @@
 
+- [NEW]   (20230430) Agregado a TMotorScan Extraer id de la extensión.
+- [NEW]   (20230430) Agregado a TMotorScan Extraer id de la imagen que ha de mostrar por defecto.
+
++ 1.0.8.5
 - [FIX]   (20230429) Al obtener la ruta completa de un dato no se incluye el nombre del catalogo.
 - [NEW]   (20230429) Agregado a TMotorScan los nuevos tipos de datos
 - [NEW]   (20230429) Ofuscada la contraseña de la base de datos
