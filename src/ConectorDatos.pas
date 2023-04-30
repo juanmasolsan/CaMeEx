@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-29 15:52:37
+ * @Last Modified time: 2023-04-30 18:09:37
  *)
 {
 
@@ -35,7 +35,7 @@ unit ConectorDatos;
 {$mode ObjFPC}{$H+}
 
 {$DEFINE USAR_SQLCIPHER}
-{$DEFINE TESTEAR_SENTENCIAS}
+{.$DEFINE TESTEAR_SENTENCIAS}
 
 {$IFDEF TESTEAR_SENTENCIAS}
   {-$DEFINE TESTEAR_SENTENCIAS_ELIMINAR_TABLAS}

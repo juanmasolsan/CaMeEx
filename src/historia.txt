@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230430) Agregado guardado en la base de datos de Catalogo, Extensiones y Rutas Completas.
 - [NEW]   (20230430) Agregado a TMotorScan Extraer id de la ruta completa.
 - [NEW]   (20230430) Agregado a TMotorScan Extraer id de la extensión.
 - [NEW]   (20230430) Agregado a TMotorScan Extraer id de la imagen que ha de mostrar por defecto.

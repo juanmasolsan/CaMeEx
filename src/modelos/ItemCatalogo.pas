@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 16:39:00
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-29 17:15:28
+ * @Last Modified time: 2023-04-30 18:04:42
  *)
 {
 
@@ -59,8 +59,8 @@ type
 
     // Propiedades
     property Descripcion     : RawByteString read FDescripcion write FDescripcion;
-    property TotalArchivos   : Qword         read FTotalArchivos;
-    property TotalDirectorios: Qword         read FTotalDirectorios;
+    property TotalArchivos   : Qword         read FTotalArchivos write FTotalArchivos;
+    property TotalDirectorios: Qword         read FTotalDirectorios write FTotalDirectorios;
   end;
 
 

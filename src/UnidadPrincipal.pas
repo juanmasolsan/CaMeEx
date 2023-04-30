@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-29 17:25:09
+ * @Last Modified time: 2023-04-30 18:18:36
  *)
 {
 
@@ -100,6 +100,7 @@ type
     FGestorDatos : IConectorDatos;
   protected
     procedure DoOnTerminarScanAsync();
+    procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
   public
 
   end;
@@ -118,7 +119,7 @@ uses appinfo
 , ItemCatalogo
 , ItemDato
 
-;
+, ItemExtension, ItemRutaCompleta;
 
 {$R *.lfm}
 
@@ -309,6 +310,42 @@ begin
   finally
     SalidaLog.lines.endUpdate();
   end;
+
+  // Guarda los datos del catalogo en la base de datos
+  DoGuardarEscaneado(FScan, FGestorDatos);
 end;
+
+procedure TForm1.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
+var
+  t, total : integer;
+begin
+  if assigned(Scan) then
+  begin
+
+    // Actualiza los datos del catalogo
+    Scan.Root.TotalArchivos    := Scan.TotalArchivos;
+    Scan.Root.TotalDirectorios := Scan.TotalDirectorios;
+    Scan.Root.Size             := Scan.TotalSize;
+
+    // Guarda los datos del catalogo
+    SistemaGuardado.AddCatalogo(Scan.Root);
+
+    // Guarda los datos de las Extensiones
+    total := Scan.ListaExtensiones.Count - 1;
+    for t := 0 to total do
+    begin
+      SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
+    end;
+
+    // Guarda los datos de las rutas completas
+    total := Scan.ListaRutaCompleta.Count - 1;
+    for t := 0 to total do
+    begin
+      SistemaGuardado.AddRutaCompleta(TItemRutaCompleta(Scan.ListaRutaCompleta.Items[t]));
+    end;
+
+  end;
+end;
+
 
 end.
