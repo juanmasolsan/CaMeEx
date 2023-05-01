@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 23:25:26
+ * @Last Modified time: 2023-05-01 23:42:24
  *)
 {
 
@@ -150,6 +150,9 @@ type
 
     // Añade una extension a la base de datos
     procedure AddExtension(Extension : TItemExtension);
+
+    // Añade el icono de una extension
+    procedure AddExtensionIcono(Extension : TItemExtension);
 
     // Añade una ruta completa a la base de datos
     procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
@@ -417,40 +420,71 @@ begin
   FDataBase.SQLite3_Optimizar_DB();
 end;
 
+// Añade el icono de una extension
+procedure TConectorDatos.AddExtensionIcono(Extension : TItemExtension);
+var
+  Stream       : TMemoryStream;
+  internalQuery: TSQLQuery;
+begin
+  // Selecciona la query a utilizar
+  if FQueryTransaction <> nil then
+    internalQuery := FQueryTransaction
+  else
+    internalQuery := FDataBase.Query;
+
+  try
+    if internalQuery <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        if Extension.Icono <> nil then
+        begin
+          if FIdTransaccion = -1 then
+          begin
+            // Prepara la query
+            internalQuery.Close;
+            internalQuery.SQL.Clear;
+          end;
+
+          if FIdTransaccion <> ID_SQL_INSERT_DATO   then
+          begin
+            internalQuery.SQL.Text := SQL_INSERT_ICONO;
+            FIdTransaccion         := ID_SQL_INSERT_ICONO;
+          end;
+
+          // Hace la inserción con un prepared statement
+          internalQuery.ParamByName('ID').AsLargeInt := Extension.Id;
+          Stream := TMemoryStream.Create;
+          try
+            Extension.Icono.SaveToStream(Stream);
+            internalQuery.ParamByName('ICONO').LoadFromStream(Stream, ftBlob);
+          finally
+            Stream.Free;
+          end;
+
+          try
+            // Realiza la inserción
+            internalQuery.ExecSQL;
+          finally
+            if FIdTransaccion = -1 then
+              internalQuery.Close;
+          end;
+        end;
+
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    on E: Exception do LogAddException('Excepción Detectada', E);
+  end;
+end;
+
 
 // Añade una extension a la base de datos
 procedure TConectorDatos.AddExtension(Extension : TItemExtension);
-
-  procedure InsertarIcono();
-  var
-    Stream : TMemoryStream;
-  begin
-    // Prepara la query
-    FDataBase.Query.Close;
-    FDataBase.Query.SQL.Clear;
-    FDataBase.Query.SQL.Add(SQL_INSERT_ICONO);
-    FIdTransaccion := ID_SQL_INSERT_ICONO;
-
-    // Hace la inserción con un prepared statement
-    FDataBase.Query.ParamByName('ID').AsLargeInt := Extension.Id;
-    Stream := TMemoryStream.Create;
-    try
-      Extension.Icono.SaveToStream(Stream);
-      FDataBase.Query.ParamByName('ICONO').LoadFromStream(Stream, ftBlob);
-    finally
-      Stream.Free;
-    end;
-
-    try
-      // Realiza la inserción
-      FDataBase.Query.ExecSQL;
-    finally
-      // Cierra la query
-      FDataBase.Query.Close;
-    end;
-  end;
-
-
 begin
   try
     if FDataBase.Query <> nil then
@@ -475,12 +509,6 @@ begin
         finally
           // Cierra la query
           FDataBase.Query.Close;
-        end;
-
-        if Extension.Icono <> nil then
-        begin
-          // Inserta el icono
-          InsertarIcono();
         end;
 
       finally
@@ -566,14 +594,14 @@ begin
         begin
           if Dato.IdPadre = 0 then
           begin
-            FIdTransaccion := ID_SQL_INSERT_DATO;
-            internalQuery.SQL.Add(SQL_INSERT_DATO);
+            FIdTransaccion         := ID_SQL_INSERT_DATO;
+            internalQuery.SQL.Text := SQL_INSERT_DATO;
             internalQuery.Prepare;
           end
           else
           begin
-            FIdTransaccion := ID_SQL_INSERT_DATO_PADRE;
-            internalQuery.SQL.Add(SQL_INSERT_DATO_PADRE);
+            FIdTransaccion         := ID_SQL_INSERT_DATO_PADRE;
+            internalQuery.SQL.Text := SQL_INSERT_DATO_PADRE;
             internalQuery.Prepare;
           end;
         end;

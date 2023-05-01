@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 18:45:25
+ * @Last Modified time: 2023-05-01 23:41:54
  *)
 {
 
@@ -382,6 +382,15 @@ begin
     begin
       SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
     end;
+
+    // Guarda los iconos de las Extensiones
+    total := Scan.ListaExtensiones.Count - 1;
+    for t := 0 to total do
+    begin
+      SistemaGuardado.AddExtensionIcono(TItemExtension(Scan.ListaExtensiones.Items[t]));
+    end;
+
+
 
     // Guarda los datos de las rutas completas
     total := Scan.ListaRutaCompleta.Count - 1;

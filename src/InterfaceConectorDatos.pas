@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 18:46:57
+ * @Last Modified time: 2023-05-01 23:33:15
  *)
 {
 
@@ -51,6 +51,9 @@ type
 
     // Añade una extension
     procedure AddExtension(Extension : TItemExtension);
+
+    // Añade el icono de una extension
+    procedure AddExtensionIcono(Extension : TItemExtension);
 
     // Añade una ruta completa
     procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
