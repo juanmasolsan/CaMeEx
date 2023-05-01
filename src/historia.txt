@@ -1,6 +1,8 @@
 
 
 
+
+- [NEW]   (20230501) Agregado a TMotorScan la extracción de icono de la extensión y guardado del mismo en la base de datos
 - [NEW]   (20230501) Agregado obtención de la descripción y el icono de las extensiones del sistema.
 - [NEW]   (20230501) Agregado obtención de la descripción de las extensiones del sistema.
 

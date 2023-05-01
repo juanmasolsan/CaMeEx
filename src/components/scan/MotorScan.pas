@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 14:44:00
+ * @Last Modified time: 2023-05-01 14:54:24
  *)
 {
 
@@ -593,7 +593,7 @@ begin
   end;
 
   if Dir then
-    Ext := RutaCompleta;
+    Ext := '<dir>';
 
   // Si no existe la extensión en la lista de extensiones
   datoExtension := TItemExtension(FListaExtensiones.Find(Ext));
@@ -605,7 +605,7 @@ begin
       if Icono <> nil then
       begin
         Icono.savetofile('out/img_' + Get_CRC64ToString(Ext)+ '.png');
-        Icono.Free();
+        //Icono.Free();
       end;
 
     if textoDescripcion = ''  then
@@ -619,7 +619,7 @@ begin
       Ext := '<dir>';
 
     // Se crea el objeto TItemExtension y se añade a la lista de extensiones
-    datoExtension := TItemExtension.Create(Ext, textoDescripcion);
+    datoExtension := TItemExtension.Create(Ext, textoDescripcion, Icono);
     FListaExtensiones.Add(Ext, datoExtension);
   end;
 

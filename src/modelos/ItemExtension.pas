@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 15:04:15
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 15:55:22
+ * @Last Modified time: 2023-05-01 14:51:29
  *)
 {
 
@@ -38,30 +38,44 @@ interface
 
 uses
   ItemBase
-;
+, graphics;
 
 type
   { TItemExtension }
   TItemExtension = class(TItemBase)
   private
-    FDescripcion         : RawByteString;
+    FDescripcion : RawByteString;
+    FIcono       : TPortableNetworkGraphic;
   protected
   public
     // Constructor de la clase
-    constructor Create(const ANombre: RawByteString; const ADescripcion: RawByteString);
+    constructor Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic);
+
+    // Destructor de la clase
+    destructor Destroy; override;
 
     // Propiedades
-    property Descripcion      : RawByteString read FDescripcion;
+    property Descripcion : RawByteString read FDescripcion;
+    property Icono       : TPortableNetworkGraphic read FIcono;
   end;
 
 
 implementation
 
 { TItemExtension }
-constructor TItemExtension.Create(const ANombre: RawByteString; const ADescripcion: RawByteString);
+constructor TItemExtension.Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic);
 begin
   inherited Create(ANombre);
   FDescripcion := ADescripcion;
+  FIcono       := AIcono;
+end;
+
+destructor TItemExtension.Destroy;
+begin
+  if FIcono <> nil then
+    FIcono.Free;
+
+  inherited Destroy;
 end;
 
 end.

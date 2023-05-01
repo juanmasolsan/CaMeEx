@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 17:53:41
+ * @Last Modified time: 2023-05-01 15:08:29
  */
 
 
@@ -15,6 +15,7 @@ PRAGMA foreign_keys;
 --Borrar tablas.
 DROP TABLE IF EXISTS Datos;
 DROP TABLE IF EXISTS Extensiones;
+DROP TABLE IF EXISTS Iconos;
 DROP TABLE IF EXISTS RutaCompleta;
 DROP TABLE IF EXISTS Catalogos;
 
@@ -40,6 +41,11 @@ CREATE TABLE IF NOT EXISTS Extensiones (
 -- Insertar datos en la tabla Extensiones
 INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, '.', '');
 
+-- Crear tabla Iconos
+CREATE TABLE IF NOT EXISTS Iconos (
+    Id     BIGINT PRIMARY KEY,
+    Icono  BLOB
+);
 
 -- Crear tabla RutaCompleta
 CREATE TABLE IF NOT EXISTS RutaCompleta (

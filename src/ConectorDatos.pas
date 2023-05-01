@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 18:09:37
+ * @Last Modified time: 2023-05-01 15:17:39
  *)
 {
 
@@ -67,6 +67,7 @@ uses
 
 const
   SQL_INSERT_EXTENSION                     = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
+  SQL_INSERT_ICONO                         = 'INSERT OR IGNORE INTO Iconos (Id, Icono) VALUES (:ID, :ICONO);';
   SQL_INSERT_RUTA_COMPLETA                 = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
   SQL_INSERT_CATALOGO                      = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
   SQL_INSERT_DATO_PADRE                    = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
@@ -272,6 +273,10 @@ var
 
 begin
 
+// TODO: Eliminar
+EliminarAllTablas();
+
+
 {$IFDEF TESTEAR_SENTENCIAS_ELIMINAR_TABLAS}
   // Al estar activo esto, elimina todas las tablas
   EliminarAllTablas();
@@ -308,6 +313,14 @@ begin
       // Inserta la extension sin extension
       SQL := 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
       FDataBase.SQL(SQL);
+
+      // Crea la tabla de Iconos
+      SQL := 'CREATE TABLE IF NOT EXISTS Iconos (' +
+        'Id     BIGINT PRIMARY KEY,' +
+        'Icono  BLOB' +
+        ');';
+      FDataBase.SQL(SQL);
+
 
       // Crea la tabla de rutas completas
       SQL := 'CREATE TABLE IF NOT EXISTS RutaCompleta (' +
@@ -374,6 +387,7 @@ procedure TConectorDatos.EliminarAllTablas();
 begin
   EliminarTabla('Datos');
   EliminarTabla('Extensiones');
+  EliminarTabla('Iconos');
   EliminarTabla('RutaCompleta');
   EliminarTabla('Catalogos');
 end;
@@ -381,6 +395,36 @@ end;
 
 // Añade una extension a la base de datos
 procedure TConectorDatos.AddExtension(Extension : TItemExtension);
+
+  procedure InsertarIcono();
+  var
+    Stream : TMemoryStream;
+  begin
+    // Prepara la query
+    FDataBase.Query.Close;
+    FDataBase.Query.SQL.Clear;
+    FDataBase.Query.SQL.Add(SQL_INSERT_ICONO);
+
+    // Hace la inserción con un prepared statement
+    FDataBase.Query.ParamByName('ID').AsLargeInt := Extension.Id;
+    Stream := TMemoryStream.Create;
+    try
+      Extension.Icono.SaveToStream(Stream);
+      FDataBase.Query.ParamByName('ICONO').LoadFromStream(Stream, ftBlob);
+    finally
+      Stream.Free;
+    end;
+
+    try
+      // Realiza la inserción
+      FDataBase.Query.ExecSQL;
+    finally
+      // Cierra la query
+      FDataBase.Query.Close;
+    end;
+  end;
+
+
 begin
   try
     if FDataBase.Query <> nil then
@@ -404,6 +448,12 @@ begin
         finally
           // Cierra la query
           FDataBase.Query.Close;
+        end;
+
+        if Extension.Icono <> nil then
+        begin
+          // Inserta el icono
+          InsertarIcono();
         end;
 
       finally
