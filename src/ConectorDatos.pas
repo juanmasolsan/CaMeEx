@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 18:54:05
+ * @Last Modified time: 2023-05-01 23:25:26
  *)
 {
 
@@ -111,7 +111,7 @@ type
   private
     FCriticalSection : TCriticalSection;
     FQueryTransaction: TSQLQuery;
-    FisTransaccion   : boolean;
+    FIdTransaccion   : int64;
   protected
     function DoGetCatalogoFromQuery(Query : TSQLQuery) : TItemCatalogo;
     function DoGetDatoFromQuery(Query : TSQLQuery) : TItemDato;
@@ -199,6 +199,7 @@ implementation
 
 uses
   db
+  , Control_CRC
   , Control_DB
   , Control_Logger
   , ItemBaseDatos
@@ -207,6 +208,13 @@ uses
 
 var
   FDataBase : TConexion_DB = nil;
+
+  // Id de las Sentencias SQL
+  ID_SQL_INSERT_DATO          : int64 = 0;
+  ID_SQL_INSERT_DATO_PADRE    : int64 = 0;
+  ID_SQL_INSERT_RUTA_COMPLETA : int64 = 0;
+  ID_SQL_INSERT_EXTENSION     : int64 = 0;
+  ID_SQL_INSERT_ICONO         : int64 = 0;
 
 
 // Constructor
@@ -421,6 +429,7 @@ procedure TConectorDatos.AddExtension(Extension : TItemExtension);
     FDataBase.Query.Close;
     FDataBase.Query.SQL.Clear;
     FDataBase.Query.SQL.Add(SQL_INSERT_ICONO);
+    FIdTransaccion := ID_SQL_INSERT_ICONO;
 
     // Hace la inserción con un prepared statement
     FDataBase.Query.ParamByName('ID').AsLargeInt := Extension.Id;
@@ -453,6 +462,7 @@ begin
         FDataBase.Query.Close;
         FDataBase.Query.SQL.Clear;
         FDataBase.Query.SQL.Add(SQL_INSERT_EXTENSION);
+        FIdTransaccion := ID_SQL_INSERT_EXTENSION;
 
         // Hace la inserción con un prepared statement
         FDataBase.Query.ParamByName('ID').AsLargeInt        := Extension.Id;
@@ -496,6 +506,8 @@ begin
         FDataBase.Query.Close;
         FDataBase.Query.SQL.Clear;
         FDataBase.Query.SQL.Add(SQL_INSERT_RUTA_COMPLETA);
+        FIdTransaccion := ID_SQL_INSERT_RUTA_COMPLETA;
+
 
         // Hace la inserción con un prepared statement
         FDataBase.Query.ParamByName('ID').AsLargeInt         := Ruta.Id;
@@ -543,22 +555,24 @@ begin
       // Se inicia la seccion critica
       EnterCriticalSection(FCriticalSection);
       try
-        if not FisTransaccion then
+        if FIdTransaccion = -1 then
         begin
           // Prepara la query
           internalQuery.Close;
           internalQuery.SQL.Clear;
         end;
 
-        if not internalQuery.Prepared or (pos(SQL_INSERT_DATO, internalQuery.SQL.Text) = -1)   then
+        if ((FIdTransaccion <> ID_SQL_INSERT_DATO) and (FIdTransaccion <> ID_SQL_INSERT_DATO_PADRE))   then
         begin
           if Dato.IdPadre = 0 then
           begin
+            FIdTransaccion := ID_SQL_INSERT_DATO;
             internalQuery.SQL.Add(SQL_INSERT_DATO);
             internalQuery.Prepare;
           end
           else
           begin
+            FIdTransaccion := ID_SQL_INSERT_DATO_PADRE;
             internalQuery.SQL.Add(SQL_INSERT_DATO_PADRE);
             internalQuery.Prepare;
           end;
@@ -586,7 +600,7 @@ begin
           internalQuery.ExecSQL;
         finally
           // Cierra la query
-          if not FisTransaccion then
+          if FIdTransaccion = -1 then
             internalQuery.Close;
         end;
 
@@ -1076,7 +1090,7 @@ procedure TConectorDatos.BeginUpdate();
 begin
   FDataBase.Connection.ExecuteDirect('BEGIN TRANSACTION;');
 
-  FisTransaccion             := true;
+  FIdTransaccion             := 0;
   FQueryTransaction          := TSQLQuery.Create(nil);
   FQueryTransaction.Database := FDataBase.Connection;
 end;
@@ -1084,7 +1098,7 @@ end;
 // Para que se marque el final de una transaccion
 procedure TConectorDatos.EndUpdate();
 begin
-  FisTransaccion             := false;
+  FIdTransaccion             := -1;
 
   FQueryTransaction.Close;
   FQueryTransaction.Free;
@@ -1257,6 +1271,15 @@ begin
 
 end;
 {$ENDIF TESTEAR_SENTENCIAS}
+
+
+initialization
+  // Id de las Sentencias SQL
+  ID_SQL_INSERT_DATO          := CRC64_From_String(SQL_INSERT_DATO);
+  ID_SQL_INSERT_DATO_PADRE    := CRC64_From_String(SQL_INSERT_DATO_PADRE);
+  ID_SQL_INSERT_RUTA_COMPLETA := CRC64_From_String(SQL_INSERT_RUTA_COMPLETA);
+  ID_SQL_INSERT_EXTENSION     := CRC64_From_String(SQL_INSERT_EXTENSION);
+  ID_SQL_INSERT_ICONO         := CRC64_From_String(SQL_INSERT_ICONO);
 
 
 end.

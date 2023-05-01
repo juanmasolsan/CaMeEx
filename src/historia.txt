@@ -1,6 +1,6 @@
 
-
-- [FIX]   (20230501) Fix en TConectorDatos.AddDato para trabajar con transanciones
+- [FIX]   (20230501) Fix reescrito TConectorDatos.AddDato para trabajar con transacciones
+- [FIX]   (20230501) Fix en TConectorDatos.AddDato para trabajar con transacciones
 - [FIX]   (20230501) Fix en TConexion_DB_001.SQLite3_OptimizarTabla para un mejor rendimiento
 - [FIX]   (20230501) Fix al eliminar las tablas hace un VACUUM para reducir el tamaño de la base de datos.
 - [NEW]   (20230501) Agregado a TMotorScan la extracción de icono de la extensión teniendo en cuenta que los exe tiene distintos iconos.
