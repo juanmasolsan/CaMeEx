@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 00:42:19
+ * @Last Modified time: 2023-05-01 15:56:43
  *)
 {
 
@@ -32,6 +32,7 @@ SOFTWARE.
 
 //TODO: Eliminar, solo es para pruebas
 {.$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
+{.$DEFINE MOSTRAR_INFO_ESCANEO}
 
 
 unit UnidadPrincipal;
@@ -270,6 +271,7 @@ procedure TForm1.DoOnTerminarScanAsync();
 var
   t, total : integer;
   Item     : TItemDato;
+  Inicio   : TDateTime;
 begin
 
   if assigned(FVentanaScan) then
@@ -287,17 +289,19 @@ begin
     SalidaLog.Clear;
 
     {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-      total := FScan.Root.HijosCount()-1;
-      for t := 0 to total do
-      begin
-        Item := FScan.Root.GetHijo(t);
-        if item <> nil then
+      {$IFDEF MOSTRAR_INFO_ESCANEO}
+        total := FScan.Root.HijosCount()-1;
+        for t := 0 to total do
         begin
-          //SalidaLog.Lines.Add(Item.Nombre);
-          SalidaLog.Lines.Add(Item.ToString());
-          ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
+          Item := FScan.Root.GetHijo(t);
+          if item <> nil then
+          begin
+            //SalidaLog.Lines.Add(Item.Nombre);
+            SalidaLog.Lines.Add(Item.ToString());
+            ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
+          end;
         end;
-      end;
+      {$ENDIF}
     {$ENDIF}
     SalidaLog.lines.Add('------------------------------------------');
     SalidaLog.lines.Add('Total Directorios      :  ' + PuntearNumeracion(FScan.TotalDirectorios));
@@ -312,8 +316,21 @@ begin
     SalidaLog.lines.endUpdate();
   end;
 
-  // Guarda los datos del catalogo en la base de datos
-  DoGuardarEscaneado(FScan, FGestorDatos);
+
+  SalidaLog.lines.Add('');
+  SalidaLog.lines.Add('');
+  SalidaLog.lines.Add('');
+  SalidaLog.lines.Add('Guardando en la base de datos ...');
+
+  Inicio   := now;
+  try
+    // Guarda los datos del catalogo en la base de datos
+    DoGuardarEscaneado(FScan, FGestorDatos);
+  finally
+    SalidaLog.lines.Add('------------------------------------------');
+    SalidaLog.lines.Add('Tiempo para guardar    :  ' + MostrarTiempoTranscurrido(Inicio, now));
+  end;
+
 end;
 
 procedure TForm1.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
@@ -346,7 +363,6 @@ var
 begin
   if assigned(Scan) then
   begin
-
     // Actualiza los datos del catalogo
     Scan.Root.TotalArchivos    := Scan.TotalArchivos;
     Scan.Root.TotalDirectorios := Scan.TotalDirectorios;
