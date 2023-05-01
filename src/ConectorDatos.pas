@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 23:42:24
+ * @Last Modified time: 2023-05-01 23:49:34
  *)
 {
 
@@ -451,6 +451,7 @@ begin
           begin
             internalQuery.SQL.Text := SQL_INSERT_ICONO;
             FIdTransaccion         := ID_SQL_INSERT_ICONO;
+            internalQuery.Prepare;
           end;
 
           // Hace la inserción con un prepared statement
@@ -485,30 +486,47 @@ end;
 
 // Añade una extension a la base de datos
 procedure TConectorDatos.AddExtension(Extension : TItemExtension);
+var
+  internalQuery : TSQLQuery;
 begin
+  // Selecciona la query a utilizar
+  if FQueryTransaction <> nil then
+    internalQuery := FQueryTransaction
+  else
+    internalQuery := FDataBase.Query;
+
   try
-    if FDataBase.Query <> nil then
+    if internalQuery <> nil then
     begin
       // Se inicia la seccion critica
       EnterCriticalSection(FCriticalSection);
       try
-        // Prepara la query
-        FDataBase.Query.Close;
-        FDataBase.Query.SQL.Clear;
-        FDataBase.Query.SQL.Add(SQL_INSERT_EXTENSION);
-        FIdTransaccion := ID_SQL_INSERT_EXTENSION;
+        if FIdTransaccion = -1 then
+        begin
+          // Prepara la query
+          internalQuery.Close;
+          internalQuery.SQL.Clear;
+        end;
+
+        if FIdTransaccion <> ID_SQL_INSERT_EXTENSION   then
+        begin
+          internalQuery.SQL.Text := SQL_INSERT_EXTENSION;
+          FIdTransaccion           := ID_SQL_INSERT_EXTENSION;
+          internalQuery.Prepare;
+        end;
 
         // Hace la inserción con un prepared statement
-        FDataBase.Query.ParamByName('ID').AsLargeInt        := Extension.Id;
-        FDataBase.Query.ParamByName('EXTENSION').AsString   := Extension.Nombre;
-        FDataBase.Query.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
+        internalQuery.ParamByName('ID').AsLargeInt        := Extension.Id;
+        internalQuery.ParamByName('EXTENSION').AsString   := Extension.Nombre;
+        internalQuery.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
 
         try
           // Realiza la inserción
-          FDataBase.Query.ExecSQL;
+          internalQuery.ExecSQL;
         finally
           // Cierra la query
-          FDataBase.Query.Close;
+          if FIdTransaccion = -1 then
+            internalQuery.Close;
         end;
 
       finally
