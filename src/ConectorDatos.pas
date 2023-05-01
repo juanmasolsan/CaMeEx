@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 23:49:34
+ * @Last Modified time: 2023-05-01 23:54:02
  *)
 {
 
@@ -541,31 +541,48 @@ end;
 
 // Añade una ruta completa a la base de datos
 procedure TConectorDatos.AddRutaCompleta(Ruta : TItemRutaCompleta);
+var
+  internalQuery : TSQLQuery;
 begin
+  // Selecciona la query a utilizar
+  if FQueryTransaction <> nil then
+    internalQuery := FQueryTransaction
+  else
+    internalQuery := FDataBase.Query;
+
+
   try
-    if FDataBase.Query <> nil then
+    if internalQuery <> nil then
     begin
       // Se inicia la seccion critica
       EnterCriticalSection(FCriticalSection);
       try
-        // Prepara la query
-        FDataBase.Query.Close;
-        FDataBase.Query.SQL.Clear;
-        FDataBase.Query.SQL.Add(SQL_INSERT_RUTA_COMPLETA);
-        FIdTransaccion := ID_SQL_INSERT_RUTA_COMPLETA;
+        if FIdTransaccion = -1 then
+        begin
+          // Prepara la query
+          internalQuery.Close;
+          internalQuery.SQL.Clear;
+        end;
 
+        if FIdTransaccion <> ID_SQL_INSERT_RUTA_COMPLETA   then
+        begin
+          internalQuery.SQL.Text := SQL_INSERT_RUTA_COMPLETA;
+          FIdTransaccion         := ID_SQL_INSERT_RUTA_COMPLETA;
+          internalQuery.Prepare;
+        end;
 
         // Hace la inserción con un prepared statement
-        FDataBase.Query.ParamByName('ID').AsLargeInt         := Ruta.Id;
-        FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Ruta.IdCatalogo;
-        FDataBase.Query.ParamByName('RUTA').AsString         := Ruta.Nombre;
+        internalQuery.ParamByName('ID').AsLargeInt         := Ruta.Id;
+        internalQuery.ParamByName('IDCATALOGO').AsLargeInt := Ruta.IdCatalogo;
+        internalQuery.ParamByName('RUTA').AsString         := Ruta.Nombre;
 
         try
           // Realiza la inserción
-          FDataBase.Query.ExecSQL;
+          internalQuery.ExecSQL;
         finally
           // Cierra la query
-          FDataBase.Query.Close;
+          if FIdTransaccion = -1 then
+            internalQuery.Close;
         end;
 
       finally

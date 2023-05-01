@@ -1,4 +1,5 @@
 
+- [FIX]   (20230501) Fix reescrito TConectorDatos.AddRutaCompleta para trabajar con transacciones
 - [FIX]   (20230501) Fix reescrito TConectorDatos.AddExtension para trabajar con transacciones
 - [NEW]   (20230501) Agregado a TMotorScan.AddExtensionIcono
 - [FIX]   (20230501) Fix reescrito TConectorDatos.AddDato para trabajar con transacciones
