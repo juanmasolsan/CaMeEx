@@ -94,9 +94,8 @@
         <UnitName Value="ModeloItemData"/>
       </Unit>
       <Unit>
-        <Filename Value="utilidades.pas"/>
+        <Filename Value="Utilidades.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Utilidades"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadScan.pas"/>

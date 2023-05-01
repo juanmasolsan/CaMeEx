@@ -1,5 +1,7 @@
 
 
+
+- [NEW]   (20230501) Agregado obtención de la descripción y el icono de las extensiones del sistema.
 - [NEW]   (20230501) Agregado obtención de la descripción de las extensiones del sistema.
 
 + 1.0.9.2

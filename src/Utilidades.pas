@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-08 16:21:30
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 17:37:57
+ * @Last Modified time: 2023-05-01 14:42:43
  *)
 {
 
@@ -37,7 +37,12 @@ unit Utilidades;
 interface
 
 uses
+{$IFDEF WINDOWS}
+  Windows,
+  ShellApi,
+{$ENDIF}
   SysUtils
+  , graphics
   ;
 
 // Convierte los atributos de un archivo en una cadena de caracteres
@@ -66,11 +71,18 @@ function MostrarTiempoTranscurrido(Inicio : TDateTime; Final : TDateTime; MarcaT
 
 
 
+// Devuelve el tipo de archivo/directorio
+function GetGenericFileType(AExtension: RawByteString; IsDir : boolean = false): RawByteString;
+
+// Devuelve el icono del archivo/directorio, además del tipo de archivo/directorio
+function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawByteString; IsDir : boolean = false): TPortableNetworkGraphic;
+
+
 implementation
 
 uses
   StrUtils
-  ;
+  , intfgraphics;
 
 // Convierte los atributos de un archivo en una cadena de caracteres
 function AtributosToStr(atributos : Dword; Mayusculas : Boolean = false): String;
@@ -213,6 +225,88 @@ begin
   TiempoTranscurrido := Final - Inicio;
   Result := FormatDateTime(MarcaTiempo, TiempoTranscurrido);
 end;
+
+
+
+
+
+// Devuelve el tipo de archivo/directorio
+function GetGenericFileType(AExtension: RawByteString; IsDir : boolean = false): RawByteString;
+{$IFDEF WINDOWS}
+var
+  AInfo: SHFileInfoW;
+  attr : Dword;
+begin
+  if IsDir then
+    attr := FILE_ATTRIBUTE_DIRECTORY
+  else
+    attr := FILE_ATTRIBUTE_NORMAL;
+
+  fillchar(AInfo, sizeof(AInfo), 0);
+
+  if SHGetFileInfo(PWideChar(UTF8Decode(AExtension)), attr, AInfo, SizeOf(AInfo), SHGFI_TYPENAME or SHGFI_USEFILEATTRIBUTES) <> 0 then
+    Result :=  AInfo.szTypeName
+  else
+    Result := '';
+end;
+{$ELSE}
+begin
+  Result := '';
+end;
+{$ENDIF}
+
+// Devuelve el icono del archivo/directorio, además del tipo de archivo/directorio
+function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawByteString; IsDir : boolean = false): TPortableNetworkGraphic;
+{$IFDEF WINDOWS}
+var
+  AInfo: SHFileInfoW;
+  AIcon: TIcon;
+  attr : Dword;
+  Png  : TPortableNetworkGraphic;
+  Inter: TLazIntfImage;
+begin
+  Result := nil;
+
+  if IsDir then
+    attr := FILE_ATTRIBUTE_DIRECTORY
+  else
+    attr := FILE_ATTRIBUTE_NORMAL;
+
+  fillchar(AInfo, sizeof(AInfo), 0);
+
+  if SHGetFileInfo(PWideChar(UTF8Decode(AExtension)), attr, AInfo, SizeOf(SHFileInfoW), SHGFI_ICON or SHGFI_SMALLICON or SHGFI_TYPENAME or SHGFI_USEFILEATTRIBUTES) <> 0 then
+  begin
+    InfoExtension := AInfo.szTypeName;
+
+    if AInfo.hIcon <> 0 then
+    begin
+      AIcon := TIcon.Create;
+      try
+        try
+          AIcon.Handle := AInfo.hIcon;
+          Inter := AIcon.CreateIntfImage;
+          try
+            Png := TPortableNetworkGraphic.Create;
+            Png.LoadFromIntfImage(Inter);
+            Result := Png;
+          finally
+            Inter.Free;
+          end;
+        except
+        end;
+      finally
+        AIcon.Free;
+      end;
+    end;
+  end;
+end;
+{$ELSE}
+begin
+  InfoExtension := '';
+  Result        := nil;
+end;
+{$ENDIF}
+
 
 
 end.

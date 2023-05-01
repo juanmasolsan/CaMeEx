@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 01:41:25
+ * @Last Modified time: 2023-05-01 14:44:00
  *)
 {
 
@@ -38,10 +38,6 @@ unit MotorScan;
 interface
 
 uses
-{$IFDEF WINDOWS}
-  Windows,
-  ShellApi,
-{$ENDIF}
     LCLIntf
   , LCLType
   , Classes
@@ -184,7 +180,8 @@ uses
   Control_Contine
 , Control_Logger
 , Control_CRC
-, ItemExtension, ItemRutaCompleta;
+, Utilidades
+, ItemExtension, ItemRutaCompleta, graphics;
 
 
 function IsExeByExtension(Ext: RawByteString): Boolean;
@@ -215,28 +212,6 @@ begin
     exit;
   end;
 end;
-
-{$IFDEF WINDOWS}
-
-// Devuelve el tipo de archivo/directorio
-function GetGenericFileType(AExtension: RawByteString; IsDir : boolean = false): RawByteString;
-var
-  AInfo: SHFileInfoW;
-  attr : Dword;
-begin
-  if IsDir then
-    attr := FILE_ATTRIBUTE_DIRECTORY
-  else
-    attr := FILE_ATTRIBUTE_NORMAL;
-
-  if SHGetFileInfo(PWideChar(UTF8Decode(AExtension)), attr, AInfo, SizeOf(AInfo), SHGFI_TYPENAME or SHGFI_USEFILEATTRIBUTES) <> 0 then
-    Result :=  AInfo.szTypeName
-  else
-    Result := '';
-end;
-
-{$ENDIF}
-
 
 type
   { TTMotorScanDirThread }
@@ -608,6 +583,7 @@ function TMotorScanCustom.GetIdExtension(RutaCompleta: RawByteString; Ext: RawBy
 var
   datoExtension   : TItemExtension;
   textoDescripcion: RawByteString = '';
+  Icono           : TPortableNetworkGraphic = nil;
 begin
 
   if (Ext = '') and not Dir then
@@ -623,10 +599,14 @@ begin
   datoExtension := TItemExtension(FListaExtensiones.Find(Ext));
   if datoExtension = nil then
   begin
-    {$IFDEF WINDOWS}
       // Se obtiene la descripción de la extensión desde el sistema
-      textoDescripcion := GetGenericFileType(Ext, Dir);
-    {$ENDIF}
+      Icono := GetGenericFileIcon(RutaCompleta, textoDescripcion,  Dir);
+
+      if Icono <> nil then
+      begin
+        Icono.savetofile('out/img_' + Get_CRC64ToString(Ext)+ '.png');
+        Icono.Free();
+      end;
 
     if textoDescripcion = ''  then
       if not Dir then
