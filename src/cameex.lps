@@ -139,8 +139,8 @@
         <Filename Value="components\scan\MotorScan.pas"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="612"/>
-        <CursorPos X="41" Y="607"/>
+        <TopLine Value="611"/>
+        <CursorPos X="88" Y="632"/>
         <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit>

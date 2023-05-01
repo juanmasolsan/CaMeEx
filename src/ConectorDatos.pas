@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 16:07:19
+ * @Last Modified time: 2023-05-01 18:54:05
  *)
 {
 
@@ -109,7 +109,9 @@ type
   { TConectorDatos }
   TConectorDatos = class(TInterfacedObject, IConectorDatos)
   private
-    FCriticalSection: TCriticalSection;
+    FCriticalSection : TCriticalSection;
+    FQueryTransaction: TSQLQuery;
+    FisTransaccion   : boolean;
   protected
     function DoGetCatalogoFromQuery(Query : TSQLQuery) : TItemCatalogo;
     function DoGetDatoFromQuery(Query : TSQLQuery) : TItemDato;
@@ -178,6 +180,12 @@ type
 
     // Actualiza un catálogo
     procedure UpdateCatalogo(Catalogo : TItemCatalogo);
+
+    // Para que se marque el inicio de una transaccion
+    procedure BeginUpdate();
+
+    // Para que se marque el final de una transaccion
+    procedure EndUpdate();
 
 {$IFDEF TESTEAR_SENTENCIAS}
     // Para testear sentencias
@@ -520,45 +528,66 @@ end;
 
 // Añade un dato a la base de datos
 procedure TConectorDatos.AddDato(Dato : TItemDato);
+var
+  internalQuery : TSQLQuery;
 begin
+  // Selecciona la query a utilizar
+  if FQueryTransaction <> nil then
+    internalQuery := FQueryTransaction
+  else
+    internalQuery := FDataBase.Query;
+
   try
-    if FDataBase.Query <> nil then
+    if internalQuery <> nil then
     begin
       // Se inicia la seccion critica
       EnterCriticalSection(FCriticalSection);
       try
-        // Prepara la query
-        FDataBase.Query.Close;
-        FDataBase.Query.SQL.Clear;
+        if not FisTransaccion then
+        begin
+          // Prepara la query
+          internalQuery.Close;
+          internalQuery.SQL.Clear;
+        end;
 
-        if Dato.IdPadre = 0 then
+        if not internalQuery.Prepared or (pos(SQL_INSERT_DATO, internalQuery.SQL.Text) = -1)   then
         begin
-          FDataBase.Query.SQL.Add(SQL_INSERT_DATO);
-        end
-        else
+          if Dato.IdPadre = 0 then
+          begin
+            internalQuery.SQL.Add(SQL_INSERT_DATO);
+            internalQuery.Prepare;
+          end
+          else
+          begin
+            internalQuery.SQL.Add(SQL_INSERT_DATO_PADRE);
+            internalQuery.Prepare;
+          end;
+        end;
+
+        if Dato.IdPadre > 0 then
         begin
-          FDataBase.Query.SQL.Add(SQL_INSERT_DATO_PADRE);
-          FDataBase.Query.ParamByName('IDPADRE').AsLargeInt      := Dato.IdPadre;
+          internalQuery.ParamByName('IDPADRE').AsLargeInt      := Dato.IdPadre;
         end;
 
         // Hace la inserción con un prepared statement
-        FDataBase.Query.ParamByName('ID').AsLargeInt             := Dato.Id;
-        FDataBase.Query.ParamByName('TIPO').AsInteger            := integer(Dato.Tipo);
-        FDataBase.Query.ParamByName('ATRIBUTOS').AsInteger       := Dato.Atributos;
-        FDataBase.Query.ParamByName('FECHA').AsDateTime          := Dato.Fecha;
-        FDataBase.Query.ParamByName('SIZE').AsLargeInt           := Dato.Size;
-        FDataBase.Query.ParamByName('NOMBRE').AsString           := Dato.Nombre;
-        FDataBase.Query.ParamByName('IMAGEINDEX').AsInteger      := Dato.ImageIndex;
-        FDataBase.Query.ParamByName('IDEXTENSION').AsLargeInt    := Dato.IdExtension;
-        FDataBase.Query.ParamByName('IDRUTACOMPLETA').AsLargeInt := Dato.IdRutaCompleta;
-        FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt     := Dato.IdCatalogo;
+        internalQuery.ParamByName('ID').AsLargeInt             := Dato.Id;
+        internalQuery.ParamByName('TIPO').AsInteger            := integer(Dato.Tipo);
+        internalQuery.ParamByName('ATRIBUTOS').AsInteger       := Dato.Atributos;
+        internalQuery.ParamByName('FECHA').AsDateTime          := Dato.Fecha;
+        internalQuery.ParamByName('SIZE').AsLargeInt           := Dato.Size;
+        internalQuery.ParamByName('NOMBRE').AsString           := Dato.Nombre;
+        internalQuery.ParamByName('IMAGEINDEX').AsInteger      := Dato.ImageIndex;
+        internalQuery.ParamByName('IDEXTENSION').AsLargeInt    := Dato.IdExtension;
+        internalQuery.ParamByName('IDRUTACOMPLETA').AsLargeInt := Dato.IdRutaCompleta;
+        internalQuery.ParamByName('IDCATALOGO').AsLargeInt     := Dato.IdCatalogo;
 
         try
           // Realiza la inserción
-          FDataBase.Query.ExecSQL;
+          internalQuery.ExecSQL;
         finally
           // Cierra la query
-          FDataBase.Query.Close;
+          if not FisTransaccion then
+            internalQuery.Close;
         end;
 
       finally
@@ -570,6 +599,8 @@ begin
     on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
+
+
 
 function TConectorDatos.DoGetCatalogoFromQuery(Query : TSQLQuery) : TItemCatalogo;
 begin
@@ -1038,6 +1069,28 @@ begin
     on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
+
+
+// Para que se marque el inicio de una transaccion
+procedure TConectorDatos.BeginUpdate();
+begin
+  FDataBase.Connection.ExecuteDirect('BEGIN TRANSACTION;');
+
+  FisTransaccion             := true;
+  FQueryTransaction          := TSQLQuery.Create(nil);
+  FQueryTransaction.Database := FDataBase.Connection;
+end;
+
+// Para que se marque el final de una transaccion
+procedure TConectorDatos.EndUpdate();
+begin
+  FisTransaccion             := false;
+
+  FQueryTransaction.Close;
+  FQueryTransaction.Free;
+  FDataBase.Connection.ExecuteDirect('COMMIT;');
+end;
+
 
 
 {$IFDEF TESTEAR_SENTENCIAS}

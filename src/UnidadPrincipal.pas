@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 15:56:43
+ * @Last Modified time: 2023-05-01 18:45:25
  *)
 {
 
@@ -31,7 +31,7 @@ SOFTWARE.
 }
 
 //TODO: Eliminar, solo es para pruebas
-{.$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
+{$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
 {.$DEFINE MOSTRAR_INFO_ESCANEO}
 
 
@@ -317,18 +317,23 @@ begin
   end;
 
 
-  SalidaLog.lines.Add('');
-  SalidaLog.lines.Add('');
-  SalidaLog.lines.Add('');
-  SalidaLog.lines.Add('Guardando en la base de datos ...');
-
-  Inicio   := now;
+  FGestorDatos.BeginUpdate();
   try
-    // Guarda los datos del catalogo en la base de datos
-    DoGuardarEscaneado(FScan, FGestorDatos);
+    SalidaLog.lines.Add('');
+    SalidaLog.lines.Add('');
+    SalidaLog.lines.Add('');
+    SalidaLog.lines.Add('Guardando en la base de datos ...');
+
+    Inicio   := now;
+    try
+      // Guarda los datos del catalogo en la base de datos
+      DoGuardarEscaneado(FScan, FGestorDatos);
+    finally
+      SalidaLog.lines.Add('------------------------------------------');
+      SalidaLog.lines.Add('Tiempo para guardar    :  ' + MostrarTiempoTranscurrido(Inicio, now));
+    end;
   finally
-    SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Tiempo para guardar    :  ' + MostrarTiempoTranscurrido(Inicio, now));
+    FGestorDatos.EndUpdate();
   end;
 
 end;
