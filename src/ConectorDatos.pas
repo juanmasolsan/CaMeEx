@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 15:27:37
+ * @Last Modified time: 2023-05-01 16:07:19
  *)
 {
 
@@ -283,7 +283,6 @@ begin
 // TODO: Eliminar
 EliminarAllTablas();
 
-
 {$IFDEF TESTEAR_SENTENCIAS_ELIMINAR_TABLAS}
   // Al estar activo esto, elimina todas las tablas
   EliminarAllTablas();
@@ -397,6 +396,9 @@ begin
   EliminarTabla('Iconos');
   EliminarTabla('RutaCompleta');
   EliminarTabla('Catalogos');
+
+  // Optimiza la base de datos
+  FDataBase.SQLite3_Optimizar_DB();
 end;
 
 

@@ -1,5 +1,5 @@
 
-
+- [FIX]   (20230501) Fix al eliminar las tablas hace un VACUUM para reducir el tamaño de la base de datos.
 - [NEW]   (20230501) Agregado a TMotorScan la extracción de icono de la extensión teniendo en cuenta que los exe tiene distintos iconos.
 - [NEW]   (20230501) Al recuperar los datos se obtiene el icono de la extensión
 - [NEW]   (20230501) Agregado a TMotorScan la extracción de icono de la extensión y guardado del mismo en la base de datos

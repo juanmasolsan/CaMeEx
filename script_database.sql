@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 15:59:00
+ * @Last Modified time: 2023-05-01 16:05:01
  */
 
 
@@ -18,6 +18,9 @@ DROP TABLE IF EXISTS Extensiones;
 DROP TABLE IF EXISTS Iconos;
 DROP TABLE IF EXISTS RutaCompleta;
 DROP TABLE IF EXISTS Catalogos;
+
+--Optimiza tablas.
+VACUUM;
 
 -- Crear tabla Catálogos
 CREATE TABLE IF NOT EXISTS Catalogos (
