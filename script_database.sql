@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 15:08:29
+ * @Last Modified time: 2023-05-01 15:59:00
  */
 
 
@@ -117,10 +117,12 @@ SELECT dt.*, rc.Ruta FROM Datos as dt JOIN RutaCompleta AS rc
 
 
 -- SELECT - Listar todo el contenido de la tabla Datos y que contenga la ruta completa y descripción de la extension
-SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt
+SELECT dt.*, rc.Ruta, ex.Extension, ex.Descripcion, ic.Icono  FROM Datos as dt
     JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id
     JOIN Extensiones AS ex ON dt.IdExtension = ex.Id
+    JOIN Iconos AS ic ON dt.IdExtension = ic.Id
     ;
+
 
 -- Elimina el registro con el id 1000
 DELETE FROM Datos WHERE IdCatalogo = 1 AND (Id = 1000 OR IdPadre = 1000);

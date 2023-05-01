@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 15:17:39
+ * @Last Modified time: 2023-05-01 15:27:37
  *)
 {
 
@@ -75,7 +75,14 @@ const
 
   SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
-  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      = 'SELECT dt.*, rc.Ruta, ex.Descripcion FROM Datos as dt JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id JOIN Extensiones AS ex ON dt.IdExtension = ex.Id WHERE dt.IdCatalogo = :IDCATALOGO';
+  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      =  'SELECT dt.*, rc.Ruta, ex.Extension, ex.Descripcion, ic.Icono  FROM Datos as dt' +
+                                              'JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
+                                              'JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
+                                              'JOIN Iconos AS ic ON dt.IdExtension = ic.Id' +
+                                              'WHERE dt.IdCatalogo = :IDCATALOGO';
+
+
+
   SQL_SELECT_DATOS_ALL_BY_PARENT_ID        = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND dt.IdPadre = :IDPADRE';
 
   SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
