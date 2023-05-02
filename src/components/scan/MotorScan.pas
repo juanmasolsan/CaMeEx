@@ -391,8 +391,6 @@ function TMotorScanCustom.DoProcesarItem(const SearchRec: TSearchRec; const Padr
 var
   Item        : TItemDato;
   Tipo        : TItemDatoTipo;
-  Id          : Qword = 0;
-  IdData      : RawByteString;
   RutaCompleta: RawByteString;
   Extension   : RawByteString;
 
@@ -436,14 +434,6 @@ begin
     result := nil;
     exit;
   end;
-
-  IdData := lowercase(RutaCompleta) + '|' +
-            IntToStr(SearchRec.Size) + '|' +
-            IntToStr(SearchRec.Time) + '|' +
-            IntToStr(SearchRec.Attr);
-
-  // Generar el Id a partir de la string anterior (Basado en CRC64)
-  Id := CRC64_From_String(IdData);
 
   // Crear el objeto TItemDato
   Item := TItemDato.Create(SearchRec.Name,

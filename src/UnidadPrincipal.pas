@@ -260,8 +260,6 @@ procedure TForm1.DoOnTerminarScanAsync();
   end;
 
 var
-  t, total : integer;
-  Item     : TItemDato;
   Inicio   : TDateTime;
 begin
 

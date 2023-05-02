@@ -1,6 +1,6 @@
 
 
-
+- [FIX]   (20230502) Eliminado warnings, hints y notes del código.
 - [NEW]   (20230502) Agregada las columnas básicas a mostrar en la lista de archivos
 
 + 1.1.0.4
