@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 15:52:43
+ * @Last Modified time: 2023-05-03 00:22:50
  *)
 {
 
@@ -198,7 +198,7 @@ end;
 
 function GetImageIndex(Ext: RawByteString; Dir : Boolean): Integer;
 begin
-  result := -1;
+  result := 2;
 
   if dir then
     begin

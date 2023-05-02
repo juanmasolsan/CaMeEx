@@ -76,6 +76,7 @@ type
     Arbol: TLazVirtualStringTree;
     Button1: TButton;
     Button2: TButton;
+    ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
     MenuPrincipal: TMainMenu;
@@ -101,6 +102,9 @@ type
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
+      Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean;
+      var ImageIndex: Integer);
     procedure ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
     procedure MenuItemAcercaDeClick(Sender: TObject);
@@ -219,6 +223,35 @@ begin
   FGestorDatos.Finalizar();
 
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
+end;
+
+procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
+  var Ghosted: Boolean; var ImageIndex: Integer);
+var
+  NodeData: PrListaData;
+  Datos: TItemDato;
+begin
+ try
+   NodeData := Lista.GetNodeData(Node);
+   if NodeData <> nil then
+   begin
+     Datos := NodeData^.NodeData;
+     if Datos <> nil then
+     begin
+       if Column = 0 then
+       begin
+        ImageIndex := Datos.ImageIndex;
+        if ImageIndex = -1 then
+         ImageIndex := 2;
+       end;
+
+      end;
+    end;
+ except
+ end;
+
+
 end;
 
 procedure TForm1.ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
