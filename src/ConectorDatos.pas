@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 23:54:02
+ * @Last Modified time: 2023-05-02 22:30:42
  *)
 {
 
@@ -76,10 +76,10 @@ const
   SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
   SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      =  'SELECT dt.*, rc.Ruta, ex.Extension, ex.Descripcion, ic.Icono  FROM Datos as dt' +
-                                              'JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
-                                              'JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
-                                              'JOIN Iconos AS ic ON dt.IdExtension = ic.Id' +
-                                              'WHERE dt.IdCatalogo = :IDCATALOGO';
+                                              ' JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
+                                              ' JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
+                                              ' JOIN Iconos AS ic ON dt.IdExtension = ic.Id' +
+                                              ' WHERE dt.IdCatalogo = :IDCATALOGO';
 
 
 
@@ -298,9 +298,6 @@ var
   SQL : string;
 
 begin
-
-// TODO: Eliminar
-EliminarAllTablas();
 
 {$IFDEF TESTEAR_SENTENCIAS_ELIMINAR_TABLAS}
   // Al estar activo esto, elimina todas las tablas

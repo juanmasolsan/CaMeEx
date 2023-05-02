@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-02 18:43:58
+ * @Last Modified time: 2023-05-03 00:01:53
  *)
 {
 
@@ -58,18 +58,26 @@ uses
   , MotorScan
   , UnidadScan
   , InterfaceConectorDatos
-  ;
+  , ItemDato, ItemCatalogo;
+
 
 type
+  // Defino la estructura interna de los datos de los nodos de la lista de archivos
+  PrListaData = ^rTListaData;
+  rTListaData = record
+    NodeData : TItemDato;
+  end;
+
+
 
   { TForm1 }
 
   TForm1 = class(TForm)
-    Arbol: TLazVirtualDrawTree;
+    Arbol: TLazVirtualStringTree;
     Button1: TButton;
     Button2: TButton;
     ImageListToolbar: TImageList;
-    Lista: TLazVirtualDrawTree;
+    Lista: TLazVirtualStringTree;
     MenuPrincipal: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -93,23 +101,44 @@ type
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
+      Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
   private
-    FScan        : TMotorScan;
-    FVentanaScan : TFormScan;
-    FGestorDatos : IConectorDatos;
+    FScan           : TMotorScan;
+    FVentanaScan    : TFormScan;
+    FGestorDatos    : IConectorDatos;
+    FListaCatalogos : TArrayItemDato;
+    FListaArchivos  : TArrayItemDato;
   protected
     procedure DoOnTerminarScanAsync();
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
+    procedure DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
+
+    procedure DoLiberarListaArchivos();
+    function AddNodeLista(Dato: TItemDato): boolean;
   public
 
   end;
 
+
 var
   Form1: TForm1;
+
+
+const
+  COLUMNA_NOMBRE    = 0;
+  COLUMNA_SIZE      = COLUMNA_NOMBRE + 1;
+  COLUMNA_TIPO      = COLUMNA_SIZE + 1;
+  COLUMNA_FECHA     = COLUMNA_TIPO + 1;
+  COLUMNA_ATRIBUTOS = COLUMNA_FECHA + 1;
+
+var
+  TipoHora          : RawByteString = 'dd/mm/yyyy  hh:mm:ss';
+
 
 implementation
 
@@ -119,9 +148,6 @@ uses appinfo
 , Utilidades
 , ConectorDatos
 , ItemBaseDatos
-, ItemCatalogo
-, ItemDato
-
 , ItemExtension, ItemRutaCompleta;
 
 {$R *.lfm}
@@ -167,16 +193,73 @@ begin
   // Inicializar el Motor de Escaneo
   FScan := TMotorScan.Create;
 
+  // Inicializar la lista de archivos
+  Lista.NodeDataSize    := Sizeof(rTListaData);
+  Lista.DoubleBuffered  := true;
+
+
+
   SalidaLog.Lines.add(inttostr(high(Qword)));
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
+
+  // Libera la asignación de memoria
+  DoLiberarListaArchivos();
+
+  // Finalizar la lista de catalogos
+  if assigned(FListaCatalogos) then
+    begin
+      FListaCatalogos.clear;
+      FListaCatalogos.free;
+    end;
+
   // Finalizar el Gestor de Datos
   FGestorDatos.Finalizar();
 
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 end;
+
+procedure TForm1.ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
+  Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+var
+  NodeData: PrListaData;
+  Datos: TItemDato;
+
+begin
+  CellText := '';
+  try
+    NodeData := Lista.GetNodeData(Node);
+    if NodeData <> nil then
+    begin
+      Datos := NodeData^.NodeData;
+      if Datos <> nil then
+      begin
+        case Column of
+          COLUMNA_NOMBRE    : CellText := Datos.Nombre;
+          COLUMNA_SIZE      : CellText := inttostr(Datos.Size);
+//          COLUMNA_TIPO      : CellText := Datos.Descripcion;
+          COLUMNA_FECHA     : DateTimeToString(CellText, TipoHora, Datos.Fecha);
+          COLUMNA_ATRIBUTOS : CellText := AtributosToStr(Datos.Atributos, false);
+        end;
+      end;
+    end;
+  except
+  end;
+end;
+
+procedure TForm1.DoLiberarListaArchivos();
+begin
+  // Libera la asignación de memoria
+  if assigned(FListaArchivos) then
+  begin
+    FListaArchivos.clear;
+    FListaArchivos.free;
+    FListaArchivos := nil;
+  end;
+end;
+
 
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
 begin
@@ -414,9 +497,70 @@ begin
   // Cargar Catallogos
 end;
 
+
+
+procedure TForm1.DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
+var
+  t, total      : integer;
+begin
+  Lista.BeginUpdate;
+  try
+    // Limpia la lista
+    Lista.Clear;
+
+    // Libera la asignación de memoria
+    DoLiberarListaArchivos();
+
+    // Carga los datos del catalogo
+    if assigned(Catalogo) then
+    begin
+      // Carga los datos del catalogo
+      FListaArchivos := FGestorDatos.GetDatos(Catalogo, Padre);
+      if assigned(FListaArchivos) then
+      begin
+        // Carga los datos del catalogo
+        total := FListaArchivos.count -1;
+        for t := 0 to total do
+        begin
+          AddNodeLista(TItemDato(FListaArchivos[t]));
+        end;
+      end;
+    end;
+  finally
+    Lista.EndUpdate;
+  end;
+end;
+
+function TForm1.AddNodeLista(Dato: TItemDato): boolean;
+var
+  Node   : PVirtualNode;
+  Data   : PrListaData;
+begin
+  Node           := Lista.AddChild(nil);
+  Data           := Lista.GetNodeData(Node);
+  Data^.NodeData := Dato;
+  Result         := True;
+end;
+
+
+
 procedure TForm1.Button2Click(Sender: TObject);
+var
+  CatalogoActual : TItemCatalogo;
 begin
   // Cargar Lista
+  FListaCatalogos := FGestorDatos.GetAllCatalogos();
+  if assigned(FListaCatalogos) then
+    if FListaCatalogos.Count > 0 then
+    begin
+      // Carga el primer catalogo
+      CatalogoActual := TItemCatalogo(FListaCatalogos[0]);
+      if assigned(CatalogoActual) then
+      begin
+        // Carga los datos del catalogo
+        DoLoadListaArchivos(CatalogoActual, nil);
+      end;
+    end;
 end;
 
 

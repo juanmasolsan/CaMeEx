@@ -54,13 +54,14 @@ object Form1: TForm1
     Color = clWindow
     ParentColor = False
     TabOrder = 2
-    object Arbol: TLazVirtualDrawTree
+    object Arbol: TLazVirtualStringTree
       Left = 0
       Height = 372
       Top = 0
       Width = 232
       Align = alLeft
       Color = clWindow
+      DefaultNodeHeight = 21
       Header.AutoSizeIndex = 0
       Header.Columns = <>
       Header.MainColumn = -1
@@ -74,13 +75,14 @@ object Form1: TForm1
       Color = clWindow
       ParentColor = False
     end
-    object Lista: TLazVirtualDrawTree
+    object Lista: TLazVirtualStringTree
       Left = 237
       Height = 372
       Top = 0
       Width = 662
       Align = alClient
       Color = clWindow
+      DefaultNodeHeight = 21
       Header.AutoSizeIndex = 0
       Header.Columns = <      
         item
@@ -89,6 +91,7 @@ object Form1: TForm1
           Width = 200
         end      
         item
+          Alignment = taRightJustify
           Position = 1
           Text = 'Tamaño'
           Width = 100
@@ -101,7 +104,7 @@ object Form1: TForm1
         item
           Position = 3
           Text = 'Modificado'
-          Width = 100
+          Width = 150
         end      
         item
           Position = 4
@@ -111,6 +114,12 @@ object Form1: TForm1
       Header.Height = 24
       Header.Options = [hoColumnResize, hoDrag, hoShowSortGlyphs, hoVisible]
       TabOrder = 2
+      TreeOptions.AnimationOptions = [toAnimatedToggle]
+      TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes]
+      TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toFullRowDrag]
+      TreeOptions.PaintOptions = [toHideFocusRect, toHotTrack, toShowButtons, toThemeAware, toUseBlendedImages]
+      TreeOptions.SelectionOptions = [toFullRowSelect, toSiblingSelectConstraint]
+      OnGetText = ListaGetText
     end
   end
   object PanelInferior: TPanel
