@@ -8,7 +8,7 @@
       <Unit>
         <Filename Value="cameex.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="18"/>
         <CursorPos X="60" Y="34"/>
         <UsageCount Value="63"/>
@@ -20,9 +20,10 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="14"/>
-        <TopLine Value="147"/>
-        <CursorPos Y="168"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="385"/>
+        <CursorPos X="18" Y="422"/>
         <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -30,7 +31,6 @@
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="49" Y="14"/>
         <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -38,7 +38,7 @@
       <Unit>
         <Filename Value="por_hacer.txt"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="20"/>
         <CursorPos X="30" Y="20"/>
         <UsageCount Value="63"/>
@@ -48,10 +48,9 @@
       <Unit>
         <Filename Value="AppInfo.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="59" Y="19"/>
         <UsageCount Value="63"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
@@ -90,11 +89,10 @@
       <Unit>
         <Filename Value="Utilidades.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="247"/>
         <CursorPos X="3" Y="263"/>
         <UsageCount Value="45"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadScan.pas"/>
@@ -110,11 +108,10 @@
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="183"/>
         <CursorPos X="43" Y="199"/>
         <UsageCount Value="32"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -137,12 +134,10 @@
       </Unit>
       <Unit>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="611"/>
         <CursorPos X="88" Y="632"/>
         <UsageCount Value="26"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\sysutils\filutilh.inc"/>
@@ -161,7 +156,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
-        <EditorIndex Value="17"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="909"/>
         <CursorPos Y="928"/>
         <UsageCount Value="13"/>
@@ -169,7 +164,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="941"/>
         <CursorPos Y="960"/>
         <UsageCount Value="17"/>
@@ -177,20 +172,18 @@
       </Unit>
       <Unit>
         <Filename Value="components\Control_Contine.pas"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="107"/>
         <CursorPos X="23" Y="117"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
         <UnitName Value="Contnrs"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="224"/>
         <CursorPos X="19" Y="256"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\win\syswinh.inc"/>
@@ -200,7 +193,7 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="181"/>
         <CursorPos X="12" Y="200"/>
         <UsageCount Value="14"/>
@@ -208,7 +201,7 @@
       </Unit>
       <Unit>
         <Filename Value="components\Control_DB.pas"/>
-        <EditorIndex Value="22"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="301"/>
         <CursorPos Y="322"/>
         <UsageCount Value="14"/>
@@ -217,7 +210,7 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
         <UnitName Value="SQLDB"/>
-        <EditorIndex Value="23"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="572"/>
         <CursorPos X="14" Y="589"/>
         <UsageCount Value="14"/>
@@ -226,7 +219,7 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
         <UnitName Value="DB"/>
-        <EditorIndex Value="20"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="91"/>
         <CursorPos X="24" Y="95"/>
         <UsageCount Value="14"/>
@@ -234,7 +227,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\dsparams.inc"/>
-        <EditorIndex Value="21"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="780"/>
         <CursorPos X="3" Y="782"/>
         <UsageCount Value="14"/>
@@ -242,7 +235,7 @@
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemCatalogo.pas"/>
-        <EditorIndex Value="18"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="48"/>
         <CursorPos Y="77"/>
         <UsageCount Value="14"/>
@@ -250,7 +243,7 @@
       </Unit>
       <Unit>
         <Filename Value="components\Control_CRC.pas"/>
-        <EditorIndex Value="19"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="22"/>
         <CursorPos Y="41"/>
         <UsageCount Value="14"/>
@@ -258,166 +251,73 @@
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemExtension.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="30"/>
         <CursorPos Y="60"/>
         <UsageCount Value="14"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemRutaCompleta.pas"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="39"/>
         <CursorPos X="43" Y="73"/>
         <UsageCount Value="14"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemDato.pas"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="236"/>
         <CursorPos Y="256"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemBaseDatos.pas"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="53"/>
         <CursorPos Y="71"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\intfgraphics.pas"/>
         <UnitName Value="IntfGraphics"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="3611"/>
         <CursorPos Y="3630"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="7">
       <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="264" TopLine="249"/>
+        <Filename Value="historia.txt"/>
+        <Caret Column="10"/>
       </Position>
       <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="261" TopLine="249"/>
+        <Filename Value="historia.txt"/>
+        <Caret Line="141" Column="55" TopLine="102"/>
       </Position>
       <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="297" TopLine="267"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="168" TopLine="146"/>
       </Position>
       <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="261" TopLine="242"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="194" TopLine="192"/>
       </Position>
       <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="297" TopLine="267"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="193" TopLine="191"/>
       </Position>
       <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="589" Column="110" TopLine="582"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="194" TopLine="192"/>
       </Position>
       <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="606" TopLine="593"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="214" Column="115" TopLine="194"/>
       </Position>
       <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="261" TopLine="242"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="262" TopLine="242"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="264" TopLine="242"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="266" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="269" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="271" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="273" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="275" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="277" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="278" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="279" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="280" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="279" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="278" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="606" TopLine="593"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="264" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="273" Column="89" TopLine="252"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="281" TopLine="261"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="280" TopLine="261"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="281" TopLine="261"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="282" TopLine="261"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="283" TopLine="261"/>
-      </Position>
-      <Position>
-        <Filename Value="Utilidades.pas"/>
-        <Caret Line="284" TopLine="261"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="194" TopLine="194"/>
       </Position>
     </JumpHistory>
     <RunParams>

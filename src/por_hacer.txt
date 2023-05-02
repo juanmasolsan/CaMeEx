@@ -61,7 +61,7 @@
 +         Agregar Sqlite3 - Que se cierren todas las conexiones tras usarse
 +         Agregar Sqlite3 - Crea tabla de iconos de las extensiones
 +         Agregar Sqlite3 - Para acelerar el guardado que se pueda usar begin; commit;
--         Agregar Sqlite3 - Eliminar datos de la tabla de iconos
++         Agregar Sqlite3 - Eliminar datos de la tabla de iconos
 
 - Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
 -         Ventana para seleccionar el dispositivo/directorio a escanear.

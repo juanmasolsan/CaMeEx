@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 23:41:54
+ * @Last Modified time: 2023-05-02 18:43:58
  *)
 {
 
@@ -31,7 +31,7 @@ SOFTWARE.
 }
 
 //TODO: Eliminar, solo es para pruebas
-{$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
+{.$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
 {.$DEFINE MOSTRAR_INFO_ESCANEO}
 
 
@@ -67,6 +67,7 @@ type
   TForm1 = class(TForm)
     Arbol: TLazVirtualDrawTree;
     Button1: TButton;
+    Button2: TButton;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualDrawTree;
     MenuPrincipal: TMainMenu;
@@ -87,6 +88,7 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -189,17 +191,6 @@ begin
   end;
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
-var
-  a : integer;
-  b : integer = 0;
-begin
-  try
-    a := 100 div b;
-  except
-    on E: Exception do LogAddException('Excepción Detectada', E);
-  end;
-end;
 
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
@@ -417,6 +408,17 @@ begin
 
 
   end;
+end;
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  // Cargar Catallogos
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  // Cargar Lista
 end;
 
 

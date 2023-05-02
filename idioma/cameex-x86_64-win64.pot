@@ -2,11 +2,35 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tform1.button1.caption
-msgid "Excepcion"
+msgid "Cargar Catalogos"
+msgstr ""
+
+#: tform1.button2.caption
+msgid "Cargar Lista"
 msgstr ""
 
 #: tform1.caption
 msgid "Form1"
+msgstr ""
+
+#: tform1.lista.header.columns[0].text
+msgid "Nombre"
+msgstr ""
+
+#: tform1.lista.header.columns[1].text
+msgid "Tamaño"
+msgstr ""
+
+#: tform1.lista.header.columns[2].text
+msgid "Tipo"
+msgstr ""
+
+#: tform1.lista.header.columns[3].text
+msgid "Modificado"
+msgstr ""
+
+#: tform1.lista.header.columns[4].text
+msgid "Atributos"
 msgstr ""
 
 #: tform1.menuitem1.caption
