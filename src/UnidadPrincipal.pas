@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 23:16:41
+ * @Last Modified time: 2023-05-04 00:25:55
  *)
 {
 
@@ -243,9 +243,11 @@ begin
       begin
         if Column = 0 then
         begin
-        ImageIndex := Datos.ImageIndex;
-        if ImageIndex = -1 then
-          ImageIndex := 2;
+          ImageIndex := Datos.ImageIndex;
+          if ImageIndex = -1 then
+            ImageIndex := 2;
+
+          ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
         end;
       end;
     end;

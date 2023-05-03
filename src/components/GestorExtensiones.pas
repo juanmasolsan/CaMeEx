@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-03 22:31:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 00:16:59
+ * @Last Modified time: 2023-05-04 00:26:17
  *)
 {
 
@@ -47,6 +47,9 @@ procedure SetExtensionesConfig(GestorDatos: IConectorDatos; ImagenList : TImageL
 
 // Devuelve la descripción de la extensión
 function GetExtensionDescripcionById(IdExtension: Qword): RawByteString;
+
+// Devuelve el Icon Index de la extensión
+function GetExtensionIcopnIndexById(IdExtension: Qword; PorDefecto : longint): longint;
 
 // Limpia la cache de extensiones
 procedure ClearCacheExtensiones;
@@ -96,9 +99,17 @@ begin
   Extension := FGestorDatos.GetExtensionById(IdExtension);
   if Extension = nil then exit;
 
+
   // Crear el item de cache para su guardado
   Datos := TCacheDataExtension.create;
   Datos.Descripcion := Extension.Descripcion;
+
+
+  if FImagenList <> nil then
+  begin
+    Datos.ImageIndex := FImagenList.Add(Extension.Icono, nil);
+  end;
+
 
   // Guarda el item en la lista de cache
   cacheExtensiones.add(UID, Datos);
@@ -135,6 +146,36 @@ begin
     result := datoCache.Descripcion;
 end;
 
+// Devuelve el Icon Index de la extensión
+function GetExtensionIcopnIndexById(IdExtension: Qword; PorDefecto : longint): longint;
+var
+  UID  : string;
+  datoCache : TCacheDataExtension;
+begin
+  // Inicializa el resultado
+  result := PorDefecto;
+
+  // Genera el UID de la extensión
+  UID := 'ext.' + Get_CRC64ToString(inttostr(IdExtension));
+
+  // Busca la extensión en la lista de cache
+  datoCache := TCacheDataExtension(cacheExtensiones.Find(UID));
+  if datoCache = nil then
+  begin
+    // Si no está en la lista de cache, la recupera de la base de datos
+    GetExtensionById(IdExtension, UID);
+
+    // Vuelve a buscar la extensión en la lista de cache
+    datoCache := TCacheDataExtension(cacheExtensiones.Find(UID));
+  end;
+
+  // Si la extensión está en la lista de cache, devuelve el icon index
+  if datoCache <> nil then
+    result := datoCache.ImageIndex;
+end;
+
+
+
 // Limpia la cache de extensiones
 procedure ClearCacheExtensiones;
 var
@@ -144,6 +185,9 @@ begin
     TCacheDataExtension(cacheExtensiones.Items[i]).Free;
   cacheExtensiones.clear;
 end;
+
+
+
 
 
 initialization
