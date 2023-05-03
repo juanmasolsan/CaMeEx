@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 18:51:51
+ * @Last Modified time: 2023-05-03 18:54:12
  *)
 {
 
@@ -578,6 +578,13 @@ var
   tiempo : qword;
 begin
   tiempo := GetTickCount64();
+
+  // Finalizar la lista de catalogos
+  if assigned(FListaCatalogos) then
+    begin
+      FListaCatalogos.clear;
+      FListaCatalogos.free;
+    end;
 
   // Cargar Lista
   FListaCatalogos := FGestorDatos.GetAllCatalogos();
