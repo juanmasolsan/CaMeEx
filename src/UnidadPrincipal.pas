@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 00:01:53
+ * @Last Modified time: 2023-05-03 17:10:19
  *)
 {
 
@@ -225,41 +225,34 @@ begin
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 end;
 
-procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree;
-  Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
-  var Ghosted: Boolean; var ImageIndex: Integer);
+procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
 var
   NodeData: PrListaData;
   Datos: TItemDato;
 begin
- try
-   NodeData := Lista.GetNodeData(Node);
-   if NodeData <> nil then
-   begin
-     Datos := NodeData^.NodeData;
-     if Datos <> nil then
-     begin
-       if Column = 0 then
-       begin
+  try
+    NodeData := Lista.GetNodeData(Node);
+    if NodeData <> nil then
+    begin
+      Datos := NodeData^.NodeData;
+      if Datos <> nil then
+      begin
+        if Column = 0 then
+        begin
         ImageIndex := Datos.ImageIndex;
         if ImageIndex = -1 then
-         ImageIndex := 2;
-       end;
-
+          ImageIndex := 2;
+        end;
       end;
     end;
- except
- end;
-
-
+  except
+  end;
 end;
 
-procedure TForm1.ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
-  Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+procedure TForm1.ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
 var
   NodeData: PrListaData;
   Datos: TItemDato;
-
 begin
   CellText := '';
   try
@@ -272,7 +265,7 @@ begin
         case Column of
           COLUMNA_NOMBRE    : CellText := Datos.Nombre;
           COLUMNA_SIZE      : CellText := inttostr(Datos.Size);
-//          COLUMNA_TIPO      : CellText := Datos.Descripcion;
+          COLUMNA_TIPO      : CellText := Datos.Extension;
           COLUMNA_FECHA     : DateTimeToString(CellText, TipoHora, Datos.Fecha);
           COLUMNA_ATRIBUTOS : CellText := AtributosToStr(Datos.Atributos, false);
         end;
