@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 15:04:15
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 14:51:29
+ * @Last Modified time: 2023-05-03 23:16:10
  *)
 {
 
@@ -56,7 +56,7 @@ type
 
     // Propiedades
     property Descripcion : RawByteString read FDescripcion;
-    property Icono       : TPortableNetworkGraphic read FIcono;
+    property Icono       : TPortableNetworkGraphic read FIcono write FIcono;
   end;
 
 

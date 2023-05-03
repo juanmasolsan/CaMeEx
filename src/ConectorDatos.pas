@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 18:38:29
+ * @Last Modified time: 2023-05-04 00:19:47
  *)
 {
 
@@ -75,25 +75,16 @@ const
 
   SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
-
-  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      =  'SELECT * FROM Datos' +
-  //'SELECT dt.*, rc.Ruta, ex.Extension, ex.Descripcion, ic.Icono  FROM Datos as dt' +
-                                              //' JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
-                                              //' JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
-                                              //' JOIN Iconos AS ic ON dt.IdExtension = ic.Id' +
-                                              ' WHERE IdCatalogo = :IDCATALOGO';
-
-
-
-  SQL_SELECT_DATOS_ALL_BY_PARENT_ID        = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND IdPadre = :IDPADRE';
-
+  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      = 'SELECT * FROM Datos WHERE IdCatalogo = :IDCATALOGO';
+  SQL_SELECT_DATOS_ALL_BY_PARENT_ID        =  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND IdPadre = :IDPADRE';
   SQL_SELECT_RUTA_COMPLETA                 = 'SELECT Ruta FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO AND Id = :ID;';
+  SQL_SELECT_EXTENSION                     = 'SELECT ex.Extension, ex.Descripcion, ic.Icono FROM Extensiones as ex JOIN Iconos AS ic ON ex.Id = ic.Id  WHERE ex.Id = :ID;';
 
   SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
   SQL_DELETE_DATOS_BY_ID_CATALOGO          = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO';
-  SQL_DELETE_DATO_BY_IDS                   = SQL_DELETE_DATOS_BY_ID_CATALOGO + ' AND (Id = :ID OR IdPadre = :ID);';
+  SQL_DELETE_DATO_BY_IDS                   =  SQL_DELETE_DATOS_BY_ID_CATALOGO + ' AND (Id = :ID OR IdPadre = :ID);';
   SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO  = 'DELETE FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO';
-  SQL_DELETE_RUTA_COMPLETA_BY_IDS          = SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO + ' AND Id = :ID;';
+  SQL_DELETE_RUTA_COMPLETA_BY_IDS          =  SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO + ' AND Id = :ID;';
   SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS = 'DELETE FROM RutaCompleta WHERE Id = :ID AND IdCatalogo = :IDCATALOGO AND NOT EXISTS (SELECT 1 FROM Datos WHERE IdRutaCompleta = :ID);';
 
   SQL_UPDATE_CATALOGO                      = 'UPDATE Catalogos SET Nombre=:NOMBRE, Descripcion=:DESCRIPCION, Tipo=:TIPO, Fecha=:FECHA WHERE Id=:ID;';
@@ -158,6 +149,10 @@ type
     // Añade el icono de una extension
     procedure AddExtensionIcono(Extension : TItemExtension);
 
+    // Devuelve los datos de una extensión
+    function GetExtensionById(Id : Qword) : TItemExtension;
+
+
     // Añade una ruta completa a la base de datos
     procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
 
@@ -213,8 +208,7 @@ uses
   , Control_DB
   , Control_Logger
   , ItemBaseDatos
-
-  ;
+  , graphics;
 
 var
   FDataBase : TConexion_DB = nil;
@@ -533,6 +527,83 @@ begin
             internalQuery.Close;
         end;
 
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    on E: Exception do LogAddException('Excepción Detectada', E);
+  end;
+end;
+
+
+// Devuelve los datos de una extensión
+function TConectorDatos.GetExtensionById(Id : Qword) : TItemExtension;
+var
+  Stream : TMemoryStream;
+begin
+  // Inicializa el resultado
+  Result := nil;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+        FDataBase.Query.SQL.Add(SQL_SELECT_EXTENSION);
+
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('ID').AsLargeInt         := Id;
+
+
+        // Ejecuta la sentencia
+        //FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
+        FDataBase.Query.Open;
+        try
+          // Comprueba que tiene datos
+          if FDataBase.Query.IsEmpty then exit;
+
+          // Inicializa el resultado
+          Result := nil;
+
+          // Obtinene el primer registro
+          FDataBase.Query.First;
+
+          // Recorre los registros
+          while not FDataBase.Query.EOF do
+          begin
+
+            Stream := TMemoryStream.Create;
+            try
+              Result := TItemExtension.Create(FDataBase.Query.FieldByName('Extension').AsString, FDataBase.Query.FieldByName('Descripcion').AsString, nil);
+
+              //Extension.Icono.SaveToStream(Stream);
+              TBlobField(FDataBase.Query.FieldByName('ICONO')).SaveToStream(Stream);
+
+              Stream.Position := 0;
+
+              if Stream.Size > 0 then
+              begin
+                Result.Icono := TPortableNetworkGraphic.Create;
+                Result.Icono.LoadFromStream(Stream);
+              end;
+
+            finally
+              Stream.Free;
+            end;
+
+            // Pasa al siguiente registro
+            FDataBase.Query.Next;
+          end;
+
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
       finally
         // Se finaliza la seccion critica
         LeaveCriticalSection(FCriticalSection);

@@ -1,4 +1,7 @@
 
+- [FIX]   (20230504) Reescrito la forma de la lista de archivos la visualización de la información del tipo de archivo.
+
++ 1.1.1.0
 - [NEW]   (20230503) Agregada a la lista de archivos la visualización de la información de la ruta en la que se encuentra el archivo
 - [NEW]   (20230503) Agregada a la lista de archivos la visualización de la información del tipo de archivo
 - [NEW]   (20230503) Agregada a la lista de archivos la visualización de un icono por defecto en cada item.

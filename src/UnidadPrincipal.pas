@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 18:54:12
+ * @Last Modified time: 2023-05-03 23:16:41
  *)
 {
 
@@ -153,7 +153,7 @@ uses appinfo
 , Utilidades
 , ConectorDatos
 , ItemBaseDatos
-, ItemExtension, ItemRutaCompleta, GestorRutasCompletas;
+, ItemExtension, ItemRutaCompleta, GestorExtensiones;
 
 {$R *.lfm}
 
@@ -202,6 +202,9 @@ begin
   Lista.NodeDataSize    := Sizeof(rTListaData);
   Lista.DoubleBuffered  := true;
 
+
+  // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
+  SetExtensionesConfig(FGestorDatos, ImageListArchivos);
 
 
   SalidaLog.Lines.add(inttostr(high(Qword)));
@@ -266,7 +269,7 @@ begin
         case Column of
           COLUMNA_NOMBRE    : CellText := Datos.Nombre;
           COLUMNA_SIZE      : CellText := inttostr(Datos.Size);
-          COLUMNA_TIPO      : CellText := Datos.Extension;
+          COLUMNA_TIPO      : CellText := GetExtensionDescripcionById(Datos.IdExtension);
           COLUMNA_FECHA     : DateTimeToString(CellText, TipoHora, Datos.Fecha);
           COLUMNA_ATRIBUTOS : CellText := AtributosToStr(Datos.Atributos, false);
           COLUMNA_RUTA      : CellText := FGestorDatos.GetRutaCompleta(Datos);

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 18:38:15
+ * @Last Modified time: 2023-05-03 23:17:43
  *)
 {
 
@@ -54,6 +54,9 @@ type
 
     // Añade el icono de una extension
     procedure AddExtensionIcono(Extension : TItemExtension);
+
+    // Devuelve los datos de una extensión
+    function GetExtensionById(Id : Qword) : TItemExtension;
 
     // Añade una ruta completa
     procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
