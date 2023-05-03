@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 23:33:15
+ * @Last Modified time: 2023-05-03 18:38:15
  *)
 {
 
@@ -57,6 +57,9 @@ type
 
     // Añade una ruta completa
     procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
+
+    // Devuelve los datos de una extensión de un Item
+    function GetRutaCompleta(Item : TItemDato) : RawByteString;
 
     // Añade un catálogo
     procedure AddCatalogo(Catalogo : TItemCatalogo);

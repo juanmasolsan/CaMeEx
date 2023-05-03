@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 17:10:19
+ * @Last Modified time: 2023-05-03 18:51:51
  *)
 {
 
@@ -139,6 +139,7 @@ const
   COLUMNA_TIPO      = COLUMNA_SIZE + 1;
   COLUMNA_FECHA     = COLUMNA_TIPO + 1;
   COLUMNA_ATRIBUTOS = COLUMNA_FECHA + 1;
+  COLUMNA_RUTA      = COLUMNA_ATRIBUTOS + 1;
 
 var
   TipoHora          : RawByteString = 'dd/mm/yyyy  hh:mm:ss';
@@ -152,7 +153,7 @@ uses appinfo
 , Utilidades
 , ConectorDatos
 , ItemBaseDatos
-, ItemExtension, ItemRutaCompleta;
+, ItemExtension, ItemRutaCompleta, GestorRutasCompletas;
 
 {$R *.lfm}
 
@@ -268,6 +269,7 @@ begin
           COLUMNA_TIPO      : CellText := Datos.Extension;
           COLUMNA_FECHA     : DateTimeToString(CellText, TipoHora, Datos.Fecha);
           COLUMNA_ATRIBUTOS : CellText := AtributosToStr(Datos.Atributos, false);
+          COLUMNA_RUTA      : CellText := FGestorDatos.GetRutaCompleta(Datos);
         end;
       end;
     end;
@@ -573,7 +575,10 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 var
   CatalogoActual : TItemCatalogo;
+  tiempo : qword;
 begin
+  tiempo := GetTickCount64();
+
   // Cargar Lista
   FListaCatalogos := FGestorDatos.GetAllCatalogos();
   if assigned(FListaCatalogos) then
@@ -587,6 +592,10 @@ begin
         DoLoadListaArchivos(CatalogoActual, nil);
       end;
     end;
+
+  tiempo := GetTickCount64() - tiempo;
+
+  SalidaLog.lines.Add('Tiempo empleado : ' + IntToStr(tiempo) + ' ms.');
 end;
 
 

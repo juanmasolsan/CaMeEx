@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-02 22:30:42
+ * @Last Modified time: 2023-05-03 18:38:29
  *)
 {
 
@@ -75,20 +75,24 @@ const
 
   SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
-  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      =  'SELECT dt.*, rc.Ruta, ex.Extension, ex.Descripcion, ic.Icono  FROM Datos as dt' +
-                                              ' JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
-                                              ' JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
-                                              ' JOIN Iconos AS ic ON dt.IdExtension = ic.Id' +
-                                              ' WHERE dt.IdCatalogo = :IDCATALOGO';
+
+  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      =  'SELECT * FROM Datos' +
+  //'SELECT dt.*, rc.Ruta, ex.Extension, ex.Descripcion, ic.Icono  FROM Datos as dt' +
+                                              //' JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
+                                              //' JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
+                                              //' JOIN Iconos AS ic ON dt.IdExtension = ic.Id' +
+                                              ' WHERE IdCatalogo = :IDCATALOGO';
 
 
 
-  SQL_SELECT_DATOS_ALL_BY_PARENT_ID        = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND dt.IdPadre = :IDPADRE';
+  SQL_SELECT_DATOS_ALL_BY_PARENT_ID        = SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND IdPadre = :IDPADRE';
+
+  SQL_SELECT_RUTA_COMPLETA                 = 'SELECT Ruta FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO AND Id = :ID;';
 
   SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
   SQL_DELETE_DATOS_BY_ID_CATALOGO          = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO';
   SQL_DELETE_DATO_BY_IDS                   = SQL_DELETE_DATOS_BY_ID_CATALOGO + ' AND (Id = :ID OR IdPadre = :ID);';
-  SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO  = 'DELETE FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO;';
+  SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO  = 'DELETE FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO';
   SQL_DELETE_RUTA_COMPLETA_BY_IDS          = SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO + ' AND Id = :ID;';
   SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS = 'DELETE FROM RutaCompleta WHERE Id = :ID AND IdCatalogo = :IDCATALOGO AND NOT EXISTS (SELECT 1 FROM Datos WHERE IdRutaCompleta = :ID);';
 
@@ -156,6 +160,9 @@ type
 
     // Añade una ruta completa a la base de datos
     procedure AddRutaCompleta(Ruta : TItemRutaCompleta);
+
+    // Devuelve los datos de una extensión de un Item
+    function GetRutaCompleta(Item : TItemDato) : RawByteString;
 
     // Añade un catálogo a la base de datos
     procedure AddCatalogo(Catalogo : TItemCatalogo);
@@ -592,6 +599,70 @@ begin
   end;
 end;
 
+
+
+// Devuelve los datos de una extensión de un Item
+function TConectorDatos.GetRutaCompleta(Item : TItemDato) : RawByteString;
+begin
+  // Inicializa el resultado
+  Result := '';
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+        FDataBase.Query.SQL.Add(SQL_SELECT_RUTA_COMPLETA);
+
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('ID').AsLargeInt         := Item.IdRutaCompleta;
+        FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Item.IdCatalogo;
+
+        // Ejecuta la sentencia
+        //FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
+        FDataBase.Query.Open;
+        try
+          // Comprueba que tiene datos
+          if FDataBase.Query.IsEmpty then exit;
+
+          // Inicializa el resultado
+          Result := '';
+
+          // Obtinene el primer registro
+          FDataBase.Query.First;
+
+          // Recorre los registros
+          while not FDataBase.Query.EOF do
+          begin
+            Result := FDataBase.Query.FieldByName('RUTA').AsString;
+
+            // Pasa al siguiente registro
+            FDataBase.Query.Next;
+          end;
+
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    on E: Exception do LogAddException('Excepción Detectada', E);
+  end;
+end;
+
+
+
+
+
+
+
 // Añade un catálogo a la base de datos
 procedure TConectorDatos.AddCatalogo(Catalogo : TItemCatalogo);
 begin
@@ -702,7 +773,8 @@ begin
           Query.FieldByName('FECHA').AsDateTime,
           Query.FieldByName('SIZE').AsLargeInt,
           Query.FieldByName('ATRIBUTOS').AsInteger,
-          Query.FieldByName('DESCRIPCION').AsString,
+//          Query.FieldByName('DESCRIPCION').AsString,
+            '',
           Query.FieldByName('ImageIndex').AsInteger,
 
 
@@ -827,6 +899,7 @@ begin
     on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
+
 
 // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
 function TConectorDatos.GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato) : TArrayItemDato;

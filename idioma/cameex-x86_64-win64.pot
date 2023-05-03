@@ -33,6 +33,10 @@ msgstr ""
 msgid "Atributos"
 msgstr ""
 
+#: tform1.lista.header.columns[5].text
+msgid "Ruta"
+msgstr ""
+
 #: tform1.menuitem1.caption
 msgid "Archivo"
 msgstr ""

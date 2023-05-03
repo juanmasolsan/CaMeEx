@@ -62,6 +62,7 @@
 +         Agregar Sqlite3 - Crea tabla de iconos de las extensiones
 +         Agregar Sqlite3 - Para acelerar el guardado que se pueda usar begin; commit;
 +         Agregar Sqlite3 - Eliminar datos de la tabla de iconos
+-         Agregar Sqlite3 - Al agregar un nuevo item que guarde si tiene hijos o no
 
 - Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
 -         Ventana para seleccionar el dispositivo/directorio a escanear.
@@ -75,6 +76,7 @@
 -         Tamaño de los archivos - Con puntos para separar los miles.
 -         Tamaño de los archivos - Poder seleccionar unidad en la que mostrar los tamaños, bytes, kb, mb, gb, tb, etc.
 -         Agregar breadcrumbs.
+-         Parpadeo del borde de la lista de archivos al hacer scroll
 
 - Hito 3: Búsqueda y filtrado de datos.
 -         Agregar cajon de búsqueda en la barra de herramientas

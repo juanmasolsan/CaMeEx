@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230503) Agregada a la lista de archivos la visualización de la información de la ruta en la que se encuentra el archivo
 - [NEW]   (20230503) Agregada a la lista de archivos la visualización de la información del tipo de archivo
 - [NEW]   (20230503) Agregada a la lista de archivos la visualización de un icono por defecto en cada item.
 - [NEW]   (20230503) Agregada visualización básica de la lista de archivos en su control correspondiente.
