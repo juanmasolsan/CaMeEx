@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:26
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 16:54:19
+ * @Last Modified time: 2023-05-04 16:59:53
  *)
 {
 
@@ -46,6 +46,9 @@ uses
   {$IFDEF HASAMIGA}
   athreads,
   {$ENDIF}
+  {$IFDEF DETECTAR_FUGAS_DE_MEMORIA}
+  SysUtils,
+  {$ENDIF DETECTAR_FUGAS_DE_MEMORIA}
   Interfaces, // this includes the LCL widgetset
   Forms
   , UnidadPrincipal
@@ -55,6 +58,18 @@ uses
 {$R *.res}
 
 begin
+{$IFDEF DETECTAR_FUGAS_DE_MEMORIA}
+  // Gestión del archivo de volcado de fugas de memoria
+  // Si existe, lo borramos
+  if FileExists('fugas_de_memoria.trc') then
+  begin
+    DeleteFile('fugas_de_memoria.trc');
+  end;
+
+  // Activamos el volcado de fugas de memoria
+  SetHeapTraceOutput('fugas_de_memoria.trc');
+{$ENDIF DETECTAR_FUGAS_DE_MEMORIA}
+
   RequireDerivedFormResource:=True;
   Application.Title:='CaMeEx';
   Application.Scaled:=True;

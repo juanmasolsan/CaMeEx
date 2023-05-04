@@ -2,3 +2,4 @@ lib/
 out/
 *.dbg
 *.exe
+/fugas_de_memoria.trc
