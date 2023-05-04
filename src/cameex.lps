@@ -30,7 +30,8 @@
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="56" Y="11"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="57" Y="13"/>
         <UsageCount Value="70"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -298,7 +299,6 @@
       </Unit>
       <Unit>
         <Filename Value="components\GestorExtensiones.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="41"/>
         <CursorPos Y="52"/>

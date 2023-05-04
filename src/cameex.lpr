@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:26
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-15 18:44:29
+ * @Last Modified time: 2023-05-04 16:54:19
  *)
 {
 
@@ -33,8 +33,13 @@ SOFTWARE.
 program cameex;
 
 {$mode objfpc}{$H+}
+{$i ./DirectivasCompilacion.inc}
+
 
 uses
+  {$IFDEF DETECTAR_FUGAS_DE_MEMORIA}
+  HeapTrc,
+  {$ENDIF}
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}

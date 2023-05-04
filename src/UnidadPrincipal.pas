@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 00:25:55
+ * @Last Modified time: 2023-05-04 16:42:17
  *)
 {
 
@@ -30,9 +30,7 @@ SOFTWARE.
 
 }
 
-//TODO: Eliminar, solo es para pruebas
-{.$DEFINE ESCANEAR_DIRECTORIO_GRANDE}
-{.$DEFINE MOSTRAR_INFO_ESCANEO}
+{$i ./DirectivasCompilacion.inc}
 
 
 unit UnidadPrincipal;

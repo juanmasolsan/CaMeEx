@@ -107,4 +107,4 @@
 - Comprobar memory leaks (1)
 - Crear el diagrama de clases
 - Internalización de la app
-- Listado de todas las directivas de compilación y para que se usan
++ Listado de todas las directivas de compilación y para que se usan
