@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 16:42:17
+ * @Last Modified time: 2023-05-04 23:23:34
  *)
 {
 
@@ -100,11 +100,14 @@ type
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ListaCompareNodes(Sender: TBaseVirtualTree; Node1,
+      Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
     procedure ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean;
       var ImageIndex: Integer);
     procedure ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+    procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
@@ -122,6 +125,16 @@ type
 
     procedure DoLiberarListaArchivos();
     function AddNodeLista(Dato: TItemDato): boolean;
+
+    // Carga la configuración del programa
+    procedure DoConfiguracionLoad();
+
+    // Guarda la configuración del programa
+    procedure DoConfiguracionSave();
+
+    // Aplica la configuración del programa
+    procedure DoConfiguracionAplicar();
+
   public
 
   end;
@@ -131,22 +144,11 @@ var
   Form1: TForm1;
 
 
-const
-  COLUMNA_NOMBRE    = 0;
-  COLUMNA_SIZE      = COLUMNA_NOMBRE + 1;
-  COLUMNA_TIPO      = COLUMNA_SIZE + 1;
-  COLUMNA_FECHA     = COLUMNA_TIPO + 1;
-  COLUMNA_ATRIBUTOS = COLUMNA_FECHA + 1;
-  COLUMNA_RUTA      = COLUMNA_ATRIBUTOS + 1;
-
-var
-  TipoHora          : RawByteString = 'dd/mm/yyyy  hh:mm:ss';
-
-
 implementation
 
 uses appinfo
 , Control_About
+, Configuracion
 
 , Utilidades
 , ConectorDatos
@@ -184,9 +186,9 @@ begin
   ActivarGuardadoPosicion;
 
   // Inicializar el Logger
-
   LogCreate(IncludeTrailingBackslash(DirectorioConfig) + NOMBRE_PROGRAMA + '.log' , TLogLevel.all, true);
 
+  // Agrega al logger el inicio del programa
   LogAdd(TLogLevel.info, 'Iniciando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 
   // Inicializar el Gestor de Datos
@@ -205,7 +207,11 @@ begin
   SetExtensionesConfig(FGestorDatos, ImageListArchivos);
 
 
-  SalidaLog.Lines.add(inttostr(high(Qword)));
+  // Carga la configuración del programa
+  DoConfiguracionLoad();
+
+  // Aplica la configuración del programa
+  DoConfiguracionAplicar();
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -224,7 +230,43 @@ begin
   // Finalizar el Gestor de Datos
   FGestorDatos.Finalizar();
 
+  // Guarda la configuración del programa
+  DoConfiguracionSave();
+
+
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
+end;
+
+// Carga la configuración del programa
+procedure TForm1.DoConfiguracionLoad();
+begin
+  // Carga la configuración de las columnas y el orden
+  FColumnnaOrden           := ArchivoConfiguracion.ReadInteger('Config', 'ColumnnaOrden', FColumnnaOrden);
+  FColumnnaOrden_Direccion := ArchivoConfiguracion.ReadInteger('Config', 'ColumnnaOrden_Direccion', FColumnnaOrden_Direccion);
+end;
+
+// Guarda la configuración del programa
+procedure TForm1.DoConfiguracionSave();
+begin
+  // Guarda la configuración de las columnas y el orden
+  ArchivoConfiguracion.WriteInteger('Config', 'ColumnnaOrden', FColumnnaOrden);
+  ArchivoConfiguracion.WriteInteger('Config', 'ColumnnaOrden_Direccion', FColumnnaOrden_Direccion);
+
+end;
+
+// Aplica la configuración del programa
+procedure TForm1.DoConfiguracionAplicar();
+begin
+  // Aplica la configuración de las columnas y el orden
+  Lista.Header.SortColumn    := FColumnnaOrden;
+  Lista.Header.SortDirection := TSortDirection(FColumnnaOrden_Direccion);
+end;
+
+
+procedure TForm1.ListaCompareNodes(Sender: TBaseVirtualTree; Node1,
+  Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+begin
+  // Comparar
 end;
 
 procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
@@ -278,6 +320,17 @@ begin
     end;
   except
   end;
+end;
+
+procedure TForm1.ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
+begin
+ // Guarda las opciones de columna y orden en sus variables
+ FColumnnaOrden           := HitInfo.Column;
+ FColumnnaOrden_Direccion := integer(not boolean(Lista.Header.SortDirection));
+
+ // Aplica al header la nueva config
+ Lista.Header.SortColumn    := FColumnnaOrden;
+ Lista.Header.SortDirection := TSortDirection(FColumnnaOrden_Direccion);
 end;
 
 procedure TForm1.DoLiberarListaArchivos();

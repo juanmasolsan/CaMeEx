@@ -68,6 +68,7 @@
 -         Ventana para seleccionar el dispositivo/directorio a escanear.
 -         Listar los dispositivos/directorios en un árbol.
 +         Listar los archivos en la lista.
+-         Que se pueda navegar desde la lista de archivos sobre los directorios (ENTER y doble click en los items).
 -         Que el árbol se pueda colapsar y expandir los items.
 -         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app
 -         Los iconos de lista de archivos y árbol de directorios puedan recuperar los iconos de los catalogos
