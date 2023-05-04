@@ -1,4 +1,6 @@
 
+
+- [FIX]   (20230504) Fix forma de detectar las fugas de memoria.
 - [FIX]   (20230504) Agregado a TConectorDatos.AddDato que guarde si tiene hijos directorios
 - [NEW]   (20230504) Agregado volcado de fugas de memoria al archivo fugas_de_memoria.trc.
 - [FIX]   (20230504) Agregadas todas las directivas de compilación a un archivo para su facil edición.

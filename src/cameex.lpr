@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:26
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 16:59:53
+ * @Last Modified time: 2023-05-04 18:23:49
  *)
 {
 
@@ -37,18 +37,18 @@ program cameex;
 
 
 uses
-  {$IFDEF DETECTAR_FUGAS_DE_MEMORIA}
+  {$IFDEF FUGAS_DE_MEMORIA_DETECTAR}
   HeapTrc,
-  {$ENDIF}
+  {$ENDIF FUGAS_DE_MEMORIA_DETECTAR}
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
   {$IFDEF HASAMIGA}
   athreads,
   {$ENDIF}
-  {$IFDEF DETECTAR_FUGAS_DE_MEMORIA}
+  {$IFDEF FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
   SysUtils,
-  {$ENDIF DETECTAR_FUGAS_DE_MEMORIA}
+  {$ENDIF FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
   Interfaces, // this includes the LCL widgetset
   Forms
   , UnidadPrincipal
@@ -58,7 +58,7 @@ uses
 {$R *.res}
 
 begin
-{$IFDEF DETECTAR_FUGAS_DE_MEMORIA}
+{$IFDEF FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
   // Gestión del archivo de volcado de fugas de memoria
   // Si existe, lo borramos
   if FileExists('fugas_de_memoria.trc') then
@@ -68,7 +68,7 @@ begin
 
   // Activamos el volcado de fugas de memoria
   SetHeapTraceOutput('fugas_de_memoria.trc');
-{$ENDIF DETECTAR_FUGAS_DE_MEMORIA}
+{$ENDIF FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
 
   RequireDerivedFormResource:=True;
   Application.Title:='CaMeEx';

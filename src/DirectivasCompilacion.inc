@@ -1,9 +1,9 @@
 // Activa Heaptrc para poder determinar si hay fugas de memoria
-{$DEFINE DETECTAR_FUGAS_DE_MEMORIA}
+{$DEFINE FUGAS_DE_MEMORIA_DETECTAR}
 
-{$IFDEF DETECTAR_FUGAS_DE_MEMORIA}
+{$IFDEF FUGAS_DE_MEMORIA_DETECTAR}
   // Vuelca el informe de Heaptrc a un archivo en vez de mostrar la ventana de la info
-  {$DEFINE USAR_VOLCADOS_ARCHIVO}
+  {.$DEFINE FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
 {$ENDIF}
 
 // Usar codificación de la base de datos
