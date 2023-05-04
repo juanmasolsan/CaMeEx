@@ -104,9 +104,9 @@ begin
 end;
 
 // Emula el resultado de ordenación de Windows Explorer
-function OrdenarListaComoExplorer(Nombre1, Nombre2, Ext1, Ext2,
- Ruta1, Ruta2: string; Atributos1, Atributos2 : longint;
- Fecha1, Fecha2 : TDateTime; Dir1, Dir2 : Boolean; Size1, Size2 : int64; OrdenarPor : TOrdenarPor; TipoOrden  : TOrdenOrdenarPor) : integer; {$IFDEF FORCE_INLINE} inline; {$ENDIF}
+function OrdenarListaComoExplorer(Nombre1, Nombre2, {%H-}Ext1, {%H-}Ext2,
+ {%H-}Ruta1, {%H-}Ruta2: string; Atributos1, Atributos2 : longint;
+ Fecha1, Fecha2 : TDateTime; {%H-}Dir1, {%H-}Dir2 : Boolean; Size1, Size2 : int64; OrdenarPor : TOrdenarPor; {%H-}TipoOrden  : TOrdenOrdenarPor) : integer; {$IFDEF FORCE_INLINE} inline; {$ENDIF}
 begin
  Result    := 0;
  case OrdenarPor of

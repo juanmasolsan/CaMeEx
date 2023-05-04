@@ -1,6 +1,7 @@
 
-
-- [NEW]   (20230504) Agregado algoritmo de ordenación de la lista de archivos
++ 1.1.1.9
+- [FIX]   (20230505) Eliminado warnings, hints y notes del código.
+- [NEW]   (20230505) Agregado algoritmo de ordenación de la lista de archivos
 
 + 1.1.1.7
 - [NEW]   (20230504) Agregada a la lista de archivos seleccionar y cambiar la dirección de la columnas por la que ordenar los datos

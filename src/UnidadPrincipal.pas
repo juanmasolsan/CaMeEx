@@ -101,12 +101,12 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ListaCompareNodes(Sender: TBaseVirtualTree; Node1,
-      Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+      Node2: PVirtualNode; {%H-}Column: TColumnIndex; var Result: Integer);
     procedure ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
-      Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean;
+      {%H-}Kind: TVTImageKind; Column: TColumnIndex; var {%H-}Ghosted: Boolean;
       var ImageIndex: Integer);
     procedure ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
-      Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+      Column: TColumnIndex; {%H-}TextType: TVSTTextType; var CellText: String);
     procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -638,7 +638,7 @@ begin
         total := FListaArchivos.count -1;
         for t := 0 to total do
         begin
-          AddNodeLista(TItemDato(FListaArchivos[t]));
+          AddNodeLista(TItemDato(FListaArchivos{%H-}[t]));
         end;
       end;
     end;
@@ -684,7 +684,7 @@ begin
     if FListaCatalogos.Count > 0 then
     begin
       // Carga el primer catalogo
-      CatalogoActual := TItemCatalogo(FListaCatalogos[0]);
+      CatalogoActual := TItemCatalogo(FListaCatalogos{%H-}[0]);
       if assigned(CatalogoActual) then
       begin
         // Carga los datos del catalogo
