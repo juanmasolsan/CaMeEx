@@ -1,4 +1,5 @@
 
+- [FIX]   (20230504) Agregado a TConectorDatos.AddDato que guarde si tiene hijos directorios
 - [NEW]   (20230504) Agregado volcado de fugas de memoria al archivo fugas_de_memoria.trc.
 - [FIX]   (20230504) Agregadas todas las directivas de compilación a un archivo para su facil edición.
 - [NEW]   (20230504) Agregada a la lista de archivos la visualización de los iconos que tenían los archivos cuando se realizó el escaneo

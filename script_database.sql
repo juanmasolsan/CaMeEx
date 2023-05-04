@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 23:04:48
+ * @Last Modified time: 2023-05-04 18:02:13
  */
 
 
@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS Datos (
     Size           BIGINT   NOT NULL,
     Nombre         TEXT     NOT NULL,
     ImageIndex     INTEGER  NOT NULL,
+    TieneHijos     INTEGER  NOT NULL,
     IdPadre        BIGINT,
     IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
     IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,

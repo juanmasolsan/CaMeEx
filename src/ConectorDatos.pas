@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 16:41:03
+ * @Last Modified time: 2023-05-04 18:15:31
  *)
 {
 
@@ -58,8 +58,8 @@ const
   SQL_INSERT_ICONO                         = 'INSERT OR IGNORE INTO Iconos (Id, Icono) VALUES (:ID, :ICONO);';
   SQL_INSERT_RUTA_COMPLETA                 = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
   SQL_INSERT_CATALOGO                      = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
-  SQL_INSERT_DATO_PADRE                    = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE);';
-  SQL_INSERT_DATO                          = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO);';
+  SQL_INSERT_DATO_PADRE                    = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre, TieneHijos) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE, :TIENEHIJOS);';
+  SQL_INSERT_DATO                          = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, TieneHijos) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :TIENEHIJOS);';
 
   SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
@@ -355,6 +355,7 @@ begin
         'Size           BIGINT      NOT NULL,' +
         'Nombre         TEXT        NOT NULL,' +
         'ImageIndex     INTEGER     NOT NULL,' +
+        'TieneHijos     INTEGER     NOT NULL,' +
         'IdPadre        BIGINT,' +
         'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
         'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
@@ -784,6 +785,7 @@ begin
         internalQuery.ParamByName('IDEXTENSION').AsLargeInt    := Dato.IdExtension;
         internalQuery.ParamByName('IDRUTACOMPLETA').AsLargeInt := Dato.IdRutaCompleta;
         internalQuery.ParamByName('IDCATALOGO').AsLargeInt     := Dato.IdCatalogo;
+        internalQuery.ParamByName('TIENEHIJOS').AsBoolean      := Dato.TieneHijos;
 
         try
           // Realiza la inserción
@@ -845,6 +847,9 @@ begin
 
   // Añade el id
   Result.Id := QWord(FDataBase.Query.FieldByName('ID').AsLargeInt);
+
+  // Añade si tiene hijos
+  Result.TieneHijos := Query.FieldByName('TIENEHIJOS').AsBoolean;
 end;
 
 // Devuelve todos los catalogos

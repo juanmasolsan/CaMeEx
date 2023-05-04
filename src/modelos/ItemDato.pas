@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 00:08:48
+ * @Last Modified time: 2023-05-04 18:03:53
  *)
 {
 
@@ -82,6 +82,9 @@ type
 
     FHijos               : TArrayItemDato;
     FParent              : TItemDato;
+    FTieneHijos          : boolean;
+
+    function GetTineHijos: boolean;
   protected
     // Obtiene el índice de la imagen del sistema
     function GetImageIndexSistema() : Integer; virtual;
@@ -137,7 +140,8 @@ type
 
 
     property IdPadre         : Qword read FIdPadre;
-    property Parent           : TItemDato read FParent;
+    property Parent          : TItemDato read FParent;
+    property TieneHijos      : boolean read GetTineHijos write FTieneHijos;
   end;
 
 
@@ -243,12 +247,15 @@ begin
   Hijo.FParent   := Self;
 
   Result := FHijos{%H-}.Add(Hijo);
+
+  TieneHijos := Result > 0;
 end;
 
 // Obtiene el número de hijos
 function TItemDato.HijosCount() : Integer;
 begin
   Result := FHijos.Count;
+  TieneHijos := Result > 0;
 end;
 
 // Obtiene un hijo
@@ -261,6 +268,8 @@ end;
 procedure TItemDato.HijosClear();
 begin
   FHijos.Clear;
+
+  TieneHijos := FHijos.Count > 0;
 end;
 
 
@@ -313,5 +322,34 @@ begin
     +  '|' + IntToStr(FIdPadre));
 end;
 
+
+// Geeter
+function TItemDato.GetTineHijos: boolean;
+var
+  t, total : longint;
+begin
+  FTieneHijos := false;
+  result      := FTieneHijos;
+
+  // Si no es del tipo directorio no tiene hijos
+  if tipo <> TItemDatoTipo.Directorio then
+    exit;
+
+  // Si no se ha comprobado si tiene hijos
+  if not FTieneHijos then
+  begin
+    total := FHijos.Count -1;
+    for t := 0 to total do
+      begin
+
+        FTieneHijos := FHijos[t].tipo = TItemDatoTipo.Directorio;
+        // Si tiene hijos salimos
+        if FTieneHijos then
+          break;
+      end;
+  end;
+
+  result := FTieneHijos;
+end;
 
 end.
