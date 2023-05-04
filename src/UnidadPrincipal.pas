@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 23:23:34
+ * @Last Modified time: 2023-05-05 00:20:47
  *)
 {
 
@@ -149,7 +149,7 @@ implementation
 uses appinfo
 , Control_About
 , Configuracion
-
+, OrdenarLista
 , Utilidades
 , ConectorDatos
 , ItemBaseDatos
@@ -265,8 +265,37 @@ end;
 
 procedure TForm1.ListaCompareNodes(Sender: TBaseVirtualTree; Node1,
   Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+var
+  Data_1       : PrListaData;
+  Data_2       : PrListaData;
 begin
-  // Comparar
+  Result := 1;
+
+
+  Data_1  := Sender.GetNodeData(Node1);
+  if Data_1 = nil then
+    exit;
+
+  Data_2  := Sender.GetNodeData(Node2);
+  if Data_2 = nil then
+    exit;
+
+  if Data_1^.NodeData  = nil then exit;
+  if Data_2^.NodeData  = nil then exit;
+
+
+  //Data_1^.Data^.WF_OrdenarPor := TOrdenarPor(Column);
+  //Data_2^.Data^.WF_OrdenarPor := TOrdenarPor(Column);
+
+(*
+ case CompararPor of
+  sdAscending  : Data_1^.Data^.WF_OrdenOrdenarPor := oopAscendente;
+  sdDescending : Data_1^.Data^.WF_OrdenOrdenarPor := oopDescencente;
+ end;
+*)
+
+
+ Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion);
 end;
 
 procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
@@ -325,12 +354,15 @@ end;
 procedure TForm1.ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
 begin
  // Guarda las opciones de columna y orden en sus variables
- FColumnnaOrden           := HitInfo.Column;
- FColumnnaOrden_Direccion := integer(not boolean(Lista.Header.SortDirection));
+  FColumnnaOrden           := HitInfo.Column;
+   FColumnnaOrden_Direccion := integer(not boolean(Lista.Header.SortDirection));
 
  // Aplica al header la nueva config
- Lista.Header.SortColumn    := FColumnnaOrden;
- Lista.Header.SortDirection := TSortDirection(FColumnnaOrden_Direccion);
+  Lista.Header.SortColumn    := FColumnnaOrden;
+  Lista.Header.SortDirection := TSortDirection(FColumnnaOrden_Direccion);
+
+  // Ordena la lista
+  Lista.SortTree(Lista.Header.SortColumn, Lista.Header.SortDirection);
 end;
 
 procedure TForm1.DoLiberarListaArchivos();
@@ -610,6 +642,10 @@ begin
         end;
       end;
     end;
+
+    // Ordena la lista
+    Lista.SortTree(Lista.Header.SortColumn, Lista.Header.SortDirection);
+
   finally
     Lista.EndUpdate;
   end;

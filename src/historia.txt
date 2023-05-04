@@ -1,6 +1,8 @@
 
 
+- [NEW]   (20230504) Agregado algoritmo de ordenación de la lista de archivos
 
++ 1.1.1.7
 - [NEW]   (20230504) Agregada a la lista de archivos seleccionar y cambiar la dirección de la columnas por la que ordenar los datos
 - [FIX]   (20230504) Fix forma de detectar las fugas de memoria.
 - [FIX]   (20230504) Agregado a TConectorDatos.AddDato que guarde si tiene hijos directorios
