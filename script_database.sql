@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 15:19:39
+ * @Last Modified time: 2023-05-05 15:59:57
  */
 
 
@@ -130,7 +130,7 @@ SELECT dt.*, rc.Ruta, ex.Extension, ex.Descripcion, ic.Icono  FROM Datos as dt
 
 -- SELECT - Listar todo el contenido de la tabla Extensiones y que devuelva la info y el icono
 SELECT ex.Extension, ex.Descripcion, ic.Icono FROM Extensiones as ex
-	JOIN Iconos AS ic ON ex.Id = ic.Id
+	JOIN Iconos AS ic ON ex.IdIcono = ic.Id
     ;
 
 -- Elimina el registro con el id 1000

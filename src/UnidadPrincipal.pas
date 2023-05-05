@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 15:43:03
+ * @Last Modified time: 2023-05-05 16:13:27
  *)
 {
 
@@ -125,6 +125,9 @@ type
 
     procedure DoLiberarListaArchivos();
     function AddNodeLista(Dato: TItemDato): boolean;
+
+    // Devuelve la ruta de un item
+    function GetRutaFromItem(Item: TItemDato) : RawByteString;
 
     // Carga la configuración del programa
     procedure DoConfiguracionLoad();
@@ -318,6 +321,21 @@ begin
   end;
 end;
 
+// Devuelve la ruta de un item
+function TForm1.GetRutaFromItem(Item: TItemDato) : RawByteString;
+var
+  Ruta: RawByteString;
+begin
+  Result := '';
+  if Item <> nil then
+  begin
+    if Item.Ruta = '' then
+      Item.Ruta := FGestorDatos.GetRutaCompleta(Item);
+
+    Result := Item.Ruta;
+  end;
+end;
+
 procedure TForm1.ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
 var
   NodeData: PrListaData;
@@ -337,7 +355,7 @@ begin
           COLUMNA_TIPO      : CellText := GetExtensionDescripcionById(Datos.IdExtension);
           COLUMNA_FECHA     : DateTimeToString(CellText, TipoHora, Datos.Fecha);
           COLUMNA_ATRIBUTOS : CellText := AtributosToStr(Datos.Atributos, false);
-          COLUMNA_RUTA      : CellText := FGestorDatos.GetRutaCompleta(Datos);
+          COLUMNA_RUTA      : CellText := GetRutaFromItem(Datos);
         end;
       end;
     end;

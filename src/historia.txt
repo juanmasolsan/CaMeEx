@@ -1,4 +1,5 @@
 
+- [FIX]   (20230505) Reescrito la forma de obtener las rutas de los items en la lista de archivos.
 - [FIX]   (20230505) Reescrito forma de guardar los iconos de las extensiones en la base de datos, ahora son iconos únicos.
 
 + 1.1.1.9
