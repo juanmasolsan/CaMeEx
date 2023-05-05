@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 23:58:09
+ * @Last Modified time: 2023-05-06 01:02:56
  *)
 {
 
@@ -57,7 +57,7 @@ uses
   , MotorScan
   , UnidadScan
   , InterfaceConectorDatos
-  , ItemDato, ItemCatalogo;
+  , ItemDato, ItemCatalogo, VirtualTreesExtras;
 
 
 type
@@ -140,6 +140,11 @@ type
     FListaCatalogos : TArrayItemDato;
     FListaArchivos  : TArrayItemDato;
     FAplicandoConfig: boolean;
+
+    FConfiguracionColumnas  : TListaDatosColumnasHeaderVirtualTrees;
+    FIniciado_Header        : Boolean;
+    FMenuHeader             : Boolean;
+
   protected
     procedure DoOnTerminarScanAsync();
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
@@ -159,6 +164,19 @@ type
 
     // Aplica la configuración del programa
     procedure DoConfiguracionAplicar();
+
+    // Inicializa el header de la lista de archivos
+    procedure DoHeader_Iniciar(MenuHeader : boolean = true; CargarConfig : boolean = false);
+
+    // Actualiza el header de la lista de archivos
+    procedure DoHeader_Update;
+
+    // Evento de hacer click en emenú contextual del header de la lista de archivos
+    procedure DoHeader_MenuColumnasClick(Sender: TObject);
+
+    // Pone una columna como visible o no
+    procedure DoHeader_IsVisible(Id : integer; IsHeaderVisible : Boolean);
+
 
   public
 
@@ -239,7 +257,6 @@ begin
   Lista.NodeDataSize            := Sizeof(rTListaData);
   Lista.DoubleBuffered          := true;
 
-
   // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
   SetExtensionesConfig(FGestorDatos, ImageListArchivos);
 
@@ -250,6 +267,9 @@ begin
   // Aplica la configuración del programa
   FAplicandoConfig := false;
   DoConfiguracionAplicar();
+
+  // Inicializa el header de la lista
+  DoHeader_Iniciar(true);
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -271,7 +291,6 @@ begin
   // Guarda la configuración del programa
   DoConfiguracionSave();
 
-
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 end;
 
@@ -288,7 +307,9 @@ begin
   // Carga la configuración de la forma en la que mostrar los iconos
   FFormatoIconos           := TFormatoIconos(ArchivoConfiguracion.ReadInteger('Config', 'FormatoIconos', integer(FFormatoIconos)));
 
-
+  // Carga la configuración de las columnas
+  FConfiguracionColumnas    := HeaderVirtualTrees_Get(Lista);
+  FConfiguracionColumnas    := HeaderVirtualTrees_CargarColumnas(ArchivoConfiguracion, 'Columnas.Lista.Archivos', FConfiguracionColumnas);
 end;
 
 // Guarda la configuración del programa
@@ -303,6 +324,13 @@ begin
 
   // Guarda la configuración de la forma en la que mostrar los iconos
   ArchivoConfiguracion.WriteInteger('Config', 'FormatoIconos', integer(FFormatoIconos));
+
+  // Guarda la configuración de las columnas
+  if (Lista.Header.Columns.Count -1) > 1 then
+  begin
+    FConfiguracionColumnas := HeaderVirtualTrees_Get(Lista);
+    HeaderVirtualTrees_GuardarColumnas(ArchivoConfiguracion, 'Columnas.Lista.Archivos', FConfiguracionColumnas);
+  end;
 end;
 
 // Aplica la configuración del programa
@@ -321,12 +349,59 @@ begin
     // Aplica la configuración del formato de los iconos
     MenuItem_Iconos.Items[longint(FFormatoIconos)].Checked  := true;
 
+    // Aplica la configuración de las columnas
+    DoHeader_Update;
+
   finally
     FAplicandoConfig := false;
   end;
 end;
 
+// Inicializa el header de la lista de archivos
+procedure TForm1.DoHeader_Iniciar(MenuHeader : boolean = true; CargarConfig : boolean = false);
+var
+ t, total     : integer;
+begin
+ if Lista.Header.Columns.Count = 0 then exit;
 
+  if FIniciado_Header then exit;
+    FIniciado_Header := true;
+
+  FMenuHeader := MenuHeader;
+
+  if CargarConfig then
+    FConfiguracionColumnas := HeaderVirtualTrees_Get(Lista);
+
+  Total        := Lista.Header.Columns.Count -1;
+  for t := 0 to Total do
+    Lista.Header.Columns.Items[t].Tag := t;
+
+  if FMenuHeader then
+    HeaderVirtualTrees_PopUpMenu_Crear(Lista, @DoHeader_MenuColumnasClick);
+end;
+
+// Evento de hacer click en emenú contextual del header de la lista de archivos
+procedure TForm1.DoHeader_MenuColumnasClick(Sender: TObject);
+begin
+  if TMenuItem(Pointer(@Sender)^).Tag = -1 then exit;
+  TMenuItem(Pointer(@Sender)^).Checked := not TMenuItem(Pointer(@Sender)^).Checked;
+  DoHeader_IsVisible(TMenuItem(Pointer(@Sender)^).Tag, TMenuItem(Pointer(@Sender)^).Checked);
+end;
+
+// Pone una columna como visible o no
+procedure TForm1.DoHeader_IsVisible(Id : integer; IsHeaderVisible : Boolean);
+begin
+  FConfiguracionColumnas.Datos[Id].IsVisible := IsHeaderVisible;
+  DoHeader_Update;
+end;
+
+// Actualiza el header de la lista de archivos
+procedure TForm1.DoHeader_Update;
+begin
+  HeaderVirtualTrees_Set(Lista, FConfiguracionColumnas);
+end;
+
+// Compara dos nodos de la lista de archivos
 procedure TForm1.ListaCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
 var
   Data_1       : PrListaData;
@@ -358,6 +433,7 @@ begin
   Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion, Column <> COLUMNA_RUTA);
 end;
 
+// Obtiene el index de la imagen a usar el el nodo
 procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
 var
   NodeData: PrListaData;
@@ -380,12 +456,9 @@ begin
             Sistema : ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
             Mixto   : begin
                         if Datos.Tipo <> TItemDatoTipo.Directorio then
-                         ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
+                          ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
                       end;
           end;
-
-
-
         end;
       end;
     end;
@@ -442,11 +515,11 @@ end;
 
 procedure TForm1.ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
 begin
- // Guarda las opciones de columna y orden en sus variables
+  // Guarda las opciones de columna y orden en sus variables
   FColumnnaOrden           := HitInfo.Column;
   FColumnnaOrden_Direccion := integer(not boolean(Lista.Header.SortDirection));
 
- // Aplica al header la nueva config
+  // Aplica al header la nueva config
   Lista.Header.SortColumn    := FColumnnaOrden;
   Lista.Header.SortDirection := TSortDirection(FColumnnaOrden_Direccion);
 

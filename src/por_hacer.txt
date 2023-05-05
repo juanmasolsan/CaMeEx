@@ -74,8 +74,9 @@
 -         Que el árbol se pueda colapsar y expandir los items.
 +         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app
 +         Los iconos de lista de archivos y árbol de directorios puedan recuperar los iconos de los catalogos
--         Poder mostrar las columnas que el usuario quiera y lo recuerde.
--         Poder redimensionar las columnas que el usuario quiera y lo recuerde.
++         Poder mostrar las columnas que el usuario quiera y lo recuerde.
++         Poder redimensionar las columnas que el usuario quiera y lo recuerde.
+-         Al redimensionar la lista de archivos que se redimensione la ultima columna ocupando todo el espacio sobrante.
 +         Poder ordenar la lista de archivos, por sus diferentes columnas.
 +         Poder ordenar la lista de archivos, por la columna Ruta
 +         Tamaño de los archivos - Con puntos para separar los miles.
@@ -85,6 +86,8 @@
 -         Dibujar el hover de la fila por la que se pasa
 -         Dibujar el fondo de la columna seleccionada
 -         Dibujar el texto de color dependiendo de los atributos de los archivos
+-         Que recuerde el ancho de la lista de archivos
+-         Que recuerde el alto de la salida de log
 
 - Hito 3: Búsqueda y filtrado de datos.
 -         Agregar cajon de búsqueda en la barra de herramientas

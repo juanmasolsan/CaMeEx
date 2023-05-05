@@ -1,5 +1,6 @@
 
 
+- [NEW]   (20230506) Agregada gestión de las columnas de la lista de archivos, tamaño, posición y visibilidad.
 - [NEW]   (20230506) Agregada posibilidad de poder elegir que iconos se quiere que use la app.
 
 + 1.1.2.6
