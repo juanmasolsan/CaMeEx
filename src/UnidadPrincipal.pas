@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 16:13:27
+ * @Last Modified time: 2023-05-05 16:15:58
  *)
 {
 
@@ -285,14 +285,16 @@ begin
   if Data_1^.NodeData  = nil then exit;
   if Data_2^.NodeData  = nil then exit;
 
+  // Comprueba si la columna es la de la ruta
+  if Column = COLUMNA_RUTA then
+  begin
+    // Obtiene la ruta de los items
+    GetRutaFromItem(Data_1^.NodeData);
+    GetRutaFromItem(Data_2^.NodeData);
+  end;
 
-  //Data_1^.Data^.WF_OrdenarPor := TOrdenarPor(Column);
-  //Data_2^.Data^.WF_OrdenarPor := TOrdenarPor(Column);
-
-
-
-
- Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion);
+  // Compara los items
+  Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion);
 end;
 
 procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);

@@ -77,7 +77,7 @@
 -         Poder mostrar las columnas que el usuario quiera y lo recuerde.
 -         Poder redimensionar las columnas que el usuario quiera y lo recuerde.
 +         Poder ordenar la lista de archivos, por sus diferentes columnas.
--         Poder ordenar la lista de archivos, por la columna Ruta
++         Poder ordenar la lista de archivos, por la columna Ruta
 -         Tamaño de los archivos - Con puntos para separar los miles.
 -         Tamaño de los archivos - Poder seleccionar unidad en la que mostrar los tamaños, bytes, kb, mb, gb, tb, etc.
 -         Agregar breadcrumbs.

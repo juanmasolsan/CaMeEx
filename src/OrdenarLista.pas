@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 23:56:10
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 00:31:27
+ * @Last Modified time: 2023-05-05 16:22:45
  *)
 {
 
@@ -74,7 +74,7 @@ begin
 end;
 
 // Devuelve 0, -1 o 1 dependiendo de la comparación de las extensiones
-function OrdenarPorExtensionDos(Orden : Integer; Ext1, Ext2 : String; D1, D2 : Boolean): Integer; {$IFDEF FORCE_INLINE} inline; {$ENDIF}
+function OrdenarPorExtensionDos(Orden : Integer; Ext1, Ext2 : String; D1, D2 : Boolean): Integer;
 var
  T2    : Integer;
 
@@ -105,24 +105,24 @@ end;
 
 // Emula el resultado de ordenación de Windows Explorer
 function OrdenarListaComoExplorer(Nombre1, Nombre2, {%H-}Ext1, {%H-}Ext2,
- {%H-}Ruta1, {%H-}Ruta2: string; Atributos1, Atributos2 : longint;
- Fecha1, Fecha2 : TDateTime; {%H-}Dir1, {%H-}Dir2 : Boolean; Size1, Size2 : int64; OrdenarPor : TOrdenarPor; {%H-}TipoOrden  : TOrdenOrdenarPor) : integer; {$IFDEF FORCE_INLINE} inline; {$ENDIF}
+  {%H-}Ruta1, {%H-}Ruta2: string; Atributos1, Atributos2 : longint;
+  Fecha1, Fecha2 : TDateTime; {%H-}Dir1, {%H-}Dir2 : Boolean; Size1, Size2 : int64; OrdenarPor : TOrdenarPor; {%H-}TipoOrden  : TOrdenOrdenarPor) : integer;
 begin
- Result    := 0;
- case OrdenarPor of
-  opNombre        : Result := Comparar_Texto(Nombre1, Nombre2);               // Ordena Por Nombre
-  opSize          : Result := MiniInt(CompareValue(Size1, Size2));            // Ordena Por Tamaño
-  opFecha         : Result := MiniInt(CompareValue(Fecha1, Fecha2));          // Ordena Por Fecha
-  opAtributos     : Result := MiniInt(CompareValue(Atributos1, Atributos2));  // Ordena Por Atributos
-  opRuta          : Result := Comparar_Texto(Nombre1, Nombre2);               // Ordena Por Nombre
- end;
+  Result    := 0;
+  case OrdenarPor of
+    opNombre        : Result := Comparar_Texto(Nombre1, Nombre2);               // Ordena Por Nombre
+    opSize          : Result := MiniInt(CompareValue(Size1, Size2));            // Ordena Por Tamaño
+    opFecha         : Result := MiniInt(CompareValue(Fecha1, Fecha2));          // Ordena Por Fecha
+    opAtributos     : Result := MiniInt(CompareValue(Atributos1, Atributos2));  // Ordena Por Atributos
+    opRuta          : Result := Comparar_Texto(Ruta1, Ruta2);                   // Ordena Por Ruta
+  end;
 end;
 
 
 // Emula el resultado de ordenación del antiguo Winfile
 function OrdenarListaComoWinfile(Nombre1, Nombre2, Ext1, Ext2,
   Ruta1, Ruta2: String; Atributos1, Atributos2 : longint;
-  Fecha1, Fecha2 : TDateTime; Dir1, Dir2 : Boolean; Size1, Size2 : int64; OrdenarPor : TOrdenarPor; TipoOrden  : TOrdenOrdenarPor) : integer; {$IFDEF FORCE_INLINE} inline; {$ENDIF}
+  Fecha1, Fecha2 : TDateTime; Dir1, Dir2 : Boolean; Size1, Size2 : int64; OrdenarPor : TOrdenarPor; TipoOrden  : TOrdenOrdenarPor) : integer;
 var
   NombreDiff : Integer;
 
@@ -186,7 +186,7 @@ begin
   try
     Result := OrdenarListaComoWinfile(lowercase(Item1.Nombre), lowercase(Item2.Nombre),
                       lowercase(ExtractFileExt(Item1.Nombre)),  lowercase(ExtractFileExt(Item2.Nombre)),
-                      '', '',
+                      Item1.Ruta, Item2.Ruta,
                       Item1.Atributos,                       Item2.Atributos,
                       Item1.Fecha,                           Item2.Fecha,
                       Item1.Tipo = TItemDatoTipo.Directorio, Item2.Tipo = TItemDatoTipo.Directorio,
