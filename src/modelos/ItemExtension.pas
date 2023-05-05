@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 15:04:15
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 23:16:10
+ * @Last Modified time: 2023-05-05 15:36:19
  *)
 {
 
@@ -37,7 +37,8 @@ unit ItemExtension;
 interface
 
 uses
-  ItemBase
+classes
+, ItemBase
 , graphics;
 
 type
@@ -46,7 +47,11 @@ type
   private
     FDescripcion : RawByteString;
     FIcono       : TPortableNetworkGraphic;
+    FIdIcono     : Qword;
+    procedure SetIcono(AValue: TPortableNetworkGraphic);
   protected
+    // Genera el ID del icono
+    procedure DoGenerarIDIcono();
   public
     // Constructor de la clase
     constructor Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic);
@@ -56,11 +61,18 @@ type
 
     // Propiedades
     property Descripcion : RawByteString read FDescripcion;
-    property Icono       : TPortableNetworkGraphic read FIcono write FIcono;
+    property Icono       : TPortableNetworkGraphic read FIcono write SetIcono;
+    property IdIcono     : Qword read FIdIcono write FIdIcono;
   end;
 
 
 implementation
+
+uses
+  Control_CRC
+  ;
+
+{ TItemExtension }
 
 { TItemExtension }
 constructor TItemExtension.Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic);
@@ -68,6 +80,9 @@ begin
   inherited Create(ANombre);
   FDescripcion := ADescripcion;
   FIcono       := AIcono;
+
+  // Generamos el ID del icono
+  DoGenerarIDIcono();
 end;
 
 destructor TItemExtension.Destroy;
@@ -76,6 +91,33 @@ begin
     FIcono.Free;
 
   inherited Destroy;
+end;
+
+// Genera el ID del icono
+procedure TItemExtension.DoGenerarIDIcono();
+Var
+  memoria : TMemoryStream;
+begin
+  if FIcono <> nil then
+    begin
+      memoria := TMemoryStream.Create;
+      try
+        FIcono.SaveToStream(memoria);
+        FIdIcono := CRC64_From_PByte(PByte(memoria.Memory), memoria.Size);
+      finally
+        memoria.Free;
+      end;
+    end;
+end;
+
+// Setter
+procedure TItemExtension.SetIcono(AValue: TPortableNetworkGraphic);
+begin
+  if FIcono = AValue then Exit;
+  FIcono := AValue;
+
+  // Generamos el ID del icono
+  DoGenerarIDIcono();
 end;
 
 end.

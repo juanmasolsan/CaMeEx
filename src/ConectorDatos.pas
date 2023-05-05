@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 18:15:31
+ * @Last Modified time: 2023-05-05 15:48:19
  *)
 {
 
@@ -54,7 +54,7 @@ uses
 
 
 const
-  SQL_INSERT_EXTENSION                     = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (:ID, :EXTENSION, :DESCRIPCION);';
+  SQL_INSERT_EXTENSION                     = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion, IdIcono) VALUES (:ID, :EXTENSION, :DESCRIPCION, :IDICONO);';
   SQL_INSERT_ICONO                         = 'INSERT OR IGNORE INTO Iconos (Id, Icono) VALUES (:ID, :ICONO);';
   SQL_INSERT_RUTA_COMPLETA                 = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
   SQL_INSERT_CATALOGO                      = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
@@ -66,7 +66,7 @@ const
   SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      = 'SELECT * FROM Datos WHERE IdCatalogo = :IDCATALOGO';
   SQL_SELECT_DATOS_ALL_BY_PARENT_ID        =  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND IdPadre = :IDPADRE';
   SQL_SELECT_RUTA_COMPLETA                 = 'SELECT Ruta FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO AND Id = :ID;';
-  SQL_SELECT_EXTENSION                     = 'SELECT ex.Extension, ex.Descripcion, ic.Icono FROM Extensiones as ex JOIN Iconos AS ic ON ex.Id = ic.Id  WHERE ex.Id = :ID;';
+  SQL_SELECT_EXTENSION                     = 'SELECT ex.Extension, ex.Descripcion, ic.Icono FROM Extensiones as ex JOIN Iconos AS ic ON ex.IdIcono = ic.Id  WHERE ex.Id = :ID;';
 
   SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
   SQL_DELETE_DATOS_BY_ID_CATALOGO          = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO';
@@ -311,20 +311,6 @@ begin
 
       FDataBase.SQL(SQL);
 
-      // Crea la tabla de extensiones
-      SQL := 'CREATE TABLE IF NOT EXISTS Extensiones (' +
-        'Id          BIGINT PRIMARY KEY,' +
-        'Extension   TEXT NOT NULL UNIQUE,' +
-        'Descripcion TEXT NOT NULL' +
-        ');';
-
-
-      FDataBase.SQL(SQL);
-
-      // Inserta la extension sin extension
-      SQL := 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
-      FDataBase.SQL(SQL);
-
       // Crea la tabla de Iconos
       SQL := 'CREATE TABLE IF NOT EXISTS Iconos (' +
         'Id     BIGINT PRIMARY KEY,' +
@@ -332,6 +318,19 @@ begin
         ');';
       FDataBase.SQL(SQL);
 
+      // Crea la tabla de extensiones
+      SQL := 'CREATE TABLE IF NOT EXISTS Extensiones (' +
+        'Id          BIGINT PRIMARY KEY,' +
+        'Extension   TEXT NOT NULL UNIQUE,' +
+        'Descripcion TEXT NOT NULL,' +
+        'IdIcono     BIGINT  CONSTRAINT FK_Extension_Icono REFERENCES Iconos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +
+        ');';
+
+      FDataBase.SQL(SQL);
+
+      // Inserta la extension sin extension
+      SQL := 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
+      FDataBase.SQL(SQL);
 
       // Crea la tabla de rutas completas
       SQL := 'CREATE TABLE IF NOT EXISTS RutaCompleta (' +
@@ -442,7 +441,7 @@ begin
           end;
 
           // Hace la inserción con un prepared statement
-          internalQuery.ParamByName('ID').AsLargeInt := Extension.Id;
+          internalQuery.ParamByName('ID').AsLargeInt := Extension.IdIcono;
           Stream := TMemoryStream.Create;
           try
             Extension.Icono.SaveToStream(Stream);
@@ -498,7 +497,7 @@ begin
         if FIdTransaccion <> ID_SQL_INSERT_EXTENSION   then
         begin
           internalQuery.SQL.Text := SQL_INSERT_EXTENSION;
-          FIdTransaccion           := ID_SQL_INSERT_EXTENSION;
+          FIdTransaccion         := ID_SQL_INSERT_EXTENSION;
           internalQuery.Prepare;
         end;
 
@@ -506,6 +505,7 @@ begin
         internalQuery.ParamByName('ID').AsLargeInt        := Extension.Id;
         internalQuery.ParamByName('EXTENSION').AsString   := Extension.Nombre;
         internalQuery.ParamByName('DESCRIPCION').AsString := Extension.Descripcion;
+        internalQuery.ParamByName('IDICONO').AsLargeInt   := Extension.IdIcono;
 
         try
           // Realiza la inserción

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 18:02:13
+ * @Last Modified time: 2023-05-05 15:19:39
  */
 
 
@@ -34,21 +34,22 @@ CREATE TABLE IF NOT EXISTS Catalogos (
     TotalSize        BIGINT NOT NULL
 );
 
--- Crear tabla Extensiones
-CREATE TABLE IF NOT EXISTS Extensiones (
-    Id          BIGINT PRIMARY KEY,
-    Extension   TEXT NOT NULL UNIQUE,
-    Descripcion TEXT NOT NULL
-);
-
--- Insertar datos en la tabla Extensiones
-INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, '.', '');
-
 -- Crear tabla Iconos
 CREATE TABLE IF NOT EXISTS Iconos (
     Id     BIGINT PRIMARY KEY,
     Icono  BLOB
 );
+
+-- Crear tabla Extensiones
+CREATE TABLE IF NOT EXISTS Extensiones (
+    Id          BIGINT PRIMARY KEY,
+    Extension   TEXT NOT NULL UNIQUE,
+    Descripcion TEXT NOT NULL,
+    IdIcono     BIGINT  CONSTRAINT FK_Extension_Icono REFERENCES Iconos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
+
+-- Insertar datos en la tabla Extensiones
+INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, '.', '');
 
 -- Crear tabla RutaCompleta
 CREATE TABLE IF NOT EXISTS RutaCompleta (

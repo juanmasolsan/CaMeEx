@@ -1,4 +1,6 @@
 
+- [FIX]   (20230505) Reescrito forma de guardar los iconos de las extensiones en la base de datos, ahora son iconos únicos.
+
 + 1.1.1.9
 - [FIX]   (20230505) Eliminado warnings, hints y notes del código.
 - [NEW]   (20230505) Agregado algoritmo de ordenación de la lista de archivos

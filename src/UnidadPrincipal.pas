@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 00:20:47
+ * @Last Modified time: 2023-05-05 15:43:03
  *)
 {
 
@@ -263,8 +263,7 @@ begin
 end;
 
 
-procedure TForm1.ListaCompareNodes(Sender: TBaseVirtualTree; Node1,
-  Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+procedure TForm1.ListaCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
 var
   Data_1       : PrListaData;
   Data_2       : PrListaData;
@@ -287,12 +286,7 @@ begin
   //Data_1^.Data^.WF_OrdenarPor := TOrdenarPor(Column);
   //Data_2^.Data^.WF_OrdenarPor := TOrdenarPor(Column);
 
-(*
- case CompararPor of
-  sdAscending  : Data_1^.Data^.WF_OrdenOrdenarPor := oopAscendente;
-  sdDescending : Data_1^.Data^.WF_OrdenOrdenarPor := oopDescencente;
- end;
-*)
+
 
 
  Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion);
@@ -410,9 +404,6 @@ begin
   {$ELSE}
   FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '');
   {$ENDIF}
-//  Timer1.Enabled := true;
-
-
   // Muestra la ventana de escaneo
   FVentanaScan.ShowModal;
 
@@ -564,13 +555,6 @@ begin
     // Guarda los datos del catalogo
     SistemaGuardado.AddCatalogo(Scan.Root);
 
-    // Guarda los datos de las Extensiones
-    total := Scan.ListaExtensiones.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
-    end;
-
     // Guarda los iconos de las Extensiones
     total := Scan.ListaExtensiones.Count - 1;
     for t := 0 to total do
@@ -578,7 +562,12 @@ begin
       SistemaGuardado.AddExtensionIcono(TItemExtension(Scan.ListaExtensiones.Items[t]));
     end;
 
-
+    // Guarda los datos de las Extensiones
+    total := Scan.ListaExtensiones.Count - 1;
+    for t := 0 to total do
+    begin
+      SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
+    end;
 
     // Guarda los datos de las rutas completas
     total := Scan.ListaRutaCompleta.Count - 1;
