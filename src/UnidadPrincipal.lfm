@@ -697,6 +697,35 @@ object Form1: TForm1
         Caption = 'Salir'
       end
     end
+    object MenuItemVer: TMenuItem
+      Caption = 'Ver'
+      object MenuItem_Sizes: TMenuItem
+        Caption = 'Formato Tamaño archivos'
+        object MenuItem_Size_Normal: TMenuItem
+          AutoCheck = True
+          Caption = 'Normal (1234567890)'
+          GroupIndex = 1
+          RadioItem = True
+          OnClick = MenuItem_Size_NormalClick
+        end
+        object MenuItem_Size_Punteada: TMenuItem
+          Tag = 1
+          AutoCheck = True
+          Caption = 'Punteada (1.234.567.890)'
+          GroupIndex = 1
+          RadioItem = True
+          OnClick = MenuItem_Size_NormalClick
+        end
+        object MenuItem_Size_AutoMatico: TMenuItem
+          Tag = 2
+          AutoCheck = True
+          Caption = 'Automático (1.23 GB)'
+          GroupIndex = 1
+          RadioItem = True
+          OnClick = MenuItem_Size_NormalClick
+        end
+      end
+    end
     object MenuItem3: TMenuItem
       Caption = 'Ayuda'
       object MenuItemAcercaDe: TMenuItem

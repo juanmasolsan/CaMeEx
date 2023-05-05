@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 16:57:16
+ * @Last Modified time: 2023-05-05 17:42:04
  *)
 {
 
@@ -77,6 +77,11 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItem_Size_AutoMatico: TMenuItem;
+    MenuItem_Size_Punteada: TMenuItem;
+    MenuItem_Size_Normal: TMenuItem;
+    MenuItem_Sizes: TMenuItem;
+    MenuItemVer: TMenuItem;
     MenuPrincipal: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -109,6 +114,7 @@ type
       Column: TColumnIndex; {%H-}TextType: TVSTTextType; var CellText: String);
     procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure MenuItemAcercaDeClick(Sender: TObject);
+    procedure MenuItem_Size_NormalClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
@@ -118,6 +124,7 @@ type
     FGestorDatos    : IConectorDatos;
     FListaCatalogos : TArrayItemDato;
     FListaArchivos  : TArrayItemDato;
+    FAplicandoConfig: boolean;
   protected
     procedure DoOnTerminarScanAsync();
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
@@ -214,6 +221,7 @@ begin
   DoConfiguracionLoad();
 
   // Aplica la configuración del programa
+  FAplicandoConfig := false;
   DoConfiguracionAplicar();
 end;
 
@@ -246,6 +254,9 @@ begin
   // Carga la configuración de las columnas y el orden
   FColumnnaOrden           := ArchivoConfiguracion.ReadInteger('Config', 'ColumnnaOrden', FColumnnaOrden);
   FColumnnaOrden_Direccion := ArchivoConfiguracion.ReadInteger('Config', 'ColumnnaOrden_Direccion', FColumnnaOrden_Direccion);
+
+  // Carga la configuración del formato del tamaño
+  FFormatoSize             := TFormatoSize(ArchivoConfiguracion.ReadInteger('Config', 'FormatoSize', integer(FFormatoSize)));
 end;
 
 // Guarda la configuración del programa
@@ -255,14 +266,26 @@ begin
   ArchivoConfiguracion.WriteInteger('Config', 'ColumnnaOrden', FColumnnaOrden);
   ArchivoConfiguracion.WriteInteger('Config', 'ColumnnaOrden_Direccion', FColumnnaOrden_Direccion);
 
+  // Guarda la configuración del formato del tamaño
+  ArchivoConfiguracion.WriteInteger('Config', 'FormatoSize', integer(FFormatoSize));
 end;
 
 // Aplica la configuración del programa
 procedure TForm1.DoConfiguracionAplicar();
 begin
-  // Aplica la configuración de las columnas y el orden
-  Lista.Header.SortColumn    := FColumnnaOrden;
-  Lista.Header.SortDirection := TSortDirection(FColumnnaOrden_Direccion);
+  if FAplicandoConfig then exit;
+  FAplicandoConfig := true;
+  try
+    // Aplica la configuración de las columnas y el orden
+    Lista.Header.SortColumn    := FColumnnaOrden;
+    Lista.Header.SortDirection := TSortDirection(FColumnnaOrden_Direccion);
+
+    // Aplica la configuración del formato del tamaño
+    MenuItem_Sizes.Items[longint(FFormatoSize)].Checked := true;
+
+  finally
+    FAplicandoConfig := false;
+  end;
 end;
 
 
@@ -355,7 +378,11 @@ begin
           COLUMNA_NOMBRE    : CellText := Datos.Nombre;
           COLUMNA_SIZE      : begin
                                 if Datos.Tipo <> TItemDatoTipo.Directorio then
-                                  CellText := inttostr(Datos.Size);
+                                  case FFormatoSize of
+                                    Normal     : CellText := IntToStr(Datos.Size) + '  ';
+                                    Puntuada   : CellText := PuntearNumeracion(Datos.Size, True) + '  ';
+                                    Automatico : CellText := ConvertirSizeEx(Datos.Size) + '  ';
+                                  end
                               end;
           COLUMNA_TIPO      : CellText := GetExtensionDescripcionById(Datos.IdExtension);
           COLUMNA_FECHA     : DateTimeToString(CellText, TipoHora, Datos.Fecha);
@@ -372,7 +399,7 @@ procedure TForm1.ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
 begin
  // Guarda las opciones de columna y orden en sus variables
   FColumnnaOrden           := HitInfo.Column;
-   FColumnnaOrden_Direccion := integer(not boolean(Lista.Header.SortDirection));
+  FColumnnaOrden_Direccion := integer(not boolean(Lista.Header.SortDirection));
 
  // Aplica al header la nueva config
   Lista.Header.SortColumn    := FColumnnaOrden;
@@ -397,6 +424,13 @@ end;
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
 begin
   Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
+end;
+
+procedure TForm1.MenuItem_Size_NormalClick(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FFormatoSize := TFormatoSize(TMenuItem(Pointer(@Sender)^).Tag);
+  Lista.Refresh;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);

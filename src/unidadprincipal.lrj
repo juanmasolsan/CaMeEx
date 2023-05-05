@@ -13,6 +13,11 @@
 {"hash":143257743,"name":"tform1.menuitem1.caption","sourcebytes":[65,114,99,104,105,118,111],"value":"Archivo"},
 {"hash":94435778,"name":"tform1.menuitem2.caption","sourcebytes":[77,101,110,117,73,116,101,109,50],"value":"MenuItem2"},
 {"hash":5866242,"name":"tform1.menuitemsalir.caption","sourcebytes":[83,97,108,105,114],"value":"Salir"},
+{"hash":23746,"name":"tform1.menuitemver.caption","sourcebytes":[86,101,114],"value":"Ver"},
+{"hash":180105299,"name":"tform1.menuitem_sizes.caption","sourcebytes":[70,111,114,109,97,116,111,32,84,97,109,97,195,177,111,32,97,114,99,104,105,118,111,115],"value":"Formato Tama\u00F1o archivos"},
+{"hash":256368105,"name":"tform1.menuitem_size_normal.caption","sourcebytes":[78,111,114,109,97,108,32,40,49,50,51,52,53,54,55,56,57,48,41],"value":"Normal (1234567890)"},
+{"hash":170433593,"name":"tform1.menuitem_size_punteada.caption","sourcebytes":[80,117,110,116,101,97,100,97,32,40,49,46,50,51,52,46,53,54,55,46,56,57,48,41],"value":"Punteada (1.234.567.890)"},
+{"hash":73265193,"name":"tform1.menuitem_size_automatico.caption","sourcebytes":[65,117,116,111,109,195,161,116,105,99,111,32,40,49,46,50,51,32,71,66,41],"value":"Autom\u00E1tico (1.23 GB)"},
 {"hash":4787105,"name":"tform1.menuitem3.caption","sourcebytes":[65,121,117,100,97],"value":"Ayuda"},
 {"hash":118737310,"name":"tform1.menuitemacercade.caption","sourcebytes":[65,99,101,114,99,97,32,100,101,46,46,46],"value":"Acerca de..."}
 ]}

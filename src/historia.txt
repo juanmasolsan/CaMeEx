@@ -1,7 +1,9 @@
 
-- [FIX]   (20230505) La lista de archivos no muestra la info del tamaño de los directorios
-- [NEW]   (20230504) Al ordenar la lista de archivos por la columna Ruta desactiva que los directorios aparecan primero.
-- [NEW]   (20230504) Agregada la ordenación de la lista de archivos por la columna Ruta
+
+- [NEW]   (20230505) Agregada forma de mostar el tamaño en la lista de archivos.
+- [FIX]   (20230505) La lista de archivos no muestra la info del tamaño de los directorios.
+- [NEW]   (20230505) Al ordenar la lista de archivos por la columna Ruta desactiva que los directorios aparecan primero.
+- [NEW]   (20230505) Agregada la ordenación de la lista de archivos por la columna Ruta.
 - [FIX]   (20230505) Reescrito la forma de obtener las rutas de los items en la lista de archivos.
 - [FIX]   (20230505) Reescrito forma de guardar los iconos de las extensiones en la base de datos, ahora son iconos únicos.
 

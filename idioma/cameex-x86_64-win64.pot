@@ -57,6 +57,26 @@ msgstr ""
 msgid "Salir"
 msgstr ""
 
+#: tform1.menuitemver.caption
+msgid "Ver"
+msgstr ""
+
+#: tform1.menuitem_sizes.caption
+msgid "Formato Tamaño archivos"
+msgstr ""
+
+#: tform1.menuitem_size_automatico.caption
+msgid "Automático (1.23 GB)"
+msgstr ""
+
+#: tform1.menuitem_size_normal.caption
+msgid "Normal (1234567890)"
+msgstr ""
+
+#: tform1.menuitem_size_punteada.caption
+msgid "Punteada (1.234.567.890)"
+msgstr ""
+
 #: tform1.toolbar1.caption
 msgid "ToolBar1"
 msgstr ""

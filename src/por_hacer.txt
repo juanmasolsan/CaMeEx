@@ -19,7 +19,7 @@
 + Formularios - Posición - Que recuerde si estaba maximizado o no
 + Sistema Log para registrar errores y eventos
 
-- Hito 1: Escaneo de medios y guardado en la base de datos de la información extraída de los mismos.
++ Hito 1: Escaneo de medios y guardado en la base de datos de la información extraída de los mismos.
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Obtener datos
 +         Motor de escaneo de dispositivos y directorios - Listar recursivamente - Poder detenerlo
@@ -78,8 +78,8 @@
 -         Poder redimensionar las columnas que el usuario quiera y lo recuerde.
 +         Poder ordenar la lista de archivos, por sus diferentes columnas.
 +         Poder ordenar la lista de archivos, por la columna Ruta
--         Tamaño de los archivos - Con puntos para separar los miles.
--         Tamaño de los archivos - Poder seleccionar unidad en la que mostrar los tamaños, bytes, kb, mb, gb, tb, etc.
++         Tamaño de los archivos - Con puntos para separar los miles.
++         Tamaño de los archivos - Poder seleccionar unidad en la que mostrar los tamaños, bytes, kb, mb, gb, tb, etc.
 -         Agregar breadcrumbs.
 -         Parpadeo del borde de la lista de archivos al hacer scroll
 -         Dibujar el hover de la fila por la que se pasa
