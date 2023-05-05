@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 17:15:46
+ * @Last Modified time: 2023-05-05 23:55:12
  *)
 {
 
@@ -40,6 +40,9 @@ type
   // Forma en la que mostrar el tamaño de los archivos
   TFormatoSize = (Normal, Puntuada, Automatico);
 
+  // Forma en la que mostrar los iconos
+  TFormatoIconos = (PorDefecto, Sistema, Mixto);
+
 
 const
   COLUMNA_NOMBRE    = 0;
@@ -60,6 +63,9 @@ var
 
   // Forma en la que mostrar el tamaño de los archivos
   FFormatoSize                             : TFormatoSize = TFormatoSize.Puntuada;
+
+  // Forma en la que mostrar los iconos
+  FFormatoIconos                           : TFormatoIconos = TFormatoIconos.PorDefecto;
 
 
 implementation

@@ -61,6 +61,22 @@ msgstr ""
 msgid "Ver"
 msgstr ""
 
+#: tform1.menuitem_iconos.caption
+msgid "Iconos"
+msgstr ""
+
+#: tform1.menuitem_iconos_mixto.caption
+msgid "Mixto"
+msgstr ""
+
+#: tform1.menuitem_iconos_pordefecto.caption
+msgid "Por Defecto"
+msgstr ""
+
+#: tform1.menuitem_iconos_sistema.caption
+msgid "Sistema"
+msgstr ""
+
 #: tform1.menuitem_sizes.caption
 msgid "Formato Tamaño archivos"
 msgstr ""

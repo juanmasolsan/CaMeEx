@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 18:20:51
+ * @Last Modified time: 2023-05-05 23:58:09
  *)
 {
 
@@ -87,6 +87,10 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItem_Iconos_Mixto: TMenuItem;
+    MenuItem_Iconos_Sistema: TMenuItem;
+    MenuItem_Iconos_PorDefecto: TMenuItem;
+    MenuItem_Iconos: TMenuItem;
     MenuItem_Size_AutoMatico: TMenuItem;
     MenuItem_Size_Punteada: TMenuItem;
     MenuItem_Size_Normal: TMenuItem;
@@ -124,6 +128,7 @@ type
       Column: TColumnIndex; {%H-}TextType: TVSTTextType; var CellText: String);
     procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure MenuItemAcercaDeClick(Sender: TObject);
+    procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
     procedure MenuItem_Size_NormalClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
@@ -279,6 +284,11 @@ begin
 
   // Carga la configuración del formato del tamaño
   FFormatoSize             := TFormatoSize(ArchivoConfiguracion.ReadInteger('Config', 'FormatoSize', integer(FFormatoSize)));
+
+  // Carga la configuración de la forma en la que mostrar los iconos
+  FFormatoIconos           := TFormatoIconos(ArchivoConfiguracion.ReadInteger('Config', 'FormatoIconos', integer(FFormatoIconos)));
+
+
 end;
 
 // Guarda la configuración del programa
@@ -290,6 +300,9 @@ begin
 
   // Guarda la configuración del formato del tamaño
   ArchivoConfiguracion.WriteInteger('Config', 'FormatoSize', integer(FFormatoSize));
+
+  // Guarda la configuración de la forma en la que mostrar los iconos
+  ArchivoConfiguracion.WriteInteger('Config', 'FormatoIconos', integer(FFormatoIconos));
 end;
 
 // Aplica la configuración del programa
@@ -304,6 +317,9 @@ begin
 
     // Aplica la configuración del formato del tamaño
     MenuItem_Sizes.Items[longint(FFormatoSize)].Checked := true;
+
+    // Aplica la configuración del formato de los iconos
+    MenuItem_Iconos.Items[longint(FFormatoIconos)].Checked  := true;
 
   finally
     FAplicandoConfig := false;
@@ -360,7 +376,16 @@ begin
           if ImageIndex = -1 then
             ImageIndex := 2;
 
-          ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
+          case FFormatoIconos of
+            Sistema : ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
+            Mixto   : begin
+                        if Datos.Tipo <> TItemDatoTipo.Directorio then
+                         ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
+                      end;
+          end;
+
+
+
         end;
       end;
     end;
@@ -370,8 +395,6 @@ end;
 
 // Devuelve la ruta de un item
 function TForm1.GetRutaFromItem(Item: TItemDato) : RawByteString;
-var
-  Ruta: RawByteString;
 begin
   Result := '';
   if Item <> nil then
@@ -446,6 +469,13 @@ end;
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
 begin
   Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
+end;
+
+procedure TForm1.MenuItem_Iconos_PorDefectoClick(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FFormatoIconos := TFormatoIconos(TMenuItem(Pointer(@Sender)^).Tag);
+  Lista.Refresh;
 end;
 
 procedure TForm1.MenuItem_Size_NormalClick(Sender: TObject);
