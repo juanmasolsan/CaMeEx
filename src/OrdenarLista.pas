@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 23:56:10
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 16:22:45
+ * @Last Modified time: 2023-05-05 16:49:05
  *)
 {
 
@@ -42,7 +42,7 @@ uses
 
 
 // Devuelve -1 si Item1 es menor que Item2, 0 si son iguales y 1 si Item1 es mayor que Item2
-function ListSortFuncDos(const Item1, Item2: TItemDato; Columna : integer; Orden : longint): Integer;
+function ListSortFuncDos(const Item1, Item2: TItemDato; Columna : integer; Orden : longint; PrimeroDirectorio : Boolean): Integer;
 
 
 implementation
@@ -122,36 +122,40 @@ end;
 // Emula el resultado de ordenación del antiguo Winfile
 function OrdenarListaComoWinfile(Nombre1, Nombre2, Ext1, Ext2,
   Ruta1, Ruta2: String; Atributos1, Atributos2 : longint;
-  Fecha1, Fecha2 : TDateTime; Dir1, Dir2 : Boolean; Size1, Size2 : int64; OrdenarPor : TOrdenarPor; TipoOrden  : TOrdenOrdenarPor) : integer;
+  Fecha1, Fecha2 : TDateTime; Dir1, Dir2 : Boolean; Size1, Size2 : int64; OrdenarPor : TOrdenarPor; TipoOrden  : TOrdenOrdenarPor; PrimeroDirectorio : Boolean) : integer;
 var
   NombreDiff : Integer;
 
 begin
   result := 0;
-  if Dir1 and not Dir2 then
-    begin
-      Result := 0;
-      exit;
-    end
-    else
-    if not Dir1 and Dir2 then
-    begin
-      Result := -1;
-      if (TipoOrden = oopAscendente) then
-        Result := 1;
-      exit;
-    end
-    else
-    if Dir1 and Dir2 then
-    begin
-      Result := Comparar_Texto(Nombre1, Nombre2);
-      if (OrdenarPor = opFecha) then
-        Result := MiniInt(CompareValue(Fecha1, Fecha2))
+
+  if PrimeroDirectorio then
+  begin
+    if Dir1 and not Dir2 then
+      begin
+        Result := 0;
+        exit;
+      end
       else
-        if (OrdenarPor = opAtributos) then
-          Result := MiniInt(CompareValue(Atributos1, Atributos2));
-      exit;
-    end;
+      if not Dir1 and Dir2 then
+      begin
+        Result := -1;
+        if (TipoOrden = oopAscendente) then
+          Result := 1;
+        exit;
+      end
+      else
+      if Dir1 and Dir2 then
+      begin
+        Result := Comparar_Texto(Nombre1, Nombre2);
+        if (OrdenarPor = opFecha) then
+          Result := MiniInt(CompareValue(Fecha1, Fecha2))
+        else
+          if (OrdenarPor = opAtributos) then
+            Result := MiniInt(CompareValue(Atributos1, Atributos2));
+        exit;
+      end;
+  end;
 
   if Dir1 then
     Ext1 := ' ';
@@ -161,7 +165,7 @@ begin
 
   case OrdenarPor of
     opExtension  : begin  // Ordena por Extension
-                    NombreDiff := OrdenarListaComoWinfile(Nombre1, Nombre2, Ext1, Ext2, Ruta1, Ruta2, Atributos1, Atributos2, Fecha1, Fecha2, Dir1, Dir2, Size1, Size2, opNombre, oopAscendente);
+                    NombreDiff := OrdenarListaComoWinfile(Nombre1, Nombre2, Ext1, Ext2, Ruta1, Ruta2, Atributos1, Atributos2, Fecha1, Fecha2, Dir1, Dir2, Size1, Size2, opNombre, oopAscendente, PrimeroDirectorio);
                     Result     := OrdenarPorExtensionDos(NombreDiff, Ext1, Ext2, Dir1, Dir2);
                     if Dir1 and Dir2 then
                       Result := Comparar_Texto(Nombre1, Nombre2)
@@ -177,7 +181,7 @@ end;
 
 
 // Devuelve -1 si Item1 es menor que Item2, 0 si son iguales y 1 si Item1 es mayor que Item2
-function ListSortFuncDos(const Item1, Item2: TItemDato; Columna : integer; Orden : longint): Integer;
+function ListSortFuncDos(const Item1, Item2: TItemDato; Columna : integer; Orden : longint; PrimeroDirectorio : Boolean): Integer;
 begin
   Result := 0;
   if Item1 = nil then exit;
@@ -192,7 +196,8 @@ begin
                       Item1.Tipo = TItemDatoTipo.Directorio, Item2.Tipo = TItemDatoTipo.Directorio,
                       Item1.Size,                            Item2.Size,
                       TOrdenarPor(Columna),
-                      TOrdenOrdenarPor(Orden)
+                      TOrdenOrdenarPor(Orden),
+                      PrimeroDirectorio
                       );
   except
     Result := 0;
