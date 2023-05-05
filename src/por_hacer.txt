@@ -81,7 +81,7 @@
 +         Tamaño de los archivos - Con puntos para separar los miles.
 +         Tamaño de los archivos - Poder seleccionar unidad en la que mostrar los tamaños, bytes, kb, mb, gb, tb, etc.
 -         Agregar breadcrumbs.
--         Parpadeo del borde de la lista de archivos al hacer scroll
++         Parpadeo del borde de la lista de archivos al hacer scroll
 -         Dibujar el hover de la fila por la que se pasa
 -         Dibujar el fondo de la columna seleccionada
 -         Dibujar el texto de color dependiendo de los atributos de los archivos

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 17:42:04
+ * @Last Modified time: 2023-05-05 18:20:51
  *)
 {
 
@@ -40,6 +40,7 @@ unit UnidadPrincipal;
 interface
 
 uses
+  LMessages,
   Classes
   , SysUtils
   , Forms
@@ -60,6 +61,15 @@ uses
 
 
 type
+
+  // Hack para evitar parpadeos en el dibujado
+  TLazVirtualStringTree = class(laz.VirtualTrees.TLazVirtualStringTree)
+  protected
+    procedure WMEraseBkgnd(var Message: TLMEraseBkgnd); message LM_ERASEBKGND;
+  end;
+
+
+
   // Defino la estructura interna de los datos de los nodos de la lista de archivos
   PrListaData = ^rTListaData;
   rTListaData = record
@@ -167,6 +177,17 @@ uses appinfo
 
 {$R *.lfm}
 
+
+// Hack para evitar parpadeos en el dibujado
+procedure TLazVirtualStringTree.WMEraseBkgnd(var Message: TLMEraseBkgnd);
+begin
+ inherited WMEraseBkgnd(Message);
+ Message.Result := 1; // Fake erase
+end;
+
+
+
+
 function Get_Titulo_Ventana(MostarTituloApp : boolean; Extra : string = ''; Version : boolean = true): string;
 begin
   Result := '';
@@ -209,8 +230,9 @@ begin
   FScan := TMotorScan.Create;
 
   // Inicializar la lista de archivos
-  Lista.NodeDataSize    := Sizeof(rTListaData);
-  Lista.DoubleBuffered  := true;
+  PanelPrincipal.DoubleBuffered := true;
+  Lista.NodeDataSize            := Sizeof(rTListaData);
+  Lista.DoubleBuffered          := true;
 
 
   // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
