@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 16:48:31
+ * @Last Modified time: 2023-05-05 16:57:16
  *)
 {
 
@@ -353,7 +353,10 @@ begin
       begin
         case Column of
           COLUMNA_NOMBRE    : CellText := Datos.Nombre;
-          COLUMNA_SIZE      : CellText := inttostr(Datos.Size);
+          COLUMNA_SIZE      : begin
+                                if Datos.Tipo <> TItemDatoTipo.Directorio then
+                                  CellText := inttostr(Datos.Size);
+                              end;
           COLUMNA_TIPO      : CellText := GetExtensionDescripcionById(Datos.IdExtension);
           COLUMNA_FECHA     : DateTimeToString(CellText, TipoHora, Datos.Fecha);
           COLUMNA_ATRIBUTOS : CellText := AtributosToStr(Datos.Atributos, false);
