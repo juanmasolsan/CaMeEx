@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 23:55:12
+ * @Last Modified time: 2023-05-06 11:44:58
  *)
 {
 
@@ -66,6 +66,13 @@ var
 
   // Forma en la que mostrar los iconos
   FFormatoIconos                           : TFormatoIconos = TFormatoIconos.PorDefecto;
+
+
+  // Dimensiones del árbol de directorios
+  FArbolAncho                              : integer = 230;
+
+  // Dimensiones del Log
+  FLogAlto                                 : integer = 200;
 
 
 implementation

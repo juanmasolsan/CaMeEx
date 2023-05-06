@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 11:36:02
+ * @Last Modified time: 2023-05-06 11:51:26
  *)
 {
 
@@ -115,6 +115,7 @@ type
     Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    procedure ArbolResize(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
@@ -133,6 +134,7 @@ type
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
     procedure MenuItem_Size_NormalClick(Sender: TObject);
+    procedure PanelInferiorResize(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
@@ -317,6 +319,12 @@ begin
   // Carga la configuración de las columnas
   FConfiguracionColumnas    := HeaderVirtualTrees_Get(Lista);
   FConfiguracionColumnas    := HeaderVirtualTrees_CargarColumnas(ArchivoConfiguracion, 'Columnas.Lista.Archivos', FConfiguracionColumnas);
+
+  // Carga las Dimensiones del árbol de directorios
+  FArbolAncho               := ArchivoConfiguracion.ReadInteger('Config', 'ArbolAncho', FArbolAncho);
+
+  // Carga las Dimensiones del Log
+  FLogAlto                  := ArchivoConfiguracion.ReadInteger('Config', 'LogAlto', FLogAlto);
 end;
 
 // Guarda la configuración del programa
@@ -338,6 +346,13 @@ begin
     FConfiguracionColumnas := HeaderVirtualTrees_Get(Lista);
     HeaderVirtualTrees_GuardarColumnas(ArchivoConfiguracion, 'Columnas.Lista.Archivos', FConfiguracionColumnas);
   end;
+
+  // Carga las Dimensiones del árbol de directorios
+  ArchivoConfiguracion.WriteInteger('Config', 'ArbolAncho', FArbolAncho);
+
+  // Carga las Dimensiones del Log
+  ArchivoConfiguracion.WriteInteger('Config', 'LogAlto', FLogAlto);
+
 end;
 
 // Aplica la configuración del programa
@@ -358,6 +373,13 @@ begin
 
     // Aplica la configuración de las columnas
     DoHeader_Update;
+
+    // Aplica la configuración de las Dimensiones del árbol de directorios
+    Arbol.width := FArbolAncho;
+
+    // Aplica la configuración de las Dimensiones del Log
+    PanelInferior.Height := FLogAlto;
+
 
   finally
     FAplicandoConfig := false;
@@ -608,6 +630,12 @@ begin
   Lista.Refresh;
 end;
 
+procedure TForm1.PanelInferiorResize(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FLogAlto := PanelInferior.Height;
+end;
+
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if assigned(FScan) then
@@ -832,6 +860,12 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   // Cargar Catallogos
+end;
+
+procedure TForm1.ArbolResize(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FArbolAncho := Arbol.Width;
 end;
 
 
