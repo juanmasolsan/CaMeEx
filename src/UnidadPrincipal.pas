@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 01:02:56
+ * @Last Modified time: 2023-05-06 11:36:02
  *)
 {
 
@@ -40,8 +40,10 @@ unit UnidadPrincipal;
 interface
 
 uses
-  LMessages,
-  Classes
+  LCLType
+  , lclintf
+  , LMessages
+  , Classes
   , SysUtils
   , Forms
   , Controls
@@ -127,6 +129,7 @@ type
     procedure ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Column: TColumnIndex; {%H-}TextType: TVSTTextType; var CellText: String);
     procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
+    procedure ListaResize(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
     procedure MenuItem_Size_NormalClick(Sender: TObject);
@@ -144,6 +147,7 @@ type
     FConfiguracionColumnas  : TListaDatosColumnasHeaderVirtualTrees;
     FIniciado_Header        : Boolean;
     FMenuHeader             : Boolean;
+    FIsListaResizing        : Boolean;
 
   protected
     procedure DoOnTerminarScanAsync();
@@ -267,6 +271,9 @@ begin
   // Aplica la configuración del programa
   FAplicandoConfig := false;
   DoConfiguracionAplicar();
+
+  // Inicializa variables
+  FIsListaResizing := false;
 
   // Inicializa el header de la lista
   DoHeader_Iniciar(true);
@@ -525,6 +532,49 @@ begin
 
   // Ordena la lista
   Lista.SortTree(Lista.Header.SortColumn, Lista.Header.SortDirection);
+end;
+
+procedure TForm1.ListaResize(Sender: TObject);
+var
+  Columna   : TVirtualTreeColumn;
+  t, total  : longint;
+  SizeColumna      : longint;
+begin
+
+  // Evita que se ejecute el evento si se esta redimensionando la lista
+  if FIsListaResizing then exit;
+
+  // Marca como redimensionando
+  FIsListaResizing := true;
+  try
+    // Inicializa el tamaño de las columnas
+    SizeColumna  := 0;
+
+
+    // Obtiene el total de columnas visibles
+    total := high(Lista.Header.Columns.GetVisibleColumns);
+
+    // Obtiene el tamaño de las columnas visibles
+    for t := 0 to total -1 do
+      inc(SizeColumna, Lista.Header.Columns.GetVisibleColumns[t].Width);
+
+    // Obtiene la última columna visible
+    Columna  := Lista.Header.Columns.GetVisibleColumns[total];
+
+    // Obtiene el tamaño de la columna final restandole el tamaño del ancho del scrollbar vertical
+    SizeColumna := Lista.Width - SizeColumna - GetSystemMetrics(SM_CXVSCROLL);
+
+    // Si el tamaño de la columna es menor a 100, se establece en 100
+    if SizeColumna < 100 then
+      SizeColumna := 100;
+
+    // Establece el tamaño de la columna
+    Columna.Width := SizeColumna;
+
+  finally
+    // Marca como no redimensionando
+    FIsListaResizing := false;
+  end;
 end;
 
 procedure TForm1.DoLiberarListaArchivos();

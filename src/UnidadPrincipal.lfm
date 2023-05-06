@@ -140,6 +140,7 @@ object Form1: TForm1
       OnGetText = ListaGetText
       OnGetImageIndex = ListaGetImageIndex
       OnHeaderClick = ListaHeaderClick
+      OnResize = ListaResize
     end
   end
   object PanelInferior: TPanel

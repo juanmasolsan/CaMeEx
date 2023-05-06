@@ -76,7 +76,7 @@
 +         Los iconos de lista de archivos y árbol de directorios puedan recuperar los iconos de los catalogos
 +         Poder mostrar las columnas que el usuario quiera y lo recuerde.
 +         Poder redimensionar las columnas que el usuario quiera y lo recuerde.
--         Al redimensionar la lista de archivos que se redimensione la ultima columna ocupando todo el espacio sobrante.
++         Al redimensionar la lista de archivos que se redimensione la ultima columna ocupando todo el espacio sobrante.
 +         Poder ordenar la lista de archivos, por sus diferentes columnas.
 +         Poder ordenar la lista de archivos, por la columna Ruta
 +         Tamaño de los archivos - Con puntos para separar los miles.
