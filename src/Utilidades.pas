@@ -90,7 +90,8 @@ procedure Dibujar_GradientFill_Blend(Acanvas : TCanvas; ARect: TRect; ColorInici
 // Calcula el color mezclado
 function Blend(Color1, Color2: TColor; A: Byte): TColor; inline;
 
-
+// Aplica transparencia a una imagen
+procedure CrearTransparencia(Imagen : TFPImageBitmap; BlendLevel : byte; Forzar : boolean);
 
 var
   // Color que se usa de base para hacer degradados
@@ -500,6 +501,13 @@ begin
   ARect               := TrueInflateRect(ARect, Extra_Borde);
   Acanvas.RoundRect(ARect, 2, 2);
 end;
+
+procedure CrearTransparencia(Imagen : TFPImageBitmap; BlendLevel : byte; Forzar : boolean);
+begin
+ Internal_CrearTransparencia(Imagen, BlendLevel, Forzar );
+end;
+
+
 
 end.
 

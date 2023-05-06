@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230506) Agregado efecto ghosted a los archivos y directorios que tiene atributos de oculto.
 - [FIX]   (20230506) Fix en el color de las filas de la lista de archivos cuando está seleccionado un item o no se tiene el foco.
 - [NEW]   (20230506) Agregado color al texto dependiendo de los atributos de los archivos en la lista de archivos.
 - [FIX]   (20230506) Fix en el color del texto del dibujado con toque moderno de la selección y hover en la lista de archivos.

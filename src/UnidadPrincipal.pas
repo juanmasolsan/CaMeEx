@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 18:01:52
+ * @Last Modified time: 2023-05-06 19:27:57
  *)
 {
 
@@ -64,10 +64,14 @@ uses
 
 type
 
-  // Hack para evitar parpadeos en el dibujado
+  // Varios hacks para TLazVirtualStringTree
   TLazVirtualStringTree = class(laz.VirtualTrees.TLazVirtualStringTree)
   protected
+    // Hack para evitar parpadeos en el dibujado
     procedure WMEraseBkgnd(var Message: TLMEraseBkgnd); message LM_ERASEBKGND;
+
+    // Poder dibujar imagenes ghosted
+    procedure PaintImage(var PaintInfo: TVTPaintInfo; ImageInfoIndex: TVTImageInfoIndex; DoOverlay: Boolean); override;
   end;
 
 
@@ -211,14 +215,16 @@ var
 
 implementation
 
-uses appinfo
-, Control_About
-, Configuracion
-, OrdenarLista
-, Utilidades
-, ConectorDatos
-, ItemBaseDatos
-, ItemExtension, ItemRutaCompleta, GestorExtensiones;
+uses
+  GraphType
+  ,  appinfo
+  , Control_About
+  , Configuracion
+  , OrdenarLista
+  , Utilidades
+  , ConectorDatos
+  , ItemBaseDatos
+  , ItemExtension, ItemRutaCompleta, GestorExtensiones;
 
 {$R *.lfm}
 
@@ -230,7 +236,43 @@ begin
  Message.Result := 1; // Fake erase
 end;
 
+// Poder dibujar imagenes ghosted
+procedure TLazVirtualStringTree.PaintImage(var PaintInfo: TVTPaintInfo; ImageInfoIndex: TVTImageInfoIndex; DoOverlay: Boolean);
+var
+  TMP : TPortableNetworkGraphic;
+begin
+  with PaintInfo do
+  begin
+    // Si no tiene asignada una imagen, salimos
+    if ImageInfo[ImageInfoIndex].Images = nil then
+      exit;
 
+    // Si es una imagen ghosted, la dibujamos con transparencia
+    if ImageInfo[ImageInfoIndex].Ghosted then
+    begin
+      // Crea un png para poder usar transparencias
+      TMP := TPortableNetworkGraphic.create();
+      try
+        if ImageInfo[ImageInfoIndex].Index < ImageInfo[ImageInfoIndex].Images.Count then
+        begin
+          // Recupera la imagen de la lista de imagenes
+          ImageInfo[ImageInfoIndex].Images.GetBitmap(ImageInfo[ImageInfoIndex].Index, TMP);
+
+          // Le aplica la transparencia
+          CrearTransparencia(TMP, 140, false);
+
+          // La dibuja
+          Canvas.Draw(ImageInfo[ImageInfoIndex].XPos, ImageInfo[ImageInfoIndex].YPos, TMP);
+        end;
+      finally
+        // Libera la imagen
+        TMP.Free;
+      end;
+    end
+    else
+      inherited PaintImage(PaintInfo, ImageInfoIndex, DoOverlay);
+  end;
+end;
 
 
 function Get_Titulo_Ventana(MostarTituloApp : boolean; Extra : string = ''; Version : boolean = true): string;
@@ -523,6 +565,14 @@ begin
                         if Datos.Tipo <> TItemDatoTipo.Directorio then
                           ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
                       end;
+          end;
+
+          Ghosted := (((Datos.Atributos and faHidden{%H-})= faHidden{%H-}) or (Datos.Nombre[1] = '.')) ;
+          if Ghosted then
+          begin
+            //TLazVirtualStringTree(Sender).Images.BlendColor := clred;
+           //Node^.States := Node^.States - [vsSelected];
+           beep;
           end;
         end;
       end;

@@ -67,11 +67,7 @@
 +         Agregar Sqlite3 - Tabla extensiones enlace con la tabla de iconos por el id del mismo
 
 - Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
--         Ventana para seleccionar el dispositivo/directorio a escanear.
--         Listar los dispositivos/directorios en un árbol.
 +         Listar los archivos en la lista.
--         Que se pueda navegar desde la lista de archivos sobre los directorios (ENTER y doble click en los items).
--         Que el árbol se pueda colapsar y expandir los items.
 +         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app
 +         Los iconos de lista de archivos y árbol de directorios puedan recuperar los iconos de los catalogos
 +         Poder mostrar las columnas que el usuario quiera y lo recuerde.
@@ -81,13 +77,17 @@
 +         Poder ordenar la lista de archivos, por la columna Ruta
 +         Tamaño de los archivos - Con puntos para separar los miles.
 +         Tamaño de los archivos - Poder seleccionar unidad en la que mostrar los tamaños, bytes, kb, mb, gb, tb, etc.
--         Agregar breadcrumbs.
 +         Parpadeo del borde de la lista de archivos al hacer scroll
 +         Dibujar el hover de la fila por la que se pasa
 +         Dibujar el fondo de la columna seleccionada
 +         Dibujar el texto de color dependiendo de los atributos de los archivos
 +         Que recuerde el ancho de la lista de archivos
 +         Que recuerde el alto de la salida de log
+-         Que se pueda navegar desde la lista de archivos sobre los directorios (ENTER y doble click en los items).
+-         Agregar breadcrumbs.
+-         Ventana para seleccionar el dispositivo/directorio a escanear.
+-         Listar los dispositivos/directorios en un árbol.
+-         Que el árbol se pueda colapsar y expandir los items.
 
 - Hito 3: Búsqueda y filtrado de datos.
 -         Agregar cajon de búsqueda en la barra de herramientas
