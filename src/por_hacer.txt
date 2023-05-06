@@ -84,7 +84,7 @@
 -         Agregar breadcrumbs.
 +         Parpadeo del borde de la lista de archivos al hacer scroll
 -         Dibujar el hover de la fila por la que se pasa
--         Dibujar el fondo de la columna seleccionada
++         Dibujar el fondo de la columna seleccionada
 -         Dibujar el texto de color dependiendo de los atributos de los archivos
 +         Que recuerde el ancho de la lista de archivos
 +         Que recuerde el alto de la salida de log

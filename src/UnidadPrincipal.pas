@@ -122,6 +122,9 @@ type
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ListaBeforeCellPaint(Sender: TBaseVirtualTree;
+      TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
+      {%H-}CellPaintMode: TVTCellPaintMode; CellRect: TRect; var {%H-}ContentRect: TRect);
     procedure ListaCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; {%H-}Column: TColumnIndex; var Result: Integer);
     procedure ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
@@ -301,6 +304,20 @@ begin
   DoConfiguracionSave();
 
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
+end;
+
+procedure TForm1.ListaBeforeCellPaint(Sender: TBaseVirtualTree;
+  TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
+  CellPaintMode: TVTCellPaintMode; CellRect: TRect; var ContentRect: TRect);
+begin
+  if Column = Lista.Header.SortColumn then
+   if FResaltarColumnaOrden then
+    if not Sender.Selected[Node] then
+     if not (Sender.HotNode = Node) then
+      begin
+       Dibujar_FillRect_Blend(TargetCanvas,  CellRect,  FResaltarColumnaOrdenColor,  25,  0, 0);
+      end;
+
 end;
 
 // Carga la configuración del programa

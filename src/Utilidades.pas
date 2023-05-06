@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-08 16:21:30
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 14:42:43
+ * @Last Modified time: 2023-05-06 13:01:42
  *)
 {
 
@@ -41,6 +41,7 @@ uses
   Windows,
   ShellApi,
 {$ENDIF}
+  Classes,
   SysUtils
   , graphics
   ;
@@ -77,12 +78,17 @@ function GetGenericFileType(AExtension: RawByteString; IsDir : boolean = false):
 // Devuelve el icono del archivo/directorio, además del tipo de archivo/directorio
 function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawByteString; IsDir : boolean = false): TPortableNetworkGraphic;
 
+// Dibuja un rectangulo mezcando color por el nivel de BlendLevel
+procedure Dibujar_FillRect_Blend(Acanvas : TCanvas; ARect: TRect; Color: TColor; BlendLevel : byte; RoundX, RoundY : longint);
+
 
 implementation
 
 uses
   StrUtils
-  , intfgraphics;
+  , intfgraphics
+  , Control_Imagen_Manipulacion_Mini
+  ;
 
 // Convierte los atributos de un archivo en una cadena de caracteres
 function AtributosToStr(atributos : Dword; Mayusculas : Boolean = false): String;
@@ -308,6 +314,90 @@ end;
 {$ENDIF}
 
 
+// Genera un PNG de 32bits
+function Internal_CrearBitmap32(ARect: TRect) : TPortableNetworkGraphic;
+var
+  Temporal : TLazIntfImage;
+begin
+  try
+    // Crea un bitmap de 32bits
+    Temporal := Control_Imagen_Crear_LazIntfImage(ARect.Right - ARect.Left, ARect.Bottom - ARect.Top, FColorTransparentePNG, true);
+    try
+      // Carga el bitmap en la imagen
+      Result := TPortableNetworkGraphic.Create;
+
+      // Carga el bitmap en la imagen
+      Result.LoadFromIntfImage(Temporal);
+    finally
+      // Libera el bitmap
+      Temporal.Free;
+    end;
+  except
+  end;
+end;
+
+// Aplica transparencia a un PNG de 32bits
+procedure Internal_CrearTransparencia(Imagen : TFPImageBitmap; BlendLevel : byte; Forzar : boolean);
+var
+  Escribir   : TLazIntfImage;
+begin
+  Escribir := Imagen.CreateIntfImage;
+  try
+    // Convierte el bitmap a RGBA
+    Control_Imagen_Convertir_RGBA(Escribir);
+
+    // Aplica la transparencia
+    Control_Imagen_Transparencia(Escribir, BlendLevel, Forzar);
+    try
+      // Carga en la imagen los cambios aplicados
+      Imagen.LoadFromIntfImage(Escribir);
+    except
+    end;
+  finally
+    Escribir.Free;
+  end;
+end;
+
+
+// Dibuja un rectangulo mezcando color por el nivel de BlendLevel sobre un PNG el cual devuelve
+function Internal_Dibujar_Recta_Blend(ARect: TRect; Color: TColor; BlendLevel : byte; RoundX, RoundY : longint) : TPortableNetworkGraphic;
+var
+  NuevaRecta : TRect;
+begin
+  // Crea un bitmap de 32bits
+  Result                    := Internal_CrearBitmap32(ARect);
+
+  // Crea un rectangulo con las dimensiones del bitmap
+  NuevaRecta                := Rect(0,0, Result.Width, Result.Height);
+
+  // Añade el color al rectangulo
+  Result.Canvas.Brush.Color := Color;
+
+  // Dibuja el rectangulo dependiendo si hay que redondear las esquinas o no
+  if (RoundX > 0) or  (RoundY > 0) then
+    Result.Canvas.RoundRect(NuevaRecta, RoundX, RoundY)
+  else
+    Result.Canvas.FillRect(NuevaRecta);
+
+  // Aplica la transparencia
+  Internal_CrearTransparencia(Result, BlendLevel, true);
+end;
+
+
+// Dibuja un rectangulo mezcando color por el nivel de BlendLevel
+procedure Dibujar_FillRect_Blend(Acanvas : TCanvas; ARect: TRect; Color: TColor; BlendLevel : byte; RoundX, RoundY : longint);
+var
+  Temporal : TPortableNetworkGraphic;
+begin
+  // Dibuja el rectangulo
+  Temporal := Internal_Dibujar_Recta_Blend(ARect, Color, BlendLevel, RoundX, RoundY);
+  try
+    // Dibuja el rectangulo sobre el canvas final
+    Acanvas.Draw(ARect.Left, ARect.Top, Temporal);
+  finally
+    Temporal.Free;
+  end;
+end;
 
 end.
 

@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230506) Agregada fondo a la columna seleccionada para ordenar en la lista de archivos.
 - [NEW]   (20230506) Agregada el guardado y carga de la configuración de dimensión del árbol y el log.
 - [FIX]   (20230505) Fix en el tamaño de la última columna de la lista de archivos, ahora abarca todo el espacio disponible.
 - [NEW]   (20230506) Agregada gestión de las columnas de la lista de archivos, tamaño, posición y visibilidad.

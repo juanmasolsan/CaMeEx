@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 11:44:58
+ * @Last Modified time: 2023-05-06 13:21:54
  *)
 {
 
@@ -35,6 +35,11 @@ unit Configuracion;
 {$mode ObjFPC}{$H+}
 
 interface
+
+uses
+  Graphics
+;
+
 
 type
   // Forma en la que mostrar el tamaño de los archivos
@@ -74,6 +79,10 @@ var
   // Dimensiones del Log
   FLogAlto                                 : integer = 200;
 
+
+  // Resaltado de la columna de ordenación
+  FResaltarColumnaOrden                    : boolean = true;
+  FResaltarColumnaOrdenColor               : TColor = $eeeeee;
 
 implementation
 
