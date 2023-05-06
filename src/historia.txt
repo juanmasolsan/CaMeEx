@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230506) Agregado color al texto dependiendo de los atributos de los archivos en la lista de archivos.
 - [FIX]   (20230506) Fix en el color del texto del dibujado con toque moderno de la selección y hover en la lista de archivos.
 - [NEW]   (20230506) Agregada dibujado con toque moderno de la selección y hover en la lista de archivos.
 - [NEW]   (20230506) Agregada fondo a la columna seleccionada para ordenar en la lista de archivos.

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 16:36:29
+ * @Last Modified time: 2023-05-06 17:16:17
  *)
 {
 
@@ -136,8 +136,8 @@ type
       Column: TColumnIndex; {%H-}TextType: TVSTTextType; var CellText: String);
     procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure ListaPaintText(Sender: TBaseVirtualTree;
-      const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
-      TextType: TVSTTextType);
+      const TargetCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex;
+      {%H-}TextType: TVSTTextType);
     procedure ListaResize(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
@@ -197,6 +197,8 @@ type
     // Aplica color a los textos de los nodos dependiendo de su estado
     procedure DoSetColor_Texto(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode);
 
+    // Aplica color a los textos de los nodos dependiendo de los atributos del item
+    procedure DoColorear_Dependiendo_De_Los_Atributos(Data : TItemDato; NCanvas : TCanvas);
 
   public
 
@@ -604,6 +606,11 @@ begin
       begin
         // Aplica el color del texto dependiendo del estado del node
         DoSetColor_Texto(Sender, TargetCanvas, Node);
+
+        if not ((vsSelected in Node^.States) or (Sender.HotNode = Node)) then
+          DoColorear_Dependiendo_De_Los_Atributos(Datos, TargetCanvas);
+
+
       end;
     end;
 
@@ -1056,6 +1063,22 @@ begin
             if Sender.HotNode = Node then
               TargetCanvas.Font.Color := FForzarColorTexto_Hot
 end;
+
+// Aplica color a los textos de los nodos dependiendo de los atributos del item
+procedure TForm1.DoColorear_Dependiendo_De_Los_Atributos(Data : TItemDato; NCanvas : TCanvas);
+begin
+  if (Data.Atributos and faSymLink{%H-})= faSymLink{%H-} then
+    NCanvas.Font.Color := FColor_SymLink;
+
+  if (((Data.Atributos and faHidden{%H-})= faHidden{%H-})
+    or ((Data.Atributos and faSysFile{%H-})= faSysFile{%H-})
+    or (Data.Nombre[1] = '.')) then
+      NCanvas.Font.Color := FColor_Oculto_Sistema;
+
+  if ((Data.Atributos and faReadOnly)= faReadOnly)  then
+    NCanvas.Font.Color := FColor_SoloLectura;
+end;
+
 
 
 end.
