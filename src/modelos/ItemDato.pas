@@ -138,7 +138,7 @@ type
 
     property IdExtension      : Qword read FIdExtension;
     property IdRutaCompleta   : Qword read FIdRutaCompleta;
-    property IdCatalogo       : Qword read FIdCatalogo;
+    property IdCatalogo       : Qword read FIdCatalogo write FIdCatalogo;
 
 
     property IdPadre         : Qword read FIdPadre;

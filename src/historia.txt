@@ -1,4 +1,8 @@
 
+
+- [NEW]   (20230507) Agregada navegación básica teclado y ratón en la lista de archivos atraves de los directorios.
+
++ 1.1.3.6
 - [NEW]   (20230506) Agregado efecto ghosted a los archivos y directorios que tiene atributos de oculto.
 - [FIX]   (20230506) Fix en el color de las filas de la lista de archivos cuando está seleccionado un item o no se tiene el foco.
 - [NEW]   (20230506) Agregado color al texto dependiendo de los atributos de los archivos en la lista de archivos.

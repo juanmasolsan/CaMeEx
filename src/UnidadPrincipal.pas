@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 19:27:57
+ * @Last Modified time: 2023-05-07 00:16:47
  *)
 {
 
@@ -133,12 +133,14 @@ type
       {%H-}CellPaintMode: TVTCellPaintMode; CellRect: TRect; var {%H-}ContentRect: TRect);
     procedure ListaCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; {%H-}Column: TColumnIndex; var Result: Integer);
+    procedure ListaDblClick(Sender: TObject);
     procedure ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
       {%H-}Kind: TVTImageKind; Column: TColumnIndex; var {%H-}Ghosted: Boolean;
       var ImageIndex: Integer);
     procedure ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Column: TColumnIndex; {%H-}TextType: TVSTTextType; var CellText: String);
     procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
+    procedure ListaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ListaPaintText(Sender: TBaseVirtualTree;
       const TargetCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex;
       {%H-}TextType: TVSTTextType);
@@ -162,6 +164,12 @@ type
     FIniciado_Header        : Boolean;
     FMenuHeader             : Boolean;
     FIsListaResizing        : Boolean;
+
+    // Para la navegación
+    FCatalogoID   : Qword;
+    FPadreID      : Qword;
+    FTempCatalogo : TItemCatalogo;
+    FTempPadre    : TItemDato;
 
   protected
     procedure DoOnTerminarScanAsync();
@@ -204,6 +212,9 @@ type
     // Aplica color a los textos de los nodos dependiendo de los atributos del item
     procedure DoColorear_Dependiendo_De_Los_Atributos(Data : TItemDato; NCanvas : TCanvas);
 
+    // Abre un directorio en la lista de archivos y muestra su contenido
+    procedure DoNavegarElementoLista();
+    procedure DoLoadListaArchivosAsync({%H-}Data: PtrInt);
   public
 
   end;
@@ -313,6 +324,11 @@ begin
   FGestorDatos := TConectorDatos.Create;
   FGestorDatos.Iniciar(Curdir, DirectorioConfig);
 
+  // Necesarío para que funcione la navegación por la lista de archivos
+  FTempCatalogo := TItemCatalogo.Create('', TItemDatoTipo.Root, now, 0, '', 0, 0);
+  FTempPadre    := TItemDato.create('', TItemDatoTipo.Directorio, now, 0);
+
+
   // Inicializar el Motor de Escaneo
   FScan := TMotorScan.Create;
 
@@ -355,6 +371,10 @@ begin
   // Finalizar el Gestor de Datos
   FGestorDatos.Finalizar();
 
+  // Finalizar los objectos necesarios para la navegación por la lista de archivos
+  FTempCatalogo.free;
+  FTempPadre.free;
+
   // Guarda la configuración del programa
   DoConfiguracionSave();
 
@@ -372,13 +392,12 @@ procedure TForm1.ListaBeforeCellPaint(Sender: TBaseVirtualTree;
   CellPaintMode: TVTCellPaintMode; CellRect: TRect; var ContentRect: TRect);
 begin
   if Column = Lista.Header.SortColumn then
-   if FResaltarColumnaOrden then
-    if not Sender.Selected[Node] then
-     if not (Sender.HotNode = Node) then
-      begin
-       Dibujar_FillRect_Blend(TargetCanvas,  CellRect,  FResaltarColumnaOrdenColor,  25,  0, 0);
-      end;
-
+    if FResaltarColumnaOrden then
+      if not Sender.Selected[Node] then
+        if not (Sender.HotNode = Node) then
+          begin
+            Dibujar_FillRect_Blend(TargetCanvas,  CellRect,  FResaltarColumnaOrdenColor,  25,  0, 0);
+          end;
 end;
 
 // Carga la configuración del programa
@@ -467,9 +486,9 @@ end;
 // Inicializa el header de la lista de archivos
 procedure TForm1.DoHeader_Iniciar(MenuHeader : boolean = true; CargarConfig : boolean = false);
 var
- t, total     : integer;
+  t, total     : integer;
 begin
- if Lista.Header.Columns.Count = 0 then exit;
+  if Lista.Header.Columns.Count = 0 then exit;
 
   if FIniciado_Header then exit;
     FIniciado_Header := true;
@@ -540,6 +559,11 @@ begin
   Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion, Column <> COLUMNA_RUTA);
 end;
 
+procedure TForm1.ListaDblClick(Sender: TObject);
+begin
+  DoNavegarElementoLista();
+end;
+
 // Obtiene el index de la imagen a usar el el nodo
 procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
 var
@@ -568,12 +592,6 @@ begin
           end;
 
           Ghosted := (((Datos.Atributos and faHidden{%H-})= faHidden{%H-}) or (Datos.Nombre[1] = '.')) ;
-          if Ghosted then
-          begin
-            //TLazVirtualStringTree(Sender).Images.BlendColor := clred;
-           //Node^.States := Node^.States - [vsSelected];
-           beep;
-          end;
         end;
       end;
     end;
@@ -640,6 +658,19 @@ begin
 
   // Ordena la lista
   Lista.SortTree(Lista.Header.SortColumn, Lista.Header.SortDirection);
+end;
+
+procedure TForm1.ListaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
+begin
+  case key of
+    VK_RETURN : begin
+                  if Shift = [] then
+                  begin
+                    DoNavegarElementoLista();
+                  end;
+                end;
+  end;
 end;
 
 procedure TForm1.ListaPaintText(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType);
@@ -965,8 +996,6 @@ begin
         ProcesarHijo(Item);
       end;
     end;
-
-
   end;
 end;
 
@@ -982,8 +1011,6 @@ begin
   FArbolAncho := Arbol.Width;
 end;
 
-
-
 procedure TForm1.DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
 var
   t, total      : integer;
@@ -992,6 +1019,9 @@ begin
   try
     // Limpia la lista
     Lista.Clear;
+
+    if Padre = nil then
+      Padre := Catalogo;
 
     // Libera la asignación de memoria
     DoLiberarListaArchivos();
@@ -1129,6 +1159,46 @@ begin
     NCanvas.Font.Color := FColor_SoloLectura;
 end;
 
+// Navegación por los directorios de la lista de archivos
+procedure TForm1.DoNavegarElementoLista();
+var
+  NodeData: PrListaData;
+  Datos   : TItemDato;
+begin
+  if Lista.SelectedCount <> 1  then
+    exit;
 
+  NodeData := Lista.GetNodeData(Lista.GetFirstSelected());
+  if NodeData <> nil then
+  begin
+    Datos := NodeData^.NodeData;
+    if Datos <> nil then
+    begin
+      if Datos.Tipo = TItemDatoTipo.Directorio then
+      begin
+        FCatalogoID := Datos.IdCatalogo;
+        FPadreID    := Datos.Id;
+
+        // Lanza el método de forma asíncrona
+        application.QueueAsyncCall(@DoLoadListaArchivosAsync, 0);
+      end;
+    end;
+  end;
+end;
+
+procedure TForm1.DoLoadListaArchivosAsync({%H-}Data: PtrInt);
+begin
+  try
+    FTempCatalogo.Id      := FCatalogoID;
+    FTempPadre.Id         := FPadreID;
+    FTempPadre.IdCatalogo := FCatalogoID;
+
+    // Carga los datos del catalogo
+    DoLoadListaArchivos(FTempCatalogo, FTempPadre);
+  except
+  end;
+
+
+end;
 
 end.

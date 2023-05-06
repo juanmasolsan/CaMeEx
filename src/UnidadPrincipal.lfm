@@ -142,10 +142,12 @@ object Form1: TForm1
       OnAfterItemErase = ListaAfterItemErase
       OnBeforeCellPaint = ListaBeforeCellPaint
       OnCompareNodes = ListaCompareNodes
+      OnDblClick = ListaDblClick
       OnGetText = ListaGetText
       OnPaintText = ListaPaintText
       OnGetImageIndex = ListaGetImageIndex
       OnHeaderClick = ListaHeaderClick
+      OnKeyDown = ListaKeyDown
       OnResize = ListaResize
     end
   end
