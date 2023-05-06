@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 11:51:26
+ * @Last Modified time: 2023-05-06 14:05:36
  *)
 {
 
@@ -122,6 +122,8 @@ type
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ListaAfterItemErase(Sender: TBaseVirtualTree;
+      TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
     procedure ListaBeforeCellPaint(Sender: TBaseVirtualTree;
       TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
       {%H-}CellPaintMode: TVTCellPaintMode; CellRect: TRect; var {%H-}ContentRect: TRect);
@@ -186,6 +188,8 @@ type
     // Pone una columna como visible o no
     procedure DoHeader_IsVisible(Id : integer; IsHeaderVisible : Boolean);
 
+    // Usa blend para dibujar la selección o el hover
+    procedure DoDibujarSeleccionModerna(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect; NivelBlend : longint = 90);
 
   public
 
@@ -304,6 +308,12 @@ begin
   DoConfiguracionSave();
 
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
+end;
+
+procedure TForm1.ListaAfterItemErase(Sender: TBaseVirtualTree;
+  TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
+begin
+  DoDibujarSeleccionModerna(Sender, TargetCanvas, Node, ItemRect);
 end;
 
 procedure TForm1.ListaBeforeCellPaint(Sender: TBaseVirtualTree;
@@ -968,6 +978,34 @@ begin
 
   SalidaLog.lines.Add('Tiempo empleado : ' + IntToStr(tiempo) + ' ms.');
 end;
+
+
+// Usa blend para dibujar la selección o el hover
+procedure TForm1.DoDibujarSeleccionModerna(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect; NivelBlend : longint = 90);
+var
+  _Color_Highlight : TColor;
+  _Color_BtnShadow : TColor;
+begin
+  _Color_Highlight := FColor_Highlight;
+  _Color_BtnShadow := FColor_BtnShadow;
+  NivelBlend       := 75;
+
+  if (vsSelected in Node^.States) and (Sender.HotNode = Node) and Focused then
+    Dibujar_Seleccion_Moderna_Blend_V2(TargetCanvas, ItemRect, FColor_Highlight, _Color_Highlight, NivelBlend - 10, 45)
+  else
+    if (vsSelected in Node^.States) and Sender.Focused then
+      Dibujar_Seleccion_Moderna_Blend_V2(TargetCanvas, ItemRect, FColor_Highlight, _Color_Highlight, NivelBlend, 25)
+    else
+      if (vsSelected in Node^.States) and (Sender.HotNode = Node) then
+        Dibujar_Seleccion_Moderna_Blend_V2(TargetCanvas, ItemRect, FColor_BtnShadow, _Color_BtnShadow, NivelBlend, 45)
+    else
+      if (vsSelected in Node^.States) then
+        Dibujar_Seleccion_Moderna_Blend_V2(TargetCanvas, ItemRect, FColor_BtnShadow, _Color_BtnShadow, NivelBlend, 30)
+      else
+        if Sender.HotNode = Node then
+          Dibujar_Seleccion_Moderna_Blend_V2(TargetCanvas, ItemRect, FColor_Highlight, _Color_Highlight, NivelBlend - 15, 10);
+end;
+
 
 
 end.

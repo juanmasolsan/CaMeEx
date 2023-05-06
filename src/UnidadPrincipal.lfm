@@ -137,6 +137,7 @@ object Form1: TForm1
       TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toFullRowDrag]
       TreeOptions.PaintOptions = [toHideFocusRect, toHotTrack, toShowButtons, toThemeAware, toUseBlendedImages]
       TreeOptions.SelectionOptions = [toFullRowSelect, toSiblingSelectConstraint]
+      OnAfterItemErase = ListaAfterItemErase
       OnBeforeCellPaint = ListaBeforeCellPaint
       OnCompareNodes = ListaCompareNodes
       OnGetText = ListaGetText

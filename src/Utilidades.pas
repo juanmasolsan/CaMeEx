@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-08 16:21:30
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 13:01:42
+ * @Last Modified time: 2023-05-06 13:54:14
  *)
 {
 
@@ -80,6 +80,22 @@ function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawBy
 
 // Dibuja un rectangulo mezcando color por el nivel de BlendLevel
 procedure Dibujar_FillRect_Blend(Acanvas : TCanvas; ARect: TRect; Color: TColor; BlendLevel : byte; RoundX, RoundY : longint);
+
+// Dibuja rectangulo de selección con un toque moderno
+procedure Dibujar_Seleccion_Moderna_Blend_V2(Acanvas : TCanvas; ARect: TRect; Color: TColor; Color_Base : TColor; BlendLevel : byte; Nivel : byte = 25; Extra_Borde : longint = 0);
+
+// Dibuja un rectangulo con gradiante haciendo blending entre los colores
+procedure Dibujar_GradientFill_Blend(Acanvas : TCanvas; ARect: TRect; ColorInicio, ColorFinal: TColor; BlendLevel : byte; ADirection: TGradientDirection);
+
+// Calcula el color mezclado
+function Blend(Color1, Color2: TColor; A: Byte): TColor; inline;
+
+
+
+var
+  // Color que se usa de base para hacer degradados
+  Dibujar_Color_Degradado_Base : TColor = clWindow;
+
 
 
 implementation
@@ -397,6 +413,92 @@ begin
   finally
     Temporal.Free;
   end;
+end;
+
+function TrueInflateRect(const R: TRect; const I: Integer): TRect; inline;
+begin
+  Result := R;
+  with Result do
+    begin
+      Left   := Left - I;
+      Top    := Top - I;
+      Right  := Right + I;
+      Bottom := Bottom + I;
+    end;
+end;
+
+// Calcula el color mezclado
+function Blend(Color1, Color2: TColor; A: Byte): TColor; inline;
+var
+  c1, c2: LongInt;
+  r , g,  b, v1, v2: longint;
+begin
+  A      := Round(2.55 * A);
+  c1     := ColorToRGB(Color1);
+  c2     := ColorToRGB(Color2);
+  v1     := Byte(c1);
+  v2     := Byte(c2);
+  r      := Longint(A * (v1 - v2) shr 8 + v2);
+  v1     := Byte(c1 shr 8);
+  v2     := Byte(c2 shr 8);
+  g      := Longint(A * (v1 - v2) shr 8 + v2);
+  v1     := Byte(c1 shr 16);
+  v2     := Byte(c2 shr 16);
+  b      := Longint(A * (v1 - v2) shr 8 + v2);
+  Result := (b shl 16) + (g shl 8) + r;
+end;
+
+
+function Internal_Dibujar_GradientFill_Blend(ARect: TRect; ColorInicio, ColorFinal: TColor; BlendLevel : byte; ADirection: TGradientDirection) : TPortableNetworkGraphic;
+var
+  NuevaRecta : TRect;
+begin
+  Result     := Internal_CrearBitmap32(ARect);
+  NuevaRecta := Rect(0,0, Result.Width, Result.Height);
+  Result.Canvas.GradientFill(NuevaRecta, ColorInicio, ColorFinal, ADirection);
+  if BlendLevel <> 255 then
+    Internal_CrearTransparencia(Result, BlendLevel, true);
+end;
+
+// Dibuja un rectangulo con gradiante haciendo blending entre los colores
+procedure Dibujar_GradientFill_Blend(Acanvas : TCanvas; ARect: TRect; ColorInicio, ColorFinal: TColor; BlendLevel : byte; ADirection: TGradientDirection);
+var
+  Temporal : TPortableNetworkGraphic;
+begin
+  Temporal := Internal_Dibujar_GradientFill_Blend(ARect, ColorInicio, ColorFinal, BlendLevel, ADirection);
+  try
+    Acanvas.Draw(ARect.Left, ARect.Top, Temporal);
+  finally
+    Temporal.Free;
+  end;
+end;
+
+// Dibuja rectangulo de selección con un toque moderno
+procedure Dibujar_Seleccion_Moderna_Blend_V2(Acanvas : TCanvas; ARect: TRect; Color: TColor; Color_Base : TColor; BlendLevel : byte; Nivel : byte = 25; Extra_Borde : longint = 0);
+var
+  Minimo     : longint;
+begin
+  Minimo := Nivel;
+
+  if Nivel <> 255 then
+    Minimo := Nivel - 15;
+
+  if Minimo < 0 then
+    Minimo := 0;
+
+  // El fondo
+  Dibujar_GradientFill_Blend(Acanvas, ARect, Blend(color, Color_Base, Minimo), Blend(color, Color_Base, Nivel), BlendLevel, gdVertical);
+
+  if Extra_Borde > 100 then exit;
+  // El borde
+  Acanvas.Brush.Style := bsClear;
+  Acanvas.Pen.Color   := Blend(color, Color_Base, 50);
+  Acanvas.RoundRect(ARect, 2, 2);
+
+  // El Interior
+  Acanvas.Pen.Color   := Blend(color, Color_Base, 10);
+  ARect               := TrueInflateRect(ARect, Extra_Borde);
+  Acanvas.RoundRect(ARect, 2, 2);
 end;
 
 end.

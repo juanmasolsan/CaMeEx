@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 13:21:54
+ * @Last Modified time: 2023-05-06 13:41:36
  *)
 {
 
@@ -59,30 +59,36 @@ const
 
 var
   // Formato de la fecha y hora
-  TipoHora          : RawByteString = 'dd/mm/yyyy  hh:mm:ss';
+  TipoHora                                  : RawByteString = 'dd/mm/yyyy  hh:mm:ss';
 
   // Columnas de la lista de archivos por la que ordenar y su dirección
-  FColumnnaOrden                           : integer = COLUMNA_TIPO;
-  FColumnnaOrden_Direccion                 : integer = 0;
+  FColumnnaOrden                            : integer = COLUMNA_TIPO;
+  FColumnnaOrden_Direccion                  : integer = 0;
 
 
   // Forma en la que mostrar el tamaño de los archivos
-  FFormatoSize                             : TFormatoSize = TFormatoSize.Puntuada;
+  FFormatoSize                              : TFormatoSize = TFormatoSize.Puntuada;
 
   // Forma en la que mostrar los iconos
-  FFormatoIconos                           : TFormatoIconos = TFormatoIconos.PorDefecto;
+  FFormatoIconos                            : TFormatoIconos = TFormatoIconos.PorDefecto;
 
 
   // Dimensiones del árbol de directorios
-  FArbolAncho                              : integer = 230;
+  FArbolAncho                               : integer = 230;
 
   // Dimensiones del Log
-  FLogAlto                                 : integer = 200;
+  FLogAlto                                  : integer = 200;
 
 
   // Resaltado de la columna de ordenación
-  FResaltarColumnaOrden                    : boolean = true;
-  FResaltarColumnaOrdenColor               : TColor = $eeeeee;
+  FResaltarColumnaOrden                     : boolean = true;
+  FResaltarColumnaOrdenColor                : TColor = $eeeeee;
+
+
+
+  // Colores varios
+  FColor_Highlight                          : TColor =  clMenuHighlight;
+  FColor_BtnShadow                          : TColor =  clBtnShadow;
 
 implementation
 
