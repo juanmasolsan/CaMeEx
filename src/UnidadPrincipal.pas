@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 17:16:17
+ * @Last Modified time: 2023-05-06 18:01:52
  *)
 {
 
@@ -1025,9 +1025,9 @@ var
 begin
   _Color_Highlight := FColor_Highlight;
   _Color_BtnShadow := FColor_BtnShadow;
-  NivelBlend       := 55;
+  NivelBlend       := 75;
 
-  if (vsSelected in Node^.States) and (Sender.HotNode = Node) and Focused then
+  if (vsSelected in Node^.States) and (Sender.HotNode = Node) and Sender.Focused then
     Dibujar_Seleccion_Moderna_Blend_V2(TargetCanvas, ItemRect, FColor_Highlight, _Color_Highlight, NivelBlend - 10, 45)
   else
     if (vsSelected in Node^.States) and Sender.Focused then
@@ -1048,7 +1048,7 @@ procedure TForm1.DoSetColor_Texto(Sender: TBaseVirtualTree; const TargetCanvas: 
 begin
   TargetCanvas.Font.Color := FForzarColorTexto_Normal;
 
-  if (vsSelected in Node^.States) and (Sender.HotNode = Node) and Focused then
+  if (vsSelected in Node^.States) and (Sender.HotNode = Node) and Sender.Focused then
     TargetCanvas.Font.Color := FForzarColorTexto_Seleccionado
   else
     if (vsSelected in Node^.States) and Sender.Focused then

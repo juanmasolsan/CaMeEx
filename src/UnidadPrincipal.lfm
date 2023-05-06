@@ -91,6 +91,8 @@ object Form1: TForm1
       BorderSpacing.Around = 1
       BorderStyle = bsNone
       Color = clWindow
+      Colors.SelectionRectangleBlendColor = clBlack
+      Colors.UnfocusedColor = clMedGray
       DefaultNodeHeight = 24
       Header.AutoSizeIndex = -1
       Header.Columns = <      
@@ -133,9 +135,9 @@ object Form1: TForm1
       Images = ImageListArchivos
       TabOrder = 2
       TreeOptions.AnimationOptions = [toAnimatedToggle]
-      TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes]
+      TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toDisableAutoscrollOnEdit]
       TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toFullRowDrag]
-      TreeOptions.PaintOptions = [toHideFocusRect, toHotTrack, toShowButtons, toThemeAware, toUseBlendedImages]
+      TreeOptions.PaintOptions = [toHideFocusRect, toHotTrack, toShowButtons, toThemeAware, toUseBlendedImages, toAlwaysHideSelection]
       TreeOptions.SelectionOptions = [toFullRowSelect, toSiblingSelectConstraint]
       OnAfterItemErase = ListaAfterItemErase
       OnBeforeCellPaint = ListaBeforeCellPaint
