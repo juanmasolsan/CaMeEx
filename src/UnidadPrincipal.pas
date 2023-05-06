@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 14:05:36
+ * @Last Modified time: 2023-05-06 16:36:29
  *)
 {
 
@@ -135,6 +135,9 @@ type
     procedure ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Column: TColumnIndex; {%H-}TextType: TVSTTextType; var CellText: String);
     procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
+    procedure ListaPaintText(Sender: TBaseVirtualTree;
+      const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
+      TextType: TVSTTextType);
     procedure ListaResize(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
@@ -190,6 +193,10 @@ type
 
     // Usa blend para dibujar la selección o el hover
     procedure DoDibujarSeleccionModerna(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect; NivelBlend : longint = 90);
+
+    // Aplica color a los textos de los nodos dependiendo de su estado
+    procedure DoSetColor_Texto(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode);
+
 
   public
 
@@ -581,6 +588,29 @@ begin
 
   // Ordena la lista
   Lista.SortTree(Lista.Header.SortColumn, Lista.Header.SortDirection);
+end;
+
+procedure TForm1.ListaPaintText(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType);
+var
+  NodeData: PrListaData;
+  Datos   : TItemDato;
+begin
+  try
+    NodeData := Sender.GetNodeData(Node);
+    if NodeData <> nil then
+    begin
+      Datos := NodeData^.NodeData;
+      if Datos <> nil then
+      begin
+        // Aplica el color del texto dependiendo del estado del node
+        DoSetColor_Texto(Sender, TargetCanvas, Node);
+      end;
+    end;
+
+    // Quita el subrayado del texto
+    TargetCanvas.Font.Underline := false;
+  except
+  end;
 end;
 
 procedure TForm1.ListaResize(Sender: TObject);
@@ -988,7 +1018,7 @@ var
 begin
   _Color_Highlight := FColor_Highlight;
   _Color_BtnShadow := FColor_BtnShadow;
-  NivelBlend       := 75;
+  NivelBlend       := 55;
 
   if (vsSelected in Node^.States) and (Sender.HotNode = Node) and Focused then
     Dibujar_Seleccion_Moderna_Blend_V2(TargetCanvas, ItemRect, FColor_Highlight, _Color_Highlight, NivelBlend - 10, 45)
@@ -1006,6 +1036,26 @@ begin
           Dibujar_Seleccion_Moderna_Blend_V2(TargetCanvas, ItemRect, FColor_Highlight, _Color_Highlight, NivelBlend - 15, 10);
 end;
 
+// Aplica color a los textos de los nodos dependiendo de su estado
+procedure TForm1.DoSetColor_Texto(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode);
+begin
+  TargetCanvas.Font.Color := FForzarColorTexto_Normal;
+
+  if (vsSelected in Node^.States) and (Sender.HotNode = Node) and Focused then
+    TargetCanvas.Font.Color := FForzarColorTexto_Seleccionado
+  else
+    if (vsSelected in Node^.States) and Sender.Focused then
+      TargetCanvas.Font.Color := FForzarColorTexto_Seleccionado
+    else
+      if (vsSelected in Node^.States) and (Sender.HotNode = Node) then
+        TargetCanvas.Font.Color := FForzarColorTexto_Seleccionado
+        else
+          if (vsSelected in Node^.States) then
+            TargetCanvas.Font.Color := FForzarColorTexto_Seleccionado
+          else
+            if Sender.HotNode = Node then
+              TargetCanvas.Font.Color := FForzarColorTexto_Hot
+end;
 
 
 end.

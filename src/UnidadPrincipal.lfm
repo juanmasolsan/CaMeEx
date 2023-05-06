@@ -141,6 +141,7 @@ object Form1: TForm1
       OnBeforeCellPaint = ListaBeforeCellPaint
       OnCompareNodes = ListaCompareNodes
       OnGetText = ListaGetText
+      OnPaintText = ListaPaintText
       OnGetImageIndex = ListaGetImageIndex
       OnHeaderClick = ListaHeaderClick
       OnResize = ListaResize

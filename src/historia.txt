@@ -1,4 +1,5 @@
 
+- [FIX]   (20230506) Fix en el color del texto del dibujado con toque moderno de la selección y hover en la lista de archivos.
 - [NEW]   (20230506) Agregada dibujado con toque moderno de la selección y hover en la lista de archivos.
 - [NEW]   (20230506) Agregada fondo a la columna seleccionada para ordenar en la lista de archivos.
 - [NEW]   (20230506) Agregada el guardado y carga de la configuración de dimensión del árbol y el log.

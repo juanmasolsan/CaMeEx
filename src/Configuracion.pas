@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 13:41:36
+ * @Last Modified time: 2023-05-06 16:31:31
  *)
 {
 
@@ -89,6 +89,10 @@ var
   // Colores varios
   FColor_Highlight                          : TColor =  clMenuHighlight;
   FColor_BtnShadow                          : TColor =  clBtnShadow;
+  FForzarColorTexto_Normal                  : Tcolor  = clWindowText;
+  FForzarColorTexto_Seleccionado            : Tcolor  = clHighlightText;
+  FForzarColorTexto_Hot                     : Tcolor  = clHighlightText;
+
 
 implementation
 
