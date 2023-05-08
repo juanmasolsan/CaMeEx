@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-08 23:34:04
+ * @Last Modified time: 2023-05-08 23:45:08
  *)
 {
 
@@ -810,6 +810,7 @@ begin
   if FAplicandoConfig then exit;
   FFormatoIconos := TFormatoIconos(TMenuItem(Pointer(@Sender)^).Tag);
   Lista.Refresh;
+  Arbol.Refresh;
 end;
 
 procedure TForm1.MenuItem_Size_NormalClick(Sender: TObject);
@@ -817,6 +818,7 @@ begin
   if FAplicandoConfig then exit;
   FFormatoSize := TFormatoSize(TMenuItem(Pointer(@Sender)^).Tag);
   Lista.Refresh;
+  Arbol.Refresh;
 end;
 
 procedure TForm1.PanelInferiorResize(Sender: TObject);

@@ -93,8 +93,9 @@
 -         Ventana para seleccionar el dispositivo/directorio a escanear.
 -         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 -         Refactorizar TConectorDatos.GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato), para que solo tenga el parámetro Padre
--         Al cambiar el tipo de icono que actualice tambien el arbol
++         Al cambiar el tipo de icono que actualice tambien el arbol
 -         El arbol no es capaz de saber si los items tienen hijos o no al recuperarlos de la base de datos
+-         El arbol que se puede ordenar
 
 
 - Hito 3: Búsqueda y filtrado de datos.

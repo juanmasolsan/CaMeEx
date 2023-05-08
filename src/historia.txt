@@ -1,4 +1,6 @@
 
+
+- [FIX]   (20230508) Al cambiar tipo de icono o cualquier otro dato actualiza el arbol para que se le apliquen los cambios.
 - [NEW]   (20230508) Al cambiar de directorio en el arbol de directorio actualiza la lista de archivos.
 - [NEW]   (20230508) Agregado navegación por el arbol de catalogos
 - [NEW]   (20230508) Agregado lista de catalogos al arbol
