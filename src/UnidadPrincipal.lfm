@@ -81,7 +81,6 @@ object Form1: TForm1
       Header.Font.Color = clWindowText
       Header.Height = 24
       Header.Options = [hoColumnResize, hoDblClickResize, hoDrag, hoHotTrack, hoShowSortGlyphs, hoVisible]
-      Header.SortColumn = 0
       Images = ImageListArchivos
       TabOrder = 0
       TreeOptions.AnimationOptions = [toAnimatedToggle]
@@ -97,6 +96,7 @@ object Form1: TForm1
       OnGetText = ListaGetText
       OnPaintText = ListaPaintText
       OnGetImageIndex = ListaGetImageIndex
+      OnHeaderClick = ArbolHeaderClick
       OnResize = ArbolResize
     end
     object Splitter1: TSplitter

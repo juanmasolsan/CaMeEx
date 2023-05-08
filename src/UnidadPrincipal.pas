@@ -122,6 +122,7 @@ type
     ToolButton1: TToolButton;
     procedure ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
+    procedure ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure ArbolResize(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -1092,6 +1093,22 @@ begin
   except
   end;
 
+end;
+
+procedure TForm1.ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
+var
+  DireccionOrden : longint;
+begin
+  //TODO: Testear si realmente es interesante
+  exit;
+  // Guarda las opciones de columna y orden en sus variables
+  DireccionOrden := integer(not boolean(Arbol.Header.SortDirection));
+
+  // Aplica al header la nueva config
+  Arbol.Header.SortDirection := TSortDirection(DireccionOrden);
+
+  // Ordena la lista
+  Arbol.SortTree(Arbol.Header.SortColumn, Arbol.Header.SortDirection);
 end;
 
 procedure TForm1.ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
