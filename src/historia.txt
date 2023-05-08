@@ -1,6 +1,6 @@
 
 
-
+- [FIX]   (20230509) Fix Refactorizado TConectorDatos.GetDatos
 - [FIX]   (20230509) Fix al recuperar los items en el arbol de directorios, ahora sabe si tienen hijos los directorios.
 - [NEW]   (20230509) La columna del arbol se ajuste al ancho del arbol.
 

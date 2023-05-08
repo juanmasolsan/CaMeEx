@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-08 23:45:08
+ * @Last Modified time: 2023-05-09 00:21:20
  *)
 {
 
@@ -173,13 +173,12 @@ type
     // Para la navegación
     FCatalogoID   : Qword;
     FPadreID      : Qword;
-    FTempCatalogo : TItemCatalogo;
     FTempPadre    : TItemDato;
 
   protected
     procedure DoOnTerminarScanAsync();
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
-    procedure DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
+    procedure DoLoadListaArchivos(Padre : TItemDato);
     procedure DoLoadListaCatalogos();
     procedure DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
 
@@ -339,7 +338,6 @@ begin
   FGestorDatos.Iniciar(Curdir, DirectorioConfig);
 
   // Necesarío para que funcione la navegación por la lista de archivos
-  FTempCatalogo := TItemCatalogo.Create('', TItemDatoTipo.Root, now, 0, '', 0, 0);
   FTempPadre    := TItemDato.create('', TItemDatoTipo.Directorio, now, 0);
 
 
@@ -392,9 +390,7 @@ begin
   FGestorDatos.Finalizar();
 
   // Finalizar los objectos necesarios para la navegación por la lista de archivos
-  FTempCatalogo.free;
   FTempPadre.free;
-
 
   // Guarda la configuración del programa
   DoConfiguracionSave();
@@ -1153,7 +1149,7 @@ begin
   end;
 end;
 
-procedure TForm1.DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
+procedure TForm1.DoLoadListaArchivos(Padre : TItemDato);
 var
   t, total      : integer;
 begin
@@ -1162,17 +1158,14 @@ begin
     // Limpia la lista
     Lista.Clear;
 
-    if Padre = nil then
-      Padre := Catalogo;
-
     // Libera la asignación de memoria
     DoLiberarListaArchivos();
 
     // Carga los datos del catalogo
-    if assigned(Catalogo) then
+    if assigned(Padre) then
     begin
       // Carga los datos del catalogo
-      FListaArchivos := FGestorDatos.GetDatos(Catalogo, Padre);
+      FListaArchivos := FGestorDatos.GetDatos(Padre);
       if assigned(FListaArchivos) then
       begin
         // Carga los datos del catalogo
@@ -1294,7 +1287,7 @@ begin
       if assigned(CatalogoActual) then
       begin
         // Carga los datos del catalogo
-        DoLoadListaArchivos(CatalogoActual, nil);
+        DoLoadListaArchivos(CatalogoActual);
       end;
     end;
 
@@ -1396,16 +1389,13 @@ end;
 procedure TForm1.DoLoadListaArchivosAsync({%H-}Data: PtrInt);
 begin
   try
-    FTempCatalogo.Id      := FCatalogoID;
     FTempPadre.Id         := FPadreID;
     FTempPadre.IdCatalogo := FCatalogoID;
 
     // Carga los datos del catalogo
-    DoLoadListaArchivos(FTempCatalogo, FTempPadre);
+    DoLoadListaArchivos(FTempPadre);
   except
   end;
-
-
 end;
 
 end.

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-08 22:51:09
+ * @Last Modified time: 2023-05-09 00:16:17
  *)
 {
 
@@ -161,7 +161,7 @@ type
     function GetCatalogosById(id : qword) : TItemCatalogo;
 
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
-    function GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato) : TArrayItemDato;
+    function GetDatos(Padre : TItemDato) : TArrayItemDato;
 
     // Devuelve la lista de directorios que contiene un padre
     //function GetDirectorios(Padre : TItemDato) : TArrayItemDato;
@@ -971,13 +971,13 @@ end;
 
 
 // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
-function TConectorDatos.GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato) : TArrayItemDato;
+function TConectorDatos.GetDatos(Padre : TItemDato) : TArrayItemDato;
 var
-  dato: TItemDato;
-  IdCatalogo : qword;
-  IdPadre : qword = 0;
+  dato      : TItemDato;
+  IdCatalogo: qword;
+  IdPadre   : qword = 0;
 begin
-  IdCatalogo := Catalogo.Id;
+  IdCatalogo := Padre.IdCatalogo;
 
   if Padre <> nil then
   begin
