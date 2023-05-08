@@ -1,5 +1,7 @@
 
 
+- [NEW]   (20230508) Agregado lista de catalogos al arbol
+
 + 1.1.3.7
 - [NEW]   (20230507) Agregada navegación básica teclado y ratón en la lista de archivos atraves de los directorios.
 

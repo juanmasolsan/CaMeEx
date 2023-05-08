@@ -2,6 +2,7 @@
 {"hash":5073153,"name":"tform1.caption","sourcebytes":[70,111,114,109,49],"value":"Form1"},
 {"hash":106991073,"name":"tform1.toolbar1.caption","sourcebytes":[84,111,111,108,66,97,114,49],"value":"ToolBar1"},
 {"hash":160486417,"name":"tform1.toolbutton1.caption","sourcebytes":[84,111,111,108,66,117,116,116,111,110,49],"value":"ToolButton1"},
+{"hash":227001699,"name":"tform1.arbol.header.columns[0].text","sourcebytes":[67,97,116,195,161,108,111,103,111,115],"value":"Cat\u00E1logos"},
 {"hash":89536901,"name":"tform1.lista.header.columns[0].text","sourcebytes":[78,111,109,98,114,101],"value":"Nombre"},
 {"hash":176414255,"name":"tform1.lista.header.columns[1].text","sourcebytes":[84,97,109,97,195,177,111],"value":"Tama\u00F1o"},
 {"hash":372847,"name":"tform1.lista.header.columns[2].text","sourcebytes":[84,105,112,111],"value":"Tipo"},

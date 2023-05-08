@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-07 00:16:47
+ * @Last Modified time: 2023-05-08 18:59:07
  *)
 {
 
@@ -175,9 +175,12 @@ type
     procedure DoOnTerminarScanAsync();
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
     procedure DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
+    procedure DoLoadListaCatalogos();
 
     procedure DoLiberarListaArchivos();
-    function AddNodeLista(Dato: TItemDato): boolean;
+    function AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean): boolean;
+
+    procedure DoLiberarListaCatalogos();
 
     // Devuelve la ruta de un item
     function GetRutaFromItem(Item: TItemDato) : RawByteString;
@@ -336,6 +339,11 @@ begin
   PanelPrincipal.DoubleBuffered := true;
   Lista.NodeDataSize            := Sizeof(rTListaData);
   Lista.DoubleBuffered          := true;
+
+  // Inicializar del arbol de directorios
+  Arbol.NodeDataSize            := Sizeof(rTListaData);
+  Arbol.DoubleBuffered          := true;
+
 
   // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
   SetExtensionesConfig(FGestorDatos, ImageListArchivos);
@@ -571,7 +579,7 @@ var
   Datos: TItemDato;
 begin
   try
-    NodeData := Lista.GetNodeData(Node);
+    NodeData := Sender.GetNodeData(Node);
     if NodeData <> nil then
     begin
       Datos := NodeData^.NodeData;
@@ -619,7 +627,7 @@ var
 begin
   CellText := '';
   try
-    NodeData := Lista.GetNodeData(Node);
+    NodeData := Sender.GetNodeData(Node);
     if NodeData <> nil then
     begin
       Datos := NodeData^.NodeData;
@@ -690,8 +698,6 @@ begin
 
         if not ((vsSelected in Node^.States) or (Sender.HotNode = Node)) then
           DoColorear_Dependiendo_De_Los_Atributos(Datos, TargetCanvas);
-
-
       end;
     end;
 
@@ -755,6 +761,19 @@ begin
   end;
 end;
 
+procedure TForm1.DoLiberarListaCatalogos();
+begin
+  // Libera la asignación de memoria
+  if assigned(FListaCatalogos) then
+  begin
+    FListaCatalogos.clear;
+    FListaCatalogos.free;
+    FListaCatalogos := nil;
+  end;
+end;
+
+
+
 
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
 begin
@@ -807,7 +826,7 @@ begin
   FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
   //FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '');
   {$ELSE}
-  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '');
+  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
   {$ENDIF}
   // Muestra la ventana de escaneo
   FVentanaScan.ShowModal;
@@ -1001,8 +1020,18 @@ end;
 
 
 procedure TForm1.Button1Click(Sender: TObject);
+var
+  CatalogoActual : TItemCatalogo;
+  tiempo : qword;
 begin
-  // Cargar Catallogos
+  tiempo := GetTickCount64();
+
+  // Cargar Lista
+  DoLoadListaCatalogos();
+
+  tiempo := GetTickCount64() - tiempo;
+
+  SalidaLog.lines.Add('Tiempo empleado : ' + IntToStr(tiempo) + ' ms.');
 end;
 
 procedure TForm1.ArbolResize(Sender: TObject);
@@ -1037,7 +1066,7 @@ begin
         total := FListaArchivos.count -1;
         for t := 0 to total do
         begin
-          AddNodeLista(TItemDato(FListaArchivos{%H-}[t]));
+          AddNode(Lista, TItemDato(FListaArchivos{%H-}[t]), nil, false);
         end;
       end;
     end;
@@ -1050,17 +1079,53 @@ begin
   end;
 end;
 
-function TForm1.AddNodeLista(Dato: TItemDato): boolean;
+
+procedure TForm1.DoLoadListaCatalogos();
+var
+  t, total      : integer;
+begin
+  Arbol.BeginUpdate;
+  try
+    // Limpia la lista
+    Arbol.Clear;
+
+    // Libera la asignación de memoria
+    DoLiberarListaCatalogos();
+
+    // Carga los datos del catalogo
+    FListaCatalogos := FGestorDatos.GetAllCatalogos();
+    if assigned(FListaCatalogos) then
+    begin
+      // Carga los datos del catalogo
+      total := FListaCatalogos.count -1;
+      for t := 0 to total do
+      begin
+        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), nil, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0);
+      end;
+    end;
+
+    // Ordena la lista
+    Arbol.SortTree(Arbol.Header.SortColumn, Arbol.Header.SortDirection);
+  finally
+    Arbol.EndUpdate;
+  end;
+end;
+
+
+function TForm1.AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean): boolean;
 var
   Node   : PVirtualNode;
   Data   : PrListaData;
 begin
-  Node           := Lista.AddChild(nil);
-  Data           := Lista.GetNodeData(Node);
+  Node             := Sender.AddChild(Padre);
+
+  if TieneHijos then
+    Node^.States := Node^.States + [vsHasChildren];
+
+  Data           := Sender.GetNodeData(Node);
   Data^.NodeData := Dato;
   Result         := True;
 end;
-
 
 
 procedure TForm1.Button2Click(Sender: TObject);

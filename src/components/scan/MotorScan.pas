@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 00:22:50
+ * @Last Modified time: 2023-05-08 17:35:17
  *)
 {
 
@@ -34,6 +34,8 @@ SOFTWARE.
 unit MotorScan;
 
 {$mode ObjFPC}{$H+}
+
+{$i ../../DirectivasCompilacion.inc}
 
 interface
 
@@ -250,7 +252,17 @@ begin
   inherited Create();
 
   //TODO: Pasarle un nombre, el tipo de objeto y la descripcion
-  FRoot                              := TItemCatalogo.create('ROOT', TItemDatoTipo.Root, now(), 0, 'Descripcion', 0, 0);
+
+  {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
+  FRoot   := TItemCatalogo.create('Proyecto CaMeEx', TItemDatoTipo.Root, now(), 0, 'Directorio del proyecto de CaMeEX', 0, 0);
+  //FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '');
+  {$ELSE}
+  FRoot   := TItemCatalogo.create('DAM 2', TItemDatoTipo.Root, now(), 0, 'Directorio de trabajo usado para el curso de DAM 2', 0, 0);
+  {$ENDIF}
+
+
+
+
   FDetener_Escaneo_Busqueda_Archivos := false;
   FMascaraArchivo                    := '*';
   FListaExclusion                    := TStringList.Create;

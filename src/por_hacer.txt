@@ -86,7 +86,9 @@
 +         Que se pueda navegar desde la lista de archivos sobre los directorios (ENTER y doble click en los items).
 -         Listar los dispositivos/directorios en un árbol.
 -         Que el árbol se pueda colapsar y expandir los items.
+-         Sincronizar navegación arbol-lista y viceversa.
 -         Agregar breadcrumbs.
+-         Historial de navegación.
 -         Ventana para seleccionar el dispositivo/directorio a escanear.
 
 - Hito 3: Búsqueda y filtrado de datos.
