@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 16:07:28
+ * @Last Modified time: 2023-05-09 00:10:26
  *)
 {
 
@@ -330,29 +330,34 @@ end;
 function TItemDato.GetTineHijos: boolean;
 var
   t, total : longint;
+  TempTieneHijos : boolean;
+
 begin
-  FTieneHijos := false;
-  result      := FTieneHijos;
+  TempTieneHijos := FTieneHijos;
+  result         := FTieneHijos;
 
   // Si no es del tipo directorio no tiene hijos
   if tipo <> TItemDatoTipo.Directorio then
     exit;
 
   // Si no se ha comprobado si tiene hijos
-  if not FTieneHijos then
+  if not TempTieneHijos then
   begin
     total := FHijos.Count -1;
     for t := 0 to total do
       begin
-
-        FTieneHijos := FHijos[t].tipo = TItemDatoTipo.Directorio;
+        TempTieneHijos := FHijos[t].tipo = TItemDatoTipo.Directorio;
         // Si tiene hijos salimos
-        if FTieneHijos then
+        if TempTieneHijos then
+        begin
+          TempTieneHijos := true;
+          FTieneHijos    := true;
           break;
+        end;
       end;
   end;
 
-  result := FTieneHijos;
+  result := TempTieneHijos;
 end;
 
 end.
