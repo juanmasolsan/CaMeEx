@@ -96,8 +96,8 @@
 +         Al cambiar el tipo de icono que actualice tambien el arbol
 -         El arbol no es capaz de saber si los items tienen hijos o no al recuperarlos de la base de datos
 +         El arbol que se puede ordenar
--         La columna del arbol que se ajuste al ancho del arbol
--         En el arbol todos los nodos expandidos/seleccionados del la ruta actual que esten en negrita
++         La columna del arbol que se ajuste al ancho del arbol
+-         En el arbol todos los nodos expandidos/seleccionados de la ruta actual que esten en negrita
 
 - Hito 3: Búsqueda y filtrado de datos.
 -         Agregar cajon de búsqueda en la barra de herramientas

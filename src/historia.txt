@@ -1,5 +1,8 @@
 
 
+- [NEW]   (20230509) La columna del arbol se ajuste al ancho del arbol.
+
++ 1.1.4.2
 - [NEW]   (20230508) El arbol que se puede ordenar
 - [FIX]   (20230508) Al cambiar tipo de icono o cualquier otro dato actualiza el arbol para que se le apliquen los cambios.
 - [NEW]   (20230508) Al cambiar de directorio en el arbol de directorio actualiza la lista de archivos.

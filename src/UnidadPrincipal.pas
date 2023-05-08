@@ -226,6 +226,9 @@ type
     // Abre un directorio en la lista de archivos y muestra su contenido
     procedure DoNavegarElementoLista();
     procedure DoLoadListaArchivosAsync({%H-}Data: PtrInt);
+
+    // Reajusta el tamaño de la última columna
+    procedure DoResizeControlDatos(Sender: TLazVirtualStringTree);
   public
 
   end;
@@ -718,10 +721,6 @@ begin
 end;
 
 procedure TForm1.ListaResize(Sender: TObject);
-var
-  Columna   : TVirtualTreeColumn;
-  t, total  : longint;
-  SizeColumna      : longint;
 begin
 
   // Evita que se ejecute el evento si se esta redimensionando la lista
@@ -730,35 +729,48 @@ begin
   // Marca como redimensionando
   FIsListaResizing := true;
   try
-    // Inicializa el tamaño de las columnas
-    SizeColumna  := 0;
-
-
-    // Obtiene el total de columnas visibles
-    total := high(Lista.Header.Columns.GetVisibleColumns);
-
-    // Obtiene el tamaño de las columnas visibles
-    for t := 0 to total -1 do
-      inc(SizeColumna, Lista.Header.Columns.GetVisibleColumns[t].Width);
-
-    // Obtiene la última columna visible
-    Columna  := Lista.Header.Columns.GetVisibleColumns[total];
-
-    // Obtiene el tamaño de la columna final restandole el tamaño del ancho del scrollbar vertical
-    SizeColumna := Lista.Width - SizeColumna - GetSystemMetrics(SM_CXVSCROLL);
-
-    // Si el tamaño de la columna es menor a 100, se establece en 100
-    if SizeColumna < 100 then
-      SizeColumna := 100;
-
-    // Establece el tamaño de la columna
-    Columna.Width := SizeColumna;
+   // Reajusta el tamaño de la última columna
+   DoResizeControlDatos(Lista);
 
   finally
     // Marca como no redimensionando
     FIsListaResizing := false;
   end;
 end;
+
+// Reajusta el tamaño de la última columna
+procedure TForm1.DoResizeControlDatos(Sender: TLazVirtualStringTree);
+var
+  Columna   : TVirtualTreeColumn;
+  t, total  : longint;
+  SizeColumna      : longint;
+
+begin
+  // Inicializa el tamaño de las columnas
+  SizeColumna  := 0;
+
+
+  // Obtiene el total de columnas visibles
+  total := high(Sender.Header.Columns.GetVisibleColumns);
+
+  // Obtiene el tamaño de las columnas visibles
+  for t := 0 to total -1 do
+    inc(SizeColumna, Sender.Header.Columns.GetVisibleColumns[t].Width);
+
+  // Obtiene la última columna visible
+  Columna  := Sender.Header.Columns.GetVisibleColumns[total];
+
+  // Obtiene el tamaño de la columna final restandole el tamaño del ancho del scrollbar vertical
+  SizeColumna := Sender.Width - SizeColumna - GetSystemMetrics(SM_CXVSCROLL);
+
+  // Si el tamaño de la columna es menor a 100, se establece en 100
+  if SizeColumna < 100 then
+    SizeColumna := 100;
+
+  // Establece el tamaño de la columna
+  Columna.Width := SizeColumna;
+end;
+
 
 procedure TForm1.DoLiberarListaArchivos();
 begin
@@ -1064,6 +1076,9 @@ end;
 
 procedure TForm1.ArbolResize(Sender: TObject);
 begin
+  // Reajusta el tamaño de la última columna
+  DoResizeControlDatos(arbol);
+
   if FAplicandoConfig then exit;
   FArbolAncho := Arbol.Width;
 end;
