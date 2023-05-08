@@ -1,4 +1,5 @@
 
+- [NEW]   (20230508) Al cambiar de directorio en el arbol de directorio actualiza la lista de archivos.
 - [NEW]   (20230508) Agregado navegación por el arbol de catalogos
 - [NEW]   (20230508) Agregado lista de catalogos al arbol
 

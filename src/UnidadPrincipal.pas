@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-08 23:08:58
+ * @Last Modified time: 2023-05-08 23:34:04
  *)
 {
 
@@ -120,6 +120,7 @@ type
     Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    procedure ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
     procedure ArbolResize(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -1089,6 +1090,33 @@ begin
   except
   end;
 
+end;
+
+procedure TForm1.ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
+var
+  NodeData: PrListaData;
+  Datos: TItemDato;
+begin
+  try
+    NodeData := Sender.GetNodeData(Node);
+    if NodeData <> nil then
+    begin
+      Datos := NodeData^.NodeData;
+      if Datos <> nil then
+      begin
+        if Datos.IdCatalogo <> 0 then
+          FCatalogoID := Datos.IdCatalogo
+        else
+          FCatalogoID := Datos.Id;
+
+        FPadreID    := Datos.Id;
+
+        // Lanza el método de forma asíncrona
+        application.QueueAsyncCall(@DoLoadListaArchivosAsync, 0);
+      end;
+    end;
+  except
+  end;
 end;
 
 procedure TForm1.DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
