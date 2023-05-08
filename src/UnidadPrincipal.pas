@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-08 18:59:07
+ * @Last Modified time: 2023-05-08 23:08:58
  *)
 {
 
@@ -79,7 +79,8 @@ type
   // Defino la estructura interna de los datos de los nodos de la lista de archivos
   PrListaData = ^rTListaData;
   rTListaData = record
-    NodeData : TItemDato;
+    IsPrevExpanded: Boolean;
+    NodeData      : TItemDato;
   end;
 
 
@@ -119,6 +120,7 @@ type
     Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
     procedure ArbolResize(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -153,12 +155,13 @@ type
     procedure Timer_UpdateUITimer(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
   private
-    FScan           : TMotorScan;
-    FVentanaScan    : TFormScan;
-    FGestorDatos    : IConectorDatos;
-    FListaCatalogos : TArrayItemDato;
-    FListaArchivos  : TArrayItemDato;
-    FAplicandoConfig: boolean;
+    FScan            : TMotorScan;
+    FVentanaScan     : TFormScan;
+    FGestorDatos     : IConectorDatos;
+    FListaCatalogos  : TArrayItemDato;
+    FListaArchivos   : TArrayItemDato;
+    FListaDirectorios: TArrayItemDato;
+    FAplicandoConfig : boolean;
 
     FConfiguracionColumnas  : TListaDatosColumnasHeaderVirtualTrees;
     FIniciado_Header        : Boolean;
@@ -176,11 +179,14 @@ type
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
     procedure DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
     procedure DoLoadListaCatalogos();
+    procedure DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
 
     procedure DoLiberarListaArchivos();
     function AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean): boolean;
 
     procedure DoLiberarListaCatalogos();
+    procedure DoLiberarListaDirectorios(Full: boolean);
+
 
     // Devuelve la ruta de un item
     function GetRutaFromItem(Item: TItemDato) : RawByteString;
@@ -344,6 +350,8 @@ begin
   Arbol.NodeDataSize            := Sizeof(rTListaData);
   Arbol.DoubleBuffered          := true;
 
+  // Inicializar el arbol de catalogos
+  FListaDirectorios := TArrayItemDato.create;;
 
   // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
   SetExtensionesConfig(FGestorDatos, ImageListArchivos);
@@ -370,11 +378,10 @@ begin
   DoLiberarListaArchivos();
 
   // Finalizar la lista de catalogos
-  if assigned(FListaCatalogos) then
-    begin
-      FListaCatalogos.clear;
-      FListaCatalogos.free;
-    end;
+  DoLiberarListaCatalogos();
+
+  // Finalizar la lista de directorios
+  DoLiberarListaDirectorios(true);
 
   // Finalizar el Gestor de Datos
   FGestorDatos.Finalizar();
@@ -382,6 +389,7 @@ begin
   // Finalizar los objectos necesarios para la navegación por la lista de archivos
   FTempCatalogo.free;
   FTempPadre.free;
+
 
   // Guarda la configuración del programa
   DoConfiguracionSave();
@@ -773,6 +781,22 @@ begin
 end;
 
 
+procedure TForm1.DoLiberarListaDirectorios(Full: boolean);
+begin
+  // Libera la asignación de memoria
+  if assigned(FListaDirectorios) then
+  begin
+    FListaDirectorios.clear;
+    if Full then
+    begin
+      FListaDirectorios.free;
+      FListaDirectorios := nil;
+    end;
+  end;
+end;
+
+
+
 
 
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
@@ -1040,6 +1064,33 @@ begin
   FArbolAncho := Arbol.Width;
 end;
 
+procedure TForm1.ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode;
+  var Allowed: Boolean);
+var
+  NodeData: PrListaData;
+  Datos   : TItemDato;
+begin
+  try
+    NodeData := Sender.GetNodeData(Node);
+    if NodeData <> nil then
+    begin
+      if NodeData^.IsPrevExpanded then
+      begin
+        exit;
+      end;
+
+      Datos := NodeData^.NodeData;
+      if Datos <> nil then
+      begin
+        DoLoadListaDirectorios(Node, Datos);
+        NodeData^.IsPrevExpanded := true;
+      end;
+    end;
+  except
+  end;
+
+end;
+
 procedure TForm1.DoLoadListaArchivos(Catalogo : TItemCatalogo; Padre : TItemDato);
 var
   t, total      : integer;
@@ -1080,6 +1131,34 @@ begin
 end;
 
 
+procedure TForm1.DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
+var
+  t, total, inicio         : integer;
+  ListaTemporalDirectorios : TArrayItemDato;
+begin
+  Arbol.BeginUpdate;
+  try
+      // Carga los datos del catalogo
+      inicio := FGestorDatos.GetDirectorios(Padre, FListaDirectorios);
+      if inicio > -1 then
+      begin
+        // Carga los datos del catalogo
+        total := FListaDirectorios.count -1;
+        for t := inicio to total do
+        begin
+          AddNode(Arbol, TItemDato(FListaDirectorios{%H-}[t]), Node, TItemDato(FListaDirectorios{%H-}[t]).TieneHijos);
+        end;
+      end;
+
+    // Ordena el arbol
+    Arbol.SortTree(Arbol.Header.SortColumn, Arbol.Header.SortDirection);
+
+  finally
+    Arbol.EndUpdate;
+  end;
+end;
+
+
 procedure TForm1.DoLoadListaCatalogos();
 var
   t, total      : integer;
@@ -1091,6 +1170,7 @@ begin
 
     // Libera la asignación de memoria
     DoLiberarListaCatalogos();
+    DoLiberarListaDirectorios(false);
 
     // Carga los datos del catalogo
     FListaCatalogos := FGestorDatos.GetAllCatalogos();

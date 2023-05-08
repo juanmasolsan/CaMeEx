@@ -11,7 +11,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="55"/>
         <CursorPos Y="79"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="94"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,11 +20,10 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="713"/>
-        <CursorPos X="3" Y="713"/>
-        <UsageCount Value="93"/>
+        <TopLine Value="1115"/>
+        <CursorPos Y="1130"/>
+        <UsageCount Value="94"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,7 +31,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="54" Y="11"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="94"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -42,7 +41,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="20"/>
         <CursorPos X="80" Y="35"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="94"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -51,7 +50,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="94"/>
       </Unit>
       <Unit>
         <Filename Value="components\control_formulario_avanzado.pas"/>
@@ -60,7 +59,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="60" Y="39"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="93"/>
       </Unit>
       <Unit>
         <Filename Value="motorscan.pas"/>
@@ -69,7 +68,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="88"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -78,22 +77,22 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="87"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="82"/>
+        <UsageCount Value="83"/>
       </Unit>
       <Unit>
         <Filename Value="Utilidades.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="78"/>
         <CursorPos X="37" Y="93"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="76"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -105,7 +104,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="97"/>
         <CursorPos X="85" Y="102"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
@@ -113,7 +112,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="113"/>
         <CursorPos Y="129"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -121,7 +120,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -136,10 +135,10 @@
       </Unit>
       <Unit>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="25"/>
         <CursorPos X="7" Y="38"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -159,10 +158,11 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="909"/>
-        <CursorPos Y="928"/>
+        <CursorPos Y="930"/>
         <UsageCount Value="20"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
@@ -194,10 +194,11 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="700"/>
-        <CursorPos X="62" Y="722"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="841"/>
+        <CursorPos Y="856"/>
         <UsageCount Value="21"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_DB.pas"/>
@@ -231,10 +232,10 @@
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemCatalogo.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="48"/>
         <CursorPos X="75" Y="58"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -260,18 +261,19 @@
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemDato.pas"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="130"/>
-        <CursorPos X="73" Y="141"/>
-        <UsageCount Value="11"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="328"/>
+        <CursorPos Y="335"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemBaseDatos.pas"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="65"/>
         <CursorPos X="35" Y="77"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -299,18 +301,18 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
         <UnitName Value="laz.VirtualTrees"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="2587"/>
         <CursorPos Y="2829"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Configuracion.pas"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="15"/>
         <TopLine Value="65"/>
         <CursorPos X="36" Y="82"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -318,146 +320,142 @@
         <EditorIndex Value="2"/>
         <TopLine Value="96"/>
         <CursorPos X="40" Y="113"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Imagen_Manipulacion_Mini.pas"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="61"/>
         <CursorPos Y="79"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="18"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\inc\objpash.inc"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="193"/>
         <CursorPos X="23" Y="206"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="28">
       <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="657" TopLine="646"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="930" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="333" TopLine="319"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="334" TopLine="319"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="335" TopLine="329"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="338" TopLine="329"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="342" TopLine="329"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="344" TopLine="329"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="345" TopLine="329"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="355" TopLine="333"/>
       </Position>
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1163" TopLine="1159"/>
+        <Caret Line="1130" TopLine="1115"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="928" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="929" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="930" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="333" TopLine="320"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="334" TopLine="330"/>
       </Position>
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1168" Column="4" TopLine="1155"/>
+        <Caret Line="1130" TopLine="1115"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="928" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="929" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="930" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="333" TopLine="328"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="334" TopLine="328"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="335" TopLine="328"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="338" TopLine="328"/>
       </Position>
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="658" TopLine="647"/>
+        <Caret Line="1130" TopLine="1115"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="928" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="929" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="930" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="335" TopLine="328"/>
       </Position>
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1160" TopLine="1154"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="654" Column="42" TopLine="641"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1156" Column="41" TopLine="1135"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="213" Column="40" TopLine="202"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="654" Column="42" TopLine="633"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1200" TopLine="1184"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="554" Column="3" TopLine="542"/>
-      </Position>
-      <Position>
-        <Filename Value="historia.txt"/>
-        <Caret Line="11" Column="54"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="143" Column="28" TopLine="132"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="153" Column="35" TopLine="141"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="387" Column="3" TopLine="383"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="394" Column="3" TopLine="383"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="559" Column="62" TopLine="538"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="564" Column="3" TopLine="561"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="536" Column="3" TopLine="530"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="574" Column="23" TopLine="577"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="622" Column="23" TopLine="615"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="651" Column="3" TopLine="659"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="695" TopLine="676"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1008" Column="3" TopLine="1006"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="387" Column="3" TopLine="384"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="394" Column="3" TopLine="384"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="535" Column="55" TopLine="560"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="573" Column="3" TopLine="587"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="620" Column="3" TopLine="635"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="681" Column="3" TopLine="656"/>
+        <Caret Line="1130" TopLine="1115"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -473,6 +471,13 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="components\control_contine.pas"/>
         <Line Value="128"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="UnidadPrincipal.pas"/>
+        <Line Value="1123"/>
       </Item>
     </BreakPoints>
   </Debugging>

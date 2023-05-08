@@ -66,7 +66,6 @@ object Form1: TForm1
       AutoScrollDelay = 1
       BorderSpacing.Around = 1
       BorderStyle = bsNone
-      ButtonStyle = bsTriangle
       Color = clWindow
       Colors.SelectionRectangleBlendColor = clBlack
       Colors.UnfocusedColor = clMedGray
@@ -82,7 +81,7 @@ object Form1: TForm1
       Header.Font.Color = clWindowText
       Header.Height = 24
       Header.Options = [hoColumnResize, hoDblClickResize, hoDrag, hoHotTrack, hoShowSortGlyphs, hoVisible]
-      Header.SortDirection = sdDescending
+      Header.SortColumn = 0
       Images = ImageListArchivos
       TabOrder = 0
       TreeOptions.AnimationOptions = [toAnimatedToggle]
@@ -93,6 +92,7 @@ object Form1: TForm1
       OnAfterItemErase = ListaAfterItemErase
       OnBeforeCellPaint = ListaBeforeCellPaint
       OnCompareNodes = ListaCompareNodes
+      OnExpanding = ArbolExpanding
       OnGetText = ListaGetText
       OnPaintText = ListaPaintText
       OnGetImageIndex = ListaGetImageIndex

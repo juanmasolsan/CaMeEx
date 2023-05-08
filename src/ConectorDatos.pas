@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 15:48:19
+ * @Last Modified time: 2023-05-08 22:51:09
  *)
 {
 
@@ -65,6 +65,7 @@ const
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
   SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      = 'SELECT * FROM Datos WHERE IdCatalogo = :IDCATALOGO';
   SQL_SELECT_DATOS_ALL_BY_PARENT_ID        =  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND IdPadre = :IDPADRE';
+  SQL_SELECT_DIRECTORIOS_BY_PARENT_ID      =  SQL_SELECT_DATOS_ALL_BY_PARENT_ID + ' AND Tipo = 1';
   SQL_SELECT_RUTA_COMPLETA                 = 'SELECT Ruta FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO AND Id = :ID;';
   SQL_SELECT_EXTENSION                     = 'SELECT ex.Extension, ex.Descripcion, ic.Icono FROM Extensiones as ex JOIN Iconos AS ic ON ex.IdIcono = ic.Id  WHERE ex.Id = :ID;';
 
@@ -161,6 +162,10 @@ type
 
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
     function GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato) : TArrayItemDato;
+
+    // Devuelve la lista de directorios que contiene un padre
+    //function GetDirectorios(Padre : TItemDato) : TArrayItemDato;
+    function GetDirectorios(Padre : TItemDato; Listado : TArrayItemDato) : integer;
 
     // Elimina todos los catalogos
     function DeleteAllCatalogos() : boolean;
@@ -1043,6 +1048,80 @@ begin
     on E: Exception do LogAddException('Excepción Detectada', E);
   end;
 end;
+
+
+// Devuelve la lista de directorios que contiene un padre
+function TConectorDatos.GetDirectorios(Padre : TItemDato; Listado : TArrayItemDato) : integer;
+var
+  dato      : TItemDato;
+  IdCatalogo: qword;
+  IdPadre   : qword = 0;
+begin
+  IdCatalogo := Padre.IdCatalogo;
+  if IdCatalogo = 0 then
+    IdCatalogo := Padre.Id;
+
+  IdPadre := Padre.Id;
+
+  // Inicializa el resultado
+  Result := -1;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+
+        // Prepara la query
+        FDataBase.Query.SQL.Add(SQL_SELECT_DIRECTORIOS_BY_PARENT_ID);
+
+
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('IDPADRE').AsLargeInt    := IdPadre;
+        FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := IdCatalogo;
+
+        // Ejecuta la sentencia
+        FDataBase.Query.Open;
+        try
+          // Comprueba que tiene datos
+          if FDataBase.Query.IsEmpty then exit;
+
+          // Inicializa el resultado
+          Result := Listado.count;
+
+          // Obtinene el primer registro
+          FDataBase.Query.First;
+
+          // Recorre los registros
+          while not FDataBase.Query.EOF do
+          begin
+            // Crea el catalogo
+            dato := DoGetDatoFromquery(FDataBase.Query);
+
+            // Añade el catalogo al resultado
+            {%H-}Listado.Add(dato);
+
+            // Pasa al siguiente registro
+            FDataBase.Query.Next;
+          end;
+
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    on E: Exception do LogAddException('Excepción Detectada', E);
+  end;
+end;
+
 
 // Elimina todos los catalogos
 function TConectorDatos.DeleteAllCatalogos() : boolean;

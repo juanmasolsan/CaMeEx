@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-03 23:17:43
+ * @Last Modified time: 2023-05-08 22:48:53
  *)
 {
 
@@ -78,6 +78,10 @@ type
 
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
     function GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato) : TArrayItemDato;
+
+    // Devuelve la lista de directorios que contiene un padre
+    //function GetDirectorios(Padre : TItemDato) : TArrayItemDato;
+    function GetDirectorios(Padre : TItemDato; Listado : TArrayItemDato) : integer;
 
     // Elimina todos los catalogos
     function DeleteAllCatalogos() : boolean;

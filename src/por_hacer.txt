@@ -84,9 +84,10 @@
 +         Que recuerde el ancho de la lista de archivos
 +         Que recuerde el alto de la salida de log
 +         Que se pueda navegar desde la lista de archivos sobre los directorios (ENTER y doble click en los items).
--         Listar los dispositivos/directorios en un árbol.
--         Que el árbol se pueda colapsar y expandir los items.
--         Sincronizar navegación arbol-lista y viceversa.
++         Listar los dispositivos/directorios en un árbol.
++         Que el árbol se pueda colapsar y expandir los items.
+-         Sincronizar navegación arbol-lista.
+-         Sincronizar navegación lista-arbol.
 -         Agregar breadcrumbs.
 -         Historial de navegación.
 -         Ventana para seleccionar el dispositivo/directorio a escanear.

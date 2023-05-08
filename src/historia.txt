@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230508) Agregado navegación por el arbol de catalogos
 - [NEW]   (20230508) Agregado lista de catalogos al arbol
 
 + 1.1.3.7
