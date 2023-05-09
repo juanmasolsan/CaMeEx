@@ -1,4 +1,7 @@
 
+
+
+- [FIX]   (20230509) Al redimensionar Arbol/Lista de archivos no se produce parpadeos
 - [NEW]   (20230509) Tanto el arbol como la lista de archivos que muestren siempre las scrollbars
 
 + 1.1.4.5

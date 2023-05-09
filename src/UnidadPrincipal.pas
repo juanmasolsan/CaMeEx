@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 00:21:20
+ * @Last Modified time: 2023-05-09 16:21:01
  *)
 {
 
@@ -725,8 +725,11 @@ begin
   // Marca como redimensionando
   FIsListaResizing := true;
   try
-   // Reajusta el tamaño de la última columna
-   DoResizeControlDatos(Lista);
+    // Reajusta el tamaño de la última columna
+    DoResizeControlDatos(Lista);
+
+    // Redibuja el panel principal para evitar parpadeos en el dibujado
+    PanelPrincipal.Repaint;
 
   finally
     // Marca como no redimensionando
