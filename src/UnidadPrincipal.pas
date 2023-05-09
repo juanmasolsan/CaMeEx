@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 18:39:40
+ * @Last Modified time: 2023-05-09 19:14:41
  *)
 {
 
@@ -228,6 +228,9 @@ type
 
     // Reajusta el tamaño de la última columna
     procedure DoResizeControlDatos(Sender: TLazVirtualStringTree);
+
+    // Carga la lista de catálogos
+    procedure DoLoadListaCatalogosAsync({%H-}Data: PtrInt);
   public
 
   end;
@@ -256,8 +259,8 @@ uses
 // Hack para evitar parpadeos en el dibujado
 procedure TLazVirtualStringTree.WMEraseBkgnd(var Message: TLMEraseBkgnd);
 begin
- inherited WMEraseBkgnd(Message);
- Message.Result := 1; // Fake erase
+  inherited WMEraseBkgnd(Message);
+  Message.Result := 1; // Fake erase
 end;
 
 // Poder dibujar imagenes ghosted
@@ -372,6 +375,9 @@ begin
 
   // Inicializa el header de la lista
   DoHeader_Iniciar(true);
+
+  // Lanza el método de forma asíncrona para cargar la lista de catalogos
+  application.QueueAsyncCall(@DoLoadListaCatalogosAsync, 0);
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -1395,5 +1401,13 @@ begin
   except
   end;
 end;
+
+
+procedure TForm1.DoLoadListaCatalogosAsync({%H-}Data: PtrInt);
+begin
+  // Cargar Lista
+  DoLoadListaCatalogos();
+end;
+
 
 end.

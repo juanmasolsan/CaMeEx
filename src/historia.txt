@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230509) Agregada autocarga de la base de datos al iniciar el programa de forma async.
 - [FIX]   (20230509) Revisado que algunas carpetas indican que tienen hijos y no es asi
 - [FIX]   (20230509) Revisado el orden de los directorios en el arbol
 - [FIX]   (20230509) Fix orden de los controles en la ventana principal (2)
