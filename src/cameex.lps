@@ -20,9 +20,8 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="1450"/>
+        <TopLine Value="1448"/>
         <CursorPos Y="1464"/>
         <UsageCount Value="107"/>
         <Loaded Value="True"/>
@@ -39,9 +38,10 @@
       <Unit>
         <Filename Value="por_hacer.txt"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="81"/>
-        <CursorPos X="31" Y="89"/>
+        <CursorPos X="53" Y="101"/>
         <UsageCount Value="107"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -140,7 +140,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="449"/>
         <CursorPos X="44" Y="459"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -163,7 +163,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="909"/>
         <CursorPos Y="930"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -199,7 +199,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="840"/>
         <CursorPos X="108" Y="854"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -237,7 +237,7 @@
         <EditorIndex Value="10"/>
         <TopLine Value="48"/>
         <CursorPos X="75" Y="58"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -266,7 +266,7 @@
         <EditorIndex Value="9"/>
         <TopLine Value="328"/>
         <CursorPos X="33" Y="335"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="18"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -274,7 +274,7 @@
         <EditorIndex Value="15"/>
         <TopLine Value="65"/>
         <CursorPos X="35" Y="77"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -305,7 +305,7 @@
         <EditorIndex Value="12"/>
         <TopLine Value="305"/>
         <CursorPos X="15" Y="319"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -313,7 +313,7 @@
         <EditorIndex Value="16"/>
         <TopLine Value="65"/>
         <CursorPos X="36" Y="82"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -321,7 +321,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="96"/>
         <CursorPos X="40" Y="113"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -329,7 +329,7 @@
         <EditorIndex Value="14"/>
         <TopLine Value="61"/>
         <CursorPos Y="79"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -337,7 +337,7 @@
         <EditorIndex Value="11"/>
         <TopLine Value="193"/>
         <CursorPos X="23" Y="206"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
