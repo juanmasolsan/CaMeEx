@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 22:48:40
+ * @Last Modified time: 2023-05-10 00:27:50
  *)
 {
 
@@ -175,6 +175,8 @@ type
     FPadreID      : Qword;
     FTempPadre    : TItemDato;
 
+    FNodeArbol : PVirtualNode;
+
   protected
     procedure DoOnTerminarScanAsync();
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
@@ -231,6 +233,9 @@ type
 
     // Carga la lista de catálogos
     procedure DoLoadListaCatalogosAsync({%H-}Data: PtrInt);
+
+    // Sincroniza el arbol con la vista de la lista de directorios
+    procedure DoSincronizarListaArbol();
   public
 
   end;
@@ -1141,6 +1146,9 @@ var
   NodeData: PrListaData;
   Datos: TItemDato;
 begin
+  // Lo selecciona
+  FNodeArbol := Node;
+
   try
     NodeData := Sender.GetNodeData(Node);
     if NodeData <> nil then
@@ -1394,8 +1402,8 @@ begin
         FCatalogoID := Datos.IdCatalogo;
         FPadreID    := Datos.Id;
 
-        // Lanza el método de forma asíncrona
-        application.QueueAsyncCall(@DoLoadListaArchivosAsync, 0);
+        // Selecciona en el arbol el nodo correspondiente
+        DoSincronizarListaArbol();
       end;
     end;
   end;
@@ -1420,5 +1428,45 @@ begin
   DoLoadListaCatalogos();
 end;
 
+// Sincroniza el arbol con la vista de la lista de directorios
+procedure TForm1.DoSincronizarListaArbol();
+var
+  NodeData: PrListaData;
+  Datos: TItemDato;
+  Node: PVirtualNode;
+begin
+  Node := FNodeArbol;
+  if node = nil then exit;
+
+
+  Arbol.Expanded[node] := true;
+
+  Node := Arbol.GetFirst();
+  while Node <> nil do
+  begin
+    try
+      Node^.States := Node^.States - [vsSelected];
+      NodeData := arbol.GetNodeData(Node);
+      if NodeData <> nil then
+      begin
+        Datos := NodeData^.NodeData;
+
+        if (Datos <> nil) and (Datos.IdCatalogo = FCatalogoID) and (Datos.Id = FPadreID) then
+        begin
+          FNodeArbol           := node;
+          Node^.States         := Node^.States + [vsSelected];
+          Arbol.Expanded[node] := true;
+          Arbol.FocusedNode    := Node;
+          Arbol.ScrollIntoView(Node, true, true);
+
+          // Lanza el método de forma asíncrona
+          application.QueueAsyncCall(@DoLoadListaArchivosAsync, 0);
+        end
+      end;
+    except
+    end;
+    Node := Arbol.GetNext(Node);
+  end;
+end;
 
 end.

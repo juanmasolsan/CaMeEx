@@ -1,5 +1,8 @@
 
++ 1.1.5.7
+- [NEW]   (20230510) Agregada sincronización de la lista de archivos con el arbol de directorios.
 
++ 1.1.5.6
 - [NEW]   (20230509) Al terminar de escanear recarga el arbol de directorios.
 - [FIX]   (20230509) Revisado obtención de icono de algunas carpetas que incluyen . en su nombre.
 - [NEW]   (20230509) Agregada autocarga de la base de datos al iniciar el programa de forma async.
