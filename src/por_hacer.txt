@@ -100,7 +100,7 @@
 +         Revisar ruta completa de los archivos, en los nuevos catalogos no se guarda/carga bien
 -         Revisar que algunas carpetas no tienen icono de sistema y aparece una hoja en blanco
 -         Revisar que algunas carpetas indican que tienen hijos y no es asi
--         Revisar que el orden de los directorios sea el que de extension
++         Revisar que el orden de los directorios sea el que de extension
 
 -         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 -         Sincronizar navegación lista-arbol.

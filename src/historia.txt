@@ -1,4 +1,5 @@
 
+- [FIX]   (20230509) Revisado el orden de los directorios en el arbol
 - [FIX]   (20230509) Fix orden de los controles en la ventana principal (2)
 - [FIX]   (20230509) Revisado ruta completa de los archivos
 - [FIX]   (20230509) Fix orden de los controles en la ventana principal

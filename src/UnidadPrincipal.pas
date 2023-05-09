@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 16:21:01
+ * @Last Modified time: 2023-05-09 18:39:40
  *)
 {
 
@@ -561,20 +561,24 @@ begin
   Data_2  := Sender.GetNodeData(Node2);
   if Data_2 = nil then
     exit;
-
   if Data_1^.NodeData  = nil then exit;
   if Data_2^.NodeData  = nil then exit;
 
-  // Comprueba si la columna es la de la ruta
-  if Column = COLUMNA_RUTA then
-  begin
-    // Obtiene la ruta de los items
-    GetRutaFromItem(Data_1^.NodeData);
-    GetRutaFromItem(Data_2^.NodeData);
-  end;
+  if Sender = Lista then
+    begin
+    // Comprueba si la columna es la de la ruta
+    if Column = COLUMNA_RUTA then
+    begin
+      // Obtiene la ruta de los items
+      GetRutaFromItem(Data_1^.NodeData);
+      GetRutaFromItem(Data_2^.NodeData);
+    end;
 
-  // Compara los items
-  Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion, Column <> COLUMNA_RUTA);
+    // Compara los items
+    Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion, Column <> COLUMNA_RUTA);
+  end
+  else
+    Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, COLUMNA_TIPO, 0, true);
 end;
 
 procedure TForm1.ListaDblClick(Sender: TObject);
@@ -1111,19 +1115,8 @@ begin
 end;
 
 procedure TForm1.ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
-var
-  DireccionOrden : longint;
 begin
-  //TODO: Testear si realmente es interesante
-  exit;
-  // Guarda las opciones de columna y orden en sus variables
-  DireccionOrden := integer(not boolean(Arbol.Header.SortDirection));
 
-  // Aplica al header la nueva config
-  Arbol.Header.SortDirection := TSortDirection(DireccionOrden);
-
-  // Ordena la lista
-  Arbol.SortTree(Arbol.Header.SortColumn, Arbol.Header.SortDirection);
 end;
 
 procedure TForm1.ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
@@ -1210,7 +1203,8 @@ begin
       end;
 
     // Ordena el arbol
-    Arbol.SortTree(Arbol.Header.SortColumn, Arbol.Header.SortDirection);
+    Arbol.SortTree(COLUMNA_TIPO, TSortDirection.sdAscending);
+
 
   finally
     Arbol.EndUpdate;
@@ -1243,8 +1237,8 @@ begin
       end;
     end;
 
-    // Ordena la lista
-    Arbol.SortTree(Arbol.Header.SortColumn, Arbol.Header.SortDirection);
+    // Ordena el arbol
+    Arbol.SortTree(COLUMNA_TIPO, TSortDirection.sdAscending);
   finally
     Arbol.EndUpdate;
   end;
