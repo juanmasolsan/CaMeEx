@@ -408,7 +408,8 @@ procedure TForm1.ListaBeforeCellPaint(Sender: TBaseVirtualTree;
   TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
   CellPaintMode: TVTCellPaintMode; CellRect: TRect; var ContentRect: TRect);
 begin
-  if Column = Lista.Header.SortColumn then
+ if Sender <> Arbol then
+  if Column = TLazVirtualStringTree(Pointer(@Sender)^).Header.SortColumn then
     if FResaltarColumnaOrden then
       if not Sender.Selected[Node] then
         if not (Sender.HotNode = Node) then
