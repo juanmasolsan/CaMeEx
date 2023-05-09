@@ -997,6 +997,9 @@ begin
     FGestorDatos.EndUpdate();
   end;
 
+
+  // Cargar Lista
+  DoLoadListaCatalogos();
 end;
 
 procedure TForm1.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
