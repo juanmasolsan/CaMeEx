@@ -111,11 +111,11 @@ type
     MenuItemSalir: TMenuItem;
     PanelInferior: TPanel;
     PanelPrincipal: TPanel;
+    SalidaLog: TSynEdit;
     Separator1: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     StatusBar1: TStatusBar;
-    SalidaLog: TSynEdit;
     Timer1: TTimer;
     Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;

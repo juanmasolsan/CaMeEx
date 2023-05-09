@@ -33,7 +33,7 @@ object Form1: TForm1
     EdgeBorders = []
     Images = ImageListToolbar
     ParentColor = False
-    TabOrder = 1
+    TabOrder = 0
     object ToolButton1: TToolButton
       Left = 1
       Top = 0
@@ -54,7 +54,7 @@ object Form1: TForm1
     Color = clBtnShadow
     FullRepaint = False
     ParentColor = False
-    TabOrder = 2
+    TabOrder = 1
     object Arbol: TLazVirtualStringTree
       Left = 1
       Height = 370
@@ -192,7 +192,7 @@ object Form1: TForm1
     ClientWidth = 899
     Color = clWhite
     ParentColor = False
-    TabOrder = 3
+    TabOrder = 2
     OnResize = PanelInferiorResize
     inline SalidaLog: TSynEdit
       Left = 0
