@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 00:10:26
+ * @Last Modified time: 2023-05-09 19:08:09
  *)
 {
 
@@ -251,14 +251,17 @@ begin
 
   Result := FHijos{%H-}.Add(Hijo);
 
-  TieneHijos := Result > 0;
+  if not TieneHijos then
+    begin
+      TieneHijos := Hijo.Tipo =  TItemDatoTipo.Directorio;
+    end;
+
 end;
 
 // Obtiene el número de hijos
 function TItemDato.HijosCount() : Integer;
 begin
   Result := FHijos.Count;
-  TieneHijos := Result > 0;
 end;
 
 // Obtiene un hijo
@@ -271,8 +274,6 @@ end;
 procedure TItemDato.HijosClear();
 begin
   FHijos.Clear;
-
-  TieneHijos := FHijos.Count > 0;
 end;
 
 
