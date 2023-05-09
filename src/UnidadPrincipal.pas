@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 19:14:41
+ * @Last Modified time: 2023-05-09 22:48:40
  *)
 {
 
@@ -873,8 +873,16 @@ begin
   FVentanaScan := TFormScan.CreateEx(self, FScan);
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-  FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
-  //FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '');
+    {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+      FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
+    {$ELSE}
+      FScan.ScanDirAsync('C:\DAM_02\comun\programas\vscode\data\extensions\', @DoOnTerminarScanAsync, '.git;img\iconos');
+      //FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
+    {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+
+
+
+
   {$ELSE}
   FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
   {$ENDIF}

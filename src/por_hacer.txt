@@ -98,10 +98,10 @@
 +         Revisar que algunas carpetas indican que tienen hijos y no es asi
 +         Revisar que el orden de los directorios sea el que de extension
 +         Que autocarge la base de datos al iniciar el programa
++         Revisar que algunas carpetas no tienen icono de sistema y aparece una hoja en blanco
 -         En el arbol todos los nodos expandidos/seleccionados de la ruta actual que esten en negrita
 -         Al cambiar de directorio que muestre info del mismo en la barra de estado
 -         Que el arbol dibuje el fondo de los nodos acorde a colores definidos por cada tipo de catalogo
--         Revisar que algunas carpetas no tienen icono de sistema y aparece una hoja en blanco
 -         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 -         Sincronizar navegación lista-arbol.
 -         Agregar breadcrumbs.

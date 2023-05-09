@@ -20,7 +20,6 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="1072"/>
         <CursorPos Y="1081"/>
@@ -41,7 +40,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="81"/>
-        <CursorPos X="26" Y="87"/>
+        <CursorPos X="31" Y="89"/>
         <UsageCount Value="104"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -137,9 +136,10 @@
       </Unit>
       <Unit>
         <Filename Value="components\scan\MotorScan.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="25"/>
-        <CursorPos X="7" Y="38"/>
+        <TopLine Value="449"/>
+        <CursorPos Y="459"/>
         <UsageCount Value="39"/>
         <Loaded Value="True"/>
       </Unit>
@@ -344,14 +344,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="414" Column="42" TopLine="401"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="418" Column="42" TopLine="405"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="417" Column="42" TopLine="404"/>
       </Position>
       <Position>
@@ -461,6 +453,14 @@
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="565" Column="3" TopLine="546"/>
+      </Position>
+      <Position>
+        <Filename Value="por_hacer.txt"/>
+        <Caret Line="89" Column="31" TopLine="81"/>
+      </Position>
+      <Position>
+        <Filename Value="components\scan\MotorScan.pas"/>
+        <Caret Line="418" Column="9" TopLine="405"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -1,5 +1,7 @@
 
 
+
+- [FIX]   (20230509) Revisado obtención de icono de algunas carpetas que incluyen . en su nombre.
 - [NEW]   (20230509) Agregada autocarga de la base de datos al iniciar el programa de forma async.
 - [FIX]   (20230509) Revisado que algunas carpetas indican que tienen hijos y no es asi
 - [FIX]   (20230509) Revisado el orden de los directorios en el arbol

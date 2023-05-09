@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-08 17:35:17
+ * @Last Modified time: 2023-05-09 23:02:52
  *)
 {
 
@@ -254,13 +254,19 @@ begin
   //TODO: Pasarle un nombre, el tipo de objeto y la descripcion
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-  FRoot   := TItemCatalogo.create('Proyecto CaMeEx', TItemDatoTipo.Root, now(), 0, 'Directorio del proyecto de CaMeEX', 0, 0);
+
+  {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+    FRoot   := TItemCatalogo.create('Proyecto CaMeEx', TItemDatoTipo.Root, now(), 0, 'Directorio del proyecto de CaMeEX', 0, 0);
+  {$ELSE}
+    FRoot   := TItemCatalogo.create('VSCode Extensions', TItemDatoTipo.Root, now(), 0, 'Directorio de Extensiones de vscode', 0, 0);
+  {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+
+
+
   //FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '');
   {$ELSE}
   FRoot   := TItemCatalogo.create('DAM 2', TItemDatoTipo.Root, now(), 0, 'Directorio de trabajo usado para el curso de DAM 2', 0, 0);
   {$ENDIF}
-
-
 
 
   FDetener_Escaneo_Busqueda_Archivos := false;
@@ -407,11 +413,11 @@ var
   Extension   : RawByteString;
 
 begin
-
-  // Determinar el tipo de archivo o directorio
+    // Determinar el tipo de archivo o directorio
   if (SearchRec.Attr and faDirectory)= faDirectory then
     begin
-      Tipo := TItemDatoTipo.Directorio;
+      Tipo      := TItemDatoTipo.Directorio;
+      Extension := '';
 
       // Protección de acceso concurrente
       EnterCriticalSection(FCriticalSection_Totales);
@@ -423,7 +429,10 @@ begin
     end
   else
     begin
-      Tipo := TItemDatoTipo.Archivo;
+      Tipo      := TItemDatoTipo.Archivo;
+
+      // Obtener la extensión del archivo
+      Extension := LowerCase(ExtractFileExt(SearchRec.Name));
 
       // Protección de acceso concurrente
       EnterCriticalSection(FCriticalSection_Totales);
@@ -437,9 +446,6 @@ begin
 
   // Generar la string que identifica al archivo o directorio
   RutaCompleta := IncludeTrailingBackslash(Padre.GetFullPath()) +  SearchRec.Name;
-
-  // Obtener la extensión del archivo
-  Extension    := LowerCase(ExtractFileExt(SearchRec.Name));
 
   if IsExcluido(RutaCompleta) then
   begin
