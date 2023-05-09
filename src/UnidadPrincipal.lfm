@@ -82,6 +82,7 @@ object Form1: TForm1
       Header.Height = 24
       Header.Options = [hoColumnResize, hoDblClickResize, hoDrag, hoHotTrack, hoShowSortGlyphs, hoVisible]
       Images = ImageListArchivos
+      ScrollBarOptions.AlwaysVisible = True
       TabOrder = 0
       TreeOptions.AnimationOptions = [toAnimatedToggle]
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toDisableAutoscrollOnEdit]
@@ -161,6 +162,7 @@ object Form1: TForm1
       Header.Options = [hoColumnResize, hoDblClickResize, hoDrag, hoHotTrack, hoShowSortGlyphs, hoVisible]
       Header.SortDirection = sdDescending
       Images = ImageListArchivos
+      ScrollBarOptions.AlwaysVisible = True
       TabOrder = 2
       TreeOptions.AnimationOptions = [toAnimatedToggle]
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toDisableAutoscrollOnEdit]

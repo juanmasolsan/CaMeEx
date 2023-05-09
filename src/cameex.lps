@@ -20,6 +20,7 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="118"/>
         <CursorPos X="46" Y="132"/>
@@ -195,10 +196,9 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <TopLine Value="841"/>
-        <CursorPos X="20" Y="856"/>
+        <CursorPos X="87" Y="848"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit>

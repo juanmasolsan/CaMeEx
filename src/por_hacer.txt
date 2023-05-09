@@ -87,11 +87,6 @@
 +         Listar los dispositivos/directorios en un árbol.
 +         Que el árbol se pueda colapsar y expandir los items.
 +         Sincronizar navegación arbol-lista.
--         Sincronizar navegación lista-arbol.
--         Agregar breadcrumbs.
--         Historial de navegación.
--         Ventana para seleccionar el dispositivo/directorio a escanear.
--         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 +         Refactorizar TConectorDatos.GetDatos(Catalogo : TItemCatalogo; Padre : TItemDato), para que solo tenga el parámetro Padre
 +         Al cambiar el tipo de icono que actualice tambien el arbol
 +         El arbol no es capaz de saber si los items tienen hijos o no al recuperarlos de la base de datos
@@ -99,7 +94,16 @@
 +         La columna del arbol que se ajuste al ancho del arbol
 -         En el arbol todos los nodos expandidos/seleccionados de la ruta actual que esten en negrita
 -         Al cambiar de directorio que muestre info del mismo en la barra de estado
--         Tanto el arbol como la lista de archivos que muestren siempre las scrollbars
++         Tanto el arbol como la lista de archivos que muestren siempre las scrollbars
+-         Revisar base de datos asociaciones entre tablas
+-         Revisar ruta completa de los archivos, en los nuevos catalogos no se guarda/carga bien
+-         Revisar que algunas carpetas no tienen icono de sistema y aparece una hoja en blanco
+-         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
+-         Sincronizar navegación lista-arbol.
+-         Agregar breadcrumbs.
+-         Historial de navegación.
+-         Ventana para seleccionar el dispositivo/directorio a escanear.
+
 
 
 - Hito 3: Búsqueda y filtrado de datos.
