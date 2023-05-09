@@ -96,9 +96,12 @@
 -         Al cambiar de directorio que muestre info del mismo en la barra de estado
 -         Que el arbol dibuje el fondo de los nodos acorde a colores definidos por cada tipo de catalogo
 +         Tanto el arbol como la lista de archivos que muestren siempre las scrollbars
--         Revisar base de datos asociaciones entre tablas
++         Revisar base de datos asociaciones entre tablas
 -         Revisar ruta completa de los archivos, en los nuevos catalogos no se guarda/carga bien
 -         Revisar que algunas carpetas no tienen icono de sistema y aparece una hoja en blanco
+-         Revisar que algunas carpetas indican que tienen hijos y no es asi
+-         Revisar que el orden de los directorios sea el que de extension
+
 -         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 -         Sincronizar navegación lista-arbol.
 -         Que autocarge la base de datos al iniciar el programa

@@ -1,5 +1,6 @@
 
-
+- [FIX]   (20230509) Revisado ruta completa de los archivos
+- [FIX]   (20230509) Fix orden de los controles en la ventana principal
 - [FIX]   (20230509) Desactivado dibujado de la columna de ordenación en el arbol de directorios
 - [FIX]   (20230509) Al redimensionar Arbol/Lista de archivos no se produce parpadeos
 - [NEW]   (20230509) Tanto el arbol como la lista de archivos que muestren siempre las scrollbars

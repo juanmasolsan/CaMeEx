@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 00:16:17
+ * @Last Modified time: 2023-05-09 18:24:31
  *)
 {
 
@@ -612,6 +612,7 @@ end;
 procedure TConectorDatos.AddRutaCompleta(Ruta : TItemRutaCompleta);
 var
   internalQuery : TSQLQuery;
+  nombreRuta : RawByteString;
 begin
   // Selecciona la query a utilizar
   if FQueryTransaction <> nil then
@@ -640,10 +641,14 @@ begin
           internalQuery.Prepare;
         end;
 
+        nombreRuta := Ruta.Nombre;
+        if nombreRuta[1] <> '/' then
+          nombreRuta := '/' + nombreRuta;
+
         // Hace la inserción con un prepared statement
         internalQuery.ParamByName('ID').AsLargeInt         := Ruta.Id;
         internalQuery.ParamByName('IDCATALOGO').AsLargeInt := Ruta.IdCatalogo;
-        internalQuery.ParamByName('RUTA').AsString         := Ruta.Nombre;
+        internalQuery.ParamByName('RUTA').AsString         := nombreRuta;
 
         try
           // Realiza la inserción
@@ -669,6 +674,14 @@ end;
 // Devuelve los datos de una extensión de un Item
 function TConectorDatos.GetRutaCompleta(Item : TItemDato) : RawByteString;
 begin
+
+  // Inicializa el resultado si el id de la ruta es 0
+  if Item.IdRutaCompleta = 0 then
+  begin
+    Result := '/';
+    exit;
+  end;
+
   // Inicializa el resultado
   Result := '';
   try
@@ -1340,7 +1353,7 @@ begin
             FDataBase.Query.SQL.Clear;
 
             // Prepara la query
-            FDataBase.Query.SQL.Add('INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (0, ' + inttostr(int64(Catalogo.Id)) + ', "/");');
+            FDataBase.Query.SQL.Add('INSERT OR IGNORE INTO RutaCompleta (Id, Ruta) VALUES (0, "/");');
             try
               // Realiza la inserción
               FDataBase.Query.ExecSQL;
