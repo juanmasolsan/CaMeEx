@@ -1,4 +1,5 @@
 
+- [NEW]   (20230510) Agregado un nodo raiz al arbol de directorios.
 - [FIX]   (20230510) Fix excepción en el marcados en negrita de todos los nodos del arbol de directorios que forman parte de la ruta actual.
 - [NEW]   (20230510) Marcados en negrita todos los nodos del arbol de directorios que forman parte de la ruta actual.
 - [NEW]   (20230510) Al pulsar enter en el arbol se expande o colapsa el item seleccionado.

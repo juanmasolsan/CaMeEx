@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 17:47:32
+ * @Last Modified time: 2023-05-10 18:30:02
  *)
 {
 
@@ -177,7 +177,8 @@ type
     FPadreID      : Qword;
     FTempPadre    : TItemDato;
 
-    FNodeArbol : PVirtualNode;
+    FNodeArbol    : PVirtualNode;
+    FNodeArbolDato: TItemCatalogo;
 
   protected
     procedure DoOnTerminarScanAsync();
@@ -241,6 +242,12 @@ type
 
     // Marca todos los nodos que esté en la ruta seleccionada
     procedure DoMarcarRutaActual(Node: PVirtualNode);
+
+    // Crea el nodo raiz del arbol
+    procedure DoCrearNodoRootArbol();
+
+    // Libera el nodo raiz del arbol
+    procedure DoLiberarNodoRootArbol();
   public
 
   end;
@@ -406,6 +413,9 @@ begin
 
   // Finalizar los objectos necesarios para la navegación por la lista de archivos
   FTempPadre.free;
+
+  // Libera el nodo root del arbol
+  DoLiberarNodoRootArbol();
 
   // Guarda la configuración del programa
   DoConfiguracionSave();
@@ -1273,9 +1283,16 @@ begin
     // Limpia la lista
     Arbol.Clear;
 
+    // Libera el nodo raiz del arbol
+    DoLiberarNodoRootArbol();
+
     // Libera la asignación de memoria
     DoLiberarListaCatalogos();
     DoLiberarListaDirectorios(false);
+
+
+    // Crea el nodo raiz del arbol
+    DoCrearNodoRootArbol();
 
     // Carga los datos del catalogo
     FListaCatalogos := FGestorDatos.GetAllCatalogos();
@@ -1285,12 +1302,18 @@ begin
       total := FListaCatalogos.count -1;
       for t := 0 to total do
       begin
-        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), nil, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0);
+        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbol, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0);
       end;
     end;
 
     // Ordena el arbol
     Arbol.SortTree(COLUMNA_TIPO, TSortDirection.sdAscending);
+
+    // Expande el nodo raiz
+    Arbol.Expanded[FNodeArbol] := true;
+    Arbol.FocusedNode          := FNodeArbol;
+    Arbol.Selected[FNodeArbol] := true;
+
   finally
     Arbol.EndUpdate;
   end;
@@ -1562,6 +1585,30 @@ begin
   Arbol.Repaint();
 end;
 
+// Crea el nodo raiz del arbol
+procedure TForm1.DoCrearNodoRootArbol();
+var
+  Data           : PrListaData;
+begin
+  // Crea el nodo raiz
+  FNodeArbol                 := Arbol.AddChild(nil);
+  FNodeArbolDato             := TItemCatalogo.Create('Catálogos', TItemDatoTipo.Root, now, 0, '', 0, 0);
+  FNodeArbolDato.ImageIndex  := integer(TItemDatoTipo.Root);
+  Data                       := Arbol.GetNodeData(FNodeArbol);
+  Data^.NodeData             := FNodeArbolDato;
+  Arbol.Expanded[FNodeArbol] := true;
+  Arbol.FocusedNode          := FNodeArbol;
+end;
+
+// Libera el nodo raiz del arbol
+procedure TForm1.DoLiberarNodoRootArbol();
+begin
+  if Assigned(FNodeArbol) then
+    Arbol.RemoveFromSelection(FNodeArbol);
+
+  if Assigned(FNodeArbolDato) then
+    FNodeArbolDato.free;
+end;
 
 
 end.

@@ -103,7 +103,7 @@
 +         En el arbol todos los nodos expandidos/seleccionados de la ruta actual que esten en negrita
 -         Al cambiar de directorio que muestre info del mismo en la barra de estado
 -         Que el arbol dibuje el fondo de los nodos acorde a colores definidos por cada tipo de catalogo
--         Que el arbol tenga un nodo root en vez de una columna
++         Que el arbol tenga un nodo root en vez de una columna
 +         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 -         Agregar breadcrumbs.
 -         Historial de navegación.

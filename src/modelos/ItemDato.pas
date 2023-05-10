@@ -133,7 +133,7 @@ type
     // Propiedades
     property Atributos        : Integer read FAtributos;
     property Extension        : RawByteString read FExtension;
-    property ImageIndex       : Integer read FImageIndex;
+    property ImageIndex       : Integer read FImageIndex write FImageIndex;
     property ImageIndexSistema: Integer read FImageIndexSistema write FImageIndexSistema;
 
     property IdExtension      : Qword read FIdExtension;

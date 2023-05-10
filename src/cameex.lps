@@ -11,7 +11,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="55"/>
         <CursorPos X="44" Y="69"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="113"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -22,9 +22,9 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="1542"/>
-        <CursorPos X="31" Y="1555"/>
-        <UsageCount Value="111"/>
+        <TopLine Value="1584"/>
+        <CursorPos X="30" Y="1596"/>
+        <UsageCount Value="113"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,7 +32,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="18" Y="27"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="113"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -42,7 +42,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="81"/>
         <CursorPos X="44" Y="104"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="113"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -51,15 +51,15 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="113"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Formulario_Avanzado.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="314"/>
         <CursorPos X="63" Y="325"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="112"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -69,7 +69,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="107"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -78,14 +78,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="102"/>
       </Unit>
       <Unit>
         <Filename Value="Utilidades.pas"/>
@@ -93,7 +93,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <CursorPos X="37" Y="93"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="95"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadScan.pas"/>
@@ -104,7 +104,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
         <CursorPos X="36" Y="74"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="93"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
@@ -112,7 +112,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="113"/>
         <CursorPos Y="129"/>
-        <UsageCount Value="80"/>
+        <UsageCount Value="82"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -120,7 +120,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="80"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -257,10 +257,11 @@
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemDato.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="328"/>
-        <CursorPos X="33" Y="335"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="125"/>
+        <CursorPos X="75" Y="136"/>
         <UsageCount Value="19"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemBaseDatos.pas"/>
@@ -294,10 +295,10 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
         <UnitName Value="laz.VirtualTrees"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="28968"/>
         <CursorPos Y="28981"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -381,23 +382,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="396" Column="27" TopLine="393"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_Formulario_Avanzado.pas"/>
-        <Caret Line="279" TopLine="266"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="399" TopLine="393"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_Formulario_Avanzado.pas"/>
-        <Caret Line="145" TopLine="132"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="875" Column="3" TopLine="873"/>
@@ -499,8 +484,24 @@
         <Caret Line="1580" Column="37" TopLine="1569"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
-        <Caret Line="28981" TopLine="28968"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1548" Column="116" TopLine="1542"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1594" Column="18" TopLine="1581"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="408" Column="45" TopLine="400"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="632" Column="135" TopLine="625"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1596" Column="30" TopLine="1584"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -522,7 +523,7 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="UnidadPrincipal.pas"/>
-        <Line Value="1513"/>
+        <Line Value="1516"/>
       </Item>
     </BreakPoints>
   </Debugging>
