@@ -98,6 +98,7 @@ object Form1: TForm1
       OnPaintText = ListaPaintText
       OnGetImageIndex = ListaGetImageIndex
       OnHeaderClick = ArbolHeaderClick
+      OnKeyDown = ArbolKeyDown
       OnResize = ArbolResize
     end
     object Splitter1: TSplitter

@@ -1,4 +1,7 @@
 
+
+- [NEW]   (20230510) Al pulsar enter en el arbol se expande o colapsa el item seleccionado.
+
 + 1.1.5.7
 - [NEW]   (20230510) Agregada sincronización de la lista de archivos con el arbol de directorios.
 

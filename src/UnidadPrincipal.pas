@@ -123,6 +123,7 @@ type
     procedure ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
     procedure ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
+    procedure ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ArbolResize(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -1139,6 +1140,23 @@ end;
 procedure TForm1.ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
 begin
 
+end;
+
+procedure TForm1.ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
+var
+  Node: PVirtualNode;
+begin
+  case key of
+    VK_RETURN : begin
+                  if Shift = [] then
+                  begin
+                    Node := Arbol.GetFirstSelected();
+                    if Node <> nil then
+                     Arbol.Expanded[Node] := not Arbol.Expanded[Node];
+                  end;
+                end;
+  end;
 end;
 
 procedure TForm1.ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
