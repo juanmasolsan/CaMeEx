@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 16:58:35
+ * @Last Modified time: 2023-05-10 17:47:32
  *)
 {
 
@@ -1530,15 +1530,32 @@ var
     end;
   end;
 
+var
+  Padre : PVirtualNode;
+
 begin
   // Resetea la ruta seleccionada
   ResetRutaSeleccionada();
 
-  // Marca la ruta seleccionada
-  while Node <> nil do
+  // Marca el nodo actual
+  AsignarRutaSeleccionada(Node, true);
+
+  // Sale si no hay nodo
+  if Node = nil then
+    exit;
+
+  // Marca los nodos padres
+  Padre := Node^.Parent;
+  while Padre <> nil do
   begin
-    AsignarRutaSeleccionada(Node, true);
-    Node := Node^.Parent;
+    // Marca el nodo padre
+    AsignarRutaSeleccionada(Padre, true);
+
+    // Comprueba si no es el nodo raiz
+    if Padre <> Arbol.RootNode then
+      Padre := Padre^.Parent
+    else
+      Padre := nil;
   end;
 
   // Repinta el arbol
