@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 18:30:02
+ * @Last Modified time: 2023-05-10 19:03:06
  *)
 {
 
@@ -116,7 +116,7 @@ type
     Separator1: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
-    StatusBar1: TStatusBar;
+    Barra_Estado: TStatusBar;
     Timer1: TTimer;
     Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;
@@ -248,6 +248,9 @@ type
 
     // Libera el nodo raiz del arbol
     procedure DoLiberarNodoRootArbol();
+
+    // Muestra Información del directorio actual
+    procedure DoEstadisticas(Columna : longint; Texto : string);
   public
 
   end;
@@ -928,7 +931,7 @@ begin
   //SalidaLog.Lines.add('Timer_UpdateUITimer');
   if assigned(FScan) then
   begin
-    StatusBar1.simpleText := 'Procesando : ' + FScan.Procesando;
+    Barra_Estado.simpleText := 'Procesando : ' + FScan.Procesando;
   end;
 end;
 
@@ -1211,7 +1214,13 @@ end;
 procedure TForm1.DoLoadListaArchivos(Padre : TItemDato);
 var
   t, total      : integer;
+  TotalDir      : integer = 0;
+  TotalFile     : integer = 0;
+  TotalSize     : QWord   = 0;
+  Tiempo        : QWord;
 begin
+  Tiempo := GetTickCount64();
+
   Lista.BeginUpdate;
   try
     // Limpia la lista
@@ -1232,12 +1241,26 @@ begin
         for t := 0 to total do
         begin
           AddNode(Lista, TItemDato(FListaArchivos{%H-}[t]), nil, false);
+
+          if TItemDato(FListaArchivos{%H-}[t]).Tipo = TItemDatoTipo.Directorio then
+            inc(TotalDir)
+          else
+          begin
+            inc(TotalFile);
+            inc(TotalSize, TItemDato(FListaArchivos{%H-}[t]).Size);
+          end;
         end;
       end;
     end;
 
     // Ordena la lista
     Lista.SortTree(Lista.Header.SortColumn, Lista.Header.SortDirection);
+
+    Tiempo := GetTickCount64() - Tiempo;
+
+
+    // Muestra los datos de la lista
+    DoEstadisticas(0, inttostr(TotalDir) + ' directorios y ' + inttostr(TotalFile) + ' archivos con '+ inttostr(TotalFile + TotalDir) + ' elementos en total y ocupando ' + ConvertirSizeEx(TotalSize) + ' ( ' + PuntearNumeracion(TotalSize) + ' bytes) - Tiempo empleado :  '+ inttostr(Tiempo) + ' ms');
 
   finally
     Lista.EndUpdate;
@@ -1609,6 +1632,18 @@ begin
   if Assigned(FNodeArbolDato) then
     FNodeArbolDato.free;
 end;
+
+// Muestra Información del directorio actual
+procedure TForm1.DoEstadisticas(Columna : longint; Texto : string);
+begin
+  if Barra_Estado.Panels.Count > 0 then
+    Barra_Estado.Panels[Columna].Text := Texto
+  else
+    Barra_Estado.SimpleText := texto;
+
+
+end;
+
 
 
 end.
