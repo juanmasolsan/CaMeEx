@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 00:27:50
+ * @Last Modified time: 2023-05-10 16:58:35
  *)
 {
 
@@ -79,8 +79,9 @@ type
   // Defino la estructura interna de los datos de los nodos de la lista de archivos
   PrListaData = ^rTListaData;
   rTListaData = record
-    IsPrevExpanded: Boolean;
-    NodeData      : TItemDato;
+    IsRutaSeleccionada: Boolean;
+    IsPrevExpanded    : Boolean;
+    NodeData          : TItemDato;
   end;
 
 
@@ -237,6 +238,9 @@ type
 
     // Sincroniza el arbol con la vista de la lista de directorios
     procedure DoSincronizarListaArbol();
+
+    // Marca todos los nodos que esté en la ruta seleccionada
+    procedure DoMarcarRutaActual(Node: PVirtualNode);
   public
 
   end;
@@ -388,7 +392,6 @@ end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
-
   // Libera la asignación de memoria
   DoLiberarListaArchivos();
 
@@ -725,6 +728,9 @@ begin
         if not ((vsSelected in Node^.States) or (Sender.HotNode = Node)) then
           DoColorear_Dependiendo_De_Los_Atributos(Datos, TargetCanvas);
       end;
+
+      // Resalta el nodo como que está en la ruta actual
+      TargetCanvas.Font.Bold := NodeData^.IsRutaSeleccionada;
     end;
 
     // Quita el subrayado del texto
@@ -1167,6 +1173,9 @@ begin
   // Lo selecciona
   FNodeArbol := Node;
 
+  // Marca la ruta actual
+  DoMarcarRutaActual(Node);
+
   try
     NodeData := Sender.GetNodeData(Node);
     if NodeData <> nil then
@@ -1486,5 +1495,56 @@ begin
     Node := Arbol.GetNext(Node);
   end;
 end;
+
+// Marca todos los nodos que esté en la ruta seleccionada
+procedure TForm1.DoMarcarRutaActual(Node: PVirtualNode);
+var
+  NodeData: PrListaData;
+
+  procedure AsignarRutaSeleccionada(Nodo: PVirtualNode; valor : boolean);
+  var
+  NodeData: PrListaData;
+  begin
+    try
+      NodeData := arbol.GetNodeData(Nodo);
+      if NodeData <> nil then
+      begin
+        NodeData^.IsRutaSeleccionada := valor;
+      end;
+    except
+    end;
+  end;
+
+
+  // Resetea la ruta seleccionada
+  procedure ResetRutaSeleccionada();
+  var
+    Nodo: PVirtualNode;
+
+  begin
+    Nodo := Arbol.GetFirst();
+    while Nodo <> nil do
+    begin
+      AsignarRutaSeleccionada(Nodo, false);
+      Nodo := Arbol.GetNext(Nodo);
+    end;
+  end;
+
+begin
+  // Resetea la ruta seleccionada
+  ResetRutaSeleccionada();
+
+  // Marca la ruta seleccionada
+  while Node <> nil do
+  begin
+    AsignarRutaSeleccionada(Node, true);
+    Node := Node^.Parent;
+  end;
+
+  // Repinta el arbol
+  Arbol.Repaint();
+end;
+
+
 
 end.

@@ -75,9 +75,8 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="components\control_formulario_avanzado.pas"/>
+        <Filename Value="components\Control_Formulario_Avanzado.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Control_Formulario_Avanzado"/>
       </Unit>
       <Unit>
         <Filename Value="motorscan.pas"/>

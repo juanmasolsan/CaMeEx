@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230510) Marcados en negrita todos los nodos del arbol de directorios que forman parte de la ruta actual.
 - [NEW]   (20230510) Al pulsar enter en el arbol se expande o colapsa el item seleccionado.
 
 + 1.1.5.7
