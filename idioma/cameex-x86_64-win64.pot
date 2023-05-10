@@ -2,6 +2,7 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tform1.arbol.header.columns[0].text
+msgctxt "tform1.arbol.header.columns[0].text"
 msgid "Catálogos"
 msgstr ""
 
@@ -53,6 +54,10 @@ msgstr ""
 msgid "Ayuda"
 msgstr ""
 
+#: tform1.menuitem5.caption
+msgid "MenuItem5"
+msgstr ""
+
 #: tform1.menuitemacercade.caption
 msgid "Acerca de..."
 msgstr ""
@@ -63,6 +68,15 @@ msgstr ""
 
 #: tform1.menuitemver.caption
 msgid "Ver"
+msgstr ""
+
+#: tform1.menuitem_catalogos.caption
+msgctxt "tform1.menuitem_catalogos.caption"
+msgid "Catálogos"
+msgstr ""
+
+#: tform1.menuitem_catalogos_color.caption
+msgid "Activar color de fondo"
 msgstr ""
 
 #: tform1.menuitem_iconos.caption

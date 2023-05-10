@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 16:44:03
+ * @Last Modified time: 2023-05-10 23:55:58
  *)
 {
 
@@ -97,8 +97,43 @@ var
   FColor_Oculto_Sistema                     : TColor = clRed;
   FColor_SoloLectura                        : TColor = clGray;
 
+  // Colores de los catalogos
+  FUsarColoresCatalogos                     : boolean = true;
+
+  // Colores de los catalogos
+  FColor_Catalogos                          : array[0..9] of TColor = (
+    clnone,
+    clnone,
+    clnone,
+    clnone,
+    clBlue,
+    clRed,
+    clGreen,
+    clPurple,
+    clTeal,
+    clMaroon
+  );
 
 implementation
+
+uses
+  Utilidades
+  ;
+
+
+procedure CalcularColores;
+var
+  t: integer;
+begin
+
+  for t := 0 to 9 do
+  begin
+    FColor_Catalogos[t] := Blend(FColor_Catalogos[t], clWindow, 105);
+  end;
+end;
+
+initialization
+  CalcularColores;
 
 
 end.

@@ -91,6 +91,7 @@ object Form1: TForm1
       TreeOptions.SelectionOptions = [toFullRowSelect, toSiblingSelectConstraint]
       OnAfterItemErase = ListaAfterItemErase
       OnBeforeCellPaint = ListaBeforeCellPaint
+      OnBeforeItemErase = ArbolBeforeItemErase
       OnChange = ArbolChange
       OnCompareNodes = ListaCompareNodes
       OnExpanding = ArbolExpanding
@@ -748,6 +749,23 @@ object Form1: TForm1
     end
     object MenuItemVer: TMenuItem
       Caption = 'Ver'
+      object MenuItem5: TMenuItem
+        Caption = 'MenuItem5'
+      end
+      object Separator3: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem_Catalogos: TMenuItem
+        Caption = 'Catálogos'
+        object MenuItem_Catalogos_color: TMenuItem
+          AutoCheck = True
+          Caption = 'Activar color de fondo'
+          OnClick = MenuItem_Catalogos_colorClick
+        end
+      end
+      object Separator2: TMenuItem
+        Caption = '-'
+      end
       object MenuItem_Iconos: TMenuItem
         Caption = 'Iconos'
         object MenuItem_Iconos_PorDefecto: TMenuItem

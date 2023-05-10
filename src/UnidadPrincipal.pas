@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 23:11:21
+ * @Last Modified time: 2023-05-11 00:03:16
  *)
 {
 
@@ -59,6 +59,7 @@ uses
   , MotorScan
   , UnidadScan
   , InterfaceConectorDatos
+  , ItemBaseDatos
   , ItemDato, ItemCatalogo, VirtualTreesExtras;
 
 
@@ -81,6 +82,7 @@ type
   rTListaData = record
     IsRutaSeleccionada: Boolean;
     IsPrevExpanded    : Boolean;
+    TipoCatalogo      : TItemDatoTipo;
     NodeData          : TItemDato;
   end;
 
@@ -95,6 +97,9 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItem_Catalogos_color: TMenuItem;
+    MenuItem_Catalogos: TMenuItem;
+    MenuItem5: TMenuItem;
     MenuItem_Iconos_Mixto: TMenuItem;
     MenuItem_Iconos_Sistema: TMenuItem;
     MenuItem_Iconos_PorDefecto: TMenuItem;
@@ -114,6 +119,8 @@ type
     PanelPrincipal: TPanel;
     SalidaLog: TSynEdit;
     Separator1: TMenuItem;
+    Separator2: TMenuItem;
+    Separator3: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
@@ -121,6 +128,9 @@ type
     Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    procedure ArbolBeforeItemErase(Sender: TBaseVirtualTree;
+      TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect;
+      var ItemColor: TColor; var EraseAction: TItemEraseAction);
     procedure ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
     procedure ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
@@ -152,6 +162,7 @@ type
       {%H-}TextType: TVSTTextType);
     procedure ListaResize(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
+    procedure MenuItem_Catalogos_colorClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
     procedure MenuItem_Size_NormalClick(Sender: TObject);
     procedure PanelInferiorResize(Sender: TObject);
@@ -188,7 +199,7 @@ type
     procedure DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
 
     procedure DoLiberarListaArchivos();
-    function AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean): boolean;
+    function AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo): boolean;
 
     procedure DoLiberarListaCatalogos();
     procedure DoLiberarListaDirectorios(Full: boolean);
@@ -251,6 +262,7 @@ type
 
     // Muestra Información del directorio actual
     procedure DoEstadisticas(Columna : longint; Texto : string);
+
   public
 
   end;
@@ -270,7 +282,6 @@ uses
   , OrdenarLista
   , Utilidades
   , ConectorDatos
-  , ItemBaseDatos
   , ItemExtension, ItemRutaCompleta, GestorExtensiones;
 
 {$R *.lfm}
@@ -468,6 +479,9 @@ begin
 
   // Carga las Dimensiones del Log
   FLogAlto                  := ArchivoConfiguracion.ReadInteger('Config', 'LogAlto', FLogAlto);
+
+  // Carga la configuración de la forma en la dibujar el fondo de los catalogos
+  FUsarColoresCatalogos     := ArchivoConfiguracion.ReadBool('Config', 'UsarColoresCatalogos', FUsarColoresCatalogos);
 end;
 
 // Guarda la configuración del programa
@@ -490,12 +504,14 @@ begin
     HeaderVirtualTrees_GuardarColumnas(ArchivoConfiguracion, 'Columnas.Lista.Archivos', FConfiguracionColumnas);
   end;
 
-  // Carga las Dimensiones del árbol de directorios
+  // Guarda las Dimensiones del árbol de directorios
   ArchivoConfiguracion.WriteInteger('Config', 'ArbolAncho', FArbolAncho);
 
-  // Carga las Dimensiones del Log
+  // Guarda las Dimensiones del Log
   ArchivoConfiguracion.WriteInteger('Config', 'LogAlto', FLogAlto);
 
+  // Guarda la configuración de la forma en la dibujar el fondo de los catalogos
+  ArchivoConfiguracion.WriteBool('Config', 'UsarColoresCatalogos', FUsarColoresCatalogos);
 end;
 
 // Aplica la configuración del programa
@@ -523,6 +539,8 @@ begin
     // Aplica la configuración de las Dimensiones del Log
     PanelInferior.Height := FLogAlto;
 
+    // Aplica la configuración de la forma en la dibujar el fondo de los catalogos
+    MenuItem_Catalogos_color.Checked := FUsarColoresCatalogos;
 
   finally
     FAplicandoConfig := false;
@@ -854,6 +872,14 @@ end;
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
 begin
   Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
+end;
+
+procedure TForm1.MenuItem_Catalogos_colorClick(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FUsarColoresCatalogos := MenuItem_Catalogos_color.Checked;
+  Lista.Refresh;
+  Arbol.Refresh;
 end;
 
 procedure TForm1.MenuItem_Iconos_PorDefectoClick(Sender: TObject);
@@ -1221,6 +1247,29 @@ begin
   end;
 end;
 
+procedure TForm1.ArbolBeforeItemErase(Sender: TBaseVirtualTree;
+  TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect;
+  var ItemColor: TColor; var EraseAction: TItemEraseAction);
+var
+  NodeData      : PrListaData;
+  ColorCatalogo : TColor;
+begin
+
+  if not FUsarColoresCatalogos then exit;
+
+  // Dibuja el color de fondo de los catalogos dependiendo del tipo del mismo
+    try
+      NodeData := arbol.GetNodeData(Node);
+      if NodeData <> nil then
+      begin
+        ColorCatalogo := FColor_Catalogos[integer(NodeData^.TipoCatalogo)];
+        if ColorCatalogo <> clNone then
+          ItemColor := ColorCatalogo;
+      end;
+    except
+    end;
+end;
+
 procedure TForm1.DoLoadListaArchivos(Padre : TItemDato);
 var
   t, total      : integer;
@@ -1250,7 +1299,7 @@ begin
         total := FListaArchivos.count -1;
         for t := 0 to total do
         begin
-          AddNode(Lista, TItemDato(FListaArchivos{%H-}[t]), nil, false);
+          AddNode(Lista, TItemDato(FListaArchivos{%H-}[t]), nil, false, TItemDatoTipo.NoDefinido);
 
           if TItemDato(FListaArchivos{%H-}[t]).Tipo = TItemDatoTipo.Directorio then
             inc(TotalDir)
@@ -1279,6 +1328,22 @@ end;
 
 
 procedure TForm1.DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
+
+  function GetTipoNode(Node : PVirtualNode) : TItemDatoTipo;
+  var
+    NodeData: PrListaData;
+  begin
+    result := TItemDatoTipo.NoDefinido;
+    try
+      NodeData := Arbol.GetNodeData(Node);
+      if NodeData <> nil then
+      begin
+        result := NodeData^.TipoCatalogo;
+      end;
+    except
+    end;
+  end;
+
 var
   t, total, inicio         : integer;
   ListaTemporalDirectorios : TArrayItemDato;
@@ -1293,7 +1358,7 @@ begin
         total := FListaDirectorios.count -1;
         for t := inicio to total do
         begin
-          AddNode(Arbol, TItemDato(FListaDirectorios{%H-}[t]), Node, TItemDato(FListaDirectorios{%H-}[t]).TieneHijos);
+          AddNode(Arbol, TItemDato(FListaDirectorios{%H-}[t]), Node, TItemDato(FListaDirectorios{%H-}[t]).TieneHijos, GetTipoNode(Node));
         end;
       end;
 
@@ -1335,7 +1400,7 @@ begin
       total := FListaCatalogos.count -1;
       for t := 0 to total do
       begin
-        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbol, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0);
+        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbol, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
       end;
     end;
 
@@ -1353,7 +1418,7 @@ begin
 end;
 
 
-function TForm1.AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean): boolean;
+function TForm1.AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo): boolean;
 var
   Node   : PVirtualNode;
   Data   : PrListaData;
@@ -1363,9 +1428,10 @@ begin
   if TieneHijos then
     Node^.States := Node^.States + [vsHasChildren];
 
-  Data           := Sender.GetNodeData(Node);
-  Data^.NodeData := Dato;
-  Result         := True;
+  Data               := Sender.GetNodeData(Node);
+  Data^.NodeData     := Dato;
+  Data^.TipoCatalogo := TipoCatalogo;
+  Result             := True;
 end;
 
 
@@ -1650,8 +1716,6 @@ begin
     Barra_Estado.Panels[Columna].Text := Texto
   else
     Barra_Estado.SimpleText := texto;
-
-
 end;
 
 
