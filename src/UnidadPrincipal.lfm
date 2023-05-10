@@ -762,6 +762,14 @@ object Form1: TForm1
           Caption = 'Activar color de fondo'
           OnClick = MenuItem_Catalogos_colorClick
         end
+        object Separator4: TMenuItem
+          Caption = '-'
+        end
+        object MenuItem_Catalogos_Mostrar_Info_extra: TMenuItem
+          AutoCheck = True
+          Caption = 'Mostrar información extra'
+          OnClick = MenuItem_Catalogos_Mostrar_Info_extraClick
+        end
       end
       object Separator2: TMenuItem
         Caption = '-'

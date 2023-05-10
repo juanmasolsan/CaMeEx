@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 00:03:16
+ * @Last Modified time: 2023-05-11 00:53:17
  *)
 {
 
@@ -63,8 +63,12 @@ uses
   , ItemDato, ItemCatalogo, VirtualTreesExtras;
 
 
-type
 
+const
+  CATALOGO_NODE_ALTURA = 50;
+  CATALOGO_NODE_ALTURA_EXTRA = 10;
+
+type
   // Varios hacks para TLazVirtualStringTree
   TLazVirtualStringTree = class(laz.VirtualTrees.TLazVirtualStringTree)
   protected
@@ -97,6 +101,7 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItem_Catalogos_Mostrar_Info_extra: TMenuItem;
     MenuItem_Catalogos_color: TMenuItem;
     MenuItem_Catalogos: TMenuItem;
     MenuItem5: TMenuItem;
@@ -121,6 +126,7 @@ type
     Separator1: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
+    Separator4: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
@@ -163,6 +169,7 @@ type
     procedure ListaResize(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItem_Catalogos_colorClick(Sender: TObject);
+    procedure MenuItem_Catalogos_Mostrar_Info_extraClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
     procedure MenuItem_Size_NormalClick(Sender: TObject);
     procedure PanelInferiorResize(Sender: TObject);
@@ -262,6 +269,9 @@ type
 
     // Muestra Información del directorio actual
     procedure DoEstadisticas(Columna : longint; Texto : string);
+
+    // Ajusta el alto dependiendo si se debe o no mostrar la info de los catalogos
+    procedure DoAjustarNodosCatalogos();
 
   public
 
@@ -482,6 +492,9 @@ begin
 
   // Carga la configuración de la forma en la dibujar el fondo de los catalogos
   FUsarColoresCatalogos     := ArchivoConfiguracion.ReadBool('Config', 'UsarColoresCatalogos', FUsarColoresCatalogos);
+
+  // Carga la configuración de la forma de dibujar los nodos de los catalogos
+  FExtraInfoCatalogos       := ArchivoConfiguracion.ReadBool('Config', 'ExtraInfoCatalogos', FExtraInfoCatalogos);
 end;
 
 // Guarda la configuración del programa
@@ -512,6 +525,9 @@ begin
 
   // Guarda la configuración de la forma en la dibujar el fondo de los catalogos
   ArchivoConfiguracion.WriteBool('Config', 'UsarColoresCatalogos', FUsarColoresCatalogos);
+
+  // Carga la configuración de la forma de dibujar los nodos de los catalogos
+  ArchivoConfiguracion.WriteBool('Config', 'ExtraInfoCatalogos', FExtraInfoCatalogos);
 end;
 
 // Aplica la configuración del programa
@@ -541,6 +557,9 @@ begin
 
     // Aplica la configuración de la forma en la dibujar el fondo de los catalogos
     MenuItem_Catalogos_color.Checked := FUsarColoresCatalogos;
+
+    // Aplica la configuración de la forma de dibujar los nodos de los catalogos
+    MenuItem_Catalogos_Mostrar_Info_extra.Checked := FExtraInfoCatalogos;
 
   finally
     FAplicandoConfig := false;
@@ -878,6 +897,17 @@ procedure TForm1.MenuItem_Catalogos_colorClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FUsarColoresCatalogos := MenuItem_Catalogos_color.Checked;
+  Lista.Refresh;
+  Arbol.Refresh;
+end;
+
+procedure TForm1.MenuItem_Catalogos_Mostrar_Info_extraClick(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FExtraInfoCatalogos := MenuItem_Catalogos_Mostrar_Info_extra.Checked;
+
+  DoAjustarNodosCatalogos();
+
   Lista.Refresh;
   Arbol.Refresh;
 end;
@@ -1425,6 +1455,10 @@ var
 begin
   Node             := Sender.AddChild(Padre);
 
+  if FExtraInfoCatalogos and (Dato.Tipo >= TItemDatoTipo.Root) then
+    Node^.NodeHeight := CATALOGO_NODE_ALTURA;
+
+
   if TieneHijos then
     Node^.States := Node^.States + [vsHasChildren];
 
@@ -1691,10 +1725,17 @@ var
 begin
   // Crea el nodo raiz
   FNodeArbol                 := Arbol.AddChild(nil);
+
+  if FExtraInfoCatalogos then
+    FNodeArbol^.NodeHeight   := CATALOGO_NODE_ALTURA;
+
   FNodeArbolDato             := TItemCatalogo.Create('Catálogos', TItemDatoTipo.Root, now, 0, '', 0, 0);
   FNodeArbolDato.ImageIndex  := integer(TItemDatoTipo.Root);
   Data                       := Arbol.GetNodeData(FNodeArbol);
   Data^.NodeData             := FNodeArbolDato;
+  Data^.TipoCatalogo         := TItemDatoTipo.Root;
+
+
   Arbol.Expanded[FNodeArbol] := true;
   Arbol.FocusedNode          := FNodeArbol;
 end;
@@ -1718,6 +1759,33 @@ begin
     Barra_Estado.SimpleText := texto;
 end;
 
+// Ajusta el alto dependiendo si se debe o no mostrar la info de los catalogos
+procedure Tform1.DoAjustarNodosCatalogos();
+
+  procedure AjustarNodo(Node : PVirtualNode);
+  begin
+      if not FExtraInfoCatalogos then
+        Node^.NodeHeight := Arbol.DefaultNodeHeight
+      else
+        Node^.NodeHeight := CATALOGO_NODE_ALTURA;
+  end;
+
+var
+  Node : PVirtualNode;
+begin
+  Node := Arbol.GetFirstChild(FNodeArbol);
+  while Node <> nil do
+    begin
+      // ajusta el nodo
+      AjustarNodo(Node);
+
+      Node := Arbol.GetNextSibling(Node);
+    end;
+
+  // Ajusta el alto del nodo raiz
+  AjustarNodo(FNodeArbol);
+
+end;
 
 
 end.

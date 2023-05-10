@@ -11,7 +11,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="55"/>
         <CursorPos X="44" Y="69"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="118"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,19 +20,19 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="875"/>
-        <CursorPos X="33" Y="884"/>
-        <UsageCount Value="116"/>
+        <TopLine Value="888"/>
+        <CursorPos X="29" Y="909"/>
+        <UsageCount Value="118"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <CursorPos X="31" Y="6"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="118"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -42,7 +42,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="81"/>
         <CursorPos X="44" Y="104"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="118"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -51,7 +51,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="118"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Formulario_Avanzado.pas"/>
@@ -59,7 +59,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="314"/>
         <CursorPos X="63" Y="325"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="117"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -69,7 +69,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="112"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -78,14 +78,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="111"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="107"/>
       </Unit>
       <Unit>
         <Filename Value="Utilidades.pas"/>
@@ -93,7 +93,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <CursorPos X="37" Y="93"/>
-        <UsageCount Value="98"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadScan.pas"/>
@@ -104,7 +104,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
         <CursorPos X="36" Y="74"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="98"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
@@ -112,7 +112,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="113"/>
         <CursorPos Y="129"/>
-        <UsageCount Value="85"/>
+        <UsageCount Value="87"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -120,7 +120,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="83"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -260,7 +260,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="125"/>
         <CursorPos X="75" Y="136"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -298,7 +298,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="28968"/>
         <CursorPos Y="28981"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -313,7 +313,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="96"/>
         <CursorPos X="40" Y="113"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -383,22 +383,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="733" Column="7" TopLine="712"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1548" TopLine="1536"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1510" Column="46" TopLine="1495"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1548" TopLine="1536"/>
-      </Position>
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="1559" Column="37" TopLine="1546"/>
@@ -503,6 +487,22 @@
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="1250" Column="5" TopLine="1231"/>
       </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="884" Column="33" TopLine="875"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="885" Column="33" TopLine="876"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="887" Column="33" TopLine="878"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="901" Column="63" TopLine="888"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -523,7 +523,7 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="UnidadPrincipal.pas"/>
-        <Line Value="1547"/>
+        <Line Value="1561"/>
       </Item>
     </BreakPoints>
   </Debugging>

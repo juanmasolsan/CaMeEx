@@ -1,4 +1,7 @@
 
+
++ 1.1.6.6
+- [NEW]   (20230511) Agregado base para poder mostrar información extra en los nodos de los catalogos.
 - [NEW]   (20230511) Agregado color al fondo de los catalogos para poderlos identificar mejor.
 
 + 1.1.6.4

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 23:55:58
+ * @Last Modified time: 2023-05-11 00:15:40
  *)
 {
 
@@ -113,6 +113,10 @@ var
     clTeal,
     clMaroon
   );
+
+  // Muestra la información extra de los catalogos
+  FExtraInfoCatalogos                      : boolean = true;
+
 
 implementation
 

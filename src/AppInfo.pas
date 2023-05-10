@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-06 14:37:57
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 15:23:44
+ * @Last Modified time: 2023-05-11 00:56:51
  *)
 {
 
@@ -41,8 +41,8 @@ uses
 
 // Inicio de programación  20230406
 const
-  VERSION_PROGRAMA     = '1.1.5.7' + {$IFDEF CPUX64}' x64'{$ELSE}' x86'{$ENDIF};
-  FECHA_PROGRAMA       = '20230510 00:35:41';
+  VERSION_PROGRAMA     = '1.1.6.6' + {$IFDEF CPUX64}' x64'{$ELSE}' x86'{$ENDIF};
+  FECHA_PROGRAMA       = '20230511 00:58:41';
   NOMBRE_PROGRAMA      = 'CaMeEx';
   NOMBRE_AUTOR         = 'Juan Manuel Soltero Sánchez';
   APP_WEB              = 'https://github.com/juanmasolsan/CaMeEx';
