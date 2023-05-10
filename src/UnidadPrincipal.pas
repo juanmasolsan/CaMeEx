@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 19:03:06
+ * @Last Modified time: 2023-05-10 19:10:46
  *)
 {
 
@@ -881,6 +881,13 @@ begin
   begin
     FScan.free;
   end;
+
+  // Limpia el arbol de directorios
+  Arbol.Clear;
+
+  // Limpia la lista de archivos
+  Lista.Clear;
+
 end;
 
 
@@ -1172,7 +1179,7 @@ begin
                   begin
                     Node := Arbol.GetFirstSelected();
                     if Node <> nil then
-                     Arbol.Expanded[Node] := not Arbol.Expanded[Node];
+                      Arbol.Expanded[Node] := not Arbol.Expanded[Node];
                   end;
                 end;
   end;
