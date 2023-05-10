@@ -1,4 +1,5 @@
 
+- [FIX]   (20230510) Agregado la carga correcta del icono de los distintos tipos de catalogos
 - [NEW]   (20230510) Al cerrar la ventana principal limpia la lista de archivos y el arbol de directorios.
 - [NEW]   (20230510) Agregado información de estadisticas a la barra de estado al cambiar de directorio.
 - [NEW]   (20230510) Agregado un nodo raiz al arbol de directorios.

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-10 19:10:46
+ * @Last Modified time: 2023-05-10 23:11:21
  *)
 {
 
@@ -632,6 +632,9 @@ begin
           ImageIndex := Datos.ImageIndex;
           if ImageIndex = -1 then
             ImageIndex := 2;
+
+          if Datos.Tipo >= TItemDatoTipo.Root then
+            ImageIndex := integer(Datos.Tipo);
 
           case FFormatoIconos of
             Sistema : ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
