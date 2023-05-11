@@ -54,10 +54,6 @@ msgstr ""
 msgid "Ayuda"
 msgstr ""
 
-#: tform1.menuitem5.caption
-msgid "MenuItem5"
-msgstr ""
-
 #: tform1.menuitemacercade.caption
 msgid "Acerca de..."
 msgstr ""
@@ -74,8 +70,16 @@ msgstr ""
 msgid "Auto Ocultar Botones"
 msgstr ""
 
+#: tform1.menuitem_arbol_catalogos_ver_lineas_punteadas.caption
+msgid "Lineas del arbol punteadas"
+msgstr ""
+
 #: tform1.menuitem_arbol_catalogo_botones_modernos.caption
 msgid "Ver Botones Modernos"
+msgstr ""
+
+#: tform1.menuitem_arbol_catalogo_ver_lineas.caption
+msgid "Ver Lineas del Arbol"
 msgstr ""
 
 #: tform1.menuitem_catalogos.caption

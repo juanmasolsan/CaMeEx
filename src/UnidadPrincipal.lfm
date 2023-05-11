@@ -750,12 +750,6 @@ object Form1: TForm1
     end
     object MenuItemVer: TMenuItem
       Caption = 'Ver'
-      object MenuItem5: TMenuItem
-        Caption = 'MenuItem5'
-      end
-      object Separator3: TMenuItem
-        Caption = '-'
-      end
       object MenuItem_Catalogos: TMenuItem
         Caption = 'Arbol Catálogos'
         object MenuItem_Arbol_Catalogos_AutoOculta_Botones: TMenuItem
@@ -767,6 +761,22 @@ object Form1: TForm1
           AutoCheck = True
           Caption = 'Ver Botones Modernos'
           OnClick = MenuItem_Arbol_Catalogo_Botones_ModernosClick
+        end
+        object Separator5: TMenuItem
+          Caption = '-'
+        end
+        object MenuItem_Arbol_Catalogo_Ver_Lineas: TMenuItem
+          AutoCheck = True
+          Caption = 'Ver Lineas del Arbol'
+          OnClick = MenuItem_Arbol_Catalogo_Ver_LineasClick
+        end
+        object MenuItem_Arbol_Catalogos_Ver_Lineas_Punteadas: TMenuItem
+          AutoCheck = True
+          Caption = 'Lineas del arbol punteadas'
+          OnClick = MenuItem_Arbol_Catalogos_Ver_Lineas_PunteadasClick
+        end
+        object Separator6: TMenuItem
+          Caption = '-'
         end
         object MenuItem_Catalogos_color: TMenuItem
           AutoCheck = True

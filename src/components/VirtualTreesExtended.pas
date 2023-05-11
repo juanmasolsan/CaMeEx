@@ -54,8 +54,12 @@ type
     FDibujarInfoCatalogo     : boolean;
     FDibujarBotonesModernos  : Boolean;
     FOcultarBotonesAlperderFoco : boolean;
+    FMostrarLineasArbol          : boolean;
+    FMostrarLineasArbolPunteadas : boolean;
 
     procedure SetOcultarBotonesAlperderFoco(Value : Boolean);
+    procedure SetMostrarLineasArbol(Value : Boolean);
+    procedure SetMostrarLineasArbolPunteadas(Value : Boolean);
   protected
     // Hack para evitar parpadeos en el dibujado
     procedure WMEraseBkgnd(var Message: TLMEraseBkgnd); message LM_ERASEBKGND;
@@ -92,6 +96,8 @@ type
     property DibujarInfoCatalogo        : boolean read FDibujarInfoCatalogo write FDibujarInfoCatalogo;
     property DibujarBotonesModernos     : Boolean read FDibujarBotonesModernos write FDibujarBotonesModernos;
     property OcultarBotonesAlperderFoco : boolean read FOcultarBotonesAlperderFoco write SetOcultarBotonesAlperderFoco;
+    property MostrarLineasArbol         : boolean read FMostrarLineasArbol write SetMostrarLineasArbol;
+    property MostrarLineasArbolPunteadas: boolean read FMostrarLineasArbolPunteadas write SetMostrarLineasArbolPunteadas;
   end;
 
 
@@ -122,6 +128,7 @@ begin
 
   FDibujarBotonesModernos                 := false;
   FOcultarBotonesAlperderFoco             := false;
+  FMostrarLineasArbol                     := true;
 end;
 
 
@@ -385,6 +392,31 @@ begin
     TreeOptions.PaintOptions := TreeOptions.PaintOptions - [toShowButtons];
 
   inherited MouseLeave;
+end;
+
+procedure TLazVirtualStringTree.SetMostrarLineasArbol(Value : Boolean);
+begin
+ if FMostrarLineasArbol <> Value then
+  begin
+   FMostrarLineasArbol := Value;
+   if FMostrarLineasArbol then
+    TreeOptions.PaintOptions := TreeOptions.PaintOptions + [toShowTreeLines]
+   else
+    TreeOptions.PaintOptions := TreeOptions.PaintOptions - [toShowTreeLines]
+  end;
+end;
+
+
+procedure TLazVirtualStringTree.SetMostrarLineasArbolPunteadas(Value : Boolean);
+begin
+ if FMostrarLineasArbolPunteadas <> Value then
+  begin
+   FMostrarLineasArbolPunteadas := Value;
+   if FMostrarLineasArbolPunteadas then
+    LineStyle := lsDotted
+   else
+    LineStyle := lsSolid;
+  end;
 end;
 
 end.

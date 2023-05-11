@@ -1,5 +1,8 @@
 
++ 1.1.7.4
+- [NEW]   (20230512) Agregado configuración de las lineas del arbol
 
++ 1.1.7.3
 - [NEW]   (20230511) Agregado configuración de los botones del arbol
 - [NEW]   (20230511) Agregado VirtualTreesExtended para hacer el VirtualTrees más completo.
 - [NEW]   (20230511) Ajustado el color de fondo de los nodos que son catalogos

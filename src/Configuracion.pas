@@ -124,6 +124,12 @@ var
   // Mostrar los botones de expandir/colapsar del arbol de catalogos con un estilo moderno
   FVerBotonesArbolModernos                 : boolean = true;
 
+  // Mostrar las lineas de los nodos del arbol de catalogos
+  FVerLineasArbol                          : boolean = true;
+
+  // Mostrar las lineas de los nodos del arbol de catalogos punteadas o no
+  FVerLineasArbol_Punteadas                : boolean = false;
+
 
 function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;
 

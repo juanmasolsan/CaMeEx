@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 23:40:38
+ * @Last Modified time: 2023-05-12 00:14:59
  *)
 {
 
@@ -87,12 +87,13 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItem_Arbol_Catalogos_Ver_Lineas_Punteadas: TMenuItem;
+    MenuItem_Arbol_Catalogo_Ver_Lineas: TMenuItem;
     MenuItem_Arbol_Catalogo_Botones_Modernos: TMenuItem;
     MenuItem_Arbol_Catalogos_AutoOculta_Botones: TMenuItem;
     MenuItem_Catalogos_Mostrar_Info_extra: TMenuItem;
     MenuItem_Catalogos_color: TMenuItem;
     MenuItem_Catalogos: TMenuItem;
-    MenuItem5: TMenuItem;
     MenuItem_Iconos_Mixto: TMenuItem;
     MenuItem_Iconos_Sistema: TMenuItem;
     MenuItem_Iconos_PorDefecto: TMenuItem;
@@ -113,8 +114,9 @@ type
     SalidaLog: TSynEdit;
     Separator1: TMenuItem;
     Separator2: TMenuItem;
-    Separator3: TMenuItem;
     Separator4: TMenuItem;
+    Separator5: TMenuItem;
+    Separator6: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
@@ -160,7 +162,10 @@ type
     procedure ListaResize(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(Sender: TObject);
+    procedure MenuItem_Arbol_Catalogos_Ver_Lineas_PunteadasClick(Sender: TObject
+      );
     procedure MenuItem_Arbol_Catalogo_Botones_ModernosClick(Sender: TObject);
+    procedure MenuItem_Arbol_Catalogo_Ver_LineasClick(Sender: TObject);
     procedure MenuItem_Catalogos_colorClick(Sender: TObject);
     procedure MenuItem_Catalogos_Mostrar_Info_extraClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
@@ -513,6 +518,21 @@ begin
     MenuItem_Catalogos_Mostrar_Info_extra.Checked := FExtraInfoCatalogos;
     Arbol.DibujarInfoCatalogo                     := FExtraInfoCatalogos;
 
+    // Aplica la configuración al arbol
+    Arbol.MostrarLineasArbol          := FVerLineasArbol;
+    Arbol.MostrarLineasArbolPunteadas := FVerLineasArbol_Punteadas;
+    Arbol.OcultarBotonesAlperderFoco  := FAutoOcultarBotonesArbol;
+    Arbol.DibujarBotonesModernos      := FVerBotonesArbolModernos;
+
+    // Aplica la cofig a los menus
+    MenuItem_Arbol_Catalogos_AutoOculta_Botones.Checked   := FAutoOcultarBotonesArbol;
+    MenuItem_Arbol_Catalogos_Ver_Lineas_Punteadas.Checked := FVerLineasArbol_Punteadas;
+    MenuItem_Arbol_Catalogo_Botones_Modernos.Checked      := FVerBotonesArbolModernos;
+    MenuItem_Arbol_Catalogo_Ver_Lineas.Checked            := FVerLineasArbol;
+
+    // Aplica la configuración al arbol
+    Arbol.Repaint;
+
   finally
     FAplicandoConfig := false;
   end;
@@ -848,22 +868,44 @@ end;
 procedure TForm1.MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(
   Sender: TObject);
 begin
+  if FAplicandoConfig then exit;
   FAutoOcultarBotonesArbol         := MenuItem_Arbol_Catalogos_AutoOculta_Botones.Checked;
-  Arbol.OcultarBotonesAlperderFoco := FAutoOcultarBotonesArbol;
-  Arbol.RePaint;
+
+  DoConfiguracionAplicar();
+end;
+
+procedure TForm1.MenuItem_Arbol_Catalogos_Ver_Lineas_PunteadasClick(
+  Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FVerLineasArbol_Punteadas := MenuItem_Arbol_Catalogos_Ver_Lineas_Punteadas.Checked;
+
+  DoConfiguracionAplicar();
 end;
 
 procedure TForm1.MenuItem_Arbol_Catalogo_Botones_ModernosClick(Sender: TObject);
 begin
+  if FAplicandoConfig then exit;
   FVerBotonesArbolModernos     := MenuItem_Arbol_Catalogo_Botones_Modernos.Checked;
-  Arbol.DibujarBotonesModernos := FVerBotonesArbolModernos;
-  Arbol.RePaint;
+
+  DoConfiguracionAplicar();
+end;
+
+procedure TForm1.MenuItem_Arbol_Catalogo_Ver_LineasClick(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FVerLineasArbol          := MenuItem_Arbol_Catalogo_Ver_Lineas.Checked;
+
+  DoConfiguracionAplicar();
 end;
 
 procedure TForm1.MenuItem_Catalogos_colorClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FUsarColoresCatalogos := MenuItem_Catalogos_color.Checked;
+
+  DoConfiguracionAplicar();
+
   Lista.Refresh;
   Arbol.Refresh;
 end;
@@ -873,10 +915,11 @@ begin
   if FAplicandoConfig then exit;
   FExtraInfoCatalogos := MenuItem_Catalogos_Mostrar_Info_extra.Checked;
 
+  DoConfiguracionAplicar();
+
   DoAjustarNodosCatalogos();
 
-  Lista.Refresh;
-  Arbol.Refresh;
+  Arbol.Repaint;
 end;
 
 procedure TForm1.MenuItem_Iconos_PorDefectoClick(Sender: TObject);

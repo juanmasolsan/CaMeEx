@@ -106,7 +106,7 @@
 +         Que los nodos del tipo root del arbol muestren información del catalogo, Archivos, directorios y total ocupado
 +         Que el nodo root del arbol muestren información de la suma de todos los catalogos, Archivos, directorios y total ocupado
 +         Que los nodos del tipo catalogo el color de fondo sea ligeramente mas oscuro que el de los demas nodos de ese catalogo
--         Configurar lineas del arbol
++         Configurar lineas del arbol
 +         Configurar botones del arbol
 -         Configurar ver colores de atributos
 -         Poder eliminar los catalogos
