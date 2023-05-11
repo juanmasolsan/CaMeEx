@@ -1,3 +1,5 @@
+
+- [NEW]   (20230511) Fix posición de botones y lineas en arbol.
 - [NEW]   (20230511) Agregado en arbol en los nodos de catalogos información de directorios y archivos que contienen.
 - [NEW]   (20230511) Agregado en arbol en los nodos de catalogos información de tamaño ocupado por los mismos.
 

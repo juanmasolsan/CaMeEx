@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 18:49:59
+ * @Last Modified time: 2023-05-11 19:02:00
  *)
 {
 
@@ -412,7 +412,7 @@ procedure TLazVirtualStringTree.PaintNodeButton(nCanvas: TCanvas; Node: PVirtual
 begin
   if FDibujarInfoCatalogo and (Node^.NodeHeight = CATALOGO_NODE_ALTURA) then
   begin
-    ButtonY := (CATALOGO_NODE_ALTURA - self.DefaultNodeHeight);
+    ButtonY := (self.DefaultNodeHeight div 3) -1;
   end;
 
   inherited PaintNodeButton(nCanvas, Node, Column, R, ButtonX, ButtonY, nBidiMode);
@@ -423,7 +423,7 @@ procedure TLazVirtualStringTree.PaintTreeLines(const PaintInfo: TVTPaintInfo; VA
 begin
   if FDibujarInfoCatalogo and (PaintInfo.CellRect.Bottom = CATALOGO_NODE_ALTURA) then
   begin
-    VAlignment := ((CATALOGO_NODE_ALTURA - self.DefaultNodeHeight) * 2) - 1;
+    VAlignment := self.DefaultNodeHeight div 2;
   end;
 
   inherited PaintTreeLines(PaintInfo, VAlignment, IndentSize, LineImage);
