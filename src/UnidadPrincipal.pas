@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-12 00:14:59
+ * @Last Modified time: 2023-05-12 00:19:48
  *)
 {
 
@@ -451,6 +451,14 @@ begin
 
   // Carga la configuración de la forma de dibujar los nodos de los catalogos
   FExtraInfoCatalogos       := ArchivoConfiguracion.ReadBool('Config', 'ExtraInfoCatalogos', FExtraInfoCatalogos);
+
+  // Carga la configuración de la forma de dibujar los nodos de los catalogos
+  FAutoOcultarBotonesArbol  := ArchivoConfiguracion.ReadBool('Config', 'AutoOcultarBotonesArbol', FAutoOcultarBotonesArbol);
+  FVerBotonesArbolModernos  := ArchivoConfiguracion.ReadBool('Config', 'VerBotonesArbolModernos', FVerBotonesArbolModernos);
+  FVerLineasArbol           := ArchivoConfiguracion.ReadBool('Config', 'VerLineasArbol', FVerLineasArbol);
+  FVerLineasArbol_Punteadas := ArchivoConfiguracion.ReadBool('Config', 'VerLineasArbol_Punteadas', FVerLineasArbol_Punteadas);
+
+
 end;
 
 // Guarda la configuración del programa
@@ -482,8 +490,15 @@ begin
   // Guarda la configuración de la forma en la dibujar el fondo de los catalogos
   ArchivoConfiguracion.WriteBool('Config', 'UsarColoresCatalogos', FUsarColoresCatalogos);
 
-  // Carga la configuración de la forma de dibujar los nodos de los catalogos
+  // Guarda la configuración de la forma de dibujar los nodos de los catalogos
   ArchivoConfiguracion.WriteBool('Config', 'ExtraInfoCatalogos', FExtraInfoCatalogos);
+
+  // Guarda la configuración de la forma de dibujar los nodos de los catalogos
+  ArchivoConfiguracion.WriteBool('Config', 'AutoOcultarBotonesArbol', FAutoOcultarBotonesArbol);
+  ArchivoConfiguracion.WriteBool('Config', 'VerBotonesArbolModernos', FVerBotonesArbolModernos);
+  ArchivoConfiguracion.WriteBool('Config', 'VerLineasArbol', FVerLineasArbol);
+  ArchivoConfiguracion.WriteBool('Config', 'VerLineasArbol_Punteadas', FVerLineasArbol_Punteadas);
+
 end;
 
 // Aplica la configuración del programa

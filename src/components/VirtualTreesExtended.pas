@@ -129,6 +129,11 @@ begin
   FDibujarBotonesModernos                 := false;
   FOcultarBotonesAlperderFoco             := false;
   FMostrarLineasArbol                     := true;
+  FMostrarLineasArbolPunteadas            := false;
+
+  LineStyle                               := lsSolid;
+  TreeOptions.PaintOptions                := TreeOptions.PaintOptions + [toShowTreeLines]
+
 end;
 
 

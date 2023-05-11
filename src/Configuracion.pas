@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 19:32:22
+ * @Last Modified time: 2023-05-12 00:21:42
  *)
 {
 
@@ -119,10 +119,10 @@ var
 
 
   // Para auto ocultar los botones de expandir/colapsar del arbol de catalogos
-  FAutoOcultarBotonesArbol                 : boolean = true;
+  FAutoOcultarBotonesArbol                 : boolean = false;
 
   // Mostrar los botones de expandir/colapsar del arbol de catalogos con un estilo moderno
-  FVerBotonesArbolModernos                 : boolean = true;
+  FVerBotonesArbolModernos                 : boolean = false;
 
   // Mostrar las lineas de los nodos del arbol de catalogos
   FVerLineasArbol                          : boolean = true;

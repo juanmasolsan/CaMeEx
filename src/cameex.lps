@@ -20,10 +20,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="520"/>
-        <CursorPos X="61" Y="529"/>
+        <CursorPos X="83" Y="531"/>
         <UsageCount Value="122"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -384,46 +383,15 @@
       </Unit>
       <Unit>
         <Filename Value="components\VirtualTreesExtended.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="397"/>
-        <CursorPos Y="419"/>
+        <TopLine Value="122"/>
+        <CursorPos X="62" Y="135"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="95" Column="18" TopLine="74"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="96" Column="18" TopLine="75"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="97" Column="18" TopLine="76"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="271" Column="62" TopLine="257"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="281" Column="8" TopLine="260"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="851" Column="18" TopLine="51"/>
-      </Position>
-      <Position>
-        <Filename Value="components\VirtualTreesExtended.pas"/>
-        <Caret Line="81" Column="49" TopLine="63"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="851" Column="18" TopLine="51"/>
-      </Position>
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="853" Column="18" TopLine="828"/>
@@ -511,6 +479,38 @@
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="223" Column="15" TopLine="212"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="418" TopLine="397"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="58" Column="33" TopLine="45"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="100" Column="84" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="412" Column="33" TopLine="391"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="414" Column="32" TopLine="393"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="415" Column="35" TopLine="394"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="134" TopLine="115"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="416" Column="33" TopLine="395"/>
       </Position>
     </JumpHistory>
     <RunParams>
