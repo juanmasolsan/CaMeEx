@@ -94,6 +94,7 @@ object Form1: TForm1
       OnBeforeItemErase = ArbolBeforeItemErase
       OnChange = ArbolChange
       OnCompareNodes = ListaCompareNodes
+      OnDrawText = ArbolDrawText
       OnExpanding = ArbolExpanding
       OnGetText = ListaGetText
       OnPaintText = ListaPaintText

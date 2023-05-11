@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 00:53:17
+ * @Last Modified time: 2023-05-11 17:01:09
  *)
 {
 
@@ -65,18 +65,35 @@ uses
 
 
 const
-  CATALOGO_NODE_ALTURA = 50;
+  CATALOGO_NODE_ALTURA = 30;
   CATALOGO_NODE_ALTURA_EXTRA = 10;
 
 type
   // Varios hacks para TLazVirtualStringTree
   TLazVirtualStringTree = class(laz.VirtualTrees.TLazVirtualStringTree)
+  private
+    FDibujarInfoCatalogo : boolean;
   protected
     // Hack para evitar parpadeos en el dibujado
     procedure WMEraseBkgnd(var Message: TLMEraseBkgnd); message LM_ERASEBKGND;
 
     // Poder dibujar imagenes ghosted
     procedure PaintImage(var PaintInfo: TVTPaintInfo; ImageInfoIndex: TVTImageInfoIndex; DoOverlay: Boolean); override;
+
+    // Dibujar los nodos
+    procedure DoPaintNode(var PaintInfo: TVTPaintInfo); override;
+
+    // Dibujar el texto de los nodos
+    procedure DoDibujarInfoCatalogo(var PaintInfo: TVTPaintInfo; Calcular : boolean); virtual;
+
+    // Dibujar el boton de los nodos
+    procedure PaintNodeButton(nCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex; const R: TRect; ButtonX, ButtonY: Integer; nBidiMode: TBiDiMode); override;
+
+    // Dibujar las lineas de los nodos
+    procedure PaintTreeLines(const PaintInfo: TVTPaintInfo; VAlignment, IndentSize: Integer; LineImage: TLineImage); override;
+
+  public
+    property DibujarInfoCatalogo: boolean read FDibujarInfoCatalogo write FDibujarInfoCatalogo;
   end;
 
 
@@ -138,6 +155,9 @@ type
       TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect;
       var ItemColor: TColor; var EraseAction: TItemEraseAction);
     procedure ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
+    procedure ArbolDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas;
+      Node: PVirtualNode; Column: TColumnIndex; const CellText: String;
+      const CellRect: TRect; var DefaultDraw: Boolean);
     procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
     procedure ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -309,6 +329,9 @@ procedure TLazVirtualStringTree.PaintImage(var PaintInfo: TVTPaintInfo; ImageInf
 var
   TMP : TPortableNetworkGraphic;
 begin
+  DoDibujarInfoCatalogo(PaintInfo, true);
+
+
   with PaintInfo do
   begin
     // Si no tiene asignada una imagen, salimos
@@ -340,6 +363,70 @@ begin
     else
       inherited PaintImage(PaintInfo, ImageInfoIndex, DoOverlay);
   end;
+end;
+
+
+// Dibujar los nodos
+procedure TLazVirtualStringTree.DoPaintNode(var PaintInfo: TVTPaintInfo);
+var
+  Y : longint = -1;
+begin
+  DoDibujarInfoCatalogo(PaintInfo, true);
+
+  inherited DoPaintNode(PaintInfo);
+
+  if PaintInfo.Node = nil then exit;
+
+  //TODO: Implementar el dibujado
+end;
+
+// Dibujar el texto de los nodos
+procedure TLazVirtualStringTree.DoDibujarInfoCatalogo(var PaintInfo: TVTPaintInfo; Calcular : boolean);
+
+  procedure Gestionar_Imagenes(Cual : TVTImageInfoIndex);
+  begin
+    if PaintInfo.ImageInfo[Cual].Index = -1 then exit;
+    if PaintInfo.ImageInfo[Cual].YPos  <> 0 then
+      PaintInfo.ImageInfo[Cual].YPos := 2;
+  end;
+
+begin
+  if not FDibujarInfoCatalogo then exit;
+  if PaintInfo.Node = nil then exit;
+  if PaintInfo.Node^.NodeHeight <> CATALOGO_NODE_ALTURA then exit;
+
+  if Calcular then
+    begin
+      PaintInfo.CellRect.Bottom    := self.DefaultNodeHeight;
+      PaintInfo.ContentRect.Bottom := self.DefaultNodeHeight;
+      Gestionar_Imagenes(iiNormal);
+      Gestionar_Imagenes(iiState);
+      Gestionar_Imagenes(iiCheck);
+      Gestionar_Imagenes(iiOverlay);
+      exit;
+    end;
+end;
+
+// Dibujar el boton de los nodos
+procedure TLazVirtualStringTree.PaintNodeButton(nCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex; const R: TRect; ButtonX, ButtonY: Integer; nBidiMode: TBiDiMode);
+begin
+  if FDibujarInfoCatalogo and (Node^.NodeHeight = CATALOGO_NODE_ALTURA) then
+  begin
+    ButtonY := (CATALOGO_NODE_ALTURA - self.DefaultNodeHeight);
+  end;
+
+  inherited PaintNodeButton(nCanvas, Node, Column, R, ButtonX, ButtonY, nBidiMode);
+end;
+
+// Dibujar las lineas de los nodos
+procedure TLazVirtualStringTree.PaintTreeLines(const PaintInfo: TVTPaintInfo; VAlignment, IndentSize: Integer; LineImage: TLineImage);
+begin
+  if FDibujarInfoCatalogo and (PaintInfo.CellRect.Bottom = CATALOGO_NODE_ALTURA) then
+  begin
+    VAlignment := ((CATALOGO_NODE_ALTURA - self.DefaultNodeHeight) * 2) - 1;
+  end;
+
+  inherited PaintTreeLines(PaintInfo, VAlignment, IndentSize, LineImage);
 end;
 
 
@@ -560,6 +647,7 @@ begin
 
     // Aplica la configuración de la forma de dibujar los nodos de los catalogos
     MenuItem_Catalogos_Mostrar_Info_extra.Checked := FExtraInfoCatalogos;
+    Arbol.DibujarInfoCatalogo                     := FExtraInfoCatalogos;
 
   finally
     FAplicandoConfig := false;
@@ -1275,6 +1363,69 @@ begin
     end;
   except
   end;
+end;
+
+procedure TForm1.ArbolDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas;
+  Node: PVirtualNode; Column: TColumnIndex; const CellText: String;
+  const CellRect: TRect; var DefaultDraw: Boolean);
+var
+  PreColor  : TColor;
+  PreEstilo : TFontStyles;
+  PreSize   : integer;
+
+  NodeData : PrListaData;
+  Datos    : TItemCatalogo;
+
+begin
+  if not FExtraInfoCatalogos then
+    exit;
+
+  if Node = nil then
+    exit;
+
+  if Node^.NodeHeight <> CATALOGO_NODE_ALTURA then
+    exit;
+
+  DefaultDraw := false;
+
+  PreColor  := TargetCanvas.Font.Color;
+  PreEstilo := TargetCanvas.Font.Style;
+  PreSize   := TargetCanvas.Font.Size;
+
+  try
+    if Column = 0 then
+    begin
+
+      try
+        NodeData := Sender.GetNodeData(Node);
+        if NodeData <> nil then
+        begin
+          Datos := TItemCatalogo(NodeData^.NodeData);
+          if Datos <> nil then
+          begin
+            // Dibuja el nombre del catalogo
+            TargetCanvas.TextOut(CellRect.Left, CellRect.Top + 2, CellText);
+
+            // Dibuja el tamaño del catalogo
+            TargetCanvas.Font.Style := [fsBold];
+            TargetCanvas.Font.Size := 8;
+            if not (vsSelected in Node^.States) then
+              TargetCanvas.Font.Color := clgreen;
+
+            TargetCanvas.TextOut(TargetCanvas.PenPos.X + 5, TargetCanvas.PenPos.Y + 1, ' [' +ConvertirSizeEx(Datos.Size) + ']');
+
+          end;
+        end;
+      except
+      end;
+
+    end;
+  finally
+    TargetCanvas.Font.Size   := PreSize;
+    TargetCanvas.Font.Style  := PreEstilo;
+    TargetCanvas.Font.Color  := PreColor;
+  end;
+
 end;
 
 procedure TForm1.ArbolBeforeItemErase(Sender: TBaseVirtualTree;

@@ -1,4 +1,4 @@
-
+- [NEW]   (20230511) Agregado en arbol información de tamaño ocupado por los mismos.
 
 + 1.1.6.6
 - [NEW]   (20230511) Agregado base para poder mostrar información extra en los nodos de los catalogos.

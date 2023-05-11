@@ -79,6 +79,10 @@ msgstr ""
 msgid "Activar color de fondo"
 msgstr ""
 
+#: tform1.menuitem_catalogos_mostrar_info_extra.caption
+msgid "Mostrar información extra"
+msgstr ""
+
 #: tform1.menuitem_iconos.caption
 msgid "Iconos"
 msgstr ""
