@@ -792,6 +792,17 @@ object Form1: TForm1
           OnClick = MenuItem_Catalogos_Mostrar_Info_extraClick
         end
       end
+      object Separator3: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem_Lista_de_Archivos: TMenuItem
+        Caption = 'Lista de Archivos'
+        object MenuItem_Lista_de_Archivos_Resaltar_Columna_Orden: TMenuItem
+          AutoCheck = True
+          Caption = 'Resaltar Orden Columna'
+          OnClick = MenuItem_Lista_de_Archivos_Resaltar_Columna_OrdenClick
+        end
+      end
       object Separator2: TMenuItem
         Caption = '-'
       end
@@ -846,6 +857,14 @@ object Form1: TForm1
           RadioItem = True
           OnClick = MenuItem_Size_NormalClick
         end
+      end
+      object Separator7: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem_Ver_Colores_Atributos: TMenuItem
+        AutoCheck = True
+        Caption = 'Usar colores para diferenciar los archivos'
+        OnClick = MenuItem_Ver_Colores_AtributosClick
       end
     end
     object MenuItem3: TMenuItem

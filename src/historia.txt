@@ -1,5 +1,6 @@
 
-+ 1.1.7.5
++ 1.1.7.6
+- [NEW]   (20230512) Agregado configuración de ver colores según los atributos de archivo
 - [FIX]   (20230512) Fix correcto gaurdado y recuperación de la configuración
 - [NEW]   (20230512) Agregado configuración de las lineas del arbol
 

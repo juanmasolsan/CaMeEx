@@ -111,6 +111,14 @@ msgstr ""
 msgid "Sistema"
 msgstr ""
 
+#: tform1.menuitem_lista_de_archivos.caption
+msgid "Lista de Archivos"
+msgstr ""
+
+#: tform1.menuitem_lista_de_archivos_resaltar_columna_orden.caption
+msgid "Resaltar Orden Columna"
+msgstr ""
+
 #: tform1.menuitem_sizes.caption
 msgid "Formato Tamaño archivos"
 msgstr ""
@@ -125,6 +133,10 @@ msgstr ""
 
 #: tform1.menuitem_size_punteada.caption
 msgid "Punteada (1.234.567.890)"
+msgstr ""
+
+#: tform1.menuitem_ver_colores_atributos.caption
+msgid "Usar colores para diferenciar los archivos"
 msgstr ""
 
 #: tform1.toolbar1.caption

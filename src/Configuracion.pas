@@ -93,6 +93,7 @@ var
   FForzarColorTexto_Hot                     : Tcolor = clHighlightText;
 
   // Colores de los archivos
+  FUsarColorDiferenciarArchivos             : boolean = true;
   FColor_SymLink                            : TColor = clBlue;
   FColor_Oculto_Sistema                     : TColor = clRed;
   FColor_SoloLectura                        : TColor = clGray;

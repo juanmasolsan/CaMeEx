@@ -87,6 +87,9 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItem_Ver_Colores_Atributos: TMenuItem;
+    MenuItem_Lista_de_Archivos_Resaltar_Columna_Orden: TMenuItem;
+    MenuItem_Lista_de_Archivos: TMenuItem;
     MenuItem_Arbol_Catalogos_Ver_Lineas_Punteadas: TMenuItem;
     MenuItem_Arbol_Catalogo_Ver_Lineas: TMenuItem;
     MenuItem_Arbol_Catalogo_Botones_Modernos: TMenuItem;
@@ -114,9 +117,11 @@ type
     SalidaLog: TSynEdit;
     Separator1: TMenuItem;
     Separator2: TMenuItem;
+    Separator3: TMenuItem;
     Separator4: TMenuItem;
     Separator5: TMenuItem;
     Separator6: TMenuItem;
+    Separator7: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
@@ -169,7 +174,10 @@ type
     procedure MenuItem_Catalogos_colorClick(Sender: TObject);
     procedure MenuItem_Catalogos_Mostrar_Info_extraClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
+    procedure MenuItem_Lista_de_Archivos_Resaltar_Columna_OrdenClick(
+      Sender: TObject);
     procedure MenuItem_Size_NormalClick(Sender: TObject);
+    procedure MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
     procedure PanelInferiorResize(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
@@ -458,6 +466,8 @@ begin
   FVerLineasArbol           := ArchivoConfiguracion.ReadBool('Config', 'VerLineasArbol', FVerLineasArbol);
   FVerLineasArbol_Punteadas := ArchivoConfiguracion.ReadBool('Config', 'VerLineasArbol_Punteadas', FVerLineasArbol_Punteadas);
 
+  // Carga la configuración para diferenciar los archivos por colores
+  FUsarColorDiferenciarArchivos:= ArchivoConfiguracion.ReadBool('Config', 'UsarColorDiferenciarArchivos', FUsarColorDiferenciarArchivos);
 
 end;
 
@@ -499,6 +509,9 @@ begin
   ArchivoConfiguracion.WriteBool('Config', 'VerLineasArbol', FVerLineasArbol);
   ArchivoConfiguracion.WriteBool('Config', 'VerLineasArbol_Punteadas', FVerLineasArbol_Punteadas);
 
+  // Guarda la configuración para diferenciar los archivos por colores
+  ArchivoConfiguracion.WriteBool('Config', 'UsarColorDiferenciarArchivos', FUsarColorDiferenciarArchivos);
+
 end;
 
 // Aplica la configuración del programa
@@ -539,15 +552,18 @@ begin
     Arbol.OcultarBotonesAlperderFoco  := FAutoOcultarBotonesArbol;
     Arbol.DibujarBotonesModernos      := FVerBotonesArbolModernos;
 
-    // Aplica la cofig a los menus
+    // Aplica la config a los menus
     MenuItem_Arbol_Catalogos_AutoOculta_Botones.Checked   := FAutoOcultarBotonesArbol;
     MenuItem_Arbol_Catalogos_Ver_Lineas_Punteadas.Checked := FVerLineasArbol_Punteadas;
     MenuItem_Arbol_Catalogo_Botones_Modernos.Checked      := FVerBotonesArbolModernos;
     MenuItem_Arbol_Catalogo_Ver_Lineas.Checked            := FVerLineasArbol;
+    MenuItem_Ver_Colores_Atributos.Checked                := FUsarColorDiferenciarArchivos;
 
     // Aplica la configuración al arbol
     Arbol.Repaint;
 
+    // Aplica la configuración a la lista de archivos
+    Lista.Repaint;
   finally
     FAplicandoConfig := false;
   end;
@@ -945,12 +961,26 @@ begin
   Arbol.Refresh;
 end;
 
+procedure TForm1.MenuItem_Lista_de_Archivos_Resaltar_Columna_OrdenClick(
+  Sender: TObject);
+begin
+  //TODO: Implementar
+end;
+
 procedure TForm1.MenuItem_Size_NormalClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FFormatoSize := TFormatoSize(TMenuItem(Pointer(@Sender)^).Tag);
   Lista.Refresh;
   Arbol.Refresh;
+end;
+
+procedure TForm1.MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FUsarColorDiferenciarArchivos := MenuItem_Ver_Colores_Atributos.Checked;
+
+  DoConfiguracionAplicar();
 end;
 
 procedure TForm1.PanelInferiorResize(Sender: TObject);
@@ -1670,6 +1700,8 @@ end;
 // Aplica color a los textos de los nodos dependiendo de los atributos del item
 procedure TForm1.DoColorear_Dependiendo_De_Los_Atributos(Data : TItemDato; NCanvas : TCanvas);
 begin
+  if not FUsarColorDiferenciarArchivos then exit;
+
   if (Data.Atributos and faSymLink{%H-})= faSymLink{%H-} then
     NCanvas.Font.Color := FColor_SymLink;
 
