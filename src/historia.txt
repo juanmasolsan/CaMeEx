@@ -1,5 +1,6 @@
 
 
+- [NEW]   (20230511) Ajustado el color de fondo de los nodos que son catalogos
 - [NEW]   (20230511) Agregado al nodo root del arbol información total de tamaño, directorios y archivos que contienen todos los catalogos.
 - [FIX]   (20230511) Fix posición de botones y lineas en arbol.
 - [NEW]   (20230511) Agregado en arbol en los nodos de catalogos información de directorios y archivos que contienen.

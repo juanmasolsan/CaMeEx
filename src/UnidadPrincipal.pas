@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 19:12:53
+ * @Last Modified time: 2023-05-11 19:27:31
  *)
 {
 
@@ -104,6 +104,7 @@ type
     IsRutaSeleccionada: Boolean;
     IsPrevExpanded    : Boolean;
     TipoCatalogo      : TItemDatoTipo;
+    TipoNode          : TItemDatoTipo;
     NodeData          : TItemDato;
   end;
 
@@ -226,7 +227,7 @@ type
     procedure DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
 
     procedure DoLiberarListaArchivos();
-    function AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo): boolean;
+    function AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo; TipoNode : TItemDatoTipo): boolean;
 
     procedure DoLiberarListaCatalogos();
     procedure DoLiberarListaDirectorios(Full: boolean);
@@ -1464,7 +1465,7 @@ begin
       NodeData := arbol.GetNodeData(Node);
       if NodeData <> nil then
       begin
-        ColorCatalogo := FColor_Catalogos[integer(NodeData^.TipoCatalogo)];
+        ColorCatalogo := GetColorCatalogo(integer(NodeData^.TipoCatalogo), NodeData^.TipoNode >= TItemDatoTipo.Root );
         if ColorCatalogo <> clNone then
           ItemColor := ColorCatalogo;
       end;
@@ -1501,7 +1502,7 @@ begin
         total := FListaArchivos.count -1;
         for t := 0 to total do
         begin
-          AddNode(Lista, TItemDato(FListaArchivos{%H-}[t]), nil, false, TItemDatoTipo.NoDefinido);
+          AddNode(Lista, TItemDato(FListaArchivos{%H-}[t]), nil, false, TItemDatoTipo.NoDefinido, TItemDato(FListaArchivos{%H-}[t]).Tipo);
 
           if TItemDato(FListaArchivos{%H-}[t]).Tipo = TItemDatoTipo.Directorio then
             inc(TotalDir)
@@ -1560,7 +1561,7 @@ begin
         total := FListaDirectorios.count -1;
         for t := inicio to total do
         begin
-          AddNode(Arbol, TItemDato(FListaDirectorios{%H-}[t]), Node, TItemDato(FListaDirectorios{%H-}[t]).TieneHijos, GetTipoNode(Node));
+          AddNode(Arbol, TItemDato(FListaDirectorios{%H-}[t]), Node, TItemDato(FListaDirectorios{%H-}[t]).TieneHijos, GetTipoNode(Node), TItemDato(FListaDirectorios{%H-}[t]).Tipo);
         end;
       end;
 
@@ -1610,7 +1611,7 @@ begin
         FNodeArbolDato.AddExtraInfo(TItemCatalogo(FListaCatalogos{%H-}[t]));
 
         // Añade el nodo al arbol
-        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbol, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
+        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbol, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
       end;
     end;
 
@@ -1627,7 +1628,7 @@ begin
   end;
 end;
 
-function TForm1.AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo): boolean;
+function TForm1.AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo; TipoNode : TItemDatoTipo): boolean;
 var
   Node   : PVirtualNode;
   Data   : PrListaData;
@@ -1644,6 +1645,7 @@ begin
   Data               := Sender.GetNodeData(Node);
   Data^.NodeData     := Dato;
   Data^.TipoCatalogo := TipoCatalogo;
+  Data^.TipoNode     := TipoNode;
   Result             := True;
 end;
 

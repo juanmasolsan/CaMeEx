@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 00:15:40
+ * @Last Modified time: 2023-05-11 19:32:22
  *)
 {
 
@@ -118,23 +118,42 @@ var
   FExtraInfoCatalogos                      : boolean = true;
 
 
+function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;
+
+
 implementation
 
 uses
   Utilidades
   ;
 
+var
+  // Colores de los catalogos
+  FColor_Catalogos_Nodo : array[0..9] of TColor;
+  FColor_Catalogos_Root : array[0..9] of TColor;
+
+
 
 procedure CalcularColores;
 var
   t: integer;
 begin
-
   for t := 0 to 9 do
   begin
-    FColor_Catalogos[t] := Blend(FColor_Catalogos[t], clWindow, 105);
+    //FColor_Catalogos2[t] := Blend(FColor_Catalogos2[t], clWindow, 105);
+    FColor_Catalogos_Nodo[t] := Blend(FColor_Catalogos[t], clWindow, 105);
+    FColor_Catalogos_Root[t] := Blend(FColor_Catalogos[t], clWindow, 110);
   end;
 end;
+
+function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;
+begin
+  if IsRoot then
+    Result := FColor_Catalogos_Root[Indice]
+  else
+    Result := FColor_Catalogos_Nodo[Indice];
+end;
+
 
 initialization
   CalcularColores;
