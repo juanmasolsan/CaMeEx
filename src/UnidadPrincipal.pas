@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 19:27:31
+ * @Last Modified time: 2023-05-11 22:53:34
  *)
 {
 
@@ -53,6 +53,7 @@ uses
   , ComCtrls
   , ExtCtrls, StdCtrls
   , laz.VirtualTrees
+  , VirtualTreesExtended
   , SynEdit
   , Control_Logger
   , Control_Formulario_Avanzado
@@ -64,40 +65,7 @@ uses
 
 
 
-const
-  CATALOGO_NODE_ALTURA = 35;
-  CATALOGO_NODE_ALTURA_EXTRA = 10;
-
 type
-  // Varios hacks para TLazVirtualStringTree
-  TLazVirtualStringTree = class(laz.VirtualTrees.TLazVirtualStringTree)
-  private
-    FDibujarInfoCatalogo : boolean;
-  protected
-    // Hack para evitar parpadeos en el dibujado
-    procedure WMEraseBkgnd(var Message: TLMEraseBkgnd); message LM_ERASEBKGND;
-
-    // Poder dibujar imagenes ghosted
-    procedure PaintImage(var PaintInfo: TVTPaintInfo; ImageInfoIndex: TVTImageInfoIndex; DoOverlay: Boolean); override;
-
-    // Dibujar los nodos
-    procedure DoPaintNode(var PaintInfo: TVTPaintInfo); override;
-
-    // Dibujar el texto de los nodos
-    procedure DoDibujarInfoCatalogo(var PaintInfo: TVTPaintInfo; Calcular : boolean); virtual;
-
-    // Dibujar el boton de los nodos
-    procedure PaintNodeButton(nCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex; const R: TRect; ButtonX, ButtonY: Integer; nBidiMode: TBiDiMode); override;
-
-    // Dibujar las lineas de los nodos
-    procedure PaintTreeLines(const PaintInfo: TVTPaintInfo; VAlignment, IndentSize: Integer; LineImage: TLineImage); override;
-
-  public
-    property DibujarInfoCatalogo: boolean read FDibujarInfoCatalogo write FDibujarInfoCatalogo;
-  end;
-
-
-
   // Defino la estructura interna de los datos de los nodos de la lista de archivos
   PrListaData = ^rTListaData;
   rTListaData = record
@@ -318,117 +286,8 @@ uses
 {$R *.lfm}
 
 
-// Hack para evitar parpadeos en el dibujado
-procedure TLazVirtualStringTree.WMEraseBkgnd(var Message: TLMEraseBkgnd);
-begin
-  inherited WMEraseBkgnd(Message);
-  Message.Result := 1; // Fake erase
-end;
-
-// Poder dibujar imagenes ghosted
-procedure TLazVirtualStringTree.PaintImage(var PaintInfo: TVTPaintInfo; ImageInfoIndex: TVTImageInfoIndex; DoOverlay: Boolean);
-var
-  TMP : TPortableNetworkGraphic;
-begin
-  DoDibujarInfoCatalogo(PaintInfo, true);
 
 
-  with PaintInfo do
-  begin
-    // Si no tiene asignada una imagen, salimos
-    if ImageInfo[ImageInfoIndex].Images = nil then
-      exit;
-
-    // Si es una imagen ghosted, la dibujamos con transparencia
-    if ImageInfo[ImageInfoIndex].Ghosted then
-    begin
-      // Crea un png para poder usar transparencias
-      TMP := TPortableNetworkGraphic.create();
-      try
-        if ImageInfo[ImageInfoIndex].Index < ImageInfo[ImageInfoIndex].Images.Count then
-        begin
-          // Recupera la imagen de la lista de imagenes
-          ImageInfo[ImageInfoIndex].Images.GetBitmap(ImageInfo[ImageInfoIndex].Index, TMP);
-
-          // Le aplica la transparencia
-          CrearTransparencia(TMP, 140, false);
-
-          // La dibuja
-          Canvas.Draw(ImageInfo[ImageInfoIndex].XPos, ImageInfo[ImageInfoIndex].YPos, TMP);
-        end;
-      finally
-        // Libera la imagen
-        TMP.Free;
-      end;
-    end
-    else
-      inherited PaintImage(PaintInfo, ImageInfoIndex, DoOverlay);
-  end;
-end;
-
-
-// Dibujar los nodos
-procedure TLazVirtualStringTree.DoPaintNode(var PaintInfo: TVTPaintInfo);
-var
-  Y : longint = -1;
-begin
-  DoDibujarInfoCatalogo(PaintInfo, true);
-
-  inherited DoPaintNode(PaintInfo);
-
-  if PaintInfo.Node = nil then exit;
-
-  //TODO: Implementar el dibujado
-end;
-
-// Dibujar el texto de los nodos
-procedure TLazVirtualStringTree.DoDibujarInfoCatalogo(var PaintInfo: TVTPaintInfo; Calcular : boolean);
-
-  procedure Gestionar_Imagenes(Cual : TVTImageInfoIndex);
-  begin
-    if PaintInfo.ImageInfo[Cual].Index = -1 then exit;
-    if PaintInfo.ImageInfo[Cual].YPos  <> 0 then
-      PaintInfo.ImageInfo[Cual].YPos := 2;
-  end;
-
-begin
-  if not FDibujarInfoCatalogo then exit;
-  if PaintInfo.Node = nil then exit;
-  if PaintInfo.Node^.NodeHeight <> CATALOGO_NODE_ALTURA then exit;
-
-  if Calcular then
-    begin
-      PaintInfo.CellRect.Bottom    := self.DefaultNodeHeight;
-      PaintInfo.ContentRect.Bottom := self.DefaultNodeHeight;
-      Gestionar_Imagenes(iiNormal);
-      Gestionar_Imagenes(iiState);
-      Gestionar_Imagenes(iiCheck);
-      Gestionar_Imagenes(iiOverlay);
-      exit;
-    end;
-end;
-
-// Dibujar el boton de los nodos
-procedure TLazVirtualStringTree.PaintNodeButton(nCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex; const R: TRect; ButtonX, ButtonY: Integer; nBidiMode: TBiDiMode);
-begin
-  if FDibujarInfoCatalogo and (Node^.NodeHeight = CATALOGO_NODE_ALTURA) then
-  begin
-    ButtonY := (self.DefaultNodeHeight div 3) -1;
-  end;
-
-  inherited PaintNodeButton(nCanvas, Node, Column, R, ButtonX, ButtonY, nBidiMode);
-end;
-
-// Dibujar las lineas de los nodos
-procedure TLazVirtualStringTree.PaintTreeLines(const PaintInfo: TVTPaintInfo; VAlignment, IndentSize: Integer; LineImage: TLineImage);
-begin
-  if FDibujarInfoCatalogo and (PaintInfo.CellRect.Bottom = CATALOGO_NODE_ALTURA) then
-  begin
-    VAlignment := self.DefaultNodeHeight div 2;
-  end;
-
-  inherited PaintTreeLines(PaintInfo, VAlignment, IndentSize, LineImage);
-end;
 
 
 function Get_Titulo_Ventana(MostarTituloApp : boolean; Extra : string = ''; Version : boolean = true): string;
