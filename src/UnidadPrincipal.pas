@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 22:53:34
+ * @Last Modified time: 2023-05-11 23:40:38
  *)
 {
 
@@ -87,6 +87,8 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItem_Arbol_Catalogo_Botones_Modernos: TMenuItem;
+    MenuItem_Arbol_Catalogos_AutoOculta_Botones: TMenuItem;
     MenuItem_Catalogos_Mostrar_Info_extra: TMenuItem;
     MenuItem_Catalogos_color: TMenuItem;
     MenuItem_Catalogos: TMenuItem;
@@ -157,6 +159,8 @@ type
       {%H-}TextType: TVSTTextType);
     procedure ListaResize(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
+    procedure MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(Sender: TObject);
+    procedure MenuItem_Arbol_Catalogo_Botones_ModernosClick(Sender: TObject);
     procedure MenuItem_Catalogos_colorClick(Sender: TObject);
     procedure MenuItem_Catalogos_Mostrar_Info_extraClick(Sender: TObject);
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
@@ -839,6 +843,21 @@ end;
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
 begin
   Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
+end;
+
+procedure TForm1.MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(
+  Sender: TObject);
+begin
+  FAutoOcultarBotonesArbol         := MenuItem_Arbol_Catalogos_AutoOculta_Botones.Checked;
+  Arbol.OcultarBotonesAlperderFoco := FAutoOcultarBotonesArbol;
+  Arbol.RePaint;
+end;
+
+procedure TForm1.MenuItem_Arbol_Catalogo_Botones_ModernosClick(Sender: TObject);
+begin
+  FVerBotonesArbolModernos     := MenuItem_Arbol_Catalogo_Botones_Modernos.Checked;
+  Arbol.DibujarBotonesModernos := FVerBotonesArbolModernos;
+  Arbol.RePaint;
 end;
 
 procedure TForm1.MenuItem_Catalogos_colorClick(Sender: TObject);

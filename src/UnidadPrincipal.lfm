@@ -757,7 +757,17 @@ object Form1: TForm1
         Caption = '-'
       end
       object MenuItem_Catalogos: TMenuItem
-        Caption = 'Catálogos'
+        Caption = 'Arbol Catálogos'
+        object MenuItem_Arbol_Catalogos_AutoOculta_Botones: TMenuItem
+          AutoCheck = True
+          Caption = 'Auto Ocultar Botones'
+          OnClick = MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick
+        end
+        object MenuItem_Arbol_Catalogo_Botones_Modernos: TMenuItem
+          AutoCheck = True
+          Caption = 'Ver Botones Modernos'
+          OnClick = MenuItem_Arbol_Catalogo_Botones_ModernosClick
+        end
         object MenuItem_Catalogos_color: TMenuItem
           AutoCheck = True
           Caption = 'Activar color de fondo'

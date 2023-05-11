@@ -118,6 +118,13 @@ var
   FExtraInfoCatalogos                      : boolean = true;
 
 
+  // Para auto ocultar los botones de expandir/colapsar del arbol de catalogos
+  FAutoOcultarBotonesArbol                 : boolean = true;
+
+  // Mostrar los botones de expandir/colapsar del arbol de catalogos con un estilo moderno
+  FVerBotonesArbolModernos                 : boolean = true;
+
+
 function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;
 
 

@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230511) Agregado configuración de los botones del arbol
 - [NEW]   (20230511) Agregado VirtualTreesExtended para hacer el VirtualTrees más completo.
 - [NEW]   (20230511) Ajustado el color de fondo de los nodos que son catalogos
 - [NEW]   (20230511) Agregado al nodo root del arbol información total de tamaño, directorios y archivos que contienen todos los catalogos.

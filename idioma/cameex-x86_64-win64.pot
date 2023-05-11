@@ -70,9 +70,17 @@ msgstr ""
 msgid "Ver"
 msgstr ""
 
+#: tform1.menuitem_arbol_catalogos_autooculta_botones.caption
+msgid "Auto Ocultar Botones"
+msgstr ""
+
+#: tform1.menuitem_arbol_catalogo_botones_modernos.caption
+msgid "Ver Botones Modernos"
+msgstr ""
+
 #: tform1.menuitem_catalogos.caption
 msgctxt "tform1.menuitem_catalogos.caption"
-msgid "Catálogos"
+msgid "Arbol Catálogos"
 msgstr ""
 
 #: tform1.menuitem_catalogos_color.caption

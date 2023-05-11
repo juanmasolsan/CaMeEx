@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-11 22:46:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 23:15:35
+ * @Last Modified time: 2023-05-11 23:40:04
  *)
 {
 
@@ -53,6 +53,9 @@ type
   private
     FDibujarInfoCatalogo     : boolean;
     FDibujarBotonesModernos  : Boolean;
+    FOcultarBotonesAlperderFoco : boolean;
+
+    procedure SetOcultarBotonesAlperderFoco(Value : Boolean);
   protected
     // Hack para evitar parpadeos en el dibujado
     procedure WMEraseBkgnd(var Message: TLMEraseBkgnd); message LM_ERASEBKGND;
@@ -75,12 +78,20 @@ type
     // Dibujar los botones de los nodos
     procedure DoDibujarBotones(Node: PVirtualNode; zCanvas : TCanvas; X, Y : integer);
 
+    // Para controlar la entrada y salida del arbol
+    procedure DoEnter; override;
+    procedure DoExit; override;
+    procedure MouseEnter; override;
+    procedure MouseLeave; override;
+
+
   public
     // Constructor
     constructor Create(AOwner: TComponent); override;
 
-    property DibujarInfoCatalogo       : boolean read FDibujarInfoCatalogo write FDibujarInfoCatalogo;
-    property DibujarBotonesModernos    : Boolean read FDibujarBotonesModernos write FDibujarBotonesModernos;
+    property DibujarInfoCatalogo        : boolean read FDibujarInfoCatalogo write FDibujarInfoCatalogo;
+    property DibujarBotonesModernos     : Boolean read FDibujarBotonesModernos write FDibujarBotonesModernos;
+    property OcultarBotonesAlperderFoco : boolean read FOcultarBotonesAlperderFoco write SetOcultarBotonesAlperderFoco;
   end;
 
 
@@ -110,6 +121,7 @@ begin
   Colors.DropTargetBorderColor            := Colors.UnfocusedSelectionBorderColor;
 
   FDibujarBotonesModernos                 := false;
+  FOcultarBotonesAlperderFoco             := false;
 end;
 
 
@@ -326,5 +338,53 @@ begin
   end;
 end;
 
+
+procedure TLazVirtualStringTree.SetOcultarBotonesAlperderFoco(Value : Boolean);
+begin
+  if FOcultarBotonesAlperderFoco <> Value then
+  begin
+    FOcultarBotonesAlperderFoco := Value;
+    if not FOcultarBotonesAlperderFoco then
+      TreeOptions.PaintOptions := TreeOptions.PaintOptions + [toShowButtons]
+    else
+      TreeOptions.PaintOptions := TreeOptions.PaintOptions - [toShowButtons]
+  end;
+end;
+
+
+procedure TLazVirtualStringTree.DoExit;
+begin
+  if FOcultarBotonesAlperderFoco then
+    TreeOptions.PaintOptions := TreeOptions.PaintOptions - [toShowButtons];
+
+  inherited DoExit;
+end;
+
+
+procedure TLazVirtualStringTree.DoEnter;
+begin
+  if FOcultarBotonesAlperderFoco then
+    TreeOptions.PaintOptions := TreeOptions.PaintOptions + [toShowButtons];
+
+  inherited DoEnter;
+end;
+
+
+procedure TLazVirtualStringTree.MouseEnter;
+begin
+  if FOcultarBotonesAlperderFoco then
+    TreeOptions.PaintOptions := TreeOptions.PaintOptions + [toShowButtons];
+
+  inherited MouseEnter;
+end;
+
+
+procedure TLazVirtualStringTree.MouseLeave;
+begin
+  if FOcultarBotonesAlperderFoco then
+    TreeOptions.PaintOptions := TreeOptions.PaintOptions - [toShowButtons];
+
+  inherited MouseLeave;
+end;
 
 end.
