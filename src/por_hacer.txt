@@ -104,7 +104,7 @@
 +         Al cambiar de directorio que muestre info del mismo en la barra de estado
 +         Que el arbol dibuje el fondo de los nodos acorde a colores definidos por cada tipo de catalogo
 +         Que los nodos del tipo root del arbol muestren información del catalogo, Archivos, directorios y total ocupado
--         Que el nodo root del arbol muestren información de la suma de todos los catalogos, Archivos, directorios y total ocupado
++         Que el nodo root del arbol muestren información de la suma de todos los catalogos, Archivos, directorios y total ocupado
 -         Que los nodos del tipo catalogo el color de fondo sea ligeramente mas oscuro que el de los demas nodos de ese catalogo
 -         Configurar lineas del arbol
 -         Configurar botones del arbol
@@ -114,7 +114,7 @@
 -         Poder crear nuevos catalogos
 -         Poder eliminar datos
 -         Poder mostrar propiedades de catalogos y datos
-
+-         Al tener los nodos de catalogos más grandes no dibuja correctamente los nodos del final de la lista
 +         Que el arbol tenga un nodo root en vez de una columna
 +         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 -         Agregar breadcrumbs.

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 16:39:00
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 18:04:42
+ * @Last Modified time: 2023-05-11 19:14:09
  *)
 {
 
@@ -57,6 +57,12 @@ type
     // Constructor de la clase
     constructor Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64; const ADescripcion: RawByteString = ''; ATotalArchivos: Qword = 0; ATotalDirectorios: Qword = 0);
 
+    // Agrega información extra
+    procedure AddExtraInfo(catalogo : TItemCatalogo);
+
+    // Resetea la información extra
+    procedure ResetExtraInfo();
+
     // Propiedades
     property Descripcion     : RawByteString read FDescripcion write FDescripcion;
     property TotalArchivos   : Qword         read FTotalArchivos write FTotalArchivos;
@@ -82,5 +88,22 @@ function TItemCatalogo.DoGenerarId(const extra: string): Qword;
 begin
   Result := inherited DoGenerarId(extra);
 end;
+
+// Agrega información extra
+procedure TItemCatalogo.AddExtraInfo(catalogo : TItemCatalogo);
+begin
+  FTotalArchivos    += catalogo.TotalArchivos;
+  FTotalDirectorios += catalogo.TotalDirectorios;
+  Size              := Size + catalogo.Size;
+end;
+
+// Resetea la información extra
+procedure TItemCatalogo.ResetExtraInfo();
+begin
+  FTotalArchivos    := 0;
+  FTotalDirectorios := 0;
+  Size              := 0;
+end;
+
 
 end.

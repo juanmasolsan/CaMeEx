@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 19:02:00
+ * @Last Modified time: 2023-05-11 19:12:53
  *)
 {
 
@@ -1594,6 +1594,10 @@ begin
     // Crea el nodo raiz del arbol
     DoCrearNodoRootArbol();
 
+
+    // Resetea la información extra del nodo raiz
+    FNodeArbolDato.ResetExtraInfo();
+
     // Carga los datos del catalogo
     FListaCatalogos := FGestorDatos.GetAllCatalogos();
     if assigned(FListaCatalogos) then
@@ -1602,6 +1606,10 @@ begin
       total := FListaCatalogos.count -1;
       for t := 0 to total do
       begin
+        // Añade la información extra del nodo raiz
+        FNodeArbolDato.AddExtraInfo(TItemCatalogo(FListaCatalogos{%H-}[t]));
+
+        // Añade el nodo al arbol
         AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbol, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
       end;
     end;
@@ -1618,7 +1626,6 @@ begin
     Arbol.EndUpdate;
   end;
 end;
-
 
 function TForm1.AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo): boolean;
 var
