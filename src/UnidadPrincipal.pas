@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 17:01:09
+ * @Last Modified time: 2023-05-11 18:49:59
  *)
 {
 
@@ -65,7 +65,7 @@ uses
 
 
 const
-  CATALOGO_NODE_ALTURA = 30;
+  CATALOGO_NODE_ALTURA = 35;
   CATALOGO_NODE_ALTURA_EXTRA = 10;
 
 type
@@ -1375,7 +1375,9 @@ var
 
   NodeData : PrListaData;
   Datos    : TItemCatalogo;
+  PosX     : longint;
 
+  IsSelected : boolean;
 begin
   if not FExtraInfoCatalogos then
     exit;
@@ -1403,17 +1405,36 @@ begin
           Datos := TItemCatalogo(NodeData^.NodeData);
           if Datos <> nil then
           begin
+            IsSelected := (vsSelected in Node^.States) or (arbol.hotnode = Node);
+
             // Dibuja el nombre del catalogo
             TargetCanvas.TextOut(CellRect.Left, CellRect.Top + 2, CellText);
 
             // Dibuja el tamaño del catalogo
             TargetCanvas.Font.Style := [fsBold];
             TargetCanvas.Font.Size := 8;
-            if not (vsSelected in Node^.States) then
+            if not IsSelected then
               TargetCanvas.Font.Color := clgreen;
 
             TargetCanvas.TextOut(TargetCanvas.PenPos.X + 5, TargetCanvas.PenPos.Y + 1, ' [' +ConvertirSizeEx(Datos.Size) + ']');
 
+            // Dibuja info extra
+            TargetCanvas.Font.Color  := PreColor;
+            TargetCanvas.Font.Style := [];
+            TargetCanvas.Font.Size := 8;
+            if not IsSelected then
+              TargetCanvas.Font.Color := clgreen;
+
+            // Dibuja el número de directorio
+            TargetCanvas.TextOut(CellRect.Left, TargetCanvas.PenPos.Y + 15, 'Directorios :');
+            TargetCanvas.Font.Style := [fsBold];
+            TargetCanvas.TextOut(TargetCanvas.PenPos.X + 5, TargetCanvas.PenPos.Y, PuntearNumeracion(Datos.TotalDirectorios));
+
+            // Dibuja el número de Archivos
+            TargetCanvas.Font.Style := [];
+            TargetCanvas.TextOut(CellRect.Left + 120, TargetCanvas.PenPos.Y, 'Archivos :');
+            TargetCanvas.Font.Style := [fsBold];
+            TargetCanvas.TextOut(TargetCanvas.PenPos.X + 5, TargetCanvas.PenPos.Y, PuntearNumeracion(Datos.TotalArchivos));
           end;
         end;
       except

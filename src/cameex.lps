@@ -20,10 +20,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="1368"/>
-        <CursorPos X="50" Y="1382"/>
+        <TopLine Value="1409"/>
+        <CursorPos Y="1426"/>
         <UsageCount Value="120"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -39,6 +38,7 @@
       <Unit>
         <Filename Value="por_hacer.txt"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="81"/>
         <CursorPos X="44" Y="104"/>
@@ -382,15 +382,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="408" Column="45" TopLine="400"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="632" Column="135" TopLine="625"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="1596" Column="30" TopLine="1584"/>
@@ -498,6 +490,18 @@
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="429" Column="50" TopLine="417"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1425" TopLine="1413"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1431" Column="62" TopLine="1419"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1416" Column="20" TopLine="1409"/>
       </Position>
     </JumpHistory>
     <RunParams>
