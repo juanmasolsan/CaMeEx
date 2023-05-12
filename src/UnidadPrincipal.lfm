@@ -878,6 +878,9 @@ object Form1: TForm1
           RadioItem = True
           OnClick = MenuItem_Perfil_MixtoClick
         end
+        object Separator9: TMenuItem
+          Caption = '-'
+        end
         object MenuItem_Perfil_Retro: TMenuItem
           Tag = 1
           AutoCheck = True
