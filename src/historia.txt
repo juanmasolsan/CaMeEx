@@ -1,11 +1,14 @@
 
+
+- [NEW]   (20230512) Agregado configuración de resalto de la columna de orden en la lista de archivos.
+
 + 1.1.7.6
-- [NEW]   (20230512) Agregado configuración de ver colores según los atributos de archivo
-- [FIX]   (20230512) Fix correcto gaurdado y recuperación de la configuración
-- [NEW]   (20230512) Agregado configuración de las lineas del arbol
+- [NEW]   (20230512) Agregado configuración de ver colores según los atributos de archivo.
+- [FIX]   (20230512) Fix correcto gaurdado y recuperación de la configuración.
+- [NEW]   (20230512) Agregado configuración de las lineas del arbol.
 
 + 1.1.7.3
-- [NEW]   (20230511) Agregado configuración de los botones del arbol
+- [NEW]   (20230511) Agregado configuración de los botones del arbol.
 - [NEW]   (20230511) Agregado VirtualTreesExtended para hacer el VirtualTrees más completo.
 - [NEW]   (20230511) Ajustado el color de fondo de los nodos que son catalogos
 - [NEW]   (20230511) Agregado al nodo root del arbol información total de tamaño, directorios y archivos que contienen todos los catalogos.

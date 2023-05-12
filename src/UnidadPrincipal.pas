@@ -441,6 +441,10 @@ begin
   // Carga la configuración del formato del tamaño
   FFormatoSize             := TFormatoSize(ArchivoConfiguracion.ReadInteger('Config', 'FormatoSize', integer(FFormatoSize)));
 
+  // Carga la configuración de resalto de la columna por la que se ordena
+  FResaltarColumnaOrden    := ArchivoConfiguracion.ReadBool('Config', 'ResaltarColumnaOrden', FResaltarColumnaOrden);
+
+
   // Carga la configuración de la forma en la que mostrar los iconos
   FFormatoIconos           := TFormatoIconos(ArchivoConfiguracion.ReadInteger('Config', 'FormatoIconos', integer(FFormatoIconos)));
 
@@ -466,6 +470,8 @@ begin
   FVerLineasArbol           := ArchivoConfiguracion.ReadBool('Config', 'VerLineasArbol', FVerLineasArbol);
   FVerLineasArbol_Punteadas := ArchivoConfiguracion.ReadBool('Config', 'VerLineasArbol_Punteadas', FVerLineasArbol_Punteadas);
 
+
+
   // Carga la configuración para diferenciar los archivos por colores
   FUsarColorDiferenciarArchivos:= ArchivoConfiguracion.ReadBool('Config', 'UsarColorDiferenciarArchivos', FUsarColorDiferenciarArchivos);
 
@@ -481,8 +487,11 @@ begin
   // Guarda la configuración del formato del tamaño
   ArchivoConfiguracion.WriteInteger('Config', 'FormatoSize', integer(FFormatoSize));
 
+  // Guarda la configuración de resalto de la columna por la que se ordena
+  ArchivoConfiguracion.ReadBool('Config', 'ResaltarColumnaOrden', FResaltarColumnaOrden);
+
   // Guarda la configuración de la forma en la que mostrar los iconos
-  ArchivoConfiguracion.WriteInteger('Config', 'FormatoIconos', integer(FFormatoIconos));
+  ArchivoConfiguracion.WriteBool('Config', 'FormatoIconos', FResaltarColumnaOrden);
 
   // Guarda la configuración de las columnas
   if (Lista.Header.Columns.Count -1) > 1 then
@@ -526,6 +535,9 @@ begin
 
     // Aplica la configuración del formato del tamaño
     MenuItem_Sizes.Items[longint(FFormatoSize)].Checked := true;
+
+    // Guarda la configuración de la forma en la que mostrar los iconos
+    MenuItem_Lista_de_Archivos_Resaltar_Columna_Orden.Checked := FResaltarColumnaOrden;
 
     // Aplica la configuración del formato de los iconos
     MenuItem_Iconos.Items[longint(FFormatoIconos)].Checked  := true;
@@ -964,7 +976,10 @@ end;
 procedure TForm1.MenuItem_Lista_de_Archivos_Resaltar_Columna_OrdenClick(
   Sender: TObject);
 begin
-  //TODO: Implementar
+  if FAplicandoConfig then exit;
+  FResaltarColumnaOrden := MenuItem_Lista_de_Archivos_Resaltar_Columna_Orden.Checked;
+
+  DoConfiguracionAplicar();
 end;
 
 procedure TForm1.MenuItem_Size_NormalClick(Sender: TObject);
