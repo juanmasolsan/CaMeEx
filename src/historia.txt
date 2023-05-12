@@ -1,5 +1,6 @@
 
 
+- [NEW]   (20230512) Agregado perfil de configuración moderno
 - [NEW]   (20230512) Agregado perfil retro de configuración.
 - [NEW]   (20230512) Agregado perfil por defecto de configuración.
 - [FIX]   (20230512) Fix en el arbol conj el cálculo de las scrollbars

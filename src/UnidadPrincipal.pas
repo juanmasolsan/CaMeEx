@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-12 23:31:54
+ * @Last Modified time: 2023-05-12 23:37:35
  *)
 {
 
@@ -1021,7 +1021,19 @@ begin
                         FVerLineasArbol               := true;
                         FVerLineasArbol_Punteadas     := true;
                       end;
-    PERFIL_MODERNO : beep;
+    PERFIL_MODERNO : begin
+                        FFormatoSize                  := TFormatoSize.Automatico;
+                        FFormatoIconos                := TFormatoIconos.Sistema;
+                        FResaltarColumnaOrden         := true;
+                        FUsarColorDiferenciarArchivos := true;
+                        FUsarColoresCatalogos         := true;
+                        FExtraInfoCatalogos           := true;
+                        FAutoOcultarBotonesArbol      := true;
+                        FVerBotonesArbolModernos      := true;
+                        FVerLineasArbol               := false;
+                        FVerLineasArbol_Punteadas     := false;
+                      end;
+
     PERFIL_MIXTO   : beep;
   end;
 
