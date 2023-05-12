@@ -1,5 +1,5 @@
 
-
+- [FIX]   (20230513) Fix al activar/desactivar el tamaño de los nodos root en el arbol de directorios.
 - [FIX]   (20230513) Agregado separador en los menuItems de los perfiles.
 - [FIX]   (20230513) Fix en el guardado de la configuración del programa.
 

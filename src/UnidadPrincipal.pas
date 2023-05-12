@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-12 23:58:23
+ * @Last Modified time: 2023-05-13 00:13:54
  *)
 {
 
@@ -586,6 +586,11 @@ begin
     MenuItem_Arbol_Catalogo_Ver_Lineas.Checked            := FVerLineasArbol;
     MenuItem_Ver_Colores_Atributos.Checked                := FUsarColorDiferenciarArchivos;
 
+
+    // Aplica la configuración a los root del arbol
+    DoAjustarNodosCatalogos();
+
+
     // Aplica la configuración al arbol
     Arbol.Repaint;
 
@@ -974,8 +979,6 @@ begin
   FExtraInfoCatalogos := MenuItem_Catalogos_Mostrar_Info_extra.Checked;
 
   DoConfiguracionAplicar();
-
-  DoAjustarNodosCatalogos();
 
   Arbol.Repaint;
 end;
@@ -1974,6 +1977,7 @@ begin
   Data                       := Arbol.GetNodeData(FNodeArbol);
   Data^.NodeData             := FNodeArbolDato;
   Data^.TipoCatalogo         := TItemDatoTipo.Root;
+  Data^.TipoNode             := TItemDatoTipo.Root;
 
 
   Arbol.Expanded[FNodeArbol] := true;
@@ -2003,28 +2007,36 @@ end;
 procedure Tform1.DoAjustarNodosCatalogos();
 
   procedure AjustarNodo(Node : PVirtualNode);
+  var
+    NodeData: PrListaData;
   begin
-      if not FExtraInfoCatalogos then
-        Node^.NodeHeight := Arbol.DefaultNodeHeight
-      else
-        Node^.NodeHeight := CATALOGO_NODE_ALTURA;
+    try
+      NodeData := arbol.GetNodeData(Node);
+      if (NodeData <> nil)  and (NodeData^.TipoNode >= TItemDatoTipo.Root) then
+      begin
+        if not FExtraInfoCatalogos then
+          Node^.NodeHeight := Arbol.DefaultNodeHeight
+        else
+          Node^.NodeHeight := CATALOGO_NODE_ALTURA;
+      end;
+    except
+    end;
   end;
 
 var
   Node : PVirtualNode;
 begin
-  Node := Arbol.GetFirstChild(FNodeArbol);
+  Node := Arbol.GetFirst();
   while Node <> nil do
     begin
       // ajusta el nodo
       AjustarNodo(Node);
 
-      Node := Arbol.GetNextSibling(Node);
+      Node := Arbol.GetNext(Node);
     end;
 
   // Ajusta el alto del nodo raiz
   AjustarNodo(FNodeArbol);
-
 end;
 
 
