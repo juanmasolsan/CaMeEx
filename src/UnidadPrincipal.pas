@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-12 23:44:34
+ * @Last Modified time: 2023-05-12 23:58:23
  *)
 {
 
@@ -498,11 +498,11 @@ begin
   // Guarda la configuración del formato del tamaño
   ArchivoConfiguracion.WriteInteger('Config', 'FormatoSize', integer(FFormatoSize));
 
-  // Guarda la configuración de resalto de la columna por la que se ordena
-  ArchivoConfiguracion.ReadBool('Config', 'ResaltarColumnaOrden', FResaltarColumnaOrden);
+  // Guarda la configuración de la forma en la que mostrar los iconos
+  ArchivoConfiguracion.WriteInteger('Config', 'FormatoIconos', integer(FFormatoIconos));
 
   // Guarda la configuración de la forma en la que mostrar los iconos
-  ArchivoConfiguracion.WriteBool('Config', 'FormatoIconos', FResaltarColumnaOrden);
+  ArchivoConfiguracion.WriteBool('Config', 'ResaltarColumnaOrden', FResaltarColumnaOrden);
 
   // Guarda la configuración de las columnas
   if (Lista.Header.Columns.Count -1) > 1 then
@@ -531,6 +531,9 @@ begin
 
   // Guarda la configuración para diferenciar los archivos por colores
   ArchivoConfiguracion.WriteBool('Config', 'UsarColorDiferenciarArchivos', FUsarColorDiferenciarArchivos);
+
+  // Guarda la configuración en el archivo
+  ArchivoConfiguracion.UpdateFile;
 
 end;
 

@@ -1,4 +1,7 @@
 
+- [FIX]   (20230513) Fix en el guardado de la configuración del programa.
+
++ 1.1.8.2
 - [NEW]   (20230512) Agregado perfil de configuración mixto
 - [NEW]   (20230512) Agregado perfil de configuración moderno
 - [NEW]   (20230512) Agregado perfil retro de configuración.
