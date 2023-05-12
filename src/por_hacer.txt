@@ -109,14 +109,14 @@
 +         Configurar lineas del arbol
 +         Configurar botones del arbol
 +         Configurar ver colores de atributos
++         Que el arbol tenga un nodo root en vez de una columna
++         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
++         Al tener los nodos de catalogos más grandes no dibuja correctamente los nodos del final de la lista
 -         Poder eliminar los catalogos
 -         Poder editar los catalogos
 -         Poder crear nuevos catalogos
 -         Poder eliminar datos
 -         Poder mostrar propiedades de catalogos y datos
--         Al tener los nodos de catalogos más grandes no dibuja correctamente los nodos del final de la lista
-+         Que el arbol tenga un nodo root en vez de una columna
-+         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 -         Agregar breadcrumbs.
 -         Historial de navegación.
 -         Ventana para seleccionar el dispositivo/directorio a escanear.

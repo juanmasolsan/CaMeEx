@@ -1,5 +1,6 @@
 
 
+- [FIX]   (20230512) Fix en el arbol conj el cálculo de las scrollbars
 - [NEW]   (20230512) Agregado configuración de resalto de la columna de orden en la lista de archivos.
 
 + 1.1.7.6

@@ -56,7 +56,7 @@ type
     FOcultarBotonesAlperderFoco : boolean;
     FMostrarLineasArbol          : boolean;
     FMostrarLineasArbolPunteadas : boolean;
-
+    FMaxOffset_Y     : longint;
     procedure SetOcultarBotonesAlperderFoco(Value : Boolean);
     procedure SetMostrarLineasArbol(Value : Boolean);
     procedure SetMostrarLineasArbolPunteadas(Value : Boolean);
@@ -88,10 +88,16 @@ type
     procedure MouseEnter; override;
     procedure MouseLeave; override;
 
+    // Calcula el tamaño de todos los nodos en pantanlla
+    procedure DoUpdateScrollBars;
+
 
   public
     // Constructor
     constructor Create(AOwner: TComponent); override;
+
+    // Para poder captura el calculo de las scrollbar y reajustar el alto
+    procedure UpdateScrollBars(DoRepaint: Boolean); override;
 
     property DibujarInfoCatalogo        : boolean read FDibujarInfoCatalogo write FDibujarInfoCatalogo;
     property DibujarBotonesModernos     : Boolean read FDibujarBotonesModernos write FDibujarBotonesModernos;
@@ -423,5 +429,36 @@ begin
     LineStyle := lsSolid;
   end;
 end;
+
+procedure TLazVirtualStringTree.UpdateScrollBars(DoRepaint: Boolean);
+begin
+  DoUpdateScrollBars;
+  RootNode^.TotalHeight := FMaxOffset_Y;
+
+  inherited UpdateScrollBars(DoRepaint);
+end;
+
+procedure TLazVirtualStringTree.DoUpdateScrollBars;
+var
+ Nodo_Ancho : longint;
+
+ function Calcular_Maximo_Alto : longint;
+ var
+  Node :  PVirtualNode;
+ begin
+  Result := 0;
+  Node := GetFirstVisible;
+  while Node <> nil do
+   begin
+    inc(Result, Node^.NodeHeight);
+    Node := GetNextVisible(Node);
+   end;
+ end;
+
+begin
+  FMaxOffset_Y :=   Calcular_Maximo_Alto;
+  inc(FMaxOffset_Y, DefaultNodeHeight);
+end;
+
 
 end.

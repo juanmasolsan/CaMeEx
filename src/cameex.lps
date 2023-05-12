@@ -11,7 +11,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="55"/>
         <CursorPos X="44" Y="69"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="124"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,11 +20,10 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="481"/>
-        <CursorPos X="84" Y="494"/>
-        <UsageCount Value="123"/>
+        <CursorPos X="95" Y="494"/>
+        <UsageCount Value="124"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,7 +31,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="31" Y="6"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="124"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -42,7 +41,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="71"/>
         <CursorPos X="52" Y="92"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="124"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -51,7 +50,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="124"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Formulario_Avanzado.pas"/>
@@ -59,7 +58,7 @@
         <EditorIndex Value="9"/>
         <TopLine Value="314"/>
         <CursorPos X="63" Y="325"/>
-        <UsageCount Value="122"/>
+        <UsageCount Value="123"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -69,7 +68,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="118"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -78,14 +77,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="117"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="113"/>
       </Unit>
       <Unit>
         <Filename Value="Utilidades.pas"/>
@@ -93,7 +92,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <CursorPos X="37" Y="93"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadScan.pas"/>
@@ -104,7 +103,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
         <CursorPos X="36" Y="74"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="104"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
@@ -112,7 +111,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="113"/>
         <CursorPos Y="129"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="93"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -120,7 +119,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="91"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -260,7 +259,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="125"/>
         <CursorPos X="75" Y="136"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -296,9 +295,9 @@
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
         <UnitName Value="laz.VirtualTrees"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="28968"/>
-        <CursorPos Y="28981"/>
-        <UsageCount Value="29"/>
+        <TopLine Value="3252"/>
+        <CursorPos Y="3263"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -306,7 +305,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="71"/>
         <CursorPos X="24" Y="83"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -314,7 +313,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="96"/>
         <CursorPos X="40" Y="113"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -384,32 +383,15 @@
       </Unit>
       <Unit>
         <Filename Value="components\VirtualTreesExtended.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="428"/>
+        <CursorPos Y="437"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="959" Column="22" TopLine="955"/>
-      </Position>
-      <Position>
-        <Filename Value="Configuracion.pas"/>
-        <Caret Line="97" Column="24" TopLine="81"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="962" TopLine="945"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1694" Column="61" TopLine="1680"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1701" Column="50" TopLine="1680"/>
-      </Position>
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="1693" Column="57" TopLine="1680"/>
@@ -509,6 +491,26 @@
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="541" Column="87" TopLine="519"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="96" Column="72" TopLine="82"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
+        <Caret Line="3263" Column="31" TopLine="3255"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
+        <Caret Line="32924" Column="3" TopLine="32917"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="96" Column="75" TopLine="82"/>
+      </Position>
+      <Position>
+        <Filename Value="components\VirtualTreesExtended.pas"/>
+        <Caret Line="459" TopLine="444"/>
       </Position>
     </JumpHistory>
     <RunParams>
