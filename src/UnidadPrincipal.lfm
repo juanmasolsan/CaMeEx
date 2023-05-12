@@ -866,6 +866,43 @@ object Form1: TForm1
         Caption = 'Usar colores para diferenciar los archivos'
         OnClick = MenuItem_Ver_Colores_AtributosClick
       end
+      object Separator8: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem_Perfiles: TMenuItem
+        Caption = 'Perfiles'
+        object MenuItem_Perfil_PorDefecto: TMenuItem
+          AutoCheck = True
+          Caption = 'Por Defecto'
+          GroupIndex = 1
+          RadioItem = True
+          OnClick = MenuItem_Perfil_MixtoClick
+        end
+        object MenuItem_Perfil_Retro: TMenuItem
+          Tag = 1
+          AutoCheck = True
+          Caption = 'Retro'
+          GroupIndex = 1
+          RadioItem = True
+          OnClick = MenuItem_Perfil_MixtoClick
+        end
+        object MenuItem_Perfil_Moderno: TMenuItem
+          Tag = 2
+          AutoCheck = True
+          Caption = 'Moderno'
+          GroupIndex = 1
+          RadioItem = True
+          OnClick = MenuItem_Perfil_MixtoClick
+        end
+        object MenuItem_Perfil_Mixto: TMenuItem
+          Tag = 3
+          AutoCheck = True
+          Caption = 'Mixto'
+          GroupIndex = 1
+          RadioItem = True
+          OnClick = MenuItem_Perfil_MixtoClick
+        end
+      end
     end
     object MenuItem3: TMenuItem
       Caption = 'Ayuda'

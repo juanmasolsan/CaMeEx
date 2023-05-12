@@ -1,5 +1,7 @@
 
 
+- [NEW]   (20230512) Agregado perfil retro de configuración.
+- [NEW]   (20230512) Agregado perfil por defecto de configuración.
 - [FIX]   (20230512) Fix en el arbol conj el cálculo de las scrollbars
 - [NEW]   (20230512) Agregado configuración de resalto de la columna de orden en la lista de archivos.
 

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-12 00:19:48
+ * @Last Modified time: 2023-05-12 23:31:54
  *)
 {
 
@@ -87,6 +87,11 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItem_Perfil_PorDefecto: TMenuItem;
+    MenuItem_Perfil_Mixto: TMenuItem;
+    MenuItem_Perfil_Moderno: TMenuItem;
+    MenuItem_Perfil_Retro: TMenuItem;
+    MenuItem_Perfiles: TMenuItem;
     MenuItem_Ver_Colores_Atributos: TMenuItem;
     MenuItem_Lista_de_Archivos_Resaltar_Columna_Orden: TMenuItem;
     MenuItem_Lista_de_Archivos: TMenuItem;
@@ -122,6 +127,7 @@ type
     Separator5: TMenuItem;
     Separator6: TMenuItem;
     Separator7: TMenuItem;
+    Separator8: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
@@ -176,6 +182,7 @@ type
     procedure MenuItem_Iconos_PorDefectoClick(Sender: TObject);
     procedure MenuItem_Lista_de_Archivos_Resaltar_Columna_OrdenClick(
       Sender: TObject);
+    procedure MenuItem_Perfil_MixtoClick(Sender: TObject);
     procedure MenuItem_Size_NormalClick(Sender: TObject);
     procedure MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
     procedure PanelInferiorResize(Sender: TObject);
@@ -302,7 +309,11 @@ uses
 
 {$R *.lfm}
 
-
+const
+  PERFIL_DEFECTO = 0;
+  PERFIL_RETRO   = PERFIL_DEFECTO + 1;
+  PERFIL_MODERNO = PERFIL_RETRO + 1;
+  PERFIL_MIXTO   = PERFIL_MODERNO + 1;
 
 
 
@@ -980,6 +991,43 @@ begin
   FResaltarColumnaOrden := MenuItem_Lista_de_Archivos_Resaltar_Columna_Orden.Checked;
 
   DoConfiguracionAplicar();
+end;
+
+procedure TForm1.MenuItem_Perfil_MixtoClick(Sender: TObject);
+begin
+  case TMenuItem(Pointer(@Sender)^).Tag of
+    PERFIL_DEFECTO  :  begin
+                        FFormatoSize                  := TFormatoSize.Puntuada;
+                        FFormatoIconos                := TFormatoIconos.PorDefecto;
+                        FResaltarColumnaOrden         := true;
+                        FUsarColorDiferenciarArchivos := true;
+                        FUsarColoresCatalogos         := true;
+                        FExtraInfoCatalogos           := true;
+                        FAutoOcultarBotonesArbol      := false;
+                        FVerBotonesArbolModernos      := false;
+                        FVerLineasArbol               := true;
+                        FVerLineasArbol_Punteadas     := false;
+                      end;
+
+    PERFIL_RETRO   :  begin
+                        FFormatoSize                  := TFormatoSize.Normal;
+                        FFormatoIconos                := TFormatoIconos.PorDefecto;
+                        FResaltarColumnaOrden         := false;
+                        FUsarColorDiferenciarArchivos := false;
+                        FUsarColoresCatalogos         := false;
+                        FExtraInfoCatalogos           := false;
+                        FAutoOcultarBotonesArbol      := false;
+                        FVerBotonesArbolModernos      := false;
+                        FVerLineasArbol               := true;
+                        FVerLineasArbol_Punteadas     := true;
+                      end;
+    PERFIL_MODERNO : beep;
+    PERFIL_MIXTO   : beep;
+  end;
+
+
+  DoConfiguracionAplicar();
+
 end;
 
 procedure TForm1.MenuItem_Size_NormalClick(Sender: TObject);
