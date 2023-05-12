@@ -100,10 +100,12 @@ msgid "Iconos"
 msgstr ""
 
 #: tform1.menuitem_iconos_mixto.caption
+msgctxt "tform1.menuitem_iconos_mixto.caption"
 msgid "Mixto"
 msgstr ""
 
 #: tform1.menuitem_iconos_pordefecto.caption
+msgctxt "tform1.menuitem_iconos_pordefecto.caption"
 msgid "Por Defecto"
 msgstr ""
 
@@ -117,6 +119,28 @@ msgstr ""
 
 #: tform1.menuitem_lista_de_archivos_resaltar_columna_orden.caption
 msgid "Resaltar Orden Columna"
+msgstr ""
+
+#: tform1.menuitem_perfiles.caption
+msgid "Perfiles"
+msgstr ""
+
+#: tform1.menuitem_perfil_mixto.caption
+msgctxt "tform1.menuitem_perfil_mixto.caption"
+msgid "Mixto"
+msgstr ""
+
+#: tform1.menuitem_perfil_moderno.caption
+msgid "Moderno"
+msgstr ""
+
+#: tform1.menuitem_perfil_pordefecto.caption
+msgctxt "tform1.menuitem_perfil_pordefecto.caption"
+msgid "Por Defecto"
+msgstr ""
+
+#: tform1.menuitem_perfil_retro.caption
+msgid "Retro"
 msgstr ""
 
 #: tform1.menuitem_sizes.caption
