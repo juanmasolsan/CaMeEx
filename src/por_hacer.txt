@@ -113,7 +113,7 @@
 +         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 +         Al tener los nodos de catalogos más grandes no dibuja correctamente los nodos del final de la lista
 -         Poder eliminar los catalogos
--         Poder editar los catalogos
++         Poder editar los catalogos
 -         Poder crear nuevos catalogos
 -         Poder eliminar datos
 -         Poder mostrar propiedades de catalogos y datos

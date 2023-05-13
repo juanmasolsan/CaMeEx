@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 00:13:54
+ * @Last Modified time: 2023-05-13 12:24:44
  *)
 {
 
@@ -286,6 +286,9 @@ type
 
     // Ajusta el alto dependiendo si se debe o no mostrar la info de los catalogos
     procedure DoAjustarNodosCatalogos();
+
+    // Elimina un item del arbol/lista
+    function DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode) : boolean;
 
   public
 
@@ -1390,6 +1393,15 @@ begin
                       Arbol.Expanded[Node] := not Arbol.Expanded[Node];
                   end;
                 end;
+
+    VK_DELETE : begin
+                  if Shift = [] then
+                  begin
+                    Node := Arbol.GetFirstSelected();
+                    if Node <> nil then
+                      DoEliminarItem(Arbol, Node);
+                  end;
+                end;
   end;
 end;
 
@@ -2038,6 +2050,67 @@ begin
   // Ajusta el alto del nodo raiz
   AjustarNodo(FNodeArbol);
 end;
+
+
+// Elimina un item del arbol/lista
+function Tform1.DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode) : boolean;
+var
+  NodeData : PrListaData;
+  total, t : integer;
+begin
+
+  //TODO: Añadir verificación de seguridad para poder eliminar el item
+
+  Sender.beginUpdate();
+  try
+    try
+      NodeData := arbol.GetNodeData(Node);
+      if (NodeData <> nil)  and (NodeData^.TipoNode >= TItemDatoTipo.Root) then
+      begin
+        if NodeData^.TipoNode >= TItemDatoTipo.Root then
+          begin
+            // Elimina el Catalogo de la base de datos
+            FGestorDatos.DeleteCatalogo(TItemCatalogo(NodeData^.NodeData));
+
+            // Resetea la información extra del nodo raiz
+            FNodeArbolDato.ResetExtraInfo();
+
+            // Elimina el catalogo de la lista
+            FListaCatalogos.Remove(NodeData^.NodeData);
+
+            // Libera la información del nodo
+            NodeData^.NodeData.free;
+
+
+            if assigned(FListaCatalogos) then
+            begin
+              // Carga los datos del catalogo
+              total := FListaCatalogos.count -1;
+              for t := 0 to total do
+              begin
+                // Añade la información extra del nodo raiz
+                FNodeArbolDato.AddExtraInfo(TItemCatalogo(FListaCatalogos{%H-}[t]));
+              end;
+            end;
+
+            // Elimina el nodo del arbol
+            Sender.DeleteNode(Node);
+
+            // Carga la lista de archivos
+            DoLoadListaArchivos(nil);
+          end;
+      end;
+    except
+    end;
+
+  finally
+    Sender.endUpdate();
+  end;
+
+end;
+
+
+
 
 
 end.
