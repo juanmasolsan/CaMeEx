@@ -21,8 +21,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="349"/>
-        <CursorPos X="15" Y="370"/>
+        <TopLine Value="2157"/>
+        <CursorPos X="14" Y="2176"/>
         <UsageCount Value="130"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -38,6 +38,7 @@
       <Unit>
         <Filename Value="por_hacer.txt"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="71"/>
         <CursorPos X="52" Y="92"/>
@@ -192,10 +193,9 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="753"/>
-        <CursorPos Y="826"/>
+        <TopLine Value="752"/>
+        <CursorPos X="62" Y="767"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit>
@@ -299,8 +299,8 @@
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
         <UnitName Value="laz.VirtualTrees"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="3252"/>
-        <CursorPos Y="3263"/>
+        <TopLine Value="3304"/>
+        <CursorPos X="93" Y="3316"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit>
@@ -394,19 +394,7 @@
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="94" Column="3" TopLine="81"/>
-      </Position>
-      <Position>
-        <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="772" Column="46" TopLine="757"/>
-      </Position>
-      <Position>
-        <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="777" TopLine="777"/>
-      </Position>
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="ConectorDatos.pas"/>
         <Caret Line="780" TopLine="775"/>
@@ -514,6 +502,18 @@
       <Position>
         <Filename Value="ConectorDatos.pas"/>
         <Caret Line="797" TopLine="785"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="767" Column="62" TopLine="752"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2169" Column="27" TopLine="2156"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2172" Column="24" TopLine="635"/>
       </Position>
     </JumpHistory>
     <RunParams>

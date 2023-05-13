@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 16:59:49
+ * @Last Modified time: 2023-05-13 17:22:55
  *)
 {
 
@@ -2076,6 +2076,8 @@ var
   NodeData : PrListaData;
   total, t : integer;
 
+  NodePadre : PVirtualNode;
+
 begin
 
   //TODO: Añadir verificación de seguridad para poder eliminar el item
@@ -2135,7 +2137,7 @@ begin
             // Elimina el nodo del arbol
             Sender.DeleteNode(Node);
 
-            // Carga la lista de archivos
+            // Limpia la lista de archivos
             DoLoadListaArchivos(nil);
           end
         end
@@ -2154,18 +2156,25 @@ begin
               // Elimina el archivo de la base de datos
               FGestorDatos.DeleteDato(NodeData^.NodeData);
 
-              // Elimina el archivo de la lista
-              //FListaArchivos.Remove(NodeData^.NodeData);
+              // Limpia la lista de archivos
+              if Node = FNodeArbolActual then
+                DoLoadListaArchivos(nil);
 
-              // Libera la información del nodo
-              //NodeData^.NodeData.free;
+              NodePadre := Sender.GetPreviousVisible(Node);
 
               // Elimina el nodo del arbol
-              // Sender.DeleteNode(Node);
+              Sender.IsVisible[Node] := false;
             end;
 
             Node := Sender.GetNextSelected(Node);
           end;
+
+          if NodePadre <> nil then
+          begin
+            Arbol.FocusedNode         := NodePadre;
+            Arbol.Selected[NodePadre] := true;
+          end;
+
 
       end;
     except
