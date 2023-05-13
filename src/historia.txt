@@ -1,5 +1,5 @@
 
-
+- [FIX]   (20230513) Renombrado como se llama el nodo raiz del arbol.
 - [NEW]   (20230513) Agregados métodos para la gestión de confirmación de eliminación de datos.
 - [NEW]   (20230513) Agregado eliminar todos los catalogos
 - [NEW]   (20230513) Agregado eliminar catalogos

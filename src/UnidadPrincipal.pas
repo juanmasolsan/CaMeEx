@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 13:03:03
+ * @Last Modified time: 2023-05-13 13:33:20
  *)
 {
 
@@ -208,9 +208,9 @@ type
     FCatalogoID   : Qword;
     FPadreID      : Qword;
     FTempPadre    : TItemDato;
-
-    FNodeArbol    : PVirtualNode;
-    FNodeArbolDato: TItemCatalogo;
+    FNodeArbolActual  : PVirtualNode;
+    FNodeArbolRaiz    : PVirtualNode;
+    FNodeArbolRaizDato: TItemCatalogo;
 
   protected
     procedure DoOnTerminarScanAsync();
@@ -1421,7 +1421,7 @@ var
   Datos: TItemDato;
 begin
   // Lo selecciona
-  FNodeArbol := Node;
+  FNodeArbolActual := Node;
 
   // Marca la ruta actual
   DoMarcarRutaActual(Node);
@@ -1679,7 +1679,7 @@ begin
 
 
     // Resetea la información extra del nodo raiz
-    FNodeArbolDato.ResetExtraInfo();
+    FNodeArbolRaizDato.ResetExtraInfo();
 
     // Carga los datos del catalogo
     FListaCatalogos := FGestorDatos.GetAllCatalogos();
@@ -1690,10 +1690,10 @@ begin
       for t := 0 to total do
       begin
         // Añade la información extra del nodo raiz
-        FNodeArbolDato.AddExtraInfo(TItemCatalogo(FListaCatalogos{%H-}[t]));
+        FNodeArbolRaizDato.AddExtraInfo(TItemCatalogo(FListaCatalogos{%H-}[t]));
 
         // Añade el nodo al arbol
-        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbol, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
+        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbolRaiz, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
       end;
     end;
 
@@ -1701,9 +1701,9 @@ begin
     Arbol.SortTree(COLUMNA_TIPO, TSortDirection.sdAscending);
 
     // Expande el nodo raiz
-    Arbol.Expanded[FNodeArbol] := true;
-    Arbol.FocusedNode          := FNodeArbol;
-    Arbol.Selected[FNodeArbol] := true;
+    Arbol.Expanded[FNodeArbolRaiz] := true;
+    Arbol.FocusedNode          := FNodeArbolRaiz;
+    Arbol.Selected[FNodeArbolRaiz] := true;
 
   finally
     Arbol.EndUpdate;
@@ -1883,7 +1883,7 @@ var
   Datos: TItemDato;
   Node: PVirtualNode;
 begin
-  Node := FNodeArbol;
+  Node := FNodeArbolActual;
   if node = nil then exit;
 
 
@@ -1901,7 +1901,7 @@ begin
 
         if (Datos <> nil) and (Datos.IdCatalogo = FCatalogoID) and (Datos.Id = FPadreID) then
         begin
-          FNodeArbol           := node;
+          FNodeArbolActual     := node;
           Node^.States         := Node^.States + [vsSelected];
           Arbol.Expanded[node] := true;
           Arbol.FocusedNode    := Node;
@@ -1989,31 +1989,31 @@ var
   Data           : PrListaData;
 begin
   // Crea el nodo raiz
-  FNodeArbol                 := Arbol.AddChild(nil);
+  FNodeArbolRaiz                 := Arbol.AddChild(nil);
 
   if FExtraInfoCatalogos then
-    FNodeArbol^.NodeHeight   := CATALOGO_NODE_ALTURA;
+    FNodeArbolRaiz^.NodeHeight   := CATALOGO_NODE_ALTURA;
 
-  FNodeArbolDato             := TItemCatalogo.Create('Catálogos', TItemDatoTipo.Root, now, 0, '', 0, 0);
-  FNodeArbolDato.ImageIndex  := integer(TItemDatoTipo.Root);
-  Data                       := Arbol.GetNodeData(FNodeArbol);
-  Data^.NodeData             := FNodeArbolDato;
-  Data^.TipoCatalogo         := TItemDatoTipo.Root;
-  Data^.TipoNode             := TItemDatoTipo.Root;
+  FNodeArbolRaizDato            := TItemCatalogo.Create('Catálogos', TItemDatoTipo.Root, now, 0, '', 0, 0);
+  FNodeArbolRaizDato.ImageIndex := integer(TItemDatoTipo.Root);
+  Data                          := Arbol.GetNodeData(FNodeArbolRaiz);
+  Data^.NodeData                := FNodeArbolRaizDato;
+  Data^.TipoCatalogo            := TItemDatoTipo.Root;
+  Data^.TipoNode                := TItemDatoTipo.Root;
 
 
-  Arbol.Expanded[FNodeArbol] := true;
-  Arbol.FocusedNode          := FNodeArbol;
+  Arbol.Expanded[FNodeArbolRaiz] := true;
+  Arbol.FocusedNode          := FNodeArbolRaiz;
 end;
 
 // Libera el nodo raiz del arbol
 procedure TForm1.DoLiberarNodoRootArbol();
 begin
-  if Assigned(FNodeArbol) then
-    Arbol.RemoveFromSelection(FNodeArbol);
+  if Assigned(FNodeArbolRaiz) then
+    Arbol.RemoveFromSelection(FNodeArbolRaiz);
 
-  if Assigned(FNodeArbolDato) then
-    FNodeArbolDato.free;
+  if Assigned(FNodeArbolRaizDato) then
+    FNodeArbolRaizDato.free;
 end;
 
 // Muestra Información del directorio actual
@@ -2058,7 +2058,7 @@ begin
     end;
 
   // Ajusta el alto del nodo raiz
-  AjustarNodo(FNodeArbol);
+  AjustarNodo(FNodeArbolRaiz);
 end;
 
 
@@ -2067,6 +2067,7 @@ function Tform1.DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode
 var
   NodeData : PrListaData;
   total, t : integer;
+
 begin
 
   //TODO: Añadir verificación de seguridad para poder eliminar el item
@@ -2074,9 +2075,9 @@ begin
   Sender.beginUpdate();
   try
     try
-      NodeData := arbol.GetNodeData(Node);
+      NodeData := Sender.GetNodeData(Node);
 
-      if Node = FNodeArbol then
+      if Node = FNodeArbolRaiz then
       begin
 
         // Se pide confirmación para eliminar todo y se sale si no se confirma
@@ -2105,7 +2106,7 @@ begin
             FGestorDatos.DeleteCatalogo(TItemCatalogo(NodeData^.NodeData));
 
             // Resetea la información extra del nodo raiz
-            FNodeArbolDato.ResetExtraInfo();
+            FNodeArbolRaizDato.ResetExtraInfo();
 
             // Elimina el catalogo de la lista
             FListaCatalogos.Remove(NodeData^.NodeData);
@@ -2120,7 +2121,7 @@ begin
               for t := 0 to total do
               begin
                 // Añade la información extra del nodo raiz
-                FNodeArbolDato.AddExtraInfo(TItemCatalogo(FListaCatalogos{%H-}[t]));
+                FNodeArbolRaizDato.AddExtraInfo(TItemCatalogo(FListaCatalogos{%H-}[t]));
               end;
             end;
 
@@ -2129,7 +2130,37 @@ begin
 
             // Carga la lista de archivos
             DoLoadListaArchivos(nil);
+          end
+        end
+        else
+        begin
+          // Se pide confirmación para eliminar y se sale si no se confirma
+          if not DoConfirmarEliminarDatos() then
+            exit;
+
+
+          Node := Sender.GetFirstSelected();
+          while Node <> nil do
+          begin
+            NodeData := Sender.GetNodeData(Node);
+            if (NodeData <> nil)  and (NodeData^.TipoNode < TItemDatoTipo.Root) then
+            begin
+              // Elimina el archivo de la base de datos
+              FGestorDatos.DeleteDato(NodeData^.NodeData);
+
+              // Elimina el archivo de la lista
+              //FListaArchivos.Remove(NodeData^.NodeData);
+
+              // Libera la información del nodo
+              //NodeData^.NodeData.free;
+
+              // Elimina el nodo del arbol
+              Sender.DeleteNode(Node);
+            end;
+
+            Node := Sender.GetNextSelected(Node);
           end;
+
       end;
     except
     end;
