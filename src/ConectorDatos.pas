@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 18:24:31
+ * @Last Modified time: 2023-05-13 11:47:30
  *)
 {
 
@@ -109,6 +109,9 @@ type
 
     // Añade/Actualiza un catálogo a la base de datos
     procedure DoInserteUpdateCatalogo(Catalogo : TItemCatalogo; IsUpdate : boolean);
+
+    // Optimiza el tamaño de la tabla
+    procedure DoOptimizar();
 
   public
     // Constructor
@@ -407,8 +410,8 @@ begin
   EliminarTabla('RutaCompleta');
   EliminarTabla('Catalogos');
 
-  // Optimiza la base de datos
-  FDataBase.SQLite3_Optimizar_DB();
+  // Optimiza el tamaño de la tabla
+  DoOptimizar();
 end;
 
 // Añade el icono de una extension
@@ -1161,6 +1164,10 @@ begin
     if DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO, 'IDCATALOGO') then
       // Elimina el catalogo
       result := DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_CATALOGO_BY_ID, 'IDCATALOGO');
+
+  // Optimiza el tamaño de la tabla
+  DoOptimizar();
+
 end;
 
 // Elimina datos de una tabla a partir de un parametro
@@ -1253,6 +1260,9 @@ begin
       // Elimina las rutas completas que no tengan referencias en la tabla Datos
       DoDeleteRutasCompletasSinReferencias(Dato);
     end;
+
+  // Optimiza el tamaño de la tabla
+  DoOptimizar();
 end;
 
 // Elimina las rutas completas que no tengan referencias en la tabla Datos
@@ -1560,6 +1570,17 @@ begin
 
 end;
 {$ENDIF TESTEAR_SENTENCIAS}
+
+// Optimiza el tamaño de la tabla
+procedure TConectorDatos.DoOptimizar();
+begin
+  try
+    FDataBase.SQLite3_Optimizar_DB;
+  except
+    on E: Exception do LogAddException('Excepción Detectada', E);
+  end;
+end;
+
 
 
 initialization
