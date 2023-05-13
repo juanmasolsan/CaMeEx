@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 22:51:00
+ * @Last Modified time: 2023-05-14 00:09:57
  */
 
 
@@ -150,7 +150,7 @@ UPDATE Catalogos SET Nombre='Disco 1 - Update', Descripcion='Descripción - Disc
 
 -- Actualiza los totales de archivos y directorios que contiene el catalogo 6471404700933920559
 UPDATE Catalogos SET
-TotalSize=(SELECT SUM(Size) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=6471404700933920559),
-TotalArchivos=(SELECT Count(*) FROM Datos WHERE  Tipo = '2' AND Id <> IdPadre AND IdCatalogo=6471404700933920559),
-TotalDirectorios=(SELECT Count(*) FROM Datos WHERE  Tipo = '1' AND Id <> IdPadre AND IdCatalogo=6471404700933920559)
+TotalSize=ifnull((SELECT SUM(Size) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=6471404700933920559), 0),
+TotalArchivos=ifnull((SELECT Count(*) FROM Datos WHERE  Tipo = '2' AND Id <> IdPadre AND IdCatalogo=6471404700933920559), 0),
+TotalDirectorios=ifnull((SELECT Count(*) FROM Datos WHERE  Tipo = '1' AND Id <> IdPadre AND IdCatalogo=6471404700933920559), 0)
 WHERE Id=6471404700933920559;

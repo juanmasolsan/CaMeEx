@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 23:27:41
+ * @Last Modified time: 2023-05-14 00:08:50
  *)
 {
 
@@ -78,9 +78,9 @@ const
 
   SQL_UPDATE_CATALOGO                      = 'UPDATE Catalogos SET Nombre=:NOMBRE, Descripcion=:DESCRIPCION, Tipo=:TIPO, Fecha=:FECHA WHERE Id=:ID;';
   SQL_UPDATE_CATALOGO_TOTALES              = 'UPDATE Catalogos SET ' +
-                                              ' TotalSize=(SELECT SUM(Size) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=:ID),' +
-                                              ' TotalArchivos=(SELECT Count(*) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=:ID),' +
-                                              ' TotalDirectorios=(SELECT Count(*) FROM Datos WHERE  Tipo = 1 AND Id <> IdPadre AND IdCatalogo=:ID)' +
+                                              ' TotalSize=ifnull((SELECT SUM(Size) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=:ID), 0),' +
+                                              ' TotalArchivos=ifnull((SELECT Count(*) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=:ID), 0),' +
+                                              ' TotalDirectorios=ifnull((SELECT Count(*) FROM Datos WHERE  Tipo = 1 AND Id <> IdPadre AND IdCatalogo=:ID), 0)' +
                                               ' WHERE Id=:ID;';
 
 
