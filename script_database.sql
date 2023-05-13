@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 17:03:39
+ * @Last Modified time: 2023-05-13 22:51:00
  */
 
 
@@ -147,3 +147,10 @@ DELETE FROM RutaCompleta WHERE Id = 0 AND IdCatalogo = 1 AND NOT EXISTS (SELECT 
 
 -- Actualiza el nombre y la descripción del catalogo con el id 1
 UPDATE Catalogos SET Nombre='Disco 1 - Update', Descripcion='Descripción - Disco 1 - Update', Tipo=1, Fecha=20230413 WHERE Id=1;
+
+-- Actualiza los totales de archivos y directorios que contiene el catalogo 6471404700933920559
+UPDATE Catalogos SET
+TotalSize=(SELECT SUM(Size) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=6471404700933920559),
+TotalArchivos=(SELECT Count(*) FROM Datos WHERE  Tipo = '2' AND Id <> IdPadre AND IdCatalogo=6471404700933920559),
+TotalDirectorios=(SELECT Count(*) FROM Datos WHERE  Tipo = '1' AND Id <> IdPadre AND IdCatalogo=6471404700933920559)
+WHERE Id=6471404700933920559;

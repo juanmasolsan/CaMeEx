@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 17:22:55
+ * @Last Modified time: 2023-05-13 23:01:44
  *)
 {
 
@@ -211,7 +211,7 @@ type
     FNodeArbolActual  : PVirtualNode;
     FNodeArbolRaiz    : PVirtualNode;
     FNodeArbolRaizDato: TItemCatalogo;
-
+    FCatalogoSeleccionado : TItemCatalogo;
   protected
     procedure DoOnTerminarScanAsync();
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
@@ -1939,6 +1939,10 @@ var
       if NodeData <> nil then
       begin
         NodeData^.IsRutaSeleccionada := valor;
+
+        if (FNodeArbolRaiz <> Nodo) and (NodeData^.TipoNode >= TItemDatoTipo.Root) then
+         FCatalogoSeleccionado := TItemCatalogo(NodeData^.NodeData);
+
       end;
     except
     end;
@@ -2171,10 +2175,15 @@ begin
 
           if NodePadre <> nil then
           begin
-            Arbol.FocusedNode         := NodePadre;
-            Arbol.Selected[NodePadre] := true;
+            Sender.FocusedNode         := NodePadre;
+            Sender.Selected[NodePadre] := true;
           end;
 
+          if FCatalogoSeleccionado <> nil then
+            FGestorDatos.UpdateTotalesCatalogo(FCatalogoSeleccionado);
+
+          // Redibuja el control
+          Sender.Repaint();
 
       end;
     except

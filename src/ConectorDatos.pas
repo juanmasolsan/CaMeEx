@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 17:05:40
+ * @Last Modified time: 2023-05-13 23:27:41
  *)
 {
 
@@ -77,6 +77,11 @@ const
   SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS = 'DELETE FROM RutaCompleta WHERE Id = :ID AND IdCatalogo = :IDCATALOGO AND NOT EXISTS (SELECT 1 FROM Datos WHERE IdRutaCompleta = :ID);';
 
   SQL_UPDATE_CATALOGO                      = 'UPDATE Catalogos SET Nombre=:NOMBRE, Descripcion=:DESCRIPCION, Tipo=:TIPO, Fecha=:FECHA WHERE Id=:ID;';
+  SQL_UPDATE_CATALOGO_TOTALES              = 'UPDATE Catalogos SET ' +
+                                              ' TotalSize=(SELECT SUM(Size) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=:ID),' +
+                                              ' TotalArchivos=(SELECT Count(*) FROM Datos WHERE  Tipo = 2 AND Id <> IdPadre AND IdCatalogo=:ID),' +
+                                              ' TotalDirectorios=(SELECT Count(*) FROM Datos WHERE  Tipo = 1 AND Id <> IdPadre AND IdCatalogo=:ID)' +
+                                              ' WHERE Id=:ID;';
 
 
 Type
@@ -109,6 +114,9 @@ type
 
     // Añade/Actualiza un catálogo a la base de datos
     procedure DoInserteUpdateCatalogo(Catalogo : TItemCatalogo; IsUpdate : boolean);
+
+
+    procedure DoUpdateCatalogoTotales(Catalogo : TItemCatalogo);
 
     // Optimiza el tamaño de la tabla
     procedure DoOptimizar();
@@ -181,6 +189,9 @@ type
 
     // Actualiza un catálogo
     procedure UpdateCatalogo(Catalogo : TItemCatalogo);
+
+    // Actualiza los totales de un catálogo
+    procedure UpdateTotalesCatalogo(Catalogo : TItemCatalogo);
 
     // Para que se marque el inicio de una transaccion
     procedure BeginUpdate();
@@ -941,15 +952,13 @@ begin
       EnterCriticalSection(FCriticalSection);
       try
         // Prepara la query
-        FDataBase.Query.Close;
         FDataBase.Query.SQL.Clear;
-        FDataBase.Query.SQL.Add(SQL_SELECT_CATALOGO_BY_ID);
+        FDataBase.Query.SQL.Text := SQL_SELECT_CATALOGO_BY_ID;
 
         // Hace la inserción con un prepared statement
-        FDataBase.Query.ParamByName('ID').AsLargeInt             := Id;
+        FDataBase.Query.ParamByName('ID').AsLargeInt := Id;
 
         // Ejecuta la sentencia
-        //FDataBase.SQL(SQL_SELECT_CATALOGO_ALL);
         FDataBase.Query.Open;
         try
           // Comprueba que tiene datos
@@ -1384,6 +1393,43 @@ begin
 end;
 
 
+// Añade/Actualiza un catálogo a la base de datos
+procedure TConectorDatos.DoUpdateCatalogoTotales(Catalogo : TItemCatalogo);
+begin
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+          // Prepara la query
+          FDataBase.Query.Close;
+          FDataBase.Query.SQL.Clear;
+
+          FDataBase.Query.SQL.Add(SQL_UPDATE_CATALOGO_TOTALES);
+
+          // Hace la inserción con un prepared statement
+          FDataBase.Query.ParamByName('ID').AsLargeInt := Catalogo.Id;
+
+          try
+            // Realiza el update
+            FDataBase.Query.ExecSQL;
+
+          finally
+            // Cierra la query
+            FDataBase.Query.Close;
+          end;
+
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    on E: Exception do LogAddException('Excepción Detectada', E);
+  end;
+end;
+
 // Para que se marque el inicio de una transaccion
 procedure TConectorDatos.BeginUpdate();
 begin
@@ -1581,6 +1627,28 @@ begin
   end;
 end;
 
+
+// Actualiza los totales de un catálogo
+procedure TConectorDatos.UpdateTotalesCatalogo(Catalogo : TItemCatalogo);
+var
+  nuevosDatos : TItemCatalogo;
+begin
+  // Actualiza los totales del catálogo
+  DoUpdateCatalogoTotales(Catalogo);
+
+  // Recupera los totales del catalogo
+  nuevosDatos := GetCatalogosById(Catalogo.Id);
+  if nuevosDatos <> nil then
+  begin
+    try
+      Catalogo.TotalDirectorios := nuevosDatos.TotalDirectorios;
+      Catalogo.TotalArchivos    := nuevosDatos.TotalArchivos;
+      Catalogo.Size             := nuevosDatos.Size;
+    finally
+      nuevosDatos.Free;
+    end;
+  end;
+end;
 
 
 initialization

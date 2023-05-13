@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230513) Agregado al eliminar datos que actualice los datos del nodo al que pertenece
 - [FIX]   (20230513) Arreglado el calculo de totales en el escaneo
 - [NEW]   (20230513) Agregado eliminar datos desde el Arbol
 - [FIX]   (20230513) Ajustes para poder eliminar datos en cascada.

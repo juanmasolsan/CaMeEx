@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 00:15:01
+ * @Last Modified time: 2023-05-13 23:02:26
  *)
 {
 
@@ -94,6 +94,9 @@ type
 
     // Actualiza un catálogo
     procedure UpdateCatalogo(Catalogo : TItemCatalogo);
+
+    // Actualiza los totales de un catálogo
+    procedure UpdateTotalesCatalogo(Catalogo : TItemCatalogo);
 
     // Para que se marque el inicio de una transaccion
     procedure BeginUpdate();
