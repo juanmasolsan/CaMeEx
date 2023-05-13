@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 11:47:30
+ * @Last Modified time: 2023-05-13 17:05:40
  *)
 {
 
@@ -63,7 +63,7 @@ const
 
   SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
-  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      = 'SELECT * FROM Datos WHERE IdCatalogo = :IDCATALOGO';
+  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      = 'SELECT * FROM Datos WHERE IdCatalogo = :IDCATALOGO AND Id <> IdCatalogo';
   SQL_SELECT_DATOS_ALL_BY_PARENT_ID        =  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND IdPadre = :IDPADRE';
   SQL_SELECT_DIRECTORIOS_BY_PARENT_ID      =  SQL_SELECT_DATOS_ALL_BY_PARENT_ID + ' AND Tipo = 1';
   SQL_SELECT_RUTA_COMPLETA                 = 'SELECT Ruta FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO AND Id = :ID;';
@@ -363,7 +363,7 @@ begin
         'Nombre         TEXT        NOT NULL,' +
         'ImageIndex     INTEGER     NOT NULL,' +
         'TieneHijos     INTEGER     NOT NULL,' +
-        'IdPadre        BIGINT,' +
+        'IdPadre        BIGINT CONSTRAINT FK_DATOS REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE RESTRICT,' +
         'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
         'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
         'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +

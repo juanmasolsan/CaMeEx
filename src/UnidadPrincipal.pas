@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 13:33:20
+ * @Last Modified time: 2023-05-13 16:59:49
  *)
 {
 
@@ -1293,6 +1293,14 @@ begin
     // Guarda los datos del catalogo
     SistemaGuardado.AddCatalogo(Scan.Root);
 
+    // Guarda una copia del catalogo en la tabla de datos
+    Scan.Root.IdPadre        := Scan.Root.Id;
+    Scan.Root.IdCatalogo     := Scan.Root.Id;
+    Scan.Root.IdRutaCompleta := 0;
+    Scan.Root.IdExtension    := 0;
+    SistemaGuardado.AddDato(Scan.Root);
+
+
     // Guarda los iconos de las Extensiones
     total := Scan.ListaExtensiones.Count - 1;
     for t := 0 to total do
@@ -2079,7 +2087,6 @@ begin
 
       if Node = FNodeArbolRaiz then
       begin
-
         // Se pide confirmación para eliminar todo y se sale si no se confirma
         if not DoConfirmarEliminarTodo() then
           exit;
@@ -2138,7 +2145,6 @@ begin
           if not DoConfirmarEliminarDatos() then
             exit;
 
-
           Node := Sender.GetFirstSelected();
           while Node <> nil do
           begin
@@ -2155,7 +2161,7 @@ begin
               //NodeData^.NodeData.free;
 
               // Elimina el nodo del arbol
-              Sender.DeleteNode(Node);
+              // Sender.DeleteNode(Node);
             end;
 
             Node := Sender.GetNextSelected(Node);

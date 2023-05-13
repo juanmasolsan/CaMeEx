@@ -113,8 +113,10 @@
 +         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 +         Al tener los nodos de catalogos más grandes no dibuja correctamente los nodos del final de la lista
 +         Poder eliminar los catalogos
--         Poder eliminar datos
--         Al eliminar : Que muestre el progreso
+-         Poder eliminar datos - Arbol
+-         Poder eliminar datos - Lista de archivos
+-         Poder eliminar datos - Que actualice el total de archivos y directorios del catalogo
+-         Al eliminar : Que muestre el progreso/info
 -         Al eliminar : Que confirme la eliminación de todos los catalogos
 -         Al eliminar : Que confirme la eliminación de catalogo
 -         Al eliminar : Que confirme la eliminación de datos

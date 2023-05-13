@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 19:08:09
+ * @Last Modified time: 2023-05-13 16:37:20
  *)
 {
 
@@ -136,12 +136,12 @@ type
     property ImageIndex       : Integer read FImageIndex write FImageIndex;
     property ImageIndexSistema: Integer read FImageIndexSistema write FImageIndexSistema;
 
-    property IdExtension      : Qword read FIdExtension;
-    property IdRutaCompleta   : Qword read FIdRutaCompleta;
+    property IdExtension      : Qword read FIdExtension write FIdExtension;
+    property IdRutaCompleta   : Qword read FIdRutaCompleta write FIdRutaCompleta;
     property IdCatalogo       : Qword read FIdCatalogo write FIdCatalogo;
 
 
-    property IdPadre         : Qword read FIdPadre;
+    property IdPadre         : Qword read FIdPadre write FIdPadre;
     property Parent          : TItemDato read FParent;
     property TieneHijos      : boolean read GetTineHijos write FTieneHijos;
     property Ruta            : RawByteString read FRuta write FRuta;
