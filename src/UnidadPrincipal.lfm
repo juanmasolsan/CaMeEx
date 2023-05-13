@@ -171,7 +171,7 @@ object Form1: TForm1
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toDisableAutoscrollOnEdit]
       TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toFullRowDrag]
       TreeOptions.PaintOptions = [toHideFocusRect, toHotTrack, toShowButtons, toThemeAware, toUseBlendedImages, toAlwaysHideSelection]
-      TreeOptions.SelectionOptions = [toFullRowSelect, toSiblingSelectConstraint]
+      TreeOptions.SelectionOptions = [toFullRowSelect, toMultiSelect, toSiblingSelectConstraint]
       OnAfterItemErase = ListaAfterItemErase
       OnBeforeCellPaint = ListaBeforeCellPaint
       OnCompareNodes = ListaCompareNodes
