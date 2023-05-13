@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-09 23:02:52
+ * @Last Modified time: 2023-05-13 18:00:42
  *)
 {
 
@@ -413,6 +413,16 @@ var
   Extension   : RawByteString;
 
 begin
+
+  // Generar la string que identifica al archivo o directorio
+  RutaCompleta := IncludeTrailingBackslash(Padre.GetFullPath()) +  SearchRec.Name;
+
+  if IsExcluido(RutaCompleta) then
+  begin
+    result := nil;
+    exit;
+  end;
+
     // Determinar el tipo de archivo o directorio
   if (SearchRec.Attr and faDirectory)= faDirectory then
     begin
@@ -444,14 +454,6 @@ begin
       end;
     end;
 
-  // Generar la string que identifica al archivo o directorio
-  RutaCompleta := IncludeTrailingBackslash(Padre.GetFullPath()) +  SearchRec.Name;
-
-  if IsExcluido(RutaCompleta) then
-  begin
-    result := nil;
-    exit;
-  end;
 
   // Crear el objeto TItemDato
   Item := TItemDato.Create(SearchRec.Name,
