@@ -123,6 +123,7 @@
 -         Al eliminar : Que confirme la eliminación de datos
 -         Poder editar los catalogos
 -         Poder crear nuevos catalogos
+-         Extensiones con iconos de 32x32
 
 -         Poder mostrar propiedades de catalogos y datos
 -         Agregar breadcrumbs.

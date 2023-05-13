@@ -1,4 +1,5 @@
 
++ 1.1.9.6
 - [NEW]   (20230514) Agregado eliminar datos desde la lista
 - [FIX]   (20230514) Corregido el calculo de totales cuando se eliminan datos.
 
