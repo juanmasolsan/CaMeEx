@@ -1,4 +1,5 @@
 
+- [NEW]   (20230513) Agregado eliminar todos los catalogos
 - [NEW]   (20230513) Agregado eliminar catalogos
 - [NEW]   (20230513) Agregado optimizar base de datos al eliminar datos
 

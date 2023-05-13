@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 12:24:44
+ * @Last Modified time: 2023-05-13 12:39:00
  *)
 {
 
@@ -2065,6 +2065,19 @@ begin
   try
     try
       NodeData := arbol.GetNodeData(Node);
+
+      if Node = FNodeArbol then
+      begin
+        // Elimina el Catalogo de la base de datos
+        FGestorDatos.DeleteAllCatalogos();
+
+        // Carga la lista de catalogos
+        DoLoadListaCatalogos();
+
+        // Carga la lista de archivos
+        DoLoadListaArchivos(nil);
+      end
+      else
       if (NodeData <> nil)  and (NodeData^.TipoNode >= TItemDatoTipo.Root) then
       begin
         if NodeData^.TipoNode >= TItemDatoTipo.Root then
@@ -2080,7 +2093,6 @@ begin
 
             // Libera la información del nodo
             NodeData^.NodeData.free;
-
 
             if assigned(FListaCatalogos) then
             begin
