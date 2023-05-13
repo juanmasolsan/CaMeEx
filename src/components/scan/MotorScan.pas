@@ -256,9 +256,9 @@ begin
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
 
   {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
-    FRoot   := TItemCatalogo.create('Proyecto CaMeEx', TItemDatoTipo.Root, now(), 0, 'Directorio del proyecto de CaMeEX', 0, 0);
+    FRoot   := TItemCatalogo.create('Proyecto CaMeEx', TItemDatoTipo.RootCarpeta, now(), 0, 'Directorio del proyecto de CaMeEX', 0, 0);
   {$ELSE}
-    FRoot   := TItemCatalogo.create('VSCode Extensions', TItemDatoTipo.Root, now(), 0, 'Directorio de Extensiones de vscode', 0, 0);
+    FRoot   := TItemCatalogo.create('VSCode Extensions', TItemDatoTipo.RootCarpeta, now(), 0, 'Directorio de Extensiones de vscode', 0, 0);
   {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
 
 

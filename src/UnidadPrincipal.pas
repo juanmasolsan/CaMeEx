@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 12:39:00
+ * @Last Modified time: 2023-05-13 13:03:03
  *)
 {
 
@@ -289,6 +289,16 @@ type
 
     // Elimina un item del arbol/lista
     function DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode) : boolean;
+
+    // Confirma si se debe eliminar todos los catalogos
+    function DoConfirmarEliminarTodo() : boolean;
+
+    // Confirma si se debe eliminar el catalogo seleccionado
+    function DoConfirmarEliminarCatalogo(Catalogo : TItemCatalogo) : boolean;
+
+    // Confirma si se debe eliminar los datos seleccionados
+    function DoConfirmarEliminarDatos() : boolean;
+
 
   public
 
@@ -2068,6 +2078,11 @@ begin
 
       if Node = FNodeArbol then
       begin
+
+        // Se pide confirmación para eliminar todo y se sale si no se confirma
+        if not DoConfirmarEliminarTodo() then
+          exit;
+
         // Elimina el Catalogo de la base de datos
         FGestorDatos.DeleteAllCatalogos();
 
@@ -2082,6 +2097,10 @@ begin
       begin
         if NodeData^.TipoNode >= TItemDatoTipo.Root then
           begin
+            // Se pide confirmación para eliminar y se sale si no se confirma
+            if not DoConfirmarEliminarCatalogo(TItemCatalogo(NodeData^.NodeData)) then
+              exit;
+
             // Elimina el Catalogo de la base de datos
             FGestorDatos.DeleteCatalogo(TItemCatalogo(NodeData^.NodeData));
 
@@ -2121,7 +2140,23 @@ begin
 
 end;
 
+// Confirma si se debe eliminar todos los catalogos
+function Tform1.DoConfirmarEliminarTodo() : boolean;
+begin
+  result := True;
+end;
 
+// Confirma si se debe eliminar el catalogo seleccionado
+function Tform1.DoConfirmarEliminarCatalogo(Catalogo : TItemCatalogo) : boolean;
+begin
+  result := True;
+end;
+
+// Confirma si se debe eliminar los datos seleccionados
+function Tform1.DoConfirmarEliminarDatos() : boolean;
+begin
+  result := True;
+end;
 
 
 

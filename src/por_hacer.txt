@@ -112,10 +112,15 @@
 +         Que el arbol tenga un nodo root en vez de una columna
 +         Al pulsar enter en el arbol que expanda o colapse el item seleccionado.
 +         Al tener los nodos de catalogos más grandes no dibuja correctamente los nodos del final de la lista
--         Poder eliminar los catalogos
-+         Poder editar los catalogos
--         Poder crear nuevos catalogos
++         Poder eliminar los catalogos
 -         Poder eliminar datos
+-         Al eliminar : Que muestre el progreso
+-         Al eliminar : Que confirme la eliminación de todos los catalogos
+-         Al eliminar : Que confirme la eliminación de catalogo
+-         Al eliminar : Que confirme la eliminación de datos
+-         Poder editar los catalogos
+-         Poder crear nuevos catalogos
+
 -         Poder mostrar propiedades de catalogos y datos
 -         Agregar breadcrumbs.
 -         Historial de navegación.
