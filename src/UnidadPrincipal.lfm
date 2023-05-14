@@ -61,7 +61,7 @@ object Form1: TForm1
       Top = 1
       Width = 232
       Align = alLeft
-      AnimationDuration = 1
+      AnimationDuration = 0
       AutoExpandDelay = 1
       AutoScrollDelay = 1
       BorderSpacing.Around = 1
@@ -84,7 +84,6 @@ object Form1: TForm1
       Images = ImageListArchivos
       ScrollBarOptions.AlwaysVisible = True
       TabOrder = 0
-      TreeOptions.AnimationOptions = [toAnimatedToggle]
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toDisableAutoscrollOnEdit]
       TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toFullRowDrag]
       TreeOptions.PaintOptions = [toHideFocusRect, toHotTrack, toShowButtons, toShowRoot, toShowTreeLines, toThemeAware, toUseBlendedImages, toAlwaysHideSelection]

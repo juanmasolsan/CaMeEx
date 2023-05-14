@@ -1,4 +1,6 @@
 
+- [FIX]   (20230514) Corregido excepción al eliminar todos los nodos del arbol e intentar contraerlo.
+
 + 1.1.9.6
 - [NEW]   (20230514) Agregado eliminar datos desde la lista
 - [FIX]   (20230514) Corregido el calculo de totales cuando se eliminan datos.
