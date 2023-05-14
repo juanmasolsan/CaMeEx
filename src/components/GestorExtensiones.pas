@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-03 22:31:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 00:26:17
+ * @Last Modified time: 2023-05-14 14:04:12
  *)
 {
 
@@ -43,7 +43,7 @@ uses
 
 
 // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
-procedure SetExtensionesConfig(GestorDatos: IConectorDatos; ImagenList : TImageList);
+procedure SetExtensionesConfig(GestorDatos: IConectorDatos; ImagenList : TImageList; ImagenList32 : TImageList);
 
 // Devuelve la descripción de la extensión
 function GetExtensionDescripcionById(IdExtension: Qword): RawByteString;
@@ -65,10 +65,14 @@ uses
 
 var
   // Gestor de datos
-  FGestorDatos : IConectorDatos = nil;
+  FGestorDatos   : IConectorDatos = nil;
 
   // Lista de iconos
-  FImagenList  : TImageList     = nil;
+  FImagenList    : TImageList     = nil;
+
+  // Lista de iconos
+  FImagenList32  : TImageList     = nil;
+
 
 // Lista de listas de cadenas de texto
   cacheExtensiones :  TFPHashList = nil;
@@ -81,10 +85,11 @@ type
   end;
 
 // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
-procedure SetExtensionesConfig(GestorDatos: IConectorDatos; ImagenList : TImageList);
+procedure SetExtensionesConfig(GestorDatos: IConectorDatos; ImagenList : TImageList; ImagenList32 : TImageList);
 begin
-  FGestorDatos := GestorDatos;
-  FImagenList  := ImagenList;
+  FGestorDatos  := GestorDatos;
+  FImagenList   := ImagenList;
+  FImagenList32 := ImagenList32;
 end;
 
 // Recupera los datos de la extensión

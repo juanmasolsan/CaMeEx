@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 12:34:34
+ * @Last Modified time: 2023-05-14 14:07:42
  *)
 {
 
@@ -84,6 +84,7 @@ type
     Arbol: TLazVirtualStringTree;
     Button1: TButton;
     Button2: TButton;
+    ImageListArchivos32: TImageList;
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
@@ -397,7 +398,7 @@ begin
   FListaDirectorios := TArrayItemDato.create;;
 
   // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
-  SetExtensionesConfig(FGestorDatos, ImageListArchivos);
+  SetExtensionesConfig(FGestorDatos, ImageListArchivos, ImageListArchivos32);
 
 
   // Carga la configuración del programa
