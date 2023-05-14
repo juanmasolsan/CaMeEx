@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 00:08:50
+ * @Last Modified time: 2023-05-14 11:51:19
  *)
 {
 
@@ -1644,6 +1644,7 @@ begin
       Catalogo.TotalDirectorios := nuevosDatos.TotalDirectorios;
       Catalogo.TotalArchivos    := nuevosDatos.TotalArchivos;
       Catalogo.Size             := nuevosDatos.Size;
+      Catalogo.TieneHijos       := nuevosDatos.TotalDirectorios > 0;
     finally
       nuevosDatos.Free;
     end;

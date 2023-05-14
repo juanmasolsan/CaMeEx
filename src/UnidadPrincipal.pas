@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 00:22:06
+ * @Last Modified time: 2023-05-14 12:34:34
  *)
 {
 
@@ -211,7 +211,9 @@ type
     FNodeArbolActual  : PVirtualNode;
     FNodeArbolRaiz    : PVirtualNode;
     FNodeArbolRaizDato: TItemCatalogo;
-    FCatalogoSeleccionado : TItemCatalogo;
+
+    FCatalogoSeleccionadoNodo : PVirtualNode;
+    FCatalogoSeleccionadoItem : TItemCatalogo;
   protected
     procedure DoOnTerminarScanAsync();
     procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
@@ -304,6 +306,7 @@ type
 
     // Oculta/Elimina los nodos que encuentre iguales a al Item que se le pasa
     procedure DoEliminarItemArbol(Item : TItemDato);
+
   public
 
   end;
@@ -1709,7 +1712,7 @@ begin
       for t := 0 to total do
       begin
         // Añade el nodo al arbol
-        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbolRaiz, (TItemCatalogo(FListaCatalogos{%H-}[t]).TotalArchivos + TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios) > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
+        AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbolRaiz, TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
       end;
     end;
 
@@ -1952,7 +1955,10 @@ var
         NodeData^.IsRutaSeleccionada := valor;
 
         if (FNodeArbolRaiz <> Nodo) and (NodeData^.TipoNode >= TItemDatoTipo.Root) then
-         FCatalogoSeleccionado := TItemCatalogo(NodeData^.NodeData);
+        begin
+          FCatalogoSeleccionadoItem := TItemCatalogo(NodeData^.NodeData);
+          FCatalogoSeleccionadoNodo := Nodo;
+        end;
 
       end;
     except
@@ -2179,8 +2185,15 @@ begin
           end;
 
           // Actualiza los datos del nodo al que pertenece
-          if FCatalogoSeleccionado <> nil then
-            FGestorDatos.UpdateTotalesCatalogo(FCatalogoSeleccionado);
+          if FCatalogoSeleccionadoItem <> nil then
+          begin
+            FGestorDatos.UpdateTotalesCatalogo(FCatalogoSeleccionadoItem);
+            if FCatalogoSeleccionadoNodo <> nil then
+              if FCatalogoSeleccionadoItem.TotalDirectorios > 0 then
+                FCatalogoSeleccionadoNodo^.States := FCatalogoSeleccionadoNodo^.States + [vsHasChildren]
+              else
+                FCatalogoSeleccionadoNodo^.States := FCatalogoSeleccionadoNodo^.States - [vsHasChildren];
+          end;
 
           // Redibuja el control
           Sender.Repaint();

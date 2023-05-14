@@ -1,4 +1,5 @@
 
+- [FIX]   (20230514) Calcula correctamente si los catalogos tiene hijos para mostrar el expansor.
 - [FIX]   (20230514) Corregido excepción al eliminar todos los nodos del arbol e intentar contraerlo.
 
 + 1.1.9.6
