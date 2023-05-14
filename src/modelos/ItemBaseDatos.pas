@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 16:25:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-30 18:07:31
+ * @Last Modified time: 2023-05-14 14:36:06
  *)
 {
 
@@ -54,7 +54,11 @@ type
                     RootUSB,
                     RootHDD,
                     RootCarpeta,
-                    RootUnidadRed
+                    RootUnidadRed,
+                    RootHDDUsb,
+                    RootTarjetaSD,
+                    RootFloppy,
+                    RootBluRay
   );
 
   { ItemBaseDatos }
