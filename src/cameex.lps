@@ -11,7 +11,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="55"/>
         <CursorPos X="44" Y="69"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="137"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,11 +20,10 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="802"/>
         <CursorPos X="128" Y="810"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="137"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,7 +31,7 @@
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="31" Y="6"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="137"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -42,7 +41,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="71"/>
         <CursorPos X="47" Y="83"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="137"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -51,7 +50,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="137"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Formulario_Avanzado.pas"/>
@@ -59,7 +58,7 @@
         <EditorIndex Value="13"/>
         <TopLine Value="314"/>
         <CursorPos X="63" Y="325"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="136"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -69,7 +68,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="131"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -78,14 +77,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="126"/>
+        <UsageCount Value="130"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="122"/>
+        <UsageCount Value="126"/>
       </Unit>
       <Unit>
         <Filename Value="Utilidades.pas"/>
@@ -93,7 +92,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <CursorPos X="37" Y="93"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="119"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadScan.pas"/>
@@ -104,7 +103,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
         <CursorPos X="36" Y="74"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="117"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
@@ -112,7 +111,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="113"/>
         <CursorPos Y="129"/>
-        <UsageCount Value="102"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -120,7 +119,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="104"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\control_about.pas"/>
@@ -138,7 +137,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="252"/>
         <CursorPos X="33" Y="268"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -193,10 +192,11 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="1617"/>
-        <CursorPos Y="1656"/>
-        <UsageCount Value="30"/>
+        <CursorPos X="93" Y="1630"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -212,7 +212,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="615"/>
         <CursorPos X="67" Y="638"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -263,7 +263,7 @@
         <EditorIndex Value="11"/>
         <TopLine Value="125"/>
         <CursorPos X="64" Y="140"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -301,7 +301,7 @@
         <EditorIndex Value="12"/>
         <TopLine Value="3304"/>
         <CursorPos X="93" Y="3316"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -309,7 +309,7 @@
         <EditorIndex Value="10"/>
         <TopLine Value="71"/>
         <CursorPos X="24" Y="83"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -317,7 +317,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="96"/>
         <CursorPos X="40" Y="113"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -390,7 +390,7 @@
         <EditorIndex Value="9"/>
         <TopLine Value="428"/>
         <CursorPos X="56" Y="436"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="18"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -398,7 +398,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="73"/>
         <CursorPos X="36" Y="99"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>

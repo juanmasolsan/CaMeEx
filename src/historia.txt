@@ -1,4 +1,4 @@
-
+- [NEW]   (20230514) Agregado en el scan la extracción de iconos de 32x32
 - [FIX]   (20230514) Calcula correctamente si los catalogos tiene hijos para mostrar el expansor.
 - [FIX]   (20230514) Corregido excepción al eliminar todos los nodos del arbol e intentar contraerlo.
 

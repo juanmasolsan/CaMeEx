@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 15:04:15
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-05 15:36:19
+ * @Last Modified time: 2023-05-14 13:06:45
  *)
 {
 
@@ -47,14 +47,16 @@ type
   private
     FDescripcion : RawByteString;
     FIcono       : TPortableNetworkGraphic;
+    FIcono32       : TPortableNetworkGraphic;
     FIdIcono     : Qword;
     procedure SetIcono(AValue: TPortableNetworkGraphic);
+    procedure SetIcono32(AValue: TPortableNetworkGraphic);
   protected
     // Genera el ID del icono
     procedure DoGenerarIDIcono();
   public
     // Constructor de la clase
-    constructor Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic);
+    constructor Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic; AIcono32 : TPortableNetworkGraphic);
 
     // Destructor de la clase
     destructor Destroy; override;
@@ -62,6 +64,7 @@ type
     // Propiedades
     property Descripcion : RawByteString read FDescripcion;
     property Icono       : TPortableNetworkGraphic read FIcono write SetIcono;
+    property Icono32     : TPortableNetworkGraphic read FIcono32 write SetIcono32;
     property IdIcono     : Qword read FIdIcono write FIdIcono;
   end;
 
@@ -75,11 +78,12 @@ uses
 { TItemExtension }
 
 { TItemExtension }
-constructor TItemExtension.Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic);
+constructor TItemExtension.Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic; AIcono32 : TPortableNetworkGraphic);
 begin
   inherited Create(ANombre);
   FDescripcion := ADescripcion;
   FIcono       := AIcono;
+  FIcono32     := AIcono32;
 
   // Generamos el ID del icono
   DoGenerarIDIcono();
@@ -89,6 +93,9 @@ destructor TItemExtension.Destroy;
 begin
   if FIcono <> nil then
     FIcono.Free;
+
+  if FIcono32 <> nil then
+    FIcono32.Free;
 
   inherited Destroy;
 end;
@@ -119,5 +126,14 @@ begin
   // Generamos el ID del icono
   DoGenerarIDIcono();
 end;
+
+// Setter
+procedure TItemExtension.SetIcono32(AValue: TPortableNetworkGraphic);
+begin
+  if FIcono32 = AValue then Exit;
+  FIcono32 := AValue;
+end;
+
+
 
 end.

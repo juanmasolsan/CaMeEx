@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-08 16:21:30
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-06 13:54:14
+ * @Last Modified time: 2023-05-14 13:34:44
  *)
 {
 
@@ -76,7 +76,7 @@ function MostrarTiempoTranscurrido(Inicio : TDateTime; Final : TDateTime; MarcaT
 function GetGenericFileType(AExtension: RawByteString; IsDir : boolean = false): RawByteString;
 
 // Devuelve el icono del archivo/directorio, además del tipo de archivo/directorio
-function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawByteString; IsDir : boolean = false): TPortableNetworkGraphic;
+function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawByteString; Size: longint;  IsDir : boolean = false): TPortableNetworkGraphic;
 
 // Dibuja un rectangulo mezcando color por el nivel de BlendLevel
 procedure Dibujar_FillRect_Blend(Acanvas : TCanvas; ARect: TRect; Color: TColor; BlendLevel : byte; RoundX, RoundY : longint);
@@ -279,7 +279,7 @@ end;
 {$ENDIF}
 
 // Devuelve el icono del archivo/directorio, además del tipo de archivo/directorio
-function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawByteString; IsDir : boolean = false): TPortableNetworkGraphic;
+function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawByteString; Size: longint; IsDir : boolean = false): TPortableNetworkGraphic;
 {$IFDEF WINDOWS}
 var
   AInfo: SHFileInfoW;
@@ -287,8 +287,15 @@ var
   attr : Dword;
   Png  : TPortableNetworkGraphic;
   Inter: TLazIntfImage;
+
+  TipoIcono : longint;
 begin
   Result := nil;
+
+  if Size = 16 then
+    TipoIcono := SHGFI_SMALLICON
+  else
+    TipoIcono := SHGFI_LARGEICON;
 
   if IsDir then
     attr := FILE_ATTRIBUTE_DIRECTORY
@@ -297,7 +304,7 @@ begin
 
   fillchar(AInfo, sizeof(AInfo), 0);
 
-  if SHGetFileInfo(PWideChar(UTF8Decode(AExtension)), attr, AInfo, SizeOf(SHFileInfoW), SHGFI_ICON or SHGFI_SMALLICON or SHGFI_TYPENAME or SHGFI_USEFILEATTRIBUTES) <> 0 then
+  if SHGetFileInfo(PWideChar(UTF8Decode(AExtension)), attr, AInfo, SizeOf(SHFileInfoW), SHGFI_ICON or TipoIcono or SHGFI_TYPENAME or SHGFI_USEFILEATTRIBUTES) <> 0 then
   begin
     InfoExtension := AInfo.szTypeName;
 

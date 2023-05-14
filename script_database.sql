@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 00:09:57
+ * @Last Modified time: 2023-05-14 13:37:52
  */
 
 
@@ -36,8 +36,9 @@ CREATE TABLE IF NOT EXISTS Catalogos (
 
 -- Crear tabla Iconos
 CREATE TABLE IF NOT EXISTS Iconos (
-    Id     BIGINT PRIMARY KEY,
-    Icono  BLOB
+    Id       BIGINT PRIMARY KEY,
+    Icono    BLOB,
+    Icono32  BLOB
 );
 
 -- Crear tabla Extensiones

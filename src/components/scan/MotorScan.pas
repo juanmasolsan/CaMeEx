@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 18:00:42
+ * @Last Modified time: 2023-05-14 13:35:25
  *)
 {
 
@@ -594,6 +594,7 @@ var
   datoExtension   : TItemExtension;
   textoDescripcion: RawByteString = '';
   Icono           : TPortableNetworkGraphic = nil;
+  Icono32         : TPortableNetworkGraphic = nil;
 begin
 
   Ext := lowercase(Ext);
@@ -614,11 +615,15 @@ begin
   if datoExtension = nil then
   begin
       // Se obtiene la descripción de la extensión desde el sistema
-      Icono := GetGenericFileIcon(RutaCompleta, textoDescripcion,  Dir);
+      Icono := GetGenericFileIcon(RutaCompleta, textoDescripcion, 16,  Dir);
 
-      if Icono <> nil then
+      // Se obtiene la descripción de la extensión desde el sistema
+      Icono32 := GetGenericFileIcon(RutaCompleta, textoDescripcion, 32,  Dir);
+
+      //TODO: Eliminar solo es para testeo
+      if Icono32 <> nil then
       begin
-        Icono.savetofile('out/img_' + Get_CRC64ToString(Ext)+ '.png');
+        Icono32.savetofile('out/32_img_' + Get_CRC64ToString(Ext)+ '.png');
       end;
 
     if textoDescripcion = ''  then
@@ -632,7 +637,7 @@ begin
       Ext := '<dir>';
 
     // Se crea el objeto TItemExtension y se añade a la lista de extensiones
-    datoExtension := TItemExtension.Create(Ext, textoDescripcion, Icono);
+    datoExtension := TItemExtension.Create(Ext, textoDescripcion, Icono, Icono32);
     FListaExtensiones.Add(Ext, datoExtension);
   end;
 

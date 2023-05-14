@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 11:51:19
+ * @Last Modified time: 2023-05-14 13:45:04
  *)
 {
 
@@ -55,7 +55,7 @@ uses
 
 const
   SQL_INSERT_EXTENSION                     = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion, IdIcono) VALUES (:ID, :EXTENSION, :DESCRIPCION, :IDICONO);';
-  SQL_INSERT_ICONO                         = 'INSERT OR IGNORE INTO Iconos (Id, Icono) VALUES (:ID, :ICONO);';
+  SQL_INSERT_ICONO                         = 'INSERT OR IGNORE INTO Iconos (Id, Icono, Icono32) VALUES (:ID, :ICONO, :ICONO32);';
   SQL_INSERT_RUTA_COMPLETA                 = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
   SQL_INSERT_CATALOGO                      = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
   SQL_INSERT_DATO_PADRE                    = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre, TieneHijos) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE, :TIENEHIJOS);';
@@ -67,7 +67,7 @@ const
   SQL_SELECT_DATOS_ALL_BY_PARENT_ID        =  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND IdPadre = :IDPADRE';
   SQL_SELECT_DIRECTORIOS_BY_PARENT_ID      =  SQL_SELECT_DATOS_ALL_BY_PARENT_ID + ' AND Tipo = 1';
   SQL_SELECT_RUTA_COMPLETA                 = 'SELECT Ruta FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO AND Id = :ID;';
-  SQL_SELECT_EXTENSION                     = 'SELECT ex.Extension, ex.Descripcion, ic.Icono FROM Extensiones as ex JOIN Iconos AS ic ON ex.IdIcono = ic.Id  WHERE ex.Id = :ID;';
+  SQL_SELECT_EXTENSION                     = 'SELECT ex.Extension, ex.Descripcion, ic.Icono, ic.Icono32 FROM Extensiones as ex JOIN Iconos AS ic ON ex.IdIcono = ic.Id  WHERE ex.Id = :ID;';
 
   SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
   SQL_DELETE_DATOS_BY_ID_CATALOGO          = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO';
@@ -333,7 +333,8 @@ begin
       // Crea la tabla de Iconos
       SQL := 'CREATE TABLE IF NOT EXISTS Iconos (' +
         'Id     BIGINT PRIMARY KEY,' +
-        'Icono  BLOB' +
+        'Icono  BLOB,' +
+        'Icono32  BLOB' +
         ');';
       FDataBase.SQL(SQL);
 
@@ -428,8 +429,23 @@ end;
 // Añade el icono de una extension
 procedure TConectorDatos.AddExtensionIcono(Extension : TItemExtension);
 var
-  Stream       : TMemoryStream;
   internalQuery: TSQLQuery;
+
+  procedure AddBlob(Icono : TPortableNetworkGraphic; NombreParametro : string);
+  var
+    Stream       : TMemoryStream;
+  begin
+    Stream := TMemoryStream.Create;
+    try
+      if Icono <> nil then
+        Icono.SaveToStream(Stream);
+
+      internalQuery.ParamByName(NombreParametro).LoadFromStream(Stream, ftBlob);
+    finally
+      Stream.Free;
+    end;
+  end;
+
 begin
   // Selecciona la query a utilizar
   if FQueryTransaction <> nil then
@@ -461,13 +477,10 @@ begin
 
           // Hace la inserción con un prepared statement
           internalQuery.ParamByName('ID').AsLargeInt := Extension.IdIcono;
-          Stream := TMemoryStream.Create;
-          try
-            Extension.Icono.SaveToStream(Stream);
-            internalQuery.ParamByName('ICONO').LoadFromStream(Stream, ftBlob);
-          finally
-            Stream.Free;
-          end;
+
+          AddBlob(Extension.Icono, 'ICONO');
+
+          AddBlob(Extension.Icono32, 'ICONO32');
 
           try
             // Realiza la inserción
@@ -587,7 +600,7 @@ begin
 
             Stream := TMemoryStream.Create;
             try
-              Result := TItemExtension.Create(FDataBase.Query.FieldByName('Extension').AsString, FDataBase.Query.FieldByName('Descripcion').AsString, nil);
+              Result := TItemExtension.Create(FDataBase.Query.FieldByName('Extension').AsString, FDataBase.Query.FieldByName('Descripcion').AsString, nil, nil);
 
               //Extension.Icono.SaveToStream(Stream);
               TBlobField(FDataBase.Query.FieldByName('ICONO')).SaveToStream(Stream);

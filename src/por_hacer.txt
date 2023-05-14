@@ -123,8 +123,16 @@
 -         Al eliminar : Que confirme la eliminación de datos
 -         Poder editar los catalogos
 -         Poder crear nuevos catalogos
+-         Menu - Eliminar
+-         Menu - Propiedades
+-         Menu - Agregar catalogo
+-         Menu - Editar catalogo
+-         Menu - Eliminar todos los catalogos
+-         Toolbar - Eliminar
+-         Toolbar - Propiedades
+-         Toolbar - Agregar catalogo
+-         Toolbar - Editar catalogo
 -         Extensiones con iconos de 32x32
-
 -         Poder mostrar propiedades de catalogos y datos
 -         Agregar breadcrumbs.
 -         Historial de navegación.
