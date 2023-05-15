@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 14:07:42
+ * @Last Modified time: 2023-05-15 23:43:14
  *)
 {
 
@@ -1447,6 +1447,12 @@ var
   NodeData: PrListaData;
   Datos: TItemDato;
 begin
+  // si el node es el que está seleccionado o es nulo sale
+  if (FNodeArbolActual = Node) or (Node = nil)then
+    exit;
+
+  FNodeArbolActual := Node;
+
   // Lo selecciona
   FNodeArbolActual := Node;
 
