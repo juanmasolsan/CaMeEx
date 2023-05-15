@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 13:45:04
+ * @Last Modified time: 2023-05-15 19:17:23
  *)
 {
 
@@ -58,8 +58,11 @@ const
   SQL_INSERT_ICONO                         = 'INSERT OR IGNORE INTO Iconos (Id, Icono, Icono32) VALUES (:ID, :ICONO, :ICONO32);';
   SQL_INSERT_RUTA_COMPLETA                 = 'INSERT OR IGNORE INTO RutaCompleta (Id, IdCatalogo, Ruta) VALUES (:ID, :IDCATALOGO, :RUTA);';
   SQL_INSERT_CATALOGO                      = 'INSERT OR IGNORE INTO Catalogos (Id, Nombre, Descripcion, Tipo, Fecha, TotalArchivos, TotalDirectorios, TotalSize) VALUES (:ID, :NOMBRE, :DESCRIPCION, :TIPO, :FECHA, :TOTALARCHIVOS, :TOTALDIRECTORIOS, :TOTALSIZE);';
-  SQL_INSERT_DATO_PADRE                    = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre, TieneHijos) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE, :TIENEHIJOS);';
-  SQL_INSERT_DATO                          = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, TieneHijos) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :TIENEHIJOS);';
+  SQL_INSERT_DATO_PADRE                    = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, FechaCreacion, FechaLastAcceso, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, IdPadre, TieneHijos) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :FECHACREACION, :FECHALASTACCESO, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :IDPADRE, :TIENEHIJOS);';
+  SQL_INSERT_DATO                          = 'INSERT OR IGNORE INTO Datos (Id, Tipo, Atributos, Fecha, FechaCreacion, FechaLastAcceso, Size, Nombre, ImageIndex, IdExtension, IdRutaCompleta, IdCatalogo, TieneHijos) VALUES (:ID, :TIPO, :ATRIBUTOS, :FECHA, :FECHACREACION, :FECHALASTACCESO, :SIZE, :NOMBRE, :IMAGEINDEX, :IDEXTENSION, :IDRUTACOMPLETA, :IDCATALOGO, :TIENEHIJOS);';
+
+
+
 
   SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
@@ -367,18 +370,20 @@ begin
 
       // Crea la tabla de datos
       SQL := 'CREATE TABLE IF NOT EXISTS Datos (' +
-        'Id             BIGINT PRIMARY KEY,' +
-        'Tipo           INTEGER     NOT NULL,' +
-        'Atributos      INTEGER     NOT NULL,' +
-        'Fecha          DATETIME    NOT NULL,' +
-        'Size           BIGINT      NOT NULL,' +
-        'Nombre         TEXT        NOT NULL,' +
-        'ImageIndex     INTEGER     NOT NULL,' +
-        'TieneHijos     INTEGER     NOT NULL,' +
-        'IdPadre        BIGINT CONSTRAINT FK_DATOS REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE RESTRICT,' +
-        'IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-        'IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
-        'IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +
+        'Id              BIGINT PRIMARY KEY,' +
+        'Tipo            INTEGER     NOT NULL,' +
+        'Atributos       INTEGER     NOT NULL,' +
+        'Fecha           DATETIME    NOT NULL,' +
+        'FechaCreacion   DATETIME    NOT NULL,' +
+        'FechaLastAcceso DATETIME    NOT NULL,' +
+        'Size            BIGINT      NOT NULL,' +
+        'Nombre          TEXT        NOT NULL,' +
+        'ImageIndex      INTEGER     NOT NULL,' +
+        'TieneHijos      INTEGER     NOT NULL,' +
+        'IdPadre         BIGINT CONSTRAINT FK_DATOS REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE RESTRICT,' +
+        'IdExtension     BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+        'IdRutaCompleta  BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,' +
+        'IdCatalogo      BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT' +
         ');';
 
       FDataBase.SQL(SQL);
@@ -824,6 +829,8 @@ begin
         internalQuery.ParamByName('TIPO').AsInteger            := integer(Dato.Tipo);
         internalQuery.ParamByName('ATRIBUTOS').AsInteger       := Dato.Atributos;
         internalQuery.ParamByName('FECHA').AsDateTime          := Dato.Fecha;
+        internalQuery.ParamByName('FECHACREACION').AsDateTime   := Dato.FechaCreacion;
+        internalQuery.ParamByName('FECHALASTACCESO').AsDateTime := Dato.FechaLastAcceso;
         internalQuery.ParamByName('SIZE').AsLargeInt           := Dato.Size;
         internalQuery.ParamByName('NOMBRE').AsString           := Dato.Nombre;
         internalQuery.ParamByName('IMAGEINDEX').AsInteger      := Dato.ImageIndex;
@@ -892,6 +899,11 @@ begin
 
   // Añade el id
   Result.Id := QWord(FDataBase.Query.FieldByName('ID').AsLargeInt);
+
+  // Añade las fechas
+  Result.FechaCreacion   := Query.FieldByName('FECHACREACION').AsDateTime;
+  Result.FechaLastAcceso := Query.FieldByName('FECHALASTACCESO').AsDateTime;
+
 
   // Añade si tiene hijos
   Result.TieneHijos := Query.FieldByName('TIENEHIJOS').AsBoolean;

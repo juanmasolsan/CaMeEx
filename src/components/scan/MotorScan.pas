@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 13:35:25
+ * @Last Modified time: 2023-05-15 19:01:29
  *)
 {
 
@@ -40,6 +40,10 @@ unit MotorScan;
 interface
 
 uses
+  {$IFDEF WINDOWS}
+   Windows,
+   ShlObj, ActiveX, ComObj,
+  {$ENDIF}
     LCLIntf
   , LCLType
   , Classes
@@ -265,7 +269,7 @@ begin
 
   //FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '');
   {$ELSE}
-  FRoot   := TItemCatalogo.create('DAM 2', TItemDatoTipo.Root, now(), 0, 'Directorio de trabajo usado para el curso de DAM 2', 0, 0);
+  FRoot   := TItemCatalogo.create('DAM 2', TItemDatoTipo.RootDVD, now(), 0, 'Directorio de trabajo usado para el curso de DAM 2', 0, 0);
   {$ENDIF}
 
 
@@ -406,6 +410,19 @@ end;
 
 // Procesa un archivo o directorio encontrado
 function TMotorScanCustom.DoProcesarItem(const SearchRec: TSearchRec; const Padre: TItemDato; RealPath : RawByteString) : TItemDato;
+
+  {$IFDEF WINDOWS}
+  function ForceFileTimeToDTime(FTime: TFileTime): TDateTime;
+  var
+    LocalFTime : TFileTime;
+    STime      : TSystemTime;
+  begin
+    FileTimeToLocalFileTime(FTime, LocalFTime{%H-});
+    FileTimeToSystemTime(LocalFTime, STime{%H-});
+    Result := SystemTimeToDateTime(STime);
+  end;
+  {$ENDIF WINDOWS}
+
 var
   Item        : TItemDato;
   Tipo        : TItemDatoTipo;
@@ -468,6 +485,13 @@ begin
                             FRoot.Id,
                             0
     );
+
+
+  // Añadir la fecha de creación
+  Item.FechaCreacion   := ForceFileTimeToDTime(SearchRec.FindData.ftCreationTime);
+
+  // Añadir la fecha de ultimo acceso
+  Item.FechaLastAcceso := ForceFileTimeToDTime(SearchRec.FindData.ftLastAccessTime);
 
   // Añadir el objeto TItemDato al padre
   Padre.AddHijo(Item);

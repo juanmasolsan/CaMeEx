@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 13:37:52
+ * @Last Modified time: 2023-05-15 19:12:32
  */
 
 
@@ -64,18 +64,20 @@ CREATE INDEX IF NOT EXISTS RutaCompleta_Ruta_IDX ON RutaCompleta (Ruta);
 
 -- Crear tabla Datos
 CREATE TABLE IF NOT EXISTS Datos (
-    Id             BIGINT PRIMARY KEY,
-    Tipo           INTEGER  NOT NULL,
-    Atributos      INTEGER  NOT NULL,
-    Fecha          DATETIME NOT NULL,
-    Size           BIGINT   NOT NULL,
-    Nombre         TEXT     NOT NULL,
-    ImageIndex     INTEGER  NOT NULL,
-    TieneHijos     INTEGER  NOT NULL,
-    IdPadre        BIGINT CONSTRAINT FK_DATOS REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE RESTRICT,
-    IdExtension    BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    IdRutaCompleta BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    IdCatalogo     BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT
+    Id              BIGINT PRIMARY KEY,
+    Tipo            INTEGER  NOT NULL,
+    Atributos       INTEGER  NOT NULL,
+    Fecha           DATETIME NOT NULL,
+    FechaCreacion   DATETIME NOT NULL,
+    FechaLastAcceso DATETIME NOT NULL,
+    Size            BIGINT   NOT NULL,
+    Nombre          TEXT     NOT NULL,
+    ImageIndex      INTEGER  NOT NULL,
+    TieneHijos      INTEGER  NOT NULL,
+    IdPadre         BIGINT CONSTRAINT FK_DATOS REFERENCES Datos (Id) ON DELETE CASCADE ON UPDATE RESTRICT,
+    IdExtension     BIGINT CONSTRAINT FK_EXTENSION REFERENCES Extensiones (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    IdRutaCompleta  BIGINT CONSTRAINT FK_RUTA_COMPLETA REFERENCES RutaCompleta (Id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    IdCatalogo      BIGINT NOT NULL CONSTRAINT FK_DATOS_CATALOGOS REFERENCES Catalogos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 -- Crear índices

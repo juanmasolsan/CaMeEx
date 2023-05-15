@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 16:37:20
+ * @Last Modified time: 2023-05-15 19:08:17
  *)
 {
 
@@ -86,6 +86,9 @@ type
 
     FRuta                : RawByteString;
 
+    FFechaCreacion       : TDateTime;
+    FFechaLastAcceso     : TDateTime;
+
     function GetTineHijos: boolean;
   protected
     // Obtiene el índice de la imagen del sistema
@@ -145,6 +148,10 @@ type
     property Parent          : TItemDato read FParent;
     property TieneHijos      : boolean read GetTineHijos write FTieneHijos;
     property Ruta            : RawByteString read FRuta write FRuta;
+
+    property FechaCreacion   : TDateTime read FFechaCreacion write FFechaCreacion;
+    property FechaLastAcceso : TDateTime read FFechaLastAcceso write FFechaLastAcceso;
+
   end;
 
 

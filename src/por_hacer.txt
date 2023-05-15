@@ -65,6 +65,7 @@
 +         Agregar Sqlite3 - Al agregar un nuevo item que guarde si tiene hijos o no
 +         Agregar Sqlite3 - En la tabla de iconos el id sea el crc64 de los iconos
 +         Agregar Sqlite3 - Tabla extensiones enlace con la tabla de iconos por el id del mismo
++         Motor de escaneo de dispositivos y directorios - Guardar fechas de creacion y ultimo acceso
 
 - Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
 +         Listar los archivos en la lista.
@@ -137,7 +138,10 @@
 -         Agregar breadcrumbs.
 -         Historial de navegación.
 -         Ventana para seleccionar el dispositivo/directorio a escanear.
-
+-         Navegación sincronizada  lista-arbol - no se pone el nodo en negrita
+-         Navegación sincronizada  lista-arbol - Se queda el nodo del arbol seleccionado al entrar desde la lista de archivos
+-         Revisar la ruta de los archivos en la lista, si hay muchos archivos se vuelve lenta
+-
 
 
 
