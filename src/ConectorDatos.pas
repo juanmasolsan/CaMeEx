@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-15 19:17:23
+ * @Last Modified time: 2023-05-16 00:30:59
  *)
 {
 
@@ -878,35 +878,49 @@ begin
 end;
 
 function TConectorDatos.DoGetDatoFromQuery(Query : TSQLQuery) : TItemDato;
+// definidas las columnas de la query
+const
+  COLUMNA_DATOS_ID                = 0;
+  COLUMNA_DATOS_TIPO              = COLUMNA_DATOS_ID + 1;
+  COLUMNA_DATOS_ATRIBUTOS         = COLUMNA_DATOS_TIPO + 1;
+  COLUMNA_DATOS_FECHA             = COLUMNA_DATOS_ATRIBUTOS + 1;
+  COLUMNA_DATOS_FECHACREACION     = COLUMNA_DATOS_FECHA + 1;
+  COLUMNA_DATOS_FECHALASTACCESO   = COLUMNA_DATOS_FECHACREACION + 1;
+  COLUMNA_DATOS_SIZE              = COLUMNA_DATOS_FECHALASTACCESO + 1;
+  COLUMNA_DATOS_NOMBRE            = COLUMNA_DATOS_SIZE + 1;
+  COLUMNA_DATOS_IMAGEINDEX        = COLUMNA_DATOS_NOMBRE + 1;
+  COLUMNA_DATOS_TIENEHIJOS        = COLUMNA_DATOS_IMAGEINDEX + 1;
+  COLUMNA_DATOS_IDPADRE           = COLUMNA_DATOS_TIENEHIJOS + 1;
+  COLUMNA_DATOS_IDEXTENSION       = COLUMNA_DATOS_IDPADRE + 1;
+  COLUMNA_DATOS_IDRUTACOMPLETA    = COLUMNA_DATOS_IDEXTENSION + 1;
+  COLUMNA_DATOS_IDCATALOGO        = COLUMNA_DATOS_IDRUTACOMPLETA + 1;
+
 begin
   // Crea el Dato
   Result := TItemDato.Create(
-          Query.FieldByName('NOMBRE').AsString,
-          TItemDatoTipo(Query.FieldByName('TIPO').AsInteger),
-          Query.FieldByName('FECHA').AsDateTime,
-          Query.FieldByName('SIZE').AsLargeInt,
-          Query.FieldByName('ATRIBUTOS').AsInteger,
-//          Query.FieldByName('DESCRIPCION').AsString,
+          Query.Fields[COLUMNA_DATOS_NOMBRE].AsString,
+          TItemDatoTipo(Query.Fields[COLUMNA_DATOS_TIPO].AsInteger),
+          Query.Fields[COLUMNA_DATOS_FECHA].AsDateTime,
+          Query.Fields[COLUMNA_DATOS_SIZE].AsLargeInt,
+          Query.Fields[COLUMNA_DATOS_ATRIBUTOS].AsInteger,
             '',
-          Query.FieldByName('ImageIndex').AsInteger,
-
-
-          Query.FieldByName('IDEXTENSION').AsLargeInt,
-          Query.FieldByName('IDRUTACOMPLETA').AsLargeInt,
-          Query.FieldByName('IDCATALOGO').AsLargeInt,
-          Query.FieldByName('IDPADRE').AsLargeInt
+          Query.Fields[COLUMNA_DATOS_IMAGEINDEX].AsInteger,
+          Query.Fields[COLUMNA_DATOS_IDEXTENSION].AsLargeInt,
+          Query.Fields[COLUMNA_DATOS_IDRUTACOMPLETA].AsLargeInt,
+          Query.Fields[COLUMNA_DATOS_IDCATALOGO].AsLargeInt,
+          Query.Fields[COLUMNA_DATOS_IDPADRE].AsLargeInt
   );
 
   // Añade el id
-  Result.Id := QWord(FDataBase.Query.FieldByName('ID').AsLargeInt);
+  Result.Id := QWord(Query.Fields[COLUMNA_DATOS_ID].AsLargeInt);
 
   // Añade las fechas
-  Result.FechaCreacion   := Query.FieldByName('FECHACREACION').AsDateTime;
-  Result.FechaLastAcceso := Query.FieldByName('FECHALASTACCESO').AsDateTime;
-
+  Result.FechaCreacion   := Query.Fields[COLUMNA_DATOS_FECHACREACION].AsDateTime;
+  Result.FechaLastAcceso := Query.Fields[COLUMNA_DATOS_FECHALASTACCESO].AsDateTime;
 
   // Añade si tiene hijos
-  Result.TieneHijos := Query.FieldByName('TIENEHIJOS').AsBoolean;
+  Result.TieneHijos := Query.Fields[COLUMNA_DATOS_TIENEHIJOS].AsBoolean;
+
 end;
 
 // Devuelve todos los catalogos

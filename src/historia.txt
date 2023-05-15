@@ -1,4 +1,8 @@
 
++ 1.2.0.6
+- [FIX]   (20230516) Optimizado peticiones de recuperación de datos de directorios y archivos de la base de datos.
+
++ 1.2.0.5
 - [FIX]   (20230515) Eliminado duplicidad de ejecución de cambio de node en el arbol
 - [FIX]   (20230515) Arreglada la navegación sincronizada Lista-Arbol - Selección en el arbol del nodo del directorio actual y luego click en el arbol en otro nodo del arbol.
 - [FIX]   (20230515) Arreglada la navegación sincronizada Lista-Arbol - Selección en negrita en el arbol del directorio actual.
