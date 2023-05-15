@@ -1909,14 +1909,13 @@ begin
   Node := FNodeArbolActual;
   if node = nil then exit;
 
-
   Arbol.Expanded[node] := true;
 
   Node := Arbol.GetFirst();
   while Node <> nil do
   begin
     try
-      Node^.States := Node^.States - [vsSelected];
+      //Node^.States := Node^.States - [vsSelected];
       NodeData := arbol.GetNodeData(Node);
       if NodeData <> nil then
       begin
@@ -1924,6 +1923,7 @@ begin
 
         if (Datos <> nil) and (Datos.IdCatalogo = FCatalogoID) and (Datos.Id = FPadreID) then
         begin
+(*
           FNodeArbolActual     := node;
           Node^.States         := Node^.States + [vsSelected];
           Arbol.Expanded[node] := true;
@@ -1932,6 +1932,20 @@ begin
 
           // Lanza el método de forma asíncrona
           application.QueueAsyncCall(@DoLoadListaArchivosAsync, 0);
+*)
+
+          Arbol.ScrollIntoView(Node, true, true);
+
+          //Node^.States         := Node^.States + [vsSelected];
+          Arbol.Expanded[node] := true;
+          //Arbol.Selected[Node] := true;
+          //Arbol.FocusedNode    := Node;
+          ArbolChange(Arbol, node);
+
+
+
+
+          //exit;
         end
       end;
     except
@@ -1977,6 +1991,13 @@ var
     while Nodo <> nil do
     begin
       AsignarRutaSeleccionada(Nodo, false);
+
+      // Elimina el estado de seleccion en caso de no ser el node actual
+      if Nodo = Node then
+       Nodo^.States := Nodo^.States + [vsSelected]
+      else
+       Nodo^.States := Nodo^.States - [vsSelected];
+
       Nodo := Arbol.GetNext(Nodo);
     end;
   end;

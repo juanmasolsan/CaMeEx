@@ -1,4 +1,10 @@
 
+
+- [FIX]   (20230515) Arreglada la navegación sincronizada Lista-Arbol - Selección en el arbol del nodo del directorio actual y luego click en el arbol en otro nodo del arbol.
+- [FIX]   (20230515) Arreglada la navegación sincronizada Lista-Arbol - Selección en negrita en el arbol del directorio actual.
+- [NEW]   (20230515) Agregado al Motor de escaneo de dispositivos y directorios que guarde las fechas de creacion y ultimo acceso
+
++ 1.2.0.1
 - [NEW]   (20230514) Agregado nuevos tipos de Catalogos
 - [NEW]   (20230514) Agregado gestión de iconos para las extensiones de 32x32
 - [NEW]   (20230514) Agregado en el scan la extracción de iconos de 32x32
