@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-16 16:10:43
+ * @Last Modified time: 2023-05-17 00:54:04
  *)
 {
 
@@ -421,11 +421,16 @@ end;
 // Elimina todas las tablas de la base de datos
 procedure TConectorDatos.EliminarAllTablas();
 begin
-  EliminarTabla('Datos');
-  EliminarTabla('Extensiones');
-  EliminarTabla('Iconos');
-  EliminarTabla('RutaCompleta');
-  EliminarTabla('Catalogos');
+  FDataBase.Connection.ExecuteDirect('PRAGMA foreign_keys = 0;');
+  try
+    EliminarTabla('Datos');
+    EliminarTabla('Extensiones');
+    EliminarTabla('Iconos');
+    EliminarTabla('RutaCompleta');
+    EliminarTabla('Catalogos');
+  finally
+    FDataBase.Connection.ExecuteDirect('PRAGMA foreign_keys = 1;');
+  end;
 
   // Optimiza el tamaño de la tabla
   DoOptimizar();
@@ -1206,12 +1211,17 @@ begin
   // Inicializa el resultado
   Result := false;
 
-  // Elimina los datos que pertenecen al catalogo
-  if DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_DATOS_BY_ID_CATALOGO, 'IDCATALOGO') then
-    // Elimina los rutas completas que pertenecen al catalogo
-    if DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO, 'IDCATALOGO') then
-      // Elimina el catalogo
-      result := DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_CATALOGO_BY_ID, 'IDCATALOGO');
+  FDataBase.Connection.ExecuteDirect('PRAGMA foreign_keys = 0;');
+  try
+    // Elimina los datos que pertenecen al catalogo
+    if DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_DATOS_BY_ID_CATALOGO, 'IDCATALOGO') then
+      // Elimina los rutas completas que pertenecen al catalogo
+      if DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO, 'IDCATALOGO') then
+        // Elimina el catalogo
+        result := DoDeleteFromTableByIdParametro(Catalogo.Id, SQL_DELETE_CATALOGO_BY_ID, 'IDCATALOGO');
+  finally
+    FDataBase.Connection.ExecuteDirect('PRAGMA foreign_keys = 1;');
+  end;
 
   // Optimiza el tamaño de la tabla
   DoOptimizar();
