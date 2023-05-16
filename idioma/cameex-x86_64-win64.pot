@@ -237,12 +237,3 @@ msgstr ""
 msgid "Email : "
 msgstr ""
 
-
-#: Message_Directorios
-msgid "Email1:"
-msgstr ""
-
-
-#: Message_Archivos
-msgid "Email2:"
-msgstr ""

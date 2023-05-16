@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-06 22:40:12
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 17:58:21
+ * @Last Modified time: 2023-05-16 17:44:47
  *)
 {
 
@@ -94,6 +94,9 @@ type
 
     // Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
     function IsMessageBoxInfo(Mensaje, Titulo : String) : boolean;
+
+    // Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
+    function IsMessageBoxWarning(Mensaje, Titulo : String) : boolean;
 
   end;
 
@@ -322,11 +325,18 @@ function TForm_Avanzado_Custom.IsMessageBoxInfo(Mensaje, Titulo : String) : bool
 var
  MensajeDialogo : longint;
 begin
- MensajeDialogo := MessageBox(handle, Pchar(Mensaje), Pchar(Titulo), MB_YESNOCANCEL or MB_ICONINFORMATION);
+ MensajeDialogo := MessageBox(handle, Pchar(StringReplace(Mensaje, '\r', #13, [rfReplaceAll, rfIgnoreCase])), Pchar(Titulo), MB_YESNOCANCEL or MB_ICONINFORMATION);
  Result := MensajeDialogo = IDYES;
 end;
 
-
+// Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
+function TForm_Avanzado_Custom.IsMessageBoxWarning(Mensaje, Titulo : String) : boolean;
+var
+ MensajeDialogo : longint;
+begin
+ MensajeDialogo := MessageBox(handle, Pchar(StringReplace(Mensaje, '\r', #13, [rfReplaceAll, rfIgnoreCase])), Pchar(Titulo), MB_YESNOCANCEL or MB_ICONWARNING);
+ Result := MensajeDialogo = IDYES;
+end;
 
 initialization
 

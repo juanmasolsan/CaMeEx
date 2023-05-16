@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-16 17:21:07
+ * @Last Modified time: 2023-05-16 17:53:57
  *)
 {
 
@@ -2260,19 +2260,24 @@ end;
 // Confirma si se debe eliminar todos los catalogos
 function Tform1.DoConfirmarEliminarTodo() : boolean;
 begin
-  result := True;
+  result := IsMessageBoxWarning(Format(Message_Eliminar_All_Catalogos, [1]), Message_Atencion);
+  if result then
+    result := IsMessageBoxWarning(Format(Message_Eliminar_All_Catalogos, [2]), Message_Atencion);
+
 end;
 
 // Confirma si se debe eliminar el catalogo seleccionado
 function Tform1.DoConfirmarEliminarCatalogo(Catalogo : TItemCatalogo) : boolean;
 begin
-  result := True;
+  // Pregunta si realmente quiere borrar los datos
+  Result := IsMessageBoxWarning(Message_Eliminar_Catalogo, Message_Atencion);
 end;
 
 // Confirma si se debe eliminar los datos seleccionados
 function Tform1.DoConfirmarEliminarDatos() : boolean;
 begin
-  result := True;
+  // Pregunta si realmente quiere borrar los datos
+  Result := IsMessageBoxWarning(Message_Eliminar_Datos, Message_Atencion);
 end;
 
 // Actualiza el nodo raiz con el total de datos

@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230516) Agregado verificación por parte del usuario a la hora de eliminar datos/catalogos.
 - [FIX]   (20230516) Llevadas todas las strings a AppString.pas
 
 + 1.2.0.6

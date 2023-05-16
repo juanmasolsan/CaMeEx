@@ -119,9 +119,9 @@
 +         Poder eliminar datos - Que actualice el total de archivos y directorios del catalogo
 +         Poder eliminar datos - Excepcion al contraer el arbol tras eliminar todos los datos
 -         Al eliminar : Que muestre el progreso/info
--         Al eliminar : Que confirme la eliminación de todos los catalogos
--         Al eliminar : Que confirme la eliminación de catalogo
--         Al eliminar : Que confirme la eliminación de datos
++         Al eliminar : Que confirme la eliminación de todos los catalogos
++         Al eliminar : Que confirme la eliminación de catalogo
++         Al eliminar : Que confirme la eliminación de datos
 -         Poder editar los catalogos
 -         Poder crear nuevos catalogos
 -         Menu - Eliminar
