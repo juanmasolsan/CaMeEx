@@ -39,6 +39,7 @@ object Form1: TForm1
       Top = 0
       Caption = 'ToolButton1'
       ImageIndex = 0
+      Indeterminate = True
       OnClick = ToolButton1Click
     end
   end

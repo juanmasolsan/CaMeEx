@@ -1,0 +1,11 @@
+{"version":1,"strings":[
+{"hash":210334005,"name":"tform_about.caption","sourcebytes":[65,99,101,114,99,97,32,100,101],"value":"Acerca de"},
+{"hash":211220833,"name":"tform_about.label_nombre_programa.caption","sourcebytes":[78,111,109,98,114,101,32,100,101,108,32,112,114,111,103,114,97,109,97],"value":"Nombre del programa"},
+{"hash":185036788,"name":"tform_about.label_version.caption","sourcebytes":[118,46,49,46,49,46,49,46,49,32,120,54,52],"value":"v.1.1.1.1 x64"},
+{"hash":203675652,"name":"tform_about.label_copyrigth.caption","sourcebytes":[67,111,112,121,114,105,103,116,104,32,50,48,49,52],"value":"Copyrigth 2014"},
+{"hash":98255808,"name":"tform_about.label3.caption","sourcebytes":[87,101,98,32,58,32],"value":"Web : "},
+{"hash":26152547,"name":"tform_about.label_url.caption","sourcebytes":[104,116,116,112,58,47,47,119,119,119,46,108,97,119,101,98,46,101,115],"value":"http://www.laweb.es"},
+{"hash":58713856,"name":"tform_about.label4.caption","sourcebytes":[69,109,97,105,108,32,58,32],"value":"Email : "},
+{"hash":258056947,"name":"tform_about.label_email.caption","sourcebytes":[108,111,113,117,101,115,101,97,64,108,111,113,117,101,115,101,97,46,101,115],"value":"loquesea@loquesea.es"},
+{"hash":40618212,"name":"tform_about.label_build.caption","sourcebytes":[76,97,98,101,108,95,66,117,105,108,100],"value":"Label_Build"}
+]}

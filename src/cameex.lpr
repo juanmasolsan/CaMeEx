@@ -51,7 +51,8 @@ uses
   {$ENDIF FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
   Interfaces, // this includes the LCL widgetset
   Forms
-  , UnidadPrincipal
+  , AppString
+  , UnidadPrincipal, Control_About
 
   ;
 

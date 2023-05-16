@@ -23,3 +23,12 @@ SQLite         : https://wiki.freepascal.org/SQLite/es
                                              https://wiki.freepascal.org/SqlDBHowto/es#.C2.BFC.C3.B3mo_utilizar_par.C3.A1metros_en_una_consulta.3F
 
 SQLite3 y Fechas : https://wiki.freepascal.org/SQLite/es#SQLite3_y_Fechas
+
+
+Lazarus
+------------------------------------------------
+How to Create Multilingual Programs in Lazarus : http://lazplanet.blogspot.com/2018/12/how-to-create-multilingual-programs-in.html
+
+Step-by-step instructions for creating multi-language applications : https://wiki.lazarus.freepascal.org/Step-by-step_instructions_for_creating_multi-language_applications
+
+Getting translation strings right : https://wiki.lazarus.freepascal.org/Getting_translation_strings_right

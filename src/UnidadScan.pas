@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-09 11:51:16
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-04-09 18:44:55
+ * @Last Modified time: 2023-05-16 16:20:09
  *)
 {
 
@@ -94,7 +94,7 @@ implementation
 
 uses
   utilidades
-  ;
+  , AppString;
 
 
 {$R *.lfm}
@@ -188,7 +188,7 @@ end;
 function TFormScan.DoCancelar() : boolean;
 begin
   // Pregunta si realmente quiere cancelar el escaneo
-  Result := IsMessageBoxInfo('Escaneo en progreso.' + #13 + '¿Realmente quiere cancelar el escaneo actual?', 'Atención');
+  Result := IsMessageBoxInfo(Message_DLG_Cancelar_escaneo, Message_Atencion);
 
   if Result then
   begin

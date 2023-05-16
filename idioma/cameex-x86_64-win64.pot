@@ -225,3 +225,24 @@ msgctxt "tformscan.speedbuttoncancelar.caption"
 msgid "Cancelar"
 msgstr ""
 
+#: tform_about.caption
+msgid "Acerca de"
+msgstr ""
+
+#: tform_about.label3.caption
+msgid "Web : "
+msgstr ""
+
+#: tform_about.label4.caption
+msgid "Email : "
+msgstr ""
+
+
+#: Message_Directorios
+msgid "Email1:"
+msgstr ""
+
+
+#: Message_Archivos
+msgid "Email2:"
+msgstr ""

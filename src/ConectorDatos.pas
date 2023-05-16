@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-16 00:30:59
+ * @Last Modified time: 2023-05-16 16:10:43
  *)
 {
 
@@ -218,7 +218,7 @@ uses
   , Control_DB
   , Control_Logger
   , ItemBaseDatos
-  , graphics;
+  , graphics, AppString;
 
 var
   FDataBase : TConexion_DB = nil;
@@ -291,7 +291,7 @@ begin
     TestSentencias();
   {$ENDIF TESTEAR_SENTENCIAS}
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 
 end;
@@ -502,7 +502,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -559,7 +559,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -636,7 +636,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -697,7 +697,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -763,7 +763,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -854,7 +854,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -975,7 +975,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1029,7 +1029,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1109,7 +1109,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1182,7 +1182,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1254,7 +1254,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1295,7 +1295,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1350,7 +1350,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1427,7 +1427,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1465,7 +1465,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1662,7 +1662,7 @@ begin
   try
     FDataBase.SQLite3_Optimizar_DB;
   except
-    on E: Exception do LogAddException('Excepción Detectada', E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 

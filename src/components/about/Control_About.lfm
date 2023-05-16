@@ -13,7 +13,7 @@ object Form_About: TForm_About
   OnCreate = FormCreate
   ShowHint = True
   ShowInTaskBar = stNever
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.6.0'
   object Image_Built_with: TImage
     Left = 320
     Height = 156

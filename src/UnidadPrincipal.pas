@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-15 23:43:14
+ * @Last Modified time: 2023-05-16 17:21:07
  *)
 {
 
@@ -53,6 +53,7 @@ uses
   , ComCtrls
   , ExtCtrls, StdCtrls
   , laz.VirtualTrees
+  , DefaultTranslator, LCLTranslator
   , VirtualTreesExtended
   , SynEdit
   , Control_Logger
@@ -327,7 +328,7 @@ uses
   , OrdenarLista
   , Utilidades
   , ConectorDatos
-  , ItemExtension, ItemRutaCompleta, GestorExtensiones;
+  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString;
 
 {$R *.lfm}
 
@@ -1237,14 +1238,14 @@ begin
       {$ENDIF}
     {$ENDIF}
     SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Total Directorios      :  ' + PuntearNumeracion(FScan.TotalDirectorios));
-    SalidaLog.lines.Add('Total Archivos         :  ' + PuntearNumeracion(FScan.TotalArchivos));
+    SalidaLog.lines.Add(Message_Total_Directorios + '  ' + PuntearNumeracion(FScan.TotalDirectorios));
+    SalidaLog.lines.Add(Message_Total_Archivos + '  ' + PuntearNumeracion(FScan.TotalArchivos));
 
     SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Total tamaño detectado :  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
+    SalidaLog.lines.Add(Message_Total_Size + '  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
 
     SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add('Tiempo de escaneo      :  ' + MostrarTiempoTranscurrido(FScan.ScanInicio, FScan.ScanFinal));
+    SalidaLog.lines.Add(Message_Tiempo_Escaneo + '  ' + MostrarTiempoTranscurrido(FScan.ScanInicio, FScan.ScanFinal));
   finally
     SalidaLog.lines.endUpdate();
   end;
@@ -1255,7 +1256,7 @@ begin
     SalidaLog.lines.Add('');
     SalidaLog.lines.Add('');
     SalidaLog.lines.Add('');
-    SalidaLog.lines.Add('Guardando en la base de datos ...');
+    SalidaLog.lines.Add(Message_Guardando);
 
     Inicio   := now;
     try
@@ -1263,7 +1264,7 @@ begin
       DoGuardarEscaneado(FScan, FGestorDatos);
     finally
       SalidaLog.lines.Add('------------------------------------------');
-      SalidaLog.lines.Add('Tiempo para guardar    :  ' + MostrarTiempoTranscurrido(Inicio, now));
+      SalidaLog.lines.Add(Message_Tiempo_Guardado + '  ' + MostrarTiempoTranscurrido(Inicio, now));
     end;
   finally
     FGestorDatos.EndUpdate();
@@ -1365,6 +1366,11 @@ var
   CatalogoActual : TItemCatalogo;
   tiempo : qword;
 begin
+  SetDefaultLang('en');
+
+  ShowMessage(Message_Directorios);
+
+exit;
   tiempo := GetTickCount64();
 
   // Cargar Lista
@@ -1372,7 +1378,7 @@ begin
 
   tiempo := GetTickCount64() - tiempo;
 
-  SalidaLog.lines.Add('Tiempo empleado : ' + IntToStr(tiempo) + ' ms.');
+  SalidaLog.lines.Add(Message_Tiempo_Empleado + ' ' + IntToStr(tiempo) + ' ms.');
 end;
 
 procedure TForm1.ArbolResize(Sender: TObject);
@@ -1542,13 +1548,13 @@ begin
               TargetCanvas.Font.Color := clgreen;
 
             // Dibuja el número de directorio
-            TargetCanvas.TextOut(CellRect.Left, TargetCanvas.PenPos.Y + 15, 'Directorios :');
+            TargetCanvas.TextOut(CellRect.Left, TargetCanvas.PenPos.Y + 15, Message_Directorios);
             TargetCanvas.Font.Style := [fsBold];
             TargetCanvas.TextOut(TargetCanvas.PenPos.X + 5, TargetCanvas.PenPos.Y, PuntearNumeracion(Datos.TotalDirectorios));
 
             // Dibuja el número de Archivos
             TargetCanvas.Font.Style := [];
-            TargetCanvas.TextOut(CellRect.Left + 120, TargetCanvas.PenPos.Y, 'Archivos :');
+            TargetCanvas.TextOut(CellRect.Left + 120, TargetCanvas.PenPos.Y, Message_Archivos);
             TargetCanvas.Font.Style := [fsBold];
             TargetCanvas.TextOut(TargetCanvas.PenPos.X + 5, TargetCanvas.PenPos.Y, PuntearNumeracion(Datos.TotalArchivos));
           end;
@@ -1637,7 +1643,17 @@ begin
 
 
     // Muestra los datos de la lista
-    DoEstadisticas(0, inttostr(TotalDir) + ' directorios y ' + inttostr(TotalFile) + ' archivos con '+ inttostr(TotalFile + TotalDir) + ' elementos en total y ocupando ' + ConvertirSizeEx(TotalSize) + ' ( ' + PuntearNumeracion(TotalSize) + ' bytes) - Tiempo empleado :  '+ inttostr(Tiempo) + ' ms');
+    //DoEstadisticas(0, inttostr(TotalDir) + ' directorios y ' + inttostr(TotalFile) + ' archivos con '+ inttostr(TotalFile + TotalDir) + ' elementos en total y ocupando ' + ConvertirSizeEx(TotalSize) + ' ( ' + PuntearNumeracion(TotalSize) + ' bytes) - Tiempo empleado :  '+ inttostr(Tiempo) + ' ms');
+
+    DoEstadisticas(0, Format(Message_Estadisticas, [
+      PuntearNumeracion(TotalDir),
+      PuntearNumeracion(TotalFile),
+      PuntearNumeracion(TotalFile + TotalDir),
+      ConvertirSizeEx(TotalSize),
+      PuntearNumeracion(TotalSize),
+      PuntearNumeracion(Tiempo)
+
+    ]));
 
   finally
     Lista.EndUpdate;
@@ -1791,7 +1807,7 @@ begin
 
   tiempo := GetTickCount64() - tiempo;
 
-  SalidaLog.lines.Add('Tiempo empleado : ' + IntToStr(tiempo) + ' ms.');
+  SalidaLog.lines.Add(Message_Tiempo_Empleado + ' ' + IntToStr(tiempo) + ' ms.');
 end;
 
 

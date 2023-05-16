@@ -1,4 +1,7 @@
 
+
+- [FIX]   (20230516) Llevadas todas las strings a AppString.pas
+
 + 1.2.0.6
 - [FIX]   (20230516) Optimizado peticiones de recuperación de datos de directorios y archivos de la base de datos.
 

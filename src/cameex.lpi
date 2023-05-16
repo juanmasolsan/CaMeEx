@@ -19,6 +19,14 @@
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="..\idioma"/>
+      <ExcludedIdentifiers Count="6">
+        <Item1 Value="tform_about.label_build.caption"/>
+        <Item2 Value="tform_about.label_copyrigth.caption"/>
+        <Item3 Value="tform_about.label_email.caption"/>
+        <Item4 Value="tform_about.label_nombre_programa.caption"/>
+        <Item5 Value="tform_about.label_url.caption"/>
+        <Item6 Value="tform_about.label_version.caption"/>
+      </ExcludedIdentifiers>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
@@ -112,6 +120,13 @@
         <Filename Value="components\iconectordatos.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IConectorDatos"/>
+      </Unit>
+      <Unit>
+        <Filename Value="components\about\Control_About.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form_About"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
   </ProjectOptions>
