@@ -1,5 +1,5 @@
 
-
++ 1.2.1.6
 - [FIX]   (20230517) Fixed al eliminar las rutas completas huerfanas
 - [NEW]   (20230517) Agregado al eliminar formulario de progreso/info
 - [NEW]   (20230517) Agregado TConectorDatos.DeleteCatalogoAsync
