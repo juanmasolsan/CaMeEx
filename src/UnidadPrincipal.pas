@@ -89,6 +89,12 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItemBusquedaAvanzada: TMenuItem;
+    MenuItemPropiedades: TMenuItem;
+    MenuItemEliminar: TMenuItem;
+    MenuItemEditar: TMenuItem;
+    Separator10: TMenuItem;
+    MenuItemNuevaBaseDatos: TMenuItem;
     MenuItem_Perfil_PorDefecto: TMenuItem;
     MenuItem_Perfil_Mixto: TMenuItem;
     MenuItem_Perfil_Moderno: TMenuItem;
@@ -115,7 +121,7 @@ type
     MenuItemVer: TMenuItem;
     MenuPrincipal: TMainMenu;
     MenuItemArchivo: TMenuItem;
-    MenuItem2: TMenuItem;
+    MenuItemAgregarCatalogo: TMenuItem;
     MenuItemAyuda: TMenuItem;
     MenuItemAcercaDe: TMenuItem;
     MenuItemSalir: TMenuItem;
@@ -123,6 +129,8 @@ type
     PanelPrincipal: TPanel;
     SalidaLog: TSynEdit;
     Separator1: TMenuItem;
+    Separator11: TMenuItem;
+    Separator12: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
@@ -138,6 +146,11 @@ type
     Timer_UpdateUI: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    ToolButtonBusquedaAvanzada: TToolButton;
+    ToolButtonAgregarCatalogo: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButtonPropiedades: TToolButton;
+    ToolButtonEliminar: TToolButton;
     procedure ArbolBeforeItemErase(Sender: TBaseVirtualTree;
       TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect;
       var ItemColor: TColor; var EraseAction: TItemEraseAction);
@@ -174,8 +187,13 @@ type
       const TargetCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex;
       {%H-}TextType: TVSTTextType);
     procedure ListaResize(Sender: TObject);
-    procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItemAgregarCatalogoClick(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
+    procedure MenuItemBusquedaAvanzadaClick(Sender: TObject);
+    procedure MenuItemEliminarClick(Sender: TObject);
+    procedure MenuItemNuevaBaseDatosClick(Sender: TObject);
+    procedure MenuItemPropiedadesClick(Sender: TObject);
+    procedure MenuItemSalirClick(Sender: TObject);
     procedure MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(Sender: TObject);
     procedure MenuItem_Arbol_Catalogos_Ver_Lineas_PunteadasClick(Sender: TObject
       );
@@ -192,7 +210,7 @@ type
     procedure PanelInferiorResize(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
-    procedure ToolButton1Click(Sender: TObject);
+    procedure ToolButtonAgregarCatalogoClick(Sender: TObject);
   private
     FScan            : TMotorScan;
     FVentanaScan     : TFormScan;
@@ -891,9 +909,30 @@ begin
   end;
 end;
 
-procedure TForm1.MenuItem2Click(Sender: TObject);
+procedure TForm1.MenuItemAgregarCatalogoClick(Sender: TObject);
 begin
-  beep;
+  // Timer1.Enabled := true;
+  //FScan.ScanDir(Curdir);
+  //DoOnTerminarScanAsync();
+
+  FVentanaScan := TFormScan.CreateEx(self, FScan);
+
+  {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
+    {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+      FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
+    {$ELSE}
+      FScan.ScanDirAsync('C:\DAM_02\comun\programas\vscode\data\extensions\', @DoOnTerminarScanAsync, '.git;img\iconos');
+      //FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
+    {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+
+
+
+
+  {$ELSE}
+  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
+  {$ENDIF}
+  // Muestra la ventana de escaneo
+  FVentanaScan.ShowModal;
 end;
 
 // Reajusta el tamaño de la última columna
@@ -974,6 +1013,35 @@ end;
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
 begin
   Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
+end;
+
+procedure TForm1.MenuItemBusquedaAvanzadaClick(Sender: TObject);
+begin
+  //TODO: Implementar busqueda avanzada
+    beep;
+end;
+
+procedure TForm1.MenuItemEliminarClick(Sender: TObject);
+begin
+  //TODO: Implementar eliminar
+    beep;
+end;
+
+procedure TForm1.MenuItemNuevaBaseDatosClick(Sender: TObject);
+begin
+  //TODO: Implementar nueva base de datos
+    beep;
+end;
+
+procedure TForm1.MenuItemPropiedadesClick(Sender: TObject);
+begin
+   //TODO: Implementar propiedades
+  beep;
+end;
+
+procedure TForm1.MenuItemSalirClick(Sender: TObject);
+begin
+  close;
 end;
 
 procedure TForm1.MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(
@@ -1152,30 +1220,8 @@ begin
   //
 end;
 
-procedure TForm1.ToolButton1Click(Sender: TObject);
+procedure TForm1.ToolButtonAgregarCatalogoClick(Sender: TObject);
 begin
-  // Timer1.Enabled := true;
-  //FScan.ScanDir(Curdir);
-  //DoOnTerminarScanAsync();
-
-  FVentanaScan := TFormScan.CreateEx(self, FScan);
-
-  {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-    {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
-      FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
-    {$ELSE}
-      FScan.ScanDirAsync('C:\DAM_02\comun\programas\vscode\data\extensions\', @DoOnTerminarScanAsync, '.git;img\iconos');
-      //FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
-    {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
-
-
-
-
-  {$ELSE}
-  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
-  {$ENDIF}
-  // Muestra la ventana de escaneo
-  FVentanaScan.ShowModal;
 
 end;
 

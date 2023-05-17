@@ -127,19 +127,26 @@
 +         Navegación sincronizada  lista-arbol - Se queda el nodo del arbol seleccionado al entrar desde la lista de archivos
 +         Optimizar borrado de datos
 +         Al eliminar datos que elimine las rutas completas huerfanas
++         Menu - Eliminar
++         Menu - Propiedades
++         Menu - Agregar catalogo
++         Menu - Editar catalogo
++         Menu - Eliminar todos los catalogos
++         Toolbar - Eliminar
++         Toolbar - Propiedades
++         Toolbar - Agregar catalogo
++         Toolbar - Editar catalogo
+
 -         Al eliminar desde la lista de archivos no actualiza el nodo raiz
+-         Menu - Eliminar - Implementar
+-         Menu - Propiedades - Implementar
+-         Menu - Agregar catalogo - Implementar
+-         Menu - Editar catalogo - Implementar
+-         Menu - Eliminar todos los catalogos - Implementar
 
 -         Poder editar los catalogos
 -         Poder crear nuevos catalogos
--         Menu - Eliminar
--         Menu - Propiedades
--         Menu - Agregar catalogo
--         Menu - Editar catalogo
--         Menu - Eliminar todos los catalogos
--         Toolbar - Eliminar
--         Toolbar - Propiedades
--         Toolbar - Agregar catalogo
--         Toolbar - Editar catalogo
+
 
 -         Poder mostrar propiedades de catalogos y datos
 -         Agregar breadcrumbs.

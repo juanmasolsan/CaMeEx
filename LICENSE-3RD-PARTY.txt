@@ -265,3 +265,8 @@ Contributed Code
 In order to keep SQLite completely free and unencumbered by copyright, the project does not accept patches. If you would like to suggest a change and you include a patch as a proof-of-concept, that would be great. However, please do not be offended if we rewrite your patch from scratch.
 
 ---------------------------------------------------------------------
+
+Iconset: One bit (https://www.iconfinder.com/iconsets/onebit)
+Author: Icojam (http://www.icojam.com)
+License: Free for commercial use ()
+Download date: 2023-05-18

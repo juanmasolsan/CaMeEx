@@ -42,12 +42,13 @@ msgstr ""
 msgid "Ruta"
 msgstr ""
 
-#: tform1.menuitem2.caption
-msgid "MenuItem2"
-msgstr ""
-
 #: tform1.menuitemacercade.caption
 msgid "Acerca de..."
+msgstr ""
+
+#: tform1.menuitemagregarcatalogo.caption
+msgctxt "tform1.menuitemagregarcatalogo.caption"
+msgid "Agregar Catalogo"
 msgstr ""
 
 #: tform1.menuitemarchivo.caption
@@ -58,6 +59,29 @@ msgstr ""
 #: tform1.menuitemayuda.caption
 msgctxt "tform1.menuitemayuda.caption"
 msgid "Ayuda"
+msgstr ""
+
+#: tform1.menuitembusquedaavanzada.caption
+msgctxt "tform1.menuitembusquedaavanzada.caption"
+msgid "Búsqueda Avanzada"
+msgstr ""
+
+#: tform1.menuitemeditar.caption
+msgid "Editar"
+msgstr ""
+
+#: tform1.menuitemeliminar.caption
+msgctxt "tform1.menuitemeliminar.caption"
+msgid "Eliminar"
+msgstr ""
+
+#: tform1.menuitemnuevabasedatos.caption
+msgid "Nueva Base de Datos"
+msgstr ""
+
+#: tform1.menuitempropiedades.caption
+msgctxt "tform1.menuitempropiedades.caption"
+msgid "Propiedades"
 msgstr ""
 
 #: tform1.menuitemsalir.caption
@@ -170,7 +194,42 @@ msgid "ToolBar1"
 msgstr ""
 
 #: tform1.toolbutton1.caption
+msgctxt "tform1.toolbutton1.caption"
 msgid "ToolButton1"
+msgstr ""
+
+#: tform1.toolbutton2.caption
+msgid "ToolButton2"
+msgstr ""
+
+#: tform1.toolbuttonagregarcatalogo.caption
+msgctxt "tform1.toolbuttonagregarcatalogo.caption"
+msgid "Agregar Catalogo"
+msgstr ""
+
+#: tform1.toolbuttonagregarcatalogo.hint
+msgctxt "tform1.toolbuttonagregarcatalogo.hint"
+msgid "Agregar Catalogo"
+msgstr ""
+
+#: tform1.toolbuttonbusquedaavanzada.caption
+msgctxt "tform1.toolbuttonbusquedaavanzada.caption"
+msgid "Búsqueda Avanzada"
+msgstr ""
+
+#: tform1.toolbuttoneliminar.caption
+msgctxt "tform1.toolbuttoneliminar.caption"
+msgid "Eliminar"
+msgstr ""
+
+#: tform1.toolbuttoneliminar.hint
+msgctxt "tform1.toolbuttoneliminar.hint"
+msgid "Eliminar"
+msgstr ""
+
+#: tform1.toolbuttonpropiedades.caption
+msgctxt "tform1.toolbuttonpropiedades.caption"
+msgid "Propiedades"
 msgstr ""
 
 #: tformloading.caption
