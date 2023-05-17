@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-15 19:12:32
+ * @Last Modified time: 2023-05-17 14:11:45
  */
 
 
@@ -82,6 +82,9 @@ CREATE TABLE IF NOT EXISTS Datos (
 
 -- Crear índices
 CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);
+CREATE INDEX IF NOT EXISTS Datos_IdPadre_IDX ON Datos (IdPadre);
+CREATE INDEX IF NOT EXISTS Datos_IdCatalogo_IDX ON Datos (IdCatalogo);
+
 
 ----------------------------------------------------------------------------------------
 ------------------------------- OPERACIONES DE TEST ------------------------------------

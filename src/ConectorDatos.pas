@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 00:54:04
+ * @Last Modified time: 2023-05-17 14:17:04
  *)
 {
 
@@ -388,9 +388,16 @@ begin
 
       FDataBase.SQL(SQL);
 
-      // Crea el índice de la tabla de datos
+      // Crea los índices en la tabla de datos
       SQL := 'CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);';
       FDataBase.SQL(SQL);
+
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdPadre_IDX ON Datos (IdPadre);';
+      FDataBase.SQL(SQL);
+
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdCatalogo_IDX ON Datos (IdCatalogo);';
+      FDataBase.SQL(SQL);
+
 
     finally
       // Cierra la query
@@ -1225,7 +1232,6 @@ begin
 
   // Optimiza el tamaño de la tabla
   DoOptimizar();
-
 end;
 
 // Elimina datos de una tabla a partir de un parametro

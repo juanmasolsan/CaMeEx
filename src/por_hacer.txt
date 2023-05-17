@@ -141,7 +141,8 @@
 +         Navegación sincronizada  lista-arbol - no se pone el nodo en negrita
 +         Navegación sincronizada  lista-arbol - Se queda el nodo del arbol seleccionado al entrar desde la lista de archivos
 -         Revisar la ruta de los archivos en la lista, si hay muchos archivos se vuelve lenta
--
++         Optimizar borrado de datos
+-         Al eliminar desde la lista de archivos no actualiza el nodo raiz
 
 
 

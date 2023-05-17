@@ -1,4 +1,10 @@
 
+
+- [FIX]   (20230517) Optimizar borrado de datos
+- [FIX]   (20230517) Optimizado borrado de Catalogos individuales
+- [FIX]   (20230517) Optimizado borrado de Todos los Catalogos
+
++ 1.2.0.8
 - [NEW]   (20230516) Agregado verificación por parte del usuario a la hora de eliminar datos/catalogos.
 - [FIX]   (20230516) Llevadas todas las strings a AppString.pas
 
