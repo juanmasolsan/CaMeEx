@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 19:06:32
+ * @Last Modified time: 2023-05-17 19:12:13
  *)
 {
 
@@ -309,8 +309,6 @@ type
 
     // Oculta/Elimina los nodos que encuentre iguales a al Item que se le pasa
     procedure DoEliminarItemArbol(Item : TItemDato);
-
-    procedure DoCalcularAsync({%H-}Data: PtrInt);
 
     // Muestra el formulario de carga
     procedure DoFormLoadingShow(MensajeTitulo : string; MensajeNormal : string);

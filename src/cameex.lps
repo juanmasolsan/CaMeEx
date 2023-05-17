@@ -19,10 +19,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="10"/>
         <TopLine Value="165"/>
-        <CursorPos Y="192"/>
+        <CursorPos X="56" Y="180"/>
         <UsageCount Value="157"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -208,9 +207,10 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="13"/>
-        <TopLine Value="887"/>
-        <CursorPos X="25" Y="906"/>
+        <TopLine Value="64"/>
+        <CursorPos X="177" Y="82"/>
         <UsageCount Value="42"/>
         <Loaded Value="True"/>
       </Unit>
@@ -486,10 +486,6 @@
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="components\UnidadLoading.pas"/>
-        <Caret Line="146" Column="21" TopLine="134"/>
-      </Position>
-      <Position>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\forms.pp"/>
         <Caret Line="1198" Column="56" TopLine="1169"/>
       </Position>
@@ -603,6 +599,10 @@
       </Position>
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="180" Column="56" TopLine="165"/>
       </Position>
     </JumpHistory>
     <RunParams>

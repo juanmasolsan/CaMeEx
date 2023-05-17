@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 17:09:47
+ * @Last Modified time: 2023-05-17 19:34:52
  *)
 {
 
@@ -78,7 +78,7 @@ const
   SQL_DELETE_DATO_BY_IDS                   =  SQL_DELETE_DATOS_BY_ID_CATALOGO + ' AND (Id = :ID OR IdPadre = :ID);';
   SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO  = 'DELETE FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO';
   SQL_DELETE_RUTA_COMPLETA_BY_IDS          =  SQL_DELETE_RUTA_COMPLETA_BY_ID_CATALOGO + ' AND Id = :ID;';
-  SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS = 'DELETE FROM RutaCompleta WHERE Id = :ID AND IdCatalogo = :IDCATALOGO AND NOT EXISTS (SELECT 1 FROM Datos WHERE IdRutaCompleta = :ID);';
+  SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS = 'DELETE FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO AND NOT EXISTS (SELECT 1 FROM Datos WHERE IdRutaCompleta = RutaCompleta.Id);';
 
   SQL_UPDATE_CATALOGO                      = 'UPDATE Catalogos SET Nombre=:NOMBRE, Descripcion=:DESCRIPCION, Tipo=:TIPO, Fecha=:FECHA WHERE Id=:ID;';
   SQL_UPDATE_CATALOGO_TOTALES              = 'UPDATE Catalogos SET ' +
@@ -470,6 +470,8 @@ begin
       SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdCatalogo_IDX ON Datos (IdCatalogo);';
       FDataBase.SQL(SQL);
 
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdRutaCompleta_IDX ON Datos (IdRutaCompleta);';
+      FDataBase.SQL(SQL);
 
     finally
       // Cierra la query
@@ -1476,7 +1478,7 @@ begin
         FDataBase.Query.SQL.Text := SQL_DELETE_RUTA_COMPLETA_SIN_REFERENCIAS;
         try
           // Hace la eliminación con un prepared statement
-          FDataBase.Query.ParamByName('ID').AsLargeInt         := Dato.IdRutaCompleta;
+          //FDataBase.Query.ParamByName('ID').AsLargeInt         := Dato.IdRutaCompleta;
           FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Dato.IdCatalogo;
 
           // Ejecuta la sentencia
