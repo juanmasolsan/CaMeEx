@@ -1,5 +1,6 @@
 
 
+- [NEW]   (20230517) Agregado TConectorDatos.DeleteAllCatalogosAsync
 - [NEW]   (20230517) Agregado TConectorDatos.DeleteDatoAsync
 - [FIX]   (20230517) Optimizar borrado de datos
 - [FIX]   (20230517) Optimizado borrado de Catalogos individuales

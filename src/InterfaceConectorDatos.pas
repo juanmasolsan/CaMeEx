@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 16:13:59
+ * @Last Modified time: 2023-05-17 16:45:25
  *)
 {
 
@@ -85,6 +85,10 @@ type
 
     // Elimina todos los catalogos
     function DeleteAllCatalogos() : boolean;
+
+    // Elimina todos los catalogos de forma asyn
+    function DeleteAllCatalogosAsync() : boolean;
+
 
     // Elimina un catalogo
     function DeleteCatalogo(Catalogo : TItemCatalogo) : boolean;

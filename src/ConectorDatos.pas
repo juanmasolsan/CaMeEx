@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 16:43:13
+ * @Last Modified time: 2023-05-17 17:00:10
  *)
 {
 
@@ -91,6 +91,9 @@ const
 Type
   TPass = array[1..8] of char;
 
+  // Tipo de thread de eliminación
+  TTipoEliminar = (Dato, Catalogo, Todo);
+
 const
   // Clave para codificar y ofuscar la contraseña de la base de datos
   PASS_ENCODE_PASSWORD =  $0123456789012345;
@@ -124,6 +127,9 @@ type
 
     // Optimiza el tamaño de la tabla
     procedure DoOptimizar();
+
+    // Elimina los datos de forma asyn
+    function DoDeleteAsync(Tipo : TTipoEliminar; Item : TItemDato) : boolean;
 
   public
     // Constructor
@@ -185,6 +191,9 @@ type
     // Elimina todos los catalogos
     function DeleteAllCatalogos() : boolean;
 
+    // Elimina todos los catalogos de forma asyn
+    function DeleteAllCatalogosAsync() : boolean;
+
     // Elimina un catalogo
     function DeleteCatalogo(Catalogo : TItemCatalogo) : boolean;
 
@@ -233,10 +242,6 @@ type
     Resultado : boolean;
   end;
 
-  // Tipo de thread de eliminación
-  TTipoEliminar = (Dato);
-
-
   { TEliminarThread }
   TEliminarThread = class(TThread)
     private
@@ -275,6 +280,7 @@ begin
   // Dependiendo del tipo
   case FTipo of
     TTipoEliminar.Dato : FEstado.Resultado := FGestor.DeleteDato(FItem);
+    TTipoEliminar.Todo : FEstado.Resultado := FGestor.DeleteAllCatalogos();
   end;
 
   // Establece el tiempo distinto de 0
@@ -1274,6 +1280,47 @@ begin
     Result := true;
 end;
 
+
+// Elimina los datos de forma asyn
+function TConectorDatos.DoDeleteAsync(Tipo : TTipoEliminar; Item : TItemDato) : boolean;
+var
+  Estado : TThreadEstado;
+  Thread : TEliminarThread;
+begin
+  // Crear el estado del thread
+  Estado := TThreadEstado.Create();
+  try
+    // Inicializa el estado
+    Estado.inicio    := 0;
+    Estado.Resultado := False;
+
+    // Crea el thread
+    Thread := TEliminarThread.Create(false, Self, Estado, Tipo, Item);
+
+    // Espera a que termine
+    while Estado.Inicio = 0 do
+    begin
+      Application.ProcessMessages();
+      sleep(1);
+    end;
+
+    // Devuelve el resultado
+    Result := Estado.Resultado;
+
+  finally
+    // Libera el estado
+    Estado.free;
+  end;
+end;
+
+
+// Elimina todos los catalogos de forma asyn
+function TConectorDatos.DeleteAllCatalogosAsync() : boolean;
+begin
+  result := DoDeleteAsync(TTipoEliminar.Todo, nil);
+end;
+
+
 // Elimina un catalogo
 function TConectorDatos.DeleteCatalogo(Catalogo : TItemCatalogo) : boolean;
 begin
@@ -1393,34 +1440,8 @@ end;
 
 // Elimina un dato de forma async
 function TConectorDatos.DeleteDatoAsync(Dato : TItemDato) : boolean;
-var
-  Estado : TThreadEstado;
-  Thread : TEliminarThread;
 begin
-  // Crear el estado del thread
-  Estado := TThreadEstado.Create();
-  try
-    // Inicializa el estado
-    Estado.inicio    := 0;
-    Estado.Resultado := False;
-
-    // Crea el thread
-    Thread := TEliminarThread.Create(false, Self, Estado, TTipoEliminar.Dato, Dato);
-
-    // Espera a que termine
-    while Estado.Inicio = 0 do
-    begin
-      Application.ProcessMessages();
-      sleep(1);
-    end;
-
-    // Devuelve el resultado
-    Result := Estado.Resultado;
-
-  finally
-    // Libera el estado
-    Estado.free;
-  end;
+  result := DoDeleteAsync(TTipoEliminar.Dato, Dato);
 end;
 
 // Elimina las rutas completas que no tengan referencias en la tabla Datos
