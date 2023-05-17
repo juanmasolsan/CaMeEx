@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 17:00:10
+ * @Last Modified time: 2023-05-17 17:09:47
  *)
 {
 
@@ -197,6 +197,9 @@ type
     // Elimina un catalogo
     function DeleteCatalogo(Catalogo : TItemCatalogo) : boolean;
 
+    // Elimina un catalogo de forma async
+    function DeleteCatalogoAsync(Catalogo : TItemCatalogo) : boolean;
+
     // Elimina un dato
     function DeleteDato(Dato : TItemDato) : boolean;
 
@@ -279,8 +282,9 @@ begin
 
   // Dependiendo del tipo
   case FTipo of
-    TTipoEliminar.Dato : FEstado.Resultado := FGestor.DeleteDato(FItem);
-    TTipoEliminar.Todo : FEstado.Resultado := FGestor.DeleteAllCatalogos();
+    TTipoEliminar.Dato     : FEstado.Resultado := FGestor.DeleteDato(FItem);
+    TTipoEliminar.Todo     : FEstado.Resultado := FGestor.DeleteAllCatalogos();
+    TTipoEliminar.Catalogo : FEstado.Resultado := FGestor.DeleteCatalogo(TItemCatalogo(FItem));
   end;
 
   // Establece el tiempo distinto de 0
@@ -1342,6 +1346,15 @@ begin
   // Optimiza el tamaño de la tabla
   DoOptimizar();
 end;
+
+
+// Elimina un catalogo de forma async
+function TConectorDatos.DeleteCatalogoAsync(Catalogo : TItemCatalogo) : boolean;
+begin
+  result := DoDeleteAsync(TTipoEliminar.Catalogo, Catalogo);
+end;
+
+
 
 // Elimina datos de una tabla a partir de un parametro
 function TConectorDatos.DoDeleteFromTableByIdParametro(Id : qword; Sql : string; const Parametro : string) : boolean;

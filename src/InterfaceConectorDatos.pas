@@ -86,12 +86,14 @@ type
     // Elimina todos los catalogos
     function DeleteAllCatalogos() : boolean;
 
-    // Elimina todos los catalogos de forma asyn
+    // Elimina todos los catalogos de forma async
     function DeleteAllCatalogosAsync() : boolean;
-
 
     // Elimina un catalogo
     function DeleteCatalogo(Catalogo : TItemCatalogo) : boolean;
+
+    // Elimina un catalogo de forma async
+    function DeleteCatalogoAsync(Catalogo : TItemCatalogo) : boolean;
 
     // Elimina un dato
     function DeleteDato(Dato : TItemDato) : boolean;
