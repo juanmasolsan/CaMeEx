@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-16 17:53:57
+ * @Last Modified time: 2023-05-17 19:06:32
  *)
 {
 
@@ -114,9 +114,9 @@ type
     MenuItem_Sizes: TMenuItem;
     MenuItemVer: TMenuItem;
     MenuPrincipal: TMainMenu;
-    MenuItem1: TMenuItem;
+    MenuItemArchivo: TMenuItem;
     MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
+    MenuItemAyuda: TMenuItem;
     MenuItemAcercaDe: TMenuItem;
     MenuItemSalir: TMenuItem;
     PanelInferior: TPanel;
@@ -174,6 +174,7 @@ type
       const TargetCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex;
       {%H-}TextType: TVSTTextType);
     procedure ListaResize(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(Sender: TObject);
     procedure MenuItem_Arbol_Catalogos_Ver_Lineas_PunteadasClick(Sender: TObject
@@ -309,6 +310,17 @@ type
     // Oculta/Elimina los nodos que encuentre iguales a al Item que se le pasa
     procedure DoEliminarItemArbol(Item : TItemDato);
 
+    procedure DoCalcularAsync({%H-}Data: PtrInt);
+
+    // Muestra el formulario de carga
+    procedure DoFormLoadingShow(MensajeTitulo : string; MensajeNormal : string);
+
+    // Oculta el formulario de carga
+    procedure DoFormLoadingHide();
+
+    // Activa o desactiva los controles
+    procedure DoActivarShowModal(activar : boolean);
+
   public
 
   end;
@@ -328,7 +340,7 @@ uses
   , OrdenarLista
   , Utilidades
   , ConectorDatos
-  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString;
+  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString, UnidadLoading;
 
 {$R *.lfm}
 
@@ -881,6 +893,11 @@ begin
   end;
 end;
 
+procedure TForm1.MenuItem2Click(Sender: TObject);
+begin
+  beep;
+end;
+
 // Reajusta el tamaño de la última columna
 procedure TForm1.DoResizeControlDatos(Sender: TLazVirtualStringTree);
 var
@@ -1360,15 +1377,35 @@ begin
   end;
 end;
 
-
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  CatalogoActual : TItemCatalogo;
   tiempo : qword;
 begin
-  SetDefaultLang('en');
 
-  ShowMessage(Message_Directorios);
+//  ShowMessage(Message_Directorios);
+
+  tiempo := GetTickCount64();
+  DoFormLoadingShow('Espera ...', 'Probando');
+  try
+
+
+
+    tiempo := GetTickCount64;
+    while GetTickCount64 - tiempo < 10000 do
+    begin
+      Application.ProcessMessages();
+      sleep(1);
+    end;
+
+    //LanzarThread();
+  finally
+    DoFormLoadingHide();
+  end;
+
+
+
+  SetDefaultLang('en');
+  SalidaLog.lines.Add('Finalizado el loading');
 
 exit;
   tiempo := GetTickCount64();
@@ -2134,7 +2171,6 @@ begin
   AjustarNodo(FNodeArbolRaiz);
 end;
 
-
 // Elimina un item del arbol/lista
 function Tform1.DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean) : boolean;
 var
@@ -2145,6 +2181,9 @@ var
 
 begin
   Sender.beginUpdate();
+  if not IsDesdeArbol then
+    Arbol.beginUpdate();
+
   try
     try
       NodeData := Sender.GetNodeData(Node);
@@ -2155,14 +2194,19 @@ begin
         if not DoConfirmarEliminarTodo() then
           exit;
 
-        // Elimina el Catalogo de la base de datos
-        FGestorDatos.DeleteAllCatalogos();
+          DoFormLoadingShow(Message_Espera_Eliminar_Titulo, Message_Espera_Eliminar_Catalogo_All);
+          try
+            // Elimina el Catalogo de la base de datos
+            FGestorDatos.DeleteAllCatalogosAsync();
 
-        // Carga la lista de catalogos
-        DoLoadListaCatalogos();
+            // Carga la lista de catalogos
+            DoLoadListaCatalogos();
 
-        // Carga la lista de archivos
-        DoLoadListaArchivos(nil);
+            // Carga la lista de archivos
+            DoLoadListaArchivos(nil);
+          finally
+            DoFormLoadingHide();
+          end;
       end
       else
       if (NodeData <> nil)  and (NodeData^.TipoNode >= TItemDatoTipo.Root) then
@@ -2173,20 +2217,25 @@ begin
             if not DoConfirmarEliminarCatalogo(TItemCatalogo(NodeData^.NodeData)) then
               exit;
 
-            // Elimina el Catalogo de la base de datos
-            FGestorDatos.DeleteCatalogo(TItemCatalogo(NodeData^.NodeData));
+            DoFormLoadingShow(Message_Espera_Eliminar_Titulo, Message_Espera_Eliminar_Catalogo);
+            try
+              // Elimina el Catalogo de la base de datos
+              FGestorDatos.DeleteCatalogoAsync(TItemCatalogo(NodeData^.NodeData));
 
-            // Elimina el catalogo de la lista
-            FListaCatalogos.Remove(NodeData^.NodeData);
+              // Elimina el catalogo de la lista
+              FListaCatalogos.Remove(NodeData^.NodeData);
 
-            // Libera la información del nodo
-            NodeData^.NodeData.free;
+              // Libera la información del nodo
+              NodeData^.NodeData.free;
 
-            // Elimina el nodo del arbol
-            Sender.DeleteNode(Node);
+              // Elimina el nodo del arbol
+              Sender.DeleteNode(Node);
 
-            // Limpia la lista de archivos
-            DoLoadListaArchivos(nil);
+              // Limpia la lista de archivos
+              DoLoadListaArchivos(nil);
+            finally
+              DoFormLoadingHide();
+            end;
           end
         end
         else
@@ -2195,31 +2244,34 @@ begin
           if not DoConfirmarEliminarDatos() then
             exit;
 
-          Node := Sender.GetFirstSelected();
-          while Node <> nil do
-          begin
-            NodeData := Sender.GetNodeData(Node);
-            if (NodeData <> nil)  and (NodeData^.TipoNode < TItemDatoTipo.Root) then
+          DoFormLoadingShow(Message_Espera_Eliminar_Titulo, Message_Espera_Eliminar_Archivos);
+          try
+            Node := Sender.GetFirstSelected();
+            while Node <> nil do
             begin
-              // Elimina el archivo de la base de datos
-              FGestorDatos.DeleteDato(NodeData^.NodeData);
+              NodeData := Sender.GetNodeData(Node);
+              if (NodeData <> nil)  and (NodeData^.TipoNode < TItemDatoTipo.Root) then
+              begin
+                // Elimina el archivo de la base de datos
+                FGestorDatos.DeleteDatoAsync(NodeData^.NodeData);
 
-              // Limpia la lista de archivos
-              if Node = FNodeArbolActual then
-                DoLoadListaArchivos(nil);
+                // Limpia la lista de archivos
+                if Node = FNodeArbolActual then
+                  DoLoadListaArchivos(nil);
 
-              if not IsDesdeArbol and (NodeData^.TipoNode = TItemDatoTipo.Directorio) then
-                DoEliminarItemArbol(NodeData^.NodeData);
+                if not IsDesdeArbol and (NodeData^.TipoNode = TItemDatoTipo.Directorio) then
+                  DoEliminarItemArbol(NodeData^.NodeData);
 
+                NodePadre := Sender.GetPreviousVisible(Node);
 
+                // Elimina el nodo del arbol
+                Sender.IsVisible[Node] := false;
+              end;
 
-              NodePadre := Sender.GetPreviousVisible(Node);
-
-              // Elimina el nodo del arbol
-              Sender.IsVisible[Node] := false;
+              Node := Sender.GetNextSelected(Node);
             end;
-
-            Node := Sender.GetNextSelected(Node);
+          finally
+            DoFormLoadingHide();
           end;
 
           if NodePadre <> nil then
@@ -2253,6 +2305,9 @@ begin
     end;
   finally
     Sender.endUpdate();
+
+    if not IsDesdeArbol then
+      Arbol.endUpdate();
   end;
 
 end;
@@ -2341,5 +2396,48 @@ begin
     end;
 end;
 
+// Muestra el formulario de carga
+procedure Tform1.DoFormLoadingShow(MensajeTitulo : string; MensajeNormal : string);
+begin
+  // Desactiva los controles del formulario principal
+  DoActivarShowModal(False);
+
+  // Muestra en la statusbar el mensaje
+  DoEstadisticas(0, MensajeNormal);
+
+  // Muestra el formulario de carga
+  FormLoadingShow(Self, MensajeTitulo, MensajeNormal);
+end;
+
+// Oculta el formulario de carga
+procedure Tform1.DoFormLoadingHide();
+begin
+  // Activa los controles del formulario principal
+  DoActivarShowModal(true);
+
+  // Oculta el formulario de carga
+  FormLoadingHide();
+end;
+
+// Activa o desactiva los controles
+procedure Tform1.DoActivarShowModal(activar : boolean);
+begin
+  // Desactiva/Activa los menús
+  MenuItemArchivo.Enabled := activar;
+  MenuItemVer.Enabled     := activar;
+  MenuItemAyuda.Enabled   := activar;
+
+  // Desactiva/Activa el arbol y la lista
+  Arbol.Enabled           := activar;
+  Lista.Enabled           := activar;
+
+  // Desactiva/Activa los splitters
+  Splitter1.Enabled       := activar;
+  Splitter2.Enabled       := activar;
+
+  // Desactiva/Activa la toolbar y el panel inferior
+  ToolBar1.Enabled        := activar;
+  PanelInferior.Enabled   := activar;
+end;
 
 end.

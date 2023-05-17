@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230517) Agregado al eliminar formulario de progreso/info
 - [NEW]   (20230517) Agregado TConectorDatos.DeleteCatalogoAsync
 - [NEW]   (20230517) Agregado TConectorDatos.DeleteAllCatalogosAsync
 - [NEW]   (20230517) Agregado TConectorDatos.DeleteDatoAsync

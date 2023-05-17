@@ -42,20 +42,22 @@ msgstr ""
 msgid "Ruta"
 msgstr ""
 
-#: tform1.menuitem1.caption
-msgid "Archivo"
-msgstr ""
-
 #: tform1.menuitem2.caption
 msgid "MenuItem2"
 msgstr ""
 
-#: tform1.menuitem3.caption
-msgid "Ayuda"
-msgstr ""
-
 #: tform1.menuitemacercade.caption
 msgid "Acerca de..."
+msgstr ""
+
+#: tform1.menuitemarchivo.caption
+msgctxt "tform1.menuitemarchivo.caption"
+msgid "Archivo"
+msgstr ""
+
+#: tform1.menuitemayuda.caption
+msgctxt "tform1.menuitemayuda.caption"
+msgid "Ayuda"
 msgstr ""
 
 #: tform1.menuitemsalir.caption
@@ -169,6 +171,18 @@ msgstr ""
 
 #: tform1.toolbutton1.caption
 msgid "ToolButton1"
+msgstr ""
+
+#: tformloading.caption
+msgid "Espere ..."
+msgstr ""
+
+#: tformloading.label1.caption
+msgid "Por favor espere..."
+msgstr ""
+
+#: tformloading.label2.caption
+msgid "Se está realizando una acción."
 msgstr ""
 
 #: tformscan.caption

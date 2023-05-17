@@ -52,7 +52,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   , AppString
-  , UnidadPrincipal, Control_About
+  , UnidadPrincipal, Control_About, UnidadLoading
 
   ;
 
