@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 14:17:04
+ * @Last Modified time: 2023-05-17 16:43:13
  *)
 {
 
@@ -44,6 +44,7 @@ uses
   , LCLIntf
   , Classes
   , SysUtils
+  , forms
   , InterfaceConectorDatos
   , ItemExtension
   , ItemRutaCompleta
@@ -190,6 +191,9 @@ type
     // Elimina un dato
     function DeleteDato(Dato : TItemDato) : boolean;
 
+    // Elimina un dato de forma async
+    function DeleteDatoAsync(Dato : TItemDato) : boolean;
+
     // Actualiza un catálogo
     procedure UpdateCatalogo(Catalogo : TItemCatalogo);
 
@@ -219,6 +223,64 @@ uses
   , Control_Logger
   , ItemBaseDatos
   , graphics, AppString;
+
+
+
+type
+  // Estado del thread
+  TThreadEstado = class
+    Inicio    : qword;
+    Resultado : boolean;
+  end;
+
+  // Tipo de thread de eliminación
+  TTipoEliminar = (Dato);
+
+
+  { TEliminarThread }
+  TEliminarThread = class(TThread)
+    private
+      FEstado : TThreadEstado;
+      FTipo   : TTipoEliminar;
+      FItem   : TItemDato;
+      FGestor : TConectorDatos;
+    protected
+      procedure Execute; override;
+    public
+      Constructor Create(CreateSuspended : boolean; Gestor : TConectorDatos; Estado : TThreadEstado; Tipo : TTipoEliminar; Item : TItemDato);
+    end;
+
+
+{ TMotorScanDirThread }
+constructor TEliminarThread.Create(CreateSuspended : boolean; Gestor : TConectorDatos; Estado : TThreadEstado; Tipo : TTipoEliminar; Item : TItemDato);
+begin
+  // Inicializa el thread
+  FEstado := Estado;
+  FTipo   := Tipo;
+  FItem   := Item;
+  FGestor := Gestor;
+
+  // Para que se libere la memoria al finalizar
+  FreeOnTerminate := true;
+
+  // Crea el thread
+  inherited Create(CreateSuspended);
+end;
+
+procedure TEliminarThread.Execute;
+begin
+  // Inicializa el resultado
+  FEstado.Resultado := false;
+
+  // Dependiendo del tipo
+  case FTipo of
+    TTipoEliminar.Dato : FEstado.Resultado := FGestor.DeleteDato(FItem);
+  end;
+
+  // Establece el tiempo distinto de 0
+  FEstado.Inicio   := GetTickCount64();
+end;
+
 
 var
   FDataBase : TConexion_DB = nil;
@@ -1327,6 +1389,38 @@ begin
 
   // Optimiza el tamaño de la tabla
   DoOptimizar();
+end;
+
+// Elimina un dato de forma async
+function TConectorDatos.DeleteDatoAsync(Dato : TItemDato) : boolean;
+var
+  Estado : TThreadEstado;
+  Thread : TEliminarThread;
+begin
+  // Crear el estado del thread
+  Estado := TThreadEstado.Create();
+  try
+    // Inicializa el estado
+    Estado.inicio    := 0;
+    Estado.Resultado := False;
+
+    // Crea el thread
+    Thread := TEliminarThread.Create(false, Self, Estado, TTipoEliminar.Dato, Dato);
+
+    // Espera a que termine
+    while Estado.Inicio = 0 do
+    begin
+      Application.ProcessMessages();
+      sleep(1);
+    end;
+
+    // Devuelve el resultado
+    Result := Estado.Resultado;
+
+  finally
+    // Libera el estado
+    Estado.free;
+  end;
 end;
 
 // Elimina las rutas completas que no tengan referencias en la tabla Datos

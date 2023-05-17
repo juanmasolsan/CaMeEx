@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-13 23:02:26
+ * @Last Modified time: 2023-05-17 16:13:59
  *)
 {
 
@@ -91,6 +91,9 @@ type
 
     // Elimina un dato
     function DeleteDato(Dato : TItemDato) : boolean;
+
+    // Elimina un dato de forma async
+    function DeleteDatoAsync(Dato : TItemDato) : boolean;
 
     // Actualiza un catálogo
     procedure UpdateCatalogo(Catalogo : TItemCatalogo);
