@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-18 16:19:06
+ * @Last Modified time: 2023-05-18 18:47:24
  *)
 {
 
@@ -317,8 +317,14 @@ type
     // Ajusta el alto dependiendo si se debe o no mostrar la info de los catalogos
     procedure DoAjustarNodosCatalogos();
 
+    // Para gestionar las acciones de los menús sobre los items
+    procedure DoAccionItem(Sender: TObject; isEliminar : boolean);
+
     // Elimina un item del arbol/lista
     function DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
+
+    // Muestra las propiedades de un item del arbol/lista
+    function DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
 
     // Confirma si se debe eliminar todos los catalogos
     function DoConfirmarEliminarTodo() : boolean;
@@ -1013,10 +1019,6 @@ begin
   end;
 end;
 
-
-
-
-
 procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
 begin
   Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
@@ -1029,19 +1031,9 @@ begin
 end;
 
 procedure TForm1.MenuItemEliminarClick(Sender: TObject);
-var
-  Node: PVirtualNode;
-  isArbolSelecionado : boolean;
-  listado : TLazVirtualStringTree;
 begin
-  if (ActiveControl = Arbol) or (ActiveControl = Lista) then
-  begin
-    listado := TLazVirtualStringTree(ActiveControl);
-
-    Node := listado.GetFirstSelected();
-    if Node <> nil then
-      DoEliminarItem(listado, Node, listado = arbol);
-  end;
+  // Lanza la accion sobre el item seleccionado
+  DoAccionItem(Sender, true);
 end;
 
 procedure TForm1.MenuItemNuevaBaseDatosClick(Sender: TObject);
@@ -1051,8 +1043,8 @@ end;
 
 procedure TForm1.MenuItemPropiedadesClick(Sender: TObject);
 begin
-  //TODO: Implementar propiedades
-    beep;
+  // Lanza la accion sobre el item seleccionado
+  DoAccionItem(Sender, false);
 end;
 
 procedure TForm1.MenuItemSalirClick(Sender: TObject);
@@ -2420,6 +2412,16 @@ begin
 
 end;
 
+
+// Muestra las propiedades de un item del arbol/lista
+function Tform1.DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
+begin
+  // TODO: Implementar mostrar los datos de propiedades del Item
+  beep;
+  sleep(1000);
+  beep;
+end;
+
 // Confirma si se debe eliminar todos los catalogos
 function Tform1.DoConfirmarEliminarTodo() : boolean;
 begin
@@ -2547,5 +2549,31 @@ begin
   Barra_Herramientas.Enabled := activar;
   PanelInferior.Enabled      := activar;
 end;
+
+// Para gestionar las acciones de los menús sobre los items
+procedure TForm1.DoAccionItem(Sender: TObject; isEliminar : boolean);
+var
+  Node              : PVirtualNode;
+  isArbolSelecionado: boolean;
+  listado           : TLazVirtualStringTree;
+begin
+  if (ActiveControl = Arbol) or (ActiveControl = Lista) then
+  begin
+    // Obtiene el listado activo
+    listado := TLazVirtualStringTree(ActiveControl);
+
+    // Obtiene el nodo seleccionado
+    Node := listado.GetFirstSelected();
+
+    // Comprueba si el nodo seleccionado no es nulo
+    if Node <> nil then
+      if isEliminar then
+        DoEliminarItem(listado, Node, listado = arbol)
+      else
+        DoPropiedadesItem(listado, Node, listado = arbol)
+  end;
+end;
+
+
 
 end.
