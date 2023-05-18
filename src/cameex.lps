@@ -19,9 +19,10 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="1023"/>
-        <CursorPos X="53" Y="1031"/>
+        <TopLine Value="1026"/>
+        <CursorPos X="32" Y="1039"/>
         <UsageCount Value="162"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -29,7 +30,6 @@
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <CursorPos X="31" Y="6"/>
         <UsageCount Value="162"/>
         <Loaded Value="True"/>
@@ -55,7 +55,7 @@
       <Unit>
         <Filename Value="components\Control_Formulario_Avanzado.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="318"/>
         <CursorPos X="109" Y="337"/>
         <UsageCount Value="161"/>
@@ -89,7 +89,7 @@
       <Unit>
         <Filename Value="Utilidades.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="273"/>
         <CursorPos X="7" Y="294"/>
         <UsageCount Value="144"/>
@@ -268,7 +268,7 @@
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemDato.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="125"/>
         <CursorPos X="64" Y="140"/>
         <UsageCount Value="43"/>
@@ -307,14 +307,15 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
         <UnitName Value="laz.VirtualTrees"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="22949"/>
-        <CursorPos Y="22962"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="35689"/>
+        <CursorPos Y="35705"/>
         <UsageCount Value="48"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Configuracion.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="71"/>
         <CursorPos X="24" Y="83"/>
         <UsageCount Value="49"/>
@@ -394,7 +395,7 @@
       </Unit>
       <Unit>
         <Filename Value="components\VirtualTreesExtended.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="428"/>
         <CursorPos X="56" Y="436"/>
         <UsageCount Value="31"/>
@@ -465,83 +466,7 @@
         <UsageCount Value="12"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="24">
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1266" Column="61" TopLine="1250"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1248" Column="64" TopLine="1299"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1279" Column="31" TopLine="1250"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1263" Column="39" TopLine="1252"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1269" TopLine="1252"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1257" Column="41" TopLine="1242"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1580" Column="67" TopLine="1557"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="240" Column="19" TopLine="235"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1040" TopLine="1035"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="321" Column="16" TopLine="307"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="2287" Column="43" TopLine="2268"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="2284" Column="35" TopLine="2452"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1248" TopLine="1235"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="246" TopLine="218"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="422" Column="32" TopLine="398"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1567" Column="3" TopLine="1562"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1052" Column="53" TopLine="1042"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1248" TopLine="1227"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1255" Column="32" TopLine="1259"/>
-      </Position>
+    <JumpHistory HistoryIndex="14">
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="1046" Column="39" TopLine="1037"/>
@@ -565,6 +490,102 @@
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="1247" Column="39" TopLine="1247"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1028" Column="33" TopLine="1023"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1277" Column="48" TopLine="1264"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1565" Column="56" TopLine="1555"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="846" TopLine="845"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1045" TopLine="1031"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1039" Column="53" TopLine="1025"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1041" Column="40" TopLine="1026"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1039" TopLine="1026"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1043" TopLine="1026"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2286" TopLine="2270"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2287" TopLine="2270"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2288" TopLine="2270"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2289" TopLine="2270"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2291" TopLine="2270"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2292" TopLine="2270"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2293" TopLine="2270"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2297" TopLine="2271"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2299" TopLine="2273"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2286" TopLine="2273"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2320" TopLine="2305"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2352" TopLine="2337"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2355" TopLine="2337"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="2356" TopLine="2337"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
+        <Caret Line="35705" TopLine="35689"/>
       </Position>
     </JumpHistory>
     <RunParams>

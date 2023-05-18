@@ -1029,9 +1029,19 @@ begin
 end;
 
 procedure TForm1.MenuItemEliminarClick(Sender: TObject);
+var
+  Node: PVirtualNode;
+  isArbolSelecionado : boolean;
+  listado : TLazVirtualStringTree;
 begin
-  //TODO: Implementar eliminar
-    beep;
+  if (ActiveControl = Arbol) or (ActiveControl = Lista) then
+  begin
+    listado := TLazVirtualStringTree(ActiveControl);
+
+    Node := listado.GetFirstSelected();
+    if Node <> nil then
+      DoEliminarItem(listado, Node, listado = arbol);
+  end;
 end;
 
 procedure TForm1.MenuItemNuevaBaseDatosClick(Sender: TObject);

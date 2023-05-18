@@ -136,9 +136,7 @@
 +         Toolbar - Propiedades
 +         Toolbar - Agregar catalogo
 +         Toolbar - Editar catalogo
-
-
--         Menu - Eliminar - Implementar
++         Menu - Eliminar - Implementar
 -         Menu - Propiedades - Implementar
 -         Menu - Agregar catalogo - Implementar
 -         Menu - Editar catalogo - Implementar
