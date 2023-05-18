@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-18 18:53:24
+ * @Last Modified time: 2023-05-18 23:40:11
  *)
 {
 
@@ -166,7 +166,6 @@ type
       Node: PVirtualNode; Column: TColumnIndex; const CellText: String;
       const CellRect: TRect; var DefaultDraw: Boolean);
     procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
-    procedure ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ArbolResize(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -217,7 +216,6 @@ type
     procedure PanelInferiorResize(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
-    procedure ToolButtonAgregarCatalogoClick(Sender: TObject);
   private
     FScan            : TMotorScan;
     FVentanaScan     : TFormScan;
@@ -376,7 +374,7 @@ uses
   , OrdenarLista
   , Utilidades
   , ConectorDatos
-  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString, UnidadLoading;
+  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString, UnidadLoading, UnidadPropiedades;
 
 {$R *.lfm}
 
@@ -1215,11 +1213,6 @@ begin
   //
 end;
 
-procedure TForm1.ToolButtonAgregarCatalogoClick(Sender: TObject);
-begin
-
-end;
-
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
 Timer1.Enabled := false;
@@ -1534,11 +1527,6 @@ begin
     end;
   except
   end;
-
-end;
-
-procedure TForm1.ArbolHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
-begin
 
 end;
 
@@ -2402,12 +2390,26 @@ end;
 
 // Muestra las propiedades de un item del arbol/lista
 function Tform1.DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
+var
+  Temp_Form_Propiedades : TForm_Propiedades;
+  NodeData: PrListaData;
 begin
-  // TODO: Implementar mostrar los datos de propiedades del Item
-  beep;
-  sleep(1000);
-  beep;
+  try
+    NodeData := Sender.GetNodeData(Node);
+    if (NodeData <> nil) and (NodeData^.NodeData <> nil) then
+    begin
+      GetRutaFromItem(NodeData^.NodeData);
+      Temp_Form_Propiedades                := TForm_Propiedades.Create(TComponent(Pointer(@Self)^));
+      Temp_Form_Propiedades.Mostrar_Propiedades(NodeData^.NodeData);
+      Temp_Form_Propiedades.Show;
+    end;
+  except
+  end;
 end;
+
+
+
+
 
 // Confirma si se debe eliminar todos los catalogos
 function Tform1.DoConfirmarEliminarTodo() : boolean;

@@ -1,0 +1,17 @@
+{"version":1,"strings":[
+{"hash":176660320,"name":"tform_propiedades.caption","sourcebytes":[80,114,111,112,105,101,100,97,100,101,115,32,100,101,32,58,32],"value":"Propiedades de : "},
+{"hash":127695554,"name":"tform_propiedades.button_aceptar.caption","sourcebytes":[65,99,101,112,116,97,114],"value":"Aceptar"},
+{"hash":139052562,"name":"tform_propiedades.button_cancelar.caption","sourcebytes":[67,97,110,99,101,108,97,114],"value":"Cancelar"},
+{"hash":141752770,"name":"tform_propiedades.button_aplicar.caption","sourcebytes":[65,112,108,105,99,97,114],"value":"Aplicar"},
+{"hash":267250851,"name":"tform_propiedades.tabsheet1.caption","sourcebytes":[80,114,111,112,105,101,100,97,100,101,115],"value":"Propiedades"},
+{"hash":69175589,"name":"tform_propiedades.edit_nombre.text","sourcebytes":[69,100,105,116,95,78,111,109,98,114,101],"value":"Edit_Nombre"},
+{"hash":46918192,"name":"tform_propiedades.label1.caption","sourcebytes":[84,105,112,111,32,100,101,32,97,114,99,104,105,118,111,32,58,32],"value":"Tipo de archivo : "},
+{"hash":152971743,"name":"tform_propiedades.label_tipo_archivo.caption","sourcebytes":[76,97,98,101,108,95,84,105,112,111,95,65,114,99,104,105,118,111],"value":"Label_Tipo_Archivo"},
+{"hash":241669136,"name":"tform_propiedades.label2.caption","sourcebytes":[85,98,105,99,97,99,105,195,179,110,32,58,32],"value":"Ubicaci\u00F3n : "},
+{"hash":152971743,"name":"tform_propiedades.label_extra_ubicacion.caption","sourcebytes":[76,97,98,101,108,95,84,105,112,111,95,65,114,99,104,105,118,111],"value":"Label_Tipo_Archivo"},
+{"hash":233028592,"name":"tform_propiedades.label3.caption","sourcebytes":[84,97,109,97,195,177,111,32,58,32],"value":"Tama\u00F1o : "},
+{"hash":152971743,"name":"tform_propiedades.label_extra_size.caption","sourcebytes":[76,97,98,101,108,95,84,105,112,111,95,65,114,99,104,105,118,111],"value":"Label_Tipo_Archivo"},
+{"hash":923248,"name":"tform_propiedades.label5.caption","sourcebytes":[67,111,110,116,105,101,110,101,32,58,32],"value":"Contiene : "},
+{"hash":152971743,"name":"tform_propiedades.label_contiene.caption","sourcebytes":[76,97,98,101,108,95,84,105,112,111,95,65,114,99,104,105,118,111],"value":"Label_Tipo_Archivo"},
+{"hash":205606816,"name":"tform_propiedades.label6.caption","sourcebytes":[68,101,115,99,114,105,112,99,105,195,179,110,32,58,32],"value":"Descripci\u00F3n : "}
+]}

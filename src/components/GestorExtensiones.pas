@@ -115,6 +115,12 @@ begin
     Datos.ImageIndex := FImagenList.Add(Extension.Icono, nil);
   end;
 
+  if FImagenList32 <> nil then
+  begin
+    FImagenList32.Add(Extension.Icono32, nil);
+  end;
+
+
 
   // Guarda el item en la lista de cache
   cacheExtensiones.add(UID, Datos);

@@ -35,6 +35,7 @@ msgid "Tipo"
 msgstr ""
 
 #: tform1.lista.header.columns[3].text
+msgctxt "tform1.lista.header.columns[3].text"
 msgid "Modificado"
 msgstr ""
 
@@ -141,6 +142,7 @@ msgid "Por Defecto"
 msgstr ""
 
 #: tform1.menuitem_iconos_sistema.caption
+msgctxt "tform1.menuitem_iconos_sistema.caption"
 msgid "Sistema"
 msgstr ""
 
@@ -314,5 +316,119 @@ msgstr ""
 
 #: tform_about.label4.caption
 msgid "Email : "
+msgstr ""
+
+#: tform_propiedades.button_aceptar.caption
+msgid "Aceptar"
+msgstr ""
+
+#: tform_propiedades.button_aplicar.caption
+msgid "Aplicar"
+msgstr ""
+
+#: tform_propiedades.button_cancelar.caption
+msgctxt "tform_propiedades.button_cancelar.caption"
+msgid "Cancelar"
+msgstr ""
+
+#: tform_propiedades.caption
+msgid "Propiedades de : "
+msgstr ""
+
+#: tform_propiedades.edit_nombre.text
+msgid "Edit_Nombre"
+msgstr ""
+
+#: tform_propiedades.label1.caption
+msgid "Tipo de archivo : "
+msgstr ""
+
+#: tform_propiedades.label2.caption
+msgid "Ubicación : "
+msgstr ""
+
+#: tform_propiedades.label3.caption
+msgid "Tamaño : "
+msgstr ""
+
+#: tform_propiedades.label5.caption
+msgctxt "tform_propiedades.label5.caption"
+msgid "Contiene : "
+msgstr ""
+
+#: tform_propiedades.label6.caption
+msgctxt "tform_propiedades.label6.caption"
+msgid "Descripción : "
+msgstr ""
+
+#: tform_propiedades.label_contiene.caption
+msgctxt "tform_propiedades.label_contiene.caption"
+msgid "Label_Tipo_Archivo"
+msgstr ""
+
+#: tform_propiedades.label_extra_size.caption
+msgctxt "tform_propiedades.label_extra_size.caption"
+msgid "Label_Tipo_Archivo"
+msgstr ""
+
+#: tform_propiedades.label_extra_ubicacion.caption
+msgctxt "tform_propiedades.label_extra_ubicacion.caption"
+msgid "Label_Tipo_Archivo"
+msgstr ""
+
+#: tform_propiedades.label_tipo_archivo.caption
+msgctxt "tform_propiedades.label_tipo_archivo.caption"
+msgid "Label_Tipo_Archivo"
+msgstr ""
+
+#: tform_propiedades.tabsheet1.caption
+msgctxt "tform_propiedades.tabsheet1.caption"
+msgid "Propiedades"
+msgstr ""
+
+#: tframe_atributos.checkbox_attr_oculto.caption
+msgid "Oculto"
+msgstr ""
+
+#: tframe_atributos.checkbox_attr_sistema.caption
+msgctxt "tframe_atributos.checkbox_attr_sistema.caption"
+msgid "Sistema"
+msgstr ""
+
+#: tframe_atributos.checkbox_attr_solo_lectura.caption
+msgid "Sólo Lectura"
+msgstr ""
+
+#: tframe_atributos.checkbox_fecha_acceso.caption
+msgid "Accedido"
+msgstr ""
+
+#: tframe_atributos.checkbox_fecha_creacion.caption
+msgid "Creado"
+msgstr ""
+
+#: tframe_atributos.checkbox_fecha_modificado.caption
+msgctxt "tframe_atributos.checkbox_fecha_modificado.caption"
+msgid "Modificado"
+msgstr ""
+
+#: tframe_atributos.groupbox_atributo_tiempo.caption
+msgid " Propiedades Fechas "
+msgstr ""
+
+#: tframe_atributos.groupbox_atributo_windows.caption
+msgid " Propiedades Atributos "
+msgstr ""
+
+#: tframe_atributos.label_fecha_acceso.caption
+msgid "Label_Fecha_Acceso"
+msgstr ""
+
+#: tframe_atributos.label_fecha_creacion.caption
+msgid "Label_Fecha_Creacion"
+msgstr ""
+
+#: tframe_atributos.label_fecha_modificado.caption
+msgid "Label_Fecha_Modificado"
 msgstr ""
 

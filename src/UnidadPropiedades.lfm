@@ -1,0 +1,284 @@
+object Form_Propiedades: TForm_Propiedades
+  Left = 450
+  Height = 519
+  Top = 163
+  Width = 420
+  Caption = 'Propiedades de : '
+  ClientHeight = 519
+  ClientWidth = 420
+  Color = clWindow
+  Constraints.MinHeight = 519
+  Constraints.MinWidth = 420
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '2.2.6.0'
+  object Button_Aceptar: TButton
+    Left = 166
+    Height = 25
+    Top = 488
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Aceptar'
+    OnClick = Button_AceptarClick
+    TabOrder = 0
+  end
+  object Button_Cancelar: TButton
+    Left = 252
+    Height = 25
+    Top = 488
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancelar'
+    ModalResult = 2
+    OnClick = Button_CancelarClick
+    TabOrder = 1
+  end
+  object Button_Aplicar: TButton
+    Left = 337
+    Height = 25
+    Top = 488
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Aplicar'
+    Enabled = False
+    OnClick = Button_AplicarClick
+    TabOrder = 2
+  end
+  object PageControl_Propiedades: TPageControl
+    Left = 4
+    Height = 477
+    Top = 8
+    Width = 410
+    ActivePage = TabSheet1
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 0
+    TabOrder = 3
+    object TabSheet1: TTabSheet
+      Caption = 'Propiedades'
+      ClientHeight = 449
+      ClientWidth = 402
+      object Panel_Nombre_Imagen: TPanel
+        Left = 5
+        Height = 50
+        Top = 0
+        Width = 392
+        Align = alTop
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Bottom = 5
+        BevelOuter = bvNone
+        ClientHeight = 50
+        ClientWidth = 392
+        TabOrder = 0
+        object Edit_Nombre: TEdit
+          Left = 64
+          Height = 23
+          Top = 8
+          Width = 328
+          Anchors = [akTop, akLeft, akRight]
+          OnChange = Edit_NombreChange
+          TabOrder = 0
+          Text = 'Edit_Nombre'
+        end
+        object Image_Archivo: TImage
+          Left = 8
+          Height = 32
+          Top = 0
+          Width = 32
+        end
+        object Bevel1: TBevel
+          Left = 0
+          Height = 3
+          Top = 47
+          Width = 392
+          Align = alBottom
+          Shape = bsBottomLine
+        end
+      end
+      object Panel_Tipo: TPanel
+        Left = 5
+        Height = 42
+        Top = 55
+        Width = 392
+        Align = alTop
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Bottom = 5
+        BevelOuter = bvNone
+        ClientHeight = 42
+        ClientWidth = 392
+        TabOrder = 1
+        object Bevel2: TBevel
+          Left = 0
+          Height = 3
+          Top = 39
+          Width = 392
+          Align = alBottom
+          Shape = bsBottomLine
+        end
+        object Label1: TLabel
+          Left = 8
+          Height = 15
+          Top = 7
+          Width = 90
+          Caption = 'Tipo de archivo : '
+          ParentColor = False
+        end
+        object Label_Tipo_Archivo: TLabel
+          Left = 136
+          Height = 15
+          Top = 8
+          Width = 102
+          Caption = 'Label_Tipo_Archivo'
+          ParentColor = False
+        end
+      end
+      object Panel_Datos_Extras: TPanel
+        Left = 5
+        Height = 59
+        Top = 102
+        Width = 392
+        Align = alTop
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Bottom = 5
+        BevelOuter = bvNone
+        ClientHeight = 59
+        ClientWidth = 392
+        TabOrder = 2
+        object Bevel3: TBevel
+          Left = 0
+          Height = 3
+          Top = 56
+          Width = 392
+          Align = alBottom
+          Shape = bsBottomLine
+        end
+        object Label2: TLabel
+          Left = 8
+          Height = 15
+          Top = 7
+          Width = 62
+          Caption = 'Ubicación : '
+          ParentColor = False
+        end
+        object Label_Extra_Ubicacion: TLabel
+          Left = 136
+          Height = 15
+          Top = 8
+          Width = 102
+          Caption = 'Label_Tipo_Archivo'
+          ParentColor = False
+        end
+        object Label3: TLabel
+          Left = 8
+          Height = 15
+          Top = 33
+          Width = 51
+          Caption = 'Tamaño : '
+          ParentColor = False
+        end
+        object Label_Extra_Size: TLabel
+          Left = 136
+          Height = 15
+          Top = 33
+          Width = 102
+          Caption = 'Label_Tipo_Archivo'
+          ParentColor = False
+        end
+      end
+      object Panel_Contiene: TPanel
+        Left = 5
+        Height = 42
+        Top = 166
+        Width = 392
+        Align = alTop
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Bottom = 5
+        BevelOuter = bvNone
+        ClientHeight = 42
+        ClientWidth = 392
+        TabOrder = 3
+        object Bevel5: TBevel
+          Left = 0
+          Height = 3
+          Top = 39
+          Width = 392
+          Align = alBottom
+          Shape = bsBottomLine
+        end
+        object Label5: TLabel
+          Left = 8
+          Height = 15
+          Top = 7
+          Width = 57
+          Caption = 'Contiene : '
+          ParentColor = False
+        end
+        object Label_Contiene: TLabel
+          Left = 136
+          Height = 15
+          Top = 8
+          Width = 102
+          Caption = 'Label_Tipo_Archivo'
+          ParentColor = False
+        end
+      end
+      object Panel_Catalogo_descripcion: TPanel
+        Left = 5
+        Height = 218
+        Top = 213
+        Width = 392
+        Align = alTop
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Bottom = 5
+        BevelOuter = bvNone
+        ClientHeight = 218
+        ClientWidth = 392
+        TabOrder = 4
+        object Bevel6: TBevel
+          Left = 0
+          Height = 3
+          Top = 215
+          Width = 392
+          Align = alBottom
+          Shape = bsBottomLine
+        end
+        object Label6: TLabel
+          Left = 8
+          Height = 15
+          Top = 7
+          Width = 71
+          Caption = 'Descripción : '
+          ParentColor = False
+        end
+        object Memo1: TMemo
+          Left = 8
+          Height = 186
+          Top = 24
+          Width = 374
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          Lines.Strings = (
+            'Memo1'
+          )
+          TabOrder = 0
+        end
+      end
+    end
+  end
+  object Timer_Size_Dir: TTimer
+    Enabled = False
+    Interval = 100
+    Left = 329
+    Top = 339
+  end
+  object Timer_Modificado: TTimer
+    OnTimer = Timer_ModificadoTimer
+    Left = 329
+    Top = 285
+  end
+end

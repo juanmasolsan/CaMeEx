@@ -78,7 +78,6 @@ object Form1: TForm1
       OnGetText = ListaGetText
       OnPaintText = ListaPaintText
       OnGetImageIndex = ListaGetImageIndex
-      OnHeaderClick = ArbolHeaderClick
       OnKeyDown = ArbolKeyDown
       OnResize = ArbolResize
     end
@@ -748,7 +747,6 @@ object Form1: TForm1
           ImageIndex = 0
           Indeterminate = True
           MenuItem = MenuItemAgregarCatalogo
-          OnClick = ToolButtonAgregarCatalogoClick
         end
         object ToolButtonEliminar: TToolButton
           Left = 33

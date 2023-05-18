@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 17:11:52
+ * @Last Modified time: 2023-05-19 01:10:48
  *)
 {
 
@@ -68,6 +68,8 @@ resourcestring
   Message_Espera_Eliminar_Archivos =  'Se están eliminando los datos solicitados ...';
   Message_Espera_Eliminar_Catalogo =  'Se está eliminando el catalogo seleccionado ...';
   Message_Espera_Eliminar_Catalogo_All =  'Se están eliminando todos los datos almacenados ...';
+
+  Message_Propiedades_de =  'Propiedades de :';
 
 
 

@@ -695,14 +695,25 @@ begin
 
               //Extension.Icono.SaveToStream(Stream);
               TBlobField(FDataBase.Query.FieldByName('ICONO')).SaveToStream(Stream);
-
               Stream.Position := 0;
-
               if Stream.Size > 0 then
               begin
                 Result.Icono := TPortableNetworkGraphic.Create;
                 Result.Icono.LoadFromStream(Stream);
               end;
+
+
+              Stream.Size := 0;
+              Stream.Position := 0;
+              TBlobField(FDataBase.Query.FieldByName('ICONO32')).SaveToStream(Stream);
+              Stream.Position := 0;
+              if Stream.Size > 0 then
+              begin
+                Result.Icono32 := TPortableNetworkGraphic.Create;
+                Result.Icono32.LoadFromStream(Stream);
+              end;
+
+
 
             finally
               Stream.Free;

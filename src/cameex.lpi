@@ -135,6 +135,20 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="UnidadPropiedades.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form_Propiedades"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="UnidadAtributos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Frame_Atributos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

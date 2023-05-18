@@ -1,4 +1,7 @@
++ 1.2.2.5
+- [NEW]   (20230519) Agregado visualización básica de archivos
 
++ 1.2.2.4
 - [NEW]   (20230518) Implementado la acción del Menú : Agregar catalogo
 - [NEW]   (20230518) Implementado la acción del Menú : Búsqueda avanzada
 - [NEW]   (20230518) Implementado la acción del Menú : Propiedades

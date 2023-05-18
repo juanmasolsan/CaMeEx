@@ -50,9 +50,8 @@ uses
   SysUtils,
   {$ENDIF FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
   Interfaces, // this includes the LCL widgetset
-  Forms
-  , AppString
-  , UnidadPrincipal, Control_About, UnidadLoading
+  Forms, AppString, UnidadPrincipal, UnidadAtributos, UnidadPropiedades,
+  Control_About, UnidadLoading
 
   ;
 
@@ -76,6 +75,7 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm_Propiedades, Form_Propiedades);
   Application.Run;
 end.
 
