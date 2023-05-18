@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230518) Implementado la acción del Menú : Nueva Base de Datos
 - [FIX]   (20230518) Arreglado correcta detección de control activo al pulsar el boton derecho sobre la lista y el arbol
 - [NEW]   (20230518) Agregados popup menu al arbol y lista de archivos
 - [NEW]   (20230518) Agregados menuItems y botones a la toolbar de acciones

@@ -318,7 +318,7 @@ type
     procedure DoAjustarNodosCatalogos();
 
     // Elimina un item del arbol/lista
-    function DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean) : boolean;
+    function DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
 
     // Confirma si se debe eliminar todos los catalogos
     function DoConfirmarEliminarTodo() : boolean;
@@ -1036,14 +1036,13 @@ end;
 
 procedure TForm1.MenuItemNuevaBaseDatosClick(Sender: TObject);
 begin
-  //TODO: Implementar nueva base de datos
-    beep;
+    DoEliminarItem(Arbol, FNodeArbolRaiz, true, true);
 end;
 
 procedure TForm1.MenuItemPropiedadesClick(Sender: TObject);
 begin
-   //TODO: Implementar propiedades
-  beep;
+  //TODO: Implementar propiedades
+    beep;
 end;
 
 procedure TForm1.MenuItemSalirClick(Sender: TObject);
@@ -1244,7 +1243,7 @@ end;
 procedure TForm1.Timer_UpdateUITimer(Sender: TObject);
 
 var
-  isArbolSelecionado : boolean;
+  isArbolSelecionado : boolean = false;
   Selecionados : integer;
 
   // Determina el total de items selecionados en el listado
@@ -2267,7 +2266,7 @@ begin
 end;
 
 // Elimina un item del arbol/lista
-function Tform1.DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean) : boolean;
+function Tform1.DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
 var
   NodeData : PrListaData;
   total, t : integer;
@@ -2281,6 +2280,10 @@ begin
 
   try
     try
+       if (Node = FNodeArbolRaiz) and not Forzar then
+       exit;
+
+
       NodeData := Sender.GetNodeData(Node);
 
       if Node = FNodeArbolRaiz then

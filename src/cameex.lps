@@ -19,10 +19,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="1265"/>
-        <CursorPos X="58" Y="1274"/>
+        <TopLine Value="1023"/>
+        <CursorPos X="53" Y="1031"/>
         <UsageCount Value="162"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -30,6 +29,7 @@
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <CursorPos X="31" Y="6"/>
         <UsageCount Value="162"/>
         <Loaded Value="True"/>
@@ -40,7 +40,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="71"/>
-        <CursorPos X="47" Y="77"/>
+        <CursorPos X="57" Y="97"/>
         <UsageCount Value="162"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -271,7 +271,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="125"/>
         <CursorPos X="64" Y="140"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -317,7 +317,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="71"/>
         <CursorPos X="24" Y="83"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -397,7 +397,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="428"/>
         <CursorPos X="56" Y="436"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -465,39 +465,7 @@
         <UsageCount Value="12"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1261" Column="72" TopLine="1261"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1262" Column="72" TopLine="1262"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1263" Column="72" TopLine="1263"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1264" Column="72" TopLine="1264"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1263" Column="72" TopLine="1263"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1262" Column="72" TopLine="1262"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1270" TopLine="1261"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <Caret Line="1255" Column="10" TopLine="1237"/>
-      </Position>
+    <JumpHistory HistoryIndex="24">
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="1266" Column="61" TopLine="1250"/>
@@ -585,6 +553,18 @@
       <Position>
         <Filename Value="UnidadPrincipal.pas"/>
         <Caret Line="2282" Column="53" TopLine="2267"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1274" Column="58" TopLine="1265"/>
+      </Position>
+      <Position>
+        <Filename Value="historia.txt"/>
+        <Caret Line="6" Column="31"/>
+      </Position>
+      <Position>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1247" Column="39" TopLine="1247"/>
       </Position>
     </JumpHistory>
     <RunParams>

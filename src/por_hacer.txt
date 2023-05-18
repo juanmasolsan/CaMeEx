@@ -137,12 +137,13 @@
 +         Toolbar - Agregar catalogo
 +         Toolbar - Editar catalogo
 
--         Al eliminar desde la lista de archivos no actualiza el nodo raiz
+
 -         Menu - Eliminar - Implementar
 -         Menu - Propiedades - Implementar
 -         Menu - Agregar catalogo - Implementar
 -         Menu - Editar catalogo - Implementar
--         Menu - Eliminar todos los catalogos - Implementar
++         Menu - Eliminar todos los catalogos - Implementar
+-         Al eliminar desde la lista de archivos no actualiza el nodo raiz
 
 -         Poder editar los catalogos
 -         Poder crear nuevos catalogos
