@@ -67,7 +67,7 @@ object Form1: TForm1
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toDisableAutoscrollOnEdit]
       TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toFullRowDrag]
       TreeOptions.PaintOptions = [toHideFocusRect, toHotTrack, toShowButtons, toShowRoot, toShowTreeLines, toThemeAware, toUseBlendedImages, toAlwaysHideSelection]
-      TreeOptions.SelectionOptions = [toFullRowSelect, toSiblingSelectConstraint]
+      TreeOptions.SelectionOptions = [toFullRowSelect, toRightClickSelect, toSiblingSelectConstraint]
       OnAfterItemErase = ListaAfterItemErase
       OnBeforeCellPaint = ListaBeforeCellPaint
       OnBeforeItemErase = ArbolBeforeItemErase
@@ -151,7 +151,7 @@ object Form1: TForm1
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toDisableAutoscrollOnEdit]
       TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toFullRowDrag]
       TreeOptions.PaintOptions = [toHideFocusRect, toHotTrack, toShowButtons, toThemeAware, toUseBlendedImages, toAlwaysHideSelection]
-      TreeOptions.SelectionOptions = [toFullRowSelect, toMultiSelect, toSiblingSelectConstraint]
+      TreeOptions.SelectionOptions = [toFullRowSelect, toMultiSelect, toRightClickSelect, toSiblingSelectConstraint]
       OnAfterItemErase = ListaAfterItemErase
       OnBeforeCellPaint = ListaBeforeCellPaint
       OnCompareNodes = ListaCompareNodes
@@ -1312,7 +1312,7 @@ object Form1: TForm1
     Top = 72
   end
   object Timer_UpdateUI: TTimer
-    Interval = 500
+    Interval = 250
     OnTimer = Timer_UpdateUITimer
     Left = 472
     Top = 72

@@ -1250,9 +1250,6 @@ var
   // Determina el total de items selecionados en el listado
   function GetTotalSeleccionados(Listado : TLazVirtualStringTree) : integer;
   begin
-    // Determina si el arbol esta selecionado
-    isArbolSelecionado :=  Listado = arbol;
-
     // Determina el total de items selecionados
     Result := Listado.SelectedCount;
 
@@ -1274,6 +1271,9 @@ begin
   // Si el control activo es el arbol o la lista
   if (ActiveControl = Arbol) or (ActiveControl = Lista) then
   begin
+    // Determina si el arbol esta selecionado
+    isArbolSelecionado :=  ActiveControl = arbol;
+
     // Determina el total de items selecionados
     Selecionados := GetTotalSeleccionados(TLazVirtualStringTree(ActiveControl));
   end;
