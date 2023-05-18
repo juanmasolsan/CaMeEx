@@ -21,89 +21,23 @@ object Form1: TForm1
     Panels = <>
     ParentColor = False
   end
-  object ToolBar1: TToolBar
-    Left = 0
-    Height = 28
-    Top = 0
-    Width = 899
-    ButtonHeight = 28
-    ButtonWidth = 28
-    Caption = 'ToolBar1'
-    Color = clWindow
-    EdgeBorders = []
-    EdgeInner = esNone
-    EdgeOuter = esNone
-    Images = ImageListToolbar
-    ParentColor = False
-    TabOrder = 0
-    object ToolButtonAgregarCatalogo: TToolButton
-      Left = 1
-      Hint = 'Agregar Catalogo'
-      Top = 0
-      Caption = 'Agregar Catalogo'
-      ImageIndex = 0
-      Indeterminate = True
-      MenuItem = MenuItemAgregarCatalogo
-      OnClick = ToolButtonAgregarCatalogoClick
-    end
-    object ToolButton2: TToolButton
-      Left = 29
-      Height = 28
-      Top = 0
-      Caption = 'ToolButton2'
-      Style = tbsSeparator
-    end
-    object ToolButtonEliminar: TToolButton
-      Left = 37
-      Hint = 'Eliminar'
-      Top = 0
-      Caption = 'Eliminar'
-      ImageIndex = 1
-      MenuItem = MenuItemEliminar
-      ParentShowHint = False
-      ShowHint = True
-    end
-    object ToolButtonPropiedades: TToolButton
-      Left = 65
-      Top = 0
-      Caption = 'Propiedades'
-      ImageIndex = 4
-      MenuItem = MenuItemPropiedades
-      ParentShowHint = False
-      ShowHint = True
-    end
-    object ToolButton1: TToolButton
-      Left = 93
-      Height = 28
-      Top = 0
-      Caption = 'ToolButton1'
-      Style = tbsSeparator
-    end
-    object ToolButtonBusquedaAvanzada: TToolButton
-      Left = 101
-      Top = 0
-      Caption = 'Búsqueda Avanzada'
-      ImageIndex = 5
-      MenuItem = MenuItemBusquedaAvanzada
-    end
-  end
   object PanelPrincipal: TPanel
     Left = 0
-    Height = 577
-    Top = 28
+    Height = 605
+    Top = 0
     Width = 899
     Align = alClient
     BevelOuter = bvNone
-    ClientHeight = 577
+    ClientHeight = 605
     ClientWidth = 899
     Color = clBtnShadow
     FullRepaint = False
     ParentColor = False
-    TabOrder = 1
+    TabOrder = 0
     object Arbol: TLazVirtualStringTree
       Left = 1
-      Height = 370
-      Top = 1
+      Height = 364
+      Top = 35
       Width = 232
       Align = alLeft
       AnimationDuration = 0
@@ -127,6 +61,7 @@ object Form1: TForm1
       Header.Height = 24
       Header.Options = [hoColumnResize, hoDblClickResize, hoDrag, hoHotTrack, hoShowSortGlyphs]
       Images = ImageListArchivos
+      PopupMenu = PopupMenu1
       ScrollBarOptions.AlwaysVisible = True
       TabOrder = 0
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toDisableAutoscrollOnEdit]
@@ -149,16 +84,16 @@ object Form1: TForm1
     end
     object Splitter1: TSplitter
       Left = 234
-      Height = 372
-      Top = 0
+      Height = 366
+      Top = 34
       Width = 5
       Color = clWindow
       ParentColor = False
     end
     object Lista: TLazVirtualStringTree
       Left = 240
-      Height = 370
-      Top = 1
+      Height = 364
+      Top = 35
       Width = 658
       Align = alClient
       AnimationDuration = 1
@@ -209,6 +144,7 @@ object Form1: TForm1
       Header.Options = [hoColumnResize, hoDblClickResize, hoDrag, hoHotTrack, hoShowSortGlyphs, hoVisible]
       Header.SortDirection = sdDescending
       Images = ImageListArchivos
+      PopupMenu = PopupMenu1
       ScrollBarOptions.AlwaysVisible = True
       TabOrder = 2
       TreeOptions.AnimationOptions = [toAnimatedToggle]
@@ -230,7 +166,7 @@ object Form1: TForm1
     object PanelInferior: TPanel
       Left = 0
       Height = 200
-      Top = 377
+      Top = 405
       Width = 899
       Align = alBottom
       BevelOuter = bvNone
@@ -769,12 +705,77 @@ object Form1: TForm1
       Cursor = crVSplit
       Left = 0
       Height = 5
-      Top = 372
+      Top = 400
       Width = 899
       Align = alBottom
       Color = clWindow
       ParentColor = False
       ResizeAnchor = akBottom
+    end
+    object PanelSuperior: TPanel
+      Left = 0
+      Height = 34
+      Top = 0
+      Width = 899
+      Align = alTop
+      BevelOuter = bvNone
+      Caption = 'PanelSuperior'
+      ClientHeight = 34
+      ClientWidth = 899
+      Color = clWindow
+      ParentColor = False
+      TabOrder = 5
+      object Barra_Herramientas: TToolBar
+        Left = 0
+        Height = 34
+        Top = 0
+        Width = 152
+        Align = alLeft
+        ButtonHeight = 32
+        ButtonWidth = 32
+        Caption = 'Barra_Herramientas'
+        Color = clWindow
+        EdgeBorders = []
+        EdgeInner = esNone
+        EdgeOuter = esNone
+        Images = ImageListToolbar
+        ParentColor = False
+        TabOrder = 0
+        object ToolButtonAgregarCatalogo: TToolButton
+          Left = 1
+          Top = 0
+          Caption = 'Agregar Catalogo'
+          ImageIndex = 0
+          Indeterminate = True
+          MenuItem = MenuItemAgregarCatalogo
+          OnClick = ToolButtonAgregarCatalogoClick
+        end
+        object ToolButtonEliminar: TToolButton
+          Left = 33
+          Top = 0
+          Caption = 'Eliminar'
+          ImageIndex = 1
+          MenuItem = MenuItemEliminar
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButtonPropiedades: TToolButton
+          Left = 65
+          Top = 0
+          Caption = 'Propiedades'
+          ImageIndex = 4
+          MenuItem = MenuItemPropiedades
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButtonBusquedaAvanzada: TToolButton
+          Left = 97
+          Top = 0
+          Caption = 'Búsqueda Avanzada'
+          ImageIndex = 5
+          MenuItem = MenuItemBusquedaAvanzada
+        end
+      end
     end
   end
   object MenuPrincipal: TMainMenu
@@ -1311,7 +1312,6 @@ object Form1: TForm1
     Top = 72
   end
   object Timer_UpdateUI: TTimer
-    Enabled = False
     Interval = 500
     OnTimer = Timer_UpdateUITimer
     Left = 472
@@ -2317,5 +2317,39 @@ object Form1: TForm1
       A3CAE660F05822FFA79E0787AC107F3F85C3346654FFD7A15F48FFA13AFF01B8
       215540
     }
+  end
+  object PopupMenu1: TPopupMenu
+    Images = ImageListToolbar
+    Left = 592
+    Top = 136
+    object MenuPopUpItemNuevaBaseDatos: TMenuItem
+      Caption = 'Nueva Base de Datos'
+      ImageIndex = 6
+      OnClick = MenuItemNuevaBaseDatosClick
+    end
+    object Separator13: TMenuItem
+      Caption = '-'
+    end
+    object MenuPopUpItemAgregarCatalogo: TMenuItem
+      Caption = 'Agregar Catalogo'
+      ImageIndex = 0
+      OnClick = MenuItemAgregarCatalogoClick
+    end
+    object Separator14: TMenuItem
+      Caption = '-'
+    end
+    object MenuPopUpItemEliminar: TMenuItem
+      Caption = 'Eliminar'
+      ImageIndex = 1
+      OnClick = MenuItemEliminarClick
+    end
+    object Separator15: TMenuItem
+      Caption = '-'
+    end
+    object MenuPopUpItemPropiedades: TMenuItem
+      Caption = 'Propiedades'
+      ImageIndex = 4
+      OnClick = MenuItemPropiedadesClick
+    end
   end
 end

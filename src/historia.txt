@@ -1,4 +1,5 @@
 
+- [NEW]   (20230518) Agregados popup menu al arbol y lista de archivos
 - [NEW]   (20230518) Agregados menuItems y botones a la toolbar de acciones
 
 + 1.2.1.6

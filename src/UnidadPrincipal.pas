@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 19:12:13
+ * @Last Modified time: 2023-05-18 16:19:06
  *)
 {
 
@@ -89,10 +89,16 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuPopUpItemPropiedades: TMenuItem;
+    MenuPopUpItemEliminar: TMenuItem;
+    MenuPopUpItemAgregarCatalogo: TMenuItem;
+    MenuPopUpItemNuevaBaseDatos: TMenuItem;
     MenuItemBusquedaAvanzada: TMenuItem;
     MenuItemPropiedades: TMenuItem;
     MenuItemEliminar: TMenuItem;
     MenuItemEditar: TMenuItem;
+    PanelSuperior: TPanel;
+    PopupMenu1: TPopupMenu;
     Separator10: TMenuItem;
     MenuItemNuevaBaseDatos: TMenuItem;
     MenuItem_Perfil_PorDefecto: TMenuItem;
@@ -131,6 +137,9 @@ type
     Separator1: TMenuItem;
     Separator11: TMenuItem;
     Separator12: TMenuItem;
+    Separator13: TMenuItem;
+    Separator14: TMenuItem;
+    Separator15: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
@@ -144,11 +153,9 @@ type
     Barra_Estado: TStatusBar;
     Timer1: TTimer;
     Timer_UpdateUI: TTimer;
-    ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
+    Barra_Herramientas: TToolBar;
     ToolButtonBusquedaAvanzada: TToolButton;
     ToolButtonAgregarCatalogo: TToolButton;
-    ToolButton2: TToolButton;
     ToolButtonPropiedades: TToolButton;
     ToolButtonEliminar: TToolButton;
     procedure ArbolBeforeItemErase(Sender: TBaseVirtualTree;
@@ -1235,13 +1242,57 @@ Timer1.Enabled := false;
 end;
 
 procedure TForm1.Timer_UpdateUITimer(Sender: TObject);
+
+var
+  isArbolSelecionado : boolean;
+  Selecionados : integer;
+
+  // Determina el total de items selecionados en el listado
+  function GetTotalSeleccionados(Listado : TLazVirtualStringTree) : integer;
+  begin
+    // Determina si el arbol esta selecionado
+    isArbolSelecionado :=  Listado = arbol;
+
+    // Determina el total de items selecionados
+    Result := Listado.SelectedCount;
+
+    // Si el arbol esta selecionado y el nodo raiz esta selecionado
+    if (Result = 1) and isArbolSelecionado and Arbol.Selected[FNodeArbolRaiz] then
+      Result := 0;
+  end;
+
+
 begin
-  //
-  //SalidaLog.Lines.add('Timer_UpdateUITimer');
   if assigned(FScan) then
   begin
     Barra_Estado.simpleText := 'Procesando : ' + FScan.Procesando;
   end;
+
+  // Iniciliza el total de items selecionados
+  Selecionados := 0;
+
+  // Si el control activo es el arbol o la lista
+  if (ActiveControl = Arbol) or (ActiveControl = Lista) then
+  begin
+    // Determina el total de items selecionados
+    Selecionados := GetTotalSeleccionados(TLazVirtualStringTree(ActiveControl));
+  end;
+
+  // Si el control activo es el arbol muestra los siguientes MenuItems
+  MenuPopUpItemNuevaBaseDatos.Visible  := isArbolSelecionado;
+  Separator13.Visible                  := isArbolSelecionado;
+  MenuPopUpItemAgregarCatalogo.Visible := isArbolSelecionado;
+  Separator14.Visible                  := isArbolSelecionado;
+
+  // Si hay itemns seleccionados activa los siguiente MenuItems
+  MenuItemEliminar.Enabled      := Selecionados > 0;
+  ToolButtonEliminar.Enabled    := MenuItemEliminar.Enabled;
+  MenuPopUpItemEliminar.Enabled := MenuItemEliminar.Enabled;
+
+  // Si hay un itemn seleccionado activa los siguiente MenuItems
+  MenuItemPropiedades.Enabled      := Selecionados = 1;
+  ToolButtonPropiedades.Enabled    := MenuItemPropiedades.Enabled;
+  MenuPopUpItemPropiedades.Enabled := MenuItemPropiedades.Enabled;
 end;
 
 procedure TForm1.DoOnTerminarScanAsync();
@@ -2480,8 +2531,8 @@ begin
   Splitter2.Enabled       := activar;
 
   // Desactiva/Activa la toolbar y el panel inferior
-  ToolBar1.Enabled        := activar;
-  PanelInferior.Enabled   := activar;
+  Barra_Herramientas.Enabled := activar;
+  PanelInferior.Enabled      := activar;
 end;
 
 end.
