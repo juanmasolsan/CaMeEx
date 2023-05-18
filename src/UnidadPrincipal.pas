@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-18 18:47:24
+ * @Last Modified time: 2023-05-18 18:53:24
  *)
 {
 
@@ -349,6 +349,9 @@ type
 
     // Activa o desactiva los controles
     procedure DoActivarShowModal(activar : boolean);
+
+    // Lanza la búsqueda avanzada
+    procedure DoBusquedaAvanzada();
 
   public
 
@@ -1026,8 +1029,8 @@ end;
 
 procedure TForm1.MenuItemBusquedaAvanzadaClick(Sender: TObject);
 begin
-  //TODO: Implementar busqueda avanzada
-    beep;
+  // Lanza la búsqueda avanzada
+  DoBusquedaAvanzada();
 end;
 
 procedure TForm1.MenuItemEliminarClick(Sender: TObject);
@@ -2574,6 +2577,17 @@ begin
   end;
 end;
 
+// Lanza la búsqueda avanzada
+procedure TForm1.DoBusquedaAvanzada();
+begin
+  //TODO: implementar busqueda avanzada
+  beep;
+  sleep(500);
+  beep;
+  sleep(500);
+  beep;
+  sleep(500);
+end;
 
 
 end.
