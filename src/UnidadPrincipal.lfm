@@ -1312,7 +1312,7 @@ object Form1: TForm1
     Top = 72
   end
   object Timer_UpdateUI: TTimer
-    Interval = 250
+    Interval = 100
     OnTimer = Timer_UpdateUITimer
     Left = 472
     Top = 72

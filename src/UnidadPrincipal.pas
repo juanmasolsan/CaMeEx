@@ -353,6 +353,10 @@ type
     // Lanza la búsqueda avanzada
     procedure DoBusquedaAvanzada();
 
+    // Lanza la acción agregar un nuevo catalogo
+    procedure DoAddNuevoCatalogo();
+
+
   public
 
   end;
@@ -927,28 +931,8 @@ end;
 
 procedure TForm1.MenuItemAgregarCatalogoClick(Sender: TObject);
 begin
-  // Timer1.Enabled := true;
-  //FScan.ScanDir(Curdir);
-  //DoOnTerminarScanAsync();
-
-  FVentanaScan := TFormScan.CreateEx(self, FScan);
-
-  {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-    {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
-      FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
-    {$ELSE}
-      FScan.ScanDirAsync('C:\DAM_02\comun\programas\vscode\data\extensions\', @DoOnTerminarScanAsync, '.git;img\iconos');
-      //FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
-    {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
-
-
-
-
-  {$ELSE}
-  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
-  {$ENDIF}
-  // Muestra la ventana de escaneo
-  FVentanaScan.ShowModal;
+  // Lanza la acción agregar un nuevo catalogo
+  DoAddNuevoCatalogo();
 end;
 
 // Reajusta el tamaño de la última columna
@@ -2587,6 +2571,28 @@ begin
   sleep(500);
   beep;
   sleep(500);
+end;
+
+
+// Lanza la acción agregar un nuevo catalogo
+procedure TForm1.DoAddNuevoCatalogo();
+begin
+
+  FVentanaScan := TFormScan.CreateEx(self, FScan);
+
+  {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
+    {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+      FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
+    {$ELSE}
+      FScan.ScanDirAsync('C:\DAM_02\comun\programas\vscode\data\extensions\', @DoOnTerminarScanAsync, '.git;img\iconos');
+      //FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
+    {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+
+  {$ELSE}
+  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
+  {$ENDIF}
+  // Muestra la ventana de escaneo
+  FVentanaScan.ShowModal;
 end;
 
 

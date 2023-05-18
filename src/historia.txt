@@ -1,4 +1,5 @@
 
+- [NEW]   (20230518) Implementado la acción del Menú : Agregar catalogo
 - [NEW]   (20230518) Implementado la acción del Menú : Búsqueda avanzada
 - [NEW]   (20230518) Implementado la acción del Menú : Propiedades
 - [NEW]   (20230518) Implementado la acción del Menú : Eliminar
