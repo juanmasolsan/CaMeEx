@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 19:32:18
+ * @Last Modified time: 2023-05-20 01:39:21
  *)
 {
 
@@ -256,7 +256,6 @@ end;
 // Obtiene el índice de la imagen del sistema
 function TItemDato.GetImageIndexSistema() : Integer;
 begin
-  //TODO: Implementar
   Result := -1;
 end;
 

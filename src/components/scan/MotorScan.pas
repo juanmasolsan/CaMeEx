@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-15 19:01:29
+ * @Last Modified time: 2023-05-20 01:39:41
  *)
 {
 
@@ -643,12 +643,6 @@ begin
 
       // Se obtiene la descripción de la extensión desde el sistema
       Icono32 := GetGenericFileIcon(RutaCompleta, textoDescripcion, 32,  Dir);
-
-      //TODO: Eliminar solo es para testeo
-      if Icono32 <> nil then
-      begin
-        Icono32.savetofile('out/32_img_' + Get_CRC64ToString(Ext)+ '.png');
-      end;
 
     if textoDescripcion = ''  then
       if not Dir then

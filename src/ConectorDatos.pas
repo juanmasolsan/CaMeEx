@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 14:50:17
+ * @Last Modified time: 2023-05-20 01:40:19
  *)
 {
 
@@ -1737,8 +1737,7 @@ end;
 
 {$IFDEF TESTEAR_SENTENCIAS}
 
-//TODO: Que tenga directivas de compilación para que no se incluya en la versión final
-
+// Testea las sentencias
 procedure TConectorDatos.TestSentencias();
 
   procedure InsertarExtensiones();

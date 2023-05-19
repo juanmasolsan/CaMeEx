@@ -143,15 +143,13 @@
 +         Menu - Eliminar todos los catalogos - Implementar
 +         Poder mostrar propiedades de catalogos y datos
 +         Poder editar los catalogos
-
 +         Al eliminar desde la lista de archivos no actualiza el nodo raiz
 +         Al eliminar desde la lista todos los archivos y carpetas de un catalogo el nodo del catalogo no funciona correctamente
-
--         Poder crear nuevos catalogos
 +         Icono grande en el arbol cuando los nodos tengan extra alto
 
--         Agregar breadcrumbs.
--         Historial de navegación.
+-         Poder crear nuevos catalogos
+
+
 -         Ventana para seleccionar el dispositivo/directorio a escanear.
 -         Revisar la ruta de los archivos en la lista, si hay muchos archivos se vuelve lenta
 
@@ -181,8 +179,10 @@
 - Agregar comentarios.
 - Agregar temas oscuro y claro
 - Compilar para windows x86
-- Comprobar memory leaks (1)
++ Comprobar memory leaks (1)
 - Crear el diagrama de clases
 - Internalización de la app
 + Listado de todas las directivas de compilación y para que se usan
 - Si se usa sqlcipher que tenga login para acceder a la base de datos
+- Agregar breadcrumbs.
+- Historial de navegación.
