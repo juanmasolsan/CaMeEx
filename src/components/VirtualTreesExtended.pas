@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-11 22:46:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-11 23:40:04
+ * @Last Modified time: 2023-05-20 00:59:49
  *)
 {
 
@@ -197,6 +197,7 @@ end;
 procedure TLazVirtualStringTree.DoPaintNode(var PaintInfo: TVTPaintInfo);
 var
   Y : longint = -1;
+  x : longint = -1;
 begin
   DoDibujarInfoCatalogo(PaintInfo, true);
 
@@ -207,11 +208,18 @@ begin
  // Dibuja los botones del arbol
   if FDibujarBotonesModernos then
   begin
+
+    X := PaintInfo.ContentRect.Left;
     if PaintInfo.Node <> nil then
       if PaintInfo.Node^.NodeHeight = CATALOGO_NODE_ALTURA then
-        Y := ((CATALOGO_NODE_ALTURA - DefaultNodeHeight) div 3) + 1;
+        begin
+          Y := ((CATALOGO_NODE_ALTURA - DefaultNodeHeight) div 3) + 4;
 
-    DoDibujarBotones(PaintInfo.Node, PaintInfo.Canvas, PaintInfo.ContentRect.Left, Y);
+          if FDibujarInfoCatalogo then
+            X := X - 16;
+        end;
+
+    DoDibujarBotones(PaintInfo.Node, PaintInfo.Canvas, X, Y);
   end;
 end;
 
@@ -245,10 +253,12 @@ end;
 // Dibujar el boton de los nodos
 procedure TLazVirtualStringTree.PaintNodeButton(nCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex; const R: TRect; ButtonX, ButtonY: Integer; nBidiMode: TBiDiMode);
 begin
+(*
   if FDibujarInfoCatalogo and (Node^.NodeHeight = CATALOGO_NODE_ALTURA) then
   begin
     ButtonY := (self.DefaultNodeHeight div 3) -1;
   end;
+*)
 
    // Dibuja los botones del arbol
   if not FDibujarBotonesModernos then
@@ -258,84 +268,85 @@ end;
 // Dibujar las lineas de los nodos
 procedure TLazVirtualStringTree.PaintTreeLines(const PaintInfo: TVTPaintInfo; VAlignment, IndentSize: Integer; LineImage: TLineImage);
 begin
+(*
   if FDibujarInfoCatalogo and (PaintInfo.CellRect.Bottom = CATALOGO_NODE_ALTURA) then
   begin
     VAlignment := self.DefaultNodeHeight div 2;
   end;
-
+*)
   inherited PaintTreeLines(PaintInfo, VAlignment, IndentSize, LineImage);
 end;
 
 procedure TLazVirtualStringTree.DoDibujarBotones(Node: PVirtualNode; zCanvas : TCanvas; X, Y : integer);
 
- procedure DibujarTriangulo_Plus(Pos_X, Pos_Y, Ancho : Longint);
- var
+procedure DibujarTriangulo_Plus(Pos_X, Pos_Y, Ancho : Longint);
+var
   Maz      : longint;
- begin
+begin
   Maz := zCanvas.Pen.Width;
   try
-   zCanvas.Pen.Color   := Colors.TreeLineColor;
-   zCanvas.Pen.Width   := 3;
-   zCanvas.Brush.Color := color;
-   Pos_X               := Pos_X -2;
+    zCanvas.Pen.Color   := Colors.TreeLineColor;
+    zCanvas.Pen.Width   := 3;
+    zCanvas.Brush.Color := color;
+    Pos_X               := Pos_X -2;
 
-   zCanvas.Line(Pos_X, Pos_Y + 1, Pos_X + (Ancho div 2), Pos_Y + (Ancho div 2) + 1);
-   zCanvas.Line(Pos_X + (Ancho div 2), Pos_Y + (Ancho div 2) + 1, Pos_X, Pos_Y + Ancho + 1);
+    zCanvas.Line(Pos_X, Pos_Y + 1, Pos_X + (Ancho div 2), Pos_Y + (Ancho div 2) + 1);
+    zCanvas.Line(Pos_X + (Ancho div 2), Pos_Y + (Ancho div 2) + 1, Pos_X, Pos_Y + Ancho + 1);
 
   finally
-   zCanvas.Pen.Width := Maz;
+    zCanvas.Pen.Width := Maz;
   end;
- end;
+end;
 
 
- procedure DibujarTriangulo_Minus(Pos_X, Pos_Y, Ancho : Longint);
- var
-  ResPos_Y : longint;
-  Maz      : longint;
- begin
+procedure DibujarTriangulo_Minus(Pos_X, Pos_Y, Ancho : Longint);
+var
+ResPos_Y : longint;
+Maz      : longint;
+begin
   Maz := zCanvas.Pen.Width;
   try
-   zCanvas.Pen.Width   := 3;
-   zCanvas.Pen.Color   := Colors.HotColor;
-   zCanvas.Brush.Color := Colors.HotColor;
-   ResPos_Y            := (Ancho div 2) + 2;
-   Pos_Y               := Pos_Y - ResPos_Y;
-   Pos_X               := Pos_X -2;
-   zCanvas.Line(Pos_X, Pos_Y + (Ancho div 2) + 1,
-               Pos_X + (Ancho div 2), Pos_Y + (Ancho )+1);
+    zCanvas.Pen.Width   := 3;
+    zCanvas.Pen.Color   := Colors.HotColor;
+    zCanvas.Brush.Color := Colors.HotColor;
+    ResPos_Y            := (Ancho div 2) + 2;
+    Pos_Y               := Pos_Y - ResPos_Y;
+    Pos_X               := Pos_X -2;
+    zCanvas.Line(Pos_X, Pos_Y + (Ancho div 2) + 1,
+                Pos_X + (Ancho div 2), Pos_Y + (Ancho )+1);
 
-   zCanvas.Line(Pos_X + (Ancho div 2) - 1, Pos_Y + (Ancho ) + 1,
-               Pos_X + (Ancho ), Pos_Y + (Ancho div 2) + 1);
+    zCanvas.Line(Pos_X + (Ancho div 2) - 1, Pos_Y + (Ancho ) + 1,
+                Pos_X + (Ancho ), Pos_Y + (Ancho div 2) + 1);
 
   finally
-   zCanvas.Pen.Width := Maz;
+    zCanvas.Pen.Width := Maz;
   end;
- end;
+end;
 
 
- procedure DibujarTriangulo_Plus_W7(Pos_X, Pos_Y, Ancho : Longint);
- begin
+procedure DibujarTriangulo_Plus_W7(Pos_X, Pos_Y, Ancho : Longint);
+begin
   zCanvas.Pen.Color   := Colors.TreeLineColor;
   zCanvas.Brush.Color := color;
   zCanvas.Polygon( [Point(Pos_X, Pos_Y + 1), Point(Pos_X + (Ancho div 2), Pos_Y + (Ancho div 2) + 1), Point(Pos_X, Pos_Y + Ancho + 1)]);
- end;
+end;
 
 
- procedure DibujarTriangulo_Minus_W7(Pos_X, Pos_Y, Ancho : Longint);
- begin
+procedure DibujarTriangulo_Minus_W7(Pos_X, Pos_Y, Ancho : Longint);
+begin
   zCanvas.Pen.Color   := Colors.HotColor;
   zCanvas.Brush.Color := Colors.HotColor;
   zCanvas.Polygon( [Point(Pos_X,  Pos_Y + (Ancho div 2)), Point(Pos_X +  (Ancho div 2), Pos_Y + (Ancho div 2)), Point(Pos_X + (Ancho div 2),  Pos_Y)]);
- end;
+end;
 
 
 var
- Brush_PreColor  : Tcolor;
- Pen_PreColor    : TColor;
+  Brush_PreColor  : Tcolor;
+  Pen_PreColor    : TColor;
 
 begin
  // Dibuja los botones del arbol
- if (toShowButtons in TreeOptions.PaintOptions) and (vsHasChildren in Node^.States) and
+  if (toShowButtons in TreeOptions.PaintOptions) and (vsHasChildren in Node^.States) and
     not ((vsAllChildrenHidden in Node^.States) and(toAutoHideButtons in TreeOptions.AutoOptions)) then
   begin
     Brush_PreColor  := zCanvas.Brush.Color;
@@ -407,27 +418,27 @@ end;
 
 procedure TLazVirtualStringTree.SetMostrarLineasArbol(Value : Boolean);
 begin
- if FMostrarLineasArbol <> Value then
-  begin
-   FMostrarLineasArbol := Value;
-   if FMostrarLineasArbol then
-    TreeOptions.PaintOptions := TreeOptions.PaintOptions + [toShowTreeLines]
-   else
-    TreeOptions.PaintOptions := TreeOptions.PaintOptions - [toShowTreeLines]
-  end;
+  if FMostrarLineasArbol <> Value then
+    begin
+      FMostrarLineasArbol := Value;
+      if FMostrarLineasArbol then
+        TreeOptions.PaintOptions := TreeOptions.PaintOptions + [toShowTreeLines]
+      else
+        TreeOptions.PaintOptions := TreeOptions.PaintOptions - [toShowTreeLines]
+    end;
 end;
 
 
 procedure TLazVirtualStringTree.SetMostrarLineasArbolPunteadas(Value : Boolean);
 begin
- if FMostrarLineasArbolPunteadas <> Value then
-  begin
-   FMostrarLineasArbolPunteadas := Value;
-   if FMostrarLineasArbolPunteadas then
-    LineStyle := lsDotted
-   else
-    LineStyle := lsSolid;
-  end;
+  if FMostrarLineasArbolPunteadas <> Value then
+    begin
+      FMostrarLineasArbolPunteadas := Value;
+      if FMostrarLineasArbolPunteadas then
+        LineStyle := lsDotted
+      else
+        LineStyle := lsSolid;
+    end;
 end;
 
 procedure TLazVirtualStringTree.UpdateScrollBars(DoRepaint: Boolean);
@@ -440,20 +451,20 @@ end;
 
 procedure TLazVirtualStringTree.DoUpdateScrollBars;
 var
- Nodo_Ancho : longint;
+  Nodo_Ancho : longint;
 
- function Calcular_Maximo_Alto : longint;
- var
-  Node :  PVirtualNode;
- begin
-  Result := 0;
-  Node := GetFirstVisible;
-  while Node <> nil do
-   begin
-    inc(Result, Node^.NodeHeight);
-    Node := GetNextVisible(Node);
-   end;
- end;
+  function Calcular_Maximo_Alto : longint;
+  var
+    Node :  PVirtualNode;
+  begin
+    Result := 0;
+    Node := GetFirstVisible;
+    while Node <> nil do
+    begin
+      inc(Result, Node^.NodeHeight);
+      Node := GetNextVisible(Node);
+    end;
+  end;
 
 begin
   FMaxOffset_Y :=   Calcular_Maximo_Alto;
