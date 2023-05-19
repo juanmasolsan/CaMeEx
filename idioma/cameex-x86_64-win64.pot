@@ -216,10 +216,6 @@ msgctxt "tform1.menupopupitempropiedades.caption"
 msgid "Propiedades"
 msgstr ""
 
-#: tform1.panelsuperior.caption
-msgid "PanelSuperior"
-msgstr ""
-
 #: tform1.toolbuttonagregarcatalogo.caption
 msgctxt "tform1.toolbuttonagregarcatalogo.caption"
 msgid "Agregar Catalogo"

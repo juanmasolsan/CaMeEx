@@ -159,7 +159,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="components;components\about;components\scan;modelos"/>
+      <OtherUnitFiles Value="components;components\metadarkstyle-main\src;components\about;components\scan;modelos"/>
       <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>

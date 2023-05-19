@@ -16,23 +16,28 @@ object FormLoading: TFormLoading
   Position = poOwnerFormCenter
   ShowInTaskBar = stNever
   LCLVersion = '2.2.6.0'
-  object Shape1: TShape
+  object Fondo: TShape
     Left = 0
     Height = 80
     Top = 0
     Width = 402
     Align = alClient
+    Brush.Color = clWindow
+    Pen.Color = clWindowText
   end
   object SpeedButton1: TSpeedButton
     Left = 8
-    Height = 78
-    Top = 0
-    Width = 111
-    Color = clWindow
-    Enabled = False
+    Height = 64
+    Top = 4
+    Width = 96
+    AllowAllUp = True
+    Color = clNone
     Flat = True
     Images = ImageListSpinner
     ImageIndex = 0
+    Transparent = False
+    Visible = False
+    ShowCaption = False
   end
   object Label1: TLabel
     Left = 112
@@ -55,10 +60,13 @@ object FormLoading: TFormLoading
     Width = 280
     AutoSize = False
     Caption = 'Se está realizando una acción.'
+    Color = clWindow
     ParentColor = False
+    Transparent = False
     WordWrap = True
   end
   object ImageListSpinner: TImageList
+    DrawingStyle = dsTransparent
     Height = 64
     Width = 64
     Left = 368

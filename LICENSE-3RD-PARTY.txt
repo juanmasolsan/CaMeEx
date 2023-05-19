@@ -270,3 +270,8 @@ Iconset: One bit (https://www.iconfinder.com/iconsets/onebit)
 Author: Icojam (http://www.icojam.com)
 License: Free for commercial use ()
 Download date: 2023-05-18
+
+
+---------------------------------------------------------------------
+DarkMode
+https://github.com/zamtmn/metadarkstyle.git

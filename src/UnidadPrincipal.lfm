@@ -47,6 +47,7 @@ object Form1: TForm1
       BorderStyle = bsNone
       Color = clWindow
       Colors.SelectionRectangleBlendColor = clBlack
+      Colors.TreeLineColor = clWindowText
       Colors.UnfocusedColor = clMedGray
       DefaultNodeHeight = 24
       Header.AutoSizeIndex = -1
@@ -719,7 +720,6 @@ object Form1: TForm1
       Width = 899
       Align = alTop
       BevelOuter = bvNone
-      Caption = 'PanelSuperior'
       ClientHeight = 34
       ClientWidth = 899
       Color = clWindow
@@ -734,13 +734,14 @@ object Form1: TForm1
         ButtonHeight = 32
         ButtonWidth = 32
         Caption = 'Barra_Herramientas'
-        Color = clWindow
+        Color = clNone
         EdgeBorders = []
         EdgeInner = esNone
         EdgeOuter = esNone
         Images = ImageListToolbar
         ParentColor = False
         TabOrder = 0
+        Transparent = True
         object ToolButtonAgregarCatalogo: TToolButton
           Left = 1
           Top = 0

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:26
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-04 18:23:49
+ * @Last Modified time: 2023-05-20 00:04:43
  *)
 {
 
@@ -50,10 +50,18 @@ uses
   SysUtils,
   {$ENDIF FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
   Interfaces, // this includes the LCL widgetset
+  //
+{$IFDEF DARKSTYLE_USAR}
+  LCLType,LCLIntf,
+  uDarkStyleParams,
+	uMetaDarkStyle,
+	uDarkStyleSchemes,
+{$ENDIF DARKSTYLE_USAR}
+
   Forms, AppString, UnidadPrincipal, UnidadAtributos, UnidadPropiedades,
   Control_About, UnidadLoading
 
-  ;
+  , Utilidades, Configuracion, graphics;
 
 {$R *.res}
 
@@ -71,6 +79,17 @@ begin
 {$ENDIF FUGAS_DE_MEMORIA_DETECTAR_VOLCADOR_ARCHIVO}
 
   RequireDerivedFormResource:=True;
+
+{$IFDEF DARKSTYLE_USAR}
+  PreferredAppMode:=pamForceDark;
+  uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
+
+
+  ColorThemeStyle := RGBToColor(42, 42, 42);
+
+  ReCalcularColores;
+{$ENDIF DARKSTYLE_USAR}
+
   Application.Title:='CaMeEx';
   Application.Scaled:=True;
   Application.Initialize;

@@ -38,6 +38,10 @@
   {.$DEFINE TESTEAR_SENTENCIAS_DELETE_CATALOGOS}
 {$ENDIF}
 
+// Activa el tema oscuro en la aplicación
+{.$DEFINE DARKSTYLE_USAR}
+
+
 
 //TODO: Eliminar, solo es para pruebas
 {.$DEFINE ESCANEAR_DIRECTORIO_GRANDE}

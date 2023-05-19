@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 13:51:21
+ * @Last Modified time: 2023-05-19 23:48:05
  *)
 {
 
@@ -414,6 +414,9 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   Caption                 := Get_Titulo_Ventana(true, '', true);
   Application.Title       := Get_Titulo_Ventana(true, '', false);
+
+
+
 
   // Opciones avanzadas
   ActivarArchivoConfig('cameex_config.ini', false, true, false, NOMBRE_PROGRAMA);

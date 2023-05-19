@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 17:59:03
+ * @Last Modified time: 2023-05-20 00:04:39
  *)
 {
 
@@ -138,12 +138,21 @@ function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;
 
 function GetImageIndexByItemDato(const Item: TItemDato): integer;
 
+
+
+var
+  ColorThemeStyle : Tcolor = clWindow;
+
+// Calcula los colores
+procedure ReCalcularColores;
+
 implementation
 
 uses
   Utilidades
   , ItemBaseDatos
-  , GestorExtensiones;
+  , GestorExtensiones
+  ;
 
 var
   // Colores de los catalogos
@@ -159,8 +168,8 @@ begin
   for t := 0 to 9 do
   begin
     //FColor_Catalogos2[t] := Blend(FColor_Catalogos2[t], clWindow, 105);
-    FColor_Catalogos_Nodo[t] := Blend(FColor_Catalogos[t], clWindow, 105);
-    FColor_Catalogos_Root[t] := Blend(FColor_Catalogos[t], clWindow, 110);
+    FColor_Catalogos_Nodo[t] := Blend(FColor_Catalogos[t], ColorThemeStyle, 105);
+    FColor_Catalogos_Root[t] := Blend(FColor_Catalogos[t], ColorThemeStyle, 110);
   end;
 end;
 
@@ -172,6 +181,11 @@ begin
     Result := FColor_Catalogos_Nodo[Indice];
 end;
 
+
+procedure ReCalcularColores;
+begin
+  CalcularColores;
+end;
 
 function GetImageIndexByItemDato(const Item: TItemDato): integer;
 begin

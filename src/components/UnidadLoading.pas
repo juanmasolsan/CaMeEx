@@ -51,7 +51,7 @@ type
     ImageListSpinner: TImageList;
     Label1: TLabel;
     Label2: TLabel;
-    Shape1: TShape;
+    Fondo: TShape;
     SpeedButton1: TSpeedButton;
     TimerAnimacion: TTimer;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -60,6 +60,7 @@ type
     procedure TimerAnimacionTimer(Sender: TObject);
   private
     FAnimacionFrames : Integer;
+    FAnimacionIndex  : integer;
     FTerminar        : Boolean;
   protected
 
@@ -129,7 +130,8 @@ end;
 procedure TFormLoading.TimerAnimacionTimer(Sender: TObject);
 begin
   // Actualiza el índice de la imagen de la animación
-  SpeedButton1.ImageIndex := (SpeedButton1.ImageIndex + 1) mod FAnimacionFrames;
+  FAnimacionIndex := (FAnimacionIndex + 1) mod FAnimacionFrames;
+  ImageListSpinner.Draw(Fondo.Canvas, 16, 8, FAnimacionIndex);
   Application.ProcessMessages;
 end;
 

@@ -6,7 +6,7 @@ object Frame_Atributos: TFrame_Atributos
   Align = alClient
   ClientHeight = 512
   ClientWidth = 440
-  Color = clWindow
+  Color = clDefault
   ParentBackground = False
   ParentColor = False
   TabOrder = 0
@@ -25,6 +25,7 @@ object Frame_Atributos: TFrame_Atributos
     Caption = ' Propiedades Fechas '
     ClientHeight = 119
     ClientWidth = 426
+    ParentColor = False
     TabOrder = 0
     object Label_Fecha_Creacion: TLabel
       Left = 110
@@ -88,6 +89,7 @@ object Frame_Atributos: TFrame_Atributos
     Caption = ' Propiedades Atributos '
     ClientHeight = 39
     ClientWidth = 426
+    ParentColor = False
     TabOrder = 1
     object CheckBox_Attr_Solo_Lectura: TCheckBox
       Left = 8
