@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 16:45:25
+ * @Last Modified time: 2023-05-19 14:50:28
  *)
 {
 
@@ -82,6 +82,9 @@ type
     // Devuelve la lista de directorios que contiene un padre
     //function GetDirectorios(Padre : TItemDato) : TArrayItemDato;
     function GetDirectorios(Padre : TItemDato; Listado : TArrayItemDato) : integer;
+
+    // Devuelve los datos resumidos de todo lo que contiene un directorio
+    function GetDirectorioEstadisticas(Item : TItemDato; var TotalDirectorios: integer; var TotalArchivos: integer; var TotalSize : qword) : boolean;
 
     // Elimina todos los catalogos
     function DeleteAllCatalogos() : boolean;

@@ -1,3 +1,5 @@
+
+- [NEW]   (20230519) Agregado TConectorDatos.GetDirectorioEstadisticas
 - [NEW]   (20230519) Agregado a la visualización de propiedades de archivos : Atributos y permisos
 
 + 1.2.2.5

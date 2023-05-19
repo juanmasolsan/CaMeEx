@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 19:34:52
+ * @Last Modified time: 2023-05-19 14:50:17
  *)
 {
 
@@ -72,6 +72,23 @@ const
   SQL_SELECT_DIRECTORIOS_BY_PARENT_ID      =  SQL_SELECT_DATOS_ALL_BY_PARENT_ID + ' AND Tipo = 1';
   SQL_SELECT_RUTA_COMPLETA                 = 'SELECT Ruta FROM RutaCompleta WHERE IdCatalogo = :IDCATALOGO AND Id = :ID;';
   SQL_SELECT_EXTENSION                     = 'SELECT ex.Extension, ex.Descripcion, ic.Icono, ic.Icono32 FROM Extensiones as ex JOIN Iconos AS ic ON ex.IdIcono = ic.Id  WHERE ex.Id = :ID;';
+
+
+  SQL_SELECT_DIRECTORIO_ESTADISTICAS       = 'WITH RECURSIVE cte(id) AS (' +
+                                              '   SELECT id FROM Datos WHERE Id = :ID' +
+                                              '   UNION ALL' +
+                                              '   SELECT dat.id' +
+                                              '   FROM Datos dat' +
+                                              '   INNER JOIN cte c ON dat.IdPadre = c.id' +
+                                              ' )' +
+                                              ' ' +
+                                              ' SELECT ' +
+                                              '   COUNT(DISTINCT CASE WHEN Tipo = :TIPODIR THEN Datos.Id END) AS TotalDirectorios,' +
+                                              '   COUNT(DISTINCT CASE WHEN Tipo = :TIPOARCHIVO THEN Datos.Id END) AS TotalArchivos,' +
+                                              '   SUM(CASE WHEN Tipo = :TIPOARCHIVO THEN Datos.Size END) AS TotalSize' +
+                                              ' FROM Datos' +
+                                              ' INNER JOIN cte ON Datos.IdPadre = cte.id;';
+
 
   SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
   SQL_DELETE_DATOS_BY_ID_CATALOGO          = 'DELETE FROM Datos WHERE IdCatalogo = :IDCATALOGO';
@@ -187,6 +204,9 @@ type
     // Devuelve la lista de directorios que contiene un padre
     //function GetDirectorios(Padre : TItemDato) : TArrayItemDato;
     function GetDirectorios(Padre : TItemDato; Listado : TArrayItemDato) : integer;
+
+    // Devuelve los datos resumidos de todo lo que contiene un directorio
+    function GetDirectorioEstadisticas(Item : TItemDato; var TotalDirectorios: integer; var TotalArchivos: integer; var TotalSize : qword) : boolean;
 
     // Elimina todos los catalogos
     function DeleteAllCatalogos() : boolean;
@@ -471,6 +491,9 @@ begin
       FDataBase.SQL(SQL);
 
       SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdRutaCompleta_IDX ON Datos (IdRutaCompleta);';
+      FDataBase.SQL(SQL);
+
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_Tipo_IDX ON Datos (Tipo);';
       FDataBase.SQL(SQL);
 
     finally
@@ -1283,6 +1306,71 @@ begin
   end;
 end;
 
+// Devuelve los datos resumidos de todo lo que contiene un directorio
+function TConectorDatos.GetDirectorioEstadisticas(Item : TItemDato; var TotalDirectorios: integer; var TotalArchivos: integer; var TotalSize : qword) : boolean;
+begin
+  // Inicializa los resultados
+  TotalDirectorios := 0;
+  TotalArchivos    := 0;
+  TotalSize        := 0;
+
+  // Inicializa el resultado
+  Result := false;
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+
+        // Prepara la query
+        FDataBase.Query.SQL.Text := SQL_SELECT_DIRECTORIO_ESTADISTICAS;
+
+        // Hace la inserción con un prepared statement
+        FDataBase.Query.ParamByName('ID').AsLargeInt         := Item.Id;
+        FDataBase.Query.ParamByName('TIPODIR').AsInteger     := integer(TItemDatoTipo.Directorio);
+        FDataBase.Query.ParamByName('TIPOARCHIVO').AsInteger := integer(TItemDatoTipo.Archivo);
+
+        // Ejecuta la sentencia
+        FDataBase.Query.Open;
+        try
+          // Comprueba que tiene datos
+          if FDataBase.Query.IsEmpty then exit;
+
+          // Obtinene el primer registro
+          FDataBase.Query.First;
+
+          // Recorre los registros
+          while not FDataBase.Query.EOF do
+          begin
+            // Obtiene los datos
+            TotalDirectorios := FDataBase.Query.FieldByName('TOTALDIRECTORIOS').AsInteger;
+            TotalArchivos    := FDataBase.Query.FieldByName('TOTALARCHIVOS').AsInteger;
+            TotalSize        := Qword(FDataBase.Query.FieldByName('TOTALSIZE').AsLargeInt);
+
+            // Pasa al siguiente registro
+            FDataBase.Query.Next;
+          end;
+
+          // Devuelve el resultado
+          Result := true;
+
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
+  end;
+end;
 
 // Elimina todos los catalogos
 function TConectorDatos.DeleteAllCatalogos() : boolean;
