@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-12 00:21:42
+ * @Last Modified time: 2023-05-19 17:59:03
  *)
 {
 
@@ -38,7 +38,8 @@ interface
 
 uses
   Graphics
-;
+  , ItemDato
+  ;
 
 
 type
@@ -135,11 +136,14 @@ var
 function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;
 
 
+function GetImageIndexByItemDato(const Item: TItemDato): integer;
+
 implementation
 
 uses
   Utilidades
-  ;
+  , ItemBaseDatos
+  , GestorExtensiones;
 
 var
   // Colores de los catalogos
@@ -166,6 +170,25 @@ begin
     Result := FColor_Catalogos_Root[Indice]
   else
     Result := FColor_Catalogos_Nodo[Indice];
+end;
+
+
+function GetImageIndexByItemDato(const Item: TItemDato): integer;
+begin
+  Result := Item.ImageIndex;
+  if Result = -1 then
+    Result := 2;
+
+  if Item.Tipo >= TItemDatoTipo.Root then
+    Result := integer(Item.Tipo);
+
+  case FFormatoIconos of
+    Sistema : Result := GetExtensionIcopnIndexById(Item.IdExtension, Result);
+    Mixto   : begin
+                if Item.Tipo <> TItemDatoTipo.Directorio then
+                  Result := GetExtensionIcopnIndexById(Item.IdExtension, Result);
+              end;
+  end;
 end;
 
 

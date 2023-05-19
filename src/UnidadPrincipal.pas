@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-18 23:40:11
+ * @Last Modified time: 2023-05-19 13:51:21
  *)
 {
 
@@ -769,22 +769,8 @@ begin
       begin
         if Column = 0 then
         begin
-          ImageIndex := Datos.ImageIndex;
-          if ImageIndex = -1 then
-            ImageIndex := 2;
-
-          if Datos.Tipo >= TItemDatoTipo.Root then
-            ImageIndex := integer(Datos.Tipo);
-
-          case FFormatoIconos of
-            Sistema : ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
-            Mixto   : begin
-                        if Datos.Tipo <> TItemDatoTipo.Directorio then
-                          ImageIndex := GetExtensionIcopnIndexById(Datos.IdExtension, ImageIndex);
-                      end;
-          end;
-
-          Ghosted := (((Datos.Atributos and faHidden{%H-})= faHidden{%H-}) or (Datos.Nombre[1] = '.')) ;
+         ImageIndex := GetImageIndexByItemDato(Datos);
+         Ghosted := (((Datos.Atributos and faHidden{%H-})= faHidden{%H-}) or (Datos.Nombre[1] = '.')) ;
         end;
       end;
     end;
@@ -1243,7 +1229,7 @@ var
 begin
   if assigned(FScan) then
   begin
-    Barra_Estado.simpleText := 'Procesando : ' + FScan.Procesando;
+    //Barra_Estado.simpleText := 'Procesando : ' + FScan.Procesando;
   end;
 
   // Iniciliza el total de items selecionados
@@ -2400,7 +2386,7 @@ begin
     begin
       GetRutaFromItem(NodeData^.NodeData);
       Temp_Form_Propiedades                := TForm_Propiedades.Create(TComponent(Pointer(@Self)^));
-      Temp_Form_Propiedades.Mostrar_Propiedades(NodeData^.NodeData);
+      Temp_Form_Propiedades.Mostrar_Propiedades(NodeData^.NodeData, FGestorDatos);
       Temp_Form_Propiedades.Show;
     end;
   except

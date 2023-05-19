@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:19:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 01:12:00
+ * @Last Modified time: 2023-05-19 18:00:47
  *)
 {
 
@@ -47,7 +47,7 @@ uses
   , ItemBaseDatos
   , ItemDato
   , UnidadPrincipal
-  ;
+  , InterfaceConectorDatos;
 
 type
   { TForm_Propiedades }
@@ -93,14 +93,21 @@ type
     { private declarations }
    FAtributos                 : TFrame_Atributos;
    FSalir                     : boolean;
+   FItem                      : TItemDato;
+   FGestorDatos               : IConectorDatos;
   protected
    function IsModificado: Boolean;
 
+   // Calcula lo que contiene el item
+   procedure DoObtenerDatos_Contiene(Data: PtrInt);
+
+   // Muestra la string de tamaño formateado
+   procedure DoMostrarSize(size : qword);
   public
     { public declarations }
 
     // Muestra las propiedades del item
-    procedure Mostrar_Propiedades(const Item : TItemDato);
+    procedure Mostrar_Propiedades(const Item : TItemDato; GestorDatos : IConectorDatos);
   end;
 
 var
@@ -139,7 +146,7 @@ begin
   // Crear pagina de atributos
   Pagina_Atributos         := PageControl_Propiedades.AddTabSheet;
   Pagina_Atributos.Color   := clwindow;
-  Pagina_Atributos.Caption := 'Atributos';
+  Pagina_Atributos.Caption := Message_Atributos;
   FAtributos               := TFrame_Atributos.Create(TComponent(Pointer(@Pagina_Atributos)^));
   FAtributos.Parent        := Pagina_Atributos;
 end;
@@ -187,27 +194,14 @@ begin
   close;
 end;
 
-procedure TForm_Propiedades.Mostrar_Propiedades(const Item : TItemDato);
+procedure TForm_Propiedades.Mostrar_Propiedades(const Item : TItemDato; GestorDatos : IConectorDatos);
 var
   ext               : RawByteString;
   ImageIndexSistema : Longint;
 
   procedure ObtenerDatos_Imagen_Nombre_Descripcion;
   begin
-    ImageIndexSistema := Item.ImageIndex;
-    if ImageIndexSistema = -1 then
-      ImageIndexSistema := 2;
-
-    if Item.Tipo >= TItemDatoTipo.Root then
-      ImageIndexSistema := integer(Item.Tipo);
-
-    case FFormatoIconos of
-      Sistema : ImageIndexSistema := GetExtensionIcopnIndexById(Item.IdExtension, ImageIndexSistema);
-      Mixto   : begin
-                  if Item.Tipo <> TItemDatoTipo.Directorio then
-                    ImageIndexSistema := GetExtensionIcopnIndexById(Item.IdExtension, ImageIndexSistema);
-                end;
-    end;
+    ImageIndexSistema := GetImageIndexByItemDato(Item);
 
     if ImageIndexSistema <> - 1 then
     begin
@@ -224,28 +218,72 @@ var
   begin
     if Panel_Contiene.Visible then
     begin
-      //TODO: Implementar obtención del contenido de directorio y catalogos
+      // Muestra el tamaño del directorio
+      Label_Extra_Size.Caption := Message_Calculando;
+      Label_Contiene.Caption   := Message_Calculando;
+
+      // Calcula el tamaño del directorio
+      application.QueueAsyncCall(@DoObtenerDatos_Contiene, 0);
     end;
   end;
 
 
 begin
+  // Guarda los datos
+  FGestorDatos     := GestorDatos;
+  FItem            := Item;
+
+  // Muestra el nombre de la ventana
   Caption := Message_Propiedades_de + ' ' + Item.Nombre;
 
+  // Defeine que se puede mostrar dependiendo del tipo de item
   Panel_Nombre_Imagen.Visible        := true;
   Panel_Contiene.Visible             := true;
   Panel_Contiene.Visible             := (Item.Tipo >= TItemDatoTipo.Root) or (Item.Tipo = TItemDatoTipo.Directorio);
   Panel_Catalogo_descripcion.Visible := Item.Tipo >= TItemDatoTipo.Root;
 
+  // Muestra la imagen, nombre y descripcion del item
   ObtenerDatos_Imagen_Nombre_Descripcion;
-  ObtenerDatos_Contiene;
 
+  // Muestra el tipo de archivo
   Label_Tipo_Archivo.Caption    := GetExtensionDescripcionById(Item.IdExtension);
-  Label_Extra_Size.Caption      := ConvertirSizeEx(Item.Size) + ' ('+PuntearNumeracion(Item.Size)+' bytes)';
+
+  // Pone la edición del nombre en solo lectura si no es un catalogo
   Edit_Nombre.ReadOnly          := Item.Tipo < TItemDatoTipo.Root;
 
+  // Muestra los atributos del Item
   FAtributos.MostrarDatos(Item);
 
+  // Muestra la string de tamaño formateado
+  DoMostrarSize(Item.Size);
+
+  // Calcula lo que contiene el item
+  ObtenerDatos_Contiene;
+end;
+
+// Muestra la string de tamaño formateado
+procedure TForm_Propiedades.DoMostrarSize(size : qword);
+begin
+  Label_Extra_Size.Caption := ConvertirSizeEx(size) + ' ('+PuntearNumeracion(size)+' bytes)';
+end;
+
+// Calcula lo que contiene el item
+procedure TForm_Propiedades.DoObtenerDatos_Contiene(Data: PtrInt);
+var
+  TotalDirectorios: integer;
+  TotalArchivos   : integer;
+  TotalSize       : qword;
+begin
+  if FGestorDatos = nil then exit;
+
+  // Recupera las estadisticas del item
+  FGestorDatos.GetDirectorioEstadisticas(FItem, TotalDirectorios, TotalArchivos, TotalSize);
+
+  // Muestra la string de tamaño formateado
+  DoMostrarSize(TotalSize);
+
+  // Muestra la string de contiene formateada
+  Label_Contiene.Caption   := Format(Message_Contiene, [PuntearNumeracion(TotalArchivos), PuntearNumeracion(TotalDirectorios)]);
 end;
 
 end.

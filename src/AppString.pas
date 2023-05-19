@@ -70,6 +70,9 @@ resourcestring
   Message_Espera_Eliminar_Catalogo_All =  'Se están eliminando todos los datos almacenados ...';
 
   Message_Propiedades_de =  'Propiedades de :';
+  Message_Atributos      =  'Atributos';
+  Message_Calculando     =  'Calculando ...';
+  Message_Contiene       =  '%s Archivos y %s Carpetas ';
 
 
 
