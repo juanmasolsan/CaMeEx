@@ -339,6 +339,10 @@ msgstr ""
 msgid "Edit_Nombre"
 msgstr ""
 
+#: tform_propiedades.edit_nombre_error.caption
+msgid "Esta campo es obligatorio y no puede estar vacio."
+msgstr ""
+
 #: tform_propiedades.label1.caption
 msgid "Tipo de archivo : "
 msgstr ""

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 17:35:50
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-15 19:08:17
+ * @Last Modified time: 2023-05-19 19:32:18
  *)
 {
 
@@ -89,6 +89,8 @@ type
     FFechaCreacion       : TDateTime;
     FFechaLastAcceso     : TDateTime;
 
+    FIsFreed             : boolean;
+
     function GetTineHijos: boolean;
   protected
     // Obtiene el índice de la imagen del sistema
@@ -152,6 +154,8 @@ type
     property FechaCreacion   : TDateTime read FFechaCreacion write FFechaCreacion;
     property FechaLastAcceso : TDateTime read FFechaLastAcceso write FFechaLastAcceso;
 
+    property IsFreed         : boolean read FIsFreed write FIsFreed;
+
   end;
 
 
@@ -201,6 +205,9 @@ constructor TItemDato.Create(const ANombre: RawByteString; ATipo : TItemDatoTipo
     AIdPadre             : Qword
     );
 begin
+  // Marcamos que el objeto NO ha sido liberado
+  FIsFreed           := false;
+
   // Obtenemos los índices de las imágenes
   FImageIndex        := AImageIndex;
   FImageIndexSistema := GetImageIndexSistema();
@@ -238,6 +245,9 @@ destructor TItemDato.Destroy;
 begin
   // Liberamos la lista de hijos
   FHijos.Free;
+
+  // Marcamos que el objeto ha sido liberado
+  FIsFreed           := true;
 
   // Llamamos al destructor de la clase padre
   inherited Destroy;

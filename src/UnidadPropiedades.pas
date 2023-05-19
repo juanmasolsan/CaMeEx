@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:19:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 18:00:47
+ * @Last Modified time: 2023-05-19 19:56:47
  *)
 {
 
@@ -56,9 +56,10 @@ type
     Button_Aceptar: TButton;
     Button_Cancelar: TButton;
     Button_Aplicar: TButton;
+    Edit_Nombre_error: TLabel;
     Label6: TLabel;
     Label_Extra_Ubicacion: TMemo;
-    Memo1: TMemo;
+    Memo_Descripcion: TMemo;
     PageControl_Propiedades: TPageControl;
     Panel_Catalogo_descripcion: TPanel;
     TabSheet1: TTabSheet;
@@ -85,24 +86,29 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Button_CancelarClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure Memo_DescripcionChange(Sender: TObject);
     procedure Timer_ModificadoTimer(Sender: TObject);
     procedure Edit_NombreChange(Sender: TObject);
     procedure Button_AplicarClick(Sender: TObject);
     procedure Button_AceptarClick(Sender: TObject);
   private
     { private declarations }
-   FAtributos                 : TFrame_Atributos;
-   FSalir                     : boolean;
-   FItem                      : TItemDato;
-   FGestorDatos               : IConectorDatos;
+    FAtributos                 : TFrame_Atributos;
+    FSalir                     : boolean;
+    FItem                      : TItemDato;
+    FGestorDatos               : IConectorDatos;
+    FIsModificado              : boolean;
   protected
-   function IsModificado: Boolean;
+    function IsModificado: Boolean;
 
-   // Calcula lo que contiene el item
-   procedure DoObtenerDatos_Contiene(Data: PtrInt);
+    // Calcula lo que contiene el item
+    procedure DoObtenerDatos_Contiene(Data: PtrInt);
 
-   // Muestra la string de tamaño formateado
-   procedure DoMostrarSize(size : qword);
+    // Muestra la string de tamaño formateado
+    procedure DoMostrarSize(size : qword);
+
+    // Actualiza los datos del catalogo
+    procedure DoUpdaCatalogo();
   public
     { public declarations }
 
@@ -124,7 +130,7 @@ uses
   , Utilidades
   , GestorExtensiones
   , Configuracion
-  , AppString;
+  , AppString, ItemCatalogo;
 
 {$R *.lfm}
 
@@ -153,7 +159,7 @@ end;
 
 function TForm_Propiedades.IsModificado: Boolean;
 begin
-  result := false;
+  result := FIsModificado;
 end;
 
 procedure TForm_Propiedades.Button_CancelarClick(Sender: TObject);
@@ -165,6 +171,11 @@ procedure TForm_Propiedades.FormDestroy(Sender: TObject);
 begin
   FSalir := true;
   FreeAndNil(FAtributos);
+end;
+
+procedure TForm_Propiedades.Memo_DescripcionChange(Sender: TObject);
+begin
+  FIsModificado := true;
 end;
 
 procedure TForm_Propiedades.Timer_ModificadoTimer(Sender: TObject);
@@ -180,17 +191,19 @@ end;
 
 procedure TForm_Propiedades.Edit_NombreChange(Sender: TObject);
 begin
-// TODO : Implementar para poder cambiar el nombre a los catalogos
+  FIsModificado := true;
 end;
 
 procedure TForm_Propiedades.Button_AplicarClick(Sender: TObject);
 begin
- // TODO : Implementar Aplicar Cambios;
+  // Actualiza los datos del catalogo
+  DoUpdaCatalogo();
 end;
 
 procedure TForm_Propiedades.Button_AceptarClick(Sender: TObject);
 begin
- // TODO : Implementar Aplicar Cambios;
+  // Actualiza los datos del catalogo
+  DoUpdaCatalogo();
   close;
 end;
 
@@ -259,6 +272,15 @@ begin
 
   // Calcula lo que contiene el item
   ObtenerDatos_Contiene;
+
+  // Muestra la descripcion del catalogo
+  if Item.Tipo >= TItemDatoTipo.Root then
+  begin
+    Memo_Descripcion.Text      := TItemCatalogo(Item).Descripcion;
+    Label_Tipo_Archivo.Caption := Message_Catalogo;
+  end;
+
+  FIsModificado := false;
 end;
 
 // Muestra la string de tamaño formateado
@@ -276,14 +298,74 @@ var
 begin
   if FGestorDatos = nil then exit;
 
-  // Recupera las estadisticas del item
-  FGestorDatos.GetDirectorioEstadisticas(FItem, TotalDirectorios, TotalArchivos, TotalSize);
+  // Si es del tipo catalogo, recupera los datos del catalogo
+  if FItem.Tipo >= TItemDatoTipo.Root then
+  begin
+    // Recupera las estadisticas del item
+    TotalDirectorios := TItemCatalogo(FItem).TotalDirectorios;
+    TotalArchivos    := TItemCatalogo(FItem).TotalArchivos;
+    TotalSize        := FItem.Size;
+  end
+  else
+  begin
+    // Recupera las estadisticas del item
+    FGestorDatos.GetDirectorioEstadisticas(FItem, TotalDirectorios, TotalArchivos, TotalSize);
+  end;
+
 
   // Muestra la string de tamaño formateado
   DoMostrarSize(TotalSize);
 
   // Muestra la string de contiene formateada
   Label_Contiene.Caption   := Format(Message_Contiene, [PuntearNumeracion(TotalArchivos), PuntearNumeracion(TotalDirectorios)]);
+end;
+
+// Actualiza los datos del catalogo
+procedure TForm_Propiedades.DoUpdaCatalogo();
+var
+  Catalogo: TItemCatalogo;
+  IsError : boolean;
+begin
+  // Si no se ha modificado nada, sale
+  if not FIsModificado then exit;
+
+  // Comprueba que el nombre no este vacio
+  IsError := Edit_Nombre.Text = '';
+
+  // Muestra el error
+  Edit_Nombre_error.Visible := IsError;
+
+  // Sale si hay error
+  if IsError then exit;
+
+  // Guarda los datos
+  if assigned(FGestorDatos) then
+    if assigned(FItem) and not FItem.IsFreed then
+      if FItem.Tipo >= TItemDatoTipo.Root then
+      begin
+        try
+          Catalogo := TItemCatalogo(FItem);
+
+          // Actualiza los datos del catalogo
+          Catalogo.Nombre      := Edit_Nombre.Text;
+          Catalogo.Fecha       := now;
+          Catalogo.Descripcion := Memo_Descripcion.Text;
+
+          // Actualiza los datos del catalogo
+          FGestorDatos.UpdateCatalogo(Catalogo);
+
+          // Marca que yu
+          FIsModificado := false;
+
+          // Muestra los atributos del Item
+          FAtributos.MostrarDatos(Catalogo);
+
+          // Actualiza el arbol
+          Form1.Arbol.Repaint;
+
+        except
+        end;
+    end;
 end;
 
 end.

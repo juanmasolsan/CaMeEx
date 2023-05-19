@@ -54,6 +54,7 @@ resourcestring
   Message_Tiempo_Empleado = 'Tiempo empleado :';
   Message_Directorios     = 'Directorios :';
   Message_Archivos        = 'Archivos :';
+  Message_Catalogo        = 'Catalogo de Medio Extraible';
 
   Message_Estadisticas    =  '%s directorio(s) y %s archivo(s) con %s elementos en total y ocupando %s  (%s bytes) - Tiempo empleado :  %s  ms';
 

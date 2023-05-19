@@ -141,11 +141,12 @@
 +         Menu - Agregar catalogo - Implementar
 +         Menu - Editar catalogo - Implementar
 +         Menu - Eliminar todos los catalogos - Implementar
++         Poder mostrar propiedades de catalogos y datos
++         Poder editar los catalogos
+
 -         Al eliminar desde la lista de archivos no actualiza el nodo raiz
 -         Al eliminar desde la lista todos los archivos y carpetas de un catalogo el nodo del catalogo no funciona correctamente
 
--         Poder mostrar propiedades de catalogos y datos
--         Poder editar los catalogos
 -         Poder crear nuevos catalogos
 -         Icono grande en el arbol cuando los nodos tengan extra alto
 

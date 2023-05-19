@@ -96,6 +96,21 @@ object Form_Propiedades: TForm_Propiedades
           Align = alBottom
           Shape = bsBottomLine
         end
+        object Edit_Nombre_error: TLabel
+          Left = 64
+          Height = 13
+          Top = 33
+          Width = 254
+          Caption = 'Esta campo es obligatorio y no puede estar vacio.'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clRed
+          Font.Height = -11
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentColor = False
+          ParentFont = False
+          Visible = False
+        end
       end
       object Panel_Tipo: TPanel
         Left = 5
@@ -259,15 +274,13 @@ object Form_Propiedades: TForm_Propiedades
           Caption = 'Descripción : '
           ParentColor = False
         end
-        object Memo1: TMemo
+        object Memo_Descripcion: TMemo
           Left = 8
           Height = 186
           Top = 24
           Width = 374
           Anchors = [akTop, akLeft, akRight, akBottom]
-          Lines.Strings = (
-            'Memo1'
-          )
+          OnChange = Memo_DescripcionChange
           TabOrder = 0
         end
       end

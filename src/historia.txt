@@ -1,4 +1,7 @@
 
+
+
+- [NEW]   (20230519) Agregado visualización y edición de propiedades de los catalogos
 - [NEW]   (20230519) Agregado visualización de propiedades de directorios
 - [NEW]   (20230519) Agregado TConectorDatos.GetDirectorioEstadisticas
 - [NEW]   (20230519) Agregado a la visualización de propiedades de archivos : Atributos y permisos
