@@ -20,7 +20,6 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="2521"/>
         <CursorPos X="47" Y="2541"/>
@@ -31,7 +30,8 @@
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="49" Y="21"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="25" Y="8"/>
         <UsageCount Value="179"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
