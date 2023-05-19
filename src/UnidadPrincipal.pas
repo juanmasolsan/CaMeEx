@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 23:48:05
+ * @Last Modified time: 2023-05-20 01:27:13
  *)
 {
 
@@ -2266,8 +2266,8 @@ begin
 
   try
     try
-       if (Node = FNodeArbolRaiz) and not Forzar then
-       exit;
+      if (Node = FNodeArbolRaiz) and not Forzar then
+        exit;
 
 
       NodeData := Sender.GetNodeData(Node);
@@ -2336,8 +2336,13 @@ begin
               NodeData := Sender.GetNodeData(Node);
               if (NodeData <> nil)  and (NodeData^.TipoNode < TItemDatoTipo.Root) then
               begin
+
+              {$IFNDEF NODELETEDATOS}
                 // Elimina el archivo de la base de datos
                 FGestorDatos.DeleteDatoAsync(NodeData^.NodeData);
+              {$ELSE}
+                sleep(500);
+              {$ENDIF NODELETEDATOS}
 
                 // Limpia la lista de archivos
                 if Node = FNodeArbolActual then
@@ -2348,7 +2353,7 @@ begin
 
                 NodePadre := Sender.GetPreviousVisible(Node);
 
-                // Elimina el nodo del arbol
+                // Elimina el nodo de la lista
                 Sender.IsVisible[Node] := false;
               end;
 
@@ -2483,7 +2488,7 @@ procedure Tform1.DoEliminarItemArbol(Item : TItemDato);
         if (NodeData^.NodeData.Id = Item.Id) and (NodeData^.NodeData.IdCatalogo = Item.IdCatalogo) then
         begin
           // Elimina el nodo del arbol
-          Arbol.IsVisible[Node] := false;
+          Arbol.DeleteNode(Node);
         end;
 
       end;
@@ -2493,14 +2498,18 @@ procedure Tform1.DoEliminarItemArbol(Item : TItemDato);
 
 var
   Node : PVirtualNode;
+  Siguiente : PVirtualNode;
 begin
   Node := Arbol.GetFirst();
+
   while Node <> nil do
     begin
+      Siguiente := Arbol.GetNext(Node);
+
       // ajusta el nodo
       AjustarNodo(Node);
 
-      Node := Arbol.GetNext(Node);
+      Node := Siguiente;
     end;
 end;
 

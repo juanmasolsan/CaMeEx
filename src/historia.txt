@@ -1,4 +1,5 @@
 
+- [FIX]   (20230520) Arreglado problema con los items del arbol al borrar todos los archivos y directorios del mismo
 - [FIX]   (20230520) Arreglado dibujado de los botones modernos del arbol
 - [NEW]   (20230520) Agregado soporte inicial para usar tema oscuro
 
