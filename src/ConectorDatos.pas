@@ -1390,7 +1390,6 @@ end;
 function TConectorDatos.DoDeleteAsync(Tipo : TTipoEliminar; Item : TItemDato) : boolean;
 var
   Estado : TThreadEstado;
-  Thread : TEliminarThread;
 begin
   // Crear el estado del thread
   Estado := TThreadEstado.Create();
@@ -1400,7 +1399,7 @@ begin
     Estado.Resultado := False;
 
     // Crea el thread
-    Thread := TEliminarThread.Create(false, Self, Estado, Tipo, Item);
+    TEliminarThread.Create(false, Self, Estado, Tipo, Item);
 
     // Espera a que termine
     while Estado.Inicio = 0 do

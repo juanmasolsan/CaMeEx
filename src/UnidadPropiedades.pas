@@ -209,7 +209,6 @@ end;
 
 procedure TForm_Propiedades.Mostrar_Propiedades(const Item : TItemDato; GestorDatos : IConectorDatos);
 var
-  ext               : RawByteString;
   ImageIndexSistema : Longint;
 
   procedure ObtenerDatos_Imagen_Nombre_Descripcion;

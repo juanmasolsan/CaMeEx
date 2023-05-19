@@ -450,8 +450,6 @@ begin
 end;
 
 procedure TLazVirtualStringTree.DoUpdateScrollBars;
-var
-  Nodo_Ancho : longint;
 
   function Calcular_Maximo_Alto : longint;
   var

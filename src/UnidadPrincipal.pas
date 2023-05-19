@@ -1614,8 +1614,6 @@ var
 
   NodeData : PrListaData;
   Datos    : TItemCatalogo;
-  PosX     : longint;
-
   IsSelected : boolean;
 begin
   if not FExtraInfoCatalogos then
@@ -1797,7 +1795,6 @@ procedure TForm1.DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
 
 var
   t, total, inicio         : integer;
-  ListaTemporalDirectorios : TArrayItemDato;
 begin
   Arbol.BeginUpdate;
   try
@@ -2095,8 +2092,6 @@ end;
 
 // Marca todos los nodos que esté en la ruta seleccionada
 procedure TForm1.DoMarcarRutaActual(Node: PVirtualNode);
-var
-  NodeData: PrListaData;
 
   procedure AsignarRutaSeleccionada(Nodo: PVirtualNode; valor : boolean);
   var
@@ -2254,9 +2249,7 @@ end;
 // Elimina un item del arbol/lista
 function Tform1.DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
 var
-  NodeData : PrListaData;
-  total, t : integer;
-
+  NodeData  : PrListaData;
   NodePadre : PVirtualNode;
 
 begin
@@ -2561,7 +2554,6 @@ end;
 procedure TForm1.DoAccionItem(Sender: TObject; isEliminar : boolean);
 var
   Node              : PVirtualNode;
-  isArbolSelecionado: boolean;
   listado           : TLazVirtualStringTree;
 begin
   if (ActiveControl = Arbol) or (ActiveControl = Lista) then

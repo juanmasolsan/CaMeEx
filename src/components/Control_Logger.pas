@@ -134,7 +134,7 @@ end;
 { TLogger }
 constructor TLogger.Create(archivo: RawByteString; nivel: TLogLevel; Append: boolean = false);
 var
-  modo: word;
+  modo: word = fmCreate;
 begin
   // Llamada al constructor de la clase base
   inherited Create;
