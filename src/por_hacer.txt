@@ -148,7 +148,7 @@
 -         Al eliminar desde la lista todos los archivos y carpetas de un catalogo el nodo del catalogo no funciona correctamente
 
 -         Poder crear nuevos catalogos
--         Icono grande en el arbol cuando los nodos tengan extra alto
++         Icono grande en el arbol cuando los nodos tengan extra alto
 
 -         Agregar breadcrumbs.
 -         Historial de navegación.

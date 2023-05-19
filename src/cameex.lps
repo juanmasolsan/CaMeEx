@@ -8,7 +8,7 @@
       <Unit>
         <Filename Value="cameex.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="50"/>
         <CursorPos X="61" Y="70"/>
         <UsageCount Value="176"/>
@@ -20,9 +20,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="757"/>
-        <CursorPos X="43" Y="777"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="1513"/>
+        <CursorPos X="27" Y="1519"/>
         <UsageCount Value="176"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -30,6 +30,7 @@
       <Unit>
         <Filename Value="historia.txt"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <CursorPos X="39" Y="15"/>
         <UsageCount Value="176"/>
         <Loaded Value="True"/>
@@ -148,13 +149,10 @@
         <ComponentName Value="Form_Propiedades"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="315"/>
-        <CursorPos Y="329"/>
+        <CursorPos X="64" Y="330"/>
         <UsageCount Value="29"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadAtributos.pas"/>
@@ -162,7 +160,7 @@
         <ComponentName Value="Frame_Atributos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="52"/>
         <CursorPos X="77" Y="69"/>
         <UsageCount Value="29"/>
@@ -228,9 +226,9 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="1331"/>
-        <CursorPos X="28" Y="1329"/>
+        <CursorPos X="94" Y="1331"/>
         <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit>
@@ -301,7 +299,7 @@
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemBaseDatos.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="65"/>
         <CursorPos X="50" Y="82"/>
         <UsageCount Value="27"/>
@@ -325,11 +323,10 @@
       </Unit>
       <Unit>
         <Filename Value="components\GestorExtensiones.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos Y="120"/>
         <UsageCount Value="14"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
@@ -398,7 +395,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="5113"/>
         <CursorPos Y="5128"/>
         <UsageCount Value="13"/>
@@ -428,11 +425,10 @@
       </Unit>
       <Unit>
         <Filename Value="InterfaceConectorDatos.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="71"/>
         <CursorPos X="138" Y="87"/>
         <UsageCount Value="27"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\winunits-base\src\shellapi.pp"/>
@@ -493,132 +489,40 @@
       </Unit>
       <Unit>
         <Filename Value="AppString.pas"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="8"/>
         <CursorPos X="52" Y="62"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="5">
       <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="336" TopLine="320"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="781" Column="43" TopLine="761"/>
       </Position>
       <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="337" TopLine="320"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1528" Column="8" TopLine="1513"/>
       </Position>
       <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="338" TopLine="320"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="767" TopLine="761"/>
       </Position>
       <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="341" TopLine="320"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1528" TopLine="1522"/>
       </Position>
       <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="343" TopLine="320"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="775" Column="55" TopLine="761"/>
       </Position>
       <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="345" TopLine="320"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="1532" Column="35" TopLine="1512"/>
       </Position>
       <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="336" Column="24" TopLine="306"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="329" Column="30" TopLine="316"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="332" TopLine="316"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="334" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="336" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="339" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="340" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="341" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="343" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="344" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="346" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="334" Column="51" TopLine="322"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="332" TopLine="322"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="334" TopLine="322"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="336" TopLine="322"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="327" TopLine="321"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="340" Column="34" TopLine="321"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="339" TopLine="325"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="340" TopLine="325"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="327" TopLine="320"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="340" TopLine="320"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="327" TopLine="320"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="349" Column="44" TopLine="331"/>
-      </Position>
-      <Position>
-        <Filename Value="UnidadPropiedades.pas"/>
-        <Caret Line="330" Column="43" TopLine="315"/>
+        <Filename Value="UnidadPrincipal.pas"/>
+        <Caret Line="768" TopLine="772"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -647,7 +551,7 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="UnidadPrincipal.pas"/>
-        <Line Value="847"/>
+        <Line Value="851"/>
       </Item>
     </BreakPoints>
   </Debugging>

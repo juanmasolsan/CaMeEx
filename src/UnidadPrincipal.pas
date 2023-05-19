@@ -62,7 +62,7 @@ uses
   , UnidadScan
   , InterfaceConectorDatos
   , ItemBaseDatos
-  , ItemDato, ItemCatalogo, VirtualTreesExtras;
+  , ItemDato, ItemCatalogo, VirtualTreesExtras, ImgList;
 
 
 
@@ -166,6 +166,10 @@ type
       Node: PVirtualNode; Column: TColumnIndex; const CellText: String;
       const CellRect: TRect; var DefaultDraw: Boolean);
     procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
+    procedure ArbolGetImageIndexEx(Sender: TBaseVirtualTree;
+      Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
+      var Ghosted: Boolean; var ImageIndex: Integer;
+      var ImageList: TCustomImageList);
     procedure ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ArbolResize(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -1514,6 +1518,22 @@ begin
   except
   end;
 
+end;
+
+procedure TForm1.ArbolGetImageIndexEx(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
+  var Ghosted: Boolean; var ImageIndex: Integer; var ImageList: TCustomImageList
+  );
+
+begin
+
+  if FExtraInfoCatalogos and ((Node^.Parent = Sender.RootNode) or (Node^.Parent = Self.FNodeArbolRaiz)) then
+   ImageList := ImageListArchivos32
+  else
+   ImageList := ImageListArchivos;
+
+
+  ListaGetImageIndex(Sender, Node, Kind, Column, Ghosted, ImageIndex);
 end;
 
 procedure TForm1.ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState

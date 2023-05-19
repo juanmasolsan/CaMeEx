@@ -1,6 +1,6 @@
 
 
-
+- [NEW]   (20230519) Al tener activado Mostrar información extra en el arbol, los iconos de los catalogos se muestran en un tamaño mayor.
 - [NEW]   (20230519) Agregado visualización y edición de propiedades de los catalogos
 - [NEW]   (20230519) Agregado visualización de propiedades de directorios
 - [NEW]   (20230519) Agregado TConectorDatos.GetDirectorioEstadisticas

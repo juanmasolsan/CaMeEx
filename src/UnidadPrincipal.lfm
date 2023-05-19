@@ -78,6 +78,7 @@ object Form1: TForm1
       OnGetText = ListaGetText
       OnPaintText = ListaPaintText
       OnGetImageIndex = ListaGetImageIndex
+      OnGetImageIndexEx = ArbolGetImageIndexEx
       OnKeyDown = ArbolKeyDown
       OnResize = ArbolResize
     end
