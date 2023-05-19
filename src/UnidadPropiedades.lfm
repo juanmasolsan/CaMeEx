@@ -78,6 +78,7 @@ object Form_Propiedades: TForm_Propiedades
           Width = 328
           Anchors = [akTop, akLeft, akRight]
           OnChange = Edit_NombreChange
+          ReadOnly = True
           TabOrder = 0
           Text = 'Edit_Nombre'
         end
@@ -163,14 +164,6 @@ object Form_Propiedades: TForm_Propiedades
           Caption = 'Ubicación : '
           ParentColor = False
         end
-        object Label_Extra_Ubicacion: TLabel
-          Left = 136
-          Height = 15
-          Top = 8
-          Width = 102
-          Caption = 'Label_Tipo_Archivo'
-          ParentColor = False
-        end
         object Label3: TLabel
           Left = 8
           Height = 15
@@ -186,6 +179,16 @@ object Form_Propiedades: TForm_Propiedades
           Width = 102
           Caption = 'Label_Tipo_Archivo'
           ParentColor = False
+        end
+        object Label_Extra_Ubicacion: TMemo
+          Left = 136
+          Height = 25
+          Top = 8
+          Width = 254
+          Anchors = [akTop, akLeft, akRight]
+          BorderStyle = bsNone
+          Color = clWindow
+          TabOrder = 0
         end
       end
       object Panel_Contiene: TPanel

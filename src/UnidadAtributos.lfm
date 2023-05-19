@@ -26,40 +26,12 @@ object Frame_Atributos: TFrame_Atributos
     ClientHeight = 119
     ClientWidth = 426
     TabOrder = 0
-    object CheckBox_Fecha_Creacion: TCheckBox
-      Left = 8
-      Height = 19
-      Top = 24
-      Width = 58
-      Caption = 'Creado'
-      Enabled = False
-      TabOrder = 0
-    end
-    object CheckBox_Fecha_Modificado: TCheckBox
-      Left = 8
-      Height = 19
-      Top = 56
-      Width = 81
-      Caption = 'Modificado'
-      Enabled = False
-      TabOrder = 1
-    end
-    object CheckBox_Fecha_Acceso: TCheckBox
-      Left = 8
-      Height = 19
-      Top = 88
-      Width = 70
-      Caption = 'Accedido'
-      Enabled = False
-      TabOrder = 2
-    end
     object Label_Fecha_Creacion: TLabel
       Left = 110
       Height = 15
       Top = 24
       Width = 116
       Caption = 'Label_Fecha_Creacion'
-      Enabled = False
       ParentColor = False
     end
     object Label_Fecha_Modificado: TLabel
@@ -68,7 +40,6 @@ object Frame_Atributos: TFrame_Atributos
       Top = 56
       Width = 130
       Caption = 'Label_Fecha_Modificado'
-      Enabled = False
       ParentColor = False
     end
     object Label_Fecha_Acceso: TLabel
@@ -77,7 +48,30 @@ object Frame_Atributos: TFrame_Atributos
       Top = 88
       Width = 107
       Caption = 'Label_Fecha_Acceso'
-      Enabled = False
+      ParentColor = False
+    end
+    object CheckBox_Fecha_Creacion: TLabel
+      Left = 8
+      Height = 15
+      Top = 24
+      Width = 38
+      Caption = 'Creado'
+      ParentColor = False
+    end
+    object CheckBox_Fecha_Modificado: TLabel
+      Left = 8
+      Height = 15
+      Top = 56
+      Width = 61
+      Caption = 'Modificado'
+      ParentColor = False
+    end
+    object CheckBox_Fecha_Acceso: TLabel
+      Left = 8
+      Height = 15
+      Top = 88
+      Width = 50
+      Caption = 'Accedido'
       ParentColor = False
     end
   end
@@ -101,7 +95,6 @@ object Frame_Atributos: TFrame_Atributos
       Top = 8
       Width = 85
       Caption = 'Sólo Lectura'
-      Enabled = False
       TabOrder = 0
     end
     object CheckBox_Attr_Oculto: TCheckBox
@@ -110,7 +103,6 @@ object Frame_Atributos: TFrame_Atributos
       Top = 8
       Width = 56
       Caption = 'Oculto'
-      Enabled = False
       TabOrder = 1
     end
     object CheckBox_Attr_Sistema: TCheckBox
@@ -119,7 +111,6 @@ object Frame_Atributos: TFrame_Atributos
       Top = 8
       Width = 61
       Caption = 'Sistema'
-      Enabled = False
       TabOrder = 2
     end
   end

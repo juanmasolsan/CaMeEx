@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-18 23:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 01:05:47
+ * @Last Modified time: 2023-05-19 09:38:27
  *)
 {
 
@@ -41,6 +41,8 @@ uses
   , Forms
   , StdCtrls
   , Spin
+  , ItemBaseDatos
+  , ItemDato
   ;
 
 
@@ -48,10 +50,10 @@ type
 
   { TFrame_Atributos }
   TFrame_Atributos = class(TFrame)
+    CheckBox_Fecha_Acceso: TLabel;
+    CheckBox_Fecha_Creacion: TLabel;
+    CheckBox_Fecha_Modificado: TLabel;
     GroupBox_Atributo_Tiempo: TGroupBox;
-    CheckBox_Fecha_Creacion: TCheckBox;
-    CheckBox_Fecha_Modificado: TCheckBox;
-    CheckBox_Fecha_Acceso: TCheckBox;
     Label_Fecha_Acceso: TLabel;
     Label_Fecha_Creacion: TLabel;
     Label_Fecha_Modificado: TLabel;
@@ -62,12 +64,17 @@ type
   private
     { private declarations }
   protected
-    function DoGetFechaFromDateTime(Datos : string; Fecha : TDateTime) : longint;
+    // Devuelve la fecha en formato string
     function DoGetFechaFromDateTime2String(Fecha : TDateTime) : string;
-    procedure ShowPermissions_Windows(Mode: Integer);
+
+    // Muestra los atributos del Item
+    procedure DoShowPermissions_Windows(Mode: Integer; ExtraOculto : boolean);
   public
     { public declarations }
     constructor Create(TheOwner: TComponent); override;
+
+    // Muestra los datos del item
+    procedure MostrarDatos(Item : TItemDato);
   end;
 
 implementation
@@ -80,36 +87,50 @@ uses
 {$R *.lfm}
 
 
+{ TFrame_Atributos }
+// Constructor
 constructor TFrame_Atributos.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
   GroupBox_Atributo_Windows.Visible := true;
 end;
 
-
+// Devuelve la fecha en formato string
 function TFrame_Atributos.DoGetFechaFromDateTime2String(Fecha : TDateTime) : string;
 begin
   DateTimeToString(Result, 'dd/mm/yyyy hh:nn:ss', Fecha);
 end;
 
-function TFrame_Atributos.DoGetFechaFromDateTime(Datos : string; Fecha : TDateTime) : longint;
-var
-  StringDateTime : string;
-begin
-  DateTimeToString(StringDateTime, Datos, Fecha);
-  Result := strtoint(StringDateTime);
-end;
-
-
-procedure TFrame_Atributos.ShowPermissions_Windows(Mode: Integer);
+// Muestra los atributos del Item
+procedure TFrame_Atributos.DoShowPermissions_Windows(Mode: Integer; ExtraOculto : boolean);
 begin
 {$WARNINGS OFF}
- CheckBox_Attr_Solo_Lectura.Checked := ((Mode AND faReadOnly) = faReadOnly);
- CheckBox_Attr_Oculto.Checked       := ((Mode AND faHidden) = faHidden);
- CheckBox_Attr_Sistema.Checked      := ((Mode AND faSysFile) = faSysFile);
+  CheckBox_Attr_Solo_Lectura.Checked := ((Mode AND faReadOnly) = faReadOnly);
+  CheckBox_Attr_Oculto.Checked       := ((Mode AND faHidden) = faHidden) or ExtraOculto;
+  CheckBox_Attr_Sistema.Checked      := ((Mode AND faSysFile) = faSysFile);
 {$WARNINGS ON}
 end;
 
+// Muestra los datos del item
+procedure TFrame_Atributos.MostrarDatos(Item : TItemDato);
+begin
+  // Muestras las fechas del item
+  if Item.Tipo >= TItemDatoTipo.Root then
+  begin
+    Label_Fecha_Acceso.Caption     := DoGetFechaFromDateTime2String(Item.Fecha);
+    Label_Fecha_Creacion.Caption   := Label_Fecha_Acceso.Caption;
+    Label_Fecha_Modificado.Caption := Label_Fecha_Acceso.Caption;
+  end
+  else
+  begin
+    Label_Fecha_Acceso.Caption     := DoGetFechaFromDateTime2String(Item.Fecha);
+    Label_Fecha_Creacion.Caption   := DoGetFechaFromDateTime2String(Item.FechaCreacion);
+    Label_Fecha_Modificado.Caption := DoGetFechaFromDateTime2String(Item.FechaLastAcceso);
+  end;
+
+  // Muestra los atributos del item
+  DoShowPermissions_Windows(Item.atributos, Item.Nombre[1] = '.');
+end;
 
 
 

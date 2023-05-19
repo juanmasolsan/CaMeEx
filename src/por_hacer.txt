@@ -147,6 +147,7 @@
 -         Poder mostrar propiedades de catalogos y datos
 -         Poder editar los catalogos
 -         Poder crear nuevos catalogos
+-         Icono grande en el arbol cuando los nodos tengan extra alto
 
 -         Agregar breadcrumbs.
 -         Historial de navegación.

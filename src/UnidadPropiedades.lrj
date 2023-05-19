@@ -8,7 +8,6 @@
 {"hash":46918192,"name":"tform_propiedades.label1.caption","sourcebytes":[84,105,112,111,32,100,101,32,97,114,99,104,105,118,111,32,58,32],"value":"Tipo de archivo : "},
 {"hash":152971743,"name":"tform_propiedades.label_tipo_archivo.caption","sourcebytes":[76,97,98,101,108,95,84,105,112,111,95,65,114,99,104,105,118,111],"value":"Label_Tipo_Archivo"},
 {"hash":241669136,"name":"tform_propiedades.label2.caption","sourcebytes":[85,98,105,99,97,99,105,195,179,110,32,58,32],"value":"Ubicaci\u00F3n : "},
-{"hash":152971743,"name":"tform_propiedades.label_extra_ubicacion.caption","sourcebytes":[76,97,98,101,108,95,84,105,112,111,95,65,114,99,104,105,118,111],"value":"Label_Tipo_Archivo"},
 {"hash":233028592,"name":"tform_propiedades.label3.caption","sourcebytes":[84,97,109,97,195,177,111,32,58,32],"value":"Tama\u00F1o : "},
 {"hash":152971743,"name":"tform_propiedades.label_extra_size.caption","sourcebytes":[76,97,98,101,108,95,84,105,112,111,95,65,114,99,104,105,118,111],"value":"Label_Tipo_Archivo"},
 {"hash":923248,"name":"tform_propiedades.label5.caption","sourcebytes":[67,111,110,116,105,101,110,101,32,58,32],"value":"Contiene : "},

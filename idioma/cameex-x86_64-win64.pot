@@ -371,11 +371,6 @@ msgctxt "tform_propiedades.label_extra_size.caption"
 msgid "Label_Tipo_Archivo"
 msgstr ""
 
-#: tform_propiedades.label_extra_ubicacion.caption
-msgctxt "tform_propiedades.label_extra_ubicacion.caption"
-msgid "Label_Tipo_Archivo"
-msgstr ""
-
 #: tform_propiedades.label_tipo_archivo.caption
 msgctxt "tform_propiedades.label_tipo_archivo.caption"
 msgid "Label_Tipo_Archivo"

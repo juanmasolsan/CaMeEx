@@ -57,6 +57,7 @@ type
     Button_Cancelar: TButton;
     Button_Aplicar: TButton;
     Label6: TLabel;
+    Label_Extra_Ubicacion: TMemo;
     Memo1: TMemo;
     PageControl_Propiedades: TPageControl;
     Panel_Catalogo_descripcion: TPanel;
@@ -72,7 +73,6 @@ type
     Panel_Datos_Extras: TPanel;
     Bevel3: TBevel;
     Label2: TLabel;
-    Label_Extra_Ubicacion: TLabel;
     Label3: TLabel;
     Label_Extra_Size: TLabel;
     Timer_Size_Dir: TTimer;
@@ -216,7 +216,7 @@ var
     end;
 
     Edit_Nombre.Text := Item.Nombre;
-    Label_Extra_Ubicacion.Caption := Item.Ruta;
+    Label_Extra_Ubicacion.Lines.Text := Item.Ruta;
   end;
 
 
@@ -242,7 +242,10 @@ begin
 
   Label_Tipo_Archivo.Caption    := GetExtensionDescripcionById(Item.IdExtension);
   Label_Extra_Size.Caption      := ConvertirSizeEx(Item.Size) + ' ('+PuntearNumeracion(Item.Size)+' bytes)';
-  Edit_Nombre.Enabled           := Item.Tipo >= TItemDatoTipo.Root;
+  Edit_Nombre.ReadOnly          := Item.Tipo < TItemDatoTipo.Root;
+
+  FAtributos.MostrarDatos(Item);
+
 end;
 
 end.
