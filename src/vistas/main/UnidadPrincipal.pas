@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 16:18:39
+ * @Last Modified time: 2023-05-20 17:03:38
  *)
 {
 
@@ -219,8 +219,6 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
   private
-    FScan            : TMotorScan;
-//    FVentanaScan     : TFormScan;
     FGestorDatos     : IConectorDatos;
     FListaCatalogos  : TArrayItemDato;
     FListaArchivos   : TArrayItemDato;
@@ -244,7 +242,6 @@ type
     FCatalogoSeleccionadoItem : TItemCatalogo;
   protected
     procedure DoOnTerminarScanAsync();
-    procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
     procedure DoLoadListaArchivos(Padre : TItemDato);
     procedure DoLoadListaCatalogos();
     procedure DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
@@ -433,9 +430,6 @@ begin
   // Necesarío para que funcione la navegación por la lista de archivos
   FTempPadre    := TItemDato.create('', TItemDatoTipo.Directorio, now, 0);
 
-
-  // Inicializar el Motor de Escaneo
-  FScan := TMotorScan.Create;
 
   // Inicializar la lista de archivos
   PanelPrincipal.DoubleBuffered := true;
@@ -1185,11 +1179,6 @@ end;
 
 procedure TForm_Principal.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  if assigned(FScan) then
-  begin
-    FScan.free;
-  end;
-
   // Limpia el arbol de directorios
   Arbol.Clear;
 
@@ -1206,11 +1195,14 @@ end;
 
 procedure TForm_Principal.Timer1Timer(Sender: TObject);
 begin
+
 Timer1.Enabled := false;
+(*
   if assigned(FScan) then
   begin
     FScan.StopScan();
   end;
+*)
 end;
 
 procedure TForm_Principal.Timer_UpdateUITimer(Sender: TObject);
@@ -1232,11 +1224,6 @@ var
 
 
 begin
-  if assigned(FScan) then
-  begin
-    //Barra_Estado.simpleText := 'Procesando : ' + FScan.Procesando;
-  end;
-
   // Iniciliza el total de items selecionados
   Selecionados := 0;
 
@@ -1360,90 +1347,6 @@ begin
 *)
 end;
 
-procedure TForm_Principal.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
-
-  procedure ProcesarHijo(Item : TItemDato);
-  var
-    t, total : integer;
-    Actual : TItemDato;
-  begin
-    if item <> nil then
-    begin
-      total := item.HijosCount()-1;
-      for t := 0 to total do
-      begin
-        Actual := item.GetHijo(t);
-
-        // Guarda los datos del archivo o directorio
-        SistemaGuardado.AddDato(Actual);
-
-        // Guarda los datos de todo los hijos
-        ProcesarHijo(Actual);
-      end;
-    end;
-  end;
-
-
-var
-  t, total : integer;
-  Item     : TItemDato;
-begin
-  if assigned(Scan) then
-  begin
-    // Actualiza los datos del catalogo
-    Scan.Root.TotalArchivos    := Scan.TotalArchivos;
-    Scan.Root.TotalDirectorios := Scan.TotalDirectorios;
-    Scan.Root.Size             := Scan.TotalSize;
-
-    // Guarda los datos del catalogo
-    SistemaGuardado.AddCatalogo(Scan.Root);
-
-    // Guarda una copia del catalogo en la tabla de datos
-    Scan.Root.IdPadre        := Scan.Root.Id;
-    Scan.Root.IdCatalogo     := Scan.Root.Id;
-    Scan.Root.IdRutaCompleta := 0;
-    Scan.Root.IdExtension    := 0;
-    SistemaGuardado.AddDato(Scan.Root);
-
-
-    // Guarda los iconos de las Extensiones
-    total := Scan.ListaExtensiones.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddExtensionIcono(TItemExtension(Scan.ListaExtensiones.Items[t]));
-    end;
-
-    // Guarda los datos de las Extensiones
-    total := Scan.ListaExtensiones.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
-    end;
-
-    // Guarda los datos de las rutas completas
-    total := Scan.ListaRutaCompleta.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddRutaCompleta(TItemRutaCompleta(Scan.ListaRutaCompleta.Items[t]));
-    end;
-
-
-    // Guarda los datos de los archivos y directorios
-    total := FScan.Root.HijosCount()-1;
-    for t := 0 to total do
-    begin
-      Item := FScan.Root.GetHijo(t);
-      if item <> nil then
-      begin
-        // Guarda los datos del archivo o directorio
-        SistemaGuardado.AddDato(Item);
-
-        // Guarda los datos de todo los hijos
-        ProcesarHijo(Item);
-      end;
-    end;
-  end;
-end;
 
 procedure TForm_Principal.Button1Click(Sender: TObject);
 var
@@ -2590,24 +2493,6 @@ procedure TForm_Principal.DoAddNuevoCatalogo();
 var
   AddCatalogo : TForm_AddCatalogo;
 begin
-(*
-  FVentanaScan := TFormScan.CreateEx(self, FScan);
-
-  {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-    {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
-      FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
-    {$ELSE}
-      FScan.ScanDirAsync('C:\DAM_02\comun\programas\vscode\data\extensions\', @DoOnTerminarScanAsync, '.git;img\iconos');
-      //FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
-    {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
-
-  {$ELSE}
-  FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
-  {$ENDIF}
-  // Muestra la ventana de escaneo
-  FVentanaScan.ShowModal;
-*)
-
   AddCatalogo := TForm_AddCatalogo.create(Self);
   try
     AddCatalogo.ShowModal;

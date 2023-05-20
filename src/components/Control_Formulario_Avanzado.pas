@@ -97,23 +97,48 @@ type
 
     // Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
     function IsMessageBoxWarning(Mensaje, Titulo : String) : boolean;
-
   end;
 
 
 
+// Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
+function IsMessageBoxInfoEx(ventana : THandle; Mensaje, Titulo : String) : boolean;
 
+// Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
+function IsMessageBoxWarningEx(ventana : THandle; Mensaje, Titulo : String) : boolean;
 
 
 type
   { Puenteamos la clase form }
   TForm = class(TForm_Avanzado_Custom);
 
+
 implementation
 
 uses
   Control_Directorio_Save
   ;
+
+
+// Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
+function IsMessageBoxInfoEx(ventana : THandle; Mensaje, Titulo : String) : boolean;
+var
+ MensajeDialogo : longint;
+begin
+ MensajeDialogo := MessageBox(ventana, Pchar(StringReplace(Mensaje, '\r', #13, [rfReplaceAll, rfIgnoreCase])), Pchar(Titulo), MB_YESNOCANCEL or MB_ICONINFORMATION);
+ Result := MensajeDialogo = IDYES;
+end;
+
+
+// Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
+function IsMessageBoxWarningEx(ventana : THandle; Mensaje, Titulo : String) : boolean;
+var
+ MensajeDialogo : longint;
+begin
+ MensajeDialogo := MessageBox(ventana, Pchar(StringReplace(Mensaje, '\r', #13, [rfReplaceAll, rfIgnoreCase])), Pchar(Titulo), MB_YESNOCANCEL or MB_ICONWARNING);
+ Result := MensajeDialogo = IDYES;
+end;
+
 
 
 
@@ -319,23 +344,16 @@ begin
   FGlobal_ArchivoConfiguracion := nil;
 end;
 
-
 // Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
 function TForm_Avanzado_Custom.IsMessageBoxInfo(Mensaje, Titulo : String) : boolean;
-var
- MensajeDialogo : longint;
 begin
- MensajeDialogo := MessageBox(handle, Pchar(StringReplace(Mensaje, '\r', #13, [rfReplaceAll, rfIgnoreCase])), Pchar(Titulo), MB_YESNOCANCEL or MB_ICONINFORMATION);
- Result := MensajeDialogo = IDYES;
+ Result := IsMessageBoxInfoEx(handle, Mensaje, Titulo);
 end;
 
 // Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
 function TForm_Avanzado_Custom.IsMessageBoxWarning(Mensaje, Titulo : String) : boolean;
-var
- MensajeDialogo : longint;
 begin
- MensajeDialogo := MessageBox(handle, Pchar(StringReplace(Mensaje, '\r', #13, [rfReplaceAll, rfIgnoreCase])), Pchar(Titulo), MB_YESNOCANCEL or MB_ICONWARNING);
- Result := MensajeDialogo = IDYES;
+ Result := IsMessageBoxWarningEx(handle, Mensaje, Titulo);
 end;
 
 initialization

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-09 11:51:16
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-16 16:20:09
+ * @Last Modified time: 2023-05-20 17:26:06
  *)
 {
 
@@ -65,9 +65,6 @@ type
     SpeedButtonCancelar: TSpeedButton;
     TimerUpdateUI: TTimer;
     TimerAnimacion: TTimer;
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure FormCreate(Sender: TObject);
     procedure SpeedButtonCancelarClick(Sender: TObject);
     procedure TimerAnimacionTimer(Sender: TObject);
     procedure TimerUpdateUITimer(Sender: TObject);
@@ -85,6 +82,10 @@ type
 
     // Indica que se ha terminado el escaneo
     procedure Terminar();
+
+    // Inicia el monitoreo del escaneo
+    procedure Iniciar();
+
   end;
 
 var
@@ -115,40 +116,11 @@ begin
   inherited Create(TheOwner);
 end;
 
-
-procedure TFrame_Scan.FormCreate(Sender: TObject);
-begin
-  // Opciones avanzadas
-  //ActivarGuardadoPosicion;
-
-  // Inicializar el contador interno para la animación
-  TimerAnimacion.interval := 100;
-
-  // Obtiene el número total de frames de la animación
-  FAnimacionFrames        := ImageListSpinner.Count;
-
-  // Inicia el contador de tiempo
-  FInicio                 := Now;
-  TimerUpdateUI.Enabled   := True;
-end;
-
 procedure TFrame_Scan.SpeedButtonCancelarClick(Sender: TObject);
 begin
   // Cancela el escaneo
   DoCancelar();
 end;
-
-procedure TFrame_Scan.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-begin
-  if FTerminar then exit;
-  CanClose := DoCancelar();
-end;
-
-procedure TFrame_Scan.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-  CloseAction := TCloseAction.caFree;
-end;
-
 
 procedure TFrame_Scan.TimerAnimacionTimer(Sender: TObject);
 begin
@@ -188,7 +160,7 @@ end;
 function TFrame_Scan.DoCancelar() : boolean;
 begin
   // Pregunta si realmente quiere cancelar el escaneo
-//  Result := IsMessageBoxInfo(Message_DLG_Cancelar_escaneo, Message_Atencion);
+  Result := IsMessageBoxInfoEx(Handle, Message_DLG_Cancelar_escaneo, Message_Atencion);
 
   if Result then
   begin
@@ -196,6 +168,21 @@ begin
     FScanActivo.StopScan();
   end;
 
+end;
+
+// Inicia el monitoreo del escaneo
+procedure TFrame_Scan.Iniciar();
+begin
+  // Inicializar el contador interno para la animación
+  TimerAnimacion.interval := 100;
+
+  // Obtiene el número total de frames de la animación
+  FAnimacionFrames        := ImageListSpinner.Count;
+
+  // Inicia el contador de tiempo
+  FInicio                 := Now;
+  TimerUpdateUI.Enabled   := True;
+  TimerAnimacion.Enabled  := True;
 end;
 
 

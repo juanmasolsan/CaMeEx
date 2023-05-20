@@ -6,14 +6,12 @@ object Frame_Scan: TFrame_Scan
   Align = alClient
   ClientHeight = 243
   ClientWidth = 514
-  Color = clWindow
   Constraints.MinHeight = 243
   Constraints.MinWidth = 514
   ParentBackground = False
-  ParentColor = False
   TabOrder = 0
-  DesignLeft = -1
-  DesignTop = -1
+  DesignLeft = -2
+  DesignTop = -2
   object SpeedButton1: TSpeedButton
     Left = 8
     Height = 78
@@ -489,8 +487,8 @@ object Frame_Scan: TFrame_Scan
     Width = 480
     Anchors = [akTop, akLeft, akRight]
     BorderStyle = bsNone
-    Color = clWindow
     Font.Color = clBlue
+    ParentColor = True
     ParentFont = False
     ReadOnly = True
     TabOrder = 0

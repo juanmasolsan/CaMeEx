@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 16:38:06
+ * @Last Modified time: 2023-05-20 17:43:04
  *)
 {
 
@@ -33,6 +33,8 @@ unit UnidadAddCatalogo;
 
 {$mode objfpc}{$H+}
 
+{$i ../../DirectivasCompilacion.inc}
+
 interface
 
 uses
@@ -44,7 +46,7 @@ uses
   , ComCtrls
   , ExtCtrls
   , Control_Formulario_Avanzado
-  , InterfaceConectorDatos;
+  , InterfaceConectorDatos, ItemDato, ItemExtension, ItemRutaCompleta, MotorScan;
 
 const
   // Pasos del asistente
@@ -84,9 +86,10 @@ type
     FGestorDatos : IConectorDatos;
     FPasoActual  : longint;
     FFrames      : array of TFrame;
+    FScan        : TMotorScan;
   protected
     // Dependiendo del paso actual, se ejecuta una acción u otra
-    procedure DoAccionesAtrasSigioente(direccion : longint);
+    procedure DoAccionesAtrasSiguiente(direccion : longint);
 
     // Para escribir el título del asistente
     procedure DoTitulo(titulo : String);
@@ -94,6 +97,11 @@ type
     // Para mostrar el frame correspondiente al paso actual
     procedure DoPasoVisible(paso : longint);
 
+    // Guarda lo escaneado en el gestor de datos
+    procedure DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
+
+    // Cuando termina el escaneo correctamente
+    procedure DoOnTerminarScanAsync();
   public
     { public declarations }
     // Configura el asistente para agregar un nuevo catalogo
@@ -101,7 +109,6 @@ type
 
     // Paso - Escanear medio
     procedure DoPasoEscanear();
-
   end;
 
 var
@@ -128,8 +135,11 @@ begin
   //FAtributos               := TFrame_Atributos.Create(TComponent(Pointer(@Pagina_Atributos)^));
   //FAtributos.Parent        := Pagina_Atributos;
 
+  // Inicializar el Motor de Escaneo
+  FScan := TMotorScan.Create;
+
   // Inicializa el asistente
-  DoAccionesAtrasSigioente(0);
+  DoAccionesAtrasSiguiente(0);
 end;
 
 procedure TForm_AddCatalogo.FormDestroy(Sender: TObject);
@@ -141,6 +151,11 @@ begin
   // Liberar los frames
   for t := 0 to High(FFrames) do
     FreeAndNil(FFrames[t]);
+
+  if assigned(FScan) then
+  begin
+    FScan.free;
+  end;
 end;
 
 // Configura el asistente para agregar un nuevo catalogo
@@ -153,7 +168,7 @@ end;
 
 
 // Dependiendo del paso actual, se ejecuta una acción u otra
-procedure TForm_AddCatalogo.DoAccionesAtrasSigioente(direccion : longint);
+procedure TForm_AddCatalogo.DoAccionesAtrasSiguiente(direccion : longint);
 begin
 
   FPasoActual += direccion;
@@ -199,13 +214,13 @@ end;
 procedure TForm_AddCatalogo.Button_SiguienteClick(Sender: TObject);
 begin
   // Dependiendo del paso actual, se ejecuta una acción u otra
-  DoAccionesAtrasSigioente(1);
+  DoAccionesAtrasSiguiente(1);
 end;
 
 procedure TForm_AddCatalogo.Button_AtrasClick(Sender: TObject);
 begin
   // Dependiendo del paso actual, se ejecuta una acción u otra
-  DoAccionesAtrasSigioente(-1);
+  DoAccionesAtrasSiguiente(-1);
 end;
 
 // Para escribir el título del asistente
@@ -233,13 +248,118 @@ begin
   // Crear el frame si no existe
   if FFrames[PASO_ESCANEAR] = nil then
   begin
-    FFrames[PASO_ESCANEAR]        := TFrame_Scan.Create(Self);
+    FFrames[PASO_ESCANEAR]        := TFrame_Scan.CreateEx(Self, FScan);
     FFrames[PASO_ESCANEAR].Parent := Self;
   end;
 
   DoTitulo(Message_Asistente_Nuevo_Catalogo_Escanear_Medio);
 
+  // Iniciar el escaneo
+  TFrame_Scan(FFrames[PASO_ESCANEAR]).Iniciar();
+
+  {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
+    {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+      FScan.ScanDirAsync(Curdir, @DoOnTerminarScanAsync, '.git;img\iconos');
+    {$ELSE}
+      FScan.ScanDirAsync('C:\DAM_02\comun\programas\vscode\data\extensions\', @DoOnTerminarScanAsync, '.git;img\iconos');
+      //FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
+    {$ENDIF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
+
+  {$ELSE}
+    FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
+  {$ENDIF}
 end;
 
+// Cuando termina el escaneo correctamente
+procedure TForm_AddCatalogo.DoOnTerminarScanAsync();
+begin
+  // Dependiendo del paso actual, se ejecuta una acción u otra
+  DoAccionesAtrasSiguiente(1);
+end;
+
+// Guarda lo escaneado en el gestor de datos
+procedure TForm_AddCatalogo.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
+
+  procedure ProcesarHijo(Item : TItemDato);
+  var
+    t, total : integer;
+    Actual : TItemDato;
+  begin
+    if item <> nil then
+    begin
+      total := item.HijosCount()-1;
+      for t := 0 to total do
+      begin
+        Actual := item.GetHijo(t);
+
+        // Guarda los datos del archivo o directorio
+        SistemaGuardado.AddDato(Actual);
+
+        // Guarda los datos de todo los hijos
+        ProcesarHijo(Actual);
+      end;
+    end;
+  end;
+
+var
+  t, total : integer;
+  Item     : TItemDato;
+begin
+  if assigned(Scan) then
+  begin
+    // Actualiza los datos del catalogo
+    Scan.Root.TotalArchivos    := Scan.TotalArchivos;
+    Scan.Root.TotalDirectorios := Scan.TotalDirectorios;
+    Scan.Root.Size             := Scan.TotalSize;
+
+    // Guarda los datos del catalogo
+    SistemaGuardado.AddCatalogo(Scan.Root);
+
+    // Guarda una copia del catalogo en la tabla de datos
+    Scan.Root.IdPadre        := Scan.Root.Id;
+    Scan.Root.IdCatalogo     := Scan.Root.Id;
+    Scan.Root.IdRutaCompleta := 0;
+    Scan.Root.IdExtension    := 0;
+    SistemaGuardado.AddDato(Scan.Root);
+
+
+    // Guarda los iconos de las Extensiones
+    total := Scan.ListaExtensiones.Count - 1;
+    for t := 0 to total do
+    begin
+      SistemaGuardado.AddExtensionIcono(TItemExtension(Scan.ListaExtensiones.Items[t]));
+    end;
+
+    // Guarda los datos de las Extensiones
+    total := Scan.ListaExtensiones.Count - 1;
+    for t := 0 to total do
+    begin
+      SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
+    end;
+
+    // Guarda los datos de las rutas completas
+    total := Scan.ListaRutaCompleta.Count - 1;
+    for t := 0 to total do
+    begin
+      SistemaGuardado.AddRutaCompleta(TItemRutaCompleta(Scan.ListaRutaCompleta.Items[t]));
+    end;
+
+
+    // Guarda los datos de los archivos y directorios
+    total := Scan.Root.HijosCount()-1;
+    for t := 0 to total do
+    begin
+      Item := Scan.Root.GetHijo(t);
+      if item <> nil then
+      begin
+        // Guarda los datos del archivo o directorio
+        SistemaGuardado.AddDato(Item);
+
+        // Guarda los datos de todo los hijos
+        ProcesarHijo(Item);
+      end;
+    end;
+  end;
+end;
 
 end.
