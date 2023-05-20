@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-18 23:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 09:38:27
+ * @Last Modified time: 2023-05-20 13:50:08
  *)
 {
 
@@ -40,7 +40,6 @@ uses
   Classes
   , Forms
   , StdCtrls
-  , Spin
   , ItemBaseDatos
   , ItemDato
   ;

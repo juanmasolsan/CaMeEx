@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 16:17:09
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 18:59:55
+ * @Last Modified time: 2023-05-20 13:49:48
  *)
 {
 
@@ -33,14 +33,13 @@ SOFTWARE.
 unit UnidadLoading;
 
 {$mode ObjFPC}{$H+}
-
+{$WARN 5024 off : Parameter "$1" not used}
 interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, ExtCtrls,
   StdCtrls
   , Control_Formulario_Avanzado
-  , MotorScan
   ;
 
 type
@@ -82,10 +81,6 @@ procedure FormLoadingShow(TheOwner: TComponent; MensajeTitulo : string; MensajeN
 procedure FormLoadingHide();
 
 implementation
-
-uses
-  utilidades
-  , AppString;
 
 
 {$R *.lfm}

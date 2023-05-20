@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 01:10:48
+ * @Last Modified time: 2023-05-20 13:51:35
  *)
 {
 
@@ -62,7 +62,7 @@ resourcestring
   Message_Atencion             =  'Atención';
 
   Message_Eliminar_Datos          =  '¿Realmente quiere eliminar el item(s) seleccionado(s)?\r\rEsta acción no se puede deshacer.';
-  Message_Eliminar_Catalogo       =  '¿Realmente quiere eliminar el catalogo seleccionado?\r\rEsta acción no se puede deshacer.';
+  Message_Eliminar_Catalogo       =  '¿Realmente quiere eliminar el catalogo "%s"?\r\rEsta acción no se puede deshacer.';
   Message_Eliminar_All_Catalogos  =  '¿Realmente quiere eliminar todos los catalogos?\r\rEsta acción no se puede deshacer.\r\rSe eliminaran todos los catalogos y sus datos asociados.\r\rPregunta (%u/2)';
 
   Message_Espera_Eliminar_Titulo   =  'Eliminando datos';

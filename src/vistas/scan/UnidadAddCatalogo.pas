@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 12:20:27
+ * @Last Modified time: 2023-05-20 13:50:54
  *)
 {
 
@@ -43,7 +43,8 @@ uses
   , ComCtrls
   , ExtCtrls
   , Control_Formulario_Avanzado
-  , InterfaceConectorDatos;
+//  , InterfaceConectorDatos
+;
 
 type
   { TForm_AddCatalogo }
@@ -63,7 +64,7 @@ type
     procedure FormDestroy(Sender: TObject);
   private
     { private declarations }
-    FGestorDatos : IConectorDatos;
+    //FGestorDatos : IConectorDatos;
   protected
 
   public

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:19:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-19 19:56:47
+ * @Last Modified time: 2023-05-20 13:50:15
  *)
 {
 
@@ -32,6 +32,7 @@ SOFTWARE.
 unit UnidadPropiedades;
 
 {$mode objfpc}{$H+}
+{$WARN 5024 off : Parameter "$1" not used}
 
 interface
 
@@ -291,9 +292,9 @@ end;
 // Calcula lo que contiene el item
 procedure TForm_Propiedades.DoObtenerDatos_Contiene(Data: PtrInt);
 var
-  TotalDirectorios: integer;
-  TotalArchivos   : integer;
-  TotalSize       : qword;
+  TotalDirectorios: integer = 0;
+  TotalArchivos   : integer = 0;
+  TotalSize       : qword = 0;
 begin
   if FGestorDatos = nil then exit;
 

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 01:39:41
+ * @Last Modified time: 2023-05-20 13:49:36
  *)
 {
 
@@ -41,8 +41,8 @@ interface
 
 uses
   {$IFDEF WINDOWS}
-   Windows,
-   ShlObj, ActiveX, ComObj,
+  Windows,
+  ComObj,
   {$ENDIF}
     LCLIntf
   , LCLType

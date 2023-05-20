@@ -101,6 +101,7 @@
         <Filename Value="vistas\loading\UnidadLoading.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormLoading"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 12:46:06
+ * @Last Modified time: 2023-05-20 13:49:57
  *)
 {
 
@@ -32,17 +32,16 @@ SOFTWARE.
 
 {$i ../../DirectivasCompilacion.inc}
 
-
 unit UnidadPrincipal;
 
 {$mode objfpc}{$H+}
+{$WARN 5024 off : Parameter "$1" not used}
 
 interface
 
 uses
   LCLType
   , lclintf
-  , LMessages
   , Classes
   , SysUtils
   , Forms
@@ -159,13 +158,13 @@ type
     ToolButtonPropiedades: TToolButton;
     ToolButtonEliminar: TToolButton;
     procedure ArbolBeforeItemErase(Sender: TBaseVirtualTree;
-      TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect;
-      var ItemColor: TColor; var EraseAction: TItemEraseAction);
+      {%H-}TargetCanvas: TCanvas; Node: PVirtualNode; const {%H-}ItemRect: TRect;
+      var ItemColor: TColor; var {%H-}EraseAction: TItemEraseAction);
     procedure ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure ArbolDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas;
       Node: PVirtualNode; Column: TColumnIndex; const CellText: String;
       const CellRect: TRect; var DefaultDraw: Boolean);
-    procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var Allowed: Boolean);
+    procedure ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode; var {%H-}Allowed: Boolean);
     procedure ArbolGetImageIndexEx(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
       var Ghosted: Boolean; var ImageIndex: Integer;
@@ -326,7 +325,7 @@ type
     function DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
 
     // Muestra las propiedades de un item del arbol/lista
-    function DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
+    function DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode) : boolean;
 
     // Confirma si se debe eliminar todos los catalogos
     function DoConfirmarEliminarTodo() : boolean;
@@ -2396,7 +2395,7 @@ end;
 
 
 // Muestra las propiedades de un item del arbol/lista
-function TForm_Principal.DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
+function TForm_Principal.DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode) : boolean;
 var
   Temp_Form_Propiedades : TForm_Propiedades;
   NodeData: PrListaData;
@@ -2431,7 +2430,7 @@ end;
 function TForm_Principal.DoConfirmarEliminarCatalogo(Catalogo : TItemCatalogo) : boolean;
 begin
   // Pregunta si realmente quiere borrar los datos
-  Result := IsMessageBoxWarning(Message_Eliminar_Catalogo, Message_Atencion);
+  Result := IsMessageBoxWarning(Format(Message_Eliminar_Catalogo, [Catalogo.Nombre]), Message_Atencion);
 end;
 
 // Confirma si se debe eliminar los datos seleccionados
@@ -2569,7 +2568,7 @@ begin
       if isEliminar then
         DoEliminarItem(listado, Node, listado = arbol)
       else
-        DoPropiedadesItem(listado, Node, listado = arbol)
+        DoPropiedadesItem(listado, Node)
   end;
 end;
 
