@@ -60,7 +60,7 @@ uses
 
   Forms, AppString, Configuracion, UnidadPrincipal, UnidadLoading,
   UnidadPropiedades, UnidadAtributos, UnidadScan, UnidadAddCatalogo,
-  Control_About, graphics;
+  Control_About, graphics, lazcontrols, FrameCancelado;
 
 {$R *.res}
 

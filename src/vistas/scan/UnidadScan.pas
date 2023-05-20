@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-09 11:51:16
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 17:59:12
+ * @Last Modified time: 2023-05-21 00:26:17
  *)
 {
 
@@ -79,14 +79,11 @@ type
     // Cancelar el escaneo
     function DoCancelar() : boolean; virtual;
   public
-    // Constructor
-    constructor CreateEx(TheOwner: TComponent; ScanActivo : TMotorScan);
-
     // Indica que se ha terminado el escaneo
     procedure Terminar();
 
     // Inicia el monitoreo del escaneo
-    procedure Iniciar(OnCancelarScan : TOnCancelarScan);
+    procedure Iniciar(OnCancelarScan : TOnCancelarScan; ScanActivo : TMotorScan);
 
   end;
 
@@ -103,20 +100,6 @@ uses
 {$R *.lfm}
 
 { TFrame_Scan }
-constructor TFrame_Scan.CreateEx(TheOwner: TComponent; ScanActivo : TMotorScan);
-begin
-  // Asigna el motor de escaneo activo
-  FScanActivo      := ScanActivo;
-
-  // Inicializa el contador de tiempo
-  FInicio          := FScanActivo.ScanInicio;
-
-  // Inicializa el estado de terminación
-  FTerminar        := False;
-
-  // Llama al constructor de la clase padre
-  inherited Create(TheOwner);
-end;
 
 procedure TFrame_Scan.SpeedButtonCancelarClick(Sender: TObject);
 begin
@@ -155,9 +138,6 @@ procedure TFrame_Scan.Terminar();
 begin
   // Indica que se ha terminado el escaneo
   FTerminar := true;
-
-  // Cierra el formulario
-  //close();
 end;
 
 // Cancelar el escaneo
@@ -179,8 +159,14 @@ begin
 end;
 
 // Inicia el monitoreo del escaneo
-procedure TFrame_Scan.Iniciar(OnCancelarScan : TOnCancelarScan);
+procedure TFrame_Scan.Iniciar(OnCancelarScan : TOnCancelarScan; ScanActivo : TMotorScan);
 begin
+  // Asigna el motor de escaneo activo
+  FScanActivo      := ScanActivo;
+
+  // Inicializa el estado de terminación
+  FTerminar        := False;
+
   // Inicializar el contador interno para la animación
   TimerAnimacion.interval := 100;
 

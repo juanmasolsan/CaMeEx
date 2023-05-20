@@ -6,12 +6,10 @@ object Frame_Scan: TFrame_Scan
   Align = alClient
   ClientHeight = 243
   ClientWidth = 514
-  Constraints.MinHeight = 243
-  Constraints.MinWidth = 514
   ParentBackground = False
   TabOrder = 0
-  DesignLeft = -2
-  DesignTop = -2
+  DesignLeft = -4
+  DesignTop = -4
   object Label1: TLabel
     Left = 112
     Height = 25

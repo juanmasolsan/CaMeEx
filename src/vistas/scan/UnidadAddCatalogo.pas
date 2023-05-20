@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 18:27:50
+ * @Last Modified time: 2023-05-21 00:27:13
  *)
 {
 
@@ -46,7 +46,10 @@ uses
   , ComCtrls
   , ExtCtrls
   , Control_Formulario_Avanzado
-  , InterfaceConectorDatos, ItemDato, ItemExtension, ItemRutaCompleta, MotorScan;
+  , InterfaceConectorDatos, ItemDato, ItemExtension, ItemRutaCompleta, MotorScan
+  , UnidadScan
+  , FrameCancelado
+  ;
 
 const
   // Pasos del asistente
@@ -71,9 +74,14 @@ type
     Button_Cancelar: TButton;
     Button_Atras: TButton;
     Button_Siguiente: TButton;
+    Frame_Cancelado1: TFrame_Cancelado;
+    Frame_Scan1: TFrame_Scan;
     Image1: TImage;
     Label_Titulo_Asistente_Add: TLabel;
+    PanelesAsistente: TPageControl;
     Shape1: TShape;
+    TabSheet_Cancelado: TTabSheet;
+    TabSheet_Scan: TTabSheet;
     procedure Button_SiguienteClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -83,7 +91,6 @@ type
     { private declarations }
     FGestorDatos : IConectorDatos;
     FPasoActual  : longint;
-    FFrames      : array of TFrame;
     FScan        : TMotorScan;
     FScanCancelado : boolean;
   protected
@@ -112,6 +119,9 @@ type
 
     // Paso - Escanear medio
     procedure DoPasoEscanear();
+
+    // Paso - Escanear cancelar
+    procedure DoPasoCancelar();
   end;
 
 var
@@ -122,7 +132,8 @@ var
 implementation
 
 uses
-  AppString, UnidadScan;
+  AppString
+  ;
 
 
 {$R *.lfm}
@@ -133,28 +144,17 @@ procedure TForm_AddCatalogo.FormCreate(Sender: TObject);
 begin
   ActivarGuardadoPosicion(true);
 
-  // Crear el array de Frames
-  SetLength(FFrames, PASO_SELECCION_FINAL + 1);
-  //FAtributos               := TFrame_Atributos.Create(TComponent(Pointer(@Pagina_Atributos)^));
-  //FAtributos.Parent        := Pagina_Atributos;
-
   // Inicializar el Motor de Escaneo
   FScan := TMotorScan.Create;
 
   // Inicializa el asistente
-  DoAccionesAtrasSiguiente(0);
+  DoAccionesAtrasSiguiente(PASO_SELECCION_MEDIO);
 end;
 
 procedure TForm_AddCatalogo.FormDestroy(Sender: TObject);
 var
   t : longint;
 begin
-
-
-  // Liberar los frames
-  for t := 0 to High(FFrames) do
-    FreeAndNil(FFrames[t]);
-
   if assigned(FScan) then
   begin
     FScan.free;
@@ -173,21 +173,20 @@ end;
 // Dependiendo del paso actual, se ejecuta una acción u otra
 procedure TForm_AddCatalogo.DoAccionesAtrasSiguiente(direccion : longint);
 begin
-
   FPasoActual += direccion;
 
-  if FPasoActual < PASO_CANCELAR + 1 then
-    FPasoActual := PASO_CANCELAR + 1
+  if FPasoActual < PASO_CANCELAR then
+    FPasoActual := PASO_CANCELAR
   else
     if FPasoActual > PASO_SELECCION_FINAL then
       FPasoActual := PASO_SELECCION_FINAL;
 
-  Button_Atras.Enabled := FPasoActual > PASO_CANCELAR + 1;
+  Button_Atras.Enabled := FPasoActual > PASO_CANCELAR;
 
-  Button_Atras.visible    := (FPasoActual >= PASO_CANCELAR + 1) AND (FPasoActual < PASO_SELECCION_FINAL);
+  Button_Atras.visible    := (FPasoActual > PASO_CANCELAR) AND (FPasoActual < PASO_SELECCION_FINAL);
   Button_Cancelar.visible := Button_Atras.visible;
 
-  if FPasoActual = PASO_SELECCION_FINAL then
+  if (FPasoActual = PASO_SELECCION_FINAL) OR (FPasoActual = PASO_CANCELAR) then
     Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Cerrar
   else
     Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Siguiente;
@@ -197,16 +196,13 @@ begin
 
   // Dependiendo del paso actual, se ejecuta una acción u otra
   case FPasoActual of
-    //PASO_SELECCION_INICIO : DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo);
+    PASO_CANCELAR         : DoPasoCancelar();
     PASO_ESCANEAR         : DoPasoEscanear();
     PASO_GUARDAR          : DoTitulo(Message_Asistente_Nuevo_Catalogo_Cerrar);
     //PASO_SELECCION_FINAL  : DoTitulo(Message_Asistente_Nuevo_Catalogo_Guardar);
   end;
 
 end;
-
-
-
 
 procedure TForm_AddCatalogo.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
@@ -230,37 +226,26 @@ end;
 procedure TForm_AddCatalogo.DoTitulo(titulo : String);
 begin
   Label_Titulo_Asistente_Add.Caption := titulo;
-  caption                            := Message_Asistente_Nuevo_Catalogo_titulo + ' ['+ inttostr(FPasoActual + 1) + '/' + inttostr(High(FFrames) + 1)+'] - '+ titulo;
+  caption                            := Message_Asistente_Nuevo_Catalogo_titulo + ' ['+ inttostr(FPasoActual + 1) + '/' + inttostr(PanelesAsistente.PageCount)+'] - '+ titulo;
 end;
 
 
 // Para mostrar el frame correspondiente al paso actual
 procedure TForm_AddCatalogo.DoPasoVisible(paso : longint);
-var
-  t : longint;
 begin
-  for t := 0 to High(FFrames) do
-    if FFrames[t] <> nil then
-      FFrames[t].Visible := t = paso;
+  PanelesAsistente.ActivePageIndex := paso;
 end;
 
 
 // Paso - Escanear medio
 procedure TForm_AddCatalogo.DoPasoEscanear();
 begin
-  // Crear el frame si no existe
-  if FFrames[PASO_ESCANEAR] = nil then
-  begin
-    FFrames[PASO_ESCANEAR]        := TFrame_Scan.CreateEx(Self, FScan);
-    FFrames[PASO_ESCANEAR].Parent := Self;
-  end;
-
   DoTitulo(Message_Asistente_Nuevo_Catalogo_Escanear_Medio);
 
   FScanCancelado := false;
 
   // Iniciar el escaneo
-  TFrame_Scan(FFrames[PASO_ESCANEAR]).Iniciar(@DoCancelarScan);
+  Frame_Scan1.Iniciar(@DoCancelarScan, FScan);
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
     {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
@@ -275,6 +260,13 @@ begin
   {$ENDIF}
 end;
 
+// Paso - Escanear cancelar
+procedure TForm_AddCatalogo.DoPasoCancelar();
+begin
+
+  DoTitulo(Message_Asistente_Nuevo_Catalogo_Cancelar);
+end;
+
 // Cuando termina el escaneo correctamente
 procedure TForm_AddCatalogo.DoOnTerminarScanAsync();
 begin
@@ -282,7 +274,10 @@ begin
   if not FScanCancelado then
     DoAccionesAtrasSiguiente(1)
   else
-    DoAccionesAtrasSiguiente(1); //TODO: Llevar al paso de cancelacion
+  begin
+    FPasoActual := PASO_CANCELAR;
+    DoAccionesAtrasSiguiente(0);
+  end;
 
 end;
 

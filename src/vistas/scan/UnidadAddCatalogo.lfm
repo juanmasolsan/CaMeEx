@@ -87,7 +87,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
   end
   object Bevel1: TBevel
     Left = 0
-    Height = 7
+    Height = 3
     Top = 74
     Width = 620
     Align = alTop
@@ -116,5 +116,54 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
+  end
+  object PanelesAsistente: TPageControl
+    Left = 0
+    Height = 400
+    Top = 77
+    Width = 620
+    ActivePage = TabSheet_Scan
+    Align = alClient
+    ParentShowHint = False
+    TabIndex = 1
+    TabOrder = 3
+    TabPosition = tpBottom
+    object TabSheet_Cancelado: TTabSheet
+      Caption = 'Cancelado'
+      ClientHeight = 372
+      ClientWidth = 612
+      inline Frame_Cancelado1: TFrame_Cancelado
+        Height = 372
+        Width = 612
+        ClientHeight = 372
+        ClientWidth = 612
+        inherited Label1: TLabel
+          Width = 519
+        end
+      end
+    end
+    object TabSheet_Scan: TTabSheet
+      Caption = 'Scan'
+      ClientHeight = 372
+      ClientWidth = 612
+      inline Frame_Scan1: TFrame_Scan
+        Height = 372
+        Width = 612
+        ClientHeight = 372
+        ClientWidth = 612
+        inherited Label2: TLabel
+          Width = 458
+        end
+        inherited Bevel1: TBevel
+          Width = 580
+        end
+        inherited SpeedButtonCancelar: TSpeedButton
+          Width = 578
+        end
+        inherited Info_Archivo: TMemo
+          Width = 578
+        end
+      end
+    end
   end
 end

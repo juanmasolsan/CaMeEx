@@ -3,5 +3,7 @@
 {"hash":139052562,"name":"tform_addcatalogo.button_cancelar.caption","sourcebytes":[67,97,110,99,101,108,97,114],"value":"Cancelar"},
 {"hash":76279171,"name":"tform_addcatalogo.button_atras.caption","sourcebytes":[65,116,114,195,161,115],"value":"Atr\u00E1s"},
 {"hash":247462997,"name":"tform_addcatalogo.button_siguiente.caption","sourcebytes":[83,105,103,117,105,101,110,116,101],"value":"Siguiente"},
-{"hash":169053060,"name":"tform_addcatalogo.label_titulo_asistente_add.caption","sourcebytes":[76,97,98,101,108,95,84,105,116,117,108,111,95,65,115,105,115,116,101,110,116,101,95,65,100,100],"value":"Label_Titulo_Asistente_Add"}
+{"hash":169053060,"name":"tform_addcatalogo.label_titulo_asistente_add.caption","sourcebytes":[76,97,98,101,108,95,84,105,116,117,108,111,95,65,115,105,115,116,101,110,116,101,95,65,100,100],"value":"Label_Titulo_Asistente_Add"},
+{"hash":77360687,"name":"tform_addcatalogo.tabsheet_cancelado.caption","sourcebytes":[67,97,110,99,101,108,97,100,111],"value":"Cancelado"},
+{"hash":366974,"name":"tform_addcatalogo.tabsheet_scan.caption","sourcebytes":[83,99,97,110],"value":"Scan"}
 ]}

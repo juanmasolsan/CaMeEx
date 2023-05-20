@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 16:38:40
+ * @Last Modified time: 2023-05-20 22:54:09
  *)
 {
 
@@ -81,7 +81,8 @@ resourcestring
   Message_Asistente_Nuevo_Catalogo_Cerrar    =  'Cerrar';
   Message_Asistente_Nuevo_Catalogo_Guardar   =  'Guardar';
 
-  Message_Asistente_Nuevo_Catalogo_Escanear_Medio =  'Analizando el medio seleccionado ...';
+  Message_Asistente_Nuevo_Catalogo_Cancelar       = 'Se ha cancelado la operación ...';
+  Message_Asistente_Nuevo_Catalogo_Escanear_Medio = 'Analizando el medio seleccionado ...';
 
 
 implementation

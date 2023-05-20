@@ -47,6 +47,14 @@ msgstr ""
 msgid "Label_Titulo_Asistente_Add"
 msgstr ""
 
+#: tform_addcatalogo.tabsheet_cancelado.caption
+msgid "Cancelado"
+msgstr ""
+
+#: tform_addcatalogo.tabsheet_scan.caption
+msgid "Scan"
+msgstr ""
+
 #: tform_principal.arbol.header.columns[0].text
 msgctxt "tform_principal.arbol.header.columns[0].text"
 msgid "Catálogos"
@@ -422,6 +430,10 @@ msgstr ""
 
 #: tframe_atributos.label_fecha_modificado.caption
 msgid "Label_Fecha_Modificado"
+msgstr ""
+
+#: tframe_cancelado.label1.caption
+msgid "El usuario ha cancelado la acción o se ha producido un error inesperado."
 msgstr ""
 
 #: tframe_scan.label1.caption
