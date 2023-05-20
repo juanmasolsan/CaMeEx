@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-21 00:27:13
+ * @Last Modified time: 2023-05-21 00:31:30
  *)
 {
 
@@ -84,15 +84,17 @@ type
     TabSheet_Scan: TTabSheet;
     procedure Button_SiguienteClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure Button_AtrasClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
     { private declarations }
-    FGestorDatos : IConectorDatos;
-    FPasoActual  : longint;
-    FScan        : TMotorScan;
+    FGestorDatos   : IConectorDatos;
+    FPasoActual    : longint;
+    FScan          : TMotorScan;
     FScanCancelado : boolean;
+    FScaneando     : boolean;
   protected
     // Dependiendo del paso actual, se ejecuta una acción u otra
     procedure DoAccionesAtrasSiguiente(direccion : longint);
@@ -210,6 +212,18 @@ begin
   CloseAction := caFree;
 end;
 
+procedure TForm_AddCatalogo.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  // Si está escaneando solicita al usuario que hacer
+  if FScaneando then
+  begin
+    CanClose := false;
+    Frame_Scan1.Cancelar();
+
+  end;
+end;
+
 procedure TForm_AddCatalogo.Button_SiguienteClick(Sender: TObject);
 begin
   // Dependiendo del paso actual, se ejecuta una acción u otra
@@ -243,6 +257,7 @@ begin
   DoTitulo(Message_Asistente_Nuevo_Catalogo_Escanear_Medio);
 
   FScanCancelado := false;
+  FScaneando     := true;
 
   // Iniciar el escaneo
   Frame_Scan1.Iniciar(@DoCancelarScan, FScan);
@@ -270,6 +285,8 @@ end;
 // Cuando termina el escaneo correctamente
 procedure TForm_AddCatalogo.DoOnTerminarScanAsync();
 begin
+  FScaneando := false;
+
   // Dependiendo del paso actual, se ejecuta una acción u otra
   if not FScanCancelado then
     DoAccionesAtrasSiguiente(1)

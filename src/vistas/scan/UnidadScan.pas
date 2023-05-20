@@ -82,6 +82,9 @@ type
     // Indica que se ha terminado el escaneo
     procedure Terminar();
 
+    // Solicita la cancelacion
+    procedure Cancelar();
+
     // Inicia el monitoreo del escaneo
     procedure Iniciar(OnCancelarScan : TOnCancelarScan; ScanActivo : TMotorScan);
 
@@ -138,6 +141,13 @@ procedure TFrame_Scan.Terminar();
 begin
   // Indica que se ha terminado el escaneo
   FTerminar := true;
+end;
+
+// Solicita la cancelacion
+procedure TFrame_Scan.Cancelar();
+begin
+  // Solicita la cancelacion
+  DoCancelar();
 end;
 
 // Cancelar el escaneo

@@ -114,8 +114,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="69"/>
-        <CursorPos Y="82"/>
+        <TopLine Value="63"/>
+        <CursorPos Y="91"/>
         <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -136,9 +136,10 @@
         <ComponentName Value="Form_AddCatalogo"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="142"/>
-        <CursorPos Y="157"/>
+        <TopLine Value="215"/>
+        <CursorPos X="35" Y="237"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -247,10 +248,9 @@
       </Unit>
       <Unit>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="483"/>
-        <CursorPos Y="497"/>
+        <CursorPos X="51" Y="490"/>
         <UsageCount Value="62"/>
         <Loaded Value="True"/>
       </Unit>
@@ -619,18 +619,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="161" TopLine="146"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="153" Column="35" TopLine="146"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="155" Column="35" TopLine="148"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
         <Caret Line="156" Column="35" TopLine="150"/>
       </Position>
       <Position>
@@ -736,6 +724,18 @@
       <Position>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
         <Caret Line="157" TopLine="142"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="158" TopLine="143"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadScan.pas"/>
+        <Caret Line="80" Column="24" TopLine="69"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadScan.pas"/>
+        <Caret Line="145" TopLine="128"/>
       </Position>
     </JumpHistory>
     <RunParams>

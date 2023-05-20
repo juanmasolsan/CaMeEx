@@ -11,6 +11,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
   Constraints.MinHeight = 519
   Constraints.MinWidth = 620
   OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   object Button_Cancelar: TButton
