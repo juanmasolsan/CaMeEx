@@ -1,19 +1,16 @@
-object FormScan: TFormScan
-  Left = 405
+object Frame_Scan: TFrame_Scan
+  Left = 0
   Height = 243
-  Top = 223
+  Top = 0
   Width = 514
-  BorderIcons = [biSystemMenu]
-  Caption = 'Escaneo en progreso ...'
   ClientHeight = 243
   ClientWidth = 514
   Color = clWindow
   Constraints.MinHeight = 243
   Constraints.MinWidth = 514
-  OnClose = FormClose
-  OnCloseQuery = FormCloseQuery
-  OnCreate = FormCreate
-  LCLVersion = '2.2.6.0'
+  ParentBackground = False
+  ParentColor = False
+  TabOrder = 0
   object SpeedButton1: TSpeedButton
     Left = 8
     Height = 78

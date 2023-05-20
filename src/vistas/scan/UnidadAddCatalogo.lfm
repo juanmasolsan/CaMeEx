@@ -30,6 +30,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Atrás'
+    Enabled = False
     OnClick = Button_AtrasClick
     TabOrder = 1
   end

@@ -1,4 +1,5 @@
 
+- [NEW]   (20230520) Agregado al asistente de añadir nuevo catalogo : Funcionalidad básica atras/siguiente
 - [FIX]   (20230520) Eliminado warnings, hints y notes del código.
 - [NEW]   (20230520) Agregado formulario básico para añadir nuevos catalogos
 - [FIX]   (20230520) Corregido color de fondo del Frame de atributos en el formulario de propiedades.

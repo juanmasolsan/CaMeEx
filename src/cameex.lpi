@@ -121,8 +121,9 @@
       <Unit>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="FormScan"/>
-        <ResourceBaseClass Value="Form"/>
+        <ComponentName Value="Frame_Scan"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\about\Control_About.pas"/>

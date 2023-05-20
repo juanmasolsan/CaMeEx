@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 13:51:35
+ * @Last Modified time: 2023-05-20 16:09:17
  *)
 {
 
@@ -76,6 +76,10 @@ resourcestring
   Message_Contiene       =  '%s Archivos y %s Carpetas ';
 
 
+  Message_Asistente_Nuevo_Catalogo_titulo    =  'Añadir nuevo catalogo';
+  Message_Asistente_Nuevo_Catalogo_Siguiente =  'Siguiente';
+  Message_Asistente_Nuevo_Catalogo_Cerrar    =  'Cerrar';
+  Message_Asistente_Nuevo_Catalogo_Guardar   =  'Guardar';
 
 implementation
 

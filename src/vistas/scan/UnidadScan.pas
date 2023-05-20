@@ -45,9 +45,9 @@ uses
 
 type
 
-  { TFormScan }
+  { TFrame_Scan }
 
-  TFormScan = class(TForm)
+  TFrame_Scan = class(TFrame)
     Bevel1: TBevel;
     ImageListSpinner: TImageList;
     Label1: TLabel;
@@ -88,7 +88,7 @@ type
   end;
 
 var
-  FormScan: TFormScan;
+  FrameScan: TFrame_Scan;
 
 implementation
 
@@ -99,8 +99,8 @@ uses
 
 {$R *.lfm}
 
-{ TFormScan }
-constructor TFormScan.CreateEx(TheOwner: TComponent; ScanActivo : TMotorScan);
+{ TFrame_Scan }
+constructor TFrame_Scan.CreateEx(TheOwner: TComponent; ScanActivo : TMotorScan);
 begin
   // Asigna el motor de escaneo activo
   FScanActivo      := ScanActivo;
@@ -116,10 +116,10 @@ begin
 end;
 
 
-procedure TFormScan.FormCreate(Sender: TObject);
+procedure TFrame_Scan.FormCreate(Sender: TObject);
 begin
   // Opciones avanzadas
-  ActivarGuardadoPosicion;
+  //ActivarGuardadoPosicion;
 
   // Inicializar el contador interno para la animación
   TimerAnimacion.interval := 100;
@@ -132,32 +132,32 @@ begin
   TimerUpdateUI.Enabled   := True;
 end;
 
-procedure TFormScan.SpeedButtonCancelarClick(Sender: TObject);
+procedure TFrame_Scan.SpeedButtonCancelarClick(Sender: TObject);
 begin
   // Cancela el escaneo
   DoCancelar();
 end;
 
-procedure TFormScan.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+procedure TFrame_Scan.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if FTerminar then exit;
   CanClose := DoCancelar();
 end;
 
-procedure TFormScan.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TFrame_Scan.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   CloseAction := TCloseAction.caFree;
 end;
 
 
-procedure TFormScan.TimerAnimacionTimer(Sender: TObject);
+procedure TFrame_Scan.TimerAnimacionTimer(Sender: TObject);
 begin
   // Actualiza el índice de la imagen de la animación
   SpeedButton1.ImageIndex := (SpeedButton1.ImageIndex + 1) mod FAnimacionFrames;
   Application.ProcessMessages;
 end;
 
-procedure TFormScan.TimerUpdateUITimer(Sender: TObject);
+procedure TFrame_Scan.TimerUpdateUITimer(Sender: TObject);
 begin
   // Si se ha marcado para cerrar que no actualice nada
   if FTerminar then exit;
@@ -175,20 +175,20 @@ begin
 end;
 
 
-procedure TFormScan.Terminar();
+procedure TFrame_Scan.Terminar();
 begin
   // Indica que se ha terminado el escaneo
   FTerminar := true;
 
   // Cierra el formulario
-  close();
+  //close();
 end;
 
 // Cancelar el escaneo
-function TFormScan.DoCancelar() : boolean;
+function TFrame_Scan.DoCancelar() : boolean;
 begin
   // Pregunta si realmente quiere cancelar el escaneo
-  Result := IsMessageBoxInfo(Message_DLG_Cancelar_escaneo, Message_Atencion);
+//  Result := IsMessageBoxInfo(Message_DLG_Cancelar_escaneo, Message_Atencion);
 
   if Result then
   begin

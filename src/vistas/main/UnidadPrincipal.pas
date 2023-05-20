@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 13:49:57
+ * @Last Modified time: 2023-05-20 16:18:39
  *)
 {
 
@@ -58,7 +58,6 @@ uses
   , Control_Logger
   , Control_Formulario_Avanzado
   , MotorScan
-  , UnidadScan
   , InterfaceConectorDatos
   , ItemBaseDatos
   , ItemDato, ItemCatalogo, VirtualTreesExtras, ImgList;
@@ -221,7 +220,7 @@ type
     procedure Timer_UpdateUITimer(Sender: TObject);
   private
     FScan            : TMotorScan;
-    FVentanaScan     : TFormScan;
+//    FVentanaScan     : TFormScan;
     FGestorDatos     : IConectorDatos;
     FListaCatalogos  : TArrayItemDato;
     FListaArchivos   : TArrayItemDato;
@@ -1292,7 +1291,7 @@ procedure TForm_Principal.DoOnTerminarScanAsync();
 var
   Inicio   : TDateTime;
 begin
-
+(*
   if assigned(FVentanaScan) then
   begin
     // Indica que ya termino el escaneo
@@ -1358,6 +1357,7 @@ begin
 
   // Cargar Lista
   DoLoadListaCatalogos();
+*)
 end;
 
 procedure TForm_Principal.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
