@@ -30,7 +30,7 @@ SOFTWARE.
 
 }
 
-{$i ./DirectivasCompilacion.inc}
+{$i ../../DirectivasCompilacion.inc}
 
 
 unit UnidadPrincipal;
@@ -79,9 +79,9 @@ type
 
 
 
-  { TForm1 }
+  { TForm_Principal }
 
-  TForm1 = class(TForm)
+  TForm_Principal = class(TForm)
     Arbol: TLazVirtualStringTree;
     Button1: TButton;
     Button2: TButton;
@@ -365,7 +365,7 @@ type
 
 
 var
-  Form1: TForm1;
+  Form_Principal: TForm_Principal;
 
 
 implementation
@@ -409,8 +409,8 @@ begin
       Result := Extra;
 end;
 
-{ TForm1 }
-procedure TForm1.FormCreate(Sender: TObject);
+{ TForm_Principal }
+procedure TForm_Principal.FormCreate(Sender: TObject);
 begin
   Caption                 := Get_Titulo_Ventana(true, '', true);
   Application.Title       := Get_Titulo_Ventana(true, '', false);
@@ -472,7 +472,7 @@ begin
   application.QueueAsyncCall(@DoLoadListaCatalogosAsync, 0);
 end;
 
-procedure TForm1.FormDestroy(Sender: TObject);
+procedure TForm_Principal.FormDestroy(Sender: TObject);
 begin
   // Libera la asignación de memoria
   DoLiberarListaArchivos();
@@ -498,13 +498,13 @@ begin
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 end;
 
-procedure TForm1.ListaAfterItemErase(Sender: TBaseVirtualTree;
+procedure TForm_Principal.ListaAfterItemErase(Sender: TBaseVirtualTree;
   TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
 begin
   DoDibujarSeleccionModerna(Sender, TargetCanvas, Node, ItemRect);
 end;
 
-procedure TForm1.ListaBeforeCellPaint(Sender: TBaseVirtualTree;
+procedure TForm_Principal.ListaBeforeCellPaint(Sender: TBaseVirtualTree;
   TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
   CellPaintMode: TVTCellPaintMode; CellRect: TRect; var ContentRect: TRect);
 begin
@@ -519,7 +519,7 @@ begin
 end;
 
 // Carga la configuración del programa
-procedure TForm1.DoConfiguracionLoad();
+procedure TForm_Principal.DoConfiguracionLoad();
 begin
   // Carga la configuración de las columnas y el orden
   FColumnnaOrden           := ArchivoConfiguracion.ReadInteger('Config', 'ColumnnaOrden', FColumnnaOrden);
@@ -565,7 +565,7 @@ begin
 end;
 
 // Guarda la configuración del programa
-procedure TForm1.DoConfiguracionSave();
+procedure TForm_Principal.DoConfiguracionSave();
 begin
   // Guarda la configuración de las columnas y el orden
   ArchivoConfiguracion.WriteInteger('Config', 'ColumnnaOrden', FColumnnaOrden);
@@ -614,7 +614,7 @@ begin
 end;
 
 // Aplica la configuración del programa
-procedure TForm1.DoConfiguracionAplicar();
+procedure TForm_Principal.DoConfiguracionAplicar();
 begin
   if FAplicandoConfig then exit;
   FAplicandoConfig := true;
@@ -677,7 +677,7 @@ begin
 end;
 
 // Inicializa el header de la lista de archivos
-procedure TForm1.DoHeader_Iniciar(MenuHeader : boolean = true; CargarConfig : boolean = false);
+procedure TForm_Principal.DoHeader_Iniciar(MenuHeader : boolean = true; CargarConfig : boolean = false);
 var
   t, total     : integer;
 begin
@@ -700,7 +700,7 @@ begin
 end;
 
 // Evento de hacer click en emenú contextual del header de la lista de archivos
-procedure TForm1.DoHeader_MenuColumnasClick(Sender: TObject);
+procedure TForm_Principal.DoHeader_MenuColumnasClick(Sender: TObject);
 begin
   if TMenuItem(Pointer(@Sender)^).Tag = -1 then exit;
   TMenuItem(Pointer(@Sender)^).Checked := not TMenuItem(Pointer(@Sender)^).Checked;
@@ -708,20 +708,20 @@ begin
 end;
 
 // Pone una columna como visible o no
-procedure TForm1.DoHeader_IsVisible(Id : integer; IsHeaderVisible : Boolean);
+procedure TForm_Principal.DoHeader_IsVisible(Id : integer; IsHeaderVisible : Boolean);
 begin
   FConfiguracionColumnas.Datos[Id].IsVisible := IsHeaderVisible;
   DoHeader_Update;
 end;
 
 // Actualiza el header de la lista de archivos
-procedure TForm1.DoHeader_Update;
+procedure TForm_Principal.DoHeader_Update;
 begin
   HeaderVirtualTrees_Set(Lista, FConfiguracionColumnas);
 end;
 
 // Compara dos nodos de la lista de archivos
-procedure TForm1.ListaCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+procedure TForm_Principal.ListaCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
 var
   Data_1       : PrListaData;
   Data_2       : PrListaData;
@@ -756,13 +756,13 @@ begin
     Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, COLUMNA_TIPO, 0, true);
 end;
 
-procedure TForm1.ListaDblClick(Sender: TObject);
+procedure TForm_Principal.ListaDblClick(Sender: TObject);
 begin
   DoNavegarElementoLista();
 end;
 
 // Obtiene el index de la imagen a usar el el nodo
-procedure TForm1.ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+procedure TForm_Principal.ListaGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
 var
   NodeData: PrListaData;
   Datos: TItemDato;
@@ -786,7 +786,7 @@ begin
 end;
 
 // Devuelve la ruta de un item
-function TForm1.GetRutaFromItem(Item: TItemDato) : RawByteString;
+function TForm_Principal.GetRutaFromItem(Item: TItemDato) : RawByteString;
 begin
   Result := '';
   if Item <> nil then
@@ -798,7 +798,7 @@ begin
   end;
 end;
 
-procedure TForm1.ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+procedure TForm_Principal.ListaGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
 var
   NodeData: PrListaData;
   Datos: TItemDato;
@@ -832,7 +832,7 @@ begin
   end;
 end;
 
-procedure TForm1.ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
+procedure TForm_Principal.ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
 begin
   // Guarda las opciones de columna y orden en sus variables
   FColumnnaOrden           := HitInfo.Column;
@@ -846,7 +846,7 @@ begin
   Lista.SortTree(Lista.Header.SortColumn, Lista.Header.SortDirection);
 end;
 
-procedure TForm1.ListaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TForm_Principal.ListaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 var
   Node: PVirtualNode;
 begin
@@ -870,7 +870,7 @@ begin
   end;
 end;
 
-procedure TForm1.ListaPaintText(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType);
+procedure TForm_Principal.ListaPaintText(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType);
 var
   NodeData: PrListaData;
   Datos   : TItemDato;
@@ -899,7 +899,7 @@ begin
   end;
 end;
 
-procedure TForm1.ListaResize(Sender: TObject);
+procedure TForm_Principal.ListaResize(Sender: TObject);
 begin
 
   // Evita que se ejecute el evento si se esta redimensionando la lista
@@ -920,14 +920,14 @@ begin
   end;
 end;
 
-procedure TForm1.MenuItemAgregarCatalogoClick(Sender: TObject);
+procedure TForm_Principal.MenuItemAgregarCatalogoClick(Sender: TObject);
 begin
   // Lanza la acción agregar un nuevo catalogo
   DoAddNuevoCatalogo();
 end;
 
 // Reajusta el tamaño de la última columna
-procedure TForm1.DoResizeControlDatos(Sender: TLazVirtualStringTree);
+procedure TForm_Principal.DoResizeControlDatos(Sender: TLazVirtualStringTree);
 var
   Columna   : TVirtualTreeColumn;
   t, total  : longint;
@@ -960,7 +960,7 @@ begin
 end;
 
 
-procedure TForm1.DoLiberarListaArchivos();
+procedure TForm_Principal.DoLiberarListaArchivos();
 begin
   // Libera la asignación de memoria
   if assigned(FListaArchivos) then
@@ -971,7 +971,7 @@ begin
   end;
 end;
 
-procedure TForm1.DoLiberarListaCatalogos();
+procedure TForm_Principal.DoLiberarListaCatalogos();
 begin
   // Libera la asignación de memoria
   if assigned(FListaCatalogos) then
@@ -983,7 +983,7 @@ begin
 end;
 
 
-procedure TForm1.DoLiberarListaDirectorios(Full: boolean);
+procedure TForm_Principal.DoLiberarListaDirectorios(Full: boolean);
 begin
   // Libera la asignación de memoria
   if assigned(FListaDirectorios) then
@@ -997,40 +997,40 @@ begin
   end;
 end;
 
-procedure TForm1.MenuItemAcercaDeClick(Sender: TObject);
+procedure TForm_Principal.MenuItemAcercaDeClick(Sender: TObject);
 begin
   Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
 end;
 
-procedure TForm1.MenuItemBusquedaAvanzadaClick(Sender: TObject);
+procedure TForm_Principal.MenuItemBusquedaAvanzadaClick(Sender: TObject);
 begin
   // Lanza la búsqueda avanzada
   DoBusquedaAvanzada();
 end;
 
-procedure TForm1.MenuItemEliminarClick(Sender: TObject);
+procedure TForm_Principal.MenuItemEliminarClick(Sender: TObject);
 begin
   // Lanza la accion sobre el item seleccionado
   DoAccionItem(Sender, true);
 end;
 
-procedure TForm1.MenuItemNuevaBaseDatosClick(Sender: TObject);
+procedure TForm_Principal.MenuItemNuevaBaseDatosClick(Sender: TObject);
 begin
     DoEliminarItem(Arbol, FNodeArbolRaiz, true, true);
 end;
 
-procedure TForm1.MenuItemPropiedadesClick(Sender: TObject);
+procedure TForm_Principal.MenuItemPropiedadesClick(Sender: TObject);
 begin
   // Lanza la accion sobre el item seleccionado
   DoAccionItem(Sender, false);
 end;
 
-procedure TForm1.MenuItemSalirClick(Sender: TObject);
+procedure TForm_Principal.MenuItemSalirClick(Sender: TObject);
 begin
   close;
 end;
 
-procedure TForm1.MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(
+procedure TForm_Principal.MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(
   Sender: TObject);
 begin
   if FAplicandoConfig then exit;
@@ -1039,7 +1039,7 @@ begin
   DoConfiguracionAplicar();
 end;
 
-procedure TForm1.MenuItem_Arbol_Catalogos_Ver_Lineas_PunteadasClick(
+procedure TForm_Principal.MenuItem_Arbol_Catalogos_Ver_Lineas_PunteadasClick(
   Sender: TObject);
 begin
   if FAplicandoConfig then exit;
@@ -1048,7 +1048,7 @@ begin
   DoConfiguracionAplicar();
 end;
 
-procedure TForm1.MenuItem_Arbol_Catalogo_Botones_ModernosClick(Sender: TObject);
+procedure TForm_Principal.MenuItem_Arbol_Catalogo_Botones_ModernosClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FVerBotonesArbolModernos     := MenuItem_Arbol_Catalogo_Botones_Modernos.Checked;
@@ -1056,7 +1056,7 @@ begin
   DoConfiguracionAplicar();
 end;
 
-procedure TForm1.MenuItem_Arbol_Catalogo_Ver_LineasClick(Sender: TObject);
+procedure TForm_Principal.MenuItem_Arbol_Catalogo_Ver_LineasClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FVerLineasArbol          := MenuItem_Arbol_Catalogo_Ver_Lineas.Checked;
@@ -1064,7 +1064,7 @@ begin
   DoConfiguracionAplicar();
 end;
 
-procedure TForm1.MenuItem_Catalogos_colorClick(Sender: TObject);
+procedure TForm_Principal.MenuItem_Catalogos_colorClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FUsarColoresCatalogos := MenuItem_Catalogos_color.Checked;
@@ -1075,7 +1075,7 @@ begin
   Arbol.Refresh;
 end;
 
-procedure TForm1.MenuItem_Catalogos_Mostrar_Info_extraClick(Sender: TObject);
+procedure TForm_Principal.MenuItem_Catalogos_Mostrar_Info_extraClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FExtraInfoCatalogos := MenuItem_Catalogos_Mostrar_Info_extra.Checked;
@@ -1085,7 +1085,7 @@ begin
   Arbol.Repaint;
 end;
 
-procedure TForm1.MenuItem_Iconos_PorDefectoClick(Sender: TObject);
+procedure TForm_Principal.MenuItem_Iconos_PorDefectoClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FFormatoIconos := TFormatoIconos(TMenuItem(Pointer(@Sender)^).Tag);
@@ -1093,7 +1093,7 @@ begin
   Arbol.Refresh;
 end;
 
-procedure TForm1.MenuItem_Lista_de_Archivos_Resaltar_Columna_OrdenClick(
+procedure TForm_Principal.MenuItem_Lista_de_Archivos_Resaltar_Columna_OrdenClick(
   Sender: TObject);
 begin
   if FAplicandoConfig then exit;
@@ -1102,7 +1102,7 @@ begin
   DoConfiguracionAplicar();
 end;
 
-procedure TForm1.MenuItem_Perfil_MixtoClick(Sender: TObject);
+procedure TForm_Principal.MenuItem_Perfil_MixtoClick(Sender: TObject);
 begin
   case TMenuItem(Pointer(@Sender)^).Tag of
     PERFIL_DEFECTO  :  begin
@@ -1163,7 +1163,7 @@ begin
 
 end;
 
-procedure TForm1.MenuItem_Size_NormalClick(Sender: TObject);
+procedure TForm_Principal.MenuItem_Size_NormalClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FFormatoSize := TFormatoSize(TMenuItem(Pointer(@Sender)^).Tag);
@@ -1171,7 +1171,7 @@ begin
   Arbol.Refresh;
 end;
 
-procedure TForm1.MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
+procedure TForm_Principal.MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FUsarColorDiferenciarArchivos := MenuItem_Ver_Colores_Atributos.Checked;
@@ -1179,13 +1179,13 @@ begin
   DoConfiguracionAplicar();
 end;
 
-procedure TForm1.PanelInferiorResize(Sender: TObject);
+procedure TForm_Principal.PanelInferiorResize(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FLogAlto := PanelInferior.Height;
 end;
 
-procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TForm_Principal.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if assigned(FScan) then
   begin
@@ -1201,12 +1201,12 @@ begin
 end;
 
 
-procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+procedure TForm_Principal.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   //
 end;
 
-procedure TForm1.Timer1Timer(Sender: TObject);
+procedure TForm_Principal.Timer1Timer(Sender: TObject);
 begin
 Timer1.Enabled := false;
   if assigned(FScan) then
@@ -1215,7 +1215,7 @@ Timer1.Enabled := false;
   end;
 end;
 
-procedure TForm1.Timer_UpdateUITimer(Sender: TObject);
+procedure TForm_Principal.Timer_UpdateUITimer(Sender: TObject);
 
 var
   isArbolSelecionado : boolean = false;
@@ -1269,7 +1269,7 @@ begin
   MenuPopUpItemPropiedades.Enabled := MenuItemPropiedades.Enabled;
 end;
 
-procedure TForm1.DoOnTerminarScanAsync();
+procedure TForm_Principal.DoOnTerminarScanAsync();
 
   procedure ProcesarHijo(Ruta: string; Item : TItemDato);
   var
@@ -1361,7 +1361,7 @@ begin
   DoLoadListaCatalogos();
 end;
 
-procedure TForm1.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
+procedure TForm_Principal.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
 
   procedure ProcesarHijo(Item : TItemDato);
   var
@@ -1446,7 +1446,7 @@ begin
   end;
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm_Principal.Button1Click(Sender: TObject);
 var
   tiempo : qword;
 begin
@@ -1487,7 +1487,7 @@ exit;
   SalidaLog.lines.Add(Message_Tiempo_Empleado + ' ' + IntToStr(tiempo) + ' ms.');
 end;
 
-procedure TForm1.ArbolResize(Sender: TObject);
+procedure TForm_Principal.ArbolResize(Sender: TObject);
 begin
   // Reajusta el tamaño de la última columna
   DoResizeControlDatos(arbol);
@@ -1496,7 +1496,7 @@ begin
   FArbolAncho := Arbol.Width;
 end;
 
-procedure TForm1.ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode;
+procedure TForm_Principal.ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode;
   var Allowed: Boolean);
 var
   NodeData: PrListaData;
@@ -1523,7 +1523,7 @@ begin
 
 end;
 
-procedure TForm1.ArbolGetImageIndexEx(Sender: TBaseVirtualTree;
+procedure TForm_Principal.ArbolGetImageIndexEx(Sender: TBaseVirtualTree;
   Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
   var Ghosted: Boolean; var ImageIndex: Integer; var ImageList: TCustomImageList
   );
@@ -1539,7 +1539,7 @@ begin
   ListaGetImageIndex(Sender, Node, Kind, Column, Ghosted, ImageIndex);
 end;
 
-procedure TForm1.ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+procedure TForm_Principal.ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
   );
 var
   Node: PVirtualNode;
@@ -1565,7 +1565,7 @@ begin
   end;
 end;
 
-procedure TForm1.ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
+procedure TForm_Principal.ArbolChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
   NodeData: PrListaData;
   Datos: TItemDato;
@@ -1604,7 +1604,7 @@ begin
   end;
 end;
 
-procedure TForm1.ArbolDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas;
+procedure TForm_Principal.ArbolDrawText(Sender: TBaseVirtualTree; TargetCanvas: TCanvas;
   Node: PVirtualNode; Column: TColumnIndex; const CellText: String;
   const CellRect: TRect; var DefaultDraw: Boolean);
 var
@@ -1686,7 +1686,7 @@ begin
 
 end;
 
-procedure TForm1.ArbolBeforeItemErase(Sender: TBaseVirtualTree;
+procedure TForm_Principal.ArbolBeforeItemErase(Sender: TBaseVirtualTree;
   TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect;
   var ItemColor: TColor; var EraseAction: TItemEraseAction);
 var
@@ -1709,7 +1709,7 @@ begin
     end;
 end;
 
-procedure TForm1.DoLoadListaArchivos(Padre : TItemDato);
+procedure TForm_Principal.DoLoadListaArchivos(Padre : TItemDato);
 var
   t, total      : integer;
   TotalDir      : integer = 0;
@@ -1776,7 +1776,7 @@ begin
 end;
 
 
-procedure TForm1.DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
+procedure TForm_Principal.DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
 
   function GetTipoNode(Node : PVirtualNode) : TItemDatoTipo;
   var
@@ -1820,7 +1820,7 @@ begin
 end;
 
 
-procedure TForm1.DoLoadListaCatalogos();
+procedure TForm_Principal.DoLoadListaCatalogos();
 var
   t, total      : integer;
 begin
@@ -1869,7 +1869,7 @@ begin
   end;
 end;
 
-function TForm1.AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo; TipoNode : TItemDatoTipo): boolean;
+function TForm_Principal.AddNode(Sender: TBaseVirtualTree; Dato: TItemDato; Padre : PVirtualNode; TieneHijos : boolean; TipoCatalogo : TItemDatoTipo; TipoNode : TItemDatoTipo): boolean;
 var
   Node   : PVirtualNode;
   Data   : PrListaData;
@@ -1891,7 +1891,7 @@ begin
 end;
 
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TForm_Principal.Button2Click(Sender: TObject);
 var
   CatalogoActual : TItemCatalogo;
   tiempo : qword;
@@ -1926,7 +1926,7 @@ end;
 
 
 // Usa blend para dibujar la selección o el hover
-procedure TForm1.DoDibujarSeleccionModerna(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect; NivelBlend : longint = 90);
+procedure TForm_Principal.DoDibujarSeleccionModerna(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect; NivelBlend : longint = 90);
 var
   _Color_Highlight : TColor;
   _Color_BtnShadow : TColor;
@@ -1952,7 +1952,7 @@ begin
 end;
 
 // Aplica color a los textos de los nodos dependiendo de su estado
-procedure TForm1.DoSetColor_Texto(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode);
+procedure TForm_Principal.DoSetColor_Texto(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode);
 begin
   TargetCanvas.Font.Color := FForzarColorTexto_Normal;
 
@@ -1973,7 +1973,7 @@ begin
 end;
 
 // Aplica color a los textos de los nodos dependiendo de los atributos del item
-procedure TForm1.DoColorear_Dependiendo_De_Los_Atributos(Data : TItemDato; NCanvas : TCanvas);
+procedure TForm_Principal.DoColorear_Dependiendo_De_Los_Atributos(Data : TItemDato; NCanvas : TCanvas);
 begin
   if not FUsarColorDiferenciarArchivos then exit;
 
@@ -1990,7 +1990,7 @@ begin
 end;
 
 // Navegación por los directorios de la lista de archivos
-procedure TForm1.DoNavegarElementoLista();
+procedure TForm_Principal.DoNavegarElementoLista();
 var
   NodeData: PrListaData;
   Datos   : TItemDato;
@@ -2016,7 +2016,7 @@ begin
   end;
 end;
 
-procedure TForm1.DoLoadListaArchivosAsync({%H-}Data: PtrInt);
+procedure TForm_Principal.DoLoadListaArchivosAsync({%H-}Data: PtrInt);
 begin
   try
     FTempPadre.Id         := FPadreID;
@@ -2029,14 +2029,14 @@ begin
 end;
 
 
-procedure TForm1.DoLoadListaCatalogosAsync({%H-}Data: PtrInt);
+procedure TForm_Principal.DoLoadListaCatalogosAsync({%H-}Data: PtrInt);
 begin
   // Cargar Lista
   DoLoadListaCatalogos();
 end;
 
 // Sincroniza el arbol con la vista de la lista de directorios
-procedure TForm1.DoSincronizarListaArbol();
+procedure TForm_Principal.DoSincronizarListaArbol();
 var
   NodeData: PrListaData;
   Datos: TItemDato;
@@ -2091,7 +2091,7 @@ begin
 end;
 
 // Marca todos los nodos que esté en la ruta seleccionada
-procedure TForm1.DoMarcarRutaActual(Node: PVirtualNode);
+procedure TForm_Principal.DoMarcarRutaActual(Node: PVirtualNode);
 
   procedure AsignarRutaSeleccionada(Nodo: PVirtualNode; valor : boolean);
   var
@@ -2169,7 +2169,7 @@ begin
 end;
 
 // Crea el nodo raiz del arbol
-procedure TForm1.DoCrearNodoRootArbol();
+procedure TForm_Principal.DoCrearNodoRootArbol();
 var
   Data           : PrListaData;
 begin
@@ -2192,7 +2192,7 @@ begin
 end;
 
 // Libera el nodo raiz del arbol
-procedure TForm1.DoLiberarNodoRootArbol();
+procedure TForm_Principal.DoLiberarNodoRootArbol();
 begin
   if Assigned(FNodeArbolRaiz) then
     Arbol.RemoveFromSelection(FNodeArbolRaiz);
@@ -2202,7 +2202,7 @@ begin
 end;
 
 // Muestra Información del directorio actual
-procedure TForm1.DoEstadisticas(Columna : longint; Texto : string);
+procedure TForm_Principal.DoEstadisticas(Columna : longint; Texto : string);
 begin
   if Barra_Estado.Panels.Count > 0 then
     Barra_Estado.Panels[Columna].Text := Texto
@@ -2211,7 +2211,7 @@ begin
 end;
 
 // Ajusta el alto dependiendo si se debe o no mostrar la info de los catalogos
-procedure Tform1.DoAjustarNodosCatalogos();
+procedure TForm_Principal.DoAjustarNodosCatalogos();
 
   procedure AjustarNodo(Node : PVirtualNode);
   var
@@ -2247,7 +2247,7 @@ begin
 end;
 
 // Elimina un item del arbol/lista
-function Tform1.DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
+function TForm_Principal.DoEliminarItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
 var
   NodeData  : PrListaData;
   NodePadre : PVirtualNode;
@@ -2396,7 +2396,7 @@ end;
 
 
 // Muestra las propiedades de un item del arbol/lista
-function Tform1.DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
+function TForm_Principal.DoPropiedadesItem(Sender: TLazVirtualStringTree; Node: PVirtualNode; IsDesdeArbol : boolean; Forzar : boolean = false) : boolean;
 var
   Temp_Form_Propiedades : TForm_Propiedades;
   NodeData: PrListaData;
@@ -2419,7 +2419,7 @@ end;
 
 
 // Confirma si se debe eliminar todos los catalogos
-function Tform1.DoConfirmarEliminarTodo() : boolean;
+function TForm_Principal.DoConfirmarEliminarTodo() : boolean;
 begin
   result := IsMessageBoxWarning(Format(Message_Eliminar_All_Catalogos, [1]), Message_Atencion);
   if result then
@@ -2428,21 +2428,21 @@ begin
 end;
 
 // Confirma si se debe eliminar el catalogo seleccionado
-function Tform1.DoConfirmarEliminarCatalogo(Catalogo : TItemCatalogo) : boolean;
+function TForm_Principal.DoConfirmarEliminarCatalogo(Catalogo : TItemCatalogo) : boolean;
 begin
   // Pregunta si realmente quiere borrar los datos
   Result := IsMessageBoxWarning(Message_Eliminar_Catalogo, Message_Atencion);
 end;
 
 // Confirma si se debe eliminar los datos seleccionados
-function Tform1.DoConfirmarEliminarDatos() : boolean;
+function TForm_Principal.DoConfirmarEliminarDatos() : boolean;
 begin
   // Pregunta si realmente quiere borrar los datos
   Result := IsMessageBoxWarning(Message_Eliminar_Datos, Message_Atencion);
 end;
 
 // Actualiza el nodo raiz con el total de datos
-procedure Tform1.DoUpdateDatosNodoRaiz();
+procedure TForm_Principal.DoUpdateDatosNodoRaiz();
 var
   total, t : integer;
 begin
@@ -2468,7 +2468,7 @@ end;
 
 
 // Oculta/Elimina los nodos que encuentre iguales a al Item que se le pasa
-procedure Tform1.DoEliminarItemArbol(Item : TItemDato);
+procedure TForm_Principal.DoEliminarItemArbol(Item : TItemDato);
 
   procedure AjustarNodo(Node : PVirtualNode);
   var
@@ -2507,7 +2507,7 @@ begin
 end;
 
 // Muestra el formulario de carga
-procedure Tform1.DoFormLoadingShow(MensajeTitulo : string; MensajeNormal : string);
+procedure TForm_Principal.DoFormLoadingShow(MensajeTitulo : string; MensajeNormal : string);
 begin
   // Desactiva los controles del formulario principal
   DoActivarShowModal(False);
@@ -2520,7 +2520,7 @@ begin
 end;
 
 // Oculta el formulario de carga
-procedure Tform1.DoFormLoadingHide();
+procedure TForm_Principal.DoFormLoadingHide();
 begin
   // Activa los controles del formulario principal
   DoActivarShowModal(true);
@@ -2530,7 +2530,7 @@ begin
 end;
 
 // Activa o desactiva los controles
-procedure Tform1.DoActivarShowModal(activar : boolean);
+procedure TForm_Principal.DoActivarShowModal(activar : boolean);
 begin
   // Desactiva/Activa los menús
   MenuItemArchivo.Enabled := activar;
@@ -2551,7 +2551,7 @@ begin
 end;
 
 // Para gestionar las acciones de los menús sobre los items
-procedure TForm1.DoAccionItem(Sender: TObject; isEliminar : boolean);
+procedure TForm_Principal.DoAccionItem(Sender: TObject; isEliminar : boolean);
 var
   Node              : PVirtualNode;
   listado           : TLazVirtualStringTree;
@@ -2574,7 +2574,7 @@ begin
 end;
 
 // Lanza la búsqueda avanzada
-procedure TForm1.DoBusquedaAvanzada();
+procedure TForm_Principal.DoBusquedaAvanzada();
 begin
   //TODO: implementar busqueda avanzada
   beep;
@@ -2587,7 +2587,7 @@ end;
 
 
 // Lanza la acción agregar un nuevo catalogo
-procedure TForm1.DoAddNuevoCatalogo();
+procedure TForm_Principal.DoAddNuevoCatalogo();
 begin
 
   FVentanaScan := TFormScan.CreateEx(self, FScan);

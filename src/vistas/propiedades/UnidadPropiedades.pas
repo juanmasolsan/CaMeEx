@@ -217,8 +217,8 @@ var
 
     if ImageIndexSistema <> - 1 then
     begin
-      Form1.ImageListArchivos32.GetBitmap(ImageIndexSistema, Image_Archivo.Picture.Bitmap);
-      Form1.ImageListArchivos.GetIcon(ImageIndexSistema, Icon);
+      Form_Principal.ImageListArchivos32.GetBitmap(ImageIndexSistema, Image_Archivo.Picture.Bitmap);
+      Form_Principal.ImageListArchivos.GetIcon(ImageIndexSistema, Icon);
     end;
 
     Edit_Nombre.Text := Item.Nombre;
@@ -360,7 +360,7 @@ begin
           FAtributos.MostrarDatos(Catalogo);
 
           // Actualiza el arbol
-          Form1.Arbol.Repaint;
+          Form_Principal.Arbol.Repaint;
 
         except
         end;

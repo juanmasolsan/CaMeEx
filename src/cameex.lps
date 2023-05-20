@@ -75,12 +75,12 @@
       <Unit>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="Form_Principal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="360"/>
-        <CursorPos X="5" Y="376"/>
+        <TopLine Value="77"/>
+        <CursorPos X="18" Y="84"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -90,9 +90,8 @@
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormLoading"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
@@ -100,30 +99,28 @@
         <ComponentName Value="Form_Propiedades"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="31"/>
-        <CursorPos X="54" Y="11"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="340"/>
+        <CursorPos X="25" Y="363"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadAtributos.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Frame_Atributos"/>
         <ResourceBaseClass Value="Frame"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormScan"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadPrincipal.pas"/>
@@ -566,15 +563,14 @@
         <Filename Value="vistas\about\Control_About.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form_About"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="11"/>
-        <CursorPos X="58" Y="24"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="25" Y="12"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="18">
+    <JumpHistory HistoryIndex="20">
       <Position>
         <Filename Value="historia.txt"/>
         <Caret Line="14" Column="77"/>
@@ -648,8 +644,16 @@
         <Caret Line="17" Column="83"/>
       </Position>
       <Position>
-        <Filename Value="vistas\about\Control_About.pas"/>
-        <Caret Line="11" Column="43"/>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="372" Column="55" TopLine="360"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="31" Column="46" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
+        <Caret Line="220" Column="7" TopLine="204"/>
       </Position>
     </JumpHistory>
     <RunParams>

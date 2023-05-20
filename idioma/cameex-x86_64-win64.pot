@@ -1,237 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-#: tform1.arbol.header.columns[0].text
-msgid "Catálogos"
-msgstr ""
-
-#: tform1.barra_herramientas.caption
-msgid "Barra_Herramientas"
-msgstr ""
-
-#: tform1.button1.caption
-msgid "Cargar Catalogos"
-msgstr ""
-
-#: tform1.button2.caption
-msgid "Cargar Lista"
-msgstr ""
-
-#: tform1.caption
-msgid "Form1"
-msgstr ""
-
-#: tform1.lista.header.columns[0].text
-msgid "Nombre"
-msgstr ""
-
-#: tform1.lista.header.columns[1].text
-msgid "Tamaño"
-msgstr ""
-
-#: tform1.lista.header.columns[2].text
-msgid "Tipo"
-msgstr ""
-
-#: tform1.lista.header.columns[3].text
-msgctxt "tform1.lista.header.columns[3].text"
-msgid "Modificado"
-msgstr ""
-
-#: tform1.lista.header.columns[4].text
-msgid "Atributos"
-msgstr ""
-
-#: tform1.lista.header.columns[5].text
-msgid "Ruta"
-msgstr ""
-
-#: tform1.menuitemacercade.caption
-msgid "Acerca de..."
-msgstr ""
-
-#: tform1.menuitemagregarcatalogo.caption
-msgctxt "tform1.menuitemagregarcatalogo.caption"
-msgid "Agregar Catalogo"
-msgstr ""
-
-#: tform1.menuitemarchivo.caption
-msgid "Archivo"
-msgstr ""
-
-#: tform1.menuitemayuda.caption
-msgid "Ayuda"
-msgstr ""
-
-#: tform1.menuitembusquedaavanzada.caption
-msgctxt "tform1.menuitembusquedaavanzada.caption"
-msgid "Búsqueda Avanzada"
-msgstr ""
-
-#: tform1.menuitemeditar.caption
-msgid "Editar"
-msgstr ""
-
-#: tform1.menuitemeliminar.caption
-msgctxt "tform1.menuitemeliminar.caption"
-msgid "Eliminar"
-msgstr ""
-
-#: tform1.menuitemnuevabasedatos.caption
-msgctxt "tform1.menuitemnuevabasedatos.caption"
-msgid "Nueva Base de Datos"
-msgstr ""
-
-#: tform1.menuitempropiedades.caption
-msgctxt "tform1.menuitempropiedades.caption"
-msgid "Propiedades"
-msgstr ""
-
-#: tform1.menuitemsalir.caption
-msgid "Salir"
-msgstr ""
-
-#: tform1.menuitemver.caption
-msgid "Ver"
-msgstr ""
-
-#: tform1.menuitem_arbol_catalogos_autooculta_botones.caption
-msgid "Auto Ocultar Botones"
-msgstr ""
-
-#: tform1.menuitem_arbol_catalogos_ver_lineas_punteadas.caption
-msgid "Lineas del arbol punteadas"
-msgstr ""
-
-#: tform1.menuitem_arbol_catalogo_botones_modernos.caption
-msgid "Ver Botones Modernos"
-msgstr ""
-
-#: tform1.menuitem_arbol_catalogo_ver_lineas.caption
-msgid "Ver Lineas del Arbol"
-msgstr ""
-
-#: tform1.menuitem_catalogos.caption
-msgid "Arbol Catálogos"
-msgstr ""
-
-#: tform1.menuitem_catalogos_color.caption
-msgid "Activar color de fondo"
-msgstr ""
-
-#: tform1.menuitem_catalogos_mostrar_info_extra.caption
-msgid "Mostrar información extra"
-msgstr ""
-
-#: tform1.menuitem_iconos.caption
-msgid "Iconos"
-msgstr ""
-
-#: tform1.menuitem_iconos_mixto.caption
-msgctxt "tform1.menuitem_iconos_mixto.caption"
-msgid "Mixto"
-msgstr ""
-
-#: tform1.menuitem_iconos_pordefecto.caption
-msgctxt "tform1.menuitem_iconos_pordefecto.caption"
-msgid "Por Defecto"
-msgstr ""
-
-#: tform1.menuitem_iconos_sistema.caption
-msgctxt "tform1.menuitem_iconos_sistema.caption"
-msgid "Sistema"
-msgstr ""
-
-#: tform1.menuitem_lista_de_archivos.caption
-msgid "Lista de Archivos"
-msgstr ""
-
-#: tform1.menuitem_lista_de_archivos_resaltar_columna_orden.caption
-msgid "Resaltar Orden Columna"
-msgstr ""
-
-#: tform1.menuitem_perfiles.caption
-msgid "Perfiles"
-msgstr ""
-
-#: tform1.menuitem_perfil_mixto.caption
-msgctxt "tform1.menuitem_perfil_mixto.caption"
-msgid "Mixto"
-msgstr ""
-
-#: tform1.menuitem_perfil_moderno.caption
-msgid "Moderno"
-msgstr ""
-
-#: tform1.menuitem_perfil_pordefecto.caption
-msgctxt "tform1.menuitem_perfil_pordefecto.caption"
-msgid "Por Defecto"
-msgstr ""
-
-#: tform1.menuitem_perfil_retro.caption
-msgid "Retro"
-msgstr ""
-
-#: tform1.menuitem_sizes.caption
-msgid "Formato Tamaño archivos"
-msgstr ""
-
-#: tform1.menuitem_size_automatico.caption
-msgid "Automático (1.23 GB)"
-msgstr ""
-
-#: tform1.menuitem_size_normal.caption
-msgid "Normal (1234567890)"
-msgstr ""
-
-#: tform1.menuitem_size_punteada.caption
-msgid "Punteada (1.234.567.890)"
-msgstr ""
-
-#: tform1.menuitem_ver_colores_atributos.caption
-msgid "Usar colores para diferenciar los archivos"
-msgstr ""
-
-#: tform1.menupopupitemagregarcatalogo.caption
-msgctxt "tform1.menupopupitemagregarcatalogo.caption"
-msgid "Agregar Catalogo"
-msgstr ""
-
-#: tform1.menupopupitemeliminar.caption
-msgctxt "tform1.menupopupitemeliminar.caption"
-msgid "Eliminar"
-msgstr ""
-
-#: tform1.menupopupitemnuevabasedatos.caption
-msgctxt "tform1.menupopupitemnuevabasedatos.caption"
-msgid "Nueva Base de Datos"
-msgstr ""
-
-#: tform1.menupopupitempropiedades.caption
-msgctxt "tform1.menupopupitempropiedades.caption"
-msgid "Propiedades"
-msgstr ""
-
-#: tform1.toolbuttonagregarcatalogo.caption
-msgctxt "tform1.toolbuttonagregarcatalogo.caption"
-msgid "Agregar Catalogo"
-msgstr ""
-
-#: tform1.toolbuttonbusquedaavanzada.caption
-msgctxt "tform1.toolbuttonbusquedaavanzada.caption"
-msgid "Búsqueda Avanzada"
-msgstr ""
-
-#: tform1.toolbuttoneliminar.caption
-msgctxt "tform1.toolbuttoneliminar.caption"
-msgid "Eliminar"
-msgstr ""
-
-#: tform1.toolbuttonpropiedades.caption
-msgctxt "tform1.toolbuttonpropiedades.caption"
-msgid "Propiedades"
-msgstr ""
-
 #: tformloading.caption
 msgid "Espere ..."
 msgstr ""
@@ -306,6 +75,270 @@ msgstr ""
 
 #: tform_about.label4.caption
 msgid "Email : "
+msgstr ""
+
+#: tform_principal.arbol.header.columns[0].text
+msgctxt "tform_principal.arbol.header.columns[0].text"
+msgid "Catálogos"
+msgstr ""
+
+#: tform_principal.barra_herramientas.caption
+msgctxt "tform_principal.barra_herramientas.caption"
+msgid "Barra_Herramientas"
+msgstr ""
+
+#: tform_principal.button1.caption
+msgctxt "tform_principal.button1.caption"
+msgid "Cargar Catalogos"
+msgstr ""
+
+#: tform_principal.button2.caption
+msgctxt "tform_principal.button2.caption"
+msgid "Cargar Lista"
+msgstr ""
+
+#: tform_principal.caption
+msgid "Form_Principal"
+msgstr ""
+
+#: tform_principal.lista.header.columns[0].text
+msgctxt "tform_principal.lista.header.columns[0].text"
+msgid "Nombre"
+msgstr ""
+
+#: tform_principal.lista.header.columns[1].text
+msgctxt "tform_principal.lista.header.columns[1].text"
+msgid "Tamaño"
+msgstr ""
+
+#: tform_principal.lista.header.columns[2].text
+msgctxt "tform_principal.lista.header.columns[2].text"
+msgid "Tipo"
+msgstr ""
+
+#: tform_principal.lista.header.columns[3].text
+msgctxt "tform_principal.lista.header.columns[3].text"
+msgid "Modificado"
+msgstr ""
+
+#: tform_principal.lista.header.columns[4].text
+msgctxt "tform_principal.lista.header.columns[4].text"
+msgid "Atributos"
+msgstr ""
+
+#: tform_principal.lista.header.columns[5].text
+msgctxt "tform_principal.lista.header.columns[5].text"
+msgid "Ruta"
+msgstr ""
+
+#: tform_principal.menuitemacercade.caption
+msgctxt "tform_principal.menuitemacercade.caption"
+msgid "Acerca de..."
+msgstr ""
+
+#: tform_principal.menuitemagregarcatalogo.caption
+msgctxt "tform_principal.menuitemagregarcatalogo.caption"
+msgid "Agregar Catalogo"
+msgstr ""
+
+#: tform_principal.menuitemarchivo.caption
+msgctxt "tform_principal.menuitemarchivo.caption"
+msgid "Archivo"
+msgstr ""
+
+#: tform_principal.menuitemayuda.caption
+msgctxt "tform_principal.menuitemayuda.caption"
+msgid "Ayuda"
+msgstr ""
+
+#: tform_principal.menuitembusquedaavanzada.caption
+msgctxt "tform_principal.menuitembusquedaavanzada.caption"
+msgid "Búsqueda Avanzada"
+msgstr ""
+
+#: tform_principal.menuitemeditar.caption
+msgctxt "tform_principal.menuitemeditar.caption"
+msgid "Editar"
+msgstr ""
+
+#: tform_principal.menuitemeliminar.caption
+msgctxt "tform_principal.menuitemeliminar.caption"
+msgid "Eliminar"
+msgstr ""
+
+#: tform_principal.menuitemnuevabasedatos.caption
+msgctxt "tform_principal.menuitemnuevabasedatos.caption"
+msgid "Nueva Base de Datos"
+msgstr ""
+
+#: tform_principal.menuitempropiedades.caption
+msgctxt "tform_principal.menuitempropiedades.caption"
+msgid "Propiedades"
+msgstr ""
+
+#: tform_principal.menuitemsalir.caption
+msgctxt "tform_principal.menuitemsalir.caption"
+msgid "Salir"
+msgstr ""
+
+#: tform_principal.menuitemver.caption
+msgctxt "tform_principal.menuitemver.caption"
+msgid "Ver"
+msgstr ""
+
+#: tform_principal.menuitem_arbol_catalogos_autooculta_botones.caption
+msgctxt "tform_principal.menuitem_arbol_catalogos_autooculta_botones.caption"
+msgid "Auto Ocultar Botones"
+msgstr ""
+
+#: tform_principal.menuitem_arbol_catalogos_ver_lineas_punteadas.caption
+msgctxt "tform_principal.menuitem_arbol_catalogos_ver_lineas_punteadas.caption"
+msgid "Lineas del arbol punteadas"
+msgstr ""
+
+#: tform_principal.menuitem_arbol_catalogo_botones_modernos.caption
+msgctxt "tform_principal.menuitem_arbol_catalogo_botones_modernos.caption"
+msgid "Ver Botones Modernos"
+msgstr ""
+
+#: tform_principal.menuitem_arbol_catalogo_ver_lineas.caption
+msgctxt "tform_principal.menuitem_arbol_catalogo_ver_lineas.caption"
+msgid "Ver Lineas del Arbol"
+msgstr ""
+
+#: tform_principal.menuitem_catalogos.caption
+msgctxt "tform_principal.menuitem_catalogos.caption"
+msgid "Arbol Catálogos"
+msgstr ""
+
+#: tform_principal.menuitem_catalogos_color.caption
+msgctxt "tform_principal.menuitem_catalogos_color.caption"
+msgid "Activar color de fondo"
+msgstr ""
+
+#: tform_principal.menuitem_catalogos_mostrar_info_extra.caption
+msgctxt "tform_principal.menuitem_catalogos_mostrar_info_extra.caption"
+msgid "Mostrar información extra"
+msgstr ""
+
+#: tform_principal.menuitem_iconos.caption
+msgctxt "tform_principal.menuitem_iconos.caption"
+msgid "Iconos"
+msgstr ""
+
+#: tform_principal.menuitem_iconos_mixto.caption
+msgctxt "tform_principal.menuitem_iconos_mixto.caption"
+msgid "Mixto"
+msgstr ""
+
+#: tform_principal.menuitem_iconos_pordefecto.caption
+msgctxt "tform_principal.menuitem_iconos_pordefecto.caption"
+msgid "Por Defecto"
+msgstr ""
+
+#: tform_principal.menuitem_iconos_sistema.caption
+msgctxt "tform_principal.menuitem_iconos_sistema.caption"
+msgid "Sistema"
+msgstr ""
+
+#: tform_principal.menuitem_lista_de_archivos.caption
+msgctxt "tform_principal.menuitem_lista_de_archivos.caption"
+msgid "Lista de Archivos"
+msgstr ""
+
+#: tform_principal.menuitem_lista_de_archivos_resaltar_columna_orden.caption
+msgctxt "tform_principal.menuitem_lista_de_archivos_resaltar_columna_orden.caption"
+msgid "Resaltar Orden Columna"
+msgstr ""
+
+#: tform_principal.menuitem_perfiles.caption
+msgctxt "tform_principal.menuitem_perfiles.caption"
+msgid "Perfiles"
+msgstr ""
+
+#: tform_principal.menuitem_perfil_mixto.caption
+msgctxt "tform_principal.menuitem_perfil_mixto.caption"
+msgid "Mixto"
+msgstr ""
+
+#: tform_principal.menuitem_perfil_moderno.caption
+msgctxt "tform_principal.menuitem_perfil_moderno.caption"
+msgid "Moderno"
+msgstr ""
+
+#: tform_principal.menuitem_perfil_pordefecto.caption
+msgctxt "tform_principal.menuitem_perfil_pordefecto.caption"
+msgid "Por Defecto"
+msgstr ""
+
+#: tform_principal.menuitem_perfil_retro.caption
+msgctxt "tform_principal.menuitem_perfil_retro.caption"
+msgid "Retro"
+msgstr ""
+
+#: tform_principal.menuitem_sizes.caption
+msgctxt "tform_principal.menuitem_sizes.caption"
+msgid "Formato Tamaño archivos"
+msgstr ""
+
+#: tform_principal.menuitem_size_automatico.caption
+msgctxt "tform_principal.menuitem_size_automatico.caption"
+msgid "Automático (1.23 GB)"
+msgstr ""
+
+#: tform_principal.menuitem_size_normal.caption
+msgctxt "tform_principal.menuitem_size_normal.caption"
+msgid "Normal (1234567890)"
+msgstr ""
+
+#: tform_principal.menuitem_size_punteada.caption
+msgctxt "tform_principal.menuitem_size_punteada.caption"
+msgid "Punteada (1.234.567.890)"
+msgstr ""
+
+#: tform_principal.menuitem_ver_colores_atributos.caption
+msgctxt "tform_principal.menuitem_ver_colores_atributos.caption"
+msgid "Usar colores para diferenciar los archivos"
+msgstr ""
+
+#: tform_principal.menupopupitemagregarcatalogo.caption
+msgctxt "tform_principal.menupopupitemagregarcatalogo.caption"
+msgid "Agregar Catalogo"
+msgstr ""
+
+#: tform_principal.menupopupitemeliminar.caption
+msgctxt "tform_principal.menupopupitemeliminar.caption"
+msgid "Eliminar"
+msgstr ""
+
+#: tform_principal.menupopupitemnuevabasedatos.caption
+msgctxt "tform_principal.menupopupitemnuevabasedatos.caption"
+msgid "Nueva Base de Datos"
+msgstr ""
+
+#: tform_principal.menupopupitempropiedades.caption
+msgctxt "tform_principal.menupopupitempropiedades.caption"
+msgid "Propiedades"
+msgstr ""
+
+#: tform_principal.toolbuttonagregarcatalogo.caption
+msgctxt "tform_principal.toolbuttonagregarcatalogo.caption"
+msgid "Agregar Catalogo"
+msgstr ""
+
+#: tform_principal.toolbuttonbusquedaavanzada.caption
+msgctxt "tform_principal.toolbuttonbusquedaavanzada.caption"
+msgid "Búsqueda Avanzada"
+msgstr ""
+
+#: tform_principal.toolbuttoneliminar.caption
+msgctxt "tform_principal.toolbuttoneliminar.caption"
+msgid "Eliminar"
+msgstr ""
+
+#: tform_principal.toolbuttonpropiedades.caption
+msgctxt "tform_principal.toolbuttonpropiedades.caption"
+msgid "Propiedades"
 msgstr ""
 
 #: tform_propiedades.button_aceptar.caption

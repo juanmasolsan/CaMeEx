@@ -1,3 +1,5 @@
+
+- [FIX]   (20230520) Renombrado TForm1 a TForm_Principal
 - [FIX]   (20230520) Reestructura de directorios para separar las vistas/formularios.
 
 + 1.2.3.4
