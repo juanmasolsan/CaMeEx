@@ -81,8 +81,9 @@ resourcestring
   Message_Asistente_Nuevo_Catalogo_Cerrar    =  'Cerrar';
   Message_Asistente_Nuevo_Catalogo_Guardar   =  'Guardar';
 
-  Message_Asistente_Nuevo_Catalogo_Cancelar       = 'Se ha cancelado la operación ...';
-  Message_Asistente_Nuevo_Catalogo_Escanear_Medio = 'Analizando el medio seleccionado ...';
+  Message_Asistente_Nuevo_Catalogo_Titulo_Cancelar       = 'Se ha cancelado la operación ...';
+  Message_Asistente_Nuevo_Catalogo_Titulo_Escanear_Medio = 'Analizando el medio seleccionado ...';
+  Message_Asistente_Nuevo_Catalogo_Titulo_Guardar        = 'Guardar datos del análisis ...';
 
 
 implementation

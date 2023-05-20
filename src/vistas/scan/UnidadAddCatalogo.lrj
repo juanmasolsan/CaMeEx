@@ -5,5 +5,6 @@
 {"hash":247462997,"name":"tform_addcatalogo.button_siguiente.caption","sourcebytes":[83,105,103,117,105,101,110,116,101],"value":"Siguiente"},
 {"hash":169053060,"name":"tform_addcatalogo.label_titulo_asistente_add.caption","sourcebytes":[76,97,98,101,108,95,84,105,116,117,108,111,95,65,115,105,115,116,101,110,116,101,95,65,100,100],"value":"Label_Titulo_Asistente_Add"},
 {"hash":77360687,"name":"tform_addcatalogo.tabsheet_cancelado.caption","sourcebytes":[67,97,110,99,101,108,97,100,111],"value":"Cancelado"},
-{"hash":366974,"name":"tform_addcatalogo.tabsheet_scan.caption","sourcebytes":[83,99,97,110],"value":"Scan"}
+{"hash":366974,"name":"tform_addcatalogo.tabsheet_scan.caption","sourcebytes":[83,99,97,110],"value":"Scan"},
+{"hash":246975170,"name":"tform_addcatalogo.tabsheet_guardar.caption","sourcebytes":[71,117,97,114,100,97,114],"value":"Guardar"}
 ]}

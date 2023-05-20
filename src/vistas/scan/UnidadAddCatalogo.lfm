@@ -123,10 +123,10 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Height = 400
     Top = 77
     Width = 620
-    ActivePage = TabSheet_Scan
+    ActivePage = TabSheet_Guardar
     Align = alClient
     ParentShowHint = False
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 3
     TabPosition = tpBottom
     object TabSheet_Cancelado: TTabSheet
@@ -163,6 +163,26 @@ object Form_AddCatalogo: TForm_AddCatalogo
         end
         inherited Info_Archivo: TMemo
           Width = 578
+        end
+      end
+    end
+    object TabSheet_Guardar: TTabSheet
+      Caption = 'Guardar'
+      ClientHeight = 372
+      ClientWidth = 612
+      inline Frame_Guardar1: TFrame_Guardar
+        Height = 372
+        Width = 612
+        ClientHeight = 372
+        ClientWidth = 612
+        inherited Label1: TLabel
+          Width = 519
+        end
+        inherited SalidaLog: TSynEdit
+          Width = 519
+        end
+        inherited Label2: TLabel
+          Width = 519
         end
       end
     end

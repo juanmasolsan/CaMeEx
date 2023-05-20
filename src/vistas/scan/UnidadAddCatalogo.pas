@@ -49,6 +49,7 @@ uses
   , InterfaceConectorDatos, ItemDato, ItemExtension, ItemRutaCompleta, MotorScan
   , UnidadScan
   , FrameCancelado
+  , FrameGuardar
   ;
 
 const
@@ -75,11 +76,13 @@ type
     Button_Atras: TButton;
     Button_Siguiente: TButton;
     Frame_Cancelado1: TFrame_Cancelado;
+    Frame_Guardar1: TFrame_Guardar;
     Frame_Scan1: TFrame_Scan;
     Image1: TImage;
     Label_Titulo_Asistente_Add: TLabel;
     PanelesAsistente: TPageControl;
     Shape1: TShape;
+    TabSheet_Guardar: TTabSheet;
     TabSheet_Cancelado: TTabSheet;
     TabSheet_Scan: TTabSheet;
     procedure Button_CancelarClick(Sender: TObject);
@@ -125,6 +128,9 @@ type
 
     // Paso - Escanear cancelar
     procedure DoPasoCancelar();
+
+    // Paso - Escanear guardar
+    procedure DoPasoGuardar();
   end;
 
 var
@@ -202,7 +208,7 @@ begin
   case FPasoActual of
     PASO_CANCELAR         : DoPasoCancelar();
     PASO_ESCANEAR         : DoPasoEscanear();
-    PASO_GUARDAR          : DoTitulo(Message_Asistente_Nuevo_Catalogo_Cerrar);
+    PASO_GUARDAR          : DoPasoGuardar();
     //PASO_SELECCION_FINAL  : DoTitulo(Message_Asistente_Nuevo_Catalogo_Guardar);
   end;
 
@@ -264,7 +270,7 @@ end;
 // Paso - Escanear medio
 procedure TForm_AddCatalogo.DoPasoEscanear();
 begin
-  DoTitulo(Message_Asistente_Nuevo_Catalogo_Escanear_Medio);
+  DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo_Escanear_Medio);
 
   FScanCancelado := false;
   FScaneando     := true;
@@ -288,9 +294,19 @@ end;
 // Paso - Escanear cancelar
 procedure TForm_AddCatalogo.DoPasoCancelar();
 begin
-
-  DoTitulo(Message_Asistente_Nuevo_Catalogo_Cancelar);
+  DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo_Cancelar);
 end;
+
+
+// Paso - Escanear guardar
+procedure TForm_AddCatalogo.DoPasoGuardar();
+begin
+  Frame_Guardar1.MostrarEstadisticaas(FScan);
+
+  DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo_Guardar);
+end;
+
+
 
 // Cuando termina el escaneo correctamente
 procedure TForm_AddCatalogo.DoOnTerminarScanAsync();

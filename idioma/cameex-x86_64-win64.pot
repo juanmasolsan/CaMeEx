@@ -51,6 +51,10 @@ msgstr ""
 msgid "Cancelado"
 msgstr ""
 
+#: tform_addcatalogo.tabsheet_guardar.caption
+msgid "Guardar"
+msgstr ""
+
 #: tform_addcatalogo.tabsheet_scan.caption
 msgid "Scan"
 msgstr ""
@@ -433,6 +437,7 @@ msgid "Label_Fecha_Modificado"
 msgstr ""
 
 #: tframe_cancelado.label1.caption
+msgctxt "tframe_cancelado.label1.caption"
 msgid "El usuario ha cancelado la acción o se ha producido un error inesperado."
 msgstr ""
 
