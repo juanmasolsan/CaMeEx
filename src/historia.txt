@@ -1,5 +1,6 @@
 
 
+- [NEW]   (20230520) Agregado al asistente de añadir nuevo catalogo : Frame de escaneo con cancelación del mismo
 - [FIX]   (20230520) Ahora el Frame de escaneo el indicador de progreso lo dibuja directamente sobre el canvas
 - [NEW]   (20230520) Agregado al asistente de añadir nuevo catalogo : Frame de escaneo con información de progreso
 - [NEW]   (20230520) Agregado al asistente de añadir nuevo catalogo : Frame de escaneo

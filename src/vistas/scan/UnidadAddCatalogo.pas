@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 17:43:04
+ * @Last Modified time: 2023-05-20 18:27:50
  *)
 {
 
@@ -50,18 +50,16 @@ uses
 
 const
   // Pasos del asistente
-  PASO_SELECCION_INICIO = 0;
+  // Paso del asistente que es el de cancelación
+  PASO_CANCELAR         = 0;
 
   // Pasos que tiene el asistente
-  PASO_SELECCION_MEDIO  = PASO_SELECCION_INICIO;
+  PASO_SELECCION_MEDIO  = PASO_CANCELAR + 1;
   PASO_ESCANEAR         = PASO_SELECCION_MEDIO;   //TODO: ponerle el +1
   PASO_GUARDAR          = PASO_ESCANEAR + 1;
 
   // Paso Final del asistente
   PASO_SELECCION_FINAL  = PASO_GUARDAR;
-
-  // Paso del asistente que es el de cancelación
-  PASO_CANCELAR         = -1;
 
 
 
@@ -87,6 +85,7 @@ type
     FPasoActual  : longint;
     FFrames      : array of TFrame;
     FScan        : TMotorScan;
+    FScanCancelado : boolean;
   protected
     // Dependiendo del paso actual, se ejecuta una acción u otra
     procedure DoAccionesAtrasSiguiente(direccion : longint);
@@ -102,6 +101,10 @@ type
 
     // Cuando termina el escaneo correctamente
     procedure DoOnTerminarScanAsync();
+
+    // Metodo que recoge la acción de cancelar el escaneo
+    procedure DoCancelarScan();
+
   public
     { public declarations }
     // Configura el asistente para agregar un nuevo catalogo
@@ -173,15 +176,15 @@ begin
 
   FPasoActual += direccion;
 
-  if FPasoActual < PASO_SELECCION_INICIO then
-    FPasoActual := PASO_SELECCION_INICIO
+  if FPasoActual < PASO_CANCELAR + 1 then
+    FPasoActual := PASO_CANCELAR + 1
   else
     if FPasoActual > PASO_SELECCION_FINAL then
       FPasoActual := PASO_SELECCION_FINAL;
 
-  Button_Atras.Enabled := FPasoActual > PASO_SELECCION_INICIO;
+  Button_Atras.Enabled := FPasoActual > PASO_CANCELAR + 1;
 
-  Button_Atras.visible    := (FPasoActual >= PASO_SELECCION_INICIO) AND (FPasoActual < PASO_SELECCION_FINAL);
+  Button_Atras.visible    := (FPasoActual >= PASO_CANCELAR + 1) AND (FPasoActual < PASO_SELECCION_FINAL);
   Button_Cancelar.visible := Button_Atras.visible;
 
   if FPasoActual = PASO_SELECCION_FINAL then
@@ -254,8 +257,10 @@ begin
 
   DoTitulo(Message_Asistente_Nuevo_Catalogo_Escanear_Medio);
 
+  FScanCancelado := false;
+
   // Iniciar el escaneo
-  TFrame_Scan(FFrames[PASO_ESCANEAR]).Iniciar();
+  TFrame_Scan(FFrames[PASO_ESCANEAR]).Iniciar(@DoCancelarScan);
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
     {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
@@ -274,7 +279,11 @@ end;
 procedure TForm_AddCatalogo.DoOnTerminarScanAsync();
 begin
   // Dependiendo del paso actual, se ejecuta una acción u otra
-  DoAccionesAtrasSiguiente(1);
+  if not FScanCancelado then
+    DoAccionesAtrasSiguiente(1)
+  else
+    DoAccionesAtrasSiguiente(1); //TODO: Llevar al paso de cancelacion
+
 end;
 
 // Guarda lo escaneado en el gestor de datos
@@ -360,6 +369,13 @@ begin
       end;
     end;
   end;
+end;
+
+// Metodo que recoge la acción de cancelar el escaneo
+procedure TForm_AddCatalogo.DoCancelarScan();
+begin
+  // Cancela el escaneo
+  FScanCancelado := True;
 end;
 
 end.

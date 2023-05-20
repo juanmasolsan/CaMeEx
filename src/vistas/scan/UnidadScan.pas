@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-09 11:51:16
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 17:53:03
+ * @Last Modified time: 2023-05-20 17:59:12
  *)
 {
 
@@ -44,6 +44,7 @@ uses
   ;
 
 type
+  TOnCancelarScan = procedure() of object;
 
   { TFrame_Scan }
 
@@ -73,6 +74,7 @@ type
     FInicio          : TDateTime;
     FScanActivo      : TMotorScan;
     FTerminar        : Boolean;
+    FOnCancelarScan  : TOnCancelarScan;
   protected
     // Cancelar el escaneo
     function DoCancelar() : boolean; virtual;
@@ -84,7 +86,7 @@ type
     procedure Terminar();
 
     // Inicia el monitoreo del escaneo
-    procedure Iniciar();
+    procedure Iniciar(OnCancelarScan : TOnCancelarScan);
 
   end;
 
@@ -166,6 +168,10 @@ begin
 
   if Result then
   begin
+    // Indica que se ha cancelado el escaneo
+    if assigned(FOnCancelarScan) then
+      FOnCancelarScan();
+
     // Cancela el escaneo
     FScanActivo.StopScan();
   end;
@@ -173,10 +179,13 @@ begin
 end;
 
 // Inicia el monitoreo del escaneo
-procedure TFrame_Scan.Iniciar();
+procedure TFrame_Scan.Iniciar(OnCancelarScan : TOnCancelarScan);
 begin
   // Inicializar el contador interno para la animación
   TimerAnimacion.interval := 100;
+
+  // Asigna el evento de cancelar
+  FOnCancelarScan := OnCancelarScan;
 
   // Obtiene el número total de frames de la animación
   FAnimacionFrames        := ImageListSpinner.Count;
