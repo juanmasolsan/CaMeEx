@@ -3,6 +3,7 @@ object Frame_Scan: TFrame_Scan
   Height = 243
   Top = 0
   Width = 514
+  Align = alClient
   ClientHeight = 243
   ClientWidth = 514
   Color = clWindow
@@ -11,6 +12,8 @@ object Frame_Scan: TFrame_Scan
   ParentBackground = False
   ParentColor = False
   TabOrder = 0
+  DesignLeft = -1
+  DesignTop = -1
   object SpeedButton1: TSpeedButton
     Left = 8
     Height = 78
@@ -326,6 +329,7 @@ object Frame_Scan: TFrame_Scan
     Height = 11
     Top = 184
     Width = 482
+    Anchors = [akTop, akLeft, akRight]
     Shape = bsTopLine
     Visible = False
   end
@@ -334,7 +338,7 @@ object Frame_Scan: TFrame_Scan
     Height = 40
     Top = 192
     Width = 480
-    Anchors = [akLeft, akRight, akBottom]
+    Anchors = [akTop, akLeft, akRight]
     Caption = 'Cancelar'
     Flat = True
     Font.CharSet = ANSI_CHARSET
@@ -483,11 +487,12 @@ object Frame_Scan: TFrame_Scan
     Height = 64
     Top = 120
     Width = 480
-    Anchors = [akTop, akLeft, akRight, akBottom]
+    Anchors = [akTop, akLeft, akRight]
     BorderStyle = bsNone
     Color = clWindow
     Font.Color = clBlue
     ParentFont = False
+    ReadOnly = True
     TabOrder = 0
   end
   object ImageListSpinner: TImageList
@@ -653,6 +658,7 @@ object Frame_Scan: TFrame_Scan
     }
   end
   object TimerAnimacion: TTimer
+    Enabled = False
     OnTimer = TimerAnimacionTimer
     Left = 480
     Top = 96

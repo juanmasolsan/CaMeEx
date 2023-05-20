@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 16:18:21
+ * @Last Modified time: 2023-05-20 16:38:06
  *)
 {
 
@@ -90,10 +90,18 @@ type
 
     // Para escribir el título del asistente
     procedure DoTitulo(titulo : String);
+
+    // Para mostrar el frame correspondiente al paso actual
+    procedure DoPasoVisible(paso : longint);
+
   public
     { public declarations }
     // Configura el asistente para agregar un nuevo catalogo
     procedure AgregarNuevoCatalogo(GestorDatos : IConectorDatos);
+
+    // Paso - Escanear medio
+    procedure DoPasoEscanear();
+
   end;
 
 var
@@ -104,7 +112,7 @@ var
 implementation
 
 uses
-  AppString;
+  AppString, UnidadScan;
 
 
 {$R *.lfm}
@@ -166,12 +174,13 @@ begin
   else
     Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Siguiente;
 
+  // Dependiendo muestra un frame u otro
+  DoPasoVisible(FPasoActual);
 
-
-
+  // Dependiendo del paso actual, se ejecuta una acción u otra
   case FPasoActual of
-    PASO_SELECCION_INICIO : DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo);
-    //PASO_ESCANEAR         : DoTitulo(Message_Asistente_Nuevo_Catalogo_Siguiente);
+    //PASO_SELECCION_INICIO : DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo);
+    PASO_ESCANEAR         : DoPasoEscanear();
     PASO_GUARDAR          : DoTitulo(Message_Asistente_Nuevo_Catalogo_Cerrar);
     //PASO_SELECCION_FINAL  : DoTitulo(Message_Asistente_Nuevo_Catalogo_Guardar);
   end;
@@ -206,6 +215,31 @@ begin
   caption                            := Message_Asistente_Nuevo_Catalogo_titulo + ' ['+ inttostr(FPasoActual + 1) + '/' + inttostr(High(FFrames) + 1)+'] - '+ titulo;
 end;
 
+
+// Para mostrar el frame correspondiente al paso actual
+procedure TForm_AddCatalogo.DoPasoVisible(paso : longint);
+var
+  t : longint;
+begin
+  for t := 0 to High(FFrames) do
+    if FFrames[t] <> nil then
+      FFrames[t].Visible := t = paso;
+end;
+
+
+// Paso - Escanear medio
+procedure TForm_AddCatalogo.DoPasoEscanear();
+begin
+  // Crear el frame si no existe
+  if FFrames[PASO_ESCANEAR] = nil then
+  begin
+    FFrames[PASO_ESCANEAR]        := TFrame_Scan.Create(Self);
+    FFrames[PASO_ESCANEAR].Parent := Self;
+  end;
+
+  DoTitulo(Message_Asistente_Nuevo_Catalogo_Escanear_Medio);
+
+end;
 
 
 end.

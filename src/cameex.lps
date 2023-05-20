@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="45"/>
         <CursorPos X="46" Y="50"/>
-        <UsageCount Value="184"/>
+        <UsageCount Value="185"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -18,7 +18,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="59" Y="19"/>
-        <UsageCount Value="184"/>
+        <UsageCount Value="185"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Formulario_Avanzado.pas"/>
@@ -26,7 +26,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="318"/>
         <CursorPos X="109" Y="337"/>
-        <UsageCount Value="183"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -35,14 +35,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="178"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modeloitemdata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="174"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
@@ -50,7 +50,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="114"/>
         <CursorPos X="24" Y="137"/>
-        <UsageCount Value="153"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -58,7 +58,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="152"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
@@ -69,7 +69,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="47"/>
         <CursorPos Y="61"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -82,7 +82,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="31"/>
         <CursorPos Y="36"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -95,7 +95,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -108,7 +108,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="34"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -118,10 +118,11 @@
         <ComponentName Value="Frame_Scan"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="82"/>
-        <CursorPos X="21" Y="97"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="174"/>
+        <CursorPos Y="196"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -133,7 +134,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
@@ -141,11 +142,10 @@
         <ComponentName Value="Form_AddCatalogo"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="81"/>
-        <CursorPos X="42" Y="104"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="91"/>
+        <CursorPos X="54" Y="107"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -598,22 +598,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="45" TopLine="36"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="167" Column="80" TopLine="158"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="161" Column="56" TopLine="152"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="162" Column="34" TopLine="153"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <Caret Line="334" Column="39" TopLine="325"/>
       </Position>
       <Position>
@@ -715,6 +699,21 @@
       <Position>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
         <Caret Line="97" Column="5" TopLine="82"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="107" Column="54" TopLine="91"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="108" Column="54" TopLine="92"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="107" Column="54" TopLine="91"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadScan.pas"/>
       </Position>
     </JumpHistory>
     <RunParams>
