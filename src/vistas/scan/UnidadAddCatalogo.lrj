@@ -1,0 +1,7 @@
+{"version":1,"strings":[
+{"hash":234596176,"name":"tform_addcatalogo.caption","sourcebytes":[65,195,177,97,100,105,114,32,110,117,101,118,111,32,99,97,116,97,108,111,103,111,32],"value":"A\u00F1adir nuevo catalogo "},
+{"hash":139052562,"name":"tform_addcatalogo.button_cancelar.caption","sourcebytes":[67,97,110,99,101,108,97,114],"value":"Cancelar"},
+{"hash":76279171,"name":"tform_addcatalogo.button_atras.caption","sourcebytes":[65,116,114,195,161,115],"value":"Atr\u00E1s"},
+{"hash":247462997,"name":"tform_addcatalogo.button_siguiente.caption","sourcebytes":[83,105,103,117,105,101,110,116,101],"value":"Siguiente"},
+{"hash":169053060,"name":"tform_addcatalogo.label_titulo_asistente_add.caption","sourcebytes":[76,97,98,101,108,95,84,105,116,117,108,111,95,65,115,105,115,116,101,110,116,101,95,65,100,100],"value":"Label_Titulo_Asistente_Add"}
+]}

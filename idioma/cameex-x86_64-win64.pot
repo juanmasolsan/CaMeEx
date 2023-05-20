@@ -77,6 +77,28 @@ msgstr ""
 msgid "Email : "
 msgstr ""
 
+#: tform_addcatalogo.button_atras.caption
+msgid "Atrás"
+msgstr ""
+
+#: tform_addcatalogo.button_cancelar.caption
+msgctxt "tform_addcatalogo.button_cancelar.caption"
+msgid "Cancelar"
+msgstr ""
+
+#: tform_addcatalogo.button_siguiente.caption
+msgctxt "tform_addcatalogo.button_siguiente.caption"
+msgid "Siguiente"
+msgstr ""
+
+#: tform_addcatalogo.caption
+msgid "Añadir nuevo catalogo "
+msgstr ""
+
+#: tform_addcatalogo.label_titulo_asistente_add.caption
+msgid "Label_Titulo_Asistente_Add"
+msgstr ""
+
 #: tform_principal.arbol.header.columns[0].text
 msgctxt "tform_principal.arbol.header.columns[0].text"
 msgid "Catálogos"
@@ -342,10 +364,12 @@ msgid "Propiedades"
 msgstr ""
 
 #: tform_propiedades.button_aceptar.caption
+msgctxt "tform_propiedades.button_aceptar.caption"
 msgid "Aceptar"
 msgstr ""
 
 #: tform_propiedades.button_aplicar.caption
+msgctxt "tform_propiedades.button_aplicar.caption"
 msgid "Aplicar"
 msgstr ""
 

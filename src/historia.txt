@@ -1,4 +1,5 @@
 
+- [NEW]   (20230520) Agregado formulario básico para añadir nuevos catalogos
 - [FIX]   (20230520) Corregido color de fondo del Frame de atributos en el formulario de propiedades.
 - [FIX]   (20230520) Renombrado TForm1 a TForm_Principal
 - [FIX]   (20230520) Reestructura de directorios para separar las vistas/formularios.

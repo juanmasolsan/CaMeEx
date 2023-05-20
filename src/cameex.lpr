@@ -59,7 +59,8 @@ uses
 {$ENDIF DARKSTYLE_USAR}
 
   Forms, AppString, Configuracion, UnidadPrincipal, UnidadLoading,
-  UnidadPropiedades, UnidadAtributos, UnidadScan, Control_About, graphics;
+  UnidadPropiedades, UnidadAtributos, UnidadScan, UnidadAddCatalogo,
+  Control_About, graphics;
 
 {$R *.res}
 

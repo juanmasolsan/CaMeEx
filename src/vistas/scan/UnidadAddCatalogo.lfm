@@ -1,0 +1,119 @@
+object Form_AddCatalogo: TForm_AddCatalogo
+  Left = 450
+  Height = 519
+  Top = 163
+  Width = 620
+  BorderIcons = [biSystemMenu]
+  Caption = 'Añadir nuevo catalogo '
+  ClientHeight = 519
+  ClientWidth = 620
+  Color = clWindow
+  Constraints.MinHeight = 519
+  Constraints.MinWidth = 620
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  object Button_Cancelar: TButton
+    Left = 366
+    Height = 25
+    Top = 488
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancelar'
+    ModalResult = 2
+    TabOrder = 0
+  end
+  object Button_Atras: TButton
+    Left = 452
+    Height = 25
+    Top = 488
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Atrás'
+    OnClick = Button_AtrasClick
+    TabOrder = 1
+  end
+  object Button_Siguiente: TButton
+    Left = 537
+    Height = 25
+    Top = 488
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Siguiente'
+    OnClick = Button_SiguienteClick
+    TabOrder = 2
+  end
+  object Shape1: TShape
+    Left = 0
+    Height = 74
+    Top = 0
+    Width = 620
+    Align = alTop
+    Brush.Color = cl3DLight
+    Pen.Style = psClear
+  end
+  object Image1: TImage
+    Left = 548
+    Height = 72
+    Top = 1
+    Width = 72
+    Anchors = [akTop, akRight]
+    Picture.Data = {
+      1754506F727461626C654E6574776F726B477261706869638D02000089504E47
+      0D0A1A0A0000000D49484452000000300000003008060000005702F987000000
+      097048597300000B1300000B1301009A9C180000023F494441546881EDD9DD4B
+      936118C7714F2C66C5422290082410A5102310A21805B1E55E5293A1BD8AA552
+      DADC2696CAA80C91CC31E6CBF0614B904A904084282909D1C40AEA5F90FE830E
+      FC0F2EAFFB6681277AEF1A93FDC40EBEFC18ECE1B93FF01C3C63054454B097CB
+      FB01FE03B67E7076148A7BFDA34DADC591306BEA675B56F754E50C90FADEAA96
+      E6D643B4F8B72FA3E6FF84C9133AA410F6BC03926BF73480579427588401B056
+      5B348057140C60F25BB306F08A82012496EF6A00AF2818C0C4D26D0DE0150503
+      18FB7A53037845B95100F1C5260DE0150503887DF66B00AF28184074A1410378
+      45B9BB4000AF3ED66B00AF2877970D03F0F2C3350DE0150503189AF76A00AFA8
+      DD020C731B4EF99B258D2CF86870AE26A3D477DD419BF81EE9AC9D001BD12F1E
+      4AFEF253EA77E68DAFF073FDC94B03EF5D19A5BE3BB65C27BE4F7CA9F61F627B
+      40E4DD257A367B053623A0EF8D832233976133029E4C5FA0FEB70ED88C809EA9
+      F3D43B7D113623209CAC268540CD08085AE7A83B550D9B111048549142A06604
+      748E57522071163623E0E1E8195208D48C80F658053D889F86CD08688D96517B
+      AC1C3657E70105B0E5F465EEEAA383747FA44C94BA66375EE6B2C9AE0ED3327C
+      4A541A90FFDF03EA102E3E4CF350A9281714809FCB3B832745A59F651CC0AD17
+      2744C1016E3C2F110507687C7A5C141CC01F39260A0ED0D05F2C0A0E70BDF7A8
+      283840DD63BB28304021D5F61C11A5AE810170E4EB3E2CCAD90106F0868B44C1
+      003C219BDAACFEE84E5F9B3BC05E2CEF07D8F7804D82F9729BB6414D52000000
+      0049454E44AE426082
+    }
+    Stretch = True
+  end
+  object Bevel1: TBevel
+    Left = 0
+    Height = 7
+    Top = 74
+    Width = 620
+    Align = alTop
+    Shape = bsTopLine
+  end
+  object Bevel2: TBevel
+    Left = 0
+    Height = 7
+    Top = 477
+    Width = 620
+    Align = alBottom
+    BorderSpacing.Bottom = 35
+    Shape = bsTopLine
+  end
+  object Label_Titulo_Asistente_Add: TLabel
+    Left = 8
+    Height = 25
+    Top = 16
+    Width = 240
+    Caption = 'Label_Titulo_Asistente_Add'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+end

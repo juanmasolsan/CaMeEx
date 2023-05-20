@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 01:27:13
+ * @Last Modified time: 2023-05-20 12:46:06
  *)
 {
 
@@ -378,7 +378,7 @@ uses
   , OrdenarLista
   , Utilidades
   , ConectorDatos
-  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString, UnidadLoading, UnidadPropiedades;
+  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString, UnidadLoading, UnidadPropiedades, UnidadAddCatalogo;
 
 {$R *.lfm}
 
@@ -2588,8 +2588,10 @@ end;
 
 // Lanza la acción agregar un nuevo catalogo
 procedure TForm_Principal.DoAddNuevoCatalogo();
+var
+  AddCatalogo : TForm_AddCatalogo;
 begin
-
+(*
   FVentanaScan := TFormScan.CreateEx(self, FScan);
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
@@ -2605,6 +2607,14 @@ begin
   {$ENDIF}
   // Muestra la ventana de escaneo
   FVentanaScan.ShowModal;
+*)
+
+  AddCatalogo := TForm_AddCatalogo.create(Self);
+  try
+    AddCatalogo.ShowModal;
+  finally
+    AddCatalogo.Free;
+  end;
 end;
 
 

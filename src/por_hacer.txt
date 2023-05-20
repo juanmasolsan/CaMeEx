@@ -148,9 +148,8 @@
 +         Icono grande en el arbol cuando los nodos tengan extra alto
 
 -         Poder crear nuevos catalogos
-
-
 -         Ventana para seleccionar el dispositivo/directorio a escanear.
+
 -         Revisar la ruta de los archivos en la lista, si hay muchos archivos se vuelve lenta
 
 

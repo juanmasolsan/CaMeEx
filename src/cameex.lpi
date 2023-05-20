@@ -130,6 +130,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form_AddCatalogo"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
