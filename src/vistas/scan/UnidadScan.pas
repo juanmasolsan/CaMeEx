@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-09 11:51:16
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 17:26:06
+ * @Last Modified time: 2023-05-20 17:53:03
  *)
 {
 
@@ -58,7 +58,6 @@ type
     Label_Total_Archivos: TLabel;
     Label_Total_Size: TLabel;
     Info_Archivo: TMemo;
-    SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
@@ -70,6 +69,7 @@ type
     procedure TimerUpdateUITimer(Sender: TObject);
   private
     FAnimacionFrames : Integer;
+    FAnimacionIndex  : integer;
     FInicio          : TDateTime;
     FScanActivo      : TMotorScan;
     FTerminar        : Boolean;
@@ -125,7 +125,9 @@ end;
 procedure TFrame_Scan.TimerAnimacionTimer(Sender: TObject);
 begin
   // Actualiza el índice de la imagen de la animación
-  SpeedButton1.ImageIndex := (SpeedButton1.ImageIndex + 1) mod FAnimacionFrames;
+  FAnimacionIndex := (FAnimacionIndex + 1) mod FAnimacionFrames;
+  ImageListSpinner.Draw(Canvas, 32, 8, FAnimacionIndex);
+
   Application.ProcessMessages;
 end;
 

@@ -12,17 +12,6 @@ object Frame_Scan: TFrame_Scan
   TabOrder = 0
   DesignLeft = -2
   DesignTop = -2
-  object SpeedButton1: TSpeedButton
-    Left = 8
-    Height = 78
-    Top = 0
-    Width = 111
-    Color = clWindow
-    Enabled = False
-    Flat = True
-    Images = ImageListSpinner
-    ImageIndex = 0
-  end
   object Label1: TLabel
     Left = 112
     Height = 25

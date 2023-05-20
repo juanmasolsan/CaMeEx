@@ -8,7 +8,6 @@
       <Unit>
         <Filename Value="cameex.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="69"/>
         <CursorPos Y="97"/>
         <UsageCount Value="187"/>
@@ -82,8 +81,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="31"/>
-        <CursorPos Y="36"/>
+        <TopLine Value="104"/>
+        <CursorPos X="65" Y="129"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -120,9 +119,10 @@
         <ComponentName Value="Frame_Scan"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="157"/>
-        <CursorPos X="41" Y="166"/>
+        <TopLine Value="156"/>
+        <CursorPos X="41" Y="165"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -600,23 +600,11 @@
         <EditorIndex Value="7"/>
         <TopLine Value="183"/>
         <CursorPos X="21" Y="198"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1293" Column="3" TopLine="1279"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1313" Column="45" TopLine="1299"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="61" TopLine="47"/>
-      </Position>
       <Position>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
         <Caret Line="97" Column="5" TopLine="82"/>
@@ -719,6 +707,18 @@
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
         <Caret Line="131" Column="19" TopLine="116"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadScan.pas"/>
+        <Caret Line="166" Column="41" TopLine="157"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\loading\UnidadLoading.pas"/>
+        <Caret Line="62" Column="20" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\loading\UnidadLoading.pas"/>
+        <Caret Line="70" Column="57" TopLine="52"/>
       </Position>
       <Position>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
