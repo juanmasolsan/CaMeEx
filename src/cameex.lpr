@@ -58,10 +58,8 @@ uses
 	uDarkStyleSchemes,
 {$ENDIF DARKSTYLE_USAR}
 
-  Forms, AppString, UnidadPrincipal, UnidadAtributos, UnidadPropiedades,
-  Control_About, UnidadLoading
-
-  , Utilidades, Configuracion, graphics;
+  Forms, AppString, Configuracion, UnidadPrincipal, UnidadLoading,
+  UnidadPropiedades, UnidadAtributos, UnidadScan, Control_About, graphics;
 
 {$R *.res}
 
@@ -94,7 +92,6 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TForm_Propiedades, Form_Propiedades);
   Application.Run;
 end.
 

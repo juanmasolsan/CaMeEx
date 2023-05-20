@@ -1,3 +1,5 @@
+- [FIX]   (20230520) Reestructura de directorios para separar las vistas/formularios.
+
 + 1.2.3.4
 - [FIX]   (20230520) Eliminado warnings, hints y notes del código.
 - [FIX]   (20230520) Arreglado problema con los items del arbol al borrar todos los archivos y directorios del mismo

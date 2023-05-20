@@ -64,32 +64,12 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="UnidadPrincipal.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="historia.txt"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="por_hacer.txt"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="AppInfo.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Formulario_Avanzado.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="motorscan.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="MotorScan"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\modelodatofromfile.pas"/>
@@ -102,17 +82,6 @@
         <UnitName Value="ModeloItemData"/>
       </Unit>
       <Unit>
-        <Filename Value="Utilidades.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="UnidadScan.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="FormScan"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
         <Filename Value="components\Control_Logger.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
@@ -122,32 +91,42 @@
         <UnitName Value="IConectorDatos"/>
       </Unit>
       <Unit>
-        <Filename Value="components\about\Control_About.pas"/>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form_About"/>
+        <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="components\UnidadLoading.pas"/>
+        <Filename Value="vistas\loading\UnidadLoading.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormLoading"/>
-        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="UnidadPropiedades.pas"/>
+        <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form_Propiedades"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="UnidadAtributos.pas"/>
+        <Filename Value="vistas\propiedades\UnidadAtributos.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Frame_Atributos"/>
-        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
+      </Unit>
+      <Unit>
+        <Filename Value="vistas\scan\UnidadScan.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormScan"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="vistas\about\Control_About.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form_About"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -159,7 +138,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="components;components\metadarkstyle-main\src;components\about;components\scan;modelos"/>
+      <OtherUnitFiles Value="components;components\metadarkstyle-main\src;components\scan;modelos;vistas\propiedades;vistas\scan;vistas\main;vistas\loading;vistas\about"/>
       <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>

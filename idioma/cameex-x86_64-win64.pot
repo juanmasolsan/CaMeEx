@@ -2,7 +2,6 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tform1.arbol.header.columns[0].text
-msgctxt "tform1.arbol.header.columns[0].text"
 msgid "Catálogos"
 msgstr ""
 
@@ -57,12 +56,10 @@ msgid "Agregar Catalogo"
 msgstr ""
 
 #: tform1.menuitemarchivo.caption
-msgctxt "tform1.menuitemarchivo.caption"
 msgid "Archivo"
 msgstr ""
 
 #: tform1.menuitemayuda.caption
-msgctxt "tform1.menuitemayuda.caption"
 msgid "Ayuda"
 msgstr ""
 
@@ -115,7 +112,6 @@ msgid "Ver Lineas del Arbol"
 msgstr ""
 
 #: tform1.menuitem_catalogos.caption
-msgctxt "tform1.menuitem_catalogos.caption"
 msgid "Arbol Catálogos"
 msgstr ""
 
@@ -274,7 +270,6 @@ msgid "0"
 msgstr ""
 
 #: tformscan.label_total_archivos.hint
-msgctxt "tformscan.label_total_archivos.hint"
 msgid "Total archivos encontrados."
 msgstr ""
 
@@ -293,7 +288,6 @@ msgid "0"
 msgstr ""
 
 #: tformscan.label_total_size.hint
-msgctxt "tformscan.label_total_size.hint"
 msgid "Total tamaño procesado."
 msgstr ""
 
@@ -352,12 +346,10 @@ msgid "Tamaño : "
 msgstr ""
 
 #: tform_propiedades.label5.caption
-msgctxt "tform_propiedades.label5.caption"
 msgid "Contiene : "
 msgstr ""
 
 #: tform_propiedades.label6.caption
-msgctxt "tform_propiedades.label6.caption"
 msgid "Descripción : "
 msgstr ""
 
