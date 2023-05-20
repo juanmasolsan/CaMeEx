@@ -21,7 +21,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Cancelar'
-    ModalResult = 2
+    OnClick = Button_CancelarClick
     TabOrder = 0
   end
   object Button_Atras: TButton

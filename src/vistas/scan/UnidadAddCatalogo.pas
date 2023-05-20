@@ -82,6 +82,7 @@ type
     Shape1: TShape;
     TabSheet_Cancelado: TTabSheet;
     TabSheet_Scan: TTabSheet;
+    procedure Button_CancelarClick(Sender: TObject);
     procedure Button_SiguienteClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -183,10 +184,11 @@ begin
     if FPasoActual > PASO_SELECCION_FINAL then
       FPasoActual := PASO_SELECCION_FINAL;
 
-  Button_Atras.Enabled := FPasoActual > PASO_CANCELAR;
+  Button_Siguiente.Enabled := FPasoActual > PASO_CANCELAR + 1;
+  Button_Atras.Enabled := FPasoActual <> PASO_ESCANEAR;
 
   Button_Atras.visible    := (FPasoActual > PASO_CANCELAR) AND (FPasoActual < PASO_SELECCION_FINAL);
-  Button_Cancelar.visible := Button_Atras.visible;
+  Button_Cancelar.visible := Button_Atras.visible AND (FPasoActual <> PASO_ESCANEAR);
 
   if (FPasoActual = PASO_SELECCION_FINAL) OR (FPasoActual = PASO_CANCELAR) then
     Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Cerrar
@@ -228,6 +230,14 @@ procedure TForm_AddCatalogo.Button_SiguienteClick(Sender: TObject);
 begin
   // Dependiendo del paso actual, se ejecuta una acción u otra
   DoAccionesAtrasSiguiente(1);
+end;
+
+procedure TForm_AddCatalogo.Button_CancelarClick(Sender: TObject);
+begin
+  case FPasoActual of
+    PASO_ESCANEAR         : if FScaneando then Frame_Scan1.Cancelar();
+    PASO_GUARDAR          : Close();
+  end;
 end;
 
 procedure TForm_AddCatalogo.Button_AtrasClick(Sender: TObject);
