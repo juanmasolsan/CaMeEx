@@ -1,4 +1,5 @@
 
+- [NEW]   (20230521) Agregado auto size en el formulario de Loading
 - [NEW]   (20230521) Agregado al asistente de añadir nuevo catalogo : Frame de guardado
 - [FIX]   (20230521) Añadido correcto funcionamiento al botón cancelar en el asistente de añadir nuevo catalogo.
 - [FIX]   (20230521) Corregida excepcion en el asistente de añadir nuevo catalogo si se está escaneando y se cierra el formulario.

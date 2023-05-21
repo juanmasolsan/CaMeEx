@@ -1,5 +1,5 @@
 {"version":1,"strings":[
 {"hash":209976174,"name":"tformloading.caption","sourcebytes":[69,115,112,101,114,101,32,46,46,46],"value":"Espere ..."},
-{"hash":180912510,"name":"tformloading.label1.caption","sourcebytes":[80,111,114,32,102,97,118,111,114,32,101,115,112,101,114,101,46,46,46],"value":"Por favor espere..."},
-{"hash":188061214,"name":"tformloading.label2.caption","sourcebytes":[83,101,32,101,115,116,195,161,32,114,101,97,108,105,122,97,110,100,111,32,117,110,97,32,97,99,99,105,195,179,110,46],"value":"Se est\u00E1 realizando una acci\u00F3n."}
+{"hash":180912510,"name":"tformloading.labeltitulo.caption","sourcebytes":[80,111,114,32,102,97,118,111,114,32,101,115,112,101,114,101,46,46,46],"value":"Por favor espere..."},
+{"hash":188061214,"name":"tformloading.labelmensaje.caption","sourcebytes":[83,101,32,101,115,116,195,161,32,114,101,97,108,105,122,97,110,100,111,32,117,110,97,32,97,99,99,105,195,179,110,46],"value":"Se est\u00E1 realizando una acci\u00F3n."}
 ]}

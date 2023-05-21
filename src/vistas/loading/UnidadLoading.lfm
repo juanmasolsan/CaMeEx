@@ -9,13 +9,14 @@ object FormLoading: TFormLoading
   ClientHeight = 80
   ClientWidth = 402
   Color = clWindow
+  Constraints.MinHeight = 40
+  Constraints.MinWidth = 160
   FormStyle = fsStayOnTop
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   Position = poOwnerFormCenter
   ShowInTaskBar = stNever
-  LCLVersion = '2.2.6.0'
   object Fondo: TShape
     Left = 0
     Height = 80
@@ -39,12 +40,13 @@ object FormLoading: TFormLoading
     Visible = False
     ShowCaption = False
   end
-  object Label1: TLabel
+  object LabelTitulo: TLabel
     Left = 112
     Height = 25
-    Top = 0
+    Top = 4
     Width = 161
     Caption = 'Por favor espere...'
+    Constraints.MinWidth = 160
     Font.CharSet = ANSI_CHARSET
     Font.Height = -19
     Font.Pitch = fpVariable
@@ -53,11 +55,12 @@ object FormLoading: TFormLoading
     ParentColor = False
     ParentFont = False
   end
-  object Label2: TLabel
+  object LabelMensaje: TLabel
     Left = 112
     Height = 40
     Top = 32
     Width = 280
+    Anchors = [akTop, akLeft, akRight, akBottom]
     AutoSize = False
     Caption = 'Se está realizando una acción.'
     Color = clWindow

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 16:17:09
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 13:49:48
+ * @Last Modified time: 2023-05-21 12:34:26
  *)
 {
 
@@ -48,8 +48,8 @@ type
 
   TFormLoading = class(TForm)
     ImageListSpinner: TImageList;
-    Label1: TLabel;
-    Label2: TLabel;
+    LabelTitulo: TLabel;
+    LabelMensaje: TLabel;
     Fondo: TShape;
     SpeedButton1: TSpeedButton;
     TimerAnimacion: TTimer;
@@ -61,6 +61,7 @@ type
     FAnimacionFrames : Integer;
     FAnimacionIndex  : integer;
     FTerminar        : Boolean;
+    FSizeYMensaje     : integer;
   protected
 
   public
@@ -94,9 +95,12 @@ begin
   // Llama al constructor de la clase padre
   inherited Create(TheOwner);
 
+  // El tamaño Y de LabelMensaje
+  FSizeYMensaje := -1;
+
   // Inicializa el mensaje
-  Label1.Caption := MensajeTitulo;
-  Label2.Caption := MensajeNormal;
+  LabelTitulo.Caption := StringReplace(MensajeTitulo, '\r', #13, [rfReplaceAll, rfIgnoreCase]);
+  LabelMensaje.Caption := StringReplace(MensajeNormal, '\r', #13, [rfReplaceAll, rfIgnoreCase]);
 end;
 
 
@@ -124,6 +128,15 @@ end;
 
 procedure TFormLoading.TimerAnimacionTimer(Sender: TObject);
 begin
+
+  // Si el tamaño Y del mensaje no se ha calculado
+  if FSizeYMensaje = -1 then
+    FSizeYMensaje := LabelMensaje.Height;
+
+  // Ajusta el tamaño del formulario
+  Width  := LabelTitulo.Left + LabelTitulo.Width + 20;
+  Height := LabelMensaje.Top + FSizeYMensaje + 5;
+
   // Actualiza el índice de la imagen de la animación
   FAnimacionIndex := (FAnimacionIndex + 1) mod FAnimacionFrames;
   ImageListSpinner.Draw(Fondo.Canvas, 16, 8, FAnimacionIndex);
