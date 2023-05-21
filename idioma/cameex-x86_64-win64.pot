@@ -61,6 +61,10 @@ msgstr ""
 msgid "Scan"
 msgstr ""
 
+#: tform_addcatalogo.tabsheet_selecionarmedio.caption
+msgid "SelecionarMedio"
+msgstr ""
+
 #: tform_principal.arbol.header.columns[0].text
 msgctxt "tform_principal.arbol.header.columns[0].text"
 msgid "Catálogos"
@@ -345,10 +349,12 @@ msgid "Propiedades de : "
 msgstr ""
 
 #: tform_propiedades.edit_nombre.text
+msgctxt "tform_propiedades.edit_nombre.text"
 msgid "Edit_Nombre"
 msgstr ""
 
 #: tform_propiedades.edit_nombre_error.caption
+msgctxt "tform_propiedades.edit_nombre_error.caption"
 msgid "Esta campo es obligatorio y no puede estar vacio."
 msgstr ""
 
@@ -390,6 +396,106 @@ msgstr ""
 #: tform_propiedades.tabsheet1.caption
 msgctxt "tform_propiedades.tabsheet1.caption"
 msgid "Propiedades"
+msgstr ""
+
+#: tframe1.buttonseleccionarruta.caption
+msgid "..."
+msgstr ""
+
+#: tframe1.comboboxdispositivos.texthint
+msgid "Seleccione un dispositivo..."
+msgstr ""
+
+#: tframe1.editruta.texthint
+msgid "La ruta que se va a analizar."
+msgstr ""
+
+#: tframe1.edit_nombre.texthint
+msgid "Escriba un nombre para poder identifificar el catálogo"
+msgstr ""
+
+#: tframe1.edit_nombre_error.caption
+msgctxt "tframe1.edit_nombre_error.caption"
+msgid "Esta campo es obligatorio y no puede estar vacio."
+msgstr ""
+
+#: tframe1.edit_nombre_error1.caption
+msgctxt "tframe1.edit_nombre_error1.caption"
+msgid "Esta campo es obligatorio y no puede estar vacio."
+msgstr ""
+
+#: tframe1.label1.caption
+msgid "Datos básicos para poder realizar el análiss del medio."
+msgstr ""
+
+#: tframe1.label11.caption
+msgid "\\dato\\"
+msgstr ""
+
+#: tframe1.label13.caption
+msgid "\\dato\\*.7z"
+msgstr ""
+
+#: tframe1.label14.caption
+msgid "\\dato\\archivo.7z"
+msgstr ""
+
+#: tframe1.label16.caption
+msgctxt "tframe1.label16.caption"
+msgid "Todo el directorio"
+msgstr ""
+
+#: tframe1.label18.caption
+msgctxt "tframe1.label18.caption"
+msgid "Todo el directorio."
+msgstr ""
+
+#: tframe1.label19.caption
+msgid "Solo los archivos 7z."
+msgstr ""
+
+#: tframe1.label2.caption
+msgid "Nombre :"
+msgstr ""
+
+#: tframe1.label20.caption
+msgid "Solo el archivo indicado."
+msgstr ""
+
+#: tframe1.label21.caption
+msgid "Archivos/Carpetas Excluidos : "
+msgstr ""
+
+#: tframe1.label23.caption
+msgid "La forma aceptada de excluir archivos y directorios."
+msgstr ""
+
+#: tframe1.label27.caption
+msgid "*.log"
+msgstr ""
+
+#: tframe1.label28.caption
+msgid "Todos los archivos log"
+msgstr ""
+
+#: tframe1.label3.caption
+msgid "Descripción :"
+msgstr ""
+
+#: tframe1.label4.caption
+msgid "Medio/Dispositivo:"
+msgstr ""
+
+#: tframe1.label5.caption
+msgid "Ruta:"
+msgstr ""
+
+#: tframe1.label6.caption
+msgid "Excluir :"
+msgstr ""
+
+#: tframe1.label9.caption
+msgid "\\dato\\*.*"
 msgstr ""
 
 #: tframe_atributos.checkbox_attr_oculto.caption

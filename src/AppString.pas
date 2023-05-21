@@ -88,6 +88,7 @@ resourcestring
   Message_Asistente_Nuevo_Catalogo_Titulo_Guardando      = 'Guardando los datos del análisis ...';
   Message_Asistente_Nuevo_Catalogo_Cuerpo_Guardando      = 'Se están guardando los datos del análisis, esto puede tardar un poco.\r\rPor favor espere.';
 
+  Message_Asistente_Nuevo_Catalogo_Titulo_Selector_Medio = 'Datos básicos ...';
 
 
 implementation

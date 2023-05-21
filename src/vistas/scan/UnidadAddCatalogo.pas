@@ -50,6 +50,7 @@ uses
   , UnidadScan
   , FrameCancelado
   , FrameGuardar
+  , FrameSelecionarMedio
   ;
 
 const
@@ -59,7 +60,7 @@ const
 
   // Pasos que tiene el asistente
   PASO_SELECCION_MEDIO  = PASO_CANCELAR + 1;
-  PASO_ESCANEAR         = PASO_SELECCION_MEDIO;   //TODO: ponerle el +1
+  PASO_ESCANEAR         = PASO_SELECCION_MEDIO + 1;
   PASO_GUARDAR          = PASO_ESCANEAR + 1;
 
   // Paso Final del asistente
@@ -75,6 +76,7 @@ type
     Button_Cancelar: TButton;
     Button_Atras: TButton;
     Button_Siguiente: TButton;
+    Frame1_1: TFrame1;
     Frame_Cancelado1: TFrame_Cancelado;
     Frame_Guardar1: TFrame_Guardar;
     Frame_Scan1: TFrame_Scan;
@@ -82,6 +84,7 @@ type
     Label_Titulo_Asistente_Add: TLabel;
     PanelesAsistente: TPageControl;
     Shape1: TShape;
+    TabSheet_SelecionarMedio: TTabSheet;
     TabSheet_Guardar: TTabSheet;
     TabSheet_Cancelado: TTabSheet;
     TabSheet_Scan: TTabSheet;
@@ -135,6 +138,9 @@ type
 
     // Paso - Escanear guardar
     procedure DoPasoGuardar();
+
+    // Paso - Selecionar Medio
+    procedure DoPasoSeleccionMedio();
   end;
 
 var
@@ -194,8 +200,8 @@ begin
     if FPasoActual > PASO_SELECCION_FINAL then
       FPasoActual := PASO_SELECCION_FINAL;
 
-  Button_Siguiente.Enabled := FPasoActual > PASO_CANCELAR + 1;
-  Button_Atras.Enabled := FPasoActual <> PASO_ESCANEAR;
+  Button_Siguiente.Enabled := FPasoActual >= PASO_SELECCION_MEDIO;
+  Button_Atras.Enabled := (FPasoActual > PASO_SELECCION_MEDIO) and (FPasoActual <> PASO_ESCANEAR);
 
   Button_Atras.visible    := (FPasoActual > PASO_CANCELAR) AND (FPasoActual < PASO_SELECCION_FINAL);
   Button_Cancelar.visible := Button_Atras.visible AND (FPasoActual <> PASO_ESCANEAR);
@@ -214,6 +220,7 @@ begin
   // Dependiendo del paso actual, se ejecuta una acción u otra
   case FPasoActual of
     PASO_CANCELAR         : DoPasoCancelar();
+    PASO_SELECCION_MEDIO  : DoPasoSeleccionMedio();
     PASO_ESCANEAR         : DoPasoEscanear();
     PASO_GUARDAR          : DoPasoGuardar();
     //PASO_SELECCION_FINAL  : DoTitulo(Message_Asistente_Nuevo_Catalogo_Guardar);
@@ -331,6 +338,14 @@ begin
   Frame_Guardar1.MostrarEstadisticaas(FScan);
 
   DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo_Guardar);
+end;
+
+// Paso - Selecionar Medio
+procedure TForm_AddCatalogo.DoPasoSeleccionMedio();
+begin
+  Frame_Guardar1.MostrarEstadisticaas(FScan);
+
+  DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo_Selector_Medio);
 end;
 
 
