@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-21 13:59:54
+ * @Last Modified time: 2023-05-22 00:07:41
  *)
 {
 
@@ -57,6 +57,7 @@ uses
   , SynEdit
   , Control_Logger
   , Control_Formulario_Avanzado
+  , Control_Cajon_Busqueda
   , MotorScan
   , InterfaceConectorDatos
   , ItemBaseDatos
@@ -240,6 +241,7 @@ type
 
     FCatalogoSeleccionadoNodo : PVirtualNode;
     FCatalogoSeleccionadoItem : TItemCatalogo;
+    FPanelBusqueda   : TPanelBusqueda;
   protected
     procedure DoOnTerminarScanAsync();
     procedure DoLoadListaArchivos(Padre : TItemDato);
@@ -460,6 +462,17 @@ begin
   // Inicializa el header de la lista
   DoHeader_Iniciar(true);
 
+  FPanelBusqueda                        := TPanelBusqueda.Create(TComponent(Pointer(@PanelSuperior)^));
+  FPanelBusqueda.Parent                 := PanelSuperior;
+  FPanelBusqueda.Top                    := 5;
+  FPanelBusqueda.Left                   := 5;
+  FPanelBusqueda.Width                  := 200;
+  FPanelBusqueda.Align                  := alRight;
+//  FPanelBusqueda.OnChange               := @Edit_BuscarChange; //TODO: Implementar búsqueda
+  FPanelBusqueda.EditBusqueda.TabOrder  := 2;
+  FPanelBusqueda.Visible                := true;
+
+
   // Lanza el método de forma asíncrona para cargar la lista de catalogos
   application.QueueAsyncCall(@DoLoadListaCatalogosAsync, 0);
 end;
@@ -480,6 +493,9 @@ begin
 
   // Finalizar los objectos necesarios para la navegación por la lista de archivos
   FTempPadre.free;
+
+  // Finalizar el Panel de Busqueda
+  FPanelBusqueda.Free;
 
   // Libera el nodo root del arbol
   DoLiberarNodoRootArbol();

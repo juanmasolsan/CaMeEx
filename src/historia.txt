@@ -1,4 +1,7 @@
 
+- [NEW]   (20230521) Agregado cajón de búsqueda simple en el formulario principal
+
++ 1.2.5.1
 - [NEW]   (20230521) Agregado al asistente de añadir nuevo catalogo : Frame de selección de medio y datos básicos
 - [NEW]   (20230521) Agregado al asistente de añadir nuevo catalogo : Frame de guardado funcional
 - [NEW]   (20230521) Agregado auto size en el formulario de Loading
