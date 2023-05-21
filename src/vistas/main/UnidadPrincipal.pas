@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 17:03:38
+ * @Last Modified time: 2023-05-21 13:59:54
  *)
 {
 
@@ -2495,7 +2495,15 @@ var
 begin
   AddCatalogo := TForm_AddCatalogo.create(Self);
   try
-    AddCatalogo.ShowModal;
+    // Se le pasan los datos del gestor de datos
+    AddCatalogo.AgregarNuevoCatalogo(FGestorDatos);
+
+    // Si realiza el análisis correctamente carga la lista de catalogos
+    if AddCatalogo.ShowModal = mrOk then
+    begin
+      // Cargar Lista
+      DoLoadListaCatalogos();
+    end;
   finally
     AddCatalogo.Free;
   end;

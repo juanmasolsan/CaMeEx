@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 22:54:09
+ * @Last Modified time: 2023-05-21 12:33:09
  *)
 {
 
@@ -84,6 +84,10 @@ resourcestring
   Message_Asistente_Nuevo_Catalogo_Titulo_Cancelar       = 'Se ha cancelado la operación ...';
   Message_Asistente_Nuevo_Catalogo_Titulo_Escanear_Medio = 'Analizando el medio seleccionado ...';
   Message_Asistente_Nuevo_Catalogo_Titulo_Guardar        = 'Guardar datos del análisis ...';
+
+  Message_Asistente_Nuevo_Catalogo_Titulo_Guardando      = 'Guardando los datos del análisis ...';
+  Message_Asistente_Nuevo_Catalogo_Cuerpo_Guardando      = 'Se están guardando los datos del análisis, esto puede tardar un poco.\r\rPor favor espere.';
+
 
 
 implementation

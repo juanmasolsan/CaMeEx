@@ -5,12 +5,14 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 msgid "Espere ..."
 msgstr ""
 
-#: tformloading.label1.caption
-msgid "Por favor espere..."
+#: tformloading.labelmensaje.caption
+msgctxt "tformloading.labelmensaje.caption"
+msgid "Se está realizando una acción."
 msgstr ""
 
-#: tformloading.label2.caption
-msgid "Se está realizando una acción."
+#: tformloading.labeltitulo.caption
+msgctxt "tformloading.labeltitulo.caption"
+msgid "Por favor espere..."
 msgstr ""
 
 #: tform_about.caption

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-21 00:31:30
+ * @Last Modified time: 2023-05-21 14:26:34
  *)
 {
 
@@ -120,6 +120,10 @@ type
 
   public
     { public declarations }
+
+    // Sobreescribe el showmodal
+    function ShowModal : Integer; override;
+
     // Configura el asistente para agregar un nuevo catalogo
     procedure AgregarNuevoCatalogo(GestorDatos : IConectorDatos);
 
@@ -142,7 +146,7 @@ implementation
 
 uses
   AppString
-  ;
+  , UnidadLoading;
 
 
 {$R *.lfm}
@@ -196,10 +200,13 @@ begin
   Button_Atras.visible    := (FPasoActual > PASO_CANCELAR) AND (FPasoActual < PASO_SELECCION_FINAL);
   Button_Cancelar.visible := Button_Atras.visible AND (FPasoActual <> PASO_ESCANEAR);
 
-  if (FPasoActual = PASO_SELECCION_FINAL) OR (FPasoActual = PASO_CANCELAR) then
+  if ((FPasoActual = PASO_SELECCION_FINAL) AND FScanCancelado) OR (FPasoActual = PASO_CANCELAR) then
     Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Cerrar
   else
-    Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Siguiente;
+    if (FPasoActual = PASO_SELECCION_FINAL) then
+      Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Guardar
+    else
+      Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Siguiente;
 
   // Dependiendo muestra un frame u otro
   DoPasoVisible(FPasoActual);
@@ -234,6 +241,26 @@ end;
 
 procedure TForm_AddCatalogo.Button_SiguienteClick(Sender: TObject);
 begin
+  // Si se está en el paso de guardar
+  if FPasoActual = PASO_GUARDAR then
+  begin
+    Button_Siguiente.Enabled := false;
+    try
+      // Guarda lo escaneado en el gestor de datos
+      DoGuardarEscaneado(FScan, FGestorDatos);
+
+      // Devuelve que se ha guardado y todo está ok
+      ModalResult := mrOk;
+
+      // Cierra el asistente
+      Close();
+    finally
+      Button_Siguiente.Enabled := true;
+    end;
+    // Sale del método
+    exit;
+  end;
+
   // Dependiendo del paso actual, se ejecuta una acción u otra
   DoAccionesAtrasSiguiente(1);
 end;
@@ -326,86 +353,21 @@ end;
 
 // Guarda lo escaneado en el gestor de datos
 procedure TForm_AddCatalogo.DoGuardarEscaneado(Scan : TMotorScan; SistemaGuardado : IConectorDatos);
-
-  procedure ProcesarHijo(Item : TItemDato);
-  var
-    t, total : integer;
-    Actual : TItemDato;
-  begin
-    if item <> nil then
-    begin
-      total := item.HijosCount()-1;
-      for t := 0 to total do
-      begin
-        Actual := item.GetHijo(t);
-
-        // Guarda los datos del archivo o directorio
-        SistemaGuardado.AddDato(Actual);
-
-        // Guarda los datos de todo los hijos
-        ProcesarHijo(Actual);
-      end;
-    end;
-  end;
-
-var
-  t, total : integer;
-  Item     : TItemDato;
 begin
-  if assigned(Scan) then
+  if not FScanCancelado then
   begin
-    // Actualiza los datos del catalogo
-    Scan.Root.TotalArchivos    := Scan.TotalArchivos;
-    Scan.Root.TotalDirectorios := Scan.TotalDirectorios;
-    Scan.Root.Size             := Scan.TotalSize;
 
-    // Guarda los datos del catalogo
-    SistemaGuardado.AddCatalogo(Scan.Root);
+    // Muestra el mensaje de guardando
+    FormLoadingShow(Self, Message_Asistente_Nuevo_Catalogo_Titulo_Guardando, Message_Asistente_Nuevo_Catalogo_Cuerpo_Guardando);
+    try
+      // Guarda lo escaneado en el gestor de datos
+      Frame_Guardar1.SaveAsync(SistemaGuardado, Scan);
 
-    // Guarda una copia del catalogo en la tabla de datos
-    Scan.Root.IdPadre        := Scan.Root.Id;
-    Scan.Root.IdCatalogo     := Scan.Root.Id;
-    Scan.Root.IdRutaCompleta := 0;
-    Scan.Root.IdExtension    := 0;
-    SistemaGuardado.AddDato(Scan.Root);
-
-
-    // Guarda los iconos de las Extensiones
-    total := Scan.ListaExtensiones.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddExtensionIcono(TItemExtension(Scan.ListaExtensiones.Items[t]));
+    finally
+      // Oculta el mensaje de guardando
+      FormLoadingHide();
     end;
 
-    // Guarda los datos de las Extensiones
-    total := Scan.ListaExtensiones.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
-    end;
-
-    // Guarda los datos de las rutas completas
-    total := Scan.ListaRutaCompleta.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddRutaCompleta(TItemRutaCompleta(Scan.ListaRutaCompleta.Items[t]));
-    end;
-
-
-    // Guarda los datos de los archivos y directorios
-    total := Scan.Root.HijosCount()-1;
-    for t := 0 to total do
-    begin
-      Item := Scan.Root.GetHijo(t);
-      if item <> nil then
-      begin
-        // Guarda los datos del archivo o directorio
-        SistemaGuardado.AddDato(Item);
-
-        // Guarda los datos de todo los hijos
-        ProcesarHijo(Item);
-      end;
-    end;
   end;
 end;
 
@@ -414,6 +376,18 @@ procedure TForm_AddCatalogo.DoCancelarScan();
 begin
   // Cancela el escaneo
   FScanCancelado := True;
+end;
+
+
+// Sobre escribe el showmodal
+function TForm_AddCatalogo.ShowModal : Integer;
+begin
+  inherited ShowModal();
+
+  if Frame_Guardar1.GuardadoCorrecto then
+    ModalResult := mrOk
+  else
+    ModalResult := mrCancel;
 end;
 
 end.
