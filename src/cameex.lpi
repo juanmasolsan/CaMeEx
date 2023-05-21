@@ -32,10 +32,10 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="2"/>
-      <RevisionNr Value="3"/>
-      <BuildNr Value="4"/>
+      <RevisionNr Value="5"/>
+      <BuildNr Value="2"/>
       <Language Value="040A"/>
-      <StringTable Comments="Catalogador de medios extraibles." CompanyName="JMSS" FileDescription="Catalogador de medios extraibles." InternalName="CaMeEx" LegalCopyright="Juan Manuel Soltero Sánchez" LegalTrademarks="Juan Manuel Soltero Sánchez" OriginalFilename="CaMeEx" ProductName="CaMeEx" ProductVersion="1.2.3.4"/>
+      <StringTable Comments="Catalogador de medios extraibles." CompanyName="JMSS" FileDescription="Catalogador de medios extraibles." InternalName="CaMeEx" LegalCopyright="Juan Manuel Soltero Sánchez" LegalTrademarks="Juan Manuel Soltero Sánchez" OriginalFilename="CaMeEx" ProductName="CaMeEx" ProductVersion="1.2.5.2"/>
     </VersionInfo>
     <BuildModes>
       <Item Name="Default" Default="True"/>
