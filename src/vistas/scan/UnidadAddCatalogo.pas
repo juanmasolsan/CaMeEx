@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-23 00:50:00
+ * @Last Modified time: 2023-05-23 01:04:17
  *)
 {
 
@@ -209,7 +209,10 @@ begin
   end
   else
     if (FPasoActual = PASO_SELECCION_FINAL) then
-      Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Guardar
+    begin
+      Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Guardar;
+      Button_Siguiente.Enabled := true;
+    end
     else
       Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Siguiente;
 

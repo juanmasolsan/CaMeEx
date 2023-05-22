@@ -107,11 +107,11 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Top = 74
     Width = 620
     TabStop = False
-    ActivePage = TabSheet_Scan
+    ActivePage = TabSheet_SelecionarMedio
     Align = alClient
     ParentShowHint = False
     ShowTabs = False
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 3
     TabPosition = tpBottom
     object TabSheet_Cancelado: TTabSheet
@@ -195,7 +195,11 @@ object Form_AddCatalogo: TForm_AddCatalogo
           Height = 227
           Width = 190
           Lines.Strings = (
-            ''
+            'System Volume Information'
+            '$RECYCLE.BIN'
+            '.git'
+            'temp'
+            '*.bak'
           )
         end
         inherited EditRuta_error: TLabel

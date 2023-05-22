@@ -90,7 +90,7 @@
         <ComponentName Value="Form_Propiedades"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
         <UsageCount Value="54"/>
@@ -114,7 +114,7 @@
         <ComponentName Value="Frame_Scan"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="15"/>
         <TopLine Value="61"/>
         <CursorPos X="80" Y="88"/>
         <UsageCount Value="54"/>
@@ -139,8 +139,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="248"/>
-        <CursorPos X="37" Y="252"/>
+        <TopLine Value="202"/>
+        <CursorPos X="8" Y="215"/>
         <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -161,7 +161,7 @@
         <ComponentName Value="Frame_SelecionarMedio"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="233"/>
         <CursorPos X="37" Y="254"/>
         <UsageCount Value="32"/>
@@ -292,7 +292,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="893"/>
         <CursorPos X="50" Y="988"/>
         <UsageCount Value="28"/>
@@ -307,10 +307,11 @@
       </Unit>
       <Unit>
         <Filename Value="components\Control_Contine.pas"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="107"/>
-        <CursorPos X="23" Y="117"/>
+        <CursorPos Y="128"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
@@ -328,10 +329,10 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="47"/>
         <CursorPos X="31" Y="56"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -460,7 +461,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\inc\objpash.inc"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="193"/>
         <CursorPos X="23" Y="206"/>
         <UsageCount Value="21"/>
@@ -497,7 +498,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="3598"/>
         <CursorPos Y="3612"/>
         <UsageCount Value="19"/>
@@ -549,7 +550,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="236"/>
         <CursorPos X="10" Y="249"/>
         <UsageCount Value="15"/>
@@ -661,7 +662,7 @@
         <ComponentName Value="Frame_Guardar"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="185"/>
         <CursorPos X="33" Y="198"/>
         <UsageCount Value="21"/>
@@ -693,7 +694,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\win\wininc\defines.inc"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="1653"/>
         <CursorPos X="6" Y="1667"/>
         <UsageCount Value="14"/>
@@ -701,26 +702,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="255" TopLine="233"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="256" TopLine="233"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="257" TopLine="233"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="259" TopLine="233"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
-        <Caret Line="3591" TopLine="3576"/>
-      </Position>
       <Position>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
         <Caret Line="3594" TopLine="3576"/>
@@ -821,6 +802,26 @@
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
         <Caret Line="251" Column="37" TopLine="247"/>
       </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="252" Column="37" TopLine="248"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="251" Column="37" TopLine="247"/>
+      </Position>
+      <Position>
+        <Filename Value="FrameSelecionarMedio.pas"/>
+        <Caret Line="254" Column="37" TopLine="233"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="246" Column="26" TopLine="239"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="247" Column="26" TopLine="241"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -829,13 +830,6 @@
   </ProjectSession>
   <Debugging>
     <BreakPoints>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="components\control_contine.pas"/>
-        <Line Value="128"/>
-      </Item>
       <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>

@@ -1,4 +1,5 @@
 
+- [NEW]   (20230523) Agregado al Frame de selección de medio y datos básicos : Archivos y directorios ignorados por defecto
 - [NEW]   (20230523) Agregado funcionalidad completa al dialogo de agregar nuevo catalogo
 - [FIX]   (20230523) Ajustado el botón siguiente en diferentes situaciones en el asistente de añadir nuevo catalogo
 

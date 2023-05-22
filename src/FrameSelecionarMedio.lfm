@@ -434,7 +434,11 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     Width = 187
     Anchors = [akTop, akLeft, akRight, akBottom]
     Lines.Strings = (
-      ''
+      'System Volume Information'
+      '$RECYCLE.BIN'
+      '.git'
+      'temp'
+      '*.bak'
     )
     ScrollBars = ssAutoVertical
     TabOrder = 5
