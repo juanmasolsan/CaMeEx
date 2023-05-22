@@ -1,5 +1,5 @@
 
-
+- [FIX]   (20230522) Arreglado el contador de pasos en el Frame de selección de medio y datos básicos
 - [FIX]   (20230522) Ajustado TabOrder al Frame de selección de medio y datos básicos
 - [NEW]   (20230522) Agregado al Frame de selección de medio y datos básicos : En el tipo de carpeta se puede seleccionar una desde el sistema de archivos
 - [NEW]   (20230522) Agregado al Frame de selección de medio y datos básicos : Al cambiar de dispositivo se actualiza la ruta que se va a analizar

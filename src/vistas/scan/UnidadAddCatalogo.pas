@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-22 18:11:25
+ * @Last Modified time: 2023-05-22 23:37:05
  *)
 {
 
@@ -297,9 +297,17 @@ end;
 
 // Para escribir el título del asistente
 procedure TForm_AddCatalogo.DoTitulo(titulo : String);
+var
+  Extra : string;
 begin
   Label_Titulo_Asistente_Add.Caption := titulo;
-  caption                            := Message_Asistente_Nuevo_Catalogo_titulo + ' ['+ inttostr(FPasoActual + 1) + '/' + inttostr(PanelesAsistente.PageCount)+'] - '+ titulo;
+
+  if FPasoActual > PASO_CANCELAR then
+    Extra := ' ['+ inttostr(FPasoActual) + '/' + inttostr(PanelesAsistente.PageCount - 1)+']'
+  else
+    Extra := '';
+
+  caption                            := Message_Asistente_Nuevo_Catalogo_titulo + Extra + ' - '+ titulo;
 end;
 
 
