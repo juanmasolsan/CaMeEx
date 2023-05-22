@@ -309,15 +309,6 @@ object Frame_Scan: TFrame_Scan
     ParentColor = False
     ParentFont = False
   end
-  object Bevel1: TBevel
-    Left = 16
-    Height = 11
-    Top = 184
-    Width = 482
-    Anchors = [akTop, akLeft, akRight]
-    Shape = bsTopLine
-    Visible = False
-  end
   object SpeedButtonCancelar: TSpeedButton
     Left = 16
     Height = 40
@@ -464,14 +455,15 @@ object Frame_Scan: TFrame_Scan
       0000000000000000000000000000000000000000000000000000
     }
     Transparent = False
+    Visible = False
     OnClick = SpeedButtonCancelarClick
     ParentFont = False
   end
   object Info_Archivo: TMemo
-    Left = 16
+    Left = 40
     Height = 64
     Top = 120
-    Width = 480
+    Width = 432
     Anchors = [akTop, akLeft, akRight]
     BorderStyle = bsNone
     Font.Color = clBlue

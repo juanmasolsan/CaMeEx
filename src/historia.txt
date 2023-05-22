@@ -1,4 +1,8 @@
 
+- [NEW]   (20230523) Agregado funcionalidad completa al dialogo de agregar nuevo catalogo
+- [FIX]   (20230523) Ajustado el botón siguiente en diferentes situaciones en el asistente de añadir nuevo catalogo
+
++ 1.2.5.1
 - [NEW]   (20230522) Agregado al Frame de selección de medio y datos básicos : Validación simple de los campos necesarios para continuar
 - [FIX]   (20230522) El botón de cancelar en agregar nuevo catalogo en el selector de medio y datos básicos ahora cierra el formulario
 - [FIX]   (20230522) Arreglado el contador de pasos en el Frame de selección de medio y datos básicos

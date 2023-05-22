@@ -49,7 +49,6 @@ type
   { TFrame_Scan }
 
   TFrame_Scan = class(TFrame)
-    Bevel1: TBevel;
     ImageListSpinner: TImageList;
     Label1: TLabel;
     Label2: TLabel;

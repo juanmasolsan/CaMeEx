@@ -125,7 +125,7 @@ type
 
   public
     // Constructor de la clase
-    constructor Create();
+    constructor Create(Nonbre : string; Descripcion : string; TipoCatalogo : TItemDatoTipo);
 
     // Destructor de la clase
     destructor Destroy(); override;
@@ -251,12 +251,11 @@ end;
 
 { TMotorScanCustom }
 // Constructor de la clase
-constructor TMotorScanCustom.Create();
+constructor TMotorScanCustom.Create(Nonbre : string; Descripcion : string; TipoCatalogo : TItemDatoTipo);
 begin
   inherited Create();
 
-  //TODO: Pasarle un nombre, el tipo de objeto y la descripcion
-
+  {$IFDEF ESCANEAR_DIRECTAMENTE}
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
 
   {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
@@ -271,7 +270,9 @@ begin
   {$ELSE}
   FRoot   := TItemCatalogo.create('DAM 2', TItemDatoTipo.RootDVD, now(), 0, 'Directorio de trabajo usado para el curso de DAM 2', 0, 0);
   {$ENDIF}
-
+  {$ELSE}
+  FRoot   := TItemCatalogo.create(Nonbre, TipoCatalogo, now(), 0, Descripcion, 0, 0);
+  {$ENDIF ESCANEAR_DIRECTAMENTE}
 
   FDetener_Escaneo_Busqueda_Archivos := false;
   FMascaraArchivo                    := '*';

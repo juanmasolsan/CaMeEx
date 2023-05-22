@@ -195,6 +195,7 @@ end;
 procedure TFrame_Guardar.MostrarEstadisticaas(ScanActivo : TMotorScan);
 begin
   SalidaLog.Clear;
+  if ScanActivo = nil then exit;
 
   SalidaLog.lines.Add('------------------------------------------');
   SalidaLog.lines.Add(ScanActivo.Root.Nombre);

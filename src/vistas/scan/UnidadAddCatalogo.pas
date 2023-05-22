@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-22 23:37:05
+ * @Last Modified time: 2023-05-23 00:50:00
  *)
 {
 
@@ -71,7 +71,6 @@ const
 type
   { TForm_AddCatalogo }
   TForm_AddCatalogo = class(TForm)
-    Bevel1: TBevel;
     Bevel2: TBevel;
     Button_Cancelar: TButton;
     Button_Atras: TButton;
@@ -163,9 +162,6 @@ procedure TForm_AddCatalogo.FormCreate(Sender: TObject);
 begin
   ActivarGuardadoPosicion(true);
 
-  // Inicializar el Motor de Escaneo
-  FScan := TMotorScan.Create;
-
   // Inicializa el asistente
   DoAccionesAtrasSiguiente(PASO_SELECCION_MEDIO);
 end;
@@ -200,14 +196,17 @@ begin
     if FPasoActual > PASO_SELECCION_FINAL then
       FPasoActual := PASO_SELECCION_FINAL;
 
-  Button_Siguiente.Enabled := FPasoActual >= PASO_SELECCION_MEDIO;
-  Button_Atras.Enabled := (FPasoActual > PASO_SELECCION_MEDIO) and (FPasoActual <> PASO_ESCANEAR);
+  Button_Siguiente.Enabled := (FPasoActual = PASO_SELECCION_MEDIO) OR ((FPasoActual = PASO_SELECCION_FINAL) AND FScanCancelado) OR (FPasoActual = PASO_CANCELAR);
+  Button_Atras.Enabled     := (FPasoActual > PASO_SELECCION_MEDIO) and (FPasoActual <> PASO_ESCANEAR);
 
   Button_Atras.visible    := (FPasoActual > PASO_CANCELAR) AND (FPasoActual < PASO_SELECCION_FINAL);
-  Button_Cancelar.visible := Button_Atras.visible AND (FPasoActual <> PASO_ESCANEAR);
+  Button_Cancelar.visible := Button_Atras.visible;// AND (FPasoActual <> PASO_ESCANEAR);
 
   if ((FPasoActual = PASO_SELECCION_FINAL) AND FScanCancelado) OR (FPasoActual = PASO_CANCELAR) then
-    Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Cerrar
+  begin
+    //Button_Siguiente.Enabled := true;
+    Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Cerrar;
+  end
   else
     if (FPasoActual = PASO_SELECCION_FINAL) then
       Button_Siguiente.Caption := Message_Asistente_Nuevo_Catalogo_Guardar
@@ -250,6 +249,8 @@ procedure TForm_AddCatalogo.Button_SiguienteClick(Sender: TObject);
 begin
 
   case FPasoActual of
+    PASO_CANCELAR         : Close();
+
     PASO_SELECCION_MEDIO  : begin
                               if not Frame_SelecionarMedio1.IsValidate() then
                                 exit;
@@ -320,14 +321,37 @@ end;
 
 // Paso - Escanear medio
 procedure TForm_AddCatalogo.DoPasoEscanear();
+
+ function GetExcluir() : string;
+ begin
+   Result := Frame_SelecionarMedio1.EditExcluir.Lines.Text;
+   Result := StringReplace(Result, #13 + #10, ';', [rfReplaceAll, rfIgnoreCase]);
+   Result := StringReplace(Result, #13, ';', [rfReplaceAll, rfIgnoreCase]);
+   Result := StringReplace(Result, #10, ';', [rfReplaceAll, rfIgnoreCase]);
+ end;
+
 begin
   DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo_Escanear_Medio);
+
+  // Se libera el anterior
+  if FScan <> nil then
+   FScan.Free;
+
+  {$IFDEF ESCANEAR_DIRECTAMENTE}
+  // Inicializar el Motor de Escaneo
+  FScan := TMotorScan.Create('', '', TItemDatoTipo.Root);
+  {$ELSE}
+  FScan := TMotorScan.Create(Frame_SelecionarMedio1.Edit_Nombre.Text, Frame_SelecionarMedio1.EditDescripcion.Text, Frame_SelecionarMedio1.GetTipoCatalogo);
+  {$ENDIF ESCANEAR_DIRECTAMENTE}
+
 
   FScanCancelado := false;
   FScaneando     := true;
 
   // Iniciar el escaneo
   Frame_Scan1.Iniciar(@DoCancelarScan, FScan);
+
+{$IFDEF ESCANEAR_DIRECTAMENTE}
 
   {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
     {$IFNDEF ESCANEAR_DIRECTORIO_VSCODE_EXTENSIONS}
@@ -340,6 +364,12 @@ begin
   {$ELSE}
     FScan.ScanDirAsync('C:\DAM_02\', @DoOnTerminarScanAsync, '.git;img\iconos');
   {$ENDIF}
+
+{$ELSE}
+
+  FScan.ScanDirAsync(Frame_SelecionarMedio1.EditRuta.Text, @DoOnTerminarScanAsync, GetExcluir() );
+
+{$ENDIF ESCANEAR_DIRECTAMENTE}
 end;
 
 // Paso - Escanear cancelar

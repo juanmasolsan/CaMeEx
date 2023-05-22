@@ -86,23 +86,6 @@ object Form_AddCatalogo: TForm_AddCatalogo
     }
     Stretch = True
   end
-  object Bevel1: TBevel
-    Left = 0
-    Height = 3
-    Top = 74
-    Width = 620
-    Align = alTop
-    Shape = bsTopLine
-  end
-  object Bevel2: TBevel
-    Left = 0
-    Height = 7
-    Top = 526
-    Width = 620
-    Align = alBottom
-    BorderSpacing.Bottom = 35
-    Shape = bsTopLine
-  end
   object Label_Titulo_Asistente_Add: TLabel
     Left = 8
     Height = 25
@@ -120,25 +103,25 @@ object Form_AddCatalogo: TForm_AddCatalogo
   end
   object PanelesAsistente: TPageControl
     Left = 0
-    Height = 449
-    Top = 77
+    Height = 452
+    Top = 74
     Width = 620
     TabStop = False
-    ActivePage = TabSheet_SelecionarMedio
+    ActivePage = TabSheet_Scan
     Align = alClient
     ParentShowHint = False
     ShowTabs = False
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 3
     TabPosition = tpBottom
     object TabSheet_Cancelado: TTabSheet
       Caption = 'Cancelado'
-      ClientHeight = 441
+      ClientHeight = 444
       ClientWidth = 612
       inline Frame_Cancelado1: TFrame_Cancelado
-        Height = 441
+        Height = 444
         Width = 612
-        ClientHeight = 441
+        ClientHeight = 444
         ClientWidth = 612
         inherited Label1: TLabel
           Width = 519
@@ -147,12 +130,12 @@ object Form_AddCatalogo: TForm_AddCatalogo
     end
     object TabSheet_SelecionarMedio: TTabSheet
       Caption = 'SelecionarMedio'
-      ClientHeight = 441
+      ClientHeight = 444
       ClientWidth = 612
       inline Frame_SelecionarMedio1: TFrame_SelecionarMedio
-        Height = 441
+        Height = 444
         Width = 612
-        ClientHeight = 441
+        ClientHeight = 444
         ClientWidth = 612
         inherited Edit_Nombre: TEdit
           Width = 470
@@ -209,7 +192,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
           Width = 470
         end
         inherited EditExcluir: TMemo
-          Height = 224
+          Height = 227
           Width = 190
           Lines.Strings = (
             ''
@@ -222,35 +205,32 @@ object Form_AddCatalogo: TForm_AddCatalogo
     end
     object TabSheet_Scan: TTabSheet
       Caption = 'Scan'
-      ClientHeight = 441
+      ClientHeight = 444
       ClientWidth = 612
       inline Frame_Scan1: TFrame_Scan
-        Height = 441
+        Height = 444
         Width = 612
-        ClientHeight = 441
+        ClientHeight = 444
         ClientWidth = 612
         inherited Label2: TLabel
           Width = 458
-        end
-        inherited Bevel1: TBevel
-          Width = 580
         end
         inherited SpeedButtonCancelar: TSpeedButton
           Width = 578
         end
         inherited Info_Archivo: TMemo
-          Width = 578
+          Width = 530
         end
       end
     end
     object TabSheet_Guardar: TTabSheet
       Caption = 'Guardar'
-      ClientHeight = 441
+      ClientHeight = 444
       ClientWidth = 612
       inline Frame_Guardar1: TFrame_Guardar
-        Height = 441
+        Height = 444
         Width = 612
-        ClientHeight = 441
+        ClientHeight = 444
         ClientWidth = 612
         inherited Label1: TLabel
           Width = 519
@@ -263,5 +243,14 @@ object Form_AddCatalogo: TForm_AddCatalogo
         end
       end
     end
+  end
+  object Bevel2: TBevel
+    Left = 0
+    Height = 7
+    Top = 526
+    Width = 620
+    Align = alBottom
+    BorderSpacing.Bottom = 35
+    Shape = bsTopLine
   end
 end

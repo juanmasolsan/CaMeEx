@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-21 22:40:01
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-22 23:50:09
+ * @Last Modified time: 2023-05-23 00:24:56
  *)
 unit FrameSelecionarMedio;
 
@@ -72,6 +72,9 @@ type
 
     // Valida el formulario
     function IsValidate() : boolean;
+
+    // Devuelve el tipo de catalogo seleccionado
+    function GetTipoCatalogo() : TItemDatoTipo;
   end;
 
 implementation
@@ -224,6 +227,7 @@ begin
   // Inicializa el resultado
   Result := true;
 
+{$IFNDEF ESCANEAR_DIRECTAMENTE}
   // Oculta los errores
   Edit_Nombre_error.Visible      := false;
   EditRuta_error.Visible         := false;
@@ -241,6 +245,19 @@ begin
     Result                 := false;
     EditRuta_error.Visible := true;
   end;
+{$ENDIF ESCANEAR_DIRECTAMENTE}
+end;
+
+function TFrame_SelecionarMedio.GetTipoCatalogo() : TItemDatoTipo;
+var
+ Unidad : TUnidadDetectada;
+begin
+ Result := TItemDatoTipo.Root;
+
+ Unidad := GetUnidad(ComboBoxDispositivos.ItemIndex);
+  if Unidad <> nil then
+    Result := Unidad .Tipo;
+
 end;
 
 end.
