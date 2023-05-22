@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-23 01:04:17
+ * @Last Modified time: 2023-05-23 01:11:08
  *)
 {
 
@@ -325,20 +325,32 @@ end;
 // Paso - Escanear medio
 procedure TForm_AddCatalogo.DoPasoEscanear();
 
- function GetExcluir() : string;
- begin
-   Result := Frame_SelecionarMedio1.EditExcluir.Lines.Text;
-   Result := StringReplace(Result, #13 + #10, ';', [rfReplaceAll, rfIgnoreCase]);
-   Result := StringReplace(Result, #13, ';', [rfReplaceAll, rfIgnoreCase]);
-   Result := StringReplace(Result, #10, ';', [rfReplaceAll, rfIgnoreCase]);
- end;
+  function GetExcluir() : string;
+  var
+    linea : string;
+    t     : integer;
+  begin
+
+    for t:= 0 to Frame_SelecionarMedio1.EditExcluir.Lines.Count - 1 do
+    begin
+      linea := trim(Frame_SelecionarMedio1.EditExcluir.Lines[t]);
+
+      if linea = '' then
+        continue;
+
+      if t = 0 then
+        Result := linea
+      else
+        Result := Result + ';' + linea;
+    end;
+  end;
 
 begin
   DoTitulo(Message_Asistente_Nuevo_Catalogo_Titulo_Escanear_Medio);
 
   // Se libera el anterior
   if FScan <> nil then
-   FScan.Free;
+    FScan.Free;
 
   {$IFDEF ESCANEAR_DIRECTAMENTE}
   // Inicializar el Motor de Escaneo

@@ -67,7 +67,7 @@
 +         Agregar Sqlite3 - Tabla extensiones enlace con la tabla de iconos por el id del mismo
 +         Motor de escaneo de dispositivos y directorios - Guardar fechas de creacion y ultimo acceso
 
-- Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
++ Hito 2: Visualización de los datos en forma de árbol para los directorios y lista para los archivos.
 +         Listar los archivos en la lista.
 +         Los iconos de lista de archivos y árbol de directorios sean los del sistema o por defecto los que vienen con la app
 +         Los iconos de lista de archivos y árbol de directorios puedan recuperar los iconos de los catalogos
@@ -150,6 +150,7 @@
 +         Ventana para seleccionar el dispositivo/directorio a escanear.
 +         Excluirs : System Volume Information, .git, temp, *.bak,$RECYCLE.BIN
 -         Revisar la ruta de los archivos en la lista, si hay muchos archivos se vuelve lenta
+-         Revisar excepción en la carpeta P:\ no encuentra el IDPADRE al guardar los datos
 
 
 
