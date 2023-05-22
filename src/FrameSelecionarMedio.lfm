@@ -193,6 +193,7 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     Anchors = [akTop, akRight]
     Caption = '...'
     Enabled = False
+    OnClick = ButtonSeleccionarRutaClick
     TabOrder = 2
   end
   object EditRuta: TEdit
@@ -451,5 +452,8 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     ParentColor = False
     ParentFont = False
     Visible = False
+  end
+  object SelectDirectoryDialog1: TSelectDirectoryDialog
+    Left = 552
   end
 end

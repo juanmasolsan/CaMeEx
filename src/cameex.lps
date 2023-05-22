@@ -42,7 +42,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ModeloItemData"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="198"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Logger.pas"/>
@@ -50,7 +50,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="114"/>
         <CursorPos X="24" Y="137"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="178"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -58,7 +58,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="175"/>
+        <UsageCount Value="176"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
@@ -69,7 +69,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="351"/>
         <CursorPos X="17" Y="370"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -82,7 +82,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="121"/>
         <CursorPos X="35" Y="133"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
@@ -93,7 +93,7 @@
         <EditorIndex Value="10"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -106,7 +106,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
@@ -117,7 +117,7 @@
         <EditorIndex Value="13"/>
         <TopLine Value="72"/>
         <CursorPos X="80" Y="89"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -129,7 +129,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
@@ -139,9 +139,9 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="167"/>
-        <CursorPos X="44" Y="167"/>
-        <UsageCount Value="48"/>
+        <TopLine Value="262"/>
+        <CursorPos Y="291"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -153,7 +153,7 @@
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="25"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="FrameSelecionarMedio.pas"/>
@@ -162,9 +162,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="167"/>
-        <CursorPos X="54" Y="187"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="183"/>
+        <CursorPos X="5" Y="198"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -701,38 +701,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="10" Column="5"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="114" TopLine="102"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="111" TopLine="96"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="112" TopLine="97"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="150" Column="113" TopLine="133"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="149" TopLine="133"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="145" Column="34" TopLine="130"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
-        <Caret Line="148" Column="82" TopLine="129"/>
-      </Position>
-      <Position>
-        <Filename Value="FrameSelecionarMedio.pas"/>
         <Caret Line="144" Column="34" TopLine="129"/>
       </Position>
       <Position>
@@ -805,7 +773,11 @@
       </Position>
       <Position>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="167" Column="44" TopLine="199"/>
+        <Caret Line="166" Column="44" TopLine="166"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="167" Column="44" TopLine="167"/>
       </Position>
       <Position>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
@@ -817,7 +789,35 @@
       </Position>
       <Position>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="166" Column="44" TopLine="166"/>
+        <Caret Line="169" Column="44" TopLine="169"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="297" Column="3" TopLine="293"/>
+      </Position>
+      <Position>
+        <Filename Value="FrameSelecionarMedio.pas"/>
+        <Caret Line="188" Column="54" TopLine="168"/>
+      </Position>
+      <Position>
+        <Filename Value="FrameSelecionarMedio.pas"/>
+        <Caret Line="196" TopLine="168"/>
+      </Position>
+      <Position>
+        <Filename Value="FrameSelecionarMedio.pas"/>
+        <Caret Line="197" Column="5" TopLine="182"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="292" TopLine="231"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="291" TopLine="262"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
+        <Caret Line="290" TopLine="261"/>
       </Position>
     </JumpHistory>
     <RunParams>

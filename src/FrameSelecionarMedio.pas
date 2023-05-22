@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-21 22:40:01
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-22 22:53:11
+ * @Last Modified time: 2023-05-22 23:27:20
  *)
 unit FrameSelecionarMedio;
 
@@ -11,7 +11,8 @@ unit FrameSelecionarMedio;
 interface
 
 uses
-   Windows, Classes, SysUtils, Forms, Controls, ExtCtrls, StdCtrls, SynEdit, FGL, ItemBaseDatos, Types;
+  Windows, Classes, SysUtils, Forms, Controls, ExtCtrls, StdCtrls, Dialogs,
+  SynEdit, FGL, ItemBaseDatos, Types;
 
 
 
@@ -52,6 +53,8 @@ type
     Label6: TLabel;
     Label9: TLabel;
     EditDescripcion: TMemo;
+    SelectDirectoryDialog1: TSelectDirectoryDialog;
+    procedure ButtonSeleccionarRutaClick(Sender: TObject);
     procedure ComboBoxDispositivosChange(Sender: TObject);
     procedure ComboBoxDispositivosDrawItem(Control: TWinControl; Index: Integer; ARect: TRect; State: TOwnerDrawState);
     procedure Edit_NombreChange(Sender: TObject);
@@ -188,6 +191,13 @@ begin
   end;
 
 
+end;
+
+procedure TFrame_SelecionarMedio.ButtonSeleccionarRutaClick(Sender: TObject);
+begin
+  // Selecciona la ruta
+  if SelectDirectoryDialog1.Execute then
+    EditRuta.text :=  SelectDirectoryDialog1.FileName;
 end;
 
 procedure TFrame_SelecionarMedio.ComboBoxDispositivosDrawItem(Control: TWinControl; Index: Integer; ARect: TRect; State: TOwnerDrawState);
