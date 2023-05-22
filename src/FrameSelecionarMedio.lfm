@@ -161,7 +161,7 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     OnChange = ComboBoxDispositivosChange
     OnDrawItem = ComboBoxDispositivosDrawItem
     Style = csOwnerDrawFixed
-    TabOrder = 1
+    TabOrder = 2
     TextHint = 'Seleccione un dispositivo...'
   end
   object Label4: TLabel
@@ -194,7 +194,7 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     Caption = '...'
     Enabled = False
     OnClick = ButtonSeleccionarRutaClick
-    TabOrder = 2
+    TabOrder = 4
   end
   object EditRuta: TEdit
     Left = 331
@@ -417,13 +417,14 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     ParentColor = False
   end
   object EditDescripcion: TMemo
+    Tag = 1
     Left = 128
     Height = 50
     Top = 88
     Width = 467
     Anchors = [akTop, akLeft, akRight]
     ScrollBars = ssAutoVertical
-    TabOrder = 4
+    TabOrder = 1
   end
   object EditExcluir: TMemo
     Left = 128

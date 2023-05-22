@@ -22,7 +22,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Anchors = [akRight, akBottom]
     Caption = 'Cancelar'
     OnClick = Button_CancelarClick
-    TabOrder = 0
+    TabOrder = 2
   end
   object Button_Atras: TButton
     Left = 452
@@ -43,7 +43,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Anchors = [akRight, akBottom]
     Caption = 'Siguiente'
     OnClick = Button_SiguienteClick
-    TabOrder = 2
+    TabOrder = 0
   end
   object Shape1: TShape
     Left = 0
@@ -123,10 +123,11 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Height = 449
     Top = 77
     Width = 620
-    ActivePage = TabSheet_SelecionarMedio
+    TabStop = False
+    ActivePage = TabSheet_Guardar
     Align = alClient
     ParentShowHint = False
-    TabIndex = 1
+    TabIndex = 3
     TabOrder = 3
     TabPosition = tpBottom
     object TabSheet_Cancelado: TTabSheet
@@ -157,12 +158,14 @@ object Form_AddCatalogo: TForm_AddCatalogo
         end
         inherited ComboBoxDispositivos: TComboBox
           Width = 190
+          TabOrder = 1
         end
         inherited Label5: TLabel
           Left = 334
         end
         inherited ButtonSeleccionarRuta: TButton
           Left = 555
+          TabOrder = 2
         end
         inherited EditRuta: TEdit
           Left = 334
@@ -204,7 +207,9 @@ object Form_AddCatalogo: TForm_AddCatalogo
           Left = 427
         end
         inherited EditDescripcion: TMemo
+          Tag = 0
           Width = 470
+          TabOrder = 4
         end
         inherited EditExcluir: TMemo
           Height = 204
