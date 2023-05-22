@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-22 00:07:41
+ * @Last Modified time: 2023-05-22 10:56:04
  *)
 {
 
@@ -356,6 +356,11 @@ type
     procedure DoAddNuevoCatalogo();
 
 
+    // Busca el texto en la lista de archivos
+    procedure DoBuscarTexto(const Buscar : string);
+
+    // Al recibir cambios del campo de búsqueda realiza la búsqueda
+    procedure DoEditBuscarChange(Sender: TObject);
   public
 
   end;
@@ -468,7 +473,7 @@ begin
   FPanelBusqueda.Left                   := 5;
   FPanelBusqueda.Width                  := 200;
   FPanelBusqueda.Align                  := alRight;
-//  FPanelBusqueda.OnChange               := @Edit_BuscarChange; //TODO: Implementar búsqueda
+  FPanelBusqueda.OnChange               := @DoEditBuscarChange;
   FPanelBusqueda.EditBusqueda.TabOrder  := 2;
   FPanelBusqueda.Visible                := true;
 
@@ -2524,6 +2529,84 @@ begin
     AddCatalogo.Free;
   end;
 end;
+
+
+// Busca el texto en la lista de archivos
+procedure TForm_Principal.DoBuscarTexto(const Buscar : string);
+var
+  Node    : PVirtualNode;
+  Busqueda: string;
+
+  function BuscarTexto(DatosItem  : TItemDato): Boolean;
+  begin
+    Result := false;
+
+    // Comprueba si el item es nulo
+    if DatosItem = nil then exit;
+
+    // Comprueba si el texto a buscar es nulo
+    if (Busqueda = '') then
+    begin
+      Result := true;
+      exit;
+    end;
+
+    // Comprueba si el texto a buscar se encuentra en el nombre, extension o ruta
+    if pos(Busqueda, lowercase(DatosItem.Nombre)) > 0 then
+      Result := true
+    else
+      if pos(Busqueda, lowercase(DatosItem.Extension)) > 0 then
+        Result := true
+      else
+        if pos(Busqueda, lowercase(DatosItem.Ruta)) > 0 then
+          Result := true
+  end;
+
+
+  function Mostrar_Nodo_Servicio(Listado : TVirtualStringTree): Boolean;
+  var
+    NodeData  : PrListaData;
+  begin
+    // Obtiene los datos del nodo
+    NodeData := Listado.GetNodeData(Node);
+
+    // Comprueba la búsqueda
+    Result    := BuscarTexto(NodeData^.NodeData);
+  end;
+
+  procedure Buscar_En_listado(Listado : TVirtualStringTree);
+  begin
+    Listado.BeginUpdate;
+    try
+      // Obtiene el primer nodo
+      Node := Listado.GetFirst();
+      while Node <> nil do
+        begin
+          // Pone el node en visible o no según el resultado de la búsqueda
+          Listado.IsVisible[Node] := Mostrar_Nodo_Servicio(Listado);
+
+          // Obtiene el siguiente nodo
+          Node := Listado.GetNext(Node);
+        end;
+    finally
+      Listado.EndUpdate;
+    end;
+  end;
+
+begin
+  // Pone la búsqueda en minúsculas y sin espacios
+  Busqueda := trim(lowercase(Buscar));
+
+  // Busca en la lista de archivos
+  Buscar_En_listado(Lista);
+end;
+
+// Al recibir cambios del campo de búsqueda realiza la búsqueda
+procedure TForm_Principal.DoEditBuscarChange(Sender: TObject);
+begin
+  DoBuscarTexto(FPanelBusqueda.EditBusqueda.Text);
+end;
+
 
 
 end.

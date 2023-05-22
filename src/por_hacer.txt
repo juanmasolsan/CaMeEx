@@ -157,8 +157,10 @@
 
 
 - Hito 3: Búsqueda y filtrado de datos.
--         Agregar cajon de búsqueda en la barra de herramientas
--         Motor de búsqueda simple.
++         Agregar cajon de búsqueda en la barra de herramientas
++         Motor de búsqueda simple.
+-         Motor de búsqueda simple : Busqueda por extensión.
+-         Motor de búsqueda simple : Busqueda por ruta.
 -         Motor de búsqueda avanzado.
 
 - Hito 4: Exportación de datos a formato html, xml o csv. Tanto de los datos seleccionados, como los resultados de búsqueda.

@@ -1,4 +1,7 @@
 
+
+- [NEW]   (20230522) Agregado buscador simple en la lista de archivos
+
 + 1.2.5.2
 - [NEW]   (20230522) Agregado cajón de búsqueda simple en el formulario principal
 
