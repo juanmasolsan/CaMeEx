@@ -1,4 +1,8 @@
 
+
+
+
+- [NEW]   (20230522) Agregado al Frame de selección de medio y datos básicos : Al cambiar de dispositivo se actualiza la ruta que se va a analizar
 - [NEW]   (20230522) Agregado al Frame de selección de medio y datos básicos : Cambio de imagen al cambiar de dispositivo y añadido imagen a cada tipo de dispositivo
 - [NEW]   (20230522) Agregado al Frame de selección de medio y datos básicos : Enumerar la lista de unidades disponibles
 - [NEW]   (20230522) Agregado buscador simple en la lista de archivos

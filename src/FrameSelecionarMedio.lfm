@@ -1,10 +1,10 @@
 object Frame_SelecionarMedio: TFrame_SelecionarMedio
   Left = 0
-  Height = 581
+  Height = 371
   Top = 0
   Width = 609
   Align = alClient
-  ClientHeight = 581
+  ClientHeight = 371
   ClientWidth = 609
   TabOrder = 0
   DesignLeft = 400
@@ -426,10 +426,10 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
   end
   object EditExcluir: TMemo
     Left = 128
-    Height = 146
-    Top = 213
+    Height = 154
+    Top = 208
     Width = 187
-    Anchors = [akTop, akLeft, akRight]
+    Anchors = [akTop, akLeft, akRight, akBottom]
     Lines.Strings = (
       ''
     )

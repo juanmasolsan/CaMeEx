@@ -207,6 +207,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
           Width = 470
         end
         inherited EditExcluir: TMemo
+          Height = 204
           Width = 190
           Lines.Strings = (
             ''

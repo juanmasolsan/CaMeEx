@@ -179,9 +179,15 @@ begin
 
     // Cambia la imagen del dispositivo
     Form_Principal.ImageListArchivos32.GetBitmap(Index, ImageDispositivo.Picture.Bitmap);
+
+    // Asigna la ruta al edit de ruta
+    EditRuta.Text := Unidad.Ruta;
+
+    EditRuta.Enabled              := Unidad .Tipo = TItemDatoTipo.RootCarpeta;
+    ButtonSeleccionarRuta.Enabled := EditRuta.Enabled;
   end;
 
-  //TODO: Al seleccionar un dispositivo que muestre la ruta actual, si no es carpeta, que la ruta esté bloqueada
+
 end;
 
 procedure TFrame_SelecionarMedio.ComboBoxDispositivosDrawItem(Control: TWinControl; Index: Integer; ARect: TRect; State: TOwnerDrawState);
