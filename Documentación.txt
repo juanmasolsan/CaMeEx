@@ -25,6 +25,9 @@ SQLite         : https://wiki.freepascal.org/SQLite/es
 SQLite3 y Fechas : https://wiki.freepascal.org/SQLite/es#SQLite3_y_Fechas
 
 
+
+
+
 Lazarus
 ------------------------------------------------
 How to Create Multilingual Programs in Lazarus : http://lazplanet.blogspot.com/2018/12/how-to-create-multilingual-programs-in.html
@@ -32,3 +35,7 @@ How to Create Multilingual Programs in Lazarus : http://lazplanet.blogspot.com/2
 Step-by-step instructions for creating multi-language applications : https://wiki.lazarus.freepascal.org/Step-by-step_instructions_for_creating_multi-language_applications
 
 Getting translation strings right : https://wiki.lazarus.freepascal.org/Getting_translation_strings_right
+
+Listar las unidades de disco en el sistema : https://wiki.lazarus.freepascal.org/Windows_Programming_Tips#Listing_all_available_drives
+
+Iconos en los combobox : https://wiki.lazarus.freepascal.org/TComboBox

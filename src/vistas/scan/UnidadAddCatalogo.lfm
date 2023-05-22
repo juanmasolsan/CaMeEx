@@ -147,7 +147,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
       Caption = 'SelecionarMedio'
       ClientHeight = 421
       ClientWidth = 612
-      inline Frame1_1: TFrame1
+      inline Frame_SelecionarMedio1: TFrame_SelecionarMedio
         Height = 421
         Width = 612
         ClientHeight = 421
@@ -211,6 +211,9 @@ object Form_AddCatalogo: TForm_AddCatalogo
           Lines.Strings = (
             ''
           )
+        end
+        inherited Edit_Nombre_error2: TLabel
+          Left = 334
         end
       end
     end

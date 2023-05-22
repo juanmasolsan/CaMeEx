@@ -1,4 +1,4 @@
-object Frame1: TFrame1
+object Frame_SelecionarMedio: TFrame_SelecionarMedio
   Left = 0
   Height = 581
   Top = 0
@@ -7,8 +7,8 @@ object Frame1: TFrame1
   ClientHeight = 581
   ClientWidth = 609
   TabOrder = 0
-  DesignLeft = 403
-  DesignTop = 20
+  DesignLeft = 400
+  DesignTop = 17
   object Image1: TImage
     Left = 8
     Height = 48
@@ -122,6 +122,7 @@ object Frame1: TFrame1
     Top = 45
     Width = 467
     Anchors = [akTop, akLeft, akRight]
+    OnChange = Edit_NombreChange
     TabOrder = 0
     TextHint = 'Escriba un nombre para poder identifificar el catálogo'
   end
@@ -138,7 +139,7 @@ object Frame1: TFrame1
   object Edit_Nombre_error: TLabel
     Left = 128
     Height = 13
-    Top = 72
+    Top = 70
     Width = 254
     Caption = 'Esta campo es obligatorio y no puede estar vacio.'
     Font.CharSet = ANSI_CHARSET
@@ -156,8 +157,10 @@ object Frame1: TFrame1
     Top = 160
     Width = 187
     Anchors = [akTop, akLeft, akRight]
-    ItemHeight = 15
-    Style = csDropDownList
+    ItemHeight = 17
+    OnChange = ComboBoxDispositivosChange
+    OnDrawItem = ComboBoxDispositivosDrawItem
+    Style = csOwnerDrawFixed
     TabOrder = 1
     TextHint = 'Seleccione un dispositivo...'
   end
@@ -263,9 +266,9 @@ object Frame1: TFrame1
   object Edit_Nombre_error1: TLabel
     Left = 128
     Height = 13
-    Top = 190
-    Width = 254
-    Caption = 'Esta campo es obligatorio y no puede estar vacio.'
+    Top = 186
+    Width = 119
+    Caption = 'Seleccione una opción.'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clRed
     Font.Height = -11
@@ -432,5 +435,21 @@ object Frame1: TFrame1
     )
     ScrollBars = ssAutoVertical
     TabOrder = 5
+  end
+  object Edit_Nombre_error2: TLabel
+    Left = 331
+    Height = 13
+    Top = 186
+    Width = 254
+    Anchors = [akTop, akRight]
+    Caption = 'Esta campo es obligatorio y no puede estar vacio.'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    Visible = False
   end
 end

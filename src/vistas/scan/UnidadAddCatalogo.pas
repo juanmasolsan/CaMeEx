@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 12:18:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-21 14:26:34
+ * @Last Modified time: 2023-05-22 18:11:25
  *)
 {
 
@@ -76,10 +76,10 @@ type
     Button_Cancelar: TButton;
     Button_Atras: TButton;
     Button_Siguiente: TButton;
-    Frame1_1: TFrame1;
     Frame_Cancelado1: TFrame_Cancelado;
     Frame_Guardar1: TFrame_Guardar;
     Frame_Scan1: TFrame_Scan;
+    Frame_SelecionarMedio1: TFrame_SelecionarMedio;
     Image1: TImage;
     Label_Titulo_Asistente_Add: TLabel;
     PanelesAsistente: TPageControl;
@@ -248,24 +248,33 @@ end;
 
 procedure TForm_AddCatalogo.Button_SiguienteClick(Sender: TObject);
 begin
-  // Si se está en el paso de guardar
-  if FPasoActual = PASO_GUARDAR then
-  begin
-    Button_Siguiente.Enabled := false;
-    try
-      // Guarda lo escaneado en el gestor de datos
-      DoGuardarEscaneado(FScan, FGestorDatos);
 
-      // Devuelve que se ha guardado y todo está ok
-      ModalResult := mrOk;
+  case FPasoActual of
+    PASO_SELECCION_MEDIO  : begin
+                              if not Frame_SelecionarMedio1.IsValidate() then
+                                exit;
+                            end;
 
-      // Cierra el asistente
-      Close();
-    finally
-      Button_Siguiente.Enabled := true;
-    end;
-    // Sale del método
-    exit;
+    PASO_ESCANEAR         : beep;
+
+    PASO_GUARDAR          : begin
+                              Button_Siguiente.Enabled := false;
+                              try
+                                // Guarda lo escaneado en el gestor de datos
+                                DoGuardarEscaneado(FScan, FGestorDatos);
+
+                                // Devuelve que se ha guardado y todo está ok
+                                ModalResult := mrOk;
+
+                                // Cierra el asistente
+                                Close();
+                              finally
+                                Button_Siguiente.Enabled := true;
+                              end;
+                              // Sale del método
+                              exit;
+                            end;
+
   end;
 
   // Dependiendo del paso actual, se ejecuta una acción u otra

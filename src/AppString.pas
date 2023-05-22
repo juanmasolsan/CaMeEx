@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-21 12:33:09
+ * @Last Modified time: 2023-05-22 22:20:57
  *)
 {
 
@@ -89,6 +89,13 @@ resourcestring
   Message_Asistente_Nuevo_Catalogo_Cuerpo_Guardando      = 'Se están guardando los datos del análisis, esto puede tardar un poco.\r\rPor favor espere.';
 
   Message_Asistente_Nuevo_Catalogo_Titulo_Selector_Medio = 'Datos básicos ...';
+
+  Message_Asistente_Nuevo_Catalogo_Tipo_Medio_Carpeta = 'Seleccionar Carpeta ...';
+  Message_Asistente_Nuevo_Catalogo_Tipo_Medio_Usb     = 'Unidad USB';
+  Message_Asistente_Nuevo_Catalogo_Tipo_Medio_Dvd     = 'Unidad DVD/CD/BD';
+  Message_Asistente_Nuevo_Catalogo_Tipo_Medio_Hdd     = 'Disco Duro/SSD';
+  Message_Asistente_Nuevo_Catalogo_Tipo_Medio_Red     = 'Unidad de Red';
+  Message_Asistente_Nuevo_Catalogo_Tipo_Medio_RAM     = 'Unidad RAM Disk';
 
 
 implementation
