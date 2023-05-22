@@ -124,20 +124,21 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Top = 77
     Width = 620
     TabStop = False
-    ActivePage = TabSheet_Guardar
+    ActivePage = TabSheet_SelecionarMedio
     Align = alClient
     ParentShowHint = False
-    TabIndex = 3
+    ShowTabs = False
+    TabIndex = 1
     TabOrder = 3
     TabPosition = tpBottom
     object TabSheet_Cancelado: TTabSheet
       Caption = 'Cancelado'
-      ClientHeight = 421
+      ClientHeight = 441
       ClientWidth = 612
       inline Frame_Cancelado1: TFrame_Cancelado
-        Height = 421
+        Height = 441
         Width = 612
-        ClientHeight = 421
+        ClientHeight = 441
         ClientWidth = 612
         inherited Label1: TLabel
           Width = 519
@@ -146,12 +147,12 @@ object Form_AddCatalogo: TForm_AddCatalogo
     end
     object TabSheet_SelecionarMedio: TTabSheet
       Caption = 'SelecionarMedio'
-      ClientHeight = 421
+      ClientHeight = 441
       ClientWidth = 612
       inline Frame_SelecionarMedio1: TFrame_SelecionarMedio
-        Height = 421
+        Height = 441
         Width = 612
-        ClientHeight = 421
+        ClientHeight = 441
         ClientWidth = 612
         inherited Edit_Nombre: TEdit
           Width = 470
@@ -212,7 +213,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
           TabOrder = 4
         end
         inherited EditExcluir: TMemo
-          Height = 204
+          Height = 224
           Width = 190
           Lines.Strings = (
             ''
@@ -225,12 +226,12 @@ object Form_AddCatalogo: TForm_AddCatalogo
     end
     object TabSheet_Scan: TTabSheet
       Caption = 'Scan'
-      ClientHeight = 421
+      ClientHeight = 441
       ClientWidth = 612
       inline Frame_Scan1: TFrame_Scan
-        Height = 421
+        Height = 441
         Width = 612
-        ClientHeight = 421
+        ClientHeight = 441
         ClientWidth = 612
         inherited Label2: TLabel
           Width = 458
@@ -248,12 +249,12 @@ object Form_AddCatalogo: TForm_AddCatalogo
     end
     object TabSheet_Guardar: TTabSheet
       Caption = 'Guardar'
-      ClientHeight = 421
+      ClientHeight = 441
       ClientWidth = 612
       inline Frame_Guardar1: TFrame_Guardar
-        Height = 421
+        Height = 441
         Width = 612
-        ClientHeight = 421
+        ClientHeight = 441
         ClientWidth = 612
         inherited Label1: TLabel
           Width = 519

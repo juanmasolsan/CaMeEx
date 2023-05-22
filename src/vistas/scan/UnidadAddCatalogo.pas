@@ -51,7 +51,7 @@ uses
   , FrameCancelado
   , FrameGuardar
   , FrameSelecionarMedio
-  ;
+  , Types;
 
 const
   // Pasos del asistente
@@ -274,7 +274,6 @@ begin
                               // Sale del método
                               exit;
                             end;
-
   end;
 
   // Dependiendo del paso actual, se ejecuta una acción u otra
@@ -284,6 +283,7 @@ end;
 procedure TForm_AddCatalogo.Button_CancelarClick(Sender: TObject);
 begin
   case FPasoActual of
+    PASO_SELECCION_MEDIO  : close();
     PASO_ESCANEAR         : if FScaneando then Frame_Scan1.Cancelar();
     PASO_GUARDAR          : Close();
   end;
