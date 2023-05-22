@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-21 22:40:01
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-22 23:27:20
+ * @Last Modified time: 2023-05-22 23:50:09
  *)
 unit FrameSelecionarMedio;
 
@@ -30,8 +30,8 @@ type
     EditRuta: TEdit;
     Edit_Nombre: TEdit;
     Edit_Nombre_error: TLabel;
-    Edit_Nombre_error1: TLabel;
-    Edit_Nombre_error2: TLabel;
+    ComboDispositivo_error: TLabel;
+    EditRuta_error: TLabel;
     Image1: TImage;
     ImageDispositivo: TImage;
     Label1: TLabel;
@@ -219,17 +219,27 @@ begin
   Form_Principal.ImageListArchivos.Draw(ComboBoxDispositivos.Canvas, ARect.Left + 1, ARect.Top + 1, indexImage);  //draw image according to index on canvas
 end;
 
-
 function TFrame_SelecionarMedio.IsValidate() : boolean;
 begin
+  // Inicializa el resultado
   Result := true;
 
-  Edit_Nombre_error.Visible := false;
+  // Oculta los errores
+  Edit_Nombre_error.Visible      := false;
+  EditRuta_error.Visible         := false;
+  ComboDispositivo_error.Visible := ComboBoxDispositivos.ItemIndex = -1;
 
+  // Valida los campos
   if Edit_Nombre.Text = '' then
   begin
-    Result := false;
+    Result                    := false;
     Edit_Nombre_error.Visible := true;
+  end;
+
+  if EditRuta.Text = '' then
+  begin
+    Result                 := false;
+    EditRuta_error.Visible := true;
   end;
 end;
 

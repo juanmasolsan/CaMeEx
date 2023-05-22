@@ -514,9 +514,19 @@ msgctxt "tframe_selecionarmedio.comboboxdispositivos.texthint"
 msgid "Seleccione un dispositivo..."
 msgstr ""
 
+#: tframe_selecionarmedio.combodispositivo_error.caption
+msgctxt "tframe_selecionarmedio.combodispositivo_error.caption"
+msgid "Seleccione una opción."
+msgstr ""
+
 #: tframe_selecionarmedio.editruta.texthint
 msgctxt "tframe_selecionarmedio.editruta.texthint"
 msgid "La ruta que se va a analizar."
+msgstr ""
+
+#: tframe_selecionarmedio.editruta_error.caption
+msgctxt "tframe_selecionarmedio.editruta_error.caption"
+msgid "Esta campo es obligatorio y no puede estar vacio."
 msgstr ""
 
 #: tframe_selecionarmedio.edit_nombre.texthint
@@ -526,16 +536,6 @@ msgstr ""
 
 #: tframe_selecionarmedio.edit_nombre_error.caption
 msgctxt "tframe_selecionarmedio.edit_nombre_error.caption"
-msgid "Esta campo es obligatorio y no puede estar vacio."
-msgstr ""
-
-#: tframe_selecionarmedio.edit_nombre_error1.caption
-msgctxt "tframe_selecionarmedio.edit_nombre_error1.caption"
-msgid "Seleccione una opción."
-msgstr ""
-
-#: tframe_selecionarmedio.edit_nombre_error2.caption
-msgctxt "tframe_selecionarmedio.edit_nombre_error2.caption"
 msgid "Esta campo es obligatorio y no puede estar vacio."
 msgstr ""
 

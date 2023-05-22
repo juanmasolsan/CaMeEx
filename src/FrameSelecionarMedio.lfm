@@ -203,6 +203,7 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     Width = 208
     Anchors = [akTop, akRight]
     Enabled = False
+    OnChange = Edit_NombreChange
     TabOrder = 3
     TextHint = 'La ruta que se va a analizar.'
   end
@@ -264,7 +265,7 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     }
     Stretch = True
   end
-  object Edit_Nombre_error1: TLabel
+  object ComboDispositivo_error: TLabel
     Left = 128
     Height = 13
     Top = 186
@@ -438,7 +439,7 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     ScrollBars = ssAutoVertical
     TabOrder = 5
   end
-  object Edit_Nombre_error2: TLabel
+  object EditRuta_error: TLabel
     Left = 331
     Height = 13
     Top = 186

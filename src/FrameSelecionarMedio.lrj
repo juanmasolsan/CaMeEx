@@ -9,7 +9,7 @@
 {"hash":5884490,"name":"tframe_selecionarmedio.label5.caption","sourcebytes":[82,117,116,97,58],"value":"Ruta:"},
 {"hash":12558,"name":"tframe_selecionarmedio.buttonseleccionarruta.caption","sourcebytes":[46,46,46],"value":"..."},
 {"hash":14444798,"name":"tframe_selecionarmedio.editruta.texthint","sourcebytes":[76,97,32,114,117,116,97,32,113,117,101,32,115,101,32,118,97,32,97,32,97,110,97,108,105,122,97,114,46],"value":"La ruta que se va a analizar."},
-{"hash":136739246,"name":"tframe_selecionarmedio.edit_nombre_error1.caption","sourcebytes":[83,101,108,101,99,99,105,111,110,101,32,117,110,97,32,111,112,99,105,195,179,110,46],"value":"Seleccione una opci\u00F3n."},
+{"hash":136739246,"name":"tframe_selecionarmedio.combodispositivo_error.caption","sourcebytes":[83,101,108,101,99,99,105,111,110,101,32,117,110,97,32,111,112,99,105,195,179,110,46],"value":"Seleccione una opci\u00F3n."},
 {"hash":171722970,"name":"tframe_selecionarmedio.label6.caption","sourcebytes":[69,120,99,108,117,105,114,32,58],"value":"Excluir :"},
 {"hash":200998560,"name":"tframe_selecionarmedio.label21.caption","sourcebytes":[65,114,99,104,105,118,111,115,47,67,97,114,112,101,116,97,115,32,69,120,99,108,117,105,100,111,115,32,58,32],"value":"Archivos/Carpetas Excluidos : "},
 {"hash":86533454,"name":"tframe_selecionarmedio.label23.caption","sourcebytes":[76,97,32,102,111,114,109,97,32,97,99,101,112,116,97,100,97,32,100,101,32,101,120,99,108,117,105,114,32,97,114,99,104,105,118,111,115,32,121,32,100,105,114,101,99,116,111,114,105,111,115,46],"value":"La forma aceptada de excluir archivos y directorios."},
@@ -23,5 +23,5 @@
 {"hash":237210702,"name":"tframe_selecionarmedio.label20.caption","sourcebytes":[83,111,108,111,32,101,108,32,97,114,99,104,105,118,111,32,105,110,100,105,99,97,100,111,46],"value":"Solo el archivo indicado."},
 {"hash":2970455,"name":"tframe_selecionarmedio.label27.caption","sourcebytes":[42,46,108,111,103],"value":"*.log"},
 {"hash":230256055,"name":"tframe_selecionarmedio.label28.caption","sourcebytes":[84,111,100,111,115,32,108,111,115,32,97,114,99,104,105,118,111,115,32,108,111,103],"value":"Todos los archivos log"},
-{"hash":52314910,"name":"tframe_selecionarmedio.edit_nombre_error2.caption","sourcebytes":[69,115,116,97,32,99,97,109,112,111,32,101,115,32,111,98,108,105,103,97,116,111,114,105,111,32,121,32,110,111,32,112,117,101,100,101,32,101,115,116,97,114,32,118,97,99,105,111,46],"value":"Esta campo es obligatorio y no puede estar vacio."}
+{"hash":52314910,"name":"tframe_selecionarmedio.editruta_error.caption","sourcebytes":[69,115,116,97,32,99,97,109,112,111,32,101,115,32,111,98,108,105,103,97,116,111,114,105,111,32,121,32,110,111,32,112,117,101,100,101,32,101,115,116,97,114,32,118,97,99,105,111,46],"value":"Esta campo es obligatorio y no puede estar vacio."}
 ]}

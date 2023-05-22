@@ -159,14 +159,12 @@ object Form_AddCatalogo: TForm_AddCatalogo
         end
         inherited ComboBoxDispositivos: TComboBox
           Width = 190
-          TabOrder = 1
         end
         inherited Label5: TLabel
           Left = 334
         end
         inherited ButtonSeleccionarRuta: TButton
           Left = 555
-          TabOrder = 2
         end
         inherited EditRuta: TEdit
           Left = 334
@@ -208,9 +206,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
           Left = 427
         end
         inherited EditDescripcion: TMemo
-          Tag = 0
           Width = 470
-          TabOrder = 4
         end
         inherited EditExcluir: TMemo
           Height = 224
@@ -219,7 +215,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
             ''
           )
         end
-        inherited Edit_Nombre_error2: TLabel
+        inherited EditRuta_error: TLabel
           Left = 334
         end
       end
