@@ -205,7 +205,7 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     TabOrder = 3
     TextHint = 'La ruta que se va a analizar.'
   end
-  object Image2: TImage
+  object ImageDispositivo: TImage
     Left = 64
     Height = 48
     Top = 144
