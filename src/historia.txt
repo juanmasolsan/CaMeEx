@@ -1,4 +1,8 @@
 
+
+- [NEW]   (20230524) Agregado frame con el formulario de búsqueda avanzada
+
++ 1.2.5.8
 - [FIX]   (20230523) Corregido redimensionar el panel izquierdo para que recuerde el tamaño
 - [NEW]   (20230523) Agregado solapas en el panel de la izquierda para albergar al arbol y al sistema de búsqueda
 - [FIX]   (20230523) Agregado nuevos indices a la tablas para acelerar las búsquedas

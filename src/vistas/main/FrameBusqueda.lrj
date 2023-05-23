@@ -1,0 +1,13 @@
+{"version":1,"strings":[
+{"hash":121903070,"name":"tframe_busqueda.comboboxdispositivos.texthint","sourcebytes":[83,101,108,101,99,99,105,111,110,101,32,117,110,32,100,105,115,112,111,115,105,116,105,118,111,46,46,46],"value":"Seleccione un dispositivo..."},
+{"hash":10624122,"name":"tframe_busqueda.label4.caption","sourcebytes":[77,101,100,105,111,47,68,105,115,112,111,115,105,116,105,118,111,58],"value":"Medio/Dispositivo:"},
+{"hash":217781856,"name":"tframe_busqueda.labeltexto.caption","sourcebytes":[84,101,120,116,111,32,58,32],"value":"Texto : "},
+{"hash":148548126,"name":"tframe_busqueda.edittexto.texthint","sourcebytes":[69,115,99,114,105,98,97,32,101,108,32,116,101,120,116,111,32,113,117,101,32,113,117,105,101,114,101,32,101,110,99,111,110,116,114,97,114,32,46,46,46],"value":"Escriba el texto que quiere encontrar ..."},
+{"hash":342540,"name":"tframe_busqueda.datetimepickerdesde.textfornulldate","sourcebytes":[78,85,76,76],"value":"NULL"},
+{"hash":117719456,"name":"tframe_busqueda.checkboxfechadesde.caption","sourcebytes":[70,101,99,104,97,32,100,101,115,100,101,32,58,32],"value":"Fecha desde : "},
+{"hash":53740000,"name":"tframe_busqueda.checkboxfechahasta.caption","sourcebytes":[70,101,99,104,97,32,104,97,115,116,97,32,58,32],"value":"Fecha hasta : "},
+{"hash":342540,"name":"tframe_busqueda.datetimepickerhasta.textfornulldate","sourcebytes":[78,85,76,76],"value":"NULL"},
+{"hash":24759632,"name":"tframe_busqueda.checkboxsizedesde.caption","sourcebytes":[84,97,109,97,195,177,111,32,100,101,115,100,101,32,58,32],"value":"Tama\u00F1o desde : "},
+{"hash":24759632,"name":"tframe_busqueda.checkboxsizehasta.caption","sourcebytes":[84,97,109,97,195,177,111,32,100,101,115,100,101,32,58,32],"value":"Tama\u00F1o desde : "},
+{"hash":77371778,"name":"tframe_busqueda.bitbtnbusqueda.caption","sourcebytes":[66,117,115,99,97,114],"value":"Buscar"}
+]}

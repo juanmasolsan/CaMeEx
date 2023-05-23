@@ -60,7 +60,8 @@ uses
 
   Forms, AppString, Configuracion, UnidadPrincipal, UnidadLoading,
   UnidadPropiedades, UnidadAtributos, UnidadScan, UnidadAddCatalogo,
-  Control_About, graphics, lazcontrols, FrameCancelado, FrameSelecionarMedio;
+  Control_About, graphics, lazcontrols, tachartlazaruspkg, datetimectrls,
+  FrameCancelado, FrameSelecionarMedio, FrameBusqueda;
 
 {$R *.res}
 

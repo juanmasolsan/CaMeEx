@@ -54,14 +54,16 @@ uses
   , laz.VirtualTrees
   , DefaultTranslator, LCLTranslator
   , VirtualTreesExtended
-  , SynEdit
+  , SynEdit, ExtendedNotebook
   , Control_Logger
   , Control_Formulario_Avanzado
   , Control_Cajon_Busqueda
   , MotorScan
   , InterfaceConectorDatos
   , ItemBaseDatos
-  , ItemDato, ItemCatalogo, VirtualTreesExtras, ImgList;
+  , ItemDato, ItemCatalogo, VirtualTreesExtras, ImgList
+  , FrameBusqueda
+  ;
 
 
 
@@ -84,6 +86,7 @@ type
     Arbol: TLazVirtualStringTree;
     Button1: TButton;
     Button2: TButton;
+    Frame_Busqueda1: TFrame_Busqueda;
     ImageListArchivos32: TImageList;
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;

@@ -457,6 +457,57 @@ msgstr ""
 msgid "Label_Fecha_Modificado"
 msgstr ""
 
+#: tframe_busqueda.bitbtnbusqueda.caption
+msgctxt "tframe_busqueda.bitbtnbusqueda.caption"
+msgid "Buscar"
+msgstr ""
+
+#: tframe_busqueda.checkboxfechadesde.caption
+msgid "Fecha desde : "
+msgstr ""
+
+#: tframe_busqueda.checkboxfechahasta.caption
+msgid "Fecha hasta : "
+msgstr ""
+
+#: tframe_busqueda.checkboxsizedesde.caption
+msgctxt "tframe_busqueda.checkboxsizedesde.caption"
+msgid "Tamaño desde : "
+msgstr ""
+
+#: tframe_busqueda.checkboxsizehasta.caption
+msgctxt "tframe_busqueda.checkboxsizehasta.caption"
+msgid "Tamaño desde : "
+msgstr ""
+
+#: tframe_busqueda.comboboxdispositivos.texthint
+msgctxt "tframe_busqueda.comboboxdispositivos.texthint"
+msgid "Seleccione un dispositivo..."
+msgstr ""
+
+#: tframe_busqueda.datetimepickerdesde.textfornulldate
+msgctxt "tframe_busqueda.datetimepickerdesde.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: tframe_busqueda.datetimepickerhasta.textfornulldate
+msgctxt "tframe_busqueda.datetimepickerhasta.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: tframe_busqueda.edittexto.texthint
+msgid "Escriba el texto que quiere encontrar ..."
+msgstr ""
+
+#: tframe_busqueda.label4.caption
+msgctxt "tframe_busqueda.label4.caption"
+msgid "Medio/Dispositivo:"
+msgstr ""
+
+#: tframe_busqueda.label5.caption
+msgid "Texto : "
+msgstr ""
+
 #: tframe_cancelado.label1.caption
 msgctxt "tframe_cancelado.label1.caption"
 msgid "El usuario ha cancelado la acción o se ha producido un error inesperado."
