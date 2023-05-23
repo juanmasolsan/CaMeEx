@@ -740,6 +740,7 @@ object Form_Principal: TForm_Principal
       Color = clWindow
       ParentColor = False
       TabOrder = 5
+      OnResize = PanelIzquierdoResize
       object PageControlIzquierdo: TPageControl
         Left = 0
         Height = 285
@@ -801,7 +802,6 @@ object Form_Principal: TForm_Principal
             OnGetImageIndex = ListaGetImageIndex
             OnGetImageIndexEx = ArbolGetImageIndexEx
             OnKeyDown = ArbolKeyDown
-            OnResize = ArbolResize
           end
         end
         object TabSheetBusquedaAvanzada: TTabSheet

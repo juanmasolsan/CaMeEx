@@ -174,7 +174,6 @@ type
       var Ghosted: Boolean; var ImageIndex: Integer;
       var ImageList: TCustomImageList);
     procedure ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure ArbolResize(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
@@ -221,6 +220,7 @@ type
     procedure MenuItem_Size_NormalClick(Sender: TObject);
     procedure MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
     procedure PanelInferiorResize(Sender: TObject);
+    procedure PanelIzquierdoResize(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
   private
@@ -653,7 +653,7 @@ begin
     DoHeader_Update;
 
     // Aplica la configuración de las Dimensiones del árbol de directorios
-    Arbol.width := FArbolAncho;
+    PanelIzquierdo.Width := FArbolAncho;
 
     // Aplica la configuración de las Dimensiones del Log
     PanelInferior.Height := FLogAlto;
@@ -1202,6 +1202,15 @@ begin
   FLogAlto := PanelInferior.Height;
 end;
 
+procedure TForm_Principal.PanelIzquierdoResize(Sender: TObject);
+begin
+  // Reajusta el tamaño de la última columna
+  DoResizeControlDatos(arbol);
+
+  if FAplicandoConfig then exit;
+  FArbolAncho := PanelIzquierdo.Width;
+end;
+
 procedure TForm_Principal.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   // Limpia el arbol de directorios
@@ -1412,15 +1421,6 @@ exit;
   tiempo := GetTickCount64() - tiempo;
 
   SalidaLog.lines.Add(Message_Tiempo_Empleado + ' ' + IntToStr(tiempo) + ' ms.');
-end;
-
-procedure TForm_Principal.ArbolResize(Sender: TObject);
-begin
-  // Reajusta el tamaño de la última columna
-  DoResizeControlDatos(arbol);
-
-  if FAplicandoConfig then exit;
-  FArbolAncho := Arbol.Width;
 end;
 
 procedure TForm_Principal.ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode;
