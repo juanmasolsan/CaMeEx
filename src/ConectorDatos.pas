@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 01:40:19
+ * @Last Modified time: 2023-05-23 16:13:16
  *)
 {
 
@@ -443,6 +443,9 @@ begin
 
       FDataBase.SQL(SQL);
 
+      SQL := 'CREATE INDEX IF NOT EXISTS Extensiones_Descripcion_IDX ON Extensiones (Descripcion);';
+      FDataBase.SQL(SQL);
+
       // Inserta la extension sin extension
       SQL := 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion) VALUES (0, ".", "");';
       FDataBase.SQL(SQL);
@@ -495,6 +498,22 @@ begin
 
       SQL := 'CREATE INDEX IF NOT EXISTS Datos_Tipo_IDX ON Datos (Tipo);';
       FDataBase.SQL(SQL);
+
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdExtension_IDX ON Datos (IdExtension);';
+      FDataBase.SQL(SQL);
+
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_Size_IDX ON Datos (Size);';
+      FDataBase.SQL(SQL);
+
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_Fecha_IDX ON Datos (Fecha);';
+      FDataBase.SQL(SQL);
+
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_FechaCreacion_IDX ON Datos (FechaCreacion);';
+      FDataBase.SQL(SQL);
+
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_FechaLastAcceso_IDX ON Datos (FechaLastAcceso);';
+      FDataBase.SQL(SQL);
+
 
     finally
       // Cierra la query

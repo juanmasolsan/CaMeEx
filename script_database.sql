@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-13 15:57:23
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-17 19:23:08
+ * @Last Modified time: 2023-05-23 16:13:33
  */
 
 
@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS Extensiones (
     IdIcono     BIGINT  CONSTRAINT FK_Extension_Icono REFERENCES Iconos (Id) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
+CREATE INDEX IF NOT EXISTS Extensiones_Descripcion_IDX ON Extensiones (Descripcion);
+
 -- Insertar datos en la tabla Extensiones
 INSERT INTO Extensiones (Id, Extension, Descripcion) VALUES (0, '.', '');
 
@@ -85,6 +87,15 @@ CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);
 CREATE INDEX IF NOT EXISTS Datos_IdPadre_IDX ON Datos (IdPadre);
 CREATE INDEX IF NOT EXISTS Datos_IdCatalogo_IDX ON Datos (IdCatalogo);
 CREATE INDEX IF NOT EXISTS Datos_IdRutaCompleta_IDX ON Datos (IdRutaCompleta);
+CREATE INDEX IF NOT EXISTS Datos_Tipo_IDX ON Datos (Tipo);
+
+CREATE INDEX IF NOT EXISTS Datos_IdExtension_IDX ON Datos (IdExtension);
+CREATE INDEX IF NOT EXISTS Datos_Size_IDX ON Datos (Size);
+CREATE INDEX IF NOT EXISTS Datos_Fecha_IDX ON Datos (Fecha);
+CREATE INDEX IF NOT EXISTS Datos_FechaCreacion_IDX ON Datos (FechaCreacion);
+CREATE INDEX IF NOT EXISTS Datos_FechaLastAcceso_IDX ON Datos (FechaLastAcceso);
+
+
 
 
 ----------------------------------------------------------------------------------------
