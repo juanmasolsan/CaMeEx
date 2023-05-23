@@ -50,7 +50,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="114"/>
         <CursorPos X="24" Y="137"/>
-        <UsageCount Value="182"/>
+        <UsageCount Value="183"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -58,7 +58,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="180"/>
+        <UsageCount Value="181"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
@@ -66,10 +66,11 @@
         <ComponentName Value="Form_Principal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="351"/>
-        <CursorPos X="17" Y="370"/>
-        <UsageCount Value="54"/>
+        <TopLine Value="355"/>
+        <CursorPos X="17" Y="374"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -82,7 +83,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="121"/>
         <CursorPos X="35" Y="133"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
@@ -93,7 +94,7 @@
         <EditorIndex Value="13"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -106,7 +107,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
@@ -117,7 +118,7 @@
         <EditorIndex Value="15"/>
         <TopLine Value="61"/>
         <CursorPos X="80" Y="88"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -129,7 +130,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="55"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
@@ -137,11 +138,10 @@
         <ComponentName Value="Form_AddCatalogo"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="202"/>
-        <CursorPos X="8" Y="215"/>
-        <UsageCount Value="53"/>
+        <CursorPos X="51" Y="212"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -153,7 +153,7 @@
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="25"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="46"/>
       </Unit>
       <Unit>
         <Filename Value="FrameSelecionarMedio.pas"/>
@@ -164,7 +164,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="233"/>
         <CursorPos X="37" Y="254"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -704,22 +704,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
-        <Caret Line="3594" TopLine="3576"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
-        <Caret Line="3595" TopLine="3576"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
-        <Caret Line="3596" TopLine="3576"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
-        <Caret Line="3591" TopLine="3576"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
         <Caret Line="3612" TopLine="3598"/>
       </Position>
       <Position>
@@ -821,6 +805,22 @@
       <Position>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
         <Caret Line="247" Column="26" TopLine="241"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="370" Column="17" TopLine="351"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="371" Column="17" TopLine="352"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="372" Column="17" TopLine="353"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="373" Column="17" TopLine="354"/>
       </Position>
     </JumpHistory>
     <RunParams>

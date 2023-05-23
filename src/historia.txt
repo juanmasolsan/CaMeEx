@@ -1,4 +1,5 @@
 
+- [NEW]   (20230523) Agregado solapas en el panel de la izquierda para albergar al arbol y al sistema de búsqueda
 - [FIX]   (20230523) Agregado nuevos indices a la tablas para acelerar las búsquedas
 - [FIX]   (20230523) Reescrito la forma de obtener los excluidos del Frame de selección de medio y datos básicos
 - [NEW]   (20230523) Agregado al Frame de selección de medio y datos básicos : Archivos y directorios ignorados por defecto

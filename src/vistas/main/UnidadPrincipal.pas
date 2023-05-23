@@ -96,6 +96,8 @@ type
     MenuItemPropiedades: TMenuItem;
     MenuItemEliminar: TMenuItem;
     MenuItemEditar: TMenuItem;
+    PageControlIzquierdo: TPageControl;
+    PanelIzquierdo: TPanel;
     PanelSuperior: TPanel;
     PopupMenu1: TPopupMenu;
     Separator10: TMenuItem;
@@ -150,6 +152,8 @@ type
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
+    TabSheetBusquedaAvanzada: TTabSheet;
+    TabSheetNavegar: TTabSheet;
     Timer1: TTimer;
     Timer_UpdateUI: TTimer;
     Barra_Herramientas: TToolBar;
