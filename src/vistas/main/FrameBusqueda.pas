@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-23 17:18:08
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 00:33:53
+ * @Last Modified time: 2023-05-24 00:40:39
  *)
 unit FrameBusqueda;
 
@@ -65,11 +65,11 @@ procedure TFrame_Busqueda.SpeedButton1Click(Sender: TObject);
 begin
   case TControl(Sender).tag of
     0 :  EditTexto.Text := '';
-    1 : begin
-         CheckBoxFechaDesde.Font.Bold := CheckBoxFechaDesde.Checked;
-         DateTimePickerDesde.Enabled  := CheckBoxFechaDesde.Checked;
-         SpeedButtonClearFechaDesde.Enabled := CheckBoxFechaDesde.Checked;
-        end;
+    1 : DateTimePickerDesde.DateTime := now;
+    2 : DateTimePickerHasta.DateTime := now;
+    3 : SpinEditExSizeDesde.Value := 0;
+    4 : SpinEditExSizeHasta.Value := 0;
+    5 : ComboBoxDispositivos.ItemIndex := -1;
   end;
 
 end;

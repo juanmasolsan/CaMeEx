@@ -1,5 +1,6 @@
 
-
++ 1.2.6.0
+- [NEW]   (20230524) Agregado al frame de búsqueda avanzada - Borrado de campos con su botón correspondiente
 - [NEW]   (20230524) Agregado frame con el formulario de búsqueda avanzada
 
 + 1.2.5.8

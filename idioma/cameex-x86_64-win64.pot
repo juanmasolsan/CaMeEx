@@ -504,7 +504,8 @@ msgctxt "tframe_busqueda.label4.caption"
 msgid "Medio/Dispositivo:"
 msgstr ""
 
-#: tframe_busqueda.label5.caption
+#: tframe_busqueda.labeltexto.caption
+msgctxt "tframe_busqueda.labeltexto.caption"
 msgid "Texto : "
 msgstr ""
 

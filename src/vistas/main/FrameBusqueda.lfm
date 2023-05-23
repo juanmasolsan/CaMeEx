@@ -18,9 +18,19 @@ object Frame_Busqueda: TFrame_Busqueda
     Width = 219
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 17
+    Items.Strings = (
+      'gdfgdf'
+      'gdfg'
+      'dfgdfg'
+      'dfg'
+      'df'
+      'gdf'
+      'g'
+      'dfg'
+    )
     OnChange = EditTextoChange
     Style = csOwnerDrawFixed
-    TabOrder = 0
+    TabOrder = 9
     TextHint = 'Seleccione un dispositivo...'
   end
   object Label4: TLabel
@@ -48,7 +58,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Width = 219
     Anchors = [akTop, akLeft, akRight]
     OnChange = EditTextoChange
-    TabOrder = 1
+    TabOrder = 0
     TextHint = 'Escriba el texto que quiere encontrar ...'
   end
   object SpeedButton1: TSpeedButton
@@ -64,6 +74,7 @@ object Frame_Busqueda: TFrame_Busqueda
     OnClick = SpeedButton1Click
   end
   object SpeedButtonClearDispositivos: TSpeedButton
+    Tag = 5
     Left = 232
     Height = 24
     Top = 208
@@ -73,6 +84,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Flat = True
     Images = Form_Principal.ImageListToolbar
     ImageIndex = 1
+    OnClick = SpeedButton1Click
   end
   object DateTimePickerDesde: TDateTimePicker
     Left = 8
@@ -106,9 +118,10 @@ object Frame_Busqueda: TFrame_Busqueda
     Caption = 'Fecha desde : '
     OnChange = EditTextoChange
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 1
   end
   object SpeedButtonClearFechaDesde: TSpeedButton
+    Tag = 1
     Left = 96
     Height = 24
     Top = 88
@@ -117,6 +130,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Flat = True
     Images = Form_Principal.ImageListToolbar
     ImageIndex = 1
+    OnClick = SpeedButton1Click
   end
   object CheckBoxFechaHasta: TCheckBox
     Left = 144
@@ -126,7 +140,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Caption = 'Fecha hasta : '
     OnChange = EditTextoChange
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 3
   end
   object DateTimePickerHasta: TDateTimePicker
     Left = 144
@@ -136,7 +150,7 @@ object Frame_Busqueda: TFrame_Busqueda
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 5
+    TabOrder = 4
     Enabled = False
     TrailingSeparator = False
     TextForNullDate = 'NULL'
@@ -152,6 +166,7 @@ object Frame_Busqueda: TFrame_Busqueda
     MonthNames = 'Long'
   end
   object SpeedButtonClearFechaHasta: TSpeedButton
+    Tag = 2
     Left = 232
     Height = 24
     Top = 88
@@ -167,10 +182,12 @@ object Frame_Busqueda: TFrame_Busqueda
     Top = 128
     Width = 106
     Caption = 'Tamaño desde : '
+    OnChange = EditTextoChange
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
   end
   object SpeedButtonClearSizeDesde: TSpeedButton
+    Tag = 3
     Left = 96
     Height = 24
     Top = 151
@@ -179,6 +196,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Flat = True
     Images = Form_Principal.ImageListToolbar
     ImageIndex = 1
+    OnClick = SpeedButton1Click
   end
   object SpinEditExSizeDesde: TSpinEditEx
     Left = 8
@@ -187,7 +205,8 @@ object Frame_Busqueda: TFrame_Busqueda
     Width = 83
     Enabled = False
     MaxLength = 0
-    TabOrder = 7
+    TabOrder = 6
+    Increment = 1024
     NullValue = 0
     Value = 0
   end
@@ -197,8 +216,9 @@ object Frame_Busqueda: TFrame_Busqueda
     Top = 128
     Width = 106
     Caption = 'Tamaño desde : '
+    OnChange = EditTextoChange
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 7
   end
   object SpinEditExSizeHasta: TSpinEditEx
     Left = 144
@@ -207,11 +227,13 @@ object Frame_Busqueda: TFrame_Busqueda
     Width = 83
     Enabled = False
     MaxLength = 0
-    TabOrder = 9
+    TabOrder = 8
+    Increment = 1024
     NullValue = 0
     Value = 0
   end
   object SpeedButtonClearSizeHasta: TSpeedButton
+    Tag = 4
     Left = 232
     Height = 24
     Top = 152
@@ -220,6 +242,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Flat = True
     Images = Form_Principal.ImageListToolbar
     ImageIndex = 1
+    OnClick = SpeedButton1Click
   end
   object BitBtnBusqueda: TBitBtn
     Left = 8
