@@ -842,7 +842,12 @@ begin
                                     Automatico : CellText := ConvertirSizeEx(Datos.Size) + '  ';
                                   end
                               end;
-          COLUMNA_TIPO      : CellText := GetExtensionDescripcionById(Datos.IdExtension);
+          COLUMNA_TIPO      : begin
+                                if Datos.Descripcion = '' then
+                                  Datos.Descripcion := GetExtensionDescripcionById(Datos.IdExtension);
+
+                                CellText := Datos.Descripcion;
+                              end;
           COLUMNA_FECHA     : DateTimeToString(CellText, TipoHora, Datos.Fecha);
           COLUMNA_ATRIBUTOS : CellText := AtributosToStr(Datos.Atributos, false);
           COLUMNA_RUTA      : CellText := GetRutaFromItem(Datos);

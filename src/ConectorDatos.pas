@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 00:10:07
+ * @Last Modified time: 2023-05-25 00:49:53
  *)
 {
 
@@ -92,11 +92,13 @@ const
 
   SQL_SELECT_BUSQUEDA_AVANZADA_BASE         = 'SELECT ' +
                                               ' dt.*' +
-                                              ' , rc.Ruta' +
+                                              //' , rc.Ruta' +
+                                              ' , (cat.Nombre || rc.Ruta) AS Ruta' +
                                               ' , ex.Descripcion' +
                                               ' FROM Datos as dt' +
                                               ' JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
                                               ' JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
+                                              ' JOIN Catalogos AS cat ON dt.IdCatalogo  = cat.Id' +
                                               ' WHERE ';
 
   SQL_SELECT_BUSQUEDA_AVANZADA_CATALOGO    = ' dt.IdCatalogo = :IDCATALOGO';
@@ -1062,6 +1064,8 @@ const
   COLUMNA_DATOS_IDEXTENSION       = COLUMNA_DATOS_IDPADRE + 1;
   COLUMNA_DATOS_IDRUTACOMPLETA    = COLUMNA_DATOS_IDEXTENSION + 1;
   COLUMNA_DATOS_IDCATALOGO        = COLUMNA_DATOS_IDRUTACOMPLETA + 1;
+  COLUMNA_DATOS_RUTA              = COLUMNA_DATOS_IDCATALOGO + 1;
+  COLUMNA_DATOS_DESCRIPCION       = COLUMNA_DATOS_RUTA + 1;
 
 begin
   // Crea el Dato
@@ -1088,6 +1092,16 @@ begin
 
   // Añade si tiene hijos
   Result.TieneHijos := Query.Fields[COLUMNA_DATOS_TIENEHIJOS].AsBoolean;
+
+  // Añade la ruta
+  if Query.Fields.Count >= COLUMNA_DATOS_RUTA then
+    Result.Ruta := Query.Fields[COLUMNA_DATOS_RUTA].AsString;
+
+  if Query.Fields.Count >= COLUMNA_DATOS_DESCRIPCION then
+    Result.Descripcion := Query.Fields[COLUMNA_DATOS_DESCRIPCION].AsString;
+
+
+
 
 end;
 

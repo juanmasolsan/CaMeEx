@@ -58,7 +58,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
@@ -68,9 +68,9 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1207"/>
-        <CursorPos X="15" Y="1229"/>
-        <UsageCount Value="73"/>
+        <TopLine Value="837"/>
+        <CursorPos X="59" Y="856"/>
+        <UsageCount Value="74"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -83,7 +83,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="121"/>
         <CursorPos X="35" Y="133"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
@@ -94,7 +94,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadAtributos.pas"/>
@@ -105,7 +105,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
@@ -116,7 +116,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="80" Y="88"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\about\Control_About.pas"/>
@@ -126,7 +126,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
@@ -137,7 +137,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="202"/>
         <CursorPos X="51" Y="212"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="73"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\FrameCancelado.pas"/>
@@ -147,7 +147,7 @@
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="25"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\FrameBusqueda.pas"/>
@@ -155,10 +155,10 @@
         <ComponentName Value="Frame_Busqueda"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="246"/>
         <CursorPos X="48" Y="262"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -171,7 +171,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="167"/>
         <CursorPos Y="168"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -183,7 +183,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="45" Y="106"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadPrincipal.pas"/>
@@ -193,13 +193,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2521"/>
         <CursorPos X="47" Y="2541"/>
-        <UsageCount Value="176"/>
+        <UsageCount Value="175"/>
       </Unit>
       <Unit>
         <Filename Value="historia.txt"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="10"/>
-        <UsageCount Value="176"/>
+        <UsageCount Value="175"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -207,7 +207,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="71"/>
         <CursorPos X="24" Y="81"/>
-        <UsageCount Value="176"/>
+        <UsageCount Value="175"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -216,14 +216,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="7" Y="89"/>
-        <UsageCount Value="170"/>
+        <UsageCount Value="169"/>
       </Unit>
       <Unit>
         <Filename Value="Utilidades.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="273"/>
         <CursorPos X="7" Y="294"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="157"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadScan.pas"/>
@@ -233,7 +233,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
         <CursorPos X="36" Y="74"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="155"/>
       </Unit>
       <Unit>
         <Filename Value="components\UnidadLoading.pas"/>
@@ -243,7 +243,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="118"/>
         <CursorPos X="63" Y="133"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="44"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadPropiedades.pas"/>
@@ -253,7 +253,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="196"/>
         <CursorPos Y="212"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="28"/>
       </Unit>
       <Unit>
         <Filename Value="UnidadAtributos.pas"/>
@@ -263,21 +263,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos X="64" Y="55"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="28"/>
       </Unit>
       <Unit>
         <Filename Value="components\scan\MotorScan.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="250"/>
         <CursorPos X="86" Y="274"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="76"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\sysutils\filutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="5" Y="28"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\itemdata.pas"/>
@@ -285,28 +285,29 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="205"/>
         <CursorPos X="11" Y="220"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\fgl.pp"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="914"/>
-        <CursorPos Y="929"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="59"/>
+        <CursorPos X="16" Y="73"/>
         <UsageCount Value="32"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3005"/>
         <CursorPos X="52" Y="3013"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="19"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Contine.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="107"/>
         <CursorPos Y="128"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
@@ -314,20 +315,20 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="245"/>
         <CursorPos X="14" Y="251"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\win\syswinh.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="12" Y="17"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="2108"/>
-        <CursorPos X="10" Y="2129"/>
-        <UsageCount Value="52"/>
+        <TopLine Value="1084"/>
+        <CursorPos X="23" Y="1101"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -335,7 +336,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="301"/>
         <CursorPos Y="322"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="14"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
@@ -343,7 +344,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="615"/>
         <CursorPos X="67" Y="638"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="32"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
@@ -351,56 +352,59 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="383"/>
         <CursorPos X="3" Y="408"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\dsparams.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="780"/>
         <CursorPos X="3" Y="782"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="14"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemCatalogo.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="48"/>
-        <CursorPos X="75" Y="58"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="62"/>
+        <CursorPos X="19" Y="77"/>
         <UsageCount Value="25"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_CRC.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos Y="41"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="14"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemExtension.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="30"/>
         <CursorPos Y="60"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemRutaCompleta.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="39"/>
         <CursorPos X="43" Y="73"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemDato.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="41"/>
-        <CursorPos X="49" Y="7"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="67"/>
+        <CursorPos X="13" Y="93"/>
         <UsageCount Value="45"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemBaseDatos.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="65"/>
-        <CursorPos X="50" Y="82"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="55"/>
+        <CursorPos X="3" Y="65"/>
         <UsageCount Value="24"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\intfgraphics.pas"/>
@@ -408,7 +412,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3611"/>
         <CursorPos Y="3630"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\controls.pp"/>
@@ -416,14 +420,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="243"/>
         <CursorPos X="5" Y="251"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="components\GestorExtensiones.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos Y="120"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\virtualtreeview\laz.virtualtrees.pas"/>
@@ -431,35 +435,35 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28627"/>
         <CursorPos Y="28643"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="46"/>
       </Unit>
       <Unit>
         <Filename Value="Configuracion.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="71"/>
         <CursorPos X="24" Y="83"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="50"/>
       </Unit>
       <Unit>
         <Filename Value="OrdenarLista.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="96"/>
         <CursorPos X="40" Y="113"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="40"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_Imagen_Manipulacion_Mini.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos Y="79"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="19"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\inc\objpash.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="193"/>
         <CursorPos X="23" Y="206"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="24"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lclclasses.pp"/>
@@ -467,42 +471,42 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="182"/>
         <CursorPos Y="195"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\scrollingwincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="338"/>
         <CursorPos Y="354"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customcontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos Y="40"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7602"/>
         <CursorPos Y="7618"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3598"/>
         <CursorPos Y="3612"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\imglist.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1648"/>
         <CursorPos Y="1665"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\customtimer.pas"/>
@@ -510,21 +514,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos Y="90"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="components\VirtualTreesExtended.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="438"/>
         <CursorPos Y="453"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="33"/>
       </Unit>
       <Unit>
         <Filename Value="InterfaceConectorDatos.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="71"/>
         <CursorPos X="138" Y="87"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="23"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\winunits-base\src\shellapi.pp"/>
@@ -532,21 +536,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1763"/>
         <CursorPos X="23" Y="1782"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="18"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\win\wininc\struct.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7865"/>
         <CursorPos X="25" Y="7872"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="236"/>
         <CursorPos X="10" Y="249"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="18"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -554,21 +558,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1251"/>
         <CursorPos Y="1264"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1743"/>
         <CursorPos X="26" Y="1757"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\classes\classes.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="445"/>
         <CursorPos X="5" Y="447"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\forms.pp"/>
@@ -576,34 +580,34 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="316"/>
         <CursorPos X="17" Y="331"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\screen.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="38" Y="15"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="AppString.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="63"/>
         <CursorPos X="43" Y="86"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="27"/>
       </Unit>
       <Unit>
         <Filename Value="components\metadarkstyle-main\src\udarkstyleparams.pas"/>
         <UnitName Value="uDarkStyleParams"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="17" Y="23"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="DirectivasCompilacion.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="46" Y="49"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="components\metadarkstyle-main\src\udarkstyleschemes.pas"/>
@@ -611,28 +615,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="57" Y="25"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="components\VirtualTreesExtras.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="41"/>
         <CursorPos X="64" Y="52"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\winapih.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="183"/>
         <CursorPos X="21" Y="198"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\interfaces\win32\win32winapi.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3875"/>
         <CursorPos X="28" Y="3889"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\interfaces\win32\win32wscontrols.pp"/>
@@ -640,14 +644,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="174"/>
         <CursorPos Y="219"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\interfaces\win32\win32pagecontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="346"/>
         <CursorPos Y="360"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\FrameGuardar.pas"/>
@@ -657,7 +661,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="185"/>
         <CursorPos X="33" Y="198"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="24"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\lazutils\uitypes.pas"/>
@@ -665,7 +669,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="3" Y="39"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\rtl-objpas\src\inc\system.uitypes.pp"/>
@@ -673,21 +677,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="188"/>
         <CursorPos X="3" Y="203"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\customframe.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="207"/>
         <CursorPos Y="233"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\win\wininc\defines.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1653"/>
         <CursorPos X="6" Y="1667"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="17"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\components\datetimectrls\datetimepicker.pas"/>
@@ -695,7 +699,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="452"/>
         <CursorPos X="22" Y="455"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltype.pp"/>
@@ -705,31 +709,16 @@
         <CursorPos X="13" Y="31"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="modelos\ItemBase.pas"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="27"/>
+        <CursorPos X="3" Y="42"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="27">
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1659" TopLine="1635"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1660" TopLine="1636"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1659" TopLine="1635"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="442" Column="3" TopLine="428"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1782" Column="20" TopLine="1769"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <Caret Line="442" Column="3" TopLine="428"/>
@@ -820,7 +809,35 @@
       </Position>
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1222" TopLine="1207"/>
+        <Caret Line="1229" Column="15" TopLine="1207"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2125" Column="43" TopLine="2108"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="1096" Column="39" TopLine="1084"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="1068" Column="28" TopLine="1083"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemDato.pas"/>
+        <Caret Line="152" Column="14" TopLine="62"/>
+      </Position>
+      <Position>
+        <Filename Value="modelos\ItemCatalogo.pas"/>
+        <Caret Line="50" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="837" Column="29" TopLine="825"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="748" Column="42" TopLine="676"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -828,22 +845,4 @@
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="ConectorDatos.pas"/>
-        <Line Value="788"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="UnidadPrincipal.pas"/>
-        <Line Value="851"/>
-      </Item>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

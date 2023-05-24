@@ -1,4 +1,5 @@
-
+- [NEW]   (20230525) En la busqueda recupera los datos de la extension, la ruta y el nombre del catalogo al que pertenece
+- [FIX]   (20230525) Ahora el TItemDato tiene la descripcion
 - [FIX]   (20230525) Al estar en el buscador avanzado no permite la redimensión del panel izquierdo
 - [FIX]   (20230525) Reordenados los indices de la tabla Datos
 - [NEW]   (20230525) Agregado al Motor de búsqueda avanzado, búsqueda por fecha o entre dos fechas
