@@ -182,11 +182,6 @@
       <OtherUnitFiles Value="components;components\metadarkstyle-main\src;components\scan;modelos;vistas\propiedades;vistas\scan;vistas\main;vistas\loading;vistas\about"/>
       <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
-    <CodeGeneration>
-      <Optimizations>
-        <OptimizationLevel Value="3"/>
-      </Optimizations>
-    </CodeGeneration>
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2Set"/>

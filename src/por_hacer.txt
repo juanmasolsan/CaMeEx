@@ -153,6 +153,9 @@
 -         Revisar excepción en la carpeta P:\ no encuentra el IDPADRE al guardar los datos
 -         Poder ocultar la toolbar
 -         Poder ocultar la barra de estado
+-         Al selecionar un catalogo o ponerse en busqueda avanzada que lo ponga en el titulo de la ventana
+-         Que TConectorDatos.GetDatos inicialice el resultado en primer lugar
+-         Si esta en modo busqueda avanzada que no se pueda cambiar de directorio
 
 
 - Hito 3: Búsqueda y filtrado de datos.
@@ -161,7 +164,7 @@
 -         Motor de búsqueda simple : Busqueda por extensión.
 -         Motor de búsqueda simple : Busqueda por ruta.
 -         Motor de búsqueda avanzado.
--         Motor de búsqueda avanzado : Por Id Catalogo.
++         Motor de búsqueda avanzado : Por Id Catalogo.
 -         Motor de búsqueda avanzado : Por string dentro del nombre, ruta o extension descripcion.
 -         Motor de búsqueda avanzado : Por Fecha o entre dos fechas.
 -         Motor de búsqueda avanzado : Por Tamaño o entre dos tamaños.

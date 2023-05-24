@@ -254,6 +254,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Font.Style = [fsBold]
     Images = Form_Principal.ImageListToolbar
     ImageIndex = 5
+    OnClick = BitBtnBusquedaClick
     ParentFont = False
     TabOrder = 10
   end

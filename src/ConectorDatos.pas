@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-23 16:13:16
+ * @Last Modified time: 2023-05-24 18:00:54
  *)
 {
 
@@ -88,6 +88,23 @@ const
                                               '   SUM(CASE WHEN Tipo = :TIPOARCHIVO THEN Datos.Size END) AS TotalSize' +
                                               ' FROM Datos' +
                                               ' INNER JOIN cte ON Datos.IdPadre = cte.id;';
+
+
+  SQL_SELECT_BUSQUEDA_AVANZADA_BASE         = 'SELECT ' +
+                                              ' dt.*' +
+                                              ' , rc.Ruta' +
+                                              ' , ex.Descripcion' +
+                                              ' FROM Datos as dt' +
+                                              ' JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
+                                              ' JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
+                                              ' WHERE ';
+
+  SQL_SELECT_BUSQUEDA_AVANZADA_CATALOGO    = ' dt.IdCatalogo = :IDCATALOGO';
+  SQL_SELECT_BUSQUEDA_AVANZADA_SIZE        = ' dt.Size BETWEEN :SIZEDESDE AND :SIZEHASTA';
+  SQL_SELECT_BUSQUEDA_AVANZADA_FECHA       = ' ((dt.Fecha BETWEEN :FECHADESDE AND :FECHAHASTA) OR (dt.FechaCreacion BETWEEN :FECHADESDE AND :FECHAHASTA) OR (dt.FechaLastAcceso BETWEEN :FECHADESDE AND :FECHAHASTA))';
+  SQL_SELECT_BUSQUEDA_AVANZADA_TEXTO       = ' ((dt.Nombre LIKE ''%:TEXTO%'') OR (rc.Ruta LIKE '':TEXTO%'') OR (ex.Descripcion LIKE '':TEXTO%''))';
+
+
 
 
   SQL_DELETE_CATALOGO_BY_ID                = 'DELETE FROM Catalogos WHERE Id = :IDCATALOGO;';
@@ -200,6 +217,10 @@ type
 
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
     function GetDatos(Padre : TItemDato) : TArrayItemDato;
+
+    // Devuelve la lista de datos que coninciden con el query
+    function GetBusquedaDatos(Query : TCommandBusqueda) : TArrayItemDato;
+
 
     // Devuelve la lista de directorios que contiene un padre
     //function GetDirectorios(Padre : TItemDato) : TArrayItemDato;
@@ -1951,6 +1972,75 @@ begin
     end;
   end;
 end;
+
+
+// Devuelve la lista de datos que coninciden con el query
+function TConectorDatos.GetBusquedaDatos(Query : TCommandBusqueda) : TArrayItemDato;
+var
+  dato      : TItemDato;
+  Extras    : boolean = false;
+
+begin
+  // Inicializa el resultado
+  Result := TArrayItemDato.Create();
+  try
+    if FDataBase.Query <> nil then
+    begin
+      // Se inicia la seccion critica
+      EnterCriticalSection(FCriticalSection);
+      try
+        // Prepara la query
+        FDataBase.Query.Close;
+        FDataBase.Query.SQL.Clear;
+
+        // Prepara la query
+        FDataBase.Query.SQL.Add(SQL_SELECT_BUSQUEDA_AVANZADA_BASE);
+
+        if Query.CatalogoId > 0 then
+        begin
+          FDataBase.Query.SQL.Add(SQL_SELECT_BUSQUEDA_AVANZADA_CATALOGO);
+          FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Query.CatalogoId;
+          Extras := true;
+        end;
+
+
+        // Ejecuta la sentencia
+        FDataBase.Query.Open;
+        try
+          // Comprueba que tiene datos
+          if FDataBase.Query.IsEmpty then exit;
+
+          // Obtinene el primer registro
+          FDataBase.Query.First;
+
+          // Recorre los registros
+          while not FDataBase.Query.EOF do
+          begin
+            // Crea el catalogo
+            dato := DoGetDatoFromquery(FDataBase.Query);
+
+            // Añade el catalogo al resultado
+            {%H-}Result.Add(dato);
+
+            // Pasa al siguiente registro
+            FDataBase.Query.Next;
+          end;
+
+        finally
+          // Cierra la query
+          FDataBase.Query.Close;
+        end;
+      finally
+        // Se finaliza la seccion critica
+        LeaveCriticalSection(FCriticalSection);
+      end;
+    end;
+  except
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
+  end;
+end;
+
+
 
 
 initialization

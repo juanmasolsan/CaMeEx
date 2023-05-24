@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-23 17:18:08
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 16:31:00
+ * @Last Modified time: 2023-05-24 17:38:42
  *)
 unit FrameBusqueda;
 
@@ -12,9 +12,14 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Buttons, TAIntervalSources,
-  DateTimePicker, SpinEx, ItemCatalogo, Types;
+  DateTimePicker, SpinEx, ItemCatalogo, Types
+  , ItemDato
+  , InterfaceConectorDatos
+  ;
 
 type
+
+  TOnBusquedaDatos = procedure (Padre : TItemDato; Query : PCommandBusqueda = nil) of object;
 
   { TFrame_Busqueda }
 
@@ -38,12 +43,13 @@ type
     SpeedButtonClearSizeHasta: TSpeedButton;
     SpinEditExSizeDesde: TSpinEditEx;
     SpinEditExSizeHasta: TSpinEditEx;
+    procedure BitBtnBusquedaClick(Sender: TObject);
     procedure ComboBoxDispositivosDrawItem(Control: TWinControl;
       Index: Integer; ARect: TRect; State: TOwnerDrawState);
     procedure EditTextoChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
   private
-
+    FOnBusquedaDatos : TOnBusquedaDatos;
   protected
     procedure DoValidate();
 
@@ -57,6 +63,9 @@ type
 
     // Limpia el ComboBoxDispositivos
     procedure ClearListaCatalogos();
+
+    // Cuando se realiza la búsqueda
+    property OnBusquedaDatos : TOnBusquedaDatos read FOnBusquedaDatos write FOnBusquedaDatos;
 
   end;
 
@@ -168,6 +177,27 @@ begin
   if index > -1 then
     Result := TItemCatalogo(ComboBoxDispositivos.Items.Objects[index]);
 end;
+
+procedure TFrame_Busqueda.BitBtnBusquedaClick(Sender: TObject);
+var
+  Query    : TCommandBusqueda;
+  Catalogo : TItemCatalogo;
+begin
+  // Inicializa la consulta
+  FillChar(Query, SizeOf(Query), 0);
+
+  if ComboBoxDispositivos.ItemIndex > -1 then
+    begin
+      Catalogo := GetCatalogo(ComboBoxDispositivos.ItemIndex);
+      if Catalogo <> nil then
+      Query.CatalogoId := Catalogo.Id;
+    end;
+
+  if assigned(FOnBusquedaDatos) then
+    FOnBusquedaDatos(nil, @Query);
+end;
+
+
 
 end.
 

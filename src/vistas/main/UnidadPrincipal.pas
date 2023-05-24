@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 16:12:51
+ * @Last Modified time: 2023-05-24 17:38:29
  *)
 {
 
@@ -251,7 +251,7 @@ type
     FPanelBusqueda   : TPanelBusqueda;
   protected
     procedure DoOnTerminarScanAsync();
-    procedure DoLoadListaArchivos(Padre : TItemDato);
+    procedure DoLoadListaArchivos(Padre : TItemDato; Query : PCommandBusqueda = nil);
     procedure DoLoadListaCatalogos();
     procedure DoLoadListaDirectorios(Node : PVirtualNode; Padre : TItemDato);
 
@@ -425,8 +425,6 @@ begin
   Application.Title       := Get_Titulo_Ventana(true, '', false);
 
 
-
-
   // Opciones avanzadas
   ActivarArchivoConfig('cameex_config.ini', false, true, false, NOMBRE_PROGRAMA);
   ActivarGuardadoPosicion;
@@ -441,9 +439,11 @@ begin
   FGestorDatos := TConectorDatos.Create;
   FGestorDatos.Iniciar(Curdir, DirectorioConfig);
 
+  // Inicializar el buscador para realizar las busquedas
+  Frame_Busqueda1.OnBusquedaDatos := @DoLoadListaArchivos;
+
   // Necesarío para que funcione la navegación por la lista de archivos
   FTempPadre    := TItemDato.create('', TItemDatoTipo.Directorio, now, 0);
-
 
   // Inicializar la lista de archivos
   PanelPrincipal.DoubleBuffered := true;
@@ -483,7 +483,6 @@ begin
   FPanelBusqueda.OnChange               := @DoEditBuscarChange;
   FPanelBusqueda.EditBusqueda.TabOrder  := 2;
   FPanelBusqueda.Visible                := true;
-
 
   // Lanza el método de forma asíncrona para cargar la lista de catalogos
   application.QueueAsyncCall(@DoLoadListaCatalogosAsync, 0);
@@ -1639,7 +1638,7 @@ begin
     end;
 end;
 
-procedure TForm_Principal.DoLoadListaArchivos(Padre : TItemDato);
+procedure TForm_Principal.DoLoadListaArchivos(Padre : TItemDato; Query : PCommandBusqueda = nil);
 var
   t, total      : integer;
   TotalDir      : integer = 0;
@@ -1658,10 +1657,19 @@ begin
     DoLiberarListaArchivos();
 
     // Carga los datos del catalogo
-    if assigned(Padre) then
+    if assigned(Padre) or (Query <> nil) then
     begin
-      // Carga los datos del catalogo
-      FListaArchivos := FGestorDatos.GetDatos(Padre);
+      if Query <> nil then
+      begin
+        // Realiza la búsqueda
+        FListaArchivos := FGestorDatos.GetBusquedaDatos(Query^);
+      end
+      else
+      begin
+        // Carga los datos del catalogo
+        FListaArchivos := FGestorDatos.GetDatos(Padre);
+      end;
+
       if assigned(FListaArchivos) then
       begin
         // Carga los datos del catalogo
