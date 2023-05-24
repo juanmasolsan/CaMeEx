@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 18:34:32
+ * @Last Modified time: 2023-05-24 19:10:03
  *)
 {
 
@@ -100,7 +100,10 @@ const
                                               ' WHERE ';
 
   SQL_SELECT_BUSQUEDA_AVANZADA_CATALOGO    = ' dt.IdCatalogo = :IDCATALOGO';
-  SQL_SELECT_BUSQUEDA_AVANZADA_SIZE        = ' dt.Size BETWEEN :SIZEDESDE AND :SIZEHASTA';
+  SQL_SELECT_BUSQUEDA_AVANZADA_SIZE        = ' (dt.Size BETWEEN :SIZEDESDE AND :SIZEHASTA)';
+  SQL_SELECT_BUSQUEDA_AVANZADA_SIZE_MIN    = ' (dt.Size > :SIZEDESDE)';
+  SQL_SELECT_BUSQUEDA_AVANZADA_SIZE_MAX    = ' (dt.Size < :SIZEHASTA)';
+
   SQL_SELECT_BUSQUEDA_AVANZADA_FECHA       = ' ((dt.Fecha BETWEEN :FECHADESDE AND :FECHAHASTA) OR (dt.FechaCreacion BETWEEN :FECHADESDE AND :FECHAHASTA) OR (dt.FechaLastAcceso BETWEEN :FECHADESDE AND :FECHAHASTA))';
   SQL_SELECT_BUSQUEDA_AVANZADA_TEXTO       = ' ((dt.Nombre LIKE ''%:TEXTO%'') OR (rc.Ruta LIKE ''%:TEXTO%'') OR (ex.Descripcion LIKE ''%:TEXTO%''))';
 
@@ -1977,14 +1980,12 @@ end;
 // Devuelve la lista de datos que coninciden con el query
 function TConectorDatos.GetBusquedaDatos(Query : TCommandBusqueda) : TArrayItemDato;
 var
-  dato      : TItemDato;
-  Extras    : boolean = false;
-
+  dato         : TItemDato;
+  Extras       : boolean = false;
   isIdCatalogo : boolean = false;
   isTexto      : boolean = false;
-
-  SQL : String;
-
+  isSize       : boolean = false;
+  SQL          : String;
 begin
   // Inicializa el resultado
   Result := TArrayItemDato.Create();
@@ -2013,13 +2014,44 @@ begin
         if Query.Texto <> '' then
         begin
           isTexto := true;
-          if Extras then
-           SQL += ' AND ';
+          if Extras then SQL += ' AND ';
 
           SQL += SQL_SELECT_BUSQUEDA_AVANZADA_TEXTO;
 
           Extras := true;
         end;
+
+        // Composicion de la sentencia para el tamaño
+        if (Query.SizeDesde > 0) and (Query.SizeHasta > 0) then
+        begin
+          isSize := true;
+          if Extras then SQL += ' AND ';
+          SQL += SQL_SELECT_BUSQUEDA_AVANZADA_SIZE;
+          Extras := true;
+        end
+        else
+        begin
+          if (Query.SizeHasta > 0) then
+          begin
+            isSize := true;
+            if Extras then SQL += ' AND ';
+            SQL += SQL_SELECT_BUSQUEDA_AVANZADA_SIZE_MAX;
+            Extras := true;
+          end
+          else
+            if (Query.SizeDesde > 0) then
+            begin
+              isSize := true;
+              if Extras then SQL += ' AND ';
+              SQL += SQL_SELECT_BUSQUEDA_AVANZADA_SIZE_MIN;
+              Extras := true;
+            end
+
+
+
+        end;
+
+
 
         // Composicion de los parametros para el texto
         if isTexto then
@@ -2031,6 +2063,19 @@ begin
         // Composicion de los parametros para el Id de catalogo
         if isIdCatalogo then
          FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Query.CatalogoId;
+
+        // Composicion de los parametros para el tamaño
+        if isSize then
+        begin
+         if Query.SizeDesde > 0 then
+          FDataBase.Query.ParamByName('SIZEDESDE').AsLargeInt := Query.SizeDesde;
+
+         if Query.SizeHasta > 0 then
+           FDataBase.Query.ParamByName('SIZEHASTA').AsLargeInt := Query.SizeHasta;
+        end;
+
+
+
 
         // Ejecuta la sentencia
         FDataBase.Query.Open;

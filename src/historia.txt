@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230524) Agregado al Motor de búsqueda avanzado, búsqueda por Tamaño o entre dos tamaños
 - [NEW]   (20230524) Agregado al Motor de búsqueda avanzado, búsqueda por string dentro del nombre, ruta o extension descripcion.
 - [NEW]   (20230524) Agregado al Motor de búsqueda avanzado, búsqueda por el Id Catalogo.
 - [FIX]   (20230524) Corregido en el frame de búsqueda avanzada - Cambios en la seleción de catalogos y reseteo del mismo

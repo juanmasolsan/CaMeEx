@@ -197,6 +197,16 @@ begin
   // La configuración de búsqueda por el texto
   Query.Texto := trim(EditTexto.Text);
 
+  // La configuración de búsqueda por tamaño desde
+  if CheckBoxSizeDesde.Checked then
+   Query.SizeDesde := SpinEditExSizeDesde.Value;
+
+  // La configuración de búsqueda por tamaño hasta
+  if CheckBoxSizeHasta.Checked then
+   Query.SizeHasta := SpinEditExSizeHasta.Value;
+
+
+
   if assigned(FOnBusquedaDatos) then
     FOnBusquedaDatos(nil, @Query);
 end;
