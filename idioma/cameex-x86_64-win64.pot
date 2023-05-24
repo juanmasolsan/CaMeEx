@@ -499,9 +499,8 @@ msgstr ""
 msgid "Escriba el texto que quiere encontrar ..."
 msgstr ""
 
-#: tframe_busqueda.label4.caption
-msgctxt "tframe_busqueda.label4.caption"
-msgid "Medio/Dispositivo:"
+#: tframe_busqueda.labelcatalogo.caption
+msgid "Catalogo"
 msgstr ""
 
 #: tframe_busqueda.labeltexto.caption

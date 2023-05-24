@@ -28,7 +28,7 @@ type
     DateTimePickerDesde: TDateTimePicker;
     DateTimePickerHasta: TDateTimePicker;
     EditTexto: TEdit;
-    Label4: TLabel;
+    LabelCatalogo: TLabel;
     LabelTexto: TLabel;
     SpeedButton1: TSpeedButton;
     SpeedButtonClearDispositivos: TSpeedButton;
@@ -85,6 +85,9 @@ begin
     4 : SpinEditExSizeHasta.Value := 0;
     5 : ComboBoxDispositivos.ItemIndex := -1;
   end;
+
+  // Comprueba de nuevo el formulario
+  DoValidate();
 end;
 
 procedure TFrame_Busqueda.EditTextoChange(Sender: TObject);
@@ -133,14 +136,15 @@ begin
   SpinEditExSizeHasta.Enabled        := CheckBoxSizeHasta.Checked;
   SpeedButtonClearSizeHasta.Enabled  := CheckBoxSizeHasta.Checked;
 
-  SpeedButtonClearDispositivos.Enabled := ComboBoxDispositivos.ItemIndex > 0;
+  SpeedButtonClearDispositivos.Enabled := ComboBoxDispositivos.ItemIndex > -1;
+  LabelCatalogo.Font.Bold              := ComboBoxDispositivos.ItemIndex > -1;
 
   BitBtnBusqueda.Enabled := (EditTexto.Text <> '') or
                             (CheckBoxFechaDesde.Checked) or
                             (CheckBoxFechaHasta.Checked) or
                             (CheckBoxSizeDesde.Checked) or
                             (CheckBoxSizeHasta.Checked) or
-                            (ComboBoxDispositivos.ItemIndex > 0);
+                            (ComboBoxDispositivos.ItemIndex > -1);
 
 end;
 

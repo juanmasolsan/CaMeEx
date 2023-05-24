@@ -34,12 +34,12 @@ object Frame_Busqueda: TFrame_Busqueda
     TabOrder = 9
     TextHint = 'Seleccione un dispositivo...'
   end
-  object Label4: TLabel
+  object LabelCatalogo: TLabel
     Left = 8
     Height = 15
     Top = 192
-    Width = 100
-    Caption = 'Medio/Dispositivo:'
+    Width = 48
+    Caption = 'Catalogo'
     ParentColor = False
     ParentFont = False
   end

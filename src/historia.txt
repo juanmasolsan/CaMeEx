@@ -1,5 +1,5 @@
 
-
+- [FIX]   (20230524) Corregido en el frame de búsqueda avanzada - Cambios en la seleción de catalogos y reseteo del mismo
 - [NEW]   (20230524) Agregado al frame de búsqueda avanzada - Lista de catalogos disponibles
 
 + 1.2.6.0
