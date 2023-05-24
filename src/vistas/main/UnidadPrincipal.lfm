@@ -38,6 +38,7 @@ object Form_Principal: TForm_Principal
       Height = 414
       Top = 34
       Width = 5
+      OnCanResize = Splitter1CanResize
       ParentColor = False
     end
     object Lista: TLazVirtualStringTree
@@ -734,7 +735,6 @@ object Form_Principal: TForm_Principal
       Align = alLeft
       BorderSpacing.Around = 1
       BevelOuter = bvNone
-      Caption = 'PanelIzquierdo'
       ClientHeight = 412
       ClientWidth = 283
       Color = clWindow
@@ -742,12 +742,13 @@ object Form_Principal: TForm_Principal
       TabOrder = 5
       OnResize = PanelIzquierdoResize
       object PageControlIzquierdo: TPageControl
-        Left = 0
-        Height = 412
-        Top = 0
-        Width = 283
+        Left = 1
+        Height = 410
+        Top = 1
+        Width = 281
         ActivePage = TabSheetBusquedaAvanzada
         Align = alClient
+        BorderSpacing.Around = 1
         HotTrack = True
         Images = ImageListToolbar
         ShowTabs = False
@@ -756,14 +757,14 @@ object Form_Principal: TForm_Principal
         TabOrder = 0
         object TabSheetNavegar: TTabSheet
           Caption = 'Navegar'
-          ClientHeight = 404
-          ClientWidth = 275
+          ClientHeight = 402
+          ClientWidth = 273
           ImageIndex = 8
           object Arbol: TLazVirtualStringTree
             Left = 0
-            Height = 404
+            Height = 402
             Top = 0
-            Width = 275
+            Width = 273
             Align = alClient
             AnimationDuration = 0
             AutoExpandDelay = 1
@@ -809,12 +810,12 @@ object Form_Principal: TForm_Principal
         end
         object TabSheetBusquedaAvanzada: TTabSheet
           Caption = 'Búsqueda Avanzada'
-          ClientHeight = 404
-          ClientWidth = 275
+          ClientHeight = 402
+          ClientWidth = 273
           ImageIndex = 5
           inline Frame_Busqueda1: TFrame_Busqueda
-            Height = 404
-            ClientHeight = 404
+            Height = 402
+            ClientHeight = 402
           end
         end
       end

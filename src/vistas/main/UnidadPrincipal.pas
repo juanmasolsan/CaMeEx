@@ -224,6 +224,8 @@ type
     procedure MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
     procedure PanelInferiorResize(Sender: TObject);
     procedure PanelIzquierdoResize(Sender: TObject);
+    procedure Splitter1CanResize(Sender: TObject; var NewSize: Integer;
+      var Accept: Boolean);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
   private
@@ -1209,8 +1211,24 @@ begin
   // Reajusta el tamaño de la última columna
   DoResizeControlDatos(arbol);
 
+  // Si se está en la búsqueda avanzada bloquea la redimensión
+  if PageControlIzquierdo.ActivePage = TabSheetBusquedaAvanzada then
+  begin
+    exit;
+  end;
+
   if FAplicandoConfig then exit;
   FArbolAncho := PanelIzquierdo.Width;
+end;
+
+procedure TForm_Principal.Splitter1CanResize(Sender: TObject;
+  var NewSize: Integer; var Accept: Boolean);
+begin
+  // Si se está en la búsqueda avanzada bloquea la redimensión
+  if PageControlIzquierdo.ActivePage = TabSheetBusquedaAvanzada then
+  begin
+    NewSize := Frame_Busqueda1.Constraints.MaxWidth;
+  end;
 end;
 
 procedure TForm_Principal.FormClose(Sender: TObject; var CloseAction: TCloseAction);
