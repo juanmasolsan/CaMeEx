@@ -52,7 +52,9 @@ uses
   , ItemDato
 , sqldb;
 
-
+const
+  // Limite para los resultados de las búsquedas
+  LIMITE_BUSQUEDA_DATOS                    = 50000;
 
 const
   SQL_INSERT_EXTENSION                     = 'INSERT OR IGNORE INTO Extensiones (Id, Extension, Descripcion, IdIcono) VALUES (:ID, :EXTENSION, :DESCRIPCION, :IDICONO);';
@@ -2136,10 +2138,6 @@ begin
           and not isFecha then
             exit;
 
-
-
-
-
         // Ejecuta la sentencia
         FDataBase.Query.Open;
         try
@@ -2157,6 +2155,9 @@ begin
 
             // Añade el catalogo al resultado
             {%H-}Result.Add(dato);
+
+            // Limite de LIMITE_BUSQUEDA_DATOS resultados
+            if Result.Count >= LIMITE_BUSQUEDA_DATOS then exit;
 
             // Pasa al siguiente registro
             FDataBase.Query.Next;
