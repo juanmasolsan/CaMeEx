@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 18:00:54
+ * @Last Modified time: 2023-05-24 18:34:32
  *)
 {
 
@@ -102,7 +102,7 @@ const
   SQL_SELECT_BUSQUEDA_AVANZADA_CATALOGO    = ' dt.IdCatalogo = :IDCATALOGO';
   SQL_SELECT_BUSQUEDA_AVANZADA_SIZE        = ' dt.Size BETWEEN :SIZEDESDE AND :SIZEHASTA';
   SQL_SELECT_BUSQUEDA_AVANZADA_FECHA       = ' ((dt.Fecha BETWEEN :FECHADESDE AND :FECHAHASTA) OR (dt.FechaCreacion BETWEEN :FECHADESDE AND :FECHAHASTA) OR (dt.FechaLastAcceso BETWEEN :FECHADESDE AND :FECHAHASTA))';
-  SQL_SELECT_BUSQUEDA_AVANZADA_TEXTO       = ' ((dt.Nombre LIKE ''%:TEXTO%'') OR (rc.Ruta LIKE '':TEXTO%'') OR (ex.Descripcion LIKE '':TEXTO%''))';
+  SQL_SELECT_BUSQUEDA_AVANZADA_TEXTO       = ' ((dt.Nombre LIKE ''%:TEXTO%'') OR (rc.Ruta LIKE ''%:TEXTO%'') OR (ex.Descripcion LIKE ''%:TEXTO%''))';
 
 
 
@@ -1980,6 +1980,11 @@ var
   dato      : TItemDato;
   Extras    : boolean = false;
 
+  isIdCatalogo : boolean = false;
+  isTexto      : boolean = false;
+
+  SQL : String;
+
 begin
   // Inicializa el resultado
   Result := TArrayItemDato.Create();
@@ -1993,16 +1998,39 @@ begin
         FDataBase.Query.Close;
         FDataBase.Query.SQL.Clear;
 
-        // Prepara la query
-        FDataBase.Query.SQL.Add(SQL_SELECT_BUSQUEDA_AVANZADA_BASE);
+        // Composicion de la sentencia base
+        SQL := SQL_SELECT_BUSQUEDA_AVANZADA_BASE;
 
+        // Composicion de la sentencia para el Id de catalogo
         if Query.CatalogoId > 0 then
         begin
-          FDataBase.Query.SQL.Add(SQL_SELECT_BUSQUEDA_AVANZADA_CATALOGO);
-          FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Query.CatalogoId;
+          isIdCatalogo := true;
+          SQL += SQL_SELECT_BUSQUEDA_AVANZADA_CATALOGO;
           Extras := true;
         end;
 
+        // Composicion de la sentencia para el texto
+        if Query.Texto <> '' then
+        begin
+          isTexto := true;
+          if Extras then
+           SQL += ' AND ';
+
+          SQL += SQL_SELECT_BUSQUEDA_AVANZADA_TEXTO;
+
+          Extras := true;
+        end;
+
+        // Composicion de los parametros para el texto
+        if isTexto then
+         SQL := StringReplace(SQL, ':TEXTO', Query.Texto, [rfReplaceAll, rfIgnoreCase]);
+
+        // Prepara la query
+        FDataBase.Query.SQL.Text := SQL;
+
+        // Composicion de los parametros para el Id de catalogo
+        if isIdCatalogo then
+         FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Query.CatalogoId;
 
         // Ejecuta la sentencia
         FDataBase.Query.Open;

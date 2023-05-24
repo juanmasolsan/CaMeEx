@@ -186,12 +186,16 @@ begin
   // Inicializa la consulta
   FillChar(Query, SizeOf(Query), 0);
 
+  // La configuración de búsqueda el id de catalogo
   if ComboBoxDispositivos.ItemIndex > -1 then
     begin
       Catalogo := GetCatalogo(ComboBoxDispositivos.ItemIndex);
       if Catalogo <> nil then
       Query.CatalogoId := Catalogo.Id;
     end;
+
+  // La configuración de búsqueda por el texto
+  Query.Texto := trim(EditTexto.Text);
 
   if assigned(FOnBusquedaDatos) then
     FOnBusquedaDatos(nil, @Query);

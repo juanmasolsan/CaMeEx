@@ -50,7 +50,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="114"/>
         <CursorPos X="24" Y="137"/>
-        <UsageCount Value="195"/>
+        <UsageCount Value="196"/>
       </Unit>
       <Unit>
         <Filename Value="components\iconectordatos.pas"/>
@@ -58,7 +58,7 @@
         <UnitName Value="IConectorDatos"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="11"/>
-        <UsageCount Value="193"/>
+        <UsageCount Value="194"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
@@ -69,7 +69,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="1636"/>
         <CursorPos Y="1660"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="68"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -82,7 +82,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="121"/>
         <CursorPos X="35" Y="133"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="68"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
@@ -93,7 +93,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="68"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadAtributos.pas"/>
@@ -104,7 +104,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="68"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
@@ -115,7 +115,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="80" Y="88"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="68"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\about\Control_About.pas"/>
@@ -125,7 +125,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="68"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
@@ -136,7 +136,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="202"/>
         <CursorPos X="51" Y="212"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\FrameCancelado.pas"/>
@@ -146,7 +146,7 @@
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="25"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="59"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\FrameBusqueda.pas"/>
@@ -154,10 +154,10 @@
         <ComponentName Value="Frame_Busqueda"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="173"/>
-        <CursorPos Y="197"/>
-        <UsageCount Value="31"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="177"/>
+        <CursorPos Y="203"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -312,9 +312,9 @@
         <Filename Value="ConectorDatos.pas"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="1999"/>
-        <CursorPos X="80" Y="2012"/>
-        <UsageCount Value="49"/>
+        <TopLine Value="1990"/>
+        <CursorPos X="63" Y="2003"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -530,10 +530,11 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="236"/>
         <CursorPos X="10" Y="249"/>
         <UsageCount Value="15"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\application.inc"/>
@@ -692,129 +693,129 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="167"/>
         <CursorPos Y="168"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="25"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
-        <Caret Line="196" TopLine="173"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
-        <Caret Line="197" TopLine="173"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1648" TopLine="1633"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1642" TopLine="1633"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1649" TopLine="1633"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1651" TopLine="1633"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1652" TopLine="1633"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1654" TopLine="1633"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1657" TopLine="1633"/>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2014" TopLine="1997"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="1996" TopLine="1988"/>
+        <Caret Line="2015" TopLine="1997"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="1997" TopLine="1988"/>
+        <Caret Line="2018" TopLine="1997"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2000" TopLine="1988"/>
+        <Caret Line="2021" TopLine="1997"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2002" TopLine="1988"/>
+        <Caret Line="2040" Column="11" TopLine="2012"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2004" TopLine="1988"/>
+        <Caret Line="2003" TopLine="1989"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2005" TopLine="1988"/>
+        <Caret Line="2010" TopLine="1999"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2006" TopLine="1988"/>
+        <Caret Line="2012" TopLine="1999"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2019" TopLine="2005"/>
+        <Caret Line="2013" TopLine="1999"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2020" TopLine="2005"/>
+        <Caret Line="2016" TopLine="1999"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2022" TopLine="2005"/>
+        <Caret Line="2018" TopLine="1999"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2025" TopLine="2005"/>
+        <Caret Line="2022" TopLine="1999"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2028" TopLine="2005"/>
+        <Caret Line="2024" TopLine="2000"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2031" TopLine="2007"/>
+        <Caret Line="2027" TopLine="2003"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2034" TopLine="2010"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
-        <Caret Line="197" TopLine="173"/>
+        <Caret Line="2023" Column="36" TopLine="2004"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="1996" TopLine="1982"/>
+        <Caret Line="2022" TopLine="2009"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="1997" TopLine="1982"/>
+        <Caret Line="2024" TopLine="2009"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2000" TopLine="1982"/>
+        <Caret Line="2027" TopLine="2009"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="1986" TopLine="1969"/>
+        <Caret Line="2023" Column="75" TopLine="2009"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="1993" TopLine="1969"/>
+        <Caret Line="2025" Column="21" TopLine="2009"/>
       </Position>
       <Position>
         <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2031" TopLine="2017"/>
+        <Caret Line="2003" TopLine="1989"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2010" TopLine="1999"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2012" TopLine="1999"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2013" TopLine="1999"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2016" TopLine="1999"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2003" TopLine="2008"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2021" TopLine="2009"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2023" TopLine="2009"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2028" TopLine="2009"/>
+      </Position>
+      <Position>
+        <Filename Value="ConectorDatos.pas"/>
+        <Caret Line="2030" TopLine="2009"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -165,10 +165,11 @@
 -         Motor de búsqueda simple : Busqueda por ruta.
 -         Motor de búsqueda avanzado.
 +         Motor de búsqueda avanzado : Por Id Catalogo.
--         Motor de búsqueda avanzado : Por string dentro del nombre, ruta o extension descripcion.
++         Motor de búsqueda avanzado : Por string dentro del nombre, ruta o extension descripcion.
 -         Motor de búsqueda avanzado : Por Fecha o entre dos fechas.
 -         Motor de búsqueda avanzado : Por Tamaño o entre dos tamaños.
 -         Que no se pueda redimensionar el panel de búsqueda
+-         Al pulsar enter que realice la búsqueda
 
 - Hito 4: Exportación de datos a formato html, xml o csv. Tanto de los datos seleccionados, como los resultados de búsqueda.
 -         Sistema de exportación - Base.
