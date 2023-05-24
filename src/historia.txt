@@ -1,4 +1,5 @@
 
++ 1.2.7.6
 - [FIX]   (20230525) Activa el showmodal al realizar una búsqueda avanzada
 - [FIX]   (20230525) Limitado los resultados de la búsqueda a 50.000 resultados
 - [NEW]   (20230525) Al hacer una busqueda se bloquea el buscador avanzado
