@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-22 10:56:04
+ * @Last Modified time: 2023-05-24 16:12:51
  *)
 {
 
@@ -1770,6 +1770,10 @@ begin
     // Crea el nodo raiz del arbol
     DoCrearNodoRootArbol();
 
+
+    // Libera la lista de catalogos en el frame de busqueda
+    Frame_Busqueda1.ClearListaCatalogos();
+
     // Carga los datos del catalogo
     FListaCatalogos := FGestorDatos.GetAllCatalogos();
     if assigned(FListaCatalogos) then
@@ -1780,6 +1784,9 @@ begin
       begin
         // Añade el nodo al arbol
         AddNode(Arbol, TItemDato(FListaCatalogos{%H-}[t]), FNodeArbolRaiz, TItemCatalogo(FListaCatalogos{%H-}[t]).TotalDirectorios > 0, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo, TItemCatalogo(FListaCatalogos{%H-}[t]).Tipo);
+
+        // Añade el catalogo a la lista de catalogos del frame de busqueda
+        Frame_Busqueda1.AddToListaCatalogos(TItemCatalogo(FListaCatalogos{%H-}[t]));
       end;
     end;
 

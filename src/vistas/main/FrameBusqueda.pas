@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-23 17:18:08
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 00:40:39
+ * @Last Modified time: 2023-05-24 16:31:00
  *)
 unit FrameBusqueda;
 
@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Buttons, TAIntervalSources,
-  DateTimePicker, SpinEx;
+  DateTimePicker, SpinEx, ItemCatalogo, Types;
 
 type
 
@@ -38,18 +38,32 @@ type
     SpeedButtonClearSizeHasta: TSpeedButton;
     SpinEditExSizeDesde: TSpinEditEx;
     SpinEditExSizeHasta: TSpinEditEx;
+    procedure ComboBoxDispositivosDrawItem(Control: TWinControl;
+      Index: Integer; ARect: TRect; State: TOwnerDrawState);
     procedure EditTextoChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
   private
 
   protected
     procedure DoValidate();
+
+    // Devuelve la unidad seleccionada
+    function GetCatalogo(index : longint) : TItemCatalogo;
   public
     constructor Create(AOwner: TComponent); override;
+
+    // Carga los catalogos en el ComboBoxDispositivos
+    procedure AddToListaCatalogos(Catalogo : TItemCatalogo);
+
+    // Limpia el ComboBoxDispositivos
+    procedure ClearListaCatalogos();
 
   end;
 
 implementation
+
+uses
+  ItemBaseDatos, UnidadPrincipal;
 
 {$R *.lfm}
 
@@ -71,12 +85,30 @@ begin
     4 : SpinEditExSizeHasta.Value := 0;
     5 : ComboBoxDispositivos.ItemIndex := -1;
   end;
-
 end;
 
 procedure TFrame_Busqueda.EditTextoChange(Sender: TObject);
 begin
   DoValidate();
+end;
+
+procedure TFrame_Busqueda.ComboBoxDispositivosDrawItem(Control: TWinControl;
+  Index: Integer; ARect: TRect; State: TOwnerDrawState);
+var
+  indexImage : longint;
+  Catalogo   : TItemCatalogo;
+begin
+  // Dibuja el texto y el fondo
+  ComboBoxDispositivos.Canvas.FillRect(ARect);                                                    //first paint normal background
+  ComboBoxDispositivos.Canvas.TextRect(ARect, 24, ARect.Top + 3, ComboBoxDispositivos.Items[Index]);  //paint item text
+
+  indexImage := integer(TItemDatoTipo.Root);
+  Catalogo := GetCatalogo(Index);
+  if Catalogo <> nil then
+    indexImage := integer(Catalogo.Tipo);
+
+  // Dibuja la imagen
+  Form_Principal.ImageListArchivos.Draw(ComboBoxDispositivos.Canvas, ARect.Left + 1, ARect.Top + 2, indexImage);  //draw image according to index on canvas
 end;
 
 procedure TFrame_Busqueda.DoValidate();
@@ -110,6 +142,27 @@ begin
                             (CheckBoxSizeHasta.Checked) or
                             (ComboBoxDispositivos.ItemIndex > 0);
 
+end;
+
+// Limpia el ComboBoxDispositivos
+procedure TFrame_Busqueda.ClearListaCatalogos();
+begin
+  ComboBoxDispositivos.items.Clear;
+end;
+
+// Carga los catalogos en el ComboBoxDispositivos
+procedure TFrame_Busqueda.AddToListaCatalogos(Catalogo : TItemCatalogo);
+begin
+  ComboBoxDispositivos.Items.AddObject(Catalogo.Nombre, Catalogo);
+end;
+
+
+// Devuelve el Catalogo seleccionado
+function TFrame_Busqueda.GetCatalogo(index : longint) : TItemCatalogo;
+begin
+  Result := nil;
+  if index > -1 then
+    Result := TItemCatalogo(ComboBoxDispositivos.Items.Objects[index]);
 end;
 
 end.

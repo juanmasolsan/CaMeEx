@@ -570,7 +570,6 @@ msgid "Cancelar"
 msgstr ""
 
 #: tframe_selecionarmedio.buttonseleccionarruta.caption
-msgctxt "tframe_selecionarmedio.buttonseleccionarruta.caption"
 msgid "..."
 msgstr ""
 
@@ -580,12 +579,10 @@ msgid "Seleccione un dispositivo..."
 msgstr ""
 
 #: tframe_selecionarmedio.combodispositivo_error.caption
-msgctxt "tframe_selecionarmedio.combodispositivo_error.caption"
 msgid "Seleccione una opción."
 msgstr ""
 
 #: tframe_selecionarmedio.editruta.texthint
-msgctxt "tframe_selecionarmedio.editruta.texthint"
 msgid "La ruta que se va a analizar."
 msgstr ""
 
@@ -595,7 +592,6 @@ msgid "Esta campo es obligatorio y no puede estar vacio."
 msgstr ""
 
 #: tframe_selecionarmedio.edit_nombre.texthint
-msgctxt "tframe_selecionarmedio.edit_nombre.texthint"
 msgid "Escriba un nombre para poder identifificar el catálogo"
 msgstr ""
 
@@ -605,72 +601,58 @@ msgid "Esta campo es obligatorio y no puede estar vacio."
 msgstr ""
 
 #: tframe_selecionarmedio.label1.caption
-msgctxt "tframe_selecionarmedio.label1.caption"
 msgid "Datos básicos para poder realizar el análiss del medio."
 msgstr ""
 
 #: tframe_selecionarmedio.label11.caption
-msgctxt "tframe_selecionarmedio.label11.caption"
 msgid "\\dato\\"
 msgstr ""
 
 #: tframe_selecionarmedio.label13.caption
-msgctxt "tframe_selecionarmedio.label13.caption"
 msgid "\\dato\\*.7z"
 msgstr ""
 
 #: tframe_selecionarmedio.label14.caption
-msgctxt "tframe_selecionarmedio.label14.caption"
 msgid "\\dato\\archivo.7z"
 msgstr ""
 
 #: tframe_selecionarmedio.label16.caption
-msgctxt "tframe_selecionarmedio.label16.caption"
 msgid "Todo el directorio"
 msgstr ""
 
 #: tframe_selecionarmedio.label18.caption
-msgctxt "tframe_selecionarmedio.label18.caption"
 msgid "Todo el directorio."
 msgstr ""
 
 #: tframe_selecionarmedio.label19.caption
-msgctxt "tframe_selecionarmedio.label19.caption"
 msgid "Solo los archivos 7z."
 msgstr ""
 
 #: tframe_selecionarmedio.label2.caption
-msgctxt "tframe_selecionarmedio.label2.caption"
 msgid "Nombre :"
 msgstr ""
 
 #: tframe_selecionarmedio.label20.caption
-msgctxt "tframe_selecionarmedio.label20.caption"
 msgid "Solo el archivo indicado."
 msgstr ""
 
 #: tframe_selecionarmedio.label21.caption
-msgctxt "tframe_selecionarmedio.label21.caption"
 msgid "Archivos/Carpetas Excluidos : "
 msgstr ""
 
 #: tframe_selecionarmedio.label23.caption
-msgctxt "tframe_selecionarmedio.label23.caption"
 msgid "La forma aceptada de excluir archivos y directorios."
 msgstr ""
 
 #: tframe_selecionarmedio.label27.caption
-msgctxt "tframe_selecionarmedio.label27.caption"
 msgid "*.log"
 msgstr ""
 
 #: tframe_selecionarmedio.label28.caption
-msgctxt "tframe_selecionarmedio.label28.caption"
 msgid "Todos los archivos log"
 msgstr ""
 
 #: tframe_selecionarmedio.label3.caption
-msgctxt "tframe_selecionarmedio.label3.caption"
 msgid "Descripción :"
 msgstr ""
 
@@ -680,17 +662,14 @@ msgid "Medio/Dispositivo:"
 msgstr ""
 
 #: tframe_selecionarmedio.label5.caption
-msgctxt "tframe_selecionarmedio.label5.caption"
 msgid "Ruta:"
 msgstr ""
 
 #: tframe_selecionarmedio.label6.caption
-msgctxt "tframe_selecionarmedio.label6.caption"
 msgid "Excluir :"
 msgstr ""
 
 #: tframe_selecionarmedio.label9.caption
-msgctxt "tframe_selecionarmedio.label9.caption"
 msgid "\\dato\\*.*"
 msgstr ""
 

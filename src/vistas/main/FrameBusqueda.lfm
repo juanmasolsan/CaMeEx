@@ -13,11 +13,11 @@ object Frame_Busqueda: TFrame_Busqueda
   DesignTop = 17
   object ComboBoxDispositivos: TComboBox
     Left = 8
-    Height = 23
+    Height = 28
     Top = 208
     Width = 219
     Anchors = [akTop, akLeft, akRight]
-    ItemHeight = 17
+    ItemHeight = 22
     Items.Strings = (
       'gdfgdf'
       'gdfg'
@@ -29,6 +29,7 @@ object Frame_Busqueda: TFrame_Busqueda
       'dfg'
     )
     OnChange = EditTextoChange
+    OnDrawItem = ComboBoxDispositivosDrawItem
     Style = csOwnerDrawFixed
     TabOrder = 9
     TextHint = 'Seleccione un dispositivo...'
@@ -77,7 +78,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Tag = 5
     Left = 232
     Height = 24
-    Top = 208
+    Top = 210
     Width = 31
     Anchors = [akTop, akRight]
     Enabled = False

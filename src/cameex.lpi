@@ -156,16 +156,16 @@
         <ResourceBaseClass Value="Frame"/>
       </Unit>
       <Unit>
-        <Filename Value="FrameSelecionarMedio.pas"/>
+        <Filename Value="vistas\main\FrameBusqueda.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Frame_SelecionarMedio"/>
+        <ComponentName Value="Frame_Busqueda"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit>
       <Unit>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
+        <Filename Value="vistas\scan\FrameSelecionarMedio.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Frame_Busqueda"/>
+        <ComponentName Value="Frame_SelecionarMedio"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit>
