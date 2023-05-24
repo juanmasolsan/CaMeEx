@@ -1,5 +1,8 @@
 
+- [NEW]   (20230525) Agregado al Motor de búsqueda avanzado, búsqueda por fecha o entre dos fechas
 
++ 1.2.6.8
+- [FIX]   (20230524) Verifica si realmente se ha de buscar algo.
 - [NEW]   (20230524) Agregado al Motor de búsqueda avanzado, el inicio de la busqueda por la pulsacion de ENTER en algunos campos
 - [FIX]   (20230524) Corregido en el frame de búsqueda avanzada el validador del formulario
 - [NEW]   (20230524) Agregado al Motor de búsqueda avanzado, búsqueda por Tamaño o entre dos tamaños

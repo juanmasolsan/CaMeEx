@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 19:10:03
+ * @Last Modified time: 2023-05-24 23:47:24
  *)
 {
 
@@ -105,6 +105,11 @@ const
   SQL_SELECT_BUSQUEDA_AVANZADA_SIZE_MAX    = ' (dt.Size < :SIZEHASTA)';
 
   SQL_SELECT_BUSQUEDA_AVANZADA_FECHA       = ' ((dt.Fecha BETWEEN :FECHADESDE AND :FECHAHASTA) OR (dt.FechaCreacion BETWEEN :FECHADESDE AND :FECHAHASTA) OR (dt.FechaLastAcceso BETWEEN :FECHADESDE AND :FECHAHASTA))';
+  SQL_SELECT_BUSQUEDA_AVANZADA_FECHA_MIN   = ' ((dt.Fecha > :FECHADESDE) OR (dt.FechaCreacion > :FECHADESDE) OR (dt.FechaLastAcceso > :FECHADESDE))';
+  SQL_SELECT_BUSQUEDA_AVANZADA_FECHA_MAX   = ' ((dt.Fecha < :FECHAHASTA) OR (dt.FechaCreacion < :FECHAHASTA) OR (dt.FechaLastAcceso < :FECHAHASTA))';
+
+
+
   SQL_SELECT_BUSQUEDA_AVANZADA_TEXTO       = ' ((dt.Nombre LIKE ''%:TEXTO%'') OR (rc.Ruta LIKE ''%:TEXTO%'') OR (ex.Descripcion LIKE ''%:TEXTO%''))';
 
 
@@ -1985,6 +1990,7 @@ var
   isIdCatalogo : boolean = false;
   isTexto      : boolean = false;
   isSize       : boolean = false;
+  isFecha      : boolean = false;
   SQL          : String;
 begin
   // Inicializa el resultado
@@ -2021,6 +2027,33 @@ begin
           Extras := true;
         end;
 
+        // Composicion de la sentencia para la fecha
+        if (Query.FechaDesde > 0) and (Query.FechaHasta > 0) then
+        begin
+          isFecha := true;
+          if Extras then SQL += ' AND ';
+          SQL += SQL_SELECT_BUSQUEDA_AVANZADA_FECHA;
+          Extras := true;
+        end
+        else
+        begin
+          if (Query.FechaHasta > 0) then
+          begin
+            isFecha := true;
+            if Extras then SQL += ' AND ';
+            SQL += SQL_SELECT_BUSQUEDA_AVANZADA_FECHA_MAX;
+            Extras := true;
+          end
+          else
+            if (Query.FechaDesde > 0) then
+            begin
+              isFecha := true;
+              if Extras then SQL += ' AND ';
+              SQL += SQL_SELECT_BUSQUEDA_AVANZADA_FECHA_MIN;
+              Extras := true;
+            end
+        end;
+
         // Composicion de la sentencia para el tamaño
         if (Query.SizeDesde > 0) and (Query.SizeHasta > 0) then
         begin
@@ -2046,33 +2079,49 @@ begin
               SQL += SQL_SELECT_BUSQUEDA_AVANZADA_SIZE_MIN;
               Extras := true;
             end
-
-
-
         end;
+
 
 
 
         // Composicion de los parametros para el texto
         if isTexto then
-         SQL := StringReplace(SQL, ':TEXTO', Query.Texto, [rfReplaceAll, rfIgnoreCase]);
+          SQL := StringReplace(SQL, ':TEXTO', Query.Texto, [rfReplaceAll, rfIgnoreCase]);
 
         // Prepara la query
         FDataBase.Query.SQL.Text := SQL;
 
         // Composicion de los parametros para el Id de catalogo
         if isIdCatalogo then
-         FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Query.CatalogoId;
+          FDataBase.Query.ParamByName('IDCATALOGO').AsLargeInt := Query.CatalogoId;
 
         // Composicion de los parametros para el tamaño
         if isSize then
         begin
-         if Query.SizeDesde > 0 then
-          FDataBase.Query.ParamByName('SIZEDESDE').AsLargeInt := Query.SizeDesde;
+          if Query.SizeDesde > 0 then
+            FDataBase.Query.ParamByName('SIZEDESDE').AsLargeInt := Query.SizeDesde;
 
-         if Query.SizeHasta > 0 then
-           FDataBase.Query.ParamByName('SIZEHASTA').AsLargeInt := Query.SizeHasta;
+          if Query.SizeHasta > 0 then
+            FDataBase.Query.ParamByName('SIZEHASTA').AsLargeInt := Query.SizeHasta;
         end;
+
+        // Composicion de los parametros para la fecha
+        if isFecha then
+        begin
+          if Query.FechaDesde > 0 then
+            FDataBase.Query.ParamByName('FECHADESDE').AsDateTime := Query.FechaDesde;
+
+          if Query.FechaHasta > 0 then
+            FDataBase.Query.ParamByName('FECHAHASTA').AsDateTime:= Query.FechaHasta;
+        end;
+
+        // Comprueba si realmente se buscan datos, si no se buscan datos no se ejecuta la sentencia
+        if not isIdCatalogo
+          and not isTexto
+          and not isSize
+          and not isFecha then
+            exit;
+
 
 
 

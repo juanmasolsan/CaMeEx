@@ -253,6 +253,16 @@ begin
    Query.SizeHasta := SpinEditExSizeHasta.Value;
 
 
+  // La configuración de búsqueda por Fecha desde
+  if CheckBoxFechaDesde.Checked then
+   Query.FechaDesde := DateTimePickerDesde.Date;
+
+  // La configuración de búsqueda por Fecha hasta
+  if CheckBoxFechaHasta.Checked then
+   Query.FechaHasta := DateTimePickerHasta.Date;
+
+
+
 
   if assigned(FOnBusquedaDatos) then
     FOnBusquedaDatos(nil, @Query);
