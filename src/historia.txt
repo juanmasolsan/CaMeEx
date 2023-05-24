@@ -1,4 +1,6 @@
 
+
+- [NEW]   (20230524) Agregado al Motor de búsqueda avanzado, el inicio de la busqueda por la pulsacion de ENTER en algunos campos
 - [FIX]   (20230524) Corregido en el frame de búsqueda avanzada el validador del formulario
 - [NEW]   (20230524) Agregado al Motor de búsqueda avanzado, búsqueda por Tamaño o entre dos tamaños
 - [NEW]   (20230524) Agregado al Motor de búsqueda avanzado, búsqueda por string dentro del nombre, ruta o extension descripcion.

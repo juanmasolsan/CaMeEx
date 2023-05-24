@@ -11,6 +11,7 @@ unit FrameBusqueda;
 interface
 
 uses
+  LCLType,
   Classes, SysUtils, Forms, Controls, StdCtrls, Buttons, TAIntervalSources,
   DateTimePicker, SpinEx, ItemCatalogo, Types
   , ItemDato
@@ -51,6 +52,8 @@ type
     procedure ComboBoxDispositivosDrawItem(Control: TWinControl;
       Index: Integer; ARect: TRect; State: TOwnerDrawState);
     procedure EditTextoChange(Sender: TObject);
+    procedure EditTextoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
+      );
     procedure SpeedButton1Click(Sender: TObject);
   private
     FOnBusquedaDatos : TOnBusquedaDatos;
@@ -115,6 +118,21 @@ begin
   if SpinEditExSizeHasta.Value < 0 then SpinEditExSizeHasta.Value := 0;
 
   DoValidate();
+end;
+
+procedure TFrame_Busqueda.EditTextoKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case key of
+    VK_RETURN : begin
+                  if Shift = [] then
+                  begin
+                    if DoValidate() then
+                      BitBtnBusquedaClick(Sender);
+                  end;
+                end;
+  end;
+
 end;
 
 procedure TFrame_Busqueda.ComboBoxDispositivosDrawItem(Control: TWinControl;

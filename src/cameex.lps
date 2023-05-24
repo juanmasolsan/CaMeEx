@@ -66,9 +66,10 @@
         <ComponentName Value="Form_Principal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="429"/>
-        <CursorPos X="35" Y="441"/>
+        <TopLine Value="868"/>
+        <CursorPos X="3" Y="872"/>
         <UsageCount Value="71"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -154,10 +155,9 @@
         <ComponentName Value="Frame_Busqueda"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="91"/>
-        <CursorPos X="32" Y="108"/>
+        <TopLine Value="114"/>
+        <CursorPos X="59" Y="132"/>
         <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -697,40 +697,16 @@
         <CursorPos X="22" Y="455"/>
         <UsageCount Value="9"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltype.pp"/>
+        <UnitName Value="LCLType"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="11"/>
+        <CursorPos X="13" Y="31"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2071" TopLine="2047"/>
-      </Position>
-      <Position>
-        <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2073" TopLine="2049"/>
-      </Position>
-      <Position>
-        <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2074" TopLine="2050"/>
-      </Position>
-      <Position>
-        <Filename Value="ConectorDatos.pas"/>
-        <Caret Line="2081" TopLine="2067"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
-        <Caret Line="206" Column="19" TopLine="180"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
-        <Caret Line="95" Column="9" TopLine="88"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
-        <Caret Line="106" TopLine="89"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
-        <Caret Line="111" TopLine="89"/>
-      </Position>
       <Position>
         <Filename Value="vistas\main\FrameBusqueda.pas"/>
         <Caret Line="106" TopLine="89"/>
@@ -817,6 +793,38 @@
       <Position>
         <Filename Value="vistas\main\FrameBusqueda.pas"/>
         <Caret Line="58" Column="14" TopLine="44"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\FrameBusqueda.pas"/>
+        <Caret Line="75" Column="30" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\FrameBusqueda.pas"/>
+        <Caret Line="129" TopLine="121"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="441" Column="35" TopLine="399"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="872" Column="3" TopLine="868"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\FrameBusqueda.pas"/>
+        <Caret Line="10" Column="31"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\FrameBusqueda.pas"/>
+        <Caret Line="134" Column="3" TopLine="131"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="872" Column="3" TopLine="868"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="871" Column="3" TopLine="867"/>
       </Position>
     </JumpHistory>
     <RunParams>

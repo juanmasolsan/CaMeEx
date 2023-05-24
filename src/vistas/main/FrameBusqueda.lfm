@@ -59,6 +59,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Width = 219
     Anchors = [akTop, akLeft, akRight]
     OnChange = EditTextoChange
+    OnKeyUp = EditTextoKeyUp
     TabOrder = 0
     TextHint = 'Escriba el texto que quiere encontrar ...'
   end
@@ -211,6 +212,7 @@ object Frame_Busqueda: TFrame_Busqueda
     MaxLength = 0
     TabOrder = 6
     OnChange = EditTextoChange
+    OnKeyUp = EditTextoKeyUp
     Increment = 1024
     MinValue = 1
     NullValue = 0
@@ -235,6 +237,7 @@ object Frame_Busqueda: TFrame_Busqueda
     MaxLength = 0
     TabOrder = 8
     OnChange = EditTextoChange
+    OnKeyUp = EditTextoKeyUp
     Increment = 1024
     NullValue = 0
     Value = 0
