@@ -33,6 +33,10 @@ type
     DateTimePickerDesde: TDateTimePicker;
     DateTimePickerHasta: TDateTimePicker;
     EditTexto: TEdit;
+    Edit_FechaHasta_Error: TLabel;
+    Edit_SizeHasta_Error: TLabel;
+    Edit_FechaDesde_Error: TLabel;
+    Edit_SizeDesde_Error: TLabel;
     LabelCatalogo: TLabel;
     LabelTexto: TLabel;
     SpeedButton1: TSpeedButton;
@@ -51,7 +55,7 @@ type
   private
     FOnBusquedaDatos : TOnBusquedaDatos;
   protected
-    procedure DoValidate();
+    function DoValidate() : boolean;
 
     // Devuelve la unidad seleccionada
     function GetCatalogo(index : longint) : TItemCatalogo;
@@ -80,7 +84,12 @@ uses
 
 constructor TFrame_Busqueda.Create(AOwner: TComponent);
 begin
-  inherited Create(AOwner);
+ inherited Create(AOwner);
+
+ // Ajusta los campos de fecha con las fecha actual
+ DateTimePickerDesde.DateTime := now;
+ DateTimePickerHasta.DateTime := now;
+
   DoValidate();
 end;
 
@@ -101,6 +110,10 @@ end;
 
 procedure TFrame_Busqueda.EditTextoChange(Sender: TObject);
 begin
+
+  if SpinEditExSizeDesde.Value < 0 then SpinEditExSizeDesde.Value := 0;
+  if SpinEditExSizeHasta.Value < 0 then SpinEditExSizeHasta.Value := 0;
+
   DoValidate();
 end;
 
@@ -123,8 +136,17 @@ begin
   Form_Principal.ImageListArchivos.Draw(ComboBoxDispositivos.Canvas, ARect.Left + 1, ARect.Top + 2, indexImage);  //draw image according to index on canvas
 end;
 
-procedure TFrame_Busqueda.DoValidate();
+function TFrame_Busqueda.DoValidate() : boolean;
 begin
+
+ Edit_FechaDesde_Error.Visible := CheckBoxFechaDesde.Checked and CheckBoxFechaHasta.Checked and (DateTimePickerDesde.DateTime > DateTimePickerHasta.DateTime);
+ Edit_FechaHasta_Error.Visible := CheckBoxFechaDesde.Checked and CheckBoxFechaHasta.Checked and (DateTimePickerDesde.DateTime > DateTimePickerHasta.DateTime);
+
+
+  Edit_SizeDesde_Error.Visible := CheckBoxSizeDesde.Checked and CheckBoxSizeHasta.Checked and (SpinEditExSizeDesde.Value > SpinEditExSizeHasta.Value);
+  Edit_SizeHasta_Error.Visible := CheckBoxSizeDesde.Checked and CheckBoxSizeHasta.Checked and (SpinEditExSizeDesde.Value > SpinEditExSizeHasta.Value);
+
+
   SpeedButton1.Enabled               := EditTexto.Text <> '';
   LabelTexto.Font.Bold               := EditTexto.Text <> '';
 
@@ -148,13 +170,20 @@ begin
   SpeedButtonClearDispositivos.Enabled := ComboBoxDispositivos.ItemIndex > -1;
   LabelCatalogo.Font.Bold              := ComboBoxDispositivos.ItemIndex > -1;
 
-  BitBtnBusqueda.Enabled := (EditTexto.Text <> '') or
-                            (CheckBoxFechaDesde.Checked) or
-                            (CheckBoxFechaHasta.Checked) or
-                            (CheckBoxSizeDesde.Checked) or
-                            (CheckBoxSizeHasta.Checked) or
-                            (ComboBoxDispositivos.ItemIndex > -1);
+  Result := ((EditTexto.Text <> '') or
+            (CheckBoxFechaDesde.Checked) or
+            (CheckBoxFechaHasta.Checked) or
+            (CheckBoxSizeDesde.Checked) or
+            (CheckBoxSizeHasta.Checked) or
+            (ComboBoxDispositivos.ItemIndex > -1))
+            and not Edit_FechaDesde_Error.Visible
+            and not Edit_FechaHasta_Error.Visible
+            and not Edit_SizeDesde_Error.Visible
+            and not Edit_SizeHasta_Error.Visible
+            ;
 
+  // Bloque o no el boton si se puede usar con los datos suministrados
+  BitBtnBusqueda.Enabled := Result;
 end;
 
 // Limpia el ComboBoxDispositivos

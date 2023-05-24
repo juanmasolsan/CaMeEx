@@ -9,12 +9,12 @@ object Frame_Busqueda: TFrame_Busqueda
   Constraints.MaxWidth = 275
   Constraints.MinWidth = 275
   TabOrder = 0
-  DesignLeft = 400
-  DesignTop = 17
+  DesignLeft = 399
+  DesignTop = 16
   object ComboBoxDispositivos: TComboBox
     Left = 8
     Height = 28
-    Top = 208
+    Top = 224
     Width = 219
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 22
@@ -37,7 +37,7 @@ object Frame_Busqueda: TFrame_Busqueda
   object LabelCatalogo: TLabel
     Left = 8
     Height = 15
-    Top = 192
+    Top = 208
     Width = 48
     Caption = 'Catalogo'
     ParentColor = False
@@ -78,7 +78,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Tag = 5
     Left = 232
     Height = 24
-    Top = 210
+    Top = 226
     Width = 31
     Anchors = [akTop, akRight]
     Enabled = False
@@ -109,6 +109,7 @@ object Frame_Busqueda: TFrame_Busqueda
     UseDefaultSeparators = True
     HideDateTimeParts = []
     MonthNames = 'Long'
+    OnChange = EditTextoChange
   end
   object CheckBoxFechaDesde: TCheckBox
     Tag = 1
@@ -165,6 +166,7 @@ object Frame_Busqueda: TFrame_Busqueda
     UseDefaultSeparators = True
     HideDateTimeParts = []
     MonthNames = 'Long'
+    OnChange = EditTextoChange
   end
   object SpeedButtonClearFechaHasta: TSpeedButton
     Tag = 2
@@ -176,11 +178,12 @@ object Frame_Busqueda: TFrame_Busqueda
     Flat = True
     Images = Form_Principal.ImageListToolbar
     ImageIndex = 1
+    OnClick = SpeedButton1Click
   end
   object CheckBoxSizeDesde: TCheckBox
     Left = 8
     Height = 19
-    Top = 128
+    Top = 136
     Width = 106
     Caption = 'Tamaño desde : '
     OnChange = EditTextoChange
@@ -191,7 +194,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Tag = 3
     Left = 96
     Height = 24
-    Top = 151
+    Top = 159
     Width = 31
     Enabled = False
     Flat = True
@@ -202,19 +205,21 @@ object Frame_Busqueda: TFrame_Busqueda
   object SpinEditExSizeDesde: TSpinEditEx
     Left = 8
     Height = 23
-    Top = 152
+    Top = 160
     Width = 83
     Enabled = False
     MaxLength = 0
     TabOrder = 6
+    OnChange = EditTextoChange
     Increment = 1024
+    MinValue = 1
     NullValue = 0
     Value = 0
   end
   object CheckBoxSizeHasta: TCheckBox
     Left = 144
     Height = 19
-    Top = 128
+    Top = 136
     Width = 106
     Caption = 'Tamaño desde : '
     OnChange = EditTextoChange
@@ -224,11 +229,12 @@ object Frame_Busqueda: TFrame_Busqueda
   object SpinEditExSizeHasta: TSpinEditEx
     Left = 144
     Height = 23
-    Top = 152
+    Top = 160
     Width = 83
     Enabled = False
     MaxLength = 0
     TabOrder = 8
+    OnChange = EditTextoChange
     Increment = 1024
     NullValue = 0
     Value = 0
@@ -237,7 +243,7 @@ object Frame_Busqueda: TFrame_Busqueda
     Tag = 4
     Left = 232
     Height = 24
-    Top = 152
+    Top = 160
     Width = 31
     Enabled = False
     Flat = True
@@ -248,7 +254,7 @@ object Frame_Busqueda: TFrame_Busqueda
   object BitBtnBusqueda: TBitBtn
     Left = 8
     Height = 30
-    Top = 256
+    Top = 272
     Width = 248
     Caption = 'Buscar'
     Font.Style = [fsBold]
@@ -257,5 +263,73 @@ object Frame_Busqueda: TFrame_Busqueda
     OnClick = BitBtnBusquedaClick
     ParentFont = False
     TabOrder = 10
+  end
+  object Edit_SizeHasta_Error: TLabel
+    Left = 144
+    Height = 32
+    Top = 184
+    Width = 113
+    AutoSize = False
+    Caption = 'Tienen que ser mayor que tamaño desde.'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+    WordWrap = True
+  end
+  object Edit_FechaDesde_Error: TLabel
+    Left = 8
+    Height = 32
+    Top = 111
+    Width = 113
+    AutoSize = False
+    Caption = 'Tienen que ser menor que fecha hasta.'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+    WordWrap = True
+  end
+  object Edit_SizeDesde_Error: TLabel
+    Left = 8
+    Height = 32
+    Top = 184
+    Width = 113
+    AutoSize = False
+    Caption = 'Tienen que ser menor que tamaño hasta.'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+    WordWrap = True
+  end
+  object Edit_FechaHasta_Error: TLabel
+    Left = 144
+    Height = 32
+    Top = 111
+    Width = 113
+    AutoSize = False
+    Caption = 'Tienen que ser mayor que fecha desde.'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+    WordWrap = True
   end
 end

@@ -9,5 +9,9 @@
 {"hash":342540,"name":"tframe_busqueda.datetimepickerhasta.textfornulldate","sourcebytes":[78,85,76,76],"value":"NULL"},
 {"hash":24759632,"name":"tframe_busqueda.checkboxsizedesde.caption","sourcebytes":[84,97,109,97,195,177,111,32,100,101,115,100,101,32,58,32],"value":"Tama\u00F1o desde : "},
 {"hash":24759632,"name":"tframe_busqueda.checkboxsizehasta.caption","sourcebytes":[84,97,109,97,195,177,111,32,100,101,115,100,101,32,58,32],"value":"Tama\u00F1o desde : "},
-{"hash":77371778,"name":"tframe_busqueda.bitbtnbusqueda.caption","sourcebytes":[66,117,115,99,97,114],"value":"Buscar"}
+{"hash":77371778,"name":"tframe_busqueda.bitbtnbusqueda.caption","sourcebytes":[66,117,115,99,97,114],"value":"Buscar"},
+{"hash":85541566,"name":"tframe_busqueda.edit_sizehasta_error.caption","sourcebytes":[84,105,101,110,101,110,32,113,117,101,32,115,101,114,32,109,97,121,111,114,32,113,117,101,32,116,97,109,97,195,177,111,32,100,101,115,100,101,46],"value":"Tienen que ser mayor que tama\u00F1o desde."},
+{"hash":123125486,"name":"tframe_busqueda.edit_fechadesde_error.caption","sourcebytes":[84,105,101,110,101,110,32,113,117,101,32,115,101,114,32,109,101,110,111,114,32,113,117,101,32,102,101,99,104,97,32,104,97,115,116,97,46],"value":"Tienen que ser menor que fecha hasta."},
+{"hash":90153726,"name":"tframe_busqueda.edit_sizedesde_error.caption","sourcebytes":[84,105,101,110,101,110,32,113,117,101,32,115,101,114,32,109,101,110,111,114,32,113,117,101,32,116,97,109,97,195,177,111,32,104,97,115,116,97,46],"value":"Tienen que ser menor que tama\u00F1o hasta."},
+{"hash":118656126,"name":"tframe_busqueda.edit_fechahasta_error.caption","sourcebytes":[84,105,101,110,101,110,32,113,117,101,32,115,101,114,32,109,97,121,111,114,32,113,117,101,32,102,101,99,104,97,32,100,101,115,100,101,46],"value":"Tienen que ser mayor que fecha desde."}
 ]}

@@ -170,6 +170,7 @@
 +         Motor de búsqueda avanzado : Por Tamaño o entre dos tamaños.
 -         Que no se pueda redimensionar el panel de búsqueda
 -         Al pulsar enter que realice la búsqueda
+-         Que el tamaño hasta, su minimo sea el tamaño desde
 
 - Hito 4: Exportación de datos a formato html, xml o csv. Tanto de los datos seleccionados, como los resultados de búsqueda.
 -         Sistema de exportación - Base.

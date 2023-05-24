@@ -499,6 +499,24 @@ msgstr ""
 msgid "Escriba el texto que quiere encontrar ..."
 msgstr ""
 
+#: tframe_busqueda.edit_fechadesde_error.caption
+msgid "Tienen que ser menor que fecha hasta."
+msgstr ""
+
+#: tframe_busqueda.edit_fechahasta_error.caption
+msgid "Tienen que ser mayor que fecha desde."
+msgstr ""
+
+#: tframe_busqueda.edit_sizedesde_error.caption
+msgctxt "tframe_busqueda.edit_sizedesde_error.caption"
+msgid "Tienen que ser menor que tamaño hasta."
+msgstr ""
+
+#: tframe_busqueda.edit_sizehasta_error.caption
+msgctxt "tframe_busqueda.edit_sizehasta_error.caption"
+msgid "Tienen que ser mayor que tamaño desde."
+msgstr ""
+
 #: tframe_busqueda.labelcatalogo.caption
 msgid "Catalogo"
 msgstr ""
