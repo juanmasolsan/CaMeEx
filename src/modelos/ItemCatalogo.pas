@@ -47,7 +47,6 @@ type
   { TItemCatalogo }
   TItemCatalogo = class(TItemDato)
   private
-    FDescripcion     : RawByteString;
     FTotalArchivos   : Qword;
     FTotalDirectorios: Qword;
   protected
@@ -64,7 +63,6 @@ type
     procedure ResetExtraInfo();
 
     // Propiedades
-    property Descripcion     : RawByteString read FDescripcion write FDescripcion;
     property TotalArchivos   : Qword         read FTotalArchivos write FTotalArchivos;
     property TotalDirectorios: Qword         read FTotalDirectorios write FTotalDirectorios;
   end;
@@ -76,7 +74,7 @@ implementation
 { TItemCatalogo }
 constructor TItemCatalogo.Create(const ANombre: RawByteString; ATipo : TItemDatoTipo; AFecha : TDateTime; ASize : int64; const ADescripcion: RawByteString = ''; ATotalArchivos: Qword = 0; ATotalDirectorios: Qword = 0);
 begin
-  FDescripcion      := ADescripcion;
+  Descripcion       := ADescripcion;
   FTotalArchivos    := ATotalArchivos;
   FTotalDirectorios := ATotalDirectorios;
 

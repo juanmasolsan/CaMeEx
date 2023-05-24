@@ -90,6 +90,7 @@ type
     FFechaLastAcceso     : TDateTime;
 
     FIsFreed             : boolean;
+    FDescripcion         : RawByteString;
 
     function GetTineHijos: boolean;
   protected
@@ -150,6 +151,7 @@ type
     property Parent          : TItemDato read FParent;
     property TieneHijos      : boolean read GetTineHijos write FTieneHijos;
     property Ruta            : RawByteString read FRuta write FRuta;
+    property Descripcion     : RawByteString read FDescripcion write FDescripcion;
 
     property FechaCreacion   : TDateTime read FFechaCreacion write FFechaCreacion;
     property FechaLastAcceso : TDateTime read FFechaLastAcceso write FFechaLastAcceso;
