@@ -1,3 +1,7 @@
+
+- [FIX]   (20230525) Activa el showmodal al realizar una búsqueda avanzada
+- [FIX]   (20230525) Limitado los resultados de la búsqueda a 50.000 resultados
+- [NEW]   (20230525) Al hacer una busqueda se bloquea el buscador avanzado
 - [NEW]   (20230525) En la busqueda recupera los datos de la extension, la ruta y el nombre del catalogo al que pertenece
 - [FIX]   (20230525) Ahora el TItemDato tiene la descripcion
 - [FIX]   (20230525) Al estar en el buscador avanzado no permite la redimensión del panel izquierdo

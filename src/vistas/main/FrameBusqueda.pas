@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-23 17:18:08
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 17:38:42
+ * @Last Modified time: 2023-05-25 01:16:29
  *)
 unit FrameBusqueda;
 
@@ -21,6 +21,7 @@ uses
 type
 
   TOnBusquedaDatos = procedure (Padre : TItemDato; Query : PCommandBusqueda = nil) of object;
+  TOnActivarShowModal = procedure (Activar : boolean) of object;
 
   { TFrame_Busqueda }
 
@@ -57,11 +58,15 @@ type
     procedure SpeedButton1Click(Sender: TObject);
   private
     FOnBusquedaDatos : TOnBusquedaDatos;
+    FOnActivarShowModal : TOnActivarShowModal;
   protected
     function DoValidate() : boolean;
 
     // Devuelve la unidad seleccionada
     function GetCatalogo(index : longint) : TItemCatalogo;
+
+    // Activa o desactiva el showmodal
+    procedure DoSetShowModal(Activar : boolean);
   public
     constructor Create(AOwner: TComponent); override;
 
@@ -73,6 +78,7 @@ type
 
     // Cuando se realiza la búsqueda
     property OnBusquedaDatos : TOnBusquedaDatos read FOnBusquedaDatos write FOnBusquedaDatos;
+    property OnActivarShowModal : TOnActivarShowModal read FOnActivarShowModal write FOnActivarShowModal;
 
   end;
 
@@ -230,45 +236,59 @@ var
   Query    : TCommandBusqueda;
   Catalogo : TItemCatalogo;
 begin
-  // Inicializa la consulta
-  FillChar(Query, SizeOf(Query), 0);
+  Self.Enabled := false;
+  DoSetShowModal(false);
+  try
+    // Inicializa la consulta
+    FillChar(Query, SizeOf(Query), 0);
 
-  // La configuración de búsqueda el id de catalogo
-  if ComboBoxDispositivos.ItemIndex > -1 then
-    begin
-      Catalogo := GetCatalogo(ComboBoxDispositivos.ItemIndex);
-      if Catalogo <> nil then
-      Query.CatalogoId := Catalogo.Id;
-    end;
+    // La configuración de búsqueda el id de catalogo
+    if ComboBoxDispositivos.ItemIndex > -1 then
+      begin
+        Catalogo := GetCatalogo(ComboBoxDispositivos.ItemIndex);
+        if Catalogo <> nil then
+        Query.CatalogoId := Catalogo.Id;
+      end;
 
-  // La configuración de búsqueda por el texto
-  Query.Texto := trim(EditTexto.Text);
+    // La configuración de búsqueda por el texto
+    Query.Texto := trim(EditTexto.Text);
 
-  // La configuración de búsqueda por tamaño desde
-  if CheckBoxSizeDesde.Checked then
-   Query.SizeDesde := SpinEditExSizeDesde.Value;
+    // La configuración de búsqueda por tamaño desde
+    if CheckBoxSizeDesde.Checked then
+      Query.SizeDesde := SpinEditExSizeDesde.Value;
 
-  // La configuración de búsqueda por tamaño hasta
-  if CheckBoxSizeHasta.Checked then
-   Query.SizeHasta := SpinEditExSizeHasta.Value;
-
-
-  // La configuración de búsqueda por Fecha desde
-  if CheckBoxFechaDesde.Checked then
-   Query.FechaDesde := DateTimePickerDesde.Date;
-
-  // La configuración de búsqueda por Fecha hasta
-  if CheckBoxFechaHasta.Checked then
-   Query.FechaHasta := DateTimePickerHasta.Date;
+    // La configuración de búsqueda por tamaño hasta
+    if CheckBoxSizeHasta.Checked then
+      Query.SizeHasta := SpinEditExSizeHasta.Value;
 
 
+    // La configuración de búsqueda por Fecha desde
+    if CheckBoxFechaDesde.Checked then
+      Query.FechaDesde := DateTimePickerDesde.Date;
+
+    // La configuración de búsqueda por Fecha hasta
+    if CheckBoxFechaHasta.Checked then
+      Query.FechaHasta := DateTimePickerHasta.Date;
 
 
-  if assigned(FOnBusquedaDatos) then
-    FOnBusquedaDatos(nil, @Query);
+    if assigned(FOnBusquedaDatos) then
+      FOnBusquedaDatos(nil, @Query);
+
+  finally
+    Self.Enabled := DoValidate();
+    DoSetShowModal(true);
+  end;
 end;
 
+// Activa o desactiva el showmodal
+procedure TFrame_Busqueda.DoSetShowModal(Activar : boolean);
+begin
+  if assigned(FOnActivarShowModal) then
+    FOnActivarShowModal(Activar);
 
+  // Para que se vea el cambio
+  Application.ProcessMessages;
+end;
 
 end.
 

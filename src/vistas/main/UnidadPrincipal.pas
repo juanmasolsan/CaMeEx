@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 17:38:29
+ * @Last Modified time: 2023-05-25 01:12:31
  *)
 {
 
@@ -442,7 +442,9 @@ begin
   FGestorDatos.Iniciar(Curdir, DirectorioConfig);
 
   // Inicializar el buscador para realizar las busquedas
-  Frame_Busqueda1.OnBusquedaDatos := @DoLoadListaArchivos;
+  Frame_Busqueda1.OnBusquedaDatos    := @DoLoadListaArchivos;
+  Frame_Busqueda1.OnActivarShowModal := @DoActivarShowModal;
+
 
   // Necesarío para que funcione la navegación por la lista de archivos
   FTempPadre    := TItemDato.create('', TItemDatoTipo.Directorio, now, 0);
