@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-25 15:51:34
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 19:26:24
+ * @Last Modified time: 2023-05-25 23:44:59
  *)
 {
 
@@ -317,13 +317,72 @@ begin
   FArchivoSalida.Add('        <title>' + Message_Exportacion_Titulo + ' :_____PROGRAMA_____GENERADOR_____: (:_____FECHA_____:)</title>');
   FArchivoSalida.Add('        <meta name="keywords" content="Report :_____FECHA_____:">');
   FArchivoSalida.Add('        ');
+
+  FArchivoSalida.Add('<style>');
+
+  FArchivoSalida.Add('    table, th, td {');
+  FArchivoSalida.Add('        border:1px solid #CCCCCC;border-collapse:collapse;');
+  FArchivoSalida.Add('    }');
+  FArchivoSalida.Add('');
+  FArchivoSalida.Add('    td {');
+  FArchivoSalida.Add('        padding: 5px;');
+  FArchivoSalida.Add('    }');
+  FArchivoSalida.Add('');
+  FArchivoSalida.Add('    footer {');
+  FArchivoSalida.Add('        position: fixed;');
+  FArchivoSalida.Add('        bottom: 0;');
+  FArchivoSalida.Add('        width: 100%;');
+  FArchivoSalida.Add('        background-color: #CCCCCC;');
+  FArchivoSalida.Add('        color: #000000;');
+  FArchivoSalida.Add('        text-align: center;');
+  FArchivoSalida.Add('        font-size: 0.8em;');
+  FArchivoSalida.Add('        padding: 5px;');
+  FArchivoSalida.Add('    }');
+  FArchivoSalida.Add('');
+  FArchivoSalida.Add('    td.Size {');
+  FArchivoSalida.Add('        text-align: right;');
+  FArchivoSalida.Add('    }');
+
+  FArchivoSalida.Add('</style>');
+
   FArchivoSalida.Add('    </head>');
   FArchivoSalida.Add('    <body>');
+  FArchivoSalida.Add('<center>');
+  FArchivoSalida.Add('<hr>');
+  FArchivoSalida.Add('<h3>' + Message_Exportacion_Generado_Por + ' :_____PROGRAMA_____GENERADOR_____: (:_____FECHA_____:)</h3>');
+
+  FArchivoSalida.Add('     <table border=0>');
+  FArchivoSalida.Add('         <tr>');
+  FArchivoSalida.Add('             <th>'+Message_Total_Directorios+'</th>');
+  FArchivoSalida.Add('             <th>'+Message_Total_Archivos+'</th>');
+  FArchivoSalida.Add('             <th>'+Message_Total_Size+'</th>');
+  FArchivoSalida.Add('         </tr>');
+
+FArchivoSalida.Add('         <tr>');
+  FArchivoSalida.Add('             <td>:_____TOTAL_____DIRECTORIOS_____:</td>');
+  FArchivoSalida.Add('             <td>:_____TOTAL_____ARCHIVOS_____:</td>');
+  FArchivoSalida.Add('             <td>:_____TOTAL_____SIZE_____:</td>');
+  FArchivoSalida.Add('         </tr>');
+  FArchivoSalida.Add('     </table>');
+  FArchivoSalida.Add('<hr>');
+
+
+  FArchivoSalida.Add('     <table>');
+  FArchivoSalida.Add('         <tr>');
+  FArchivoSalida.Add('             <th>'+Message_Exportacion_Nombre+'</th>');
+  FArchivoSalida.Add('             <th>'+Message_Exportacion_Size+'</th>');
+  FArchivoSalida.Add('             <th>'+Message_Exportacion_Tipo+'</th>');
+  FArchivoSalida.Add('             <th>'+Message_Exportacion_Fecha+'</th>');
+  FArchivoSalida.Add('             <th>'+Message_Exportacion_Atributos+'</th>');
+  FArchivoSalida.Add('             <th>'+Message_Exportacion_Ruta+'</th>');
+  FArchivoSalida.Add('         </tr>');
 
 end;
 
 // Añade el footer del archivo
 procedure TGestorExportacionHtml.AddFooter;
+var
+  Texto : string;
 begin
   // Si no es Html, llama al padre
   if FFormato <> feHTML then
@@ -332,14 +391,26 @@ begin
     exit;
   end;
 
+
+  FArchivoSalida.Add('     </table>');
+  FArchivoSalida.Add('</center>');
   FArchivoSalida.Add('        <footer>');
   FArchivoSalida.Add('            <strong>&copy; 2023 :_____PROGRAMA_____GENERADOR_____:</strong>');
   FArchivoSalida.Add('        </footer>');
   FArchivoSalida.Add('    </body>');
   FArchivoSalida.Add('</html>');
 
-end;
+  // Asigna el texto
+  Texto := FArchivoSalida.text;
 
+  // Añade las variables
+  Texto := StringReplace(Texto, ':_____TOTAL_____ARCHIVOS_____:', PuntearNumeracion(FTotalArchivos), [rfReplaceAll, rfIgnoreCase]);
+  Texto := StringReplace(Texto, ':_____TOTAL_____DIRECTORIOS_____:', PuntearNumeracion(FTotalDirectorios), [rfReplaceAll, rfIgnoreCase]);
+  Texto := StringReplace(Texto, ':_____TOTAL_____SIZE_____:', ConvertirSizeEx(FTotalSize) + ' (' + PuntearNumeracion(FTotalSize) + ' bytes)', [rfReplaceAll, rfIgnoreCase]);
+
+  // Asigna el texto
+  FArchivoSalida.text := Texto;
+end;
 
 
 // Añade un Item al archivo
@@ -374,12 +445,26 @@ begin
   DateTimeToString(Fecha, 'dd/mm/yyyy hh:mm:ss', Item.Fecha);
 
   // Añade el item
-  //FArchivoSalida.Add(Message_Exportacion_Nombre + ' ' + Item.Nombre);
-  //FArchivoSalida.Add(Message_Exportacion_Size + ' ' + PuntearNumeracion(Item.Size, True) + ' - ' + ConvertirSizeEx(Item.Size));
-  //FArchivoSalida.Add(Message_Exportacion_Tipo + ' ' + Item.Descripcion);
-  //FArchivoSalida.Add(Message_Exportacion_Fecha + ' ' + Fecha);
-  //FArchivoSalida.Add(Message_Exportacion_Atributos + ' ' + AtributosToStr(Item.Atributos, false));
-  //FArchivoSalida.Add(Message_Exportacion_Ruta + ' ' + Item.Ruta);
+  FArchivoSalida.Add('   <tr>');
+  FArchivoSalida.Add('     <td>');
+  FArchivoSalida.Add('         ' + Item.Nombre);
+  FArchivoSalida.Add('     </td>');
+  FArchivoSalida.Add('     <td class="Size">');
+  FArchivoSalida.Add('          ' + ConvertirSizeEx(Item.Size));
+  FArchivoSalida.Add('     </td>');
+  FArchivoSalida.Add('     <td>');
+  FArchivoSalida.Add('         ' + Item.Descripcion);
+  FArchivoSalida.Add('     </td>');
+  FArchivoSalida.Add('     <td>');
+  FArchivoSalida.Add('         ' + Fecha);
+  FArchivoSalida.Add('     </td>');
+  FArchivoSalida.Add('     <td>');
+  FArchivoSalida.Add('         ' + AtributosToStr(Item.Atributos, false));
+  FArchivoSalida.Add('     </td>');
+  FArchivoSalida.Add('     <td>');
+  FArchivoSalida.Add('         ' + Item.Ruta);
+  FArchivoSalida.Add('     </td>');
+  FArchivoSalida.Add('   </tr>');
 
   FArchivoSalida.Add('');
   FArchivoSalida.Add('');

@@ -182,8 +182,11 @@
 
 - Hito 4: Exportación de datos a formato html, xml o csv. Tanto de los datos seleccionados, como los resultados de búsqueda.
 +         Sistema de exportación - Base.
--         Sistema de exportación - Html.
++         Sistema de exportación - Html.
 +         Sistema de exportación - Txt.
+-         Agregar menus de exportación
+
+
 
 - Hito 5: Adicionalmente, la aplicación contará con un modo de visualización de datos para Ubuntu/Linux Mint.
 -         Comprobar que se puede compilar
