@@ -1,3 +1,5 @@
+
+- [NEW]   (20230525) Agregado Sistema de exportación - Txt
 - [NEW]   (20230525) Agregado Sistema de exportación - Base.
 - [NEW]   (20230525) Agregado mostrar u ocultar búsqueda avanzada
 - [FIX]   (20230525) Corregida excepción al recuperar los datos cuando no es una búsqueda

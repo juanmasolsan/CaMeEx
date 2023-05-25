@@ -85,6 +85,10 @@ msgctxt "tform_principal.button2.caption"
 msgid "Cargar Lista"
 msgstr ""
 
+#: tform_principal.button3.caption
+msgid "Exportar"
+msgstr ""
+
 #: tform_principal.caption
 msgid "Form_Principal"
 msgstr ""

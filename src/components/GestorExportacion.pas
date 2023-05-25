@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-25 15:51:34
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 17:11:00
+ * @Last Modified time: 2023-05-25 18:31:07
  *)
 {
 
@@ -39,8 +39,9 @@ interface
 uses
   sysutils,
   Controls
-, classes
-, ItemDato
+  , classes
+  , ItemBaseDatos
+  , ItemDato
 ;
 
 type
@@ -79,14 +80,33 @@ type
     procedure Save(); virtual;
   end;
 
+{ TGestorExportacionTxt }
+  TGestorExportacionTxt = class(TGestorExportacionBase)
+  private
+    FTotalDirectorios : Qword;
+    FTotalArchivos    : Qword;
+    FTotalSize        : Qword;
+  protected
+
+  public
+    // Añade el header del archivo
+    procedure AddHeader; override;
+
+    // Añade el footer del archivo
+    procedure AddFooter; override;
+
+    // Añade un Item al archivo
+    procedure AddItem(const Item: TItemDato); override;
+  end;
+
   { TGestorExportacion }
-  TGestorExportacion = class(TGestorExportacionBase);
+  TGestorExportacion = class(TGestorExportacionTxt);
 
 
 implementation
 
 uses
-  AppString;
+  AppString, Utilidades, GestorExtensiones;
 
 { TGestorExportacionBase }
 
@@ -161,8 +181,98 @@ begin
 end;
 
 
+{ TGestorExportacionTxt }
 
+// Añade el header del archivo
+procedure TGestorExportacionTxt.AddHeader;
+begin
+  // Si no es TXT, llama al padre
+  if FFormato <> feTXT then
+  begin
+    inherited AddHeader;
+    exit;
+  end;
 
+  // Asigna los valores
+  FTotalDirectorios := 0;
+  FTotalArchivos    := 0;
+  FTotalSize        := 0;
+
+  FArchivoSalida.Add('-----------------------------------------------------------');
+  FArchivoSalida.Add(Message_Exportacion_Generado_Por + ' :_____PROGRAMA_____GENERADOR_____: (:_____FECHA_____:)');
+  FArchivoSalida.Add(Message_Total_Directorios + ' :_____TOTAL_____DIRECTORIOS_____:');
+  FArchivoSalida.Add(Message_Total_Archivos + ' :_____TOTAL_____ARCHIVOS_____:');
+  FArchivoSalida.Add(Message_Total_Size + ' :_____TOTAL_____SIZE_____:');
+  FArchivoSalida.Add('-----------------------------------------------------------');
+  FArchivoSalida.Add('');
+  FArchivoSalida.Add('');
+end;
+
+// Añade el footer del archivo
+procedure TGestorExportacionTxt.AddFooter;
+var
+  Texto : string;
+begin
+  // Si no es TXT, llama al padre
+  if FFormato <> feTXT then
+  begin
+    inherited AddFooter;
+    exit;
+  end;
+
+  // Asigna el texto
+  Texto := FArchivoSalida.text;
+
+  // Añade las variables
+  Texto := StringReplace(Texto, ':_____TOTAL_____ARCHIVOS_____:', PuntearNumeracion(FTotalArchivos), [rfReplaceAll, rfIgnoreCase]);
+  Texto := StringReplace(Texto, ':_____TOTAL_____DIRECTORIOS_____:', PuntearNumeracion(FTotalDirectorios), [rfReplaceAll, rfIgnoreCase]);
+  Texto := StringReplace(Texto, ':_____TOTAL_____SIZE_____:', ConvertirSizeEx(FTotalSize) + ' (' + PuntearNumeracion(FTotalSize) + ' bytes)', [rfReplaceAll, rfIgnoreCase]);
+
+  // Asigna el texto
+  FArchivoSalida.text := Texto;
+end;
+
+// Añade un Item al archivo
+procedure TGestorExportacionTxt.AddItem(const Item: TItemDato);
+var
+  Fecha : string;
+begin
+  // Si no es TXT, llama al padre
+  if FFormato <> feTXT then
+  begin
+    inherited AddItem(Item);
+    exit;
+  end;
+
+  case Item.Tipo of
+    Directorio :  begin
+                    FTotalDirectorios := FTotalDirectorios + 1;
+                  end;
+
+    Archivo    :  begin
+                    FTotalArchivos := FTotalArchivos + 1;
+                    FTotalSize     := FTotalSize + Item.Size;
+                  end;
+  end;
+
+  // Si no tiene descripcion, la busca
+  if Item.Descripcion = '' then
+    Item.Descripcion := GetExtensionDescripcionById(Item.IdExtension);
+
+  // Convierte la fecha
+  DateTimeToString(Fecha, 'dd/mm/yyyy hh:mm:ss', Item.Fecha);
+
+  // Añade el item
+  FArchivoSalida.Add(Message_Exportacion_Nombre + ' ' + Item.Nombre);
+  FArchivoSalida.Add(Message_Exportacion_Size + ' ' + PuntearNumeracion(Item.Size, True) + ' - ' + ConvertirSizeEx(Item.Size));
+  FArchivoSalida.Add(Message_Exportacion_Tipo + ' ' + Item.Descripcion);
+  FArchivoSalida.Add(Message_Exportacion_Fecha + ' ' + Fecha);
+  FArchivoSalida.Add(Message_Exportacion_Atributos + ' ' + AtributosToStr(Item.Atributos, false));
+  FArchivoSalida.Add(Message_Exportacion_Ruta + ' ' + Item.Ruta);
+
+  FArchivoSalida.Add('');
+  FArchivoSalida.Add('');
+end;
 
 
 initialization

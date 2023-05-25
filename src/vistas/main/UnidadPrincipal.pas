@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 17:06:34
+ * @Last Modified time: 2023-05-25 17:13:50
  *)
 {
 
@@ -1890,7 +1890,7 @@ end;
 
 procedure TForm_Principal.Button3Click(Sender: TObject);
 begin
-  DoExportar(TFormatoExportacion.feNONE);
+  DoExportar(TFormatoExportacion.feTXT);
 end;
 
 

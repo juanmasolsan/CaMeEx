@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 16:59:13
+ * @Last Modified time: 2023-05-25 18:05:24
  *)
 {
 
@@ -98,6 +98,12 @@ resourcestring
   Message_Asistente_Nuevo_Catalogo_Tipo_Medio_RAM     = 'Unidad RAM Disk';
 
   Message_Exportacion_Generado_Por =  'Generado por :';
+  Message_Exportacion_Nombre       =  'Nombre     :';
+  Message_Exportacion_Size         =  'Tamaño     :';
+  Message_Exportacion_Tipo         =  'Tipo       :';
+  Message_Exportacion_Fecha        =  'Modificado :';
+  Message_Exportacion_Atributos    =  'Atributos  :';
+  Message_Exportacion_Ruta         =  'Ruta       :';
 
 
 
