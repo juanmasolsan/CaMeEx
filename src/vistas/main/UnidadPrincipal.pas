@@ -2534,13 +2534,11 @@ end;
 // Lanza la búsqueda avanzada
 procedure TForm_Principal.DoBusquedaAvanzada();
 begin
-  //TODO: implementar busqueda avanzada
-  beep;
-  sleep(500);
-  beep;
-  sleep(500);
-  beep;
-  sleep(500);
+  // Invierte el botón
+  ToolButtonBusquedaAvanzada.Down := not ToolButtonBusquedaAvanzada.Down;
+
+  // Actualiza la UI
+  ToolButtonBusquedaAvanzadaClick(ToolButtonBusquedaAvanzada)
 end;
 
 

@@ -6,11 +6,10 @@ object Frame_Busqueda: TFrame_Busqueda
   Align = alClient
   ClientHeight = 520
   ClientWidth = 275
-  Constraints.MaxWidth = 275
   Constraints.MinWidth = 275
   TabOrder = 0
-  DesignLeft = 399
-  DesignTop = 16
+  DesignLeft = 398
+  DesignTop = 15
   object ComboBoxDispositivos: TComboBox
     Left = 8
     Height = 28
@@ -258,7 +257,8 @@ object Frame_Busqueda: TFrame_Busqueda
     Left = 8
     Height = 30
     Top = 272
-    Width = 248
+    Width = 255
+    Anchors = [akTop, akLeft, akRight]
     Caption = 'Buscar'
     Font.Style = [fsBold]
     Images = Form_Principal.ImageListToolbar

@@ -68,9 +68,9 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1215"/>
-        <CursorPos Y="1219"/>
-        <UsageCount Value="75"/>
+        <TopLine Value="2531"/>
+        <CursorPos X="21" Y="2540"/>
+        <UsageCount Value="78"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -83,7 +83,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="121"/>
         <CursorPos X="35" Y="133"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="78"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
@@ -94,7 +94,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="78"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadAtributos.pas"/>
@@ -105,7 +105,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="78"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
@@ -116,7 +116,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="80" Y="88"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="78"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\about\Control_About.pas"/>
@@ -126,7 +126,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="78"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
@@ -137,7 +137,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="202"/>
         <CursorPos X="51" Y="212"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="77"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\FrameCancelado.pas"/>
@@ -147,7 +147,7 @@
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="25"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="69"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\FrameBusqueda.pas"/>
@@ -157,8 +157,8 @@
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="2"/>
         <TopLine Value="252"/>
-        <CursorPos X="34" Y="273"/>
-        <UsageCount Value="39"/>
+        <CursorPos X="26" Y="265"/>
+        <UsageCount Value="42"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -171,7 +171,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="167"/>
         <CursorPos Y="168"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="35"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\Control_About.pas"/>
@@ -323,9 +323,9 @@
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="46"/>
-        <CursorPos X="43" Y="67"/>
-        <UsageCount Value="53"/>
+        <TopLine Value="1088"/>
+        <CursorPos X="43" Y="1098"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -712,18 +712,6 @@
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="441" Column="35" TopLine="399"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="872" Column="3" TopLine="868"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\FrameBusqueda.pas"/>
-        <Caret Line="10" Column="31"/>
-      </Position>
-      <Position>
         <Filename Value="vistas\main\FrameBusqueda.pas"/>
         <Caret Line="134" Column="3" TopLine="131"/>
       </Position>
@@ -830,6 +818,18 @@
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <Caret Line="1229" TopLine="1229"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\FrameBusqueda.pas"/>
+        <Caret Line="265" Column="27" TopLine="252"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="1223" Column="38" TopLine="1215"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="1035" Column="21" TopLine="1029"/>
       </Position>
     </JumpHistory>
     <RunParams>

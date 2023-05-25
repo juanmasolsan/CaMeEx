@@ -747,15 +747,15 @@ object Form_Principal: TForm_Principal
         Height = 412
         Top = 0
         Width = 283
-        PageIndex = 1
+        PageIndex = 0
         Align = alClient
         TabOrder = 0
         object PageNavegar: TPage
           object Arbol: TLazVirtualStringTree
             Left = 0
-            Height = 50
+            Height = 412
             Top = 0
-            Width = 75
+            Width = 283
             Align = alClient
             AnimationDuration = 0
             AutoExpandDelay = 1
