@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-25 15:51:34
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 18:31:07
+ * @Last Modified time: 2023-05-25 19:26:24
  *)
 {
 
@@ -99,8 +99,26 @@ type
     procedure AddItem(const Item: TItemDato); override;
   end;
 
+{ TGestorExportacionHtml }
+  TGestorExportacionHtml = class(TGestorExportacionTxt)
+  private
+  protected
+  public
+    // Añade el header del archivo
+    procedure AddHeader; override;
+
+    // Añade el footer del archivo
+    procedure AddFooter; override;
+
+    // Añade un Item al archivo
+    procedure AddItem(const Item: TItemDato); override;
+  end;
+
+
+
+
   { TGestorExportacion }
-  TGestorExportacion = class(TGestorExportacionTxt);
+  TGestorExportacion = class(TGestorExportacionHtml);
 
 
 implementation
@@ -273,6 +291,103 @@ begin
   FArchivoSalida.Add('');
   FArchivoSalida.Add('');
 end;
+
+
+
+
+
+
+
+{ TGestorExportacionHtml }
+
+// Añade el header del archivo
+procedure TGestorExportacionHtml.AddHeader;
+begin
+  // Si no es Html, llama al padre
+  if FFormato <> feHTML then
+  begin
+    inherited AddFooter();
+    exit;
+  end;
+
+  FArchivoSalida.Add('<!DOCTYPE html>');
+  FArchivoSalida.Add('<html lang="es">');
+  FArchivoSalida.Add('    <head>');
+  FArchivoSalida.Add('        <meta charset="UTF-8">');
+  FArchivoSalida.Add('        <title>' + Message_Exportacion_Titulo + ' :_____PROGRAMA_____GENERADOR_____: (:_____FECHA_____:)</title>');
+  FArchivoSalida.Add('        <meta name="keywords" content="Report :_____FECHA_____:">');
+  FArchivoSalida.Add('        ');
+  FArchivoSalida.Add('    </head>');
+  FArchivoSalida.Add('    <body>');
+
+end;
+
+// Añade el footer del archivo
+procedure TGestorExportacionHtml.AddFooter;
+begin
+  // Si no es Html, llama al padre
+  if FFormato <> feHTML then
+  begin
+    inherited AddFooter();
+    exit;
+  end;
+
+  FArchivoSalida.Add('        <footer>');
+  FArchivoSalida.Add('            <strong>&copy; 2023 :_____PROGRAMA_____GENERADOR_____:</strong>');
+  FArchivoSalida.Add('        </footer>');
+  FArchivoSalida.Add('    </body>');
+  FArchivoSalida.Add('</html>');
+
+end;
+
+
+
+// Añade un Item al archivo
+procedure TGestorExportacionHtml.AddItem(const Item: TItemDato);
+var
+  Fecha : string;
+
+begin
+  // Si no es Html, llama al padre
+  if FFormato <> feHTML then
+  begin
+    inherited AddItem(Item);
+    exit;
+  end;
+
+  case Item.Tipo of
+    Directorio :  begin
+                    FTotalDirectorios := FTotalDirectorios + 1;
+                  end;
+
+    Archivo    :  begin
+                    FTotalArchivos := FTotalArchivos + 1;
+                    FTotalSize     := FTotalSize + Item.Size;
+                  end;
+  end;
+
+  // Si no tiene descripcion, la busca
+  if Item.Descripcion = '' then
+    Item.Descripcion := GetExtensionDescripcionById(Item.IdExtension);
+
+  // Convierte la fecha
+  DateTimeToString(Fecha, 'dd/mm/yyyy hh:mm:ss', Item.Fecha);
+
+  // Añade el item
+  //FArchivoSalida.Add(Message_Exportacion_Nombre + ' ' + Item.Nombre);
+  //FArchivoSalida.Add(Message_Exportacion_Size + ' ' + PuntearNumeracion(Item.Size, True) + ' - ' + ConvertirSizeEx(Item.Size));
+  //FArchivoSalida.Add(Message_Exportacion_Tipo + ' ' + Item.Descripcion);
+  //FArchivoSalida.Add(Message_Exportacion_Fecha + ' ' + Fecha);
+  //FArchivoSalida.Add(Message_Exportacion_Atributos + ' ' + AtributosToStr(Item.Atributos, false));
+  //FArchivoSalida.Add(Message_Exportacion_Ruta + ' ' + Item.Ruta);
+
+  FArchivoSalida.Add('');
+  FArchivoSalida.Add('');
+
+end;
+
+
+
 
 
 initialization

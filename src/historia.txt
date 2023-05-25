@@ -1,4 +1,5 @@
 
+- [NEW]   (20230525) Agregado Sistema de exportación - Html - Inicial
 - [NEW]   (20230525) Agregado Sistema de exportación - Txt
 - [NEW]   (20230525) Agregado Sistema de exportación - Base.
 - [NEW]   (20230525) Agregado mostrar u ocultar búsqueda avanzada
