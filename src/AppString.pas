@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-22 22:20:57
+ * @Last Modified time: 2023-05-25 16:59:13
  *)
 {
 
@@ -96,6 +96,9 @@ resourcestring
   Message_Asistente_Nuevo_Catalogo_Tipo_Medio_Hdd     = 'Disco Duro/SSD';
   Message_Asistente_Nuevo_Catalogo_Tipo_Medio_Red     = 'Unidad de Red';
   Message_Asistente_Nuevo_Catalogo_Tipo_Medio_RAM     = 'Unidad RAM Disk';
+
+  Message_Exportacion_Generado_Por =  'Generado por :';
+
 
 
 implementation

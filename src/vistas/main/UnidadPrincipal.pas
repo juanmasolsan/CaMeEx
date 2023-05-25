@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 01:12:31
+ * @Last Modified time: 2023-05-25 17:06:34
  *)
 {
 
@@ -63,7 +63,7 @@ uses
   , ItemBaseDatos
   , ItemDato, ItemCatalogo, VirtualTreesExtras, ImgList
   , FrameBusqueda
-  ;
+  , GestorExportacion;
 
 
 
@@ -86,6 +86,7 @@ type
     Arbol: TLazVirtualStringTree;
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
     Frame_Busqueda1: TFrame_Busqueda;
     ImageListArchivos32: TImageList;
     ImageListArchivos: TImageList;
@@ -179,6 +180,7 @@ type
     procedure ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -369,6 +371,9 @@ type
 
     // Al recibir cambios del campo de búsqueda realiza la búsqueda
     procedure DoEditBuscarChange(Sender: TObject);
+
+    // Expo
+    procedure DoExportar(Formato : TFormatoExportacion);
   public
 
   end;
@@ -388,7 +393,8 @@ uses
   , OrdenarLista
   , Utilidades
   , ConectorDatos
-  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString, UnidadLoading, UnidadPropiedades, UnidadAddCatalogo;
+  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString, UnidadLoading, UnidadPropiedades, UnidadAddCatalogo
+  ;
 
 {$R *.lfm}
 
@@ -1882,6 +1888,11 @@ begin
   SalidaLog.lines.Add(Message_Tiempo_Empleado + ' ' + IntToStr(tiempo) + ' ms.');
 end;
 
+procedure TForm_Principal.Button3Click(Sender: TObject);
+begin
+  DoExportar(TFormatoExportacion.feNONE);
+end;
+
 
 // Usa blend para dibujar la selección o el hover
 procedure TForm_Principal.DoDibujarSeleccionModerna(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect; NivelBlend : longint = 90);
@@ -2641,5 +2652,48 @@ begin
 end;
 
 
+procedure TForm_Principal.DoExportar(Formato : TFormatoExportacion);
+var
+  Exportacion : TGestorExportacion;
+  Node        : PVirtualNode;
+  NodeData    : PrListaData;
+  NodePadre   : PVirtualNode;
+begin
+  try
+    Exportacion := TGestorExportacion.create('exportacion.txt', NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA, Formato);
+    try
+      // Agrega el header
+      Exportacion.addHeader();
+
+      // Recorre los nodos seleccionados
+      Node := Lista.GetFirstSelected();
+      while Node <> nil do
+      begin
+        NodeData := Lista.GetNodeData(Node);
+        if (NodeData <> nil) AND (NodeData^.NodeData <> nil ) then
+        begin
+          // Agrega el item
+          Exportacion.AddItem(NodeData^.NodeData);
+        end;
+        Node := Lista.GetNextSelected(Node);
+      end;
+
+      // Agrega el footer
+      Exportacion.addFooter();
+
+      // Guarda el archivo
+      Exportacion.save();
+
+    finally
+      Exportacion.Free;
+    end;
+
+  except
+    on E: Exception do
+    begin
+
+    end;
+  end;
+end;
 
 end.

@@ -650,6 +650,15 @@ object Form_Principal: TForm_Principal
         OnClick = Button2Click
         TabOrder = 2
       end
+      object Button3: TButton
+        Left = 88
+        Height = 25
+        Top = 16
+        Width = 75
+        Caption = 'Exportar'
+        OnClick = Button3Click
+        TabOrder = 3
+      end
     end
     object Splitter2: TSplitter
       Cursor = crVSplit

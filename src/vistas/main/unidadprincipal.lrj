@@ -8,6 +8,7 @@
 {"hash":367777,"name":"tform_principal.lista.header.columns[5].text","sourcebytes":[82,117,116,97],"value":"Ruta"},
 {"hash":134450531,"name":"tform_principal.button1.caption","sourcebytes":[67,97,114,103,97,114,32,67,97,116,97,108,111,103,111,115],"value":"Cargar Catalogos"},
 {"hash":15435553,"name":"tform_principal.button2.caption","sourcebytes":[67,97,114,103,97,114,32,76,105,115,116,97],"value":"Cargar Lista"},
+{"hash":259432002,"name":"tform_principal.button3.caption","sourcebytes":[69,120,112,111,114,116,97,114],"value":"Exportar"},
 {"hash":77617811,"name":"tform_principal.barra_herramientas.caption","sourcebytes":[66,97,114,114,97,95,72,101,114,114,97,109,105,101,110,116,97,115],"value":"Barra_Herramientas"},
 {"hash":58470351,"name":"tform_principal.toolbuttonagregarcatalogo.caption","sourcebytes":[65,103,114,101,103,97,114,32,67,97,116,97,108,111,103,111],"value":"Agregar Catalogo"},
 {"hash":50593858,"name":"tform_principal.toolbuttoneliminar.caption","sourcebytes":[69,108,105,109,105,110,97,114],"value":"Eliminar"},
