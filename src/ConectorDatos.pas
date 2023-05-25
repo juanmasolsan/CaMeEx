@@ -1096,10 +1096,10 @@ begin
   Result.TieneHijos := Query.Fields[COLUMNA_DATOS_TIENEHIJOS].AsBoolean;
 
   // Añade la ruta
-  if Query.Fields.Count >= COLUMNA_DATOS_RUTA then
+  if Query.Fields.Count > COLUMNA_DATOS_RUTA then
     Result.Ruta := Query.Fields[COLUMNA_DATOS_RUTA].AsString;
 
-  if Query.Fields.Count >= COLUMNA_DATOS_DESCRIPCION then
+  if Query.Fields.Count > COLUMNA_DATOS_DESCRIPCION then
     Result.Descripcion := Query.Fields[COLUMNA_DATOS_DESCRIPCION].AsString;
 
 
