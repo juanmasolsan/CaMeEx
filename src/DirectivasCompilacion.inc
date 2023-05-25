@@ -39,7 +39,7 @@
 {$ENDIF}
 
 // Activa el tema oscuro en la aplicación
-{.$DEFINE DARKSTYLE_USAR}
+{$DEFINE DARKSTYLE_USAR}
 
 
 

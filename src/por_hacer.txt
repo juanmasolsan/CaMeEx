@@ -157,7 +157,7 @@
 -         Al selecionar un catalogo o ponerse en busqueda avanzada que lo ponga en el titulo de la ventana
 -         Que TConectorDatos.GetDatos inicialice el resultado en primer lugar
 -         Si esta en modo busqueda avanzada que no se pueda cambiar de directorio
--         Revisar parpadeo en el panel izquierdo al redimensionar el mismo
++         Revisar parpadeo en el panel izquierdo al redimensionar el mismo
 -         Poner en negrita las secciones de agregar nuevo catalogo
 
 - Hito 3: Búsqueda y filtrado de datos.

@@ -1,3 +1,4 @@
+- [FIX]   (20230525) Eliminado parpadeo en el panel Izquiedo al redimensionar
 
 + 1.2.7.6
 - [FIX]   (20230525) Activa el showmodal al realizar una búsqueda avanzada

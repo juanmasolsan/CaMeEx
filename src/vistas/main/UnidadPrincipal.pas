@@ -99,7 +99,9 @@ type
     MenuItemPropiedades: TMenuItem;
     MenuItemEliminar: TMenuItem;
     MenuItemEditar: TMenuItem;
-    PageControlIzquierdo: TPageControl;
+    NotebookPanelIzquiedo: TNotebook;
+    PageBusquedaAvanzada: TPage;
+    PageNavegar: TPage;
     PanelIzquierdo: TPanel;
     PanelSuperior: TPanel;
     PopupMenu1: TPopupMenu;
@@ -155,8 +157,6 @@ type
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
-    TabSheetBusquedaAvanzada: TTabSheet;
-    TabSheetNavegar: TTabSheet;
     Timer1: TTimer;
     Timer_UpdateUI: TTimer;
     Barra_Herramientas: TToolBar;
@@ -224,10 +224,9 @@ type
     procedure MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
     procedure PanelInferiorResize(Sender: TObject);
     procedure PanelIzquierdoResize(Sender: TObject);
-    procedure Splitter1CanResize(Sender: TObject; var NewSize: Integer;
-      var Accept: Boolean);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
+    procedure ToolButtonBusquedaAvanzadaClick(Sender: TObject);
   private
     FGestorDatos     : IConectorDatos;
     FListaCatalogos  : TArrayItemDato;
@@ -1218,24 +1217,8 @@ begin
   // Reajusta el tamaño de la última columna
   DoResizeControlDatos(arbol);
 
-  // Si se está en la búsqueda avanzada bloquea la redimensión
-  if PageControlIzquierdo.ActivePage = TabSheetBusquedaAvanzada then
-  begin
-    exit;
-  end;
-
   if FAplicandoConfig then exit;
   FArbolAncho := PanelIzquierdo.Width;
-end;
-
-procedure TForm_Principal.Splitter1CanResize(Sender: TObject;
-  var NewSize: Integer; var Accept: Boolean);
-begin
-  // Si se está en la búsqueda avanzada bloquea la redimensión
-  if PageControlIzquierdo.ActivePage = TabSheetBusquedaAvanzada then
-  begin
-    NewSize := Frame_Busqueda1.Constraints.MaxWidth;
-  end;
 end;
 
 procedure TForm_Principal.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -1313,6 +1296,11 @@ begin
   MenuItemPropiedades.Enabled      := Selecionados = 1;
   ToolButtonPropiedades.Enabled    := MenuItemPropiedades.Enabled;
   MenuPopUpItemPropiedades.Enabled := MenuItemPropiedades.Enabled;
+end;
+
+procedure TForm_Principal.ToolButtonBusquedaAvanzadaClick(Sender: TObject);
+begin
+   NotebookPanelIzquiedo.PageIndex := integer(ToolButtonBusquedaAvanzada.Down);
 end;
 
 procedure TForm_Principal.DoOnTerminarScanAsync();

@@ -309,15 +309,6 @@ msgctxt "tform_principal.menupopupitempropiedades.caption"
 msgid "Propiedades"
 msgstr ""
 
-#: tform_principal.tabsheetbusquedaavanzada.caption
-msgctxt "tform_principal.tabsheetbusquedaavanzada.caption"
-msgid "Búsqueda Avanzada"
-msgstr ""
-
-#: tform_principal.tabsheetnavegar.caption
-msgid "Navegar"
-msgstr ""
-
 #: tform_principal.toolbuttonagregarcatalogo.caption
 msgctxt "tform_principal.toolbuttonagregarcatalogo.caption"
 msgid "Agregar Catalogo"
