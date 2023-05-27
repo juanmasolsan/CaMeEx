@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 16:44:57
+ * @Last Modified time: 2023-05-27 17:16:19
  *)
 {
 
@@ -1992,6 +1992,11 @@ var
   NodeData: PrListaData;
   Datos   : TItemDato;
 begin
+  // si no se está en el arbol de directorios, sale
+  if NotebookPanelIzquiedo.PageIndex <> 0 then
+    exit;
+
+  // si no hay nada selecionado en la lista de archivos, sale
   if Lista.SelectedCount <> 1  then
     exit;
 
