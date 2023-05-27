@@ -1,6 +1,6 @@
 
 
-
+- [FIX]   (20230527) Ahora TConectorDatos.GetDatos devuelve una lista vacia en vez de un nil
 - [FIX]   (20230527) No permite la navegación desde la lista de archivos si se está en modo búsqueda
 - [FIX]   (20230527) Ajustes estéticos en el Frame de selección de medio y datos básicos
 - [FIX]   (20230527) Ajuste del alto de la ventana de loading al guardar los datos de un nuevo catalogo

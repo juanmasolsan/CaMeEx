@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 00:49:53
+ * @Last Modified time: 2023-05-27 17:18:55
  *)
 {
 
@@ -1233,7 +1233,7 @@ begin
   end;
 
   // Inicializa el resultado
-  Result := nil;
+  Result := TArrayItemDato.Create();
   try
     if FDataBase.Query <> nil then
     begin
@@ -1263,9 +1263,6 @@ begin
         try
           // Comprueba que tiene datos
           if FDataBase.Query.IsEmpty then exit;
-
-          // Inicializa el resultado
-          Result := TArrayItemDato.Create();
 
           // Obtinene el primer registro
           FDataBase.Query.First;
