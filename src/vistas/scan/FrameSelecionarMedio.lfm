@@ -114,7 +114,9 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Nombre :'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
   object Edit_Nombre: TEdit
     Left = 128
@@ -134,7 +136,9 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Descripción :'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
   object Edit_Nombre_error: TLabel
     Left = 128
@@ -193,7 +197,9 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     Anchors = [akTop, akRight]
     Caption = '...'
     Enabled = False
+    Font.Style = [fsBold]
     OnClick = ButtonSeleccionarRutaClick
+    ParentFont = False
     TabOrder = 4
   end
   object EditRuta: TEdit
@@ -288,7 +294,9 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Excluir :'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
   object Label21: TLabel
     Left = 331
