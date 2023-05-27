@@ -159,8 +159,8 @@
 -         Si esta en modo busqueda avanzada que no se pueda cambiar de directorio
 +         Revisar parpadeo en el panel izquierdo al redimensionar el mismo
 -         Poner en negrita las secciones de agregar nuevo catalogo
--         Ajuste del alto de la ventana de loading en agregar catalogo
--         Si se escanea un directorio y se esta en modo busqueda avanzada que se cambie al directorio escaneado
++         Ajuste del alto de la ventana de loading en agregar catalogo
++         Si se escanea un directorio y se esta en modo busqueda avanzada que se cambie al directorio escaneado
 
 + Hito 3: Búsqueda y filtrado de datos.
 +         Agregar cajon de búsqueda en la barra de herramientas

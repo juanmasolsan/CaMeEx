@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 16:17:09
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-21 12:34:26
+ * @Last Modified time: 2023-05-27 16:57:58
  *)
 {
 
@@ -135,7 +135,7 @@ begin
 
   // Ajusta el tamaño del formulario
   Width  := LabelTitulo.Left + LabelTitulo.Width + 20;
-  Height := LabelMensaje.Top + FSizeYMensaje + 5;
+  Height := LabelMensaje.Top + FSizeYMensaje + 50;
 
   // Actualiza el índice de la imagen de la animación
   FAnimacionIndex := (FAnimacionIndex + 1) mod FAnimacionFrames;

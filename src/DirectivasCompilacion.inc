@@ -1,5 +1,5 @@
 // Activa Heaptrc para poder determinar si hay fugas de memoria
-{$DEFINE FUGAS_DE_MEMORIA_DETECTAR}
+{.$DEFINE FUGAS_DE_MEMORIA_DETECTAR}
 
 {$IFDEF FUGAS_DE_MEMORIA_DETECTAR}
   // Vuelca el informe de Heaptrc a un archivo en vez de mostrar la ventana de la info

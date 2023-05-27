@@ -1,4 +1,6 @@
 
+
+- [FIX]   (20230527) Ajuste del alto de la ventana de loading al guardar los datos de un nuevo catalogo
 - [NEW]   (20230527) Al abrir el asistente de agregar un nuevo Catalogo se activa previamente el arbol de catalogos en la ventana principal
 - [NEW]   (20230527) Agregado a la statusbar info de cuando se está exportando
 - [NEW]   (20230527) Agregado a la exportación Html la inclusión de los iconos
