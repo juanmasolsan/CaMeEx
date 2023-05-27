@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 14:19:05
+ * @Last Modified time: 2023-05-27 16:44:57
  *)
 {
 
@@ -2596,6 +2596,13 @@ procedure TForm_Principal.DoAddNuevoCatalogo();
 var
   AddCatalogo : TForm_AddCatalogo;
 begin
+  // Selecciona la primera página
+  NotebookPanelIzquiedo.PageIndex := 0;
+
+  // Actualiza la UI
+  Application.ProcessMessages;
+
+  // Crea el formulario de agregar un nuevo catalogo
   AddCatalogo := TForm_AddCatalogo.create(Self);
   try
     // Se le pasan los datos del gestor de datos
