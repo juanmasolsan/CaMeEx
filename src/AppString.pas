@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 19:20:34
+ * @Last Modified time: 2023-05-27 14:13:03
  *)
 {
 
@@ -105,6 +105,10 @@ resourcestring
   Message_Exportacion_Fecha        =  'Modificado :';
   Message_Exportacion_Atributos    =  'Atributos  :';
   Message_Exportacion_Ruta         =  'Ruta       :';
+  Message_Exportacion_Espera_Titulo=  'Exportando datos';
+  Message_Exportacion_Espera_Info  =  'Se están exportando los datos solicitados ...';
+
+
 
 
 

@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230527) Agregado a la statusbar info de cuando se está exportando
 - [NEW]   (20230527) Agregado a la exportación Html la inclusión de los iconos
 - [NEW]   (20230527) Agregado Menús de exportación funcional
 - [FIX]   (20230527) Corregida correcta exportación a txt

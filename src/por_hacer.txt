@@ -180,11 +180,11 @@
 +         Al hacer la busqueda que bloquee toda la UI
 
 
-- Hito 4: Exportación de datos a formato html, xml o csv. Tanto de los datos seleccionados, como los resultados de búsqueda.
++ Hito 4: Exportación de datos a formato html, xml o csv. Tanto de los datos seleccionados, como los resultados de búsqueda.
 +         Sistema de exportación - Base.
 +         Sistema de exportación - Html.
 +         Sistema de exportación - Txt.
--         Agregar menus de exportación
++         Agregar menus de exportación
 
 
 

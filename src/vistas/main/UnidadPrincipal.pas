@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 13:04:49
+ * @Last Modified time: 2023-05-27 14:19:05
  *)
 {
 
@@ -2205,6 +2205,9 @@ begin
     Barra_Estado.Panels[Columna].Text := Texto
   else
     Barra_Estado.SimpleText := texto;
+
+  // Repinta la barra de estado
+  application.ProcessMessages;
 end;
 
 // Ajusta el alto dependiendo si se debe o no mostrar la info de los catalogos
@@ -2506,6 +2509,10 @@ end;
 // Muestra el formulario de carga
 procedure TForm_Principal.DoFormLoadingShow(MensajeTitulo : string; MensajeNormal : string);
 begin
+  // Oculta el texto en la statusbar
+  DoEstadisticas(0, MensajeTitulo + ' - ' + MensajeNormal);
+
+
   // Desactiva los controles del formulario principal
   DoActivarShowModal(False);
 
@@ -2519,6 +2526,9 @@ end;
 // Oculta el formulario de carga
 procedure TForm_Principal.DoFormLoadingHide();
 begin
+  // Oculta el texto en la statusbar
+  DoEstadisticas(0, '');
+
   // Activa los controles del formulario principal
   DoActivarShowModal(true);
 
@@ -2705,6 +2715,8 @@ begin
   // Si no se ha seleccionado ningún archivo sale
   if not Savedialog1.Execute then exit;
 
+  // Muestra el mensaje de espera
+  DoFormLoadingShow(Message_Exportacion_Espera_Titulo, Message_Exportacion_Espera_Info);
   try
     Exportacion := TGestorExportacion.create(Savedialog1.FileName, NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA, Formato, ImageListArchivos);
     try
@@ -2740,6 +2752,9 @@ begin
 
     end;
   end;
+
+  // Muestra el mensaje de espera
+  DoFormLoadingHide();
 end;
 
 end.
