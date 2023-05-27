@@ -1,4 +1,5 @@
 
+- [NEW]   (20230528) Agregado log de excepciones en donde no estaba implementado
 - [FIX]   (20230528) En los resultados de búsqueda no aparecen los catalogos guardados en la tabla de datos
 - [FIX]   (20230528) Corregido actualización del arbol tras añadir un nuevo catalogo
 - [FIX]   (20230528) Optimizado los inserts en la base de datos al guardar un catalogo

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-08 16:21:30
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 13:34:44
+ * @Last Modified time: 2023-05-28 01:31:04
  *)
 {
 
@@ -105,7 +105,7 @@ uses
   StrUtils
   , intfgraphics
   , Control_Imagen_Manipulacion_Mini
-  ;
+  , Control_Logger, AppString;
 
 // Convierte los atributos de un archivo en una cadena de caracteres
 function AtributosToStr(atributos : Dword; Mayusculas : Boolean = false): String;
@@ -323,6 +323,7 @@ begin
             Inter.Free;
           end;
         except
+            on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
         end;
       finally
         AIcon.Free;
@@ -357,6 +358,7 @@ begin
       Temporal.Free;
     end;
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -376,6 +378,7 @@ begin
       // Carga en la imagen los cambios aplicados
       Imagen.LoadFromIntfImage(Escribir);
     except
+        on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
     end;
   finally
     Escribir.Free;

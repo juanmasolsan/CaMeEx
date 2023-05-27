@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 19:03:08
+ * @Last Modified time: 2023-05-28 01:28:56
  *)
 {
 
@@ -831,6 +831,7 @@ begin
       end;
     end;
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -883,6 +884,7 @@ begin
       end;
     end;
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -950,6 +952,7 @@ begin
     // Quita el subrayado del texto
     TargetCanvas.Font.Underline := false;
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1511,6 +1514,7 @@ begin
       end;
     end;
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 
 end;
@@ -1596,6 +1600,7 @@ begin
       end;
     end;
   except
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -1670,6 +1675,7 @@ begin
           end;
         end;
       except
+          on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
       end;
 
     end;
@@ -1701,6 +1707,7 @@ begin
           ItemColor := ColorCatalogo;
       end;
     except
+        on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
     end;
 end;
 
@@ -1794,6 +1801,7 @@ procedure TForm_Principal.DoLoadListaDirectorios(Node : PVirtualNode; Padre : TI
         result := NodeData^.TipoCatalogo;
       end;
     except
+        on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
     end;
   end;
 
@@ -2046,6 +2054,7 @@ begin
     // Carga los datos del catalogo
     DoLoadListaArchivos(FTempPadre);
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -2106,6 +2115,7 @@ begin
         end
       end;
     except
+        on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
     end;
     Node := Arbol.GetNext(Node);
   end;
@@ -2132,6 +2142,7 @@ procedure TForm_Principal.DoMarcarRutaActual(Node: PVirtualNode);
 
       end;
     except
+        on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
     end;
   end;
 
@@ -2251,6 +2262,7 @@ procedure TForm_Principal.DoAjustarNodosCatalogos();
           Node^.NodeHeight := CATALOGO_NODE_ALTURA;
       end;
     except
+        on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
     end;
   end;
 
@@ -2408,6 +2420,7 @@ begin
       // Actualiza los datos del nodo raiz
       DoUpdateDatosNodoRaiz();
     except
+        on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
     end;
   finally
     Sender.endUpdate();
@@ -2435,6 +2448,7 @@ begin
       Temp_Form_Propiedades.Show;
     end;
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -2510,6 +2524,7 @@ procedure TForm_Principal.DoEliminarItemArbol(Item : TItemDato);
 
       end;
     except
+        on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
     end;
   end;
 
@@ -2778,10 +2793,7 @@ begin
     end;
 
   except
-    on E: Exception do
-    begin
-
-    end;
+    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 
   // Muestra el mensaje de espera
@@ -2828,6 +2840,7 @@ begin
         Node := nil;
     end;
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:19:17
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 13:50:15
+ * @Last Modified time: 2023-05-28 01:33:08
  *)
 {
 
@@ -131,7 +131,7 @@ uses
   , Utilidades
   , GestorExtensiones
   , Configuracion
-  , AppString, ItemCatalogo;
+  , AppString, ItemCatalogo, Control_Logger;
 
 {$R *.lfm}
 
@@ -364,6 +364,7 @@ begin
           Form_Principal.Arbol.Repaint;
 
         except
+            on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
         end;
     end;
 end;

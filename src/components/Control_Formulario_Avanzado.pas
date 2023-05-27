@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-06 22:40:12
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-16 17:44:47
+ * @Last Modified time: 2023-05-28 01:31:31
  *)
 {
 
@@ -117,7 +117,7 @@ implementation
 
 uses
   Control_Directorio_Save
-  ;
+  , Control_Logger, AppString;
 
 
 // Muestra un mensaje y devuelve si se ha pulsado el botón Aceptar o Cancelar
@@ -318,6 +318,7 @@ begin
 
     FArchivoConfiguracion.UpdateFile;
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
@@ -336,6 +337,7 @@ begin
 
     WindowState := TWindowState(FArchivoConfiguracion.ReadInteger('Posicion Ventana ' + Name, 'ST', integer(WindowState)));
   except
+      on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
 end;
 
