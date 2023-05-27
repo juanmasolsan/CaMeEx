@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-25 15:51:34
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 12:36:44
+ * @Last Modified time: 2023-05-27 14:00:56
  *)
 {
 
@@ -58,11 +58,12 @@ type
     FArchivoSalida     : TStringList;
     FProgramaGenerador : string;
     FFormato           : TFormatoExportacion;
+    FImageList         : TImageList;
   protected
 
   public
     // Constructor
-    constructor Create(const NombreArchivo: string; ProgramaGenerador : string; Formato : TFormatoExportacion); virtual;
+    constructor Create(const NombreArchivo: string; ProgramaGenerador : string; Formato : TFormatoExportacion; ImageList : TImageList = nil); virtual;
 
     // Destructor
     destructor Destroy; override;
@@ -102,7 +103,9 @@ type
 { TGestorExportacionHtml }
   TGestorExportacionHtml = class(TGestorExportacionTxt)
   private
+    FlistaImagenes : TStringList;
   protected
+    function GetCssClassByExtension(const Item: TItemDato): string;
   public
     // Añade el header del archivo
     procedure AddHeader; override;
@@ -124,12 +127,12 @@ type
 implementation
 
 uses
-  AppString, Utilidades, GestorExtensiones;
+  AppString, Utilidades, GestorExtensiones, Configuracion, base64, graphics;
 
 { TGestorExportacionBase }
 
 // Constructor
-constructor TGestorExportacionBase.Create(const NombreArchivo: string; ProgramaGenerador : string; Formato : TFormatoExportacion);
+constructor TGestorExportacionBase.Create(const NombreArchivo: string; ProgramaGenerador : string; Formato : TFormatoExportacion; ImageList : TImageList = nil);
 begin
   // Crea el archivo
   FArchivoSalida := TStringList.Create;
@@ -142,6 +145,9 @@ begin
 
   // Asigna el formato
   FFormato := Formato;
+
+  // Asigna el ImageList
+  FImageList := ImageList;
 
   // Llama al constructor de la clase padre
   inherited Create;
@@ -248,6 +254,7 @@ begin
 
   // Asigna el texto
   FArchivoSalida.text := Texto;
+
 end;
 
 // Añade un Item al archivo
@@ -293,11 +300,6 @@ begin
 end;
 
 
-
-
-
-
-
 { TGestorExportacionHtml }
 
 // Añade el header del archivo
@@ -309,6 +311,10 @@ begin
     inherited AddHeader();
     exit;
   end;
+
+  // Crea la lista de imagenes
+  FlistaImagenes := TStringList.Create;
+
 
   FArchivoSalida.Add('<!DOCTYPE html>');
   FArchivoSalida.Add('<html lang="es">');
@@ -342,6 +348,15 @@ begin
   FArchivoSalida.Add('    td.Size {');
   FArchivoSalida.Add('        text-align: right;');
   FArchivoSalida.Add('    }');
+  FArchivoSalida.Add('');
+  FArchivoSalida.Add('    .icono {');
+  FArchivoSalida.Add('      background-repeat: no-repeat;');
+  FArchivoSalida.Add('      background-position-y: 8px;');
+  FArchivoSalida.Add('      background-position-x: 2px;');
+  FArchivoSalida.Add('      padding-left: 24px;');
+  FArchivoSalida.Add('    }');
+  FArchivoSalida.Add('');
+  FArchivoSalida.Add(':_____CSS_EXTRA_____:');
 
   FArchivoSalida.Add('</style>');
 
@@ -408,8 +423,14 @@ begin
   Texto := StringReplace(Texto, ':_____TOTAL_____DIRECTORIOS_____:', PuntearNumeracion(FTotalDirectorios), [rfReplaceAll, rfIgnoreCase]);
   Texto := StringReplace(Texto, ':_____TOTAL_____SIZE_____:', ConvertirSizeEx(FTotalSize) + ' (' + PuntearNumeracion(FTotalSize) + ' bytes)', [rfReplaceAll, rfIgnoreCase]);
 
+  // Añade las variables
+  Texto := StringReplace(Texto, ':_____CSS_EXTRA_____:', FlistaImagenes.Text, [rfReplaceAll, rfIgnoreCase]);
+
   // Asigna el texto
   FArchivoSalida.text := Texto;
+
+  // Libera la lista de imagenes
+  FlistaImagenes.Free;
 end;
 
 
@@ -417,6 +438,7 @@ end;
 procedure TGestorExportacionHtml.AddItem(const Item: TItemDato);
 var
   Fecha : string;
+  css   : string;
 
 begin
   // Si no es Html, llama al padre
@@ -444,9 +466,15 @@ begin
   // Convierte la fecha
   DateTimeToString(Fecha, 'dd/mm/yyyy hh:mm:ss', Item.Fecha);
 
+  // Obtiene el css
+  css := GetCssClassByExtension(Item);
+
+  if css <> '' then
+    css := 'icono ' + css;
+
   // Añade el item
   FArchivoSalida.Add('   <tr>');
-  FArchivoSalida.Add('     <td>');
+  FArchivoSalida.Add('     <td class="' + css + '">');
   FArchivoSalida.Add('         ' + Item.Nombre);
   FArchivoSalida.Add('     </td>');
   FArchivoSalida.Add('     <td class="Size">');
@@ -472,6 +500,51 @@ begin
 end;
 
 
+function TGestorExportacionHtml.GetCssClassByExtension(const Item: TItemDato): string;
+var
+  ImageIndex: Integer;
+
+var
+  imgstream, Outputstream: TStream;
+  Encoder: TBase64EncodingStream;
+  Png: TPortableNetworkGraphic;
+  I: Int64;
+begin
+  ImageIndex := GetImageIndexByItemDato(Item);
+
+
+  if ImageIndex = -1 then
+    Result := ''
+  else
+    Result := 'Image_' + IntToStr(ImageIndex);
+
+  if pos(Result, FlistaImagenes.Text) > 0 then
+    exit;
+
+  if FImageList = nil then exit;
+
+  Png := TPortableNetworkGraphic.Create();
+  try
+    FImageList.GetBitmap(ImageIndex, Png);
+
+    imgstream := TMemoryStream.Create();
+    Outputstream := TStringStream.Create('');
+    Encoder := TBase64EncodingStream.Create(Outputstream);
+    try
+      Png.SaveToStream(imgstream);
+      imgstream.Position:= 0;
+      Encoder.CopyFrom(TStringStream(imgstream), imgstream.Size);
+      Encoder.Flush;
+      FlistaImagenes.Add('    .' + Result + ' {' + 'background-image:url(data:image/png;base64,'+ TStringStream(Outputstream).DataString +');}')
+    finally
+      imgstream.Free;
+      Encoder.Free;
+      Outputstream.Free;
+    end;
+  finally
+    Png.Free;
+  end;
+end;
 
 
 

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 12:54:33
+ * @Last Modified time: 2023-05-27 13:04:49
  *)
 {
 
@@ -2706,7 +2706,7 @@ begin
   if not Savedialog1.Execute then exit;
 
   try
-    Exportacion := TGestorExportacion.create(Savedialog1.FileName, NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA, Formato);
+    Exportacion := TGestorExportacion.create(Savedialog1.FileName, NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA, Formato, ImageListArchivos);
     try
       // Agrega el header
       Exportacion.addHeader();
