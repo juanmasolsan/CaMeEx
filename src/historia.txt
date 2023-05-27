@@ -1,5 +1,6 @@
 
-- [FIX]   (20230527) Optimizado los inserts en la base de datos al guardar un catalogo
+- [FIX]   (20230528) Corregido actualización del arbol tras añadir un nuevo catalogo
+- [FIX]   (20230528) Optimizado los inserts en la base de datos al guardar un catalogo
 
 + 1.2.9.4
 - [NEW]   (20230527) El título de la ventana principal ahora muestra o el directorio donde se encuentra o si es la búsqueda avanzada

@@ -462,9 +462,9 @@ begin
   inherited ShowModal();
 
   if Frame_Guardar1.GuardadoCorrecto then
-    ModalResult := mrOk
+    Result := mrOk
   else
-    ModalResult := mrCancel;
+    Result := mrCancel;
 end;
 
 end.
