@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 19:27:11
+ * @Last Modified time: 2023-05-27 12:54:33
  *)
 {
 
@@ -112,6 +112,7 @@ type
     PanelIzquierdo: TPanel;
     PanelSuperior: TPanel;
     PopupMenu1: TPopupMenu;
+    SaveDialog1: TSaveDialog;
     Separator10: TMenuItem;
     MenuItemNuevaBaseDatos: TMenuItem;
     MenuItem_Perfil_PorDefecto: TMenuItem;
@@ -1059,12 +1060,12 @@ end;
 
 procedure TForm_Principal.MenuItemExportarHtmlClick(Sender: TObject);
 begin
-  //
+  DoExportar(TFormatoExportacion.feHTML);
 end;
 
 procedure TForm_Principal.MenuItemExportarTxtClick(Sender: TObject);
 begin
-  //
+  DoExportar(TFormatoExportacion.feTXT);
 end;
 
 procedure TForm_Principal.MenuItemNuevaBaseDatosClick(Sender: TObject);
@@ -2685,9 +2686,27 @@ var
   Node        : PVirtualNode;
   NodeData    : PrListaData;
   NodePadre   : PVirtualNode;
+  Archivo     : string;
+
+  Extension  : string;
+
 begin
+
+  Archivo := 'report_'+FormatDateTime('yyyymmdd_hhnnss', Now);
+  case Formato of
+    TFormatoExportacion.feHTML : Extension := '.html';
+    TFormatoExportacion.feTXT  : Extension := '.txt';
+  end;
+
+  // Configura el diálogo de guardado
+  Savedialog1.Filter := copy(Extension, 2, length(Extension)) + ' (*' + Extension + ')|*' + Extension;
+  Savedialog1.FileName                  := Archivo + Extension;
+
+  // Si no se ha seleccionado ningún archivo sale
+  if not Savedialog1.Execute then exit;
+
   try
-    Exportacion := TGestorExportacion.create('exportacion.html', NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA, Formato);
+    Exportacion := TGestorExportacion.create(Savedialog1.FileName, NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA, Formato);
     try
       // Agrega el header
       Exportacion.addHeader();

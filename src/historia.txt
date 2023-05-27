@@ -1,4 +1,5 @@
 
+- [NEW]   (20230527) Agregado Menús de exportación funcional
 - [FIX]   (20230527) Corregida correcta exportación a txt
 - [NEW]   (20230527) Agregado Menús de exportación
 

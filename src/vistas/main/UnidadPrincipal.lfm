@@ -2746,4 +2746,8 @@ object Form_Principal: TForm_Principal
       OnClick = MenuItemPropiedadesClick
     end
   end
+  object SaveDialog1: TSaveDialog
+    Left = 584
+    Top = 208
+  end
 end
