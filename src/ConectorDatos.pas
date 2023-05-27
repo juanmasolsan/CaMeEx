@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 17:18:55
+ * @Last Modified time: 2023-05-28 00:22:39
  *)
 {
 
@@ -516,38 +516,6 @@ begin
 
       FDataBase.SQL(SQL);
 
-      // Crea los índices en la tabla de datos
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_Tipo_IDX ON Datos (Tipo);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_Fecha_IDX ON Datos (Fecha);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_FechaCreacion_IDX ON Datos (FechaCreacion);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_FechaLastAcceso_IDX ON Datos (FechaLastAcceso);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_Size_IDX ON Datos (Size);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_Nombre_IDX ON Datos (Nombre);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdPadre_IDX ON Datos (IdPadre);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdRutaCompleta_IDX ON Datos (IdRutaCompleta);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdExtension_IDX ON Datos (IdExtension);';
-      FDataBase.SQL(SQL);
-
-      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdCatalogo_IDX ON Datos (IdCatalogo);';
-      FDataBase.SQL(SQL);
-
-
     finally
       // Cierra la query
       FDataBase.Query.Close;
@@ -993,7 +961,8 @@ begin
 
         if Dato.IdPadre > 0 then
         begin
-          internalQuery.ParamByName('IDPADRE').AsLargeInt      := Dato.IdPadre;
+          if pos(':IDPADRE', internalQuery.SQL.Text) > 0 then
+            internalQuery.ParamByName('IDPADRE').AsLargeInt      := Dato.IdPadre;
         end;
 
         // Hace la inserción con un prepared statement

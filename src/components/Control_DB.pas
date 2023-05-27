@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:15:29
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-01 18:35:19
+ * @Last Modified time: 2023-05-28 00:26:58
  *)
 {
 
@@ -310,6 +310,7 @@ begin
   FConnection.ExecuteDirect('PRAGMA page_size = ' + inttostr(Page_Size * 1024) + ';');
   FConnection.ExecuteDirect('PRAGMA cache_size = ' + inttostr((1024 * 1024) * Cache_Size) + ';');
   FConnection.ExecuteDirect('PRAGMA count_changes = OFF;');
+  FConnection.ExecuteDirect('PRAGMA temp_store = MEMORY;');
 
   // Enabling Foreign Key
   DoSQL('PRAGMA foreign_keys = ON;');

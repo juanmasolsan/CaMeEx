@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-20 22:29:39
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-21 14:27:15
+ * @Last Modified time: 2023-05-27 23:15:22
  *)
 unit FrameGuardar;
 
@@ -130,57 +130,62 @@ var
 begin
   if assigned(Scan) then
   begin
-    // Actualiza los datos del catalogo
-    Scan.Root.TotalArchivos    := Scan.TotalArchivos;
-    Scan.Root.TotalDirectorios := Scan.TotalDirectorios;
-    Scan.Root.Size             := Scan.TotalSize;
 
-    // Guarda los datos del catalogo
-    SistemaGuardado.AddCatalogo(Scan.Root);
+    SistemaGuardado.BeginUpdate();
+    try
+      // Actualiza los datos del catalogo
+      Scan.Root.TotalArchivos    := Scan.TotalArchivos;
+      Scan.Root.TotalDirectorios := Scan.TotalDirectorios;
+      Scan.Root.Size             := Scan.TotalSize;
 
-    // Guarda una copia del catalogo en la tabla de datos
-    Scan.Root.IdPadre        := Scan.Root.Id;
-    Scan.Root.IdCatalogo     := Scan.Root.Id;
-    Scan.Root.IdRutaCompleta := 0;
-    Scan.Root.IdExtension    := 0;
-    SistemaGuardado.AddDato(Scan.Root);
+      // Guarda los datos del catalogo
+      SistemaGuardado.AddCatalogo(Scan.Root);
 
+      // Guarda una copia del catalogo en la tabla de datos
+      Scan.Root.IdPadre        := Scan.Root.Id;
+      Scan.Root.IdCatalogo     := Scan.Root.Id;
+      Scan.Root.IdRutaCompleta := 0;
+      Scan.Root.IdExtension    := 0;
+      SistemaGuardado.AddDato(Scan.Root);
 
-    // Guarda los iconos de las Extensiones
-    total := Scan.ListaExtensiones.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddExtensionIcono(TItemExtension(Scan.ListaExtensiones.Items[t]));
-    end;
-
-    // Guarda los datos de las Extensiones
-    total := Scan.ListaExtensiones.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
-    end;
-
-    // Guarda los datos de las rutas completas
-    total := Scan.ListaRutaCompleta.Count - 1;
-    for t := 0 to total do
-    begin
-      SistemaGuardado.AddRutaCompleta(TItemRutaCompleta(Scan.ListaRutaCompleta.Items[t]));
-    end;
-
-
-    // Guarda los datos de los archivos y directorios
-    total := Scan.Root.HijosCount()-1;
-    for t := 0 to total do
-    begin
-      Item := Scan.Root.GetHijo(t);
-      if item <> nil then
+      // Guarda los iconos de las Extensiones
+      total := Scan.ListaExtensiones.Count - 1;
+      for t := 0 to total do
       begin
-        // Guarda los datos del archivo o directorio
-        SistemaGuardado.AddDato(Item);
-
-        // Guarda los datos de todo los hijos
-        ProcesarHijo(Item);
+        SistemaGuardado.AddExtensionIcono(TItemExtension(Scan.ListaExtensiones.Items[t]));
       end;
+
+      // Guarda los datos de las Extensiones
+      total := Scan.ListaExtensiones.Count - 1;
+      for t := 0 to total do
+      begin
+        SistemaGuardado.AddExtension(TItemExtension(Scan.ListaExtensiones.Items[t]));
+      end;
+
+      // Guarda los datos de las rutas completas
+      total := Scan.ListaRutaCompleta.Count - 1;
+      for t := 0 to total do
+      begin
+        SistemaGuardado.AddRutaCompleta(TItemRutaCompleta(Scan.ListaRutaCompleta.Items[t]));
+      end;
+
+      // Guarda los datos de los archivos y directorios
+      total := Scan.Root.HijosCount()-1;
+      for t := 0 to total do
+      begin
+        Item := Scan.Root.GetHijo(t);
+        if item <> nil then
+        begin
+          // Guarda los datos del archivo o directorio
+          SistemaGuardado.AddDato(Item);
+
+          // Guarda los datos de todo los hijos
+          ProcesarHijo(Item);
+        end;
+      end;
+
+    finally
+      SistemaGuardado.EndUpdate();
     end;
 
     // Le indica al frame que se ha guardado correctamente

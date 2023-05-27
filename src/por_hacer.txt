@@ -149,11 +149,8 @@
 +         Poder crear nuevos catalogos
 +         Ventana para seleccionar el dispositivo/directorio a escanear.
 +         Excluirs : System Volume Information, .git, temp, *.bak,$RECYCLE.BIN
--         Revisar la ruta de los archivos en la lista, si hay muchos archivos se vuelve lenta
++         Revisar la ruta de los archivos en la lista, si hay muchos archivos se vuelve lenta
 -         Revisar excepción en la carpeta P:\ no encuentra el IDPADRE al guardar los datos
--         Poder ocultar la toolbar
--         Poder ocultar la barra de estado
--         Poner el perfil custom cuando se cambia algo de la configuración
 +         Al selecionar un catalogo o ponerse en busqueda avanzada que lo ponga en el titulo de la ventana
 +         Que TConectorDatos.GetDatos inicialice el resultado en primer lugar
 +         Si esta en modo busqueda avanzada que no se pueda cambiar de directorio
@@ -195,7 +192,7 @@
 -         Comprobar la carga de la versión portable
 
 - Excepcion al cerrar el programa - Tras búsqueda avanzada con 50000 resultados
-- Optimizar los inserts en la base de datos - Info : https://stackoverflow.com/questions/1711631/improve-insert-per-second-performance-of-sqlite
++ Optimizar los inserts en la base de datos - Info : https://stackoverflow.com/questions/1711631/improve-insert-per-second-performance-of-sqlite
 - Agregar comentarios.
 - Agregar temas oscuro y claro
 - Compilar para windows x86
@@ -207,3 +204,6 @@
 - Agregar breadcrumbs.
 - Historial de navegación.
 - Desactiva error al acceder a unidades cdrom vacias
+- Poder ocultar la toolbar
+- Poder ocultar la barra de estado
+- Poner el perfil custom cuando se cambia algo de la configuración
