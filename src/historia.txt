@@ -1,5 +1,5 @@
 
-
+- [NEW]   (20230527) El título de la ventana principal ahora muestra o el directorio donde se encuentra o si es la búsqueda avanzada
 - [FIX]   (20230527) Ahora TConectorDatos.GetDatos devuelve una lista vacia en vez de un nil
 - [FIX]   (20230527) No permite la navegación desde la lista de archivos si se está en modo búsqueda
 - [FIX]   (20230527) Ajustes estéticos en el Frame de selección de medio y datos básicos

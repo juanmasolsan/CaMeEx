@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 17:16:19
+ * @Last Modified time: 2023-05-27 19:03:08
  *)
 {
 
@@ -385,6 +385,16 @@ type
 
     // Expo
     procedure DoExportar(Formato : TFormatoExportacion);
+
+    // Inicializar el titulo del formulario
+    procedure SetTituloVentana(extra : string = '');
+
+    // Marca todos los nodos que esté en la ruta seleccionada
+    function GetRutaFromNodo(Node: PVirtualNode) : RawByteString;
+
+    // Al cambiar de nodo actualiza el titulo de la ventana
+    procedure DoArbolChangeTitle(Node: PVirtualNode);
+
   public
 
   end;
@@ -439,8 +449,8 @@ end;
 { TForm_Principal }
 procedure TForm_Principal.FormCreate(Sender: TObject);
 begin
-  Caption                 := Get_Titulo_Ventana(true, '', true);
-  Application.Title       := Get_Titulo_Ventana(true, '', false);
+  // Inicializar el titulo del formulario
+  SetTituloVentana('');
 
 
   // Opciones avanzadas
@@ -1334,7 +1344,13 @@ end;
 
 procedure TForm_Principal.ToolButtonBusquedaAvanzadaClick(Sender: TObject);
 begin
-   NotebookPanelIzquiedo.PageIndex := integer(ToolButtonBusquedaAvanzada.Down);
+    NotebookPanelIzquiedo.PageIndex := integer(ToolButtonBusquedaAvanzada.Down);
+
+    // Titulo de la ventana
+    if NotebookPanelIzquiedo.PageIndex > 0 then
+      SetTituloVentana(Message_Asistente_Search)
+    else
+      DoArbolChangeTitle(Arbol.GetFirstSelected());
 end;
 
 procedure TForm_Principal.DoOnTerminarScanAsync();
@@ -1571,6 +1587,9 @@ begin
           FCatalogoID := Datos.Id;
 
         FPadreID    := Datos.Id;
+
+        // Pone el titulo del formulario
+        DoArbolChangeTitle(Node);
 
         // Lanza el método de forma asíncrona
         application.QueueAsyncCall(@DoLoadListaArchivosAsync, 0);
@@ -2768,5 +2787,62 @@ begin
   // Muestra el mensaje de espera
   DoFormLoadingHide();
 end;
+
+// Inicializar el titulo del formulario
+procedure TForm_Principal.SetTituloVentana(extra : string = '');
+begin
+  Caption                 := Get_Titulo_Ventana(true, extra, true);
+  Application.Title       := Get_Titulo_Ventana(true, extra, false);
+end;
+
+// Marca todos los nodos que esté en la ruta seleccionada
+function TForm_Principal.GetRutaFromNodo(Node: PVirtualNode) : RawByteString;
+var
+  NodeData: PrListaData;
+
+begin
+  // Resetea el resultado
+  Result := '';
+
+  // Sale si no hay nodo
+  if Node = nil then
+    exit;
+
+  // Marca los nodos padres
+
+  try
+    while Node <> nil do
+    begin
+
+
+        NodeData := arbol.GetNodeData(Node);
+        if NodeData <> nil then
+        begin
+          Result := '/' + NodeData^.NodeData.Nombre + Result;
+        end;
+
+      // Comprueba si no es el nodo raiz
+      if Node <> Arbol.RootNode then
+        Node := Node^.Parent
+      else
+        Node := nil;
+    end;
+  except
+  end;
+end;
+
+// Al cambiar de nodo actualiza el titulo de la ventana
+procedure TForm_Principal.DoArbolChangeTitle(Node: PVirtualNode);
+var
+  Ruta : RawByteString;
+begin
+  // Pone el titulo del formulario
+  Ruta := GetRutaFromNodo(Node);
+
+  // Pone el titulo del formulario
+  SetTituloVentana(Ruta);
+end;
+
+
 
 end.

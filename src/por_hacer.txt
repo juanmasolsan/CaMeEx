@@ -154,7 +154,7 @@
 -         Poder ocultar la toolbar
 -         Poder ocultar la barra de estado
 -         Poner el perfil custom cuando se cambia algo de la configuración
--         Al selecionar un catalogo o ponerse en busqueda avanzada que lo ponga en el titulo de la ventana
++         Al selecionar un catalogo o ponerse en busqueda avanzada que lo ponga en el titulo de la ventana
 +         Que TConectorDatos.GetDatos inicialice el resultado en primer lugar
 +         Si esta en modo busqueda avanzada que no se pueda cambiar de directorio
 +         Revisar parpadeo en el panel izquierdo al redimensionar el mismo

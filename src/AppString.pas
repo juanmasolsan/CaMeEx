@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 14:13:03
+ * @Last Modified time: 2023-05-27 17:33:01
  *)
 {
 
@@ -74,6 +74,8 @@ resourcestring
   Message_Atributos      =  'Atributos';
   Message_Calculando     =  'Calculando ...';
   Message_Contiene       =  '%s Archivos y %s Carpetas ';
+
+  Message_Asistente_Search = 'Búsqueda Avanzada';
 
 
   Message_Asistente_Nuevo_Catalogo_titulo    =  'Añadir nuevo catalogo';

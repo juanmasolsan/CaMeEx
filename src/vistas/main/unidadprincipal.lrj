@@ -13,6 +13,7 @@
 {"hash":58470351,"name":"tform_principal.toolbuttonagregarcatalogo.caption","sourcebytes":[65,103,114,101,103,97,114,32,67,97,116,97,108,111,103,111],"value":"Agregar Catalogo"},
 {"hash":50593858,"name":"tform_principal.toolbuttoneliminar.caption","sourcebytes":[69,108,105,109,105,110,97,114],"value":"Eliminar"},
 {"hash":267250851,"name":"tform_principal.toolbuttonpropiedades.caption","sourcebytes":[80,114,111,112,105,101,100,97,100,101,115],"value":"Propiedades"},
+{"hash":53554081,"name":"tform_principal.toolbuttonbusquedaavanzada.hint","sourcebytes":[66,195,186,115,113,117,101,100,97,32,97,118,97,110,122,97,100,97],"value":"B\u00FAsqueda avanzada"},
 {"hash":53553569,"name":"tform_principal.toolbuttonbusquedaavanzada.caption","sourcebytes":[66,195,186,115,113,117,101,100,97,32,65,118,97,110,122,97,100,97],"value":"B\u00FAsqueda Avanzada"},
 {"hash":227001699,"name":"tform_principal.arbol.header.columns[0].text","sourcebytes":[67,97,116,195,161,108,111,103,111,115],"value":"Cat\u00E1logos"},
 {"hash":143257743,"name":"tform_principal.menuitemarchivo.caption","sourcebytes":[65,114,99,104,105,118,111],"value":"Archivo"},

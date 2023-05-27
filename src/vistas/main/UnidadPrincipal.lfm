@@ -698,6 +698,8 @@ object Form_Principal: TForm_Principal
         EdgeOuter = esNone
         Images = ImageListToolbar
         ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
         Transparent = True
         object ToolButtonAgregarCatalogo: TToolButton
@@ -728,6 +730,7 @@ object Form_Principal: TForm_Principal
         end
         object ToolButtonBusquedaAvanzada: TToolButton
           Left = 97
+          Hint = 'Búsqueda avanzada'
           Top = 0
           Caption = 'Búsqueda Avanzada'
           ImageIndex = 5
