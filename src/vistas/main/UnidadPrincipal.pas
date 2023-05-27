@@ -92,6 +92,12 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItemExportarPopUpTxt: TMenuItem;
+    MenuItemExportarPopUpHtml: TMenuItem;
+    Exportar: TMenuItem;
+    MenuItemExportarTxt: TMenuItem;
+    MenuItemExportarHtml: TMenuItem;
+    MenuItemExportar: TMenuItem;
     MenuPopUpItemPropiedades: TMenuItem;
     MenuPopUpItemEliminar: TMenuItem;
     MenuPopUpItemAgregarCatalogo: TMenuItem;
@@ -147,6 +153,8 @@ type
     Separator13: TMenuItem;
     Separator14: TMenuItem;
     Separator15: TMenuItem;
+    Separator16: TMenuItem;
+    Separator17: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
@@ -208,6 +216,8 @@ type
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItemBusquedaAvanzadaClick(Sender: TObject);
     procedure MenuItemEliminarClick(Sender: TObject);
+    procedure MenuItemExportarHtmlClick(Sender: TObject);
+    procedure MenuItemExportarTxtClick(Sender: TObject);
     procedure MenuItemNuevaBaseDatosClick(Sender: TObject);
     procedure MenuItemPropiedadesClick(Sender: TObject);
     procedure MenuItemSalirClick(Sender: TObject);
@@ -1047,6 +1057,16 @@ begin
   DoAccionItem(Sender, true);
 end;
 
+procedure TForm_Principal.MenuItemExportarHtmlClick(Sender: TObject);
+begin
+  //
+end;
+
+procedure TForm_Principal.MenuItemExportarTxtClick(Sender: TObject);
+begin
+  //
+end;
+
 procedure TForm_Principal.MenuItemNuevaBaseDatosClick(Sender: TObject);
 begin
     DoEliminarItem(Arbol, FNodeArbolRaiz, true, true);
@@ -1291,7 +1311,6 @@ begin
   MenuPopUpItemNuevaBaseDatos.Visible  := isArbolSelecionado;
   Separator13.Visible                  := isArbolSelecionado;
   MenuPopUpItemAgregarCatalogo.Visible := isArbolSelecionado;
-  Separator14.Visible                  := isArbolSelecionado;
 
   // Si hay itemns seleccionados activa los siguiente MenuItems
   MenuItemEliminar.Enabled      := Selecionados > 0;
@@ -1302,6 +1321,14 @@ begin
   MenuItemPropiedades.Enabled      := Selecionados = 1;
   ToolButtonPropiedades.Enabled    := MenuItemPropiedades.Enabled;
   MenuPopUpItemPropiedades.Enabled := MenuItemPropiedades.Enabled;
+
+  // Menus de exportación
+  Separator17.Visible               := isArbolSelecionado;
+  MenuItemExportarHtml.Enabled      := Selecionados > 0;
+  MenuItemExportarTxt.Enabled       := Selecionados > 0;
+  MenuItemExportarPopUpHtml.Enabled := Selecionados > 0;
+  MenuItemExportarPopUpTxt.Enabled  := Selecionados > 0;
+
 end;
 
 procedure TForm_Principal.ToolButtonBusquedaAvanzadaClick(Sender: TObject);

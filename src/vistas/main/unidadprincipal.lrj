@@ -18,6 +18,9 @@
 {"hash":143257743,"name":"tform_principal.menuitemarchivo.caption","sourcebytes":[65,114,99,104,105,118,111],"value":"Archivo"},
 {"hash":176111827,"name":"tform_principal.menuitemnuevabasedatos.caption","sourcebytes":[78,117,101,118,97,32,66,97,115,101,32,100,101,32,68,97,116,111,115],"value":"Nueva Base de Datos"},
 {"hash":58470351,"name":"tform_principal.menuitemagregarcatalogo.caption","sourcebytes":[65,103,114,101,103,97,114,32,67,97,116,97,108,111,103,111],"value":"Agregar Catalogo"},
+{"hash":233153294,"name":"tform_principal.menuitemexportar.caption","sourcebytes":[69,120,112,111,114,116,97,114,32,99,111,109,111,32,46,46,46],"value":"Exportar como ..."},
+{"hash":23011212,"name":"tform_principal.menuitemexportarhtml.caption","sourcebytes":[69,120,112,111,114,116,97,114,32,97,32,104,116,109,108],"value":"Exportar a html"},
+{"hash":185984436,"name":"tform_principal.menuitemexportartxt.caption","sourcebytes":[69,120,112,111,114,116,97,114,32,97,32,116,120,116],"value":"Exportar a txt"},
 {"hash":5866242,"name":"tform_principal.menuitemsalir.caption","sourcebytes":[83,97,108,105,114],"value":"Salir"},
 {"hash":79366786,"name":"tform_principal.menuitemeditar.caption","sourcebytes":[69,100,105,116,97,114],"value":"Editar"},
 {"hash":53553569,"name":"tform_principal.menuitembusquedaavanzada.caption","sourcebytes":[66,195,186,115,113,117,101,100,97,32,65,118,97,110,122,97,100,97],"value":"B\u00FAsqueda Avanzada"},
@@ -51,6 +54,9 @@
 {"hash":118737310,"name":"tform_principal.menuitemacercade.caption","sourcebytes":[65,99,101,114,99,97,32,100,101,46,46,46],"value":"Acerca de..."},
 {"hash":176111827,"name":"tform_principal.menupopupitemnuevabasedatos.caption","sourcebytes":[78,117,101,118,97,32,66,97,115,101,32,100,101,32,68,97,116,111,115],"value":"Nueva Base de Datos"},
 {"hash":58470351,"name":"tform_principal.menupopupitemagregarcatalogo.caption","sourcebytes":[65,103,114,101,103,97,114,32,67,97,116,97,108,111,103,111],"value":"Agregar Catalogo"},
+{"hash":233153294,"name":"tform_principal.exportar.caption","sourcebytes":[69,120,112,111,114,116,97,114,32,99,111,109,111,32,46,46,46],"value":"Exportar como ..."},
+{"hash":22880140,"name":"tform_principal.menuitemexportarpopuphtml.caption","sourcebytes":[69,120,112,111,114,116,97,114,32,97,32,72,116,109,108],"value":"Exportar a Html"},
+{"hash":185976244,"name":"tform_principal.menuitemexportarpopuptxt.caption","sourcebytes":[69,120,112,111,114,116,97,114,32,97,32,84,120,116],"value":"Exportar a Txt"},
 {"hash":50593858,"name":"tform_principal.menupopupitemeliminar.caption","sourcebytes":[69,108,105,109,105,110,97,114],"value":"Eliminar"},
 {"hash":267250851,"name":"tform_principal.menupopupitempropiedades.caption","sourcebytes":[80,114,111,112,105,101,100,97,100,101,115],"value":"Propiedades"}
 ]}

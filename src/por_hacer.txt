@@ -205,3 +205,4 @@
 - Si se usa sqlcipher que tenga login para acceder a la base de datos
 - Agregar breadcrumbs.
 - Historial de navegación.
+- Desactiva error al acceder a unidades cdrom vacias

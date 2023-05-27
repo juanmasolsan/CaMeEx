@@ -86,11 +86,17 @@ msgid "Cargar Lista"
 msgstr ""
 
 #: tform_principal.button3.caption
+msgctxt "tform_principal.button3.caption"
 msgid "Exportar"
 msgstr ""
 
 #: tform_principal.caption
 msgid "Form_Principal"
+msgstr ""
+
+#: tform_principal.exportar.caption
+msgctxt "tform_principal.exportar.caption"
+msgid "Exportar como ..."
 msgstr ""
 
 #: tform_principal.lista.header.columns[0].text
@@ -156,6 +162,27 @@ msgstr ""
 #: tform_principal.menuitemeliminar.caption
 msgctxt "tform_principal.menuitemeliminar.caption"
 msgid "Eliminar"
+msgstr ""
+
+#: tform_principal.menuitemexportar.caption
+msgctxt "tform_principal.menuitemexportar.caption"
+msgid "Exportar como ..."
+msgstr ""
+
+#: tform_principal.menuitemexportarhtml.caption
+msgid "Exportar a html"
+msgstr ""
+
+#: tform_principal.menuitemexportarpopuphtml.caption
+msgid "Exportar a Html"
+msgstr ""
+
+#: tform_principal.menuitemexportarpopuptxt.caption
+msgid "Exportar a Txt"
+msgstr ""
+
+#: tform_principal.menuitemexportartxt.caption
+msgid "Exportar a txt"
 msgstr ""
 
 #: tform_principal.menuitemnuevabasedatos.caption
