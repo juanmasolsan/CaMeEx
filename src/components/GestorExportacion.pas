@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-25 15:51:34
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-25 23:44:59
+ * @Last Modified time: 2023-05-27 12:36:44
  *)
 {
 
@@ -306,7 +306,7 @@ begin
   // Si no es Html, llama al padre
   if FFormato <> feHTML then
   begin
-    inherited AddFooter();
+    inherited AddHeader();
     exit;
   end;
 
