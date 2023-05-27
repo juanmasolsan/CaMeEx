@@ -175,7 +175,7 @@
 +         Que el tamaño hasta, su minimo sea el tamaño desde
 +         Al hacer la busqueda que bloquee el buscador
 +         Al hacer la busqueda que bloquee toda la UI
--         Que en la lista de resultados no aparezcan los catalogos guardados en la tabla de datos
++         Que en la lista de resultados no aparezcan los catalogos guardados en la tabla de datos
 
 
 + Hito 4: Exportación de datos a formato html, xml o csv. Tanto de los datos seleccionados, como los resultados de búsqueda.

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 00:22:39
+ * @Last Modified time: 2023-05-28 01:23:17
  *)
 {
 
@@ -101,7 +101,7 @@ const
                                               ' JOIN RutaCompleta AS rc ON dt.IdRutaCompleta = rc.Id' +
                                               ' JOIN Extensiones AS ex ON dt.IdExtension = ex.Id' +
                                               ' JOIN Catalogos AS cat ON dt.IdCatalogo  = cat.Id' +
-                                              ' WHERE ';
+                                              ' WHERE dt.Id <> dt.IdCatalogo AND ';
 
   SQL_SELECT_BUSQUEDA_AVANZADA_CATALOGO    = ' dt.IdCatalogo = :IDCATALOGO';
   SQL_SELECT_BUSQUEDA_AVANZADA_SIZE        = ' (dt.Size BETWEEN :SIZEDESDE AND :SIZEHASTA)';
