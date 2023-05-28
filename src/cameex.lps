@@ -69,8 +69,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1274"/>
-        <CursorPos X="8" Y="1293"/>
+        <TopLine Value="503"/>
+        <CursorPos X="28" Y="512"/>
         <UsageCount Value="102"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -789,37 +789,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="345" Column="46" TopLine="320"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="106" Column="24" TopLine="82"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="137" Column="27" TopLine="131"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="269" Column="23" TopLine="245"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="558" Column="35" TopLine="546"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="315" TopLine="300"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
-        <Caret Line="344" Column="51" TopLine="333"/>
-      </Position>
-      <Position>
-        <Filename Value="components\scan\MotorScan.pas"/>
         <Caret Line="552" TopLine="537"/>
       </Position>
       <Position>
@@ -905,6 +874,38 @@
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <Caret Line="2407" Column="48" TopLine="2121"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="1297" Column="45" TopLine="1274"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="523" Column="41" TopLine="516"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="526" Column="13" TopLine="515"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="1862" Column="15" TopLine="1838"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="1863" Column="15" TopLine="1839"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="1866" Column="35" TopLine="1842"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="249" Column="15" TopLine="236"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="472" Column="13" TopLine="448"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -516,6 +516,10 @@ end;
 
 procedure TForm_Principal.FormDestroy(Sender: TObject);
 begin
+
+  // Marca el nodo raiz del arbol como nulo puesto que ha sido eliminado en la llamada Arbol.clear;
+  FNodeArbolRaiz := nil;
+
   // Libera el nodo root del arbol
   DoLiberarNodoRootArbol();
 
