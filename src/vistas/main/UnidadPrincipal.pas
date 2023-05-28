@@ -1335,7 +1335,6 @@ var
 
 
 begin
-  exit;
   // Iniciliza el total de items selecionados
   Selecionados := 0;
 
@@ -1366,10 +1365,10 @@ begin
 
   // Menus de exportación
   Separator17.Visible               := isArbolSelecionado;
-  MenuItemExportarHtml.Enabled      := Selecionados > 0;
-  MenuItemExportarTxt.Enabled       := Selecionados > 0;
-  MenuItemExportarPopUpHtml.Enabled := Selecionados > 0;
-  MenuItemExportarPopUpTxt.Enabled  := Selecionados > 0;
+  MenuItemExportarHtml.Enabled      := Lista.SelectedCount > 0;
+  MenuItemExportarTxt.Enabled       := Lista.SelectedCount > 0;
+  MenuItemExportarPopUpHtml.Enabled := Lista.SelectedCount > 0;
+  MenuItemExportarPopUpTxt.Enabled  := Lista.SelectedCount > 0;
 
 end;
 

@@ -1,4 +1,5 @@
 
+- [FIX]   (20230528) Ajustado el UpdateUI para detectar si se puede exportar o no
 - [NEW]   (20230528) Agregado mostrar/ocultar la barra de herramientas
 - [NEW]   (20230528) Agregado mostrar/ocultar la barra de búsqueda superior
 - [FIX]   (20230528) Ajustado diseño del TPageControl del formulario de añadir nuevo catalogo
