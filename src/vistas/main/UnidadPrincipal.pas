@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 18:37:27
+ * @Last Modified time: 2023-05-28 19:23:25
  *)
 {
 
@@ -308,6 +308,9 @@ type
 
     // Carga la lista de catálogos
     procedure DoLoadListaCatalogosAsync({%H-}Data: PtrInt);
+
+    // Precarga los datos de la lista de archivos
+    procedure DoPreloadDatosAsync({%H-}Data: PtrInt);
 
     // Sincroniza el arbol con la vista de la lista de directorios
     procedure DoSincronizarListaArbol();
@@ -1878,7 +1881,22 @@ procedure TForm_Principal.DoLoadListaCatalogosAsync({%H-}Data: PtrInt);
 begin
   // Cargar Lista
   DoLoadListaCatalogos();
+
+  // Lanza el método de forma asíncrona para pre cargar los datos
+  application.QueueAsyncCall(@DoPreloadDatosAsync, 0);
 end;
+
+// Precarga los datos de la lista de archivos
+procedure TForm_Principal.DoPreloadDatosAsync({%H-}Data: PtrInt);
+begin
+  FTempPadre.Id         := 0;
+  FTempPadre.IdCatalogo := 0;
+
+  // Carga los datos del catalogo
+  FListaArchivos := FGestorDatos.GetDatos(FTempPadre);
+end;
+
+
 
 // Sincroniza el arbol con la vista de la lista de directorios
 procedure TForm_Principal.DoSincronizarListaArbol();
