@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 23:23:51
+ * @Last Modified time: 2023-05-28 23:32:13
  *)
 {
 
@@ -91,6 +91,7 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItemBarraHerramientas: TMenuItem;
     MenuItemBarraBusqueda: TMenuItem;
     MenuItemMostrar: TMenuItem;
     MenuItemExportarPopUpTxt: TMenuItem;
@@ -211,6 +212,7 @@ type
     procedure MenuItemAgregarCatalogoClick(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
     procedure MenuItemBarraBusquedaClick(Sender: TObject);
+    procedure MenuItemBarraHerramientasClick(Sender: TObject);
     procedure MenuItemBusquedaAvanzadaClick(Sender: TObject);
     procedure MenuItemEliminarClick(Sender: TObject);
     procedure MenuItemExportarHtmlClick(Sender: TObject);
@@ -616,6 +618,8 @@ begin
 
   // Opciones de Mostar/Ocultar
   FVerBarraBusqueda         := ArchivoConfiguracion.ReadBool('Config', 'VerBarraBusqueda', FVerBarraBusqueda);
+  FVerBarraHerramientas     := ArchivoConfiguracion.ReadBool('Config', 'VerBarraHerramientas', FVerBarraHerramientas);
+
 
 
 
@@ -667,6 +671,7 @@ begin
 
   // Opciones de Mostar/Ocultar
   ArchivoConfiguracion.WriteBool('Config', 'VerBarraBusqueda', FVerBarraBusqueda);
+  ArchivoConfiguracion.WriteBool('Config', 'VerBarraHerramientas', FVerBarraHerramientas);
 
 
   // Guarda la configuración para diferenciar los archivos por colores
@@ -720,6 +725,8 @@ begin
 
     // Opciones de Mostar/Ocultar
     FPanelBusqueda.Visible            := FVerBarraBusqueda;
+    PanelSuperior.Visible             := FVerBarraHerramientas;
+
 
     // Aplica la config a los menus
     MenuItem_Arbol_Catalogos_AutoOculta_Botones.Checked   := FAutoOcultarBotonesArbol;
@@ -728,6 +735,7 @@ begin
     MenuItem_Arbol_Catalogo_Ver_Lineas.Checked            := FVerLineasArbol;
     MenuItem_Ver_Colores_Atributos.Checked                := FUsarColorDiferenciarArchivos;
     MenuItemBarraBusqueda.Checked                         := FVerBarraBusqueda;
+    MenuItemBarraHerramientas.Checked                     := FVerBarraHerramientas;
 
 
 
@@ -1080,6 +1088,14 @@ procedure TForm_Principal.MenuItemBarraBusquedaClick(Sender: TObject);
 begin
   if FAplicandoConfig then exit;
   FVerBarraBusqueda := MenuItemBarraBusqueda.Checked;
+
+  DoConfiguracionAplicar();
+end;
+
+procedure TForm_Principal.MenuItemBarraHerramientasClick(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FVerBarraHerramientas := MenuItemBarraHerramientas.Checked;
 
   DoConfiguracionAplicar();
 end;

@@ -362,6 +362,11 @@ object Form_Principal: TForm_Principal
           Caption = 'Barra Búsqueda'
           OnClick = MenuItemBarraBusquedaClick
         end
+        object MenuItemBarraHerramientas: TMenuItem
+          AutoCheck = True
+          Caption = 'Barra Herramientas'
+          OnClick = MenuItemBarraHerramientasClick
+        end
       end
       object Separator18: TMenuItem
         Caption = '-'

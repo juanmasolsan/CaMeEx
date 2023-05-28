@@ -134,6 +134,14 @@ msgctxt "tform_principal.menuitemayuda.caption"
 msgid "Ayuda"
 msgstr ""
 
+#: tform_principal.menuitembarrabusqueda.caption
+msgid "Barra Búsqueda"
+msgstr ""
+
+#: tform_principal.menuitembarraherramientas.caption
+msgid "Barra Herramientas"
+msgstr ""
+
 #: tform_principal.menuitembusquedaavanzada.caption
 msgctxt "tform_principal.menuitembusquedaavanzada.caption"
 msgid "Búsqueda Avanzada"
@@ -168,6 +176,10 @@ msgstr ""
 
 #: tform_principal.menuitemexportartxt.caption
 msgid "Exportar a txt"
+msgstr ""
+
+#: tform_principal.menuitemmostrar.caption
+msgid "Mostrar"
 msgstr ""
 
 #: tform_principal.menuitemnuevabasedatos.caption
