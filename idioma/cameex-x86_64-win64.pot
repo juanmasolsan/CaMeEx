@@ -75,21 +75,6 @@ msgctxt "tform_principal.barra_herramientas.caption"
 msgid "Barra_Herramientas"
 msgstr ""
 
-#: tform_principal.button1.caption
-msgctxt "tform_principal.button1.caption"
-msgid "Cargar Catalogos"
-msgstr ""
-
-#: tform_principal.button2.caption
-msgctxt "tform_principal.button2.caption"
-msgid "Cargar Lista"
-msgstr ""
-
-#: tform_principal.button3.caption
-msgctxt "tform_principal.button3.caption"
-msgid "Exportar"
-msgstr ""
-
 #: tform_principal.caption
 msgid "Form_Principal"
 msgstr ""

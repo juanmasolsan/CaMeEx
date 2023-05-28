@@ -191,7 +191,7 @@
 -         Comprobar que se puede cargar la base de datos de la versión de windows
 -         Comprobar la carga de la versión portable
 
-+ Excepcion al cerrar el programa - Tras búsqueda avanzada con 50000 resultados
+- Excepcion al cerrar el programa - Tras búsqueda avanzada con 50000 resultados
 + Optimizar los inserts en la base de datos - Info : https://stackoverflow.com/questions/1711631/improve-insert-per-second-performance-of-sqlite
 - Agregar comentarios.
 - Agregar temas oscuro y claro

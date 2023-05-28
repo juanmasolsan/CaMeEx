@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 13:59:09
+ * @Last Modified time: 2023-05-28 16:55:40
  *)
 {
 
@@ -87,9 +87,6 @@ type
 
   TForm_Principal = class(TForm)
     Arbol: TLazVirtualStringTree;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
     Frame_Busqueda1: TFrame_Busqueda;
     ImageListArchivos32: TImageList;
     ImageListArchivos: TImageList;
@@ -148,9 +145,7 @@ type
     MenuItemAyuda: TMenuItem;
     MenuItemAcercaDe: TMenuItem;
     MenuItemSalir: TMenuItem;
-    PanelInferior: TPanel;
     PanelPrincipal: TPanel;
-    SalidaLog: TSynEdit;
     Separator1: TMenuItem;
     Separator11: TMenuItem;
     Separator12: TMenuItem;
@@ -168,7 +163,6 @@ type
     Separator8: TMenuItem;
     Separator9: TMenuItem;
     Splitter1: TSplitter;
-    Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
     Timer_UpdateUI: TTimer;
     Barra_Herramientas: TToolBar;
@@ -189,9 +183,6 @@ type
       var Ghosted: Boolean; var ImageIndex: Integer;
       var ImageList: TCustomImageList);
     procedure ArbolKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -237,7 +228,6 @@ type
     procedure MenuItem_Perfil_MixtoClick(Sender: TObject);
     procedure MenuItem_Size_NormalClick(Sender: TObject);
     procedure MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
-    procedure PanelInferiorResize(Sender: TObject);
     procedure PanelIzquierdoResize(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
     procedure ToolButtonBusquedaAvanzadaClick(Sender: TObject);
@@ -694,7 +684,7 @@ begin
     PanelIzquierdo.Width := FArbolAncho;
 
     // Aplica la configuración de las Dimensiones del Log
-    PanelInferior.Height := FLogAlto;
+    //PanelInferior.Height := FLogAlto;
 
     // Aplica la configuración de la forma en la dibujar el fondo de los catalogos
     MenuItem_Catalogos_color.Checked := FUsarColoresCatalogos;
@@ -831,8 +821,8 @@ begin
       begin
         if Column = 0 then
         begin
-         ImageIndex := GetImageIndexByItemDato(Datos);
-         Ghosted := (((Datos.Atributos and faHidden{%H-})= faHidden{%H-}) or (Datos.Nombre[1] = '.')) ;
+          ImageIndex  := GetImageIndexByItemDato(Datos);
+          Ghosted     := (((Datos.Atributos and faHidden{%H-})= faHidden{%H-}) or (Datos.Nombre[1] = '.'));
         end;
       end;
     end;
@@ -928,7 +918,6 @@ begin
                       DoEliminarItem(Lista, Node, false);
                   end;
                 end;
-
   end;
 end;
 
@@ -964,7 +953,6 @@ end;
 
 procedure TForm_Principal.ListaResize(Sender: TObject);
 begin
-
   // Evita que se ejecute el evento si se esta redimensionando la lista
   if FIsListaResizing then exit;
 
@@ -999,7 +987,6 @@ var
 begin
   // Inicializa el tamaño de las columnas
   SizeColumna  := 0;
-
 
   // Obtiene el total de columnas visibles
   total := high(Sender.Header.Columns.GetVisibleColumns);
@@ -1252,12 +1239,6 @@ begin
   DoConfiguracionAplicar();
 end;
 
-procedure TForm_Principal.PanelInferiorResize(Sender: TObject);
-begin
-  if FAplicandoConfig then exit;
-  FLogAlto := PanelInferior.Height;
-end;
-
 procedure TForm_Principal.PanelIzquierdoResize(Sender: TObject);
 begin
   // Reajusta el tamaño de la última columna
@@ -1306,6 +1287,7 @@ var
 
 
 begin
+  exit;
   // Iniciliza el total de items selecionados
   Selecionados := 0;
 
@@ -1355,139 +1337,10 @@ begin
 end;
 
 procedure TForm_Principal.DoOnTerminarScanAsync();
-
-  procedure ProcesarHijo(Ruta: string; Item : TItemDato);
-  var
-    t, total : integer;
-    Actual : TItemDato;
-  begin
-    if item <> nil then
-    begin
-      total := item.HijosCount()-1;
-      for t := 0 to total do
-      begin
-        Actual := item.GetHijo(t);
-
-        SalidaLog.Lines.Add(Actual.ToString());
-
-        ProcesarHijo(Ruta + IncludeTrailingBackslash(Actual.Nombre), Actual);
-      end;
-    end;
-  end;
-
-var
-  Inicio   : TDateTime;
 begin
-(*
-  if assigned(FVentanaScan) then
-  begin
-    // Indica que ya termino el escaneo
-    FVentanaScan.Terminar();
-
-    // Libera la asignación de memoria
-    FVentanaScan := nil;
-  end;
-
-
-  SalidaLog.lines.beginUpdate();
-  try
-    SalidaLog.Clear;
-
-    {$IFNDEF ESCANEAR_DIRECTORIO_GRANDE}
-      {$IFDEF MOSTRAR_INFO_ESCANEO}
-        total := FScan.Root.HijosCount()-1;
-        for t := 0 to total do
-        begin
-          Item := FScan.Root.GetHijo(t);
-          if item <> nil then
-          begin
-            //SalidaLog.Lines.Add(Item.Nombre);
-            SalidaLog.Lines.Add(Item.ToString());
-            ProcesarHijo(IncludeTrailingBackslash(Item.Nombre), Item);
-          end;
-        end;
-      {$ENDIF}
-    {$ENDIF}
-    SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add(Message_Total_Directorios + '  ' + PuntearNumeracion(FScan.TotalDirectorios));
-    SalidaLog.lines.Add(Message_Total_Archivos + '  ' + PuntearNumeracion(FScan.TotalArchivos));
-
-    SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add(Message_Total_Size + '  ' + PuntearNumeracion(FScan.TotalSize) + ' (' + ConvertirSizeEx(FScan.TotalSize, ',##', '.0' ) + ')');
-
-    SalidaLog.lines.Add('------------------------------------------');
-    SalidaLog.lines.Add(Message_Tiempo_Escaneo + '  ' + MostrarTiempoTranscurrido(FScan.ScanInicio, FScan.ScanFinal));
-  finally
-    SalidaLog.lines.endUpdate();
-  end;
-
-
-  FGestorDatos.BeginUpdate();
-  try
-    SalidaLog.lines.Add('');
-    SalidaLog.lines.Add('');
-    SalidaLog.lines.Add('');
-    SalidaLog.lines.Add(Message_Guardando);
-
-    Inicio   := now;
-    try
-      // Guarda los datos del catalogo en la base de datos
-      DoGuardarEscaneado(FScan, FGestorDatos);
-    finally
-      SalidaLog.lines.Add('------------------------------------------');
-      SalidaLog.lines.Add(Message_Tiempo_Guardado + '  ' + MostrarTiempoTranscurrido(Inicio, now));
-    end;
-  finally
-    FGestorDatos.EndUpdate();
-  end;
-
-
-  // Cargar Lista
-  DoLoadListaCatalogos();
-*)
+  //
 end;
 
-
-procedure TForm_Principal.Button1Click(Sender: TObject);
-var
-  tiempo : qword;
-begin
-
-//  ShowMessage(Message_Directorios);
-
-  tiempo := GetTickCount64();
-  DoFormLoadingShow('Espera ...', 'Probando');
-  try
-
-
-
-    tiempo := GetTickCount64;
-    while GetTickCount64 - tiempo < 10000 do
-    begin
-      Application.ProcessMessages();
-      sleep(1);
-    end;
-
-    //LanzarThread();
-  finally
-    DoFormLoadingHide();
-  end;
-
-
-
-  SetDefaultLang('en');
-  SalidaLog.lines.Add('Finalizado el loading');
-
-exit;
-  tiempo := GetTickCount64();
-
-  // Cargar Lista
-  DoLoadListaCatalogos();
-
-  tiempo := GetTickCount64() - tiempo;
-
-  SalidaLog.lines.Add(Message_Tiempo_Empleado + ' ' + IntToStr(tiempo) + ' ms.');
-end;
 
 procedure TForm_Principal.ArbolExpanding(Sender: TBaseVirtualTree; Node: PVirtualNode;
   var Allowed: Boolean);
@@ -1609,10 +1462,9 @@ var
   PreColor  : TColor;
   PreEstilo : TFontStyles;
   PreSize   : integer;
-
-  NodeData : PrListaData;
-  Datos    : TItemCatalogo;
-  IsSelected : boolean;
+  NodeData  : PrListaData;
+  Datos     : TItemCatalogo;
+  IsSelected: boolean;
 begin
   if not FExtraInfoCatalogos then
     exit;
@@ -1767,8 +1619,6 @@ begin
 
 
     // Muestra los datos de la lista
-    //DoEstadisticas(0, inttostr(TotalDir) + ' directorios y ' + inttostr(TotalFile) + ' archivos con '+ inttostr(TotalFile + TotalDir) + ' elementos en total y ocupando ' + ConvertirSizeEx(TotalSize) + ' ( ' + PuntearNumeracion(TotalSize) + ' bytes) - Tiempo empleado :  '+ inttostr(Tiempo) + ' ms');
-
     DoEstadisticas(0, Format(Message_Estadisticas, [
       PuntearNumeracion(TotalDir),
       PuntearNumeracion(TotalFile),
@@ -1822,7 +1672,6 @@ begin
 
     // Ordena el arbol
     Arbol.SortTree(COLUMNA_TIPO, TSortDirection.sdAscending);
-
 
   finally
     Arbol.EndUpdate;
@@ -1905,45 +1754,6 @@ begin
   Data^.TipoCatalogo := TipoCatalogo;
   Data^.TipoNode     := TipoNode;
   Result             := True;
-end;
-
-
-procedure TForm_Principal.Button2Click(Sender: TObject);
-var
-  CatalogoActual : TItemCatalogo;
-  tiempo : qword;
-begin
-  tiempo := GetTickCount64();
-
-  // Finalizar la lista de catalogos
-  if assigned(FListaCatalogos) then
-    begin
-      FListaCatalogos.clear;
-      FListaCatalogos.free;
-    end;
-
-  // Cargar Lista
-  FListaCatalogos := FGestorDatos.GetAllCatalogos();
-  if assigned(FListaCatalogos) then
-    if FListaCatalogos.Count > 0 then
-    begin
-      // Carga el primer catalogo
-      CatalogoActual := TItemCatalogo(FListaCatalogos{%H-}[0]);
-      if assigned(CatalogoActual) then
-      begin
-        // Carga los datos del catalogo
-        DoLoadListaArchivos(CatalogoActual);
-      end;
-    end;
-
-  tiempo := GetTickCount64() - tiempo;
-
-  SalidaLog.lines.Add(Message_Tiempo_Empleado + ' ' + IntToStr(tiempo) + ' ms.');
-end;
-
-procedure TForm_Principal.Button3Click(Sender: TObject);
-begin
-  DoExportar(TFormatoExportacion.feHTML);
 end;
 
 
@@ -2087,29 +1897,9 @@ begin
 
         if (Datos <> nil) and (Datos.IdCatalogo = FCatalogoID) and (Datos.Id = FPadreID) then
         begin
-(*
-          FNodeArbolActual     := node;
-          Node^.States         := Node^.States + [vsSelected];
-          Arbol.Expanded[node] := true;
-          Arbol.FocusedNode    := Node;
           Arbol.ScrollIntoView(Node, true, true);
-
-          // Lanza el método de forma asíncrona
-          application.QueueAsyncCall(@DoLoadListaArchivosAsync, 0);
-*)
-
-          Arbol.ScrollIntoView(Node, true, true);
-
-          //Node^.States         := Node^.States + [vsSelected];
           Arbol.Expanded[node] := true;
-          //Arbol.Selected[Node] := true;
-          //Arbol.FocusedNode    := Node;
           ArbolChange(Arbol, node);
-
-
-
-
-          //exit;
         end
       end;
     except
@@ -2158,9 +1948,9 @@ procedure TForm_Principal.DoMarcarRutaActual(Node: PVirtualNode);
 
       // Elimina el estado de seleccion en caso de no ser el node actual
       if Nodo = Node then
-       Nodo^.States := Nodo^.States + [vsSelected]
+        Nodo^.States := Nodo^.States + [vsSelected]
       else
-       Nodo^.States := Nodo^.States - [vsSelected];
+        Nodo^.States := Nodo^.States - [vsSelected];
 
       Nodo := Arbol.GetNext(Nodo);
     end;
@@ -2587,11 +2377,10 @@ begin
 
   // Desactiva/Activa los splitters
   Splitter1.Enabled       := activar;
-  Splitter2.Enabled       := activar;
 
   // Desactiva/Activa la toolbar y el panel inferior
   Barra_Herramientas.Enabled := activar;
-  PanelInferior.Enabled      := activar;
+
 end;
 
 // Para gestionar las acciones de los menús sobre los items
@@ -2823,8 +2612,6 @@ begin
   try
     while Node <> nil do
     begin
-
-
         NodeData := arbol.GetNodeData(Node);
         if NodeData <> nil then
         begin
