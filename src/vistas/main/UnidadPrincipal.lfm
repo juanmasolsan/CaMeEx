@@ -6,6 +6,7 @@ object Form_Principal: TForm_Principal
   Caption = 'Form_Principal'
   ClientHeight = 549
   ClientWidth = 899
+  Constraints.MinHeight = 350
   Constraints.MinWidth = 500
   Menu = MenuPrincipal
   OnClose = FormClose
