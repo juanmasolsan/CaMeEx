@@ -23,9 +23,10 @@
       <Unit>
         <Filename Value="components\Control_Formulario_Avanzado.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="158"/>
-        <CursorPos Y="174"/>
+        <CursorPos X="29" Y="169"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -68,8 +69,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="811"/>
-        <CursorPos Y="817"/>
+        <TopLine Value="18"/>
+        <CursorPos X="11" Y="44"/>
         <UsageCount Value="99"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -80,13 +81,10 @@
         <ComponentName Value="FormLoading"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="95"/>
         <CursorPos X="33" Y="110"/>
         <UsageCount Value="99"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
@@ -323,29 +321,26 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="414"/>
         <CursorPos Y="429"/>
         <UsageCount Value="63"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_DB.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="137"/>
         <CursorPos X="36" Y="156"/>
         <UsageCount Value="23"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
         <UnitName Value="SQLDB"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="174"/>
         <CursorPos X="17" Y="185"/>
         <UsageCount Value="32"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
@@ -552,11 +547,10 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\include\application.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1064"/>
         <CursorPos Y="1085"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
@@ -724,11 +718,10 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\interfaces\win32\win32extra.pas"/>
         <UnitName Value="Win32Extra"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1019"/>
         <CursorPos X="57" Y="1039"/>
         <UsageCount Value="14"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\base\database.inc"/>
@@ -748,141 +741,31 @@
       <Unit>
         <Filename Value="components\sqlite3conn.pp"/>
         <UnitName Value="SQLite3Conn"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="877"/>
         <CursorPos X="32" Y="891"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\sqlite\src\sqlite3.inc"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="23" Y="52"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="2">
       <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="152" TopLine="132"/>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="817" TopLine="811"/>
       </Position>
       <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="894" Column="13" TopLine="879"/>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="466" Column="21" TopLine="447"/>
       </Position>
       <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="897" Column="48" TopLine="879"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="69" Column="12" TopLine="54"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="164" Column="11" TopLine="140"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="149" Column="40" TopLine="132"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="78" Column="14" TopLine="63"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="904" Column="19" TopLine="898"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="151" Column="11" TopLine="134"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="153" TopLine="138"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="159" TopLine="138"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="892" TopLine="877"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="894" Column="13" TopLine="887"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="147" Column="22" TopLine="138"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="153" TopLine="138"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="159" TopLine="138"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="892" TopLine="877"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="894" TopLine="877"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="69" Column="5" TopLine="54"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="154" TopLine="139"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="156" TopLine="139"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="158" TopLine="139"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="162" TopLine="139"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="892" TopLine="877"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="894" TopLine="877"/>
-      </Position>
-      <Position>
-        <Filename Value="components\sqlite3conn.pp"/>
-        <Caret Line="891" Column="32" TopLine="877"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="158" Column="36" TopLine="139"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="162" Column="3" TopLine="148"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="147" TopLine="137"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_DB.pas"/>
-        <Caret Line="156" Column="36" TopLine="137"/>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="464" TopLine="452"/>
       </Position>
     </JumpHistory>
     <RunParams>

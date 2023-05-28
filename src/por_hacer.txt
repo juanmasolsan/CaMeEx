@@ -203,7 +203,7 @@
 - Si se usa sqlcipher que tenga login para acceder a la base de datos
 - Agregar breadcrumbs.
 - Historial de navegación.
-- Desactiva error al acceder a unidades cdrom vacias
++ Desactiva error al acceder a unidades cdrom vacias
 - Poder ocultar la toolbar
 - Poder ocultar la barra de estado
 - Poner el perfil custom cuando se cambia algo de la configuración

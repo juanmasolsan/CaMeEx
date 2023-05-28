@@ -40,6 +40,9 @@ unit UnidadPrincipal;
 interface
 
 uses
+  {$IFDEF WINDOWS}
+  Windows,
+  {$ENDIF WINDOWS}
   LCLType
   , lclintf
   , Classes
@@ -450,7 +453,6 @@ begin
   // Inicializar el titulo del formulario
   SetTituloVentana('');
 
-
   // Opciones avanzadas
   ActivarArchivoConfig('cameex_config.ini', false, true, false, NOMBRE_PROGRAMA);
   ActivarGuardadoPosicion;
@@ -460,6 +462,12 @@ begin
 
   // Agrega al logger el inicio del programa
   LogAdd(TLogLevel.info, 'Iniciando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
+
+
+  {$IFDEF WINDOWS}
+   // Desactivamos los errores por ejemplo al intentar entrar en una unidad cdrom sin disco
+   SetErrorMode(SEM_FailCriticalErrors);
+  {$ENDIF WINDOWS}
 
   // Inicializar el Gestor de Datos
   FGestorDatos := TConectorDatos.Create;
