@@ -197,18 +197,18 @@
 
 + Excepcion al cerrar el programa - Tras búsqueda avanzada con 50000 resultados
 + Optimizar los inserts en la base de datos - Info : https://stackoverflow.com/questions/1711631/improve-insert-per-second-performance-of-sqlite
++ Comprobar memory leaks (1)
++ Listado de todas las directivas de compilación y para que se usan
++ Desactiva error al acceder a unidades cdrom vacias
++ Poder ocultar la toolbar
++ Poder ocultar la barra de estado
++ Cambiar El ControlPage por un notebook
 - Agregar comentarios.
 - Agregar temas oscuro y claro
 - Compilar para windows x86
-+ Comprobar memory leaks (1)
 - Crear el diagrama de clases
 - Internalización de la app
-+ Listado de todas las directivas de compilación y para que se usan
 - Si se usa sqlcipher que tenga login para acceder a la base de datos
 - Agregar breadcrumbs.
 - Historial de navegación.
-+ Desactiva error al acceder a unidades cdrom vacias
-+ Poder ocultar la toolbar
-- Poder ocultar la barra de estado
-+ Cambiar El ControlPage por un notebook
 - Poner el perfil custom cuando se cambia algo de la configuración

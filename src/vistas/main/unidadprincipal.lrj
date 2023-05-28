@@ -27,6 +27,7 @@
 {"hash":74102994,"name":"tform_principal.menuitemmostrar.caption","sourcebytes":[77,111,115,116,114,97,114],"value":"Mostrar"},
 {"hash":137084369,"name":"tform_principal.menuitembarrabusqueda.caption","sourcebytes":[66,97,114,114,97,32,66,195,186,115,113,117,101,100,97],"value":"Barra B\u00FAsqueda"},
 {"hash":60840659,"name":"tform_principal.menuitembarraherramientas.caption","sourcebytes":[66,97,114,114,97,32,72,101,114,114,97,109,105,101,110,116,97,115],"value":"Barra Herramientas"},
+{"hash":4341663,"name":"tform_principal.menuitembarraestado.caption","sourcebytes":[66,97,114,114,97,32,69,115,116,97,100,111],"value":"Barra Estado"},
 {"hash":144920051,"name":"tform_principal.menuitem_catalogos.caption","sourcebytes":[65,114,98,111,108,32,67,97,116,195,161,108,111,103,111,115],"value":"Arbol Cat\u00E1logos"},
 {"hash":31625635,"name":"tform_principal.menuitem_arbol_catalogos_autooculta_botones.caption","sourcebytes":[65,117,116,111,32,79,99,117,108,116,97,114,32,66,111,116,111,110,101,115],"value":"Auto Ocultar Botones"},
 {"hash":262430003,"name":"tform_principal.menuitem_arbol_catalogo_botones_modernos.caption","sourcebytes":[86,101,114,32,66,111,116,111,110,101,115,32,77,111,100,101,114,110,111,115],"value":"Ver Botones Modernos"},

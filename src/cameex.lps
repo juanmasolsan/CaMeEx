@@ -68,8 +68,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1350"/>
-        <CursorPos X="45" Y="1371"/>
+        <TopLine Value="1100"/>
+        <CursorPos X="18" Y="1104"/>
         <UsageCount Value="107"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -778,14 +778,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1460" TopLine="1436"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1867" TopLine="1848"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <Caret Line="1868" TopLine="1848"/>
       </Position>
       <Position>
@@ -895,6 +887,14 @@
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <Caret Line="1371" Column="61" TopLine="1350"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="1364" Column="42" TopLine="1350"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="1371" Column="42" TopLine="1357"/>
       </Position>
     </JumpHistory>
     <RunParams>

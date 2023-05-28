@@ -138,6 +138,10 @@ msgstr ""
 msgid "Barra Búsqueda"
 msgstr ""
 
+#: tform_principal.menuitembarraestado.caption
+msgid "Barra Estado"
+msgstr ""
+
 #: tform_principal.menuitembarraherramientas.caption
 msgid "Barra Herramientas"
 msgstr ""
