@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:15:29
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 00:26:58
+ * @Last Modified time: 2023-05-28 12:14:34
  *)
 {
 
@@ -48,6 +48,27 @@ uses
   , sqlite3conn
   , sqlite3dyn
   ;
+
+type
+  { TCustSQLTransaction }
+  TCustomSQLTransaction = class(TSQLTransaction)
+  public
+    procedure CloseTrans;
+  end;
+
+  { TSQLTransaction }
+  TSQLTransaction = class(TCustomSQLTransaction);
+
+  { TSQLite3Connection }
+Type
+  TCustomSQLite3Connection = class(TSQLite3Connection)
+  protected
+    procedure DoInternalDisconnect; override;
+  end;
+
+  { TSQLite3Connection }
+  TSQLite3Connection = class(TCustomSQLite3Connection);
+
 
 type
   { TConexion_DB }
@@ -113,6 +134,21 @@ type
 
 implementation
 
+
+{ TCustomSQLTransaction }
+procedure TCustomSQLTransaction.CloseTrans;
+begin
+  inherited;
+end;
+
+{ TSQLite3Connection }
+procedure TCustomSQLite3Connection.DoInternalDisconnect;
+begin
+  if GetHandle <> nil then
+    begin
+      ReleaseSQLite;
+    end;
+end;
 
 // Método para realizar sentencias SQL protegidas para concurrencia
 procedure Internal_SQL(var Entrada : TConexion_DB_Base; const DataSQL : string; CriticalSection : TCriticalSection; iQuery : TSQLQuery = nil);
@@ -240,9 +276,7 @@ begin
   FQuery.Close;
 
   // Se libera todo lo creado
-  FConnection.ExecuteDirect('Begin Transaction');
-  FConnection.Connected       := false;
-  FConnection.Close;
+  FTransaction.CloseTrans;
 
   // Se libera todo lo creado
   FConnection.Transaction     := nil;

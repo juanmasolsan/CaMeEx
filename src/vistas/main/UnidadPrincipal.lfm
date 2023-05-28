@@ -730,7 +730,6 @@ object Form_Principal: TForm_Principal
         end
         object ToolButtonBusquedaAvanzada: TToolButton
           Left = 97
-          Hint = 'Búsqueda avanzada'
           Top = 0
           Caption = 'Búsqueda Avanzada'
           ImageIndex = 5
@@ -1559,13 +1558,6 @@ object Form_Principal: TForm_Principal
       1ACF699EA2F19DE6267ABEAFAF2F47E32AE601D36D18FC2FD8F44F03DBEF5E6C
       83C9DF138E97C9D83693B15FC5E03368FDF3E05FB2D9FF01AAE27C31
     }
-  end
-  object Timer1: TTimer
-    Enabled = False
-    Interval = 5000
-    OnTimer = Timer1Timer
-    Left = 776
-    Top = 72
   end
   object Timer_UpdateUI: TTimer
     Interval = 100

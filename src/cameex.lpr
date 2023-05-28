@@ -58,7 +58,7 @@ uses
 	uDarkStyleSchemes,
 {$ENDIF DARKSTYLE_USAR}
 
-  Forms, AppString, Configuracion, UnidadPrincipal, UnidadLoading,
+  Forms, AppString, Configuracion, Control_DB, UnidadPrincipal, UnidadLoading,
   UnidadPropiedades, UnidadAtributos, UnidadScan, UnidadAddCatalogo,
   Control_About, graphics, lazcontrols, tachartlazaruspkg, datetimectrls,
   FrameCancelado, FrameSelecionarMedio, FrameBusqueda;

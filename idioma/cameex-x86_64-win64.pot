@@ -350,10 +350,6 @@ msgctxt "tform_principal.toolbuttonbusquedaavanzada.caption"
 msgid "Búsqueda Avanzada"
 msgstr ""
 
-#: tform_principal.toolbuttonbusquedaavanzada.hint
-msgid "Búsqueda avanzada"
-msgstr ""
-
 #: tform_principal.toolbuttoneliminar.caption
 msgctxt "tform_principal.toolbuttoneliminar.caption"
 msgid "Eliminar"

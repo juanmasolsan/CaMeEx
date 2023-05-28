@@ -167,7 +167,6 @@ type
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Barra_Estado: TStatusBar;
-    Timer1: TTimer;
     Timer_UpdateUI: TTimer;
     Barra_Herramientas: TToolBar;
     ToolButtonBusquedaAvanzada: TToolButton;
@@ -237,7 +236,6 @@ type
     procedure MenuItem_Ver_Colores_AtributosClick(Sender: TObject);
     procedure PanelInferiorResize(Sender: TObject);
     procedure PanelIzquierdoResize(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
     procedure Timer_UpdateUITimer(Sender: TObject);
     procedure ToolButtonBusquedaAvanzadaClick(Sender: TObject);
   private
@@ -520,6 +518,12 @@ end;
 
 procedure TForm_Principal.FormDestroy(Sender: TObject);
 begin
+  // Libera el nodo root del arbol
+  DoLiberarNodoRootArbol();
+
+  // Finalizar los objectos necesarios para la navegación por la lista de archivos
+  FTempPadre.free;
+
   // Libera la asignación de memoria
   DoLiberarListaArchivos();
 
@@ -532,14 +536,8 @@ begin
   // Finalizar el Gestor de Datos
   FGestorDatos.Finalizar();
 
-  // Finalizar los objectos necesarios para la navegación por la lista de archivos
-  FTempPadre.free;
-
   // Finalizar el Panel de Busqueda
   FPanelBusqueda.Free;
-
-  // Libera el nodo root del arbol
-  DoLiberarNodoRootArbol();
 
   // Guarda la configuración del programa
   DoConfiguracionSave();
@@ -1263,6 +1261,9 @@ end;
 
 procedure TForm_Principal.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  // Desactiva el timer de actualización de la UI
+  Timer_UpdateUI.Enabled := False;
+
   // Limpia el arbol de directorios
   Arbol.Clear;
 
@@ -1274,19 +1275,8 @@ end;
 
 procedure TForm_Principal.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-  //
-end;
-
-procedure TForm_Principal.Timer1Timer(Sender: TObject);
-begin
-
-Timer1.Enabled := false;
-(*
-  if assigned(FScan) then
-  begin
-    FScan.StopScan();
-  end;
-*)
+  // Desactiva el timer de actualización de la UI
+  Timer_UpdateUI.Enabled := False;
 end;
 
 procedure TForm_Principal.Timer_UpdateUITimer(Sender: TObject);
