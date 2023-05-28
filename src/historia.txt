@@ -1,3 +1,5 @@
+
+- [FIX]   (20230528) Arreglada excepcion al cerrar el programa por llamada asíncrona a la hora de cargar la lista de archivos desde el arbol
 - [NEW]   (20230528) Agregada desactivación del error al acceder a unidades cdrom vacias
 - [FIX]   (20230528) Ajuste del alto de la ventana de loading al guardar los datos de un nuevo catalogo (2)
 - [FIX]   (20230528) Acelerado el cierre de la aplicación optimizando la liberación de sqlite

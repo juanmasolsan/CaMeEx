@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 01:28:56
+ * @Last Modified time: 2023-05-28 13:59:09
  *)
 {
 
@@ -1593,8 +1593,8 @@ begin
         // Pone el titulo del formulario
         DoArbolChangeTitle(Node);
 
-        // Lanza el método de forma asíncrona
-        application.QueueAsyncCall(@DoLoadListaArchivosAsync, 0);
+        // Carga la lista con el directorio actual
+        DoLoadListaArchivosAsync(0);
       end;
     end;
   except
