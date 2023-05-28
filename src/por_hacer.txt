@@ -150,7 +150,7 @@
 +         Ventana para seleccionar el dispositivo/directorio a escanear.
 +         Excluirs : System Volume Information, .git, temp, *.bak,$RECYCLE.BIN
 +         Revisar la ruta de los archivos en la lista, si hay muchos archivos se vuelve lenta
--         Revisar excepción en la carpeta P:\ no encuentra el IDPADRE al guardar los datos
++         Revisar excepción en la carpeta P:\ no encuentra el IDPADRE al guardar los datos
 +         Al selecionar un catalogo o ponerse en busqueda avanzada que lo ponga en el titulo de la ventana
 +         Que TConectorDatos.GetDatos inicialice el resultado en primer lugar
 +         Si esta en modo busqueda avanzada que no se pueda cambiar de directorio
@@ -203,7 +203,7 @@
 + Poder ocultar la toolbar
 + Poder ocultar la barra de estado
 + Cambiar El ControlPage por un notebook
-- Agregar comentarios.
++ Agregar comentarios.
 - Agregar temas oscuro y claro
 - Compilar para windows x86
 - Crear el diagrama de clases

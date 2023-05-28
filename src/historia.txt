@@ -1,4 +1,4 @@
-
+- [FIX]   (20230528) Agregado licencia a los archivos que le faltaban
 - [NEW]   (20230528) Agregado mostrar/ocultar la barra de estado
 - [FIX]   (20230528) Ajustado el UpdateUI para detectar si se puede exportar o no
 - [NEW]   (20230528) Agregado mostrar/ocultar la barra de herramientas
