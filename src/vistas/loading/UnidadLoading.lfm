@@ -17,6 +17,7 @@ object FormLoading: TFormLoading
   OnCreate = FormCreate
   Position = poOwnerFormCenter
   ShowInTaskBar = stNever
+  LCLVersion = '2.2.6.0'
   object Fondo: TShape
     Left = 0
     Height = 80

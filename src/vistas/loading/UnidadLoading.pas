@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 16:17:09
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 16:57:58
+ * @Last Modified time: 2023-05-28 12:22:00
  *)
 {
 
@@ -107,7 +107,7 @@ end;
 procedure TFormLoading.FormCreate(Sender: TObject);
 begin
   // Opciones avanzadas
-  ActivarGuardadoPosicion;
+  ActivarGuardadoPosicion(true);
 
   // Inicializar el contador interno para la animación
   TimerAnimacion.interval := 100;

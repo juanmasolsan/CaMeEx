@@ -1,3 +1,4 @@
+- [FIX]   (20230528) Ajuste del alto de la ventana de loading al guardar los datos de un nuevo catalogo (2)
 - [FIX]   (20230528) Acelerado el cierre de la aplicación optimizando la liberación de sqlite
 - [NEW]   (20230528) Agregado log de excepciones en donde no estaba implementado
 - [FIX]   (20230528) En los resultados de búsqueda no aparecen los catalogos guardados en la tabla de datos
