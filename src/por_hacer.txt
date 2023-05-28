@@ -210,4 +210,5 @@
 + Desactiva error al acceder a unidades cdrom vacias
 - Poder ocultar la toolbar
 - Poder ocultar la barra de estado
++ Cambiar El ControlPage por un notebook
 - Poner el perfil custom cuando se cambia algo de la configuración

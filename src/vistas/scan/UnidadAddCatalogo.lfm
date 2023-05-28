@@ -14,7 +14,6 @@ object Form_AddCatalogo: TForm_AddCatalogo
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.2.6.0'
   object Button_Cancelar: TButton
     Left = 366
     Height = 25
@@ -112,6 +111,7 @@ object Form_AddCatalogo: TForm_AddCatalogo
     Align = alClient
     ParentShowHint = False
     ShowTabs = False
+    Style = tsFlatButtons
     TabIndex = 1
     TabOrder = 3
     TabPosition = tpBottom
