@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 16:55:40
+ * @Last Modified time: 2023-05-28 18:37:27
  *)
 {
 
@@ -1352,6 +1352,10 @@ var
   NodeData: PrListaData;
   Datos   : TItemDato;
 begin
+
+  // Si el node que se está expandiendo es el nodo raiz, sale
+  if Node = FNodeArbolRaiz then exit;
+
   try
     NodeData := Sender.GetNodeData(Node);
     if NodeData <> nil then
@@ -1433,6 +1437,9 @@ begin
   // Marca la ruta actual
   DoMarcarRutaActual(Node);
 
+  // Pone el titulo del formulario
+  DoArbolChangeTitle(Node);
+
   try
     NodeData := Sender.GetNodeData(Node);
     if NodeData <> nil then
@@ -1446,12 +1453,9 @@ begin
           FCatalogoID := Datos.Id;
 
         FPadreID    := Datos.Id;
-
-        // Pone el titulo del formulario
-        DoArbolChangeTitle(Node);
-
         // Carga la lista con el directorio actual
-        DoLoadListaArchivosAsync(0);
+        if FNodeArbolRaiz <> node then
+          DoLoadListaArchivosAsync(0);
       end;
     end;
   except
