@@ -1178,7 +1178,7 @@ begin
                         FAutoOcultarBotonesArbol      := false;
                         FVerBotonesArbolModernos      := false;
                         FVerLineasArbol               := true;
-                        FVerLineasArbol_Punteadas     := false;
+                        FVerLineasArbol_Punteadas     := true;
                       end;
 
     PERFIL_RETRO   :  begin
@@ -1217,7 +1217,7 @@ begin
                         FAutoOcultarBotonesArbol      := false;
                         FVerBotonesArbolModernos      := false;
                         FVerLineasArbol               := true;
-                        FVerLineasArbol_Punteadas     := false;
+                        FVerLineasArbol_Punteadas     := true;
                       end;
   end;
 

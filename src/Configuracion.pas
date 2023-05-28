@@ -130,7 +130,7 @@ var
   FVerLineasArbol                          : boolean = true;
 
   // Mostrar las lineas de los nodos del arbol de catalogos punteadas o no
-  FVerLineasArbol_Punteadas                : boolean = false;
+  FVerLineasArbol_Punteadas                : boolean = true;
 
 
 function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;
