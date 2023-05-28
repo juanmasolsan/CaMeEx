@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 19:23:25
+ * @Last Modified time: 2023-05-28 19:29:19
  *)
 {
 
@@ -506,7 +506,7 @@ begin
   FPanelBusqueda.Parent                 := PanelSuperior;
   FPanelBusqueda.Top                    := 5;
   FPanelBusqueda.Left                   := 5;
-  FPanelBusqueda.Width                  := 200;
+  FPanelBusqueda.Width                  := 350;
   FPanelBusqueda.Align                  := alRight;
   FPanelBusqueda.OnChange               := @DoEditBuscarChange;
   FPanelBusqueda.EditBusqueda.TabOrder  := 2;

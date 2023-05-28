@@ -72,7 +72,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="1881"/>
         <CursorPos X="35" Y="1897"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -85,7 +85,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="95"/>
         <CursorPos X="33" Y="110"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadPropiedades.pas"/>
@@ -96,7 +96,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadAtributos.pas"/>
@@ -107,7 +107,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadScan.pas"/>
@@ -118,7 +118,7 @@
         <EditorIndex Value="11"/>
         <TopLine Value="111"/>
         <CursorPos X="8" Y="114"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -130,7 +130,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
@@ -141,7 +141,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="46"/>
         <CursorPos X="3" Y="54"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="105"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -153,7 +153,7 @@
         <ResourceBaseClass Value="Frame"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="25"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="97"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\main\FrameBusqueda.pas"/>
@@ -164,7 +164,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="8"/>
         <CursorPos X="55" Y="19"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -177,7 +177,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="51"/>
         <CursorPos X="106" Y="59"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -187,7 +187,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="137"/>
         <CursorPos X="36" Y="156"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
       </Unit>
       <Unit>
         <Filename Value="components\about\Control_About.pas"/>
