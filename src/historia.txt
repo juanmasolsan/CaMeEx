@@ -1,3 +1,5 @@
+
+- [FIX]   (20230528) Eliminado warnings, hints y notes del código.
 - [FIX]   (20230528) Optimizado el arranque de la aplicación, la recuperación de los catalogos es ahora mucho más rápida
 - [FIX]   (20230528) Arreglada excepcion al cerrar el programa (2)
 - [FIX]   (20230528) Limpieza de código y controles en TForm_Principal

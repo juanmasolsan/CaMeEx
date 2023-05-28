@@ -12,7 +12,7 @@ interface
 
 uses
   Windows, Classes, SysUtils, Forms, Controls, ExtCtrls, StdCtrls, Dialogs,
-  SynEdit, FGL, ItemBaseDatos, Types;
+  SynEdit, ItemBaseDatos, Types;
 
 
 
@@ -56,7 +56,7 @@ type
     SelectDirectoryDialog1: TSelectDirectoryDialog;
     procedure ButtonSeleccionarRutaClick(Sender: TObject);
     procedure ComboBoxDispositivosChange(Sender: TObject);
-    procedure ComboBoxDispositivosDrawItem(Control: TWinControl; Index: Integer; ARect: TRect; State: TOwnerDrawState);
+    procedure ComboBoxDispositivosDrawItem({%H-}Control: TWinControl; Index: Integer; ARect: TRect; {%H-}State: TOwnerDrawState);
     procedure Edit_NombreChange(Sender: TObject);
   private
   protected

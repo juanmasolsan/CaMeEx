@@ -57,11 +57,10 @@ uses
   , laz.VirtualTrees
   , DefaultTranslator, LCLTranslator
   , VirtualTreesExtended
-  , SynEdit, ExtendedNotebook
+  , SynEdit
   , Control_Logger
   , Control_Formulario_Avanzado
   , Control_Cajon_Busqueda
-  , MotorScan
   , InterfaceConectorDatos
   , ItemBaseDatos
   , ItemDato, ItemCatalogo, VirtualTreesExtras, ImgList
@@ -405,7 +404,7 @@ uses
   , OrdenarLista
   , Utilidades
   , ConectorDatos
-  , ItemExtension, ItemRutaCompleta, GestorExtensiones, AppString, UnidadLoading, UnidadPropiedades, UnidadAddCatalogo
+  , GestorExtensiones, AppString, UnidadLoading, UnidadPropiedades, UnidadAddCatalogo
   ;
 
 {$R *.lfm}
@@ -2536,9 +2535,7 @@ var
   Exportacion : TGestorExportacion;
   Node        : PVirtualNode;
   NodeData    : PrListaData;
-  NodePadre   : PVirtualNode;
   Archivo     : string;
-
   Extension  : string;
 
 begin

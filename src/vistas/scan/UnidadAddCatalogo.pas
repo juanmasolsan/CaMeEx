@@ -46,12 +46,12 @@ uses
   , ComCtrls
   , ExtCtrls
   , Control_Formulario_Avanzado
-  , InterfaceConectorDatos, ItemDato, ItemExtension, ItemRutaCompleta, MotorScan
+  , InterfaceConectorDatos, MotorScan
   , UnidadScan
   , FrameCancelado
   , FrameGuardar
   , FrameSelecionarMedio
-  , Types;
+  ;
 
 const
   // Pasos del asistente
@@ -167,8 +167,6 @@ begin
 end;
 
 procedure TForm_AddCatalogo.FormDestroy(Sender: TObject);
-var
-  t : longint;
 begin
   if assigned(FScan) then
   begin
@@ -330,7 +328,7 @@ procedure TForm_AddCatalogo.DoPasoEscanear();
     linea : string;
     t     : integer;
   begin
-
+    Result := '';
     for t:= 0 to Frame_SelecionarMedio1.EditExcluir.Lines.Count - 1 do
     begin
       linea := trim(Frame_SelecionarMedio1.EditExcluir.Lines[t]);

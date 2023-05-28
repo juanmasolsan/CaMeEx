@@ -508,7 +508,6 @@ var
   imgstream, Outputstream: TStream;
   Encoder: TBase64EncodingStream;
   Png: TPortableNetworkGraphic;
-  I: Int64;
 begin
   ImageIndex := GetImageIndexByItemDato(Item);
 

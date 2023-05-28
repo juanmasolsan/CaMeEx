@@ -12,7 +12,7 @@ interface
 
 uses
   LCLType,
-  Classes, SysUtils, Forms, Controls, StdCtrls, Buttons, TAIntervalSources,
+  Classes, SysUtils, Forms, Controls, StdCtrls, Buttons,
   DateTimePicker, SpinEx, ItemCatalogo, Types
   , ItemDato
   , InterfaceConectorDatos
@@ -50,8 +50,8 @@ type
     SpinEditExSizeDesde: TSpinEditEx;
     SpinEditExSizeHasta: TSpinEditEx;
     procedure BitBtnBusquedaClick(Sender: TObject);
-    procedure ComboBoxDispositivosDrawItem(Control: TWinControl;
-      Index: Integer; ARect: TRect; State: TOwnerDrawState);
+    procedure ComboBoxDispositivosDrawItem({%H-}Control: TWinControl;
+      Index: Integer; ARect: TRect; {%H-}State: TOwnerDrawState);
     procedure EditTextoChange(Sender: TObject);
     procedure EditTextoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
       );
