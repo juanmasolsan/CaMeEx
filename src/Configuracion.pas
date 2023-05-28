@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 00:04:39
+ * @Last Modified time: 2023-05-28 23:14:13
  *)
 {
 
@@ -131,6 +131,9 @@ var
 
   // Mostrar las lineas de los nodos del arbol de catalogos punteadas o no
   FVerLineasArbol_Punteadas                : boolean = true;
+
+  // Mostrar la barra de búsqueda rápida
+  FVerBarraBusqueda                        : boolean = true;
 
 
 function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;

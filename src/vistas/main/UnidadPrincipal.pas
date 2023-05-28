@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 19:29:19
+ * @Last Modified time: 2023-05-28 23:23:51
  *)
 {
 
@@ -91,6 +91,8 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItemBarraBusqueda: TMenuItem;
+    MenuItemMostrar: TMenuItem;
     MenuItemExportarPopUpTxt: TMenuItem;
     MenuItemExportarPopUpHtml: TMenuItem;
     Exportar: TMenuItem;
@@ -153,6 +155,7 @@ type
     Separator15: TMenuItem;
     Separator16: TMenuItem;
     Separator17: TMenuItem;
+    Separator18: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
@@ -207,6 +210,7 @@ type
     procedure ListaResize(Sender: TObject);
     procedure MenuItemAgregarCatalogoClick(Sender: TObject);
     procedure MenuItemAcercaDeClick(Sender: TObject);
+    procedure MenuItemBarraBusquedaClick(Sender: TObject);
     procedure MenuItemBusquedaAvanzadaClick(Sender: TObject);
     procedure MenuItemEliminarClick(Sender: TObject);
     procedure MenuItemExportarHtmlClick(Sender: TObject);
@@ -488,6 +492,18 @@ begin
   // Inicializa el sistema que devuelve la descripción e icono index de las extensiones
   SetExtensionesConfig(FGestorDatos, ImageListArchivos, ImageListArchivos32);
 
+  // Crea e Inicializa el panel de búsqueda
+  FPanelBusqueda                        := TPanelBusqueda.Create(TComponent(Pointer(@PanelSuperior)^));
+  FPanelBusqueda.Parent                 := PanelSuperior;
+  FPanelBusqueda.Top                    := 5;
+  FPanelBusqueda.Left                   := 5;
+  FPanelBusqueda.Width                  := 350;
+  FPanelBusqueda.Align                  := alRight;
+  FPanelBusqueda.OnChange               := @DoEditBuscarChange;
+  FPanelBusqueda.EditBusqueda.TabOrder  := 2;
+  FPanelBusqueda.Visible                := true;
+
+
 
   // Carga la configuración del programa
   DoConfiguracionLoad();
@@ -501,16 +517,6 @@ begin
 
   // Inicializa el header de la lista
   DoHeader_Iniciar(true);
-
-  FPanelBusqueda                        := TPanelBusqueda.Create(TComponent(Pointer(@PanelSuperior)^));
-  FPanelBusqueda.Parent                 := PanelSuperior;
-  FPanelBusqueda.Top                    := 5;
-  FPanelBusqueda.Left                   := 5;
-  FPanelBusqueda.Width                  := 350;
-  FPanelBusqueda.Align                  := alRight;
-  FPanelBusqueda.OnChange               := @DoEditBuscarChange;
-  FPanelBusqueda.EditBusqueda.TabOrder  := 2;
-  FPanelBusqueda.Visible                := true;
 
   // Lanza el método de forma asíncrona para cargar la lista de catalogos
   application.QueueAsyncCall(@DoLoadListaCatalogosAsync, 0);
@@ -608,6 +614,9 @@ begin
   FVerLineasArbol           := ArchivoConfiguracion.ReadBool('Config', 'VerLineasArbol', FVerLineasArbol);
   FVerLineasArbol_Punteadas := ArchivoConfiguracion.ReadBool('Config', 'VerLineasArbol_Punteadas', FVerLineasArbol_Punteadas);
 
+  // Opciones de Mostar/Ocultar
+  FVerBarraBusqueda         := ArchivoConfiguracion.ReadBool('Config', 'VerBarraBusqueda', FVerBarraBusqueda);
+
 
 
   // Carga la configuración para diferenciar los archivos por colores
@@ -655,6 +664,10 @@ begin
   ArchivoConfiguracion.WriteBool('Config', 'VerBotonesArbolModernos', FVerBotonesArbolModernos);
   ArchivoConfiguracion.WriteBool('Config', 'VerLineasArbol', FVerLineasArbol);
   ArchivoConfiguracion.WriteBool('Config', 'VerLineasArbol_Punteadas', FVerLineasArbol_Punteadas);
+
+  // Opciones de Mostar/Ocultar
+  ArchivoConfiguracion.WriteBool('Config', 'VerBarraBusqueda', FVerBarraBusqueda);
+
 
   // Guarda la configuración para diferenciar los archivos por colores
   ArchivoConfiguracion.WriteBool('Config', 'UsarColorDiferenciarArchivos', FUsarColorDiferenciarArchivos);
@@ -705,12 +718,17 @@ begin
     Arbol.OcultarBotonesAlperderFoco  := FAutoOcultarBotonesArbol;
     Arbol.DibujarBotonesModernos      := FVerBotonesArbolModernos;
 
+    // Opciones de Mostar/Ocultar
+    FPanelBusqueda.Visible            := FVerBarraBusqueda;
+
     // Aplica la config a los menus
     MenuItem_Arbol_Catalogos_AutoOculta_Botones.Checked   := FAutoOcultarBotonesArbol;
     MenuItem_Arbol_Catalogos_Ver_Lineas_Punteadas.Checked := FVerLineasArbol_Punteadas;
     MenuItem_Arbol_Catalogo_Botones_Modernos.Checked      := FVerBotonesArbolModernos;
     MenuItem_Arbol_Catalogo_Ver_Lineas.Checked            := FVerLineasArbol;
     MenuItem_Ver_Colores_Atributos.Checked                := FUsarColorDiferenciarArchivos;
+    MenuItemBarraBusqueda.Checked                         := FVerBarraBusqueda;
+
 
 
     // Aplica la configuración a los root del arbol
@@ -1056,6 +1074,14 @@ end;
 procedure TForm_Principal.MenuItemAcercaDeClick(Sender: TObject);
 begin
   Mostrar_Acerca_de(NOMBRE_PROGRAMA, VERSION_PROGRAMA, FECHA_PROGRAMA, NOMBRE_AUTOR, 110, APP_WEB, AUTOR_EMAIL);
+end;
+
+procedure TForm_Principal.MenuItemBarraBusquedaClick(Sender: TObject);
+begin
+  if FAplicandoConfig then exit;
+  FVerBarraBusqueda := MenuItemBarraBusqueda.Checked;
+
+  DoConfiguracionAplicar();
 end;
 
 procedure TForm_Principal.MenuItemBusquedaAvanzadaClick(Sender: TObject);

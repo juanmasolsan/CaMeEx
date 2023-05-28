@@ -7,7 +7,7 @@ object Form_Principal: TForm_Principal
   ClientHeight = 549
   ClientWidth = 899
   Constraints.MinHeight = 350
-  Constraints.MinWidth = 500
+  Constraints.MinWidth = 475
   Menu = MenuPrincipal
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -355,6 +355,17 @@ object Form_Principal: TForm_Principal
     end
     object MenuItemVer: TMenuItem
       Caption = 'Ver'
+      object MenuItemMostrar: TMenuItem
+        Caption = 'Mostrar'
+        object MenuItemBarraBusqueda: TMenuItem
+          AutoCheck = True
+          Caption = 'Barra Búsqueda'
+          OnClick = MenuItemBarraBusquedaClick
+        end
+      end
+      object Separator18: TMenuItem
+        Caption = '-'
+      end
       object MenuItem_Catalogos: TMenuItem
         Caption = 'Arbol Catálogos'
         object MenuItem_Arbol_Catalogos_AutoOculta_Botones: TMenuItem
