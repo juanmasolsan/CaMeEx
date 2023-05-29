@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-04 22:47:21
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 23:40:50
+ * @Last Modified time: 2023-05-30 00:01:11
  *)
 {
 
@@ -140,6 +140,9 @@ var
 
   // Mostrar la barra de estado
   FVerBarraEstado                          : boolean = true;
+
+  // Idioma de la aplicacion
+  FIdioma                                  : string = 'es';
 
 function GetColorCatalogo(const Indice: integer; IsRoot : Boolean): TColor;
 

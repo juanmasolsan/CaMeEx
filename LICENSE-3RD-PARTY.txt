@@ -272,6 +272,46 @@ License: Free for commercial use ()
 Download date: 2023-05-18
 
 
+Designer: Mayosoft (http://mayosoft.deviantart.com)
+Iconpack: I'm not a Patriot Icons (34 icons)
+License: Free for non-commercial use.
+Commercial usage: Not allowed
+More Infos: readme.txt
+
+I'm not a Patriot by Mayosoft®
+
+All content in this zip file, included icons & preview are copyrighted by me. They are for personal use.
+If you are interested in uploading these pack I'd like you to advice me.
+You may not sell them or use them for profit in any way.
+Do not take credit of these icons.
+If you have any question about these or any of my creations please e-mail me mayosoft@gmail.com
+
+Enjoy it!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Todo el contenido del archivo zip, incluídos los iconos y la portada poseen derechos reservados. Sólo para uso personal.
+Si deseas publicarlo en tu sitio web, me gustaría recibir tu peticion.
+No venderlos o lucrar con ellos de ninguna manera.
+No adjudicarse el crédito de la creación de estos iconos.
+Si tienes alguna pregunta acerca de mis creaciones envíame un e-mail a mayosoft@gmail.com
+
+Disfrutenlos!!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+PNG: 256x256 pixels
+ICO: 128x128 pixels
+34 icons included
+
+
+::Made in Hermosillo, México::
+
+Visit:
+http://www.mayosoft.net
+http://mayosoft.deviantart.com
+
+..::Mayosoft::..
+
+
 ---------------------------------------------------------------------
 DarkMode
 https://github.com/zamtmn/metadarkstyle.git

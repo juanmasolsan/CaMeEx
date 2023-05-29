@@ -1,0 +1,980 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: appstring.message_archivos
+msgid "Archivos :"
+msgstr "Files :"
+
+#: appstring.message_asistente_nuevo_catalogo_cerrar
+msgid "Cerrar"
+msgstr "Close"
+
+#: appstring.message_asistente_nuevo_catalogo_cuerpo_guardando
+msgid ""
+"Se están guardando los datos del análisis, esto puede tardar un poco."
+"\\r\\rPor favor espere."
+msgstr ""
+"The analysis data is being saved, this may take a while.\\r\\r.Please wait."
+
+#: appstring.message_asistente_nuevo_catalogo_guardar
+msgctxt "appstring.message_asistente_nuevo_catalogo_guardar"
+msgid "Guardar"
+msgstr "Save"
+
+#: appstring.message_asistente_nuevo_catalogo_siguiente
+msgctxt "appstring.message_asistente_nuevo_catalogo_siguiente"
+msgid "Siguiente"
+msgstr "Next"
+
+#: appstring.message_asistente_nuevo_catalogo_tipo_medio_carpeta
+msgid "Seleccionar Carpeta ..."
+msgstr "Select Folder ..."
+
+#: appstring.message_asistente_nuevo_catalogo_tipo_medio_dvd
+msgid "Unidad DVD/CD/BD"
+msgstr "DVD/CD/BD drive"
+
+#: appstring.message_asistente_nuevo_catalogo_tipo_medio_hdd
+msgid "Disco Duro/SSD"
+msgstr "Hard Disk Drive/SSD"
+
+#: appstring.message_asistente_nuevo_catalogo_tipo_medio_ram
+msgid "Unidad RAM Disk"
+msgstr "RAM Disk Unit"
+
+#: appstring.message_asistente_nuevo_catalogo_tipo_medio_red
+msgid "Unidad de Red"
+msgstr "Network Unit"
+
+#: appstring.message_asistente_nuevo_catalogo_tipo_medio_usb
+msgid "Unidad USB"
+msgstr "USB drive"
+
+#: appstring.message_asistente_nuevo_catalogo_titulo
+msgid "Añadir nuevo catalogo"
+msgstr "Add new catalog"
+
+#: appstring.message_asistente_nuevo_catalogo_titulo_cancelar
+msgid "Se ha cancelado la operación ..."
+msgstr "The operation has been cancelled ..."
+
+#: appstring.message_asistente_nuevo_catalogo_titulo_escanear_medio
+msgid "Analizando el medio seleccionado ..."
+msgstr "Analyzing the selected medium ..."
+
+#: appstring.message_asistente_nuevo_catalogo_titulo_guardando
+msgid "Guardando los datos del análisis ..."
+msgstr "Saving the analysis data ..."
+
+#: appstring.message_asistente_nuevo_catalogo_titulo_guardar
+msgid "Guardar datos del análisis ..."
+msgstr "Save analysis data ..."
+
+#: appstring.message_asistente_nuevo_catalogo_titulo_selector_medio
+msgid "Datos básicos ..."
+msgstr "Basic data ..."
+
+#: appstring.message_asistente_search
+msgctxt "appstring.message_asistente_search"
+msgid "Búsqueda Avanzada"
+msgstr "Advanced Search"
+
+#: appstring.message_atencion
+msgid "Atención"
+msgstr "Attention"
+
+#: appstring.message_atributos
+msgctxt "appstring.message_atributos"
+msgid "Atributos"
+msgstr "Attributes"
+
+#: appstring.message_calculando
+msgid "Calculando ..."
+msgstr "Calculating ..."
+
+#: appstring.message_catalogo
+msgid "Catalogo de Medio Extraible"
+msgstr "Removable Media Catalog"
+
+#: appstring.message_contiene
+#, object-pascal-format
+msgid "%s Archivos y %s Carpetas "
+msgstr "%s Files and %s Folders "
+
+#: appstring.message_directorios
+msgid "Directorios :"
+msgstr "Directories :"
+
+#: appstring.message_dlg_cancelar_escaneo
+msgid "Escaneo en progreso.\\r¿Realmente quiere cancelar el escaneo actual?"
+msgstr "Scan in progress.\\rDo you really want to cancel the current scan?"
+
+#: appstring.message_eliminar_all_catalogos
+#, object-pascal-format
+msgid ""
+"¿Realmente quiere eliminar todos los catalogos?\\r\\rEsta acción no se puede "
+"deshacer.\\r\\rSe eliminaran todos los catalogos y sus datos asociados."
+"\\r\\rPregunta (%u/2)"
+msgstr ""
+"Do you really want to delete all catalogs?\\r\\rThis action cannot be undone."
+"\\r\\r All catalogs and their associated data will be deleted\\r\\rQuestion "
+"(%u/2)"
+
+#: appstring.message_eliminar_catalogo
+#, object-pascal-format
+msgid ""
+"¿Realmente quiere eliminar el catalogo \"%s\"?\\r\\rEsta acción no se puede "
+"deshacer."
+msgstr ""
+"Do you really want to delete the catalog \"%s\"?\\r\\rThis action cannot be "
+"undone."
+
+#: appstring.message_eliminar_datos
+msgid ""
+"¿Realmente quiere eliminar el item(s) seleccionado(s)?\\r\\rEsta acción no "
+"se puede deshacer."
+msgstr ""
+"Do you really want to delete the catalog \"%s\"?\\r\\rThis action cannot be "
+"undone."
+
+#: appstring.message_espera_eliminar_archivos
+msgid "Se están eliminando los datos solicitados ..."
+msgstr "The requested data are being deleted ..."
+
+#: appstring.message_espera_eliminar_catalogo
+msgid "Se está eliminando el catalogo seleccionado ..."
+msgstr "The selected catalog is being deleted ..."
+
+#: appstring.message_espera_eliminar_catalogo_all
+msgid "Se están eliminando todos los datos almacenados ..."
+msgstr "All stored data is being deleted ..."
+
+#: appstring.message_espera_eliminar_titulo
+msgid "Eliminando datos"
+msgstr "Deleting data"
+
+#: appstring.message_estadisticas
+#, object-pascal-format
+msgid ""
+"%s directorio(s) y %s archivo(s) con %s elementos en total y ocupando %s  "
+"(%s bytes) - Tiempo empleado :  %s  ms"
+msgstr ""
+"%s directory(s) and %s file(s) with %s elements in total and occupying %s "
+"(%s bytes) - Time spent : %s ms"
+
+#: appstring.message_excepcion_detectada
+msgid "Excepción Detectada"
+msgstr "Exception Detected"
+
+#: appstring.message_exportacion_atributos
+msgid "Atributos  :"
+msgstr "Attributes :"
+
+#: appstring.message_exportacion_espera_info
+msgid "Se están exportando los datos solicitados ..."
+msgstr "The requested data are being exported ..."
+
+#: appstring.message_exportacion_espera_titulo
+msgid "Exportando datos"
+msgstr "Exporting data"
+
+#: appstring.message_exportacion_fecha
+msgid "Modificado :"
+msgstr "Modified :"
+
+#: appstring.message_exportacion_generado_por
+msgid "Generado por :"
+msgstr "Generated by :"
+
+#: appstring.message_exportacion_nombre
+msgid "Nombre     :"
+msgstr "Name :"
+
+#: appstring.message_exportacion_ruta
+msgid "Ruta       :"
+msgstr "Route :"
+
+#: appstring.message_exportacion_size
+msgid "Tamaño     :"
+msgstr "Size :"
+
+#: appstring.message_exportacion_tipo
+msgid "Tipo       :"
+msgstr "Type :"
+
+#: appstring.message_exportacion_titulo
+msgid "Exportación Generada por :"
+msgstr "Export Generated by :"
+
+#: appstring.message_guardando
+msgid "Guardando datos ..."
+msgstr "Saving data ..."
+
+#: appstring.message_propiedades_de
+msgid "Propiedades de :"
+msgstr "Properties of :"
+
+#: appstring.message_tiempo_empleado
+msgid "Tiempo empleado :"
+msgstr "Time spent :"
+
+#: appstring.message_tiempo_escaneo
+msgid "Tiempo de escaneo      :"
+msgstr "Scan time :"
+
+#: appstring.message_tiempo_guardado
+msgid "Tiempo en guardar    :"
+msgstr "Time to save :"
+
+#: appstring.message_total_archivos
+msgid "Total Archivos         :"
+msgstr "Total Files :"
+
+#: appstring.message_total_directorios
+msgid "Total Directorios      :"
+msgstr "Total Directories :"
+
+#: appstring.message_total_size
+msgid "Total tamaño detectado :"
+msgstr "Total size detected :"
+
+#: control_cajon_busqueda.buscar_cajon_texto
+msgid "Buscar..."
+msgstr "Search…"
+
+#: tformloading.caption
+msgid "Espere ..."
+msgstr "Wait ..."
+
+#: tformloading.labelmensaje.caption
+msgctxt "tformloading.labelmensaje.caption"
+msgid "Se está realizando una acción."
+msgstr "An action is in progress."
+
+#: tformloading.labeltitulo.caption
+msgctxt "tformloading.labeltitulo.caption"
+msgid "Por favor espere..."
+msgstr "Please wait..."
+
+#: tform_about.caption
+msgid "Acerca de"
+msgstr "About"
+
+#: tform_about.label3.caption
+msgid "Web : "
+msgstr "Web : "
+
+#: tform_about.label4.caption
+msgid "Email : "
+msgstr "Email : "
+
+#: tform_addcatalogo.button_atras.caption
+msgid "Atrás"
+msgstr "Back"
+
+#: tform_addcatalogo.button_cancelar.caption
+msgctxt "tform_addcatalogo.button_cancelar.caption"
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: tform_addcatalogo.button_siguiente.caption
+msgctxt "tform_addcatalogo.button_siguiente.caption"
+msgid "Siguiente"
+msgstr "Next"
+
+#: tform_addcatalogo.caption
+msgid "Añadir nuevo catalogo "
+msgstr "Add new catalog "
+
+#: tform_addcatalogo.label_titulo_asistente_add.caption
+msgid "Label_Titulo_Asistente_Add"
+msgstr "Label_Titulo_Asistente_Add"
+
+#: tform_addcatalogo.tabsheet_cancelado.caption
+msgid "Cancelado"
+msgstr "Canceled"
+
+#: tform_addcatalogo.tabsheet_guardar.caption
+msgctxt "tform_addcatalogo.tabsheet_guardar.caption"
+msgid "Guardar"
+msgstr "Save"
+
+#: tform_addcatalogo.tabsheet_scan.caption
+msgid "Scan"
+msgstr "Scan"
+
+#: tform_addcatalogo.tabsheet_selecionarmedio.caption
+msgid "SelecionarMedio"
+msgstr "SelecionarMedio"
+
+#: tform_principal.arbol.header.columns[0].text
+msgctxt "tform_principal.arbol.header.columns[0].text"
+msgid "Catálogos"
+msgstr "Catalogs"
+
+#: tform_principal.barra_herramientas.caption
+msgctxt "tform_principal.barra_herramientas.caption"
+msgid "Barra_Herramientas"
+msgstr "Barra_Herramientas"
+
+#: tform_principal.caption
+msgid "Form_Principal"
+msgstr "Form_Principal"
+
+#: tform_principal.exportar.caption
+msgctxt "tform_principal.exportar.caption"
+msgid "Exportar como ..."
+msgstr "Export as ..."
+
+#: tform_principal.lista.header.columns[0].text
+msgctxt "tform_principal.lista.header.columns[0].text"
+msgid "Nombre"
+msgstr "Name"
+
+#: tform_principal.lista.header.columns[1].text
+msgctxt "tform_principal.lista.header.columns[1].text"
+msgid "Tamaño"
+msgstr "Size"
+
+#: tform_principal.lista.header.columns[2].text
+msgctxt "tform_principal.lista.header.columns[2].text"
+msgid "Tipo"
+msgstr "Type"
+
+#: tform_principal.lista.header.columns[3].text
+msgctxt "tform_principal.lista.header.columns[3].text"
+msgid "Modificado"
+msgstr "Modified"
+
+#: tform_principal.lista.header.columns[4].text
+msgctxt "tform_principal.lista.header.columns[4].text"
+msgid "Atributos"
+msgstr "Attributes"
+
+#: tform_principal.lista.header.columns[5].text
+msgctxt "tform_principal.lista.header.columns[5].text"
+msgid "Ruta"
+msgstr "Path"
+
+#: tform_principal.menuitemacercade.caption
+msgctxt "tform_principal.menuitemacercade.caption"
+msgid "Acerca de..."
+msgstr "About..."
+
+#: tform_principal.menuitemagregarcatalogo.caption
+msgctxt "tform_principal.menuitemagregarcatalogo.caption"
+msgid "Agregar Catalogo"
+msgstr "Add Catalog"
+
+#: tform_principal.menuitemarchivo.caption
+msgctxt "tform_principal.menuitemarchivo.caption"
+msgid "Archivo"
+msgstr "File"
+
+#: tform_principal.menuitemayuda.caption
+msgctxt "tform_principal.menuitemayuda.caption"
+msgid "Ayuda"
+msgstr "Help"
+
+#: tform_principal.menuitembarrabusqueda.caption
+msgid "Barra Búsqueda"
+msgstr "Search bar"
+
+#: tform_principal.menuitembarraestado.caption
+msgid "Barra Estado"
+msgstr "Bar Status"
+
+#: tform_principal.menuitembarraherramientas.caption
+msgid "Barra Herramientas"
+msgstr "Toolbar"
+
+#: tform_principal.menuitembusquedaavanzada.caption
+msgctxt "tform_principal.menuitembusquedaavanzada.caption"
+msgid "Búsqueda Avanzada"
+msgstr "Advanced Search"
+
+#: tform_principal.menuitemeditar.caption
+msgctxt "tform_principal.menuitemeditar.caption"
+msgid "Editar"
+msgstr "Edit"
+
+#: tform_principal.menuitemeliminar.caption
+msgctxt "tform_principal.menuitemeliminar.caption"
+msgid "Eliminar"
+msgstr "Delete"
+
+#: tform_principal.menuitemenglish.caption
+msgid "Inglés"
+msgstr "English"
+
+#: tform_principal.menuitemexportar.caption
+msgctxt "tform_principal.menuitemexportar.caption"
+msgid "Exportar como ..."
+msgstr "Export as ..."
+
+#: tform_principal.menuitemexportarhtml.caption
+msgid "Exportar a html"
+msgstr "Export to html"
+
+#: tform_principal.menuitemexportarpopuphtml.caption
+msgid "Exportar a Html"
+msgstr "Export to Html"
+
+#: tform_principal.menuitemexportarpopuptxt.caption
+msgid "Exportar a Txt"
+msgstr "Export to Txt"
+
+#: tform_principal.menuitemexportartxt.caption
+msgid "Exportar a txt"
+msgstr "Export to txt"
+
+#: tform_principal.menuitemidioma.caption
+msgid "Idioma"
+msgstr "Language"
+
+#: tform_principal.menuitemmostrar.caption
+msgid "Mostrar"
+msgstr "Show"
+
+#: tform_principal.menuitemnuevabasedatos.caption
+msgctxt "tform_principal.menuitemnuevabasedatos.caption"
+msgid "Nueva Base de Datos"
+msgstr "New Database"
+
+#: tform_principal.menuitempropiedades.caption
+msgctxt "tform_principal.menuitempropiedades.caption"
+msgid "Propiedades"
+msgstr "Properties"
+
+#: tform_principal.menuitemsalir.caption
+msgctxt "tform_principal.menuitemsalir.caption"
+msgid "Salir"
+msgstr "Exit"
+
+#: tform_principal.menuitemspahish.caption
+msgid "Español"
+msgstr "Spanish"
+
+#: tform_principal.menuitemver.caption
+msgctxt "tform_principal.menuitemver.caption"
+msgid "Ver"
+msgstr "View"
+
+#: tform_principal.menuitem_arbol_catalogos_autooculta_botones.caption
+msgctxt "tform_principal.menuitem_arbol_catalogos_autooculta_botones.caption"
+msgid "Auto Ocultar Botones"
+msgstr "Auto Hide Buttons"
+
+#: tform_principal.menuitem_arbol_catalogos_ver_lineas_punteadas.caption
+msgctxt "tform_principal.menuitem_arbol_catalogos_ver_lineas_punteadas.caption"
+msgid "Lineas del arbol punteadas"
+msgstr "Dotted tree lines"
+
+#: tform_principal.menuitem_arbol_catalogo_botones_modernos.caption
+msgctxt "tform_principal.menuitem_arbol_catalogo_botones_modernos.caption"
+msgid "Ver Botones Modernos"
+msgstr "See Modern Buttons"
+
+#: tform_principal.menuitem_arbol_catalogo_ver_lineas.caption
+msgctxt "tform_principal.menuitem_arbol_catalogo_ver_lineas.caption"
+msgid "Ver Lineas del Arbol"
+msgstr "View Tree Lines"
+
+#: tform_principal.menuitem_catalogos.caption
+msgctxt "tform_principal.menuitem_catalogos.caption"
+msgid "Arbol Catálogos"
+msgstr "Catalogs Tree"
+
+#: tform_principal.menuitem_catalogos_color.caption
+msgctxt "tform_principal.menuitem_catalogos_color.caption"
+msgid "Activar color de fondo"
+msgstr "Activate background color"
+
+#: tform_principal.menuitem_catalogos_mostrar_info_extra.caption
+msgctxt "tform_principal.menuitem_catalogos_mostrar_info_extra.caption"
+msgid "Mostrar información extra"
+msgstr "Show extra information"
+
+#: tform_principal.menuitem_iconos.caption
+msgctxt "tform_principal.menuitem_iconos.caption"
+msgid "Iconos"
+msgstr "Icons"
+
+#: tform_principal.menuitem_iconos_mixto.caption
+msgctxt "tform_principal.menuitem_iconos_mixto.caption"
+msgid "Mixto"
+msgstr "Mixed"
+
+#: tform_principal.menuitem_iconos_pordefecto.caption
+msgctxt "tform_principal.menuitem_iconos_pordefecto.caption"
+msgid "Por Defecto"
+msgstr "Default"
+
+#: tform_principal.menuitem_iconos_sistema.caption
+msgctxt "tform_principal.menuitem_iconos_sistema.caption"
+msgid "Sistema"
+msgstr "System"
+
+#: tform_principal.menuitem_lista_de_archivos.caption
+msgctxt "tform_principal.menuitem_lista_de_archivos.caption"
+msgid "Lista de Archivos"
+msgstr "File List"
+
+#: tform_principal.menuitem_lista_de_archivos_resaltar_columna_orden.caption
+msgctxt ""
+"tform_principal.menuitem_lista_de_archivos_resaltar_columna_orden.caption"
+msgid "Resaltar Orden Columna"
+msgstr "Highlight Column Order"
+
+#: tform_principal.menuitem_perfiles.caption
+msgctxt "tform_principal.menuitem_perfiles.caption"
+msgid "Perfiles"
+msgstr "Profiles"
+
+#: tform_principal.menuitem_perfil_mixto.caption
+msgctxt "tform_principal.menuitem_perfil_mixto.caption"
+msgid "Mixto"
+msgstr "Mixed"
+
+#: tform_principal.menuitem_perfil_moderno.caption
+msgctxt "tform_principal.menuitem_perfil_moderno.caption"
+msgid "Moderno"
+msgstr "Modern"
+
+#: tform_principal.menuitem_perfil_pordefecto.caption
+msgctxt "tform_principal.menuitem_perfil_pordefecto.caption"
+msgid "Por Defecto"
+msgstr "Default"
+
+#: tform_principal.menuitem_perfil_retro.caption
+msgctxt "tform_principal.menuitem_perfil_retro.caption"
+msgid "Retro"
+msgstr "Retro"
+
+#: tform_principal.menuitem_sizes.caption
+msgctxt "tform_principal.menuitem_sizes.caption"
+msgid "Formato Tamaño archivos"
+msgstr "Format File size"
+
+#: tform_principal.menuitem_size_automatico.caption
+msgctxt "tform_principal.menuitem_size_automatico.caption"
+msgid "Automático (1.23 GB)"
+msgstr "Automatic (1.23 GB)"
+
+#: tform_principal.menuitem_size_normal.caption
+msgctxt "tform_principal.menuitem_size_normal.caption"
+msgid "Normal (1234567890)"
+msgstr "Normal (1234567890)"
+
+#: tform_principal.menuitem_size_punteada.caption
+msgctxt "tform_principal.menuitem_size_punteada.caption"
+msgid "Punteada (1.234.567.890)"
+msgstr "Dotted (1.234.567.890)"
+
+#: tform_principal.menuitem_ver_colores_atributos.caption
+msgctxt "tform_principal.menuitem_ver_colores_atributos.caption"
+msgid "Usar colores para diferenciar los archivos"
+msgstr "Use colors to differentiate files"
+
+#: tform_principal.menupopupitemagregarcatalogo.caption
+msgctxt "tform_principal.menupopupitemagregarcatalogo.caption"
+msgid "Agregar Catalogo"
+msgstr "Add Catalog"
+
+#: tform_principal.menupopupitemeliminar.caption
+msgctxt "tform_principal.menupopupitemeliminar.caption"
+msgid "Eliminar"
+msgstr "Delete"
+
+#: tform_principal.menupopupitemnuevabasedatos.caption
+msgctxt "tform_principal.menupopupitemnuevabasedatos.caption"
+msgid "Nueva Base de Datos"
+msgstr "New Database"
+
+#: tform_principal.menupopupitempropiedades.caption
+msgctxt "tform_principal.menupopupitempropiedades.caption"
+msgid "Propiedades"
+msgstr "Properties"
+
+#: tform_principal.toolbuttonagregarcatalogo.caption
+msgctxt "tform_principal.toolbuttonagregarcatalogo.caption"
+msgid "Agregar Catalogo"
+msgstr "Add Catalog"
+
+#: tform_principal.toolbuttonbusquedaavanzada.caption
+msgctxt "tform_principal.toolbuttonbusquedaavanzada.caption"
+msgid "Búsqueda Avanzada"
+msgstr "Advanced Search"
+
+#: tform_principal.toolbuttoneliminar.caption
+msgctxt "tform_principal.toolbuttoneliminar.caption"
+msgid "Eliminar"
+msgstr "Delete"
+
+#: tform_principal.toolbuttonpropiedades.caption
+msgctxt "tform_principal.toolbuttonpropiedades.caption"
+msgid "Propiedades"
+msgstr "Properties"
+
+#: tform_propiedades.button_aceptar.caption
+msgctxt "tform_propiedades.button_aceptar.caption"
+msgid "Aceptar"
+msgstr "Accept"
+
+#: tform_propiedades.button_aplicar.caption
+msgctxt "tform_propiedades.button_aplicar.caption"
+msgid "Aplicar"
+msgstr "Apply"
+
+#: tform_propiedades.button_cancelar.caption
+msgctxt "tform_propiedades.button_cancelar.caption"
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: tform_propiedades.caption
+msgid "Propiedades de : "
+msgstr "Properties of : "
+
+#: tform_propiedades.edit_nombre.text
+msgctxt "tform_propiedades.edit_nombre.text"
+msgid "Edit_Nombre"
+msgstr "Edit_Nombre"
+
+#: tform_propiedades.edit_nombre_error.caption
+msgctxt "tform_propiedades.edit_nombre_error.caption"
+msgid "Esta campo es obligatorio y no puede estar vacio."
+msgstr "This field is mandatory and cannot be empty."
+
+#: tform_propiedades.label1.caption
+msgid "Tipo de archivo : "
+msgstr "File type : "
+
+#: tform_propiedades.label2.caption
+msgid "Ubicación : "
+msgstr "Location : "
+
+#: tform_propiedades.label3.caption
+msgid "Tamaño : "
+msgstr "Size : "
+
+#: tform_propiedades.label5.caption
+msgid "Contiene : "
+msgstr "Contains : "
+
+#: tform_propiedades.label6.caption
+msgid "Descripción : "
+msgstr "Description : "
+
+#: tform_propiedades.label_contiene.caption
+msgctxt "tform_propiedades.label_contiene.caption"
+msgid "Label_Tipo_Archivo"
+msgstr "Label_Tipo_Archivo"
+
+#: tform_propiedades.label_extra_size.caption
+msgctxt "tform_propiedades.label_extra_size.caption"
+msgid "Label_Tipo_Archivo"
+msgstr "Label_Tipo_Archivo"
+
+#: tform_propiedades.label_tipo_archivo.caption
+msgctxt "tform_propiedades.label_tipo_archivo.caption"
+msgid "Label_Tipo_Archivo"
+msgstr "Label_Tipo_Archivo"
+
+#: tform_propiedades.tabsheet1.caption
+msgctxt "tform_propiedades.tabsheet1.caption"
+msgid "Propiedades"
+msgstr "Properties"
+
+#: tframe_atributos.checkbox_attr_oculto.caption
+msgid "Oculto"
+msgstr "Hidden"
+
+#: tframe_atributos.checkbox_attr_sistema.caption
+msgctxt "tframe_atributos.checkbox_attr_sistema.caption"
+msgid "Sistema"
+msgstr "System"
+
+#: tframe_atributos.checkbox_attr_solo_lectura.caption
+msgid "Sólo Lectura"
+msgstr "Reading Only"
+
+#: tframe_atributos.checkbox_fecha_acceso.caption
+msgid "Accedido"
+msgstr "Accessed at"
+
+#: tframe_atributos.checkbox_fecha_creacion.caption
+msgid "Creado"
+msgstr "Created"
+
+#: tframe_atributos.checkbox_fecha_modificado.caption
+msgctxt "tframe_atributos.checkbox_fecha_modificado.caption"
+msgid "Modificado"
+msgstr "Modified"
+
+#: tframe_atributos.groupbox_atributo_tiempo.caption
+msgid " Propiedades Fechas "
+msgstr " Properties Dates "
+
+#: tframe_atributos.groupbox_atributo_windows.caption
+msgid " Propiedades Atributos "
+msgstr " Properties Attributes "
+
+#: tframe_atributos.label_fecha_acceso.caption
+msgid "Label_Fecha_Acceso"
+msgstr "Label_Fecha_Acceso"
+
+#: tframe_atributos.label_fecha_creacion.caption
+msgid "Label_Fecha_Creacion"
+msgstr "Label_Fecha_Creacion"
+
+#: tframe_atributos.label_fecha_modificado.caption
+msgid "Label_Fecha_Modificado"
+msgstr "Label_Fecha_Modificado"
+
+#: tframe_busqueda.bitbtnbusqueda.caption
+msgctxt "tframe_busqueda.bitbtnbusqueda.caption"
+msgid "Buscar"
+msgstr "Search"
+
+#: tframe_busqueda.checkboxfechadesde.caption
+msgid "Fecha desde : "
+msgstr "Date from : "
+
+#: tframe_busqueda.checkboxfechahasta.caption
+msgid "Fecha hasta : "
+msgstr "Date to : "
+
+#: tframe_busqueda.checkboxsizedesde.caption
+msgctxt "tframe_busqueda.checkboxsizedesde.caption"
+msgid "Tamaño desde : "
+msgstr "Size from : "
+
+#: tframe_busqueda.checkboxsizehasta.caption
+msgctxt "tframe_busqueda.checkboxsizehasta.caption"
+msgid "Tamaño desde : "
+msgstr "Size from : "
+
+#: tframe_busqueda.comboboxdispositivos.texthint
+msgctxt "tframe_busqueda.comboboxdispositivos.texthint"
+msgid "Seleccione un dispositivo..."
+msgstr "Select a device..."
+
+#: tframe_busqueda.datetimepickerdesde.textfornulldate
+msgctxt "tframe_busqueda.datetimepickerdesde.textfornulldate"
+msgid "NULL"
+msgstr "NULL"
+
+#: tframe_busqueda.datetimepickerhasta.textfornulldate
+msgctxt "tframe_busqueda.datetimepickerhasta.textfornulldate"
+msgid "NULL"
+msgstr "NULL"
+
+#: tframe_busqueda.edittexto.texthint
+msgid "Escriba el texto que quiere encontrar ..."
+msgstr "Type the text you want to find ..."
+
+#: tframe_busqueda.edit_fechadesde_error.caption
+msgid "Tienen que ser menor que fecha hasta."
+msgstr "They have to be less than date up to."
+
+#: tframe_busqueda.edit_fechahasta_error.caption
+msgid "Tienen que ser mayor que fecha desde."
+msgstr "They have to be greater than date since."
+
+#: tframe_busqueda.edit_sizedesde_error.caption
+msgctxt "tframe_busqueda.edit_sizedesde_error.caption"
+msgid "Tienen que ser menor que tamaño hasta."
+msgstr "They have to be smaller than size up to."
+
+#: tframe_busqueda.edit_sizehasta_error.caption
+msgctxt "tframe_busqueda.edit_sizehasta_error.caption"
+msgid "Tienen que ser mayor que tamaño desde."
+msgstr "They have to be larger than size since."
+
+#: tframe_busqueda.labelcatalogo.caption
+msgid "Catalogo"
+msgstr "Catalog"
+
+#: tframe_busqueda.labeltexto.caption
+msgctxt "tframe_busqueda.labeltexto.caption"
+msgid "Texto : "
+msgstr "Text : "
+
+#: tframe_cancelado.label1.caption
+msgctxt "tframe_cancelado.label1.caption"
+msgid ""
+"El usuario ha cancelado la acción o se ha producido un error inesperado."
+msgstr "The user has cancelled the action or an unexpected error has occurred."
+
+#: tframe_scan.label1.caption
+msgctxt "tframe_scan.label1.caption"
+msgid "Por favor espere, escaneo en progreso..."
+msgstr "Please wait, scanning in progress..."
+
+#: tframe_scan.label2.caption
+msgctxt "tframe_scan.label2.caption"
+msgid ""
+"Dependiendo de la velocidad del medio puede que termine rápido o por el "
+"contrario tarde más. Sea paciente."
+msgstr ""
+"Depending on the speed of the medium, you may finish quickly or it may take "
+"longer. Be patient."
+
+#: tframe_scan.label3.caption
+msgctxt "tframe_scan.label3.caption"
+msgid "Procesando :"
+msgstr "Processing :"
+
+#: tframe_scan.label_tiempo.caption
+msgctxt "tframe_scan.label_tiempo.caption"
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: tframe_scan.label_total_archivos.caption
+msgctxt "tframe_scan.label_total_archivos.caption"
+msgid "0"
+msgstr "0"
+
+#: tframe_scan.label_total_archivos.hint
+msgctxt "tframe_scan.label_total_archivos.hint"
+msgid "Total archivos encontrados."
+msgstr "Total files found."
+
+#: tframe_scan.label_total_carpetas.caption
+msgctxt "tframe_scan.label_total_carpetas.caption"
+msgid "0"
+msgstr "0"
+
+#: tframe_scan.label_total_carpetas.hint
+msgctxt "tframe_scan.label_total_carpetas.hint"
+msgid "Total carpetas encontradas."
+msgstr "Total folders found."
+
+#: tframe_scan.label_total_size.caption
+msgctxt "tframe_scan.label_total_size.caption"
+msgid "0"
+msgstr "0"
+
+#: tframe_scan.label_total_size.hint
+msgctxt "tframe_scan.label_total_size.hint"
+msgid "Total tamaño procesado."
+msgstr "Total processed size."
+
+#: tframe_scan.speedbuttoncancelar.caption
+msgctxt "tframe_scan.speedbuttoncancelar.caption"
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: tframe_selecionarmedio.buttonseleccionarruta.caption
+msgid "..."
+msgstr "..."
+
+#: tframe_selecionarmedio.comboboxdispositivos.texthint
+msgctxt "tframe_selecionarmedio.comboboxdispositivos.texthint"
+msgid "Seleccione un dispositivo..."
+msgstr "Select a device..."
+
+#: tframe_selecionarmedio.combodispositivo_error.caption
+msgid "Seleccione una opción."
+msgstr "Select an option."
+
+#: tframe_selecionarmedio.editruta.texthint
+msgid "La ruta que se va a analizar."
+msgstr "The path to be analyzed."
+
+#: tframe_selecionarmedio.editruta_error.caption
+msgctxt "tframe_selecionarmedio.editruta_error.caption"
+msgid "Esta campo es obligatorio y no puede estar vacio."
+msgstr "This field is mandatory and cannot be empty."
+
+#: tframe_selecionarmedio.edit_nombre.texthint
+msgid "Escriba un nombre para poder identifificar el catálogo"
+msgstr "Enter a name to identify the catalog"
+
+#: tframe_selecionarmedio.edit_nombre_error.caption
+msgctxt "tframe_selecionarmedio.edit_nombre_error.caption"
+msgid "Esta campo es obligatorio y no puede estar vacio."
+msgstr "This field is mandatory and cannot be empty."
+
+#: tframe_selecionarmedio.label1.caption
+msgid "Datos básicos para poder realizar el análiss del medio."
+msgstr "Basic data to be able to perform the analysis of the medium."
+
+#: tframe_selecionarmedio.label11.caption
+msgid "\\dato\\"
+msgstr "\\data\\"
+
+#: tframe_selecionarmedio.label13.caption
+msgid "\\dato\\*.7z"
+msgstr "\\data\\*.7z"
+
+#: tframe_selecionarmedio.label14.caption
+msgid "\\dato\\archivo.7z"
+msgstr "\\data\\fiile.7z"
+
+#: tframe_selecionarmedio.label16.caption
+msgid "Todo el directorio"
+msgstr "The entire directory"
+
+#: tframe_selecionarmedio.label18.caption
+msgid "Todo el directorio."
+msgstr "The entire directory."
+
+#: tframe_selecionarmedio.label19.caption
+msgid "Solo los archivos 7z."
+msgstr "Only 7z files."
+
+#: tframe_selecionarmedio.label2.caption
+msgid "Nombre :"
+msgstr "Name :"
+
+#: tframe_selecionarmedio.label20.caption
+msgid "Solo el archivo indicado."
+msgstr "Only the indicated file."
+
+#: tframe_selecionarmedio.label21.caption
+msgid "Archivos/Carpetas Excluidos : "
+msgstr "Excluded Files/Folders : "
+
+#: tframe_selecionarmedio.label23.caption
+msgid "La forma aceptada de excluir archivos y directorios."
+msgstr "The accepted way to exclude files and directories."
+
+#: tframe_selecionarmedio.label27.caption
+msgid "*.log"
+msgstr "*.log"
+
+#: tframe_selecionarmedio.label28.caption
+msgid "Todos los archivos log"
+msgstr "All log files"
+
+#: tframe_selecionarmedio.label3.caption
+msgid "Descripción :"
+msgstr "Description :"
+
+#: tframe_selecionarmedio.label4.caption
+msgctxt "tframe_selecionarmedio.label4.caption"
+msgid "Medio/Dispositivo:"
+msgstr "Media/Device:"
+
+#: tframe_selecionarmedio.label5.caption
+msgid "Ruta:"
+msgstr "Path:"
+
+#: tframe_selecionarmedio.label6.caption
+msgid "Excluir :"
+msgstr "Exclude :"
+
+#: tframe_selecionarmedio.label9.caption
+msgid "\\dato\\*.*"
+msgstr "\\data\\*.*"

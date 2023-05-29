@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-05-16 15:54:31
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-27 17:33:01
+ * @Last Modified time: 2023-05-30 00:21:59
  *)
 {
 
@@ -110,6 +110,7 @@ resourcestring
   Message_Exportacion_Espera_Titulo=  'Exportando datos';
   Message_Exportacion_Espera_Info  =  'Se están exportando los datos solicitados ...';
 
+  Buscar_Cajon_TExto               = 'Buscar...';
 
 
 

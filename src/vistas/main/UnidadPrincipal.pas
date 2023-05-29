@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 23:41:50
+ * @Last Modified time: 2023-05-30 00:17:40
  *)
 {
 
@@ -65,8 +65,8 @@ uses
   , ItemBaseDatos
   , ItemDato, ItemCatalogo, VirtualTreesExtras, ImgList
   , FrameBusqueda
-  , GestorExportacion;
-
+  , GestorExportacion
+;
 
 
 type
@@ -91,6 +91,9 @@ type
     ImageListArchivos: TImageList;
     ImageListToolbar: TImageList;
     Lista: TLazVirtualStringTree;
+    MenuItemEnglish: TMenuItem;
+    MenuItemSpahish: TMenuItem;
+    MenuItemIdioma: TMenuItem;
     MenuItemBarraEstado: TMenuItem;
     MenuItemBarraHerramientas: TMenuItem;
     MenuItemBarraBusqueda: TMenuItem;
@@ -158,7 +161,9 @@ type
     Separator16: TMenuItem;
     Separator17: TMenuItem;
     Separator18: TMenuItem;
+    Separator19: TMenuItem;
     Separator2: TMenuItem;
+    Separator20: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
     Separator5: TMenuItem;
@@ -217,11 +222,13 @@ type
     procedure MenuItemBarraHerramientasClick(Sender: TObject);
     procedure MenuItemBusquedaAvanzadaClick(Sender: TObject);
     procedure MenuItemEliminarClick(Sender: TObject);
+    procedure MenuItemEnglishClick(Sender: TObject);
     procedure MenuItemExportarHtmlClick(Sender: TObject);
     procedure MenuItemExportarTxtClick(Sender: TObject);
     procedure MenuItemNuevaBaseDatosClick(Sender: TObject);
     procedure MenuItemPropiedadesClick(Sender: TObject);
     procedure MenuItemSalirClick(Sender: TObject);
+    procedure MenuItemSpahishClick(Sender: TObject);
     procedure MenuItem_Arbol_Catalogos_AutoOculta_BotonesClick(Sender: TObject);
     procedure MenuItem_Arbol_Catalogos_Ver_Lineas_PunteadasClick(Sender: TObject
       );
@@ -395,6 +402,9 @@ type
 
     // Al cambiar de nodo actualiza el titulo de la ventana
     procedure DoArbolChangeTitle(Node: PVirtualNode);
+
+    // Cambia el idioma de la aplicación
+    procedure SetIdioma(Idioma : string);
 
   public
 
@@ -623,8 +633,12 @@ begin
   FVerBarraHerramientas     := ArchivoConfiguracion.ReadBool('Config', 'VerBarraHerramientas', FVerBarraHerramientas);
   FVerBarraEstado           := ArchivoConfiguracion.ReadBool('Config', 'VerBarraEstado', FVerBarraEstado);
 
+  // Idioma
+  FIdioma                   := ArchivoConfiguracion.ReadString('Config', 'Idioma', FIdioma);
 
-
+  // Si el idioma no se encuentra entre los idiomas disponibles, se pone el idioma por defecto
+  if (FIdioma <> 'es') and (FIdioma <> 'en') then
+    FIdioma := 'es';
 
   // Carga la configuración para diferenciar los archivos por colores
   FUsarColorDiferenciarArchivos:= ArchivoConfiguracion.ReadBool('Config', 'UsarColorDiferenciarArchivos', FUsarColorDiferenciarArchivos);
@@ -676,6 +690,9 @@ begin
   ArchivoConfiguracion.WriteBool('Config', 'VerBarraBusqueda', FVerBarraBusqueda);
   ArchivoConfiguracion.WriteBool('Config', 'VerBarraHerramientas', FVerBarraHerramientas);
   ArchivoConfiguracion.WriteBool('Config', 'VerBarraEstado', FVerBarraEstado);
+
+  // Idioma
+  ArchivoConfiguracion.WriteString('Config', 'Idioma', FIdioma);
 
 
   // Guarda la configuración para diferenciar los archivos por colores
@@ -732,6 +749,12 @@ begin
     PanelSuperior.Visible             := FVerBarraHerramientas;
     Barra_Estado.Visible              := FVerBarraEstado;
 
+    // Solo es usable cuando se vea la barra de herramientas
+    MenuItemBarraBusqueda.Enabled     := FVerBarraHerramientas;
+
+    // Idioma
+    SetIdioma(FIdioma);
+
 
     // Aplica la config a los menus
     MenuItem_Arbol_Catalogos_AutoOculta_Botones.Checked   := FAutoOcultarBotonesArbol;
@@ -743,7 +766,8 @@ begin
     MenuItemBarraHerramientas.Checked                     := FVerBarraHerramientas;
     MenuItemBarraEstado.Checked                           := FVerBarraEstado;
 
-
+    MenuItemEnglish.Checked                               := FIdioma = 'en';
+    MenuItemSpahish.Checked                               := FIdioma = 'es';
 
     // Aplica la configuración a los root del arbol
     DoAjustarNodosCatalogos();
@@ -2719,6 +2743,27 @@ begin
   SetTituloVentana(Ruta);
 end;
 
+procedure TForm_Principal.MenuItemEnglishClick(Sender: TObject);
+begin
+  SetIdioma('en');
+end;
 
+procedure TForm_Principal.MenuItemSpahishClick(Sender: TObject);
+begin
+  SetIdioma('es');
+end;
+
+// Cambia el idioma de la aplicación
+procedure TForm_Principal.SetIdioma(Idioma : string);
+begin
+  FIdioma := Idioma;
+
+  SetDefaultLang('');
+
+  SetDefaultLang(Idioma, Curdir + '/idioma', 'cameex.' + Idioma + '.po');
+
+  Self.FPanelBusqueda.EditBusqueda.TextHint := Buscar_Cajon_TExto;
+
+end;
 
 end.

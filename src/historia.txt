@@ -1,3 +1,9 @@
+
+
+
+- [NEW]   (20230530) Agregado Internalización de la app
+
++ 1.3.1.7
 - [FIX]   (20230528) Agregado licencia a los archivos que le faltaban
 - [NEW]   (20230528) Agregado mostrar/ocultar la barra de estado
 - [FIX]   (20230528) Ajustado el UpdateUI para detectar si se puede exportar o no

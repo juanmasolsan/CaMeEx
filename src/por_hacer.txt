@@ -207,7 +207,8 @@
 - Agregar temas oscuro y claro
 - Compilar para windows x86
 - Crear el diagrama de clases
-- Internalización de la app
++ Internalización de la app
+- Internalización de la app - Revisar cambio de idioma
 - Si se usa sqlcipher que tenga login para acceder a la base de datos
 - Agregar breadcrumbs.
 - Historial de navegación.
