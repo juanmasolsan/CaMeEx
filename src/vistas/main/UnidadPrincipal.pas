@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-30 00:17:40
+ * @Last Modified time: 2023-05-30 09:18:27
  *)
 {
 
@@ -754,7 +754,6 @@ begin
 
     // Idioma
     SetIdioma(FIdioma);
-
 
     // Aplica la config a los menus
     MenuItem_Arbol_Catalogos_AutoOculta_Botones.Checked   := FAutoOcultarBotonesArbol;
@@ -2756,14 +2755,18 @@ end;
 // Cambia el idioma de la aplicación
 procedure TForm_Principal.SetIdioma(Idioma : string);
 begin
+  // Asigna el idioma
   FIdioma := Idioma;
 
-  SetDefaultLang('');
+  // Traduce la aplicación
+  SetDefaultLang(Idioma, Curdir + 'idioma',  'cameex');
 
-  SetDefaultLang(Idioma, Curdir + '/idioma', 'cameex.' + Idioma + '.po');
+  // Traduce la barra de búsqueda
+  FPanelBusqueda.EditBusqueda.TextHint := Buscar_Cajon_TExto;
 
-  Self.FPanelBusqueda.EditBusqueda.TextHint := Buscar_Cajon_TExto;
 
+  // Inicializar el titulo del formulario
+  SetTituloVentana('');
 end;
 
 end.

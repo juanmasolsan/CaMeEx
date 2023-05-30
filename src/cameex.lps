@@ -68,8 +68,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="743"/>
-        <CursorPos X="48" Y="756"/>
+        <TopLine Value="2738"/>
+        <CursorPos X="38" Y="2760"/>
         <UsageCount Value="111"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -190,6 +190,15 @@
         <TopLine Value="66"/>
         <CursorPos X="31" Y="80"/>
         <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="components\Control_Cajon_Busqueda.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="106"/>
+        <CursorPos X="37" Y="115"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -784,141 +793,132 @@
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
         <UnitName Value="LCLTranslator"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="33"/>
-        <CursorPos X="50" Y="41"/>
+        <TopLine Value="585"/>
+        <CursorPos Y="611"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="components\Control_Cajon_Busqueda.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="106"/>
-        <CursorPos X="37" Y="115"/>
-        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2740" Column="39" TopLine="2725"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="767" Column="44" TopLine="51"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_Cajon_Busqueda.pas"/>
-        <Caret Line="97" Column="2" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_Cajon_Busqueda.pas"/>
-        <Caret Line="119" Column="38" TopLine="140"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_Cajon_Busqueda.pas"/>
-        <Caret Line="67" Column="3" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="components\Control_Cajon_Busqueda.pas"/>
-        <Caret Line="59" Column="20" TopLine="55"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2756" TopLine="2742"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2755" TopLine="2742"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2756" TopLine="2742"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2755" TopLine="2742"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2756" TopLine="2742"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2758" TopLine="2742"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2756" Column="29" TopLine="2742"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2755" Column="37" TopLine="2742"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2756" Column="35" TopLine="2741"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2755" TopLine="2741"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2756" TopLine="2741"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2755" TopLine="2741"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2756" Column="3" TopLine="2741"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="603" TopLine="586"/>
       </Position>
       <Position>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
-        <Caret Line="83" Column="10" TopLine="73"/>
+        <Caret Line="604" TopLine="586"/>
       </Position>
       <Position>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
-        <Caret Line="571" Column="3" TopLine="581"/>
+        <Caret Line="605" TopLine="586"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="609" TopLine="586"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="611" TopLine="586"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="612" TopLine="586"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="611" TopLine="586"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="613" TopLine="587"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="570" TopLine="553"/>
       </Position>
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2757" Column="21" TopLine="2741"/>
+        <Caret Line="2764" TopLine="2738"/>
       </Position>
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2755" TopLine="2741"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="570" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2759" TopLine="2742"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="571" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2755" TopLine="2742"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="572" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2751" Column="22" TopLine="2742"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="574" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="2752" Column="22" TopLine="2743"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="575" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="1137" Column="46" TopLine="1130"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="576" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="633" Column="117" TopLine="624"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="584" TopLine="557"/>
       </Position>
       <Position>
-        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
-        <Caret Line="691" Column="89" TopLine="675"/>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="585" TopLine="559"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="587" TopLine="561"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="588" TopLine="562"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="574" TopLine="562"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="596" TopLine="580"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="598" TopLine="580"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="599" TopLine="580"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="601" TopLine="580"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="603" TopLine="580"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="604" TopLine="580"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="605" TopLine="580"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="609" TopLine="583"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\lcltranslator.pas"/>
+        <Caret Line="611" TopLine="585"/>
       </Position>
     </JumpHistory>
     <RunParams>
