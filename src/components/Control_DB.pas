@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-03-23 16:15:29
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 12:14:34
+ * @Last Modified time: 2023-05-30 23:18:46
  *)
 {
 
@@ -338,13 +338,13 @@ begin
 
   FConnection.ExecuteDirect('PRAGMA journal_mode = WAL;');
   FConnection.ExecuteDirect('PRAGMA synchronous = OFF;');
-  FConnection.ExecuteDirect('PRAGMA wal_autocheckpoint = 16;');   //* number of 32KiB pages in a 512KiB journal */
-  FConnection.ExecuteDirect('PRAGMA journal_size_limit = 1536;'); //* 512KiB * 3 */
+//  FConnection.ExecuteDirect('PRAGMA wal_autocheckpoint = 16;');   //* number of 32KiB pages in a 512KiB journal */
+//  FConnection.ExecuteDirect('PRAGMA journal_size_limit = 1536;'); //* 512KiB * 3 */
 
-  FConnection.ExecuteDirect('PRAGMA page_size = ' + inttostr(Page_Size * 1024) + ';');
-  FConnection.ExecuteDirect('PRAGMA cache_size = ' + inttostr((1024 * 1024) * Cache_Size) + ';');
+  FConnection.ExecuteDirect('PRAGMA page_size = ' + inttostr(Page_Size * 1024 * 2) + ';');
+  FConnection.ExecuteDirect('PRAGMA cache_size = ' + inttostr((1024 * 1024) * (Cache_Size * 2)) + ';');
   FConnection.ExecuteDirect('PRAGMA count_changes = OFF;');
-  FConnection.ExecuteDirect('PRAGMA temp_store = MEMORY;');
+//  FConnection.ExecuteDirect('PRAGMA temp_store = MEMORY;');
 
   // Enabling Foreign Key
   DoSQL('PRAGMA foreign_keys = ON;');

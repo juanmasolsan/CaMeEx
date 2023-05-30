@@ -1,4 +1,6 @@
 
+- [FIX]   (20230530) Optimizado el configuración de uso para sqlite
+
 + 1.3.2.0
 - [FIX]   (20230530) Optimizado el arranque de la app a la hora de acceder a la base de datos
 - [FIX]   (20230530) Corregido método de Internalización de la app
