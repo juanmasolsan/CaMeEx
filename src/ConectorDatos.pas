@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-30 11:52:29
+ * @Last Modified time: 2023-05-30 23:28:09
  *)
 {
 
@@ -558,6 +558,21 @@ begin
         ');';
 
       FDataBase.SQL(SQL);
+
+
+      // Crea un indice
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdPadre_IDX ON Datos (IdPadre);';
+      FDataBase.SQL(SQL);
+
+      // Crea un indice
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdCatalogo_IDX ON Datos (IdCatalogo);';
+      FDataBase.SQL(SQL);
+
+      // Crea un indice
+      SQL := 'CREATE INDEX IF NOT EXISTS Datos_IdRutaCompleta_IDX ON Datos (IdRutaCompleta);';
+      FDataBase.SQL(SQL);
+
+
 
     finally
       // Cierra la query
@@ -1526,7 +1541,7 @@ begin
   end;
 
   // Optimiza el tamaño de la tabla
-  DoOptimizar();
+  //DoOptimizar();
 end;
 
 
@@ -1630,7 +1645,7 @@ begin
     end;
 
   // Optimiza el tamaño de la tabla
-  DoOptimizar();
+  //DoOptimizar();
 end;
 
 // Elimina un dato de forma async

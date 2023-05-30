@@ -1,4 +1,6 @@
 
++ 1.3.2.2
+- [FIX]   (20230530) Optimizado borrado e insercion de datos en la base de datos
 - [FIX]   (20230530) Optimizado el configuración de uso para sqlite
 
 + 1.3.2.0
