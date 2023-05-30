@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 01:23:17
+ * @Last Modified time: 2023-05-30 11:52:29
  *)
 {
 
@@ -230,6 +230,9 @@ type
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
     function GetDatos(Padre : TItemDato) : TArrayItemDato;
 
+    // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre de forma asyn
+    function GetDatosAsync(Padre : TItemDato) : TArrayItemDato;
+
     // Devuelve la lista de datos que coninciden con el query
     function GetBusquedaDatos(Query : TCommandBusqueda) : TArrayItemDato;
 
@@ -343,6 +346,46 @@ begin
   // Establece el tiempo distinto de 0
   FEstado.Inicio   := GetTickCount64();
 end;
+
+type
+  { TGetDatosThread }
+  TGetDatosThread = class(TThread)
+    private
+      FItem   : TItemDato;
+      FGestor : TConectorDatos;
+    protected
+      procedure Execute; override;
+    public
+      Constructor Create(CreateSuspended : boolean; Gestor : TConectorDatos; Item : TItemDato);
+    end;
+
+
+{ TGetDatosThread }
+constructor TGetDatosThread.Create(CreateSuspended : boolean; Gestor : TConectorDatos; Item : TItemDato);
+begin
+  // Inicializa el thread
+  FItem   := Item;
+  FGestor := Gestor;
+
+  // Para que se libere la memoria al finalizar
+  FreeOnTerminate := true;
+
+  // Crea el thread
+  inherited Create(CreateSuspended);
+end;
+
+procedure TGetDatosThread.Execute;
+var
+  ListaArchivos   : TArrayItemDato;
+
+begin
+  ListaArchivos := FGestor.GetDatos(FItem);
+  if ListaArchivos <> nil then
+    ListaArchivos.free;
+end;
+
+
+
 
 
 var
@@ -1261,6 +1304,15 @@ begin
   except
     on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
+end;
+
+// Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre de forma asyn
+function TConectorDatos.GetDatosAsync(Padre : TItemDato) : TArrayItemDato;
+begin
+  TGetDatosThread.Create(false, Self, Padre);
+
+
+  result := nil;
 end;
 
 

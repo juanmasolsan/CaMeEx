@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:21:53
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-24 17:29:06
+ * @Last Modified time: 2023-05-30 11:41:32
  *)
 {
 
@@ -91,6 +91,9 @@ type
 
     // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre
     function GetDatos(Padre : TItemDato) : TArrayItemDato;
+
+    // Devuelve la lista de datos que contiene un catalogo y que desciendan de un padre de forma asyn
+    function GetDatosAsync(Padre : TItemDato) : TArrayItemDato;
 
     // Devuelve la lista de datos que coninciden con el query
     function GetBusquedaDatos(Query : TCommandBusqueda) : TArrayItemDato;

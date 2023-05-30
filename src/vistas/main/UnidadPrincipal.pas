@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:48
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-30 09:18:27
+ * @Last Modified time: 2023-05-30 11:50:15
  *)
 {
 
@@ -1962,6 +1962,7 @@ begin
 
   // Lanza el método de forma asíncrona para pre cargar los datos
   application.QueueAsyncCall(@DoPreloadDatosAsync, 0);
+  //DoPreloadDatosAsync(0);
 end;
 
 // Precarga los datos de la lista de archivos
@@ -1971,7 +1972,7 @@ begin
   FTempPadre.IdCatalogo := 0;
 
   // Carga los datos del catalogo
-  FListaArchivos := FGestorDatos.GetDatos(FTempPadre);
+  FListaArchivos := FGestorDatos.GetDatosAsync(FTempPadre);
 end;
 
 
