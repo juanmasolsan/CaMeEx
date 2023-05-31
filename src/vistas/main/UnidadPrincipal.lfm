@@ -13,7 +13,6 @@ object Form_Principal: TForm_Principal
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.2.0.4'
   object Barra_Estado: TStatusBar
     Left = 0
     Height = 23

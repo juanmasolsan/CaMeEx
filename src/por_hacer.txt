@@ -186,10 +186,10 @@
 
 
 
-- Hito 5: Adicionalmente, la aplicación contará con un modo de visualización de datos para Ubuntu/Linux Mint.
--         Comprobar que se puede compilar
--         Comprobar que se puede cargar la base de datos de la versión de windows
--         Comprobar la carga de la versión portable
++ Hito 5: Adicionalmente, la aplicación contará con un modo de visualización de datos para Ubuntu/Linux Mint.
++         Comprobar que se puede compilar
++         Comprobar que se puede cargar la base de datos de la versión de windows
++         Comprobar la carga de la versión portable
 
 
 

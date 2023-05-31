@@ -197,10 +197,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ListaAfterItemErase(Sender: TBaseVirtualTree;
-      TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
+      {%H-}TargetCanvas: TCanvas; {%H-}Node: PVirtualNode; const {%H-}ItemRect: TRect);
     procedure ListaBeforeCellPaint(Sender: TBaseVirtualTree;
-      TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
-      {%H-}CellPaintMode: TVTCellPaintMode; CellRect: TRect; var {%H-}ContentRect: TRect);
+      {%H-}TargetCanvas: TCanvas; {%H-}Node: PVirtualNode; {%H-}Column: TColumnIndex;
+      {%H-}CellPaintMode: TVTCellPaintMode; {%H-}CellRect: TRect; var {%H-}ContentRect: TRect);
     procedure ListaCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; {%H-}Column: TColumnIndex; var Result: Integer);
     procedure ListaDblClick(Sender: TObject);
@@ -212,7 +212,7 @@ type
     procedure ListaHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
     procedure ListaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ListaPaintText(Sender: TBaseVirtualTree;
-      const TargetCanvas: TCanvas; Node: PVirtualNode; {%H-}Column: TColumnIndex;
+      const {%H-}TargetCanvas: TCanvas; {%H-}Node: PVirtualNode; {%H-}Column: TColumnIndex;
       {%H-}TextType: TVSTTextType);
     procedure ListaResize(Sender: TObject);
     procedure MenuItemAgregarCatalogoClick(Sender: TObject);
@@ -505,6 +505,13 @@ begin
   Arbol.NodeDataSize            := Sizeof(rTListaData);
   Arbol.DoubleBuffered          := true;
 
+  {$IFNDEF WINDOWS}
+    Arbol.treeOptions.PaintOptions := Arbol.treeOptions.PaintOptions - [toHideFocusRect,toAlwaysHideSelection];
+    Lista.treeOptions.PaintOptions := Lista.treeOptions.PaintOptions - [toHideFocusRect,toAlwaysHideSelection];
+  {$ENDIF WINDOWS}
+
+
+
   // Inicializar el arbol de catalogos
   FListaDirectorios := TArrayItemDato.create;;
 
@@ -577,13 +584,16 @@ end;
 procedure TForm_Principal.ListaAfterItemErase(Sender: TBaseVirtualTree;
   TargetCanvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect);
 begin
+{$IFDEF WINDOWS}
   DoDibujarSeleccionModerna(Sender, TargetCanvas, Node, ItemRect);
+{$ENDIF WINDOWS}
 end;
 
 procedure TForm_Principal.ListaBeforeCellPaint(Sender: TBaseVirtualTree;
   TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex;
   CellPaintMode: TVTCellPaintMode; CellRect: TRect; var ContentRect: TRect);
 begin
+{$IFDEF WINDOWS}
  if Sender <> Arbol then
   if Column = TLazVirtualStringTree(Pointer(@Sender)^).Header.SortColumn then
     if FResaltarColumnaOrden then
@@ -592,6 +602,7 @@ begin
           begin
             Dibujar_FillRect_Blend(TargetCanvas,  CellRect,  FResaltarColumnaOrdenColor,  25,  0, 0);
           end;
+{$ENDIF WINDOWS}
 end;
 
 // Carga la configuración del programa
@@ -988,10 +999,13 @@ begin
 end;
 
 procedure TForm_Principal.ListaPaintText(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType);
+{$IFDEF WINDOWS}
 var
   NodeData: PrListaData;
   Datos   : TItemDato;
+{$ENDIF WINDOWS}
 begin
+{$IFDEF WINDOWS}
   try
     NodeData := Sender.GetNodeData(Node);
     if NodeData <> nil then
@@ -1015,6 +1029,7 @@ begin
   except
       on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
   end;
+{$ENDIF WINDOWS}
 end;
 
 procedure TForm_Principal.ListaResize(Sender: TObject);
@@ -1391,6 +1406,12 @@ begin
     // Determina el total de items selecionados
     Selecionados := GetTotalSeleccionados(TLazVirtualStringTree(ActiveControl));
   end;
+
+  {$IFNDEF WINDOWS}
+  ToolButtonAgregarCatalogo.Enabled := false;
+  MenuItemAgregarCatalogo.Enabled := false;
+  MenuPopUpItemAgregarCatalogo.Enabled := false;
+  {$ENDIF WINDOWS}
 
   // Si el control activo es el arbol muestra los siguientes MenuItems
   MenuPopUpItemNuevaBaseDatos.Visible  := isArbolSelecionado;
