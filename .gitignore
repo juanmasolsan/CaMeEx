@@ -2,6 +2,7 @@ lib/
 out/
 *.dbg
 *.exe
+/cameex-x86_64-linux
 /fugas_de_memoria.trc
 /exportacion.txt
 /exportacion.html

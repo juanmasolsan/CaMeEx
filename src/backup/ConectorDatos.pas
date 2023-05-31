@@ -451,7 +451,7 @@ begin
                     {$IFDEF WINDOWS}
                     IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64/'{$ELSE} 'x86/'{$ENDIF} + Libreria
                     {$ELSE}
-                    ''
+                    '';
                     {$ENDIF WINDOWS}
 
                     );

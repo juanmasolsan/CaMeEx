@@ -63,10 +63,9 @@ uses
   {$IFDEF WINDOWS}
   , UnidadScan
   , UnidadAddCatalogo
-  , FrameCancelado, FrameSelecionarMedio,
   {$ENDIF WINDOWS}
   , Control_About, graphics, lazcontrols, tachartlazaruspkg, datetimectrls,
- FrameBusqueda;
+  FrameCancelado, FrameSelecionarMedio, FrameBusqueda;
 
 {$R *.res}
 

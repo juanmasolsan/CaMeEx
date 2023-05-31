@@ -1039,10 +1039,8 @@ end;
 
 procedure TForm_Principal.MenuItemAgregarCatalogoClick(Sender: TObject);
 begin
-  {$IFDEF WINDOWS}
   // Lanza la acción agregar un nuevo catalogo
   DoAddNuevoCatalogo();
-  {$ENDIF WINDOWS}
 end;
 
 // Reajusta el tamaño de la última columna

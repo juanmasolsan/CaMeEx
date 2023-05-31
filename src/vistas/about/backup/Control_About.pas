@@ -90,7 +90,7 @@ procedure Mostrar_Acerca_de(NombrePrograma, Version, Fecha : string; CopyRigth :
 
 implementation
 
-{$R Control_About.lfm}
+{$R control_about.lfm}
 
 const
   URL_LAZARUS  = 'http://www.lazarus.freepascal.org/';
