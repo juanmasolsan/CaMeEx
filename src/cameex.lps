@@ -68,10 +68,9 @@
         <ComponentName Value="Form_Principal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="1001"/>
-        <CursorPos Y="1018"/>
+        <CursorPos X="32" Y="1009"/>
         <UsageCount Value="113"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -231,9 +230,10 @@
       </Unit>
       <Unit>
         <Filename Value="por_hacer.txt"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="178"/>
-        <CursorPos X="36" Y="193"/>
+        <CursorPos X="38" Y="188"/>
         <UsageCount Value="174"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
