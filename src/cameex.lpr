@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-05 21:58:26
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-20 00:04:43
+ * @Last Modified time: 2023-05-31 19:36:07
  *)
 {
 
@@ -63,7 +63,7 @@ uses
   {$IFDEF WINDOWS}
   , UnidadScan
   , UnidadAddCatalogo
-  , FrameCancelado, FrameSelecionarMedio,
+  , FrameCancelado, FrameSelecionarMedio
   {$ENDIF WINDOWS}
   , Control_About, graphics, lazcontrols, tachartlazaruspkg, datetimectrls,
  FrameBusqueda;
