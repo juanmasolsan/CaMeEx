@@ -7,7 +7,7 @@
 {$ENDIF}
 
 // Usar codificación de la base de datos
-{$DEFINE USAR_SQLCIPHER}
+{.$DEFINE USAR_SQLCIPHER}
 
 // Activar el testeo de sentencias
 {.$DEFINE TESTEAR_SENTENCIAS}

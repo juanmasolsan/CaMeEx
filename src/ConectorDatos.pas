@@ -185,7 +185,7 @@ type
     destructor Destroy; override;
 
     // Conecta con la base de datos
-    procedure Iniciar(Curdir: string; SaveDir : string);
+    procedure Iniciar({%H-}Curdir: string; SaveDir : string);
 
     // Desconecta de la base de datos
     procedure Finalizar();
@@ -423,7 +423,7 @@ end;
 procedure TConectorDatos.Iniciar(Curdir: string; SaveDir : string);
 var
   ArchivoDB: string = 'catalogos.cme';
-  Libreria : string = 'sqlite3'{$IFDEF WINDOWS} + '.dll'{$ENDIF WINDOWS};
+  Libreria : string = '';
   Pass     : TPass;
   entrada  : Qword = PASSWORD_DB;
 
@@ -434,7 +434,9 @@ begin
   {$IFDEF USAR_SQLCIPHER}
     // si está activa la directiva de compilación, usamos sqlcipher
     ArchivoDB := 'catalogos.cmes';
-    Libreria  := 'sqlcipher.dll';
+    Libreria  := {$IFNDEF WINDOWS} 'lib'+{$ENDIF WINDOWS}'sqlcipher'{$IFDEF WINDOWS} + '.dll'{$ELSE}+'.so'{$ENDIF WINDOWS};
+  {$ELSE}
+    Libreria := {$IFDEF WINDOWS}'sqlite3.dll'{$ELSE}''{$ENDIF WINDOWS};
   {$ENDIF}
 
   try
@@ -451,7 +453,7 @@ begin
                     {$IFDEF WINDOWS}
                     IncludeTrailingBackslash(Curdir) + 'otros/'+{$IFDEF CPUX64} 'x64/'{$ELSE} 'x86/'{$ENDIF} + Libreria
                     {$ELSE}
-                    ''
+                    Libreria
                     {$ENDIF WINDOWS}
 
                     );
