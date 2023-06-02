@@ -11,6 +11,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.3.1\n"
 
+#: appstring.buscar_cajon_texto
+#, fuzzy
+#| msgid "Buscar..."
+msgctxt "appstring.buscar_cajon_texto"
+msgid "Buscar..."
+msgstr "Search…"
+
 #: appstring.message_archivos
 msgid "Archivos :"
 msgstr "Files :"
@@ -144,8 +151,8 @@ msgid ""
 "¿Realmente quiere eliminar el item(s) seleccionado(s)?\\r\\rEsta acción no "
 "se puede deshacer."
 msgstr ""
-"Do you really want to delete the catalog \"%s\"?\\r\\rThis action cannot be "
-"undone."
+"Do you really want to delete the selected item(s)?\\r\\rThis action cannot "
+"be undone."
 
 #: appstring.message_espera_eliminar_archivos
 msgid "Se están eliminando los datos solicitados ..."
@@ -249,6 +256,9 @@ msgid "Total tamaño detectado :"
 msgstr "Total size detected :"
 
 #: control_cajon_busqueda.buscar_cajon_texto
+#, fuzzy
+#| msgid "Buscar..."
+msgctxt "control_cajon_busqueda.buscar_cajon_texto"
 msgid "Buscar..."
 msgstr "Search…"
 
