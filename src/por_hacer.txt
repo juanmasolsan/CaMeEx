@@ -206,6 +206,8 @@
 + Agregar comentarios.
 + Internalización de la app
 + Internalización de la app - Revisar cambio de idioma
+- Internalización de la app - Revisar inglés parece que hay texto no traducido
+- Agregar shortcuts a los menús
 - Agregar temas oscuro y claro
 - Compilar para windows x86
 - Crear el diagrama de clases

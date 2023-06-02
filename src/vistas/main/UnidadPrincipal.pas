@@ -976,8 +976,10 @@ begin
 end;
 
 procedure TForm_Principal.ListaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+(*
 var
   Node: PVirtualNode;
+*)
 begin
   case key of
     VK_RETURN : begin
@@ -986,7 +988,7 @@ begin
                     DoNavegarElementoLista();
                   end;
                 end;
-
+(*
     VK_DELETE : begin
                   if Shift = [] then
                   begin
@@ -995,6 +997,7 @@ begin
                       DoEliminarItem(Lista, Node, false);
                   end;
                 end;
+*)
   end;
 end;
 
@@ -1517,6 +1520,7 @@ begin
                   end;
                 end;
 
+(*
     VK_DELETE : begin
                   if Shift = [] then
                   begin
@@ -1525,6 +1529,7 @@ begin
                       DoEliminarItem(Arbol, Node, true);
                   end;
                 end;
+*)
   end;
 end;
 

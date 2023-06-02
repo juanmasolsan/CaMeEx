@@ -1,3 +1,6 @@
+
+- [NEW]   (20230602) Agregados shortcuts a los menús
+
 + 1.3.2.7
 - [FIX]   (20230601) Ajustes esteticos en el formulario principal para su correcta visualización en Linux
 - [FIX]   (20230601) Ajustes esteticos en el formulario de propiedades para su correcta visualización en Linux

@@ -301,6 +301,7 @@ object Form_Principal: TForm_Principal
       object MenuItemAgregarCatalogo: TMenuItem
         Caption = 'Agregar Catalogo'
         ImageIndex = 0
+        ShortCut = 16449
         OnClick = MenuItemAgregarCatalogoClick
       end
       object Separator1: TMenuItem
@@ -334,6 +335,7 @@ object Form_Principal: TForm_Principal
       object MenuItemBusquedaAvanzada: TMenuItem
         Caption = 'Búsqueda Avanzada'
         ImageIndex = 5
+        ShortCut = 114
         OnClick = MenuItemBusquedaAvanzadaClick
       end
       object Separator12: TMenuItem
@@ -350,6 +352,7 @@ object Form_Principal: TForm_Principal
       object MenuItemPropiedades: TMenuItem
         Caption = 'Propiedades'
         ImageIndex = 4
+        ShortCut = 32781
         OnClick = MenuItemPropiedadesClick
       end
     end
@@ -2268,6 +2271,7 @@ object Form_Principal: TForm_Principal
     object MenuPopUpItemAgregarCatalogo: TMenuItem
       Caption = 'Agregar Catalogo'
       ImageIndex = 0
+      ShortCut = 16449
       OnClick = MenuItemAgregarCatalogoClick
     end
     object Separator17: TMenuItem
@@ -2293,6 +2297,7 @@ object Form_Principal: TForm_Principal
     object MenuPopUpItemEliminar: TMenuItem
       Caption = 'Eliminar'
       ImageIndex = 1
+      ShortCut = 46
       OnClick = MenuItemEliminarClick
     end
     object Separator15: TMenuItem
@@ -2301,6 +2306,7 @@ object Form_Principal: TForm_Principal
     object MenuPopUpItemPropiedades: TMenuItem
       Caption = 'Propiedades'
       ImageIndex = 4
+      ShortCut = 32781
       OnClick = MenuItemPropiedadesClick
     end
   end
