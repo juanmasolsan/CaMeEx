@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 14:50:17
+ * @Last Modified time: 2023-06-04 23:22:26
  *)
 {
 
@@ -191,7 +191,7 @@ uses
 , Control_Logger
 , Control_CRC
 , Utilidades
-, ItemExtension, ItemRutaCompleta, graphics;
+, ItemExtension, ItemRutaCompleta, graphics, AppString;
 
 
 function IsExeByExtension(Ext: RawByteString): Boolean;
@@ -345,7 +345,7 @@ begin
     // Inicia el escaneo de archivos y directorios
     DoScanDir(Directorio, FRoot);
   except
-    on e: Exception do LogAddException('Excepción Detectada Procesando Ruta : ' + Directorio, e);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada + ' (' + Directorio +') ', E);
   end;
 
   // Terminar el escaneo
@@ -396,7 +396,7 @@ begin
           try
             DoScanDir(IncludeTrailingBackslash(Directorio) + SearchRec.Name, Actual);
           except
-            on e: Exception do LogAddException('Excepción Detectada Procesando Ruta : ' + IncludeTrailingBackslash(Directorio) + SearchRec.Name, e);
+            on E: Exception do LogAddException(Message_Excepcion_Detectada + ' (' + IncludeTrailingBackslash(Directorio) + SearchRec.Name +') ', E);
           end;
         end;
       end;
