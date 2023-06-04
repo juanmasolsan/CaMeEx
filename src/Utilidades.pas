@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-08 16:21:30
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-28 01:31:04
+ * @Last Modified time: 2023-06-05 00:15:25
  *)
 {
 
@@ -77,6 +77,9 @@ function GetGenericFileType(AExtension: RawByteString; IsDir : boolean = false):
 
 // Devuelve el icono del archivo/directorio, además del tipo de archivo/directorio
 function GetGenericFileIcon(AExtension: RawByteString; var InfoExtension : RawByteString; Size: longint;  IsDir : boolean = false): TPortableNetworkGraphic;
+
+// Devuelve el icono del archivo/directorio, además del tipo de archivo/directorio
+function GetGenericFileIconMemoryStream(AExtension: RawByteString; var InfoExtension : RawByteString; Size: longint; IsDir : boolean = false): TMemoryStream;
 
 // Dibuja un rectangulo mezcando color por el nivel de BlendLevel
 procedure Dibujar_FillRect_Blend(Acanvas : TCanvas; ARect: TRect; Color: TColor; BlendLevel : byte; RoundX, RoundY : longint);
@@ -337,6 +340,74 @@ begin
   Result        := nil;
 end;
 {$ENDIF}
+
+
+// Devuelve el icono del archivo/directorio, además del tipo de archivo/directorio
+function GetGenericFileIconMemoryStream(AExtension: RawByteString; var InfoExtension : RawByteString; Size: longint; IsDir : boolean = false): TMemoryStream;
+{$IFDEF WINDOWS}
+var
+  AInfo: SHFileInfoW;
+  AIcon: TIcon;
+  attr : Dword;
+  Png  : TPortableNetworkGraphic;
+  Inter: TLazIntfImage;
+
+  TipoIcono : longint;
+begin
+  Result := nil;
+
+  if Size = 16 then
+    TipoIcono := SHGFI_SMALLICON
+  else
+    TipoIcono := SHGFI_LARGEICON;
+
+  if IsDir then
+    attr := FILE_ATTRIBUTE_DIRECTORY
+  else
+    attr := FILE_ATTRIBUTE_NORMAL;
+
+  fillchar(AInfo, sizeof(AInfo), 0);
+
+  if SHGetFileInfo(PWideChar(UTF8Decode(AExtension)), attr, AInfo, SizeOf(SHFileInfoW), SHGFI_ICON or TipoIcono or SHGFI_TYPENAME or SHGFI_USEFILEATTRIBUTES) <> 0 then
+  begin
+    InfoExtension := AInfo.szTypeName;
+
+    if AInfo.hIcon <> 0 then
+    begin
+      AIcon := TIcon.Create;
+      try
+        try
+          AIcon.Handle := AInfo.hIcon;
+          Inter := AIcon.CreateIntfImage;
+          try
+            Png := TPortableNetworkGraphic.Create;
+            try
+              Png.LoadFromIntfImage(Inter);
+              Result := TMemoryStream.Create;
+              Png.SaveToStream(Result);
+              Result.Position := 0;
+            finally
+              Png.Free;
+            end;
+          finally
+            Inter.Free;
+          end;
+        except
+            on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
+        end;
+      finally
+        AIcon.Free;
+      end;
+    end;
+  end;
+end;
+{$ELSE}
+begin
+  InfoExtension := '';
+  Result        := nil;
+end;
+{$ENDIF}
+
 
 
 // Genera un PNG de 32bits

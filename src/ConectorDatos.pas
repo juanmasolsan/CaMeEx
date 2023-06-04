@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-30 23:28:09
+ * @Last Modified time: 2023-06-05 00:15:08
  *)
 {
 
@@ -677,9 +677,12 @@ begin
           // Hace la inserción con un prepared statement
           internalQuery.ParamByName('ID').AsLargeInt := Extension.IdIcono;
 
-          AddBlob(Extension.Icono, 'ICONO');
+          //AddBlob(Extension.Icono, 'ICONO');
+          //AddBlob(Extension.Icono32, 'ICONO32');
 
-          AddBlob(Extension.Icono32, 'ICONO32');
+
+          internalQuery.ParamByName('ICONO').LoadFromStream(Extension.StreamIcono, ftBlob);
+          internalQuery.ParamByName('ICONO32').LoadFromStream(Extension.StreamIcono32, ftBlob);
 
           try
             // Realiza la inserción
@@ -753,7 +756,7 @@ begin
       end;
     end;
   except
-    on E: Exception do LogAddException(Message_Excepcion_Detectada, E);
+    on E: Exception do LogAddException(Message_Excepcion_Detectada + ' (' + Extension.Nombre + ')', E);
   end;
 end;
 

@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-15 15:04:15
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-05-14 13:06:45
+ * @Last Modified time: 2023-06-04 23:49:23
  *)
 {
 
@@ -47,7 +47,11 @@ type
   private
     FDescripcion : RawByteString;
     FIcono       : TPortableNetworkGraphic;
-    FIcono32       : TPortableNetworkGraphic;
+    FIcono32     : TPortableNetworkGraphic;
+
+    FStreamIcono   : TMemoryStream;
+    FStreamIcono32 : TMemoryStream;
+
     FIdIcono     : Qword;
     procedure SetIcono(AValue: TPortableNetworkGraphic);
     procedure SetIcono32(AValue: TPortableNetworkGraphic);
@@ -58,6 +62,10 @@ type
     // Constructor de la clase
     constructor Create(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TPortableNetworkGraphic; AIcono32 : TPortableNetworkGraphic);
 
+    // Constructor de la clase
+    constructor CreateMemoryStream(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TMemoryStream; AIcono32 : TMemoryStream);
+
+
     // Destructor de la clase
     destructor Destroy; override;
 
@@ -66,6 +74,9 @@ type
     property Icono       : TPortableNetworkGraphic read FIcono write SetIcono;
     property Icono32     : TPortableNetworkGraphic read FIcono32 write SetIcono32;
     property IdIcono     : Qword read FIdIcono write FIdIcono;
+
+    property StreamIcono   : TMemoryStream read FStreamIcono;
+    property StreamIcono32 : TMemoryStream read FStreamIcono32;
   end;
 
 
@@ -89,6 +100,21 @@ begin
   DoGenerarIDIcono();
 end;
 
+ // Constructor de la clase
+ constructor TItemExtension.CreateMemoryStream(const ANombre: RawByteString; const ADescripcion: RawByteString; AIcono : TMemoryStream; AIcono32 : TMemoryStream);
+  begin
+    inherited Create(ANombre);
+
+    FDescripcion   := ADescripcion;
+    FStreamIcono   := AIcono;
+    FStreamIcono32 := AIcono32;
+
+    // Generamos el ID del icono
+    FIdIcono := CRC64_From_PByte(PByte(FStreamIcono.Memory), FStreamIcono.Size);
+  end;
+
+
+
 destructor TItemExtension.Destroy;
 begin
   if FIcono <> nil then
@@ -96,6 +122,12 @@ begin
 
   if FIcono32 <> nil then
     FIcono32.Free;
+
+  if FStreamIcono <> nil then
+    FStreamIcono.Free;
+
+  if FStreamIcono32 <> nil then
+    FStreamIcono32.Free;
 
   inherited Destroy;
 end;

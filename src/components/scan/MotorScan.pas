@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-06-04 23:22:26
+ * @Last Modified time: 2023-06-05 00:08:26
  *)
 {
 
@@ -624,8 +624,8 @@ function TMotorScanCustom.GetIdExtension(RutaCompleta: RawByteString; Ext: RawBy
 var
   datoExtension   : TItemExtension;
   textoDescripcion: RawByteString = '';
-  Icono           : TPortableNetworkGraphic = nil;
-  Icono32         : TPortableNetworkGraphic = nil;
+  Icono           : TMemoryStream = nil;
+  Icono32         : TMemoryStream = nil;
 begin
 
   Ext := lowercase(Ext);
@@ -646,10 +646,10 @@ begin
   if datoExtension = nil then
   begin
       // Se obtiene la descripción de la extensión desde el sistema
-      Icono := GetGenericFileIcon(RutaCompleta, textoDescripcion, 16,  Dir);
+      Icono := GetGenericFileIconMemoryStream(RutaCompleta, textoDescripcion, 16,  Dir);
 
       // Se obtiene la descripción de la extensión desde el sistema
-      Icono32 := GetGenericFileIcon(RutaCompleta, textoDescripcion, 32,  Dir);
+      Icono32 := GetGenericFileIconMemoryStream(RutaCompleta, textoDescripcion, 32,  Dir);
 
     if textoDescripcion = ''  then
       if not Dir then
@@ -662,7 +662,7 @@ begin
       Ext := '<dir>';
 
     // Se crea el objeto TItemExtension y se añade a la lista de extensiones
-    datoExtension := TItemExtension.Create(Ext, textoDescripcion, Icono, Icono32);
+    datoExtension := TItemExtension.CreateMemoryStream(Ext, textoDescripcion, Icono, Icono32);
     FListaExtensiones.Add(Ext, datoExtension);
   end;
 
