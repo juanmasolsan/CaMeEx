@@ -216,3 +216,4 @@
 - Agregar breadcrumbs.
 - Historial de navegación.
 - Poner el perfil custom cuando se cambia algo de la configuración
+- Testear Exclude list

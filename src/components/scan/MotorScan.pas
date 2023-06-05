@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-07 14:57:44
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-06-05 00:08:26
+ * @Last Modified time: 2023-06-05 22:39:34
  *)
 {
 
@@ -182,7 +182,7 @@ function GetImageIndex(Ext: RawByteString; Dir : Boolean): Integer;
 
 const
   // Tamaño máximo de items por catálogo = 1.000.000
-  MAX_ITEMS_SCAN = 1000000;
+  MAX_ITEMS_SCAN = -1000000;
 
 implementation
 
@@ -375,10 +375,6 @@ begin
       // Procesa el archivo o directorio encontrado si es válido
       if ((SearchRec.Name <> '') and (SearchRec.Name <> '.') and (SearchRec.Name <> '..') ) then
       begin
-
-        if FTotalDirectorios + FTotalArchivos > MAX_ITEMS_SCAN then
-          break;
-
         // Actualizar el proceso actual protegido para evitar problemas de concurrencia
         EnterCriticalSection(FCriticalSection_InfoProgreso);
         try
@@ -627,7 +623,6 @@ var
   Icono           : TMemoryStream = nil;
   Icono32         : TMemoryStream = nil;
 begin
-
   Ext := lowercase(Ext);
 
   if (Ext = '') then

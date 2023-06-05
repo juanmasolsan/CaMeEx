@@ -658,7 +658,7 @@ begin
       // Se inicia la seccion critica
       EnterCriticalSection(FCriticalSection);
       try
-        if Extension.Icono <> nil then
+        if Extension.StreamIcono <> nil then
         begin
           if FIdTransaccion = -1 then
           begin
