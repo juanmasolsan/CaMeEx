@@ -905,15 +905,11 @@ msgid "Datos básicos para poder realizar el análiss del medio."
 msgstr ""
 
 #: tframe_selecionarmedio.label11.caption
-msgid "\\dato\\"
+msgid "dato"
 msgstr ""
 
 #: tframe_selecionarmedio.label13.caption
-msgid "\\dato\\*.7z"
-msgstr ""
-
-#: tframe_selecionarmedio.label14.caption
-msgid "\\dato\\archivo.7z"
+msgid "*.7z"
 msgstr ""
 
 #: tframe_selecionarmedio.label16.caption
@@ -932,24 +928,12 @@ msgstr ""
 msgid "Nombre :"
 msgstr ""
 
-#: tframe_selecionarmedio.label20.caption
-msgid "Solo el archivo indicado."
-msgstr ""
-
 #: tframe_selecionarmedio.label21.caption
 msgid "Archivos/Carpetas Excluidos : "
 msgstr ""
 
 #: tframe_selecionarmedio.label23.caption
 msgid "La forma aceptada de excluir archivos y directorios."
-msgstr ""
-
-#: tframe_selecionarmedio.label27.caption
-msgid "*.log"
-msgstr ""
-
-#: tframe_selecionarmedio.label28.caption
-msgid "Todos los archivos log"
 msgstr ""
 
 #: tframe_selecionarmedio.label3.caption
@@ -970,5 +954,5 @@ msgid "Excluir :"
 msgstr ""
 
 #: tframe_selecionarmedio.label9.caption
-msgid "\\dato\\*.*"
+msgid "\\dato"
 msgstr ""

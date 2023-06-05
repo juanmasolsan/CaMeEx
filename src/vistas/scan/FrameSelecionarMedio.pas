@@ -62,16 +62,12 @@ type
     Label1: TLabel;
     Label11: TLabel;
     Label13: TLabel;
-    Label14: TLabel;
     Label16: TLabel;
     Label18: TLabel;
     Label19: TLabel;
     Label2: TLabel;
-    Label20: TLabel;
     Label21: TLabel;
     Label23: TLabel;
-    Label27: TLabel;
-    Label28: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;

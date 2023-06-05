@@ -208,6 +208,7 @@
 + Internalización de la app - Revisar cambio de idioma
 + Internalización de la app - Revisar inglés parece que hay texto no traducido
 + Agregar shortcuts a los menús
++ Testear Exclude list
 - Agregar temas oscuro y claro
 - Compilar para windows x86
 - Crear el diagrama de clases
@@ -216,4 +217,3 @@
 - Agregar breadcrumbs.
 - Historial de navegación.
 - Poner el perfil custom cuando se cambia algo de la configuración
-- Testear Exclude list

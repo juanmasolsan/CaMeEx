@@ -921,16 +921,12 @@ msgid "Datos básicos para poder realizar el análiss del medio."
 msgstr "Basic data to be able to perform the analysis of the medium."
 
 #: tframe_selecionarmedio.label11.caption
-msgid "\\dato\\"
-msgstr "\\data\\"
+msgid "dato"
+msgstr "data"
 
 #: tframe_selecionarmedio.label13.caption
-msgid "\\dato\\*.7z"
-msgstr "\\data\\*.7z"
-
-#: tframe_selecionarmedio.label14.caption
-msgid "\\dato\\archivo.7z"
-msgstr "\\data\\fiile.7z"
+msgid "*.7z"
+msgstr "*.7z"
 
 #: tframe_selecionarmedio.label16.caption
 msgid "Todo el directorio"
@@ -948,10 +944,6 @@ msgstr "Only 7z files."
 msgid "Nombre :"
 msgstr "Name :"
 
-#: tframe_selecionarmedio.label20.caption
-msgid "Solo el archivo indicado."
-msgstr "Only the indicated file."
-
 #: tframe_selecionarmedio.label21.caption
 msgid "Archivos/Carpetas Excluidos : "
 msgstr "Excluded Files/Folders : "
@@ -959,14 +951,6 @@ msgstr "Excluded Files/Folders : "
 #: tframe_selecionarmedio.label23.caption
 msgid "La forma aceptada de excluir archivos y directorios."
 msgstr "The accepted way to exclude files and directories."
-
-#: tframe_selecionarmedio.label27.caption
-msgid "*.log"
-msgstr "*.log"
-
-#: tframe_selecionarmedio.label28.caption
-msgid "Todos los archivos log"
-msgstr "All log files"
 
 #: tframe_selecionarmedio.label3.caption
 msgid "Descripción :"
@@ -986,5 +970,23 @@ msgid "Excluir :"
 msgstr "Exclude :"
 
 #: tframe_selecionarmedio.label9.caption
-msgid "\\dato\\*.*"
-msgstr "\\data\\*.*"
+msgid "\\dato"
+msgstr "\\data"
+
+#~ msgid "\\dato\\*.7z"
+#~ msgstr "\\data\\*.7z"
+
+#~ msgid "\\dato\\archivo.7z"
+#~ msgstr "\\data\\fiile.7z"
+
+#~ msgid "Solo el archivo indicado."
+#~ msgstr "Only the indicated file."
+
+#~ msgid "*.log"
+#~ msgstr "*.log"
+
+#~ msgid "Todos los archivos log"
+#~ msgstr "All log files"
+
+#~ msgid "\\dato\\*.*"
+#~ msgstr "\\data\\*.*"

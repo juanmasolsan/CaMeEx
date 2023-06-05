@@ -159,36 +159,6 @@ object Form_AddCatalogo: TForm_AddCatalogo
         inherited Label23: TLabel
           Left = 334
         end
-        inherited Label9: TLabel
-          Left = 334
-        end
-        inherited Label11: TLabel
-          Left = 334
-        end
-        inherited Label13: TLabel
-          Left = 334
-        end
-        inherited Label14: TLabel
-          Left = 334
-        end
-        inherited Label16: TLabel
-          Left = 427
-        end
-        inherited Label18: TLabel
-          Left = 427
-        end
-        inherited Label19: TLabel
-          Left = 427
-        end
-        inherited Label20: TLabel
-          Left = 427
-        end
-        inherited Label27: TLabel
-          Left = 334
-        end
-        inherited Label28: TLabel
-          Left = 427
-        end
         inherited EditDescripcion: TMemo
           Width = 470
         end

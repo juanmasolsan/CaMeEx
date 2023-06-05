@@ -321,108 +321,63 @@ object Frame_SelecionarMedio: TFrame_SelecionarMedio
     WordWrap = True
   end
   object Label9: TLabel
-    Left = 331
+    Left = 348
     Height = 15
     Top = 272
-    Width = 47
-    Anchors = [akTop, akRight]
-    Caption = '\dato\*.*'
+    Width = 30
+    Caption = '\dato'
     Font.Color = clBlue
+    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
     WordWrap = True
   end
   object Label11: TLabel
-    Left = 331
+    Left = 348
     Height = 15
     Top = 248
-    Width = 34
-    Anchors = [akTop, akRight]
-    Caption = '\dato\'
+    Width = 25
+    Caption = 'dato'
     Font.Color = clBlue
+    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
     WordWrap = True
   end
   object Label13: TLabel
-    Left = 331
+    Left = 348
     Height = 15
     Top = 296
-    Width = 53
-    Anchors = [akTop, akRight]
-    Caption = '\dato\*.7z'
+    Width = 21
+    Caption = '*.7z'
     Font.Color = clBlue
-    ParentColor = False
-    ParentFont = False
-    WordWrap = True
-  end
-  object Label14: TLabel
-    Left = 331
-    Height = 15
-    Top = 320
-    Width = 87
-    Anchors = [akTop, akRight]
-    Caption = '\dato\archivo.7z'
-    Font.Color = clBlue
+    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
     WordWrap = True
   end
   object Label16: TLabel
-    Left = 424
+    Left = 408
     Height = 15
     Top = 248
     Width = 92
-    Anchors = [akTop, akRight]
     Caption = 'Todo el directorio'
     ParentColor = False
   end
   object Label18: TLabel
-    Left = 424
+    Left = 408
     Height = 15
     Top = 272
     Width = 95
-    Anchors = [akTop, akRight]
     Caption = 'Todo el directorio.'
     ParentColor = False
   end
   object Label19: TLabel
-    Left = 424
+    Left = 408
     Height = 15
     Top = 296
     Width = 105
-    Anchors = [akTop, akRight]
     Caption = 'Solo los archivos 7z.'
-    ParentColor = False
-  end
-  object Label20: TLabel
-    Left = 424
-    Height = 15
-    Top = 320
-    Width = 129
-    Anchors = [akTop, akRight]
-    Caption = 'Solo el archivo indicado.'
-    ParentColor = False
-  end
-  object Label27: TLabel
-    Left = 331
-    Height = 15
-    Top = 344
-    Width = 25
-    Anchors = [akTop, akRight]
-    Caption = '*.log'
-    Font.Color = clBlue
-    ParentColor = False
-    ParentFont = False
-    WordWrap = True
-  end
-  object Label28: TLabel
-    Left = 424
-    Height = 15
-    Top = 344
-    Width = 116
-    Anchors = [akTop, akRight]
-    Caption = 'Todos los archivos log'
     ParentColor = False
   end
   object EditDescripcion: TMemo
