@@ -585,9 +585,18 @@ msgctxt "tform_principal.toolbuttonagregarcatalogo.caption"
 msgid "Agregar Catalogo"
 msgstr ""
 
+#: tform_principal.toolbuttonagregarcatalogo.hint
+msgctxt "tform_principal.toolbuttonagregarcatalogo.hint"
+msgid "Agregar Catálogo"
+msgstr ""
+
 #: tform_principal.toolbuttonbusquedaavanzada.caption
 msgctxt "tform_principal.toolbuttonbusquedaavanzada.caption"
 msgid "Búsqueda Avanzada"
+msgstr ""
+
+#: tform_principal.toolbuttonbusquedaavanzada.hint
+msgid "Búsqueda avanzada"
 msgstr ""
 
 #: tform_principal.toolbuttoneliminar.caption
@@ -595,8 +604,18 @@ msgctxt "tform_principal.toolbuttoneliminar.caption"
 msgid "Eliminar"
 msgstr ""
 
+#: tform_principal.toolbuttoneliminar.hint
+msgctxt "tform_principal.toolbuttoneliminar.hint"
+msgid "Eliminar"
+msgstr ""
+
 #: tform_principal.toolbuttonpropiedades.caption
 msgctxt "tform_principal.toolbuttonpropiedades.caption"
+msgid "Propiedades"
+msgstr ""
+
+#: tform_principal.toolbuttonpropiedades.hint
+msgctxt "tform_principal.toolbuttonpropiedades.hint"
 msgid "Propiedades"
 msgstr ""
 

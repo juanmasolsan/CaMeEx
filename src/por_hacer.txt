@@ -209,6 +209,9 @@
 + Internalización de la app - Revisar inglés parece que hay texto no traducido
 + Agregar shortcuts a los menús
 + Testear Exclude list
++ Separador de menu en el menu de Ver
++ Agregar ToolTips
+
 - Agregar temas oscuro y claro
 - Compilar para windows x86
 - Crear el diagrama de clases
@@ -217,5 +220,3 @@
 - Agregar breadcrumbs.
 - Historial de navegación.
 - Poner el perfil custom cuando se cambia algo de la configuración
-+ Separador de menu en el menu de Ver
-- Agregar ToolTips

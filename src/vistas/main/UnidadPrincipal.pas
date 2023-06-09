@@ -197,6 +197,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var {%H-}CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormShowHint(Sender: TObject; HintInfo: PHintInfo);
     procedure ListaAfterItemErase(Sender: TBaseVirtualTree;
       {%H-}TargetCanvas: TCanvas; {%H-}Node: PVirtualNode; const {%H-}ItemRect: TRect);
     procedure ListaBeforeCellPaint(Sender: TBaseVirtualTree;
@@ -408,6 +409,9 @@ type
     // Cambia el idioma de la aplicación
     procedure SetIdioma(Idioma : string);
 
+    // Para captutar los hints de forma global
+    procedure OnShowHintGlobal(var HintStr: string; var CanShow: Boolean; var HintInfo: THintInfo);
+
   public
 
   end;
@@ -479,6 +483,8 @@ begin
   // Agrega al logger el inicio del programa
   LogAdd(TLogLevel.info, 'Iniciando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
 
+  // Activamos las captura de los hints
+  Application.OnShowHint := @OnShowHintGlobal;
 
   {$IFDEF WINDOWS}
    // Desactivamos los errores por ejemplo al intentar entrar en una unidad cdrom sin disco
@@ -580,6 +586,11 @@ begin
   DoConfiguracionSave();
 
   LogAdd(TLogLevel.info, 'Finalizando ' + NOMBRE_PROGRAMA + ' v.' + VERSION_PROGRAMA + ' (' + FECHA_PROGRAMA + ')');
+end;
+
+procedure TForm_Principal.FormShowHint(Sender: TObject; HintInfo: PHintInfo);
+begin
+  DoEstadisticas(0, HintInfo^.HintStr);
 end;
 
 procedure TForm_Principal.ListaAfterItemErase(Sender: TBaseVirtualTree;
@@ -2803,5 +2814,13 @@ begin
   // Inicializar el titulo del formulario
   SetTituloVentana('');
 end;
+
+procedure TForm_Principal.OnShowHintGlobal(var HintStr: string; var CanShow: Boolean;
+  var HintInfo: THintInfo);
+begin
+  CanShow := true;
+  DoEstadisticas(0, HintStr);
+end;
+
 
 end.
