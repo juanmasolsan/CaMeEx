@@ -164,6 +164,7 @@ type
     Separator19: TMenuItem;
     Separator2: TMenuItem;
     Separator20: TMenuItem;
+    Separator21: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
     Separator5: TMenuItem;

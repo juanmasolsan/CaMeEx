@@ -464,6 +464,9 @@ object Form_Principal: TForm_Principal
           OnClick = MenuItem_Iconos_PorDefectoClick
         end
       end
+      object Separator21: TMenuItem
+        Caption = '-'
+      end
       object MenuItem_Sizes: TMenuItem
         Caption = 'Formato Tamaño archivos'
         object MenuItem_Size_Normal: TMenuItem

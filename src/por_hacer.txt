@@ -217,3 +217,5 @@
 - Agregar breadcrumbs.
 - Historial de navegación.
 - Poner el perfil custom cuando se cambia algo de la configuración
++ Separador de menu en el menu de Ver
+- Agregar ToolTips
