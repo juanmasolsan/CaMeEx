@@ -1,3 +1,6 @@
++ 1.3.3.6
+- [FIX]   (20230610) La lista de catalogos se muestra ordenada alfabéticamente
+
 + 1.3.3.5
 - [NEW]   (20230610) Agregados ToolTips a la barra de herramientas
 - [FIX]   (20230610) Agregado separador de menu en el menu de Ver que faltaba

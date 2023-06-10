@@ -148,7 +148,6 @@ object Form_Principal: TForm_Principal
         Transparent = True
         object ToolButtonAgregarCatalogo: TToolButton
           Left = 1
-          Hint = 'Agregar Catálogo'
           Top = 0
           Caption = 'Agregar Catalogo'
           ImageIndex = 0
@@ -157,7 +156,6 @@ object Form_Principal: TForm_Principal
         end
         object ToolButtonEliminar: TToolButton
           Left = 33
-          Hint = 'Eliminar'
           Top = 0
           Caption = 'Eliminar'
           ImageIndex = 1
@@ -167,7 +165,6 @@ object Form_Principal: TForm_Principal
         end
         object ToolButtonPropiedades: TToolButton
           Left = 65
-          Hint = 'Propiedades'
           Top = 0
           Caption = 'Propiedades'
           ImageIndex = 4
@@ -177,7 +174,6 @@ object Form_Principal: TForm_Principal
         end
         object ToolButtonBusquedaAvanzada: TToolButton
           Left = 97
-          Hint = 'Búsqueda avanzada'
           Top = 0
           Caption = 'Búsqueda Avanzada'
           ImageIndex = 5

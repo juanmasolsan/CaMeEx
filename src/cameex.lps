@@ -8,7 +8,7 @@
       <Unit>
         <Filename Value="cameex.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="46"/>
         <CursorPos X="34" Y="61"/>
         <UsageCount Value="200"/>
@@ -67,9 +67,10 @@
         <ComponentName Value="Form_Principal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="2794"/>
-        <CursorPos Y="2821"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="51"/>
+        <CursorPos X="61" Y="59"/>
         <UsageCount Value="117"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -91,12 +92,10 @@
         <ComponentName Value="Form_Propiedades"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos Y="35"/>
         <UsageCount Value="117"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\propiedades\UnidadAtributos.pas"/>
@@ -137,12 +136,10 @@
         <ComponentName Value="Form_AddCatalogo"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="240"/>
         <CursorPos Y="256"/>
         <UsageCount Value="116"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="vistas\scan\FrameCancelado.pas"/>
@@ -171,21 +168,18 @@
         <ComponentName Value="Frame_SelecionarMedio"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="22" Y="43"/>
         <UsageCount Value="74"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\Control_DB.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="211"/>
         <CursorPos X="11" Y="221"/>
         <UsageCount Value="41"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="AppString.pas"/>
@@ -232,7 +226,6 @@
       </Unit>
       <Unit>
         <Filename Value="por_hacer.txt"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="154"/>
         <CursorPos X="41" Y="177"/>
@@ -354,11 +347,10 @@
       </Unit>
       <Unit>
         <Filename Value="ConectorDatos.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="633"/>
         <CursorPos X="93" Y="651"/>
         <UsageCount Value="65"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
@@ -399,11 +391,10 @@
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemExtension.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
         <CursorPos X="25" Y="78"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="modelos\ItemRutaCompleta.pas"/>
@@ -437,11 +428,10 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="306"/>
         <CursorPos X="3" Y="322"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\GestorExtensiones.pas"/>
@@ -461,8 +451,8 @@
       <Unit>
         <Filename Value="Configuracion.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="124"/>
-        <CursorPos X="94" Y="143"/>
+        <TopLine Value="40"/>
+        <CursorPos X="17" Y="54"/>
         <UsageCount Value="56"/>
       </Unit>
       <Unit>
@@ -616,7 +606,7 @@
       </Unit>
       <Unit>
         <Filename Value="DirectivasCompilacion.inc"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="4"/>
         <CursorPos X="41" Y="15"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
@@ -753,11 +743,10 @@
       <Unit>
         <Filename Value="..\..\..\..\programas\lazarus\prog\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqlite\sqlite3conn.pp"/>
         <UnitName Value="SQLite3Conn"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="905"/>
         <CursorPos Y="922"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="components\sqlite3conn.pp"/>
@@ -805,63 +794,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="23">
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="166" Column="57" TopLine="149"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="224" Column="43" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="133" Column="15" TopLine="117"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="221" Column="47" TopLine="218"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="326" Column="22" TopLine="315"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="383" TopLine="357"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="383" TopLine="357"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\FrameSelecionarMedio.pas"/>
-        <Caret Line="39" Column="3" TopLine="24"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="383" TopLine="357"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="382" TopLine="356"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="383" TopLine="357"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="382" TopLine="356"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\FrameSelecionarMedio.pas"/>
-        <Caret Line="39" Column="3" TopLine="24"/>
-      </Position>
-      <Position>
-        <Filename Value="vistas\scan\UnidadAddCatalogo.pas"/>
-        <Caret Line="255" TopLine="239"/>
-      </Position>
+    <JumpHistory HistoryIndex="12">
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <Caret Line="971" Column="29" TopLine="964"/>
@@ -901,6 +834,18 @@
       <Position>
         <Filename Value="vistas\main\UnidadPrincipal.pas"/>
         <Caret Line="2815" TopLine="2791"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="2805" Column="40" TopLine="2794"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="863" Column="3" TopLine="877"/>
+      </Position>
+      <Position>
+        <Filename Value="vistas\main\UnidadPrincipal.pas"/>
+        <Caret Line="890" Column="81" TopLine="864"/>
       </Position>
     </JumpHistory>
     <RunParams>

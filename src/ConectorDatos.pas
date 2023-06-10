@@ -2,7 +2,7 @@
  * @Author: Juan Manuel Soltero Sánchez
  * @Date:   2023-04-12 18:30:46
  * @Last Modified by:   Juan Manuel Soltero Sánchez
- * @Last Modified time: 2023-06-05 00:15:08
+ * @Last Modified time: 2023-06-10 17:03:55
  *)
 {
 
@@ -67,7 +67,7 @@ const
 
 
 
-  SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos;';
+  SQL_SELECT_CATALOGO_ALL                  = 'SELECT * FROM Catalogos ORDER BY Nombre ASC;';
   SQL_SELECT_CATALOGO_BY_ID                = 'SELECT * FROM Catalogos WHERE id = :ID;';
   SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID      = 'SELECT * FROM Datos WHERE IdCatalogo = :IDCATALOGO AND Id <> IdCatalogo';
   SQL_SELECT_DATOS_ALL_BY_PARENT_ID        =  SQL_SELECT_DATOS_ALL_BY_CATALOGO_ID + ' AND IdPadre = :IDPADRE';

@@ -410,7 +410,7 @@ type
     procedure SetIdioma(Idioma : string);
 
     // Para captutar los hints de forma global
-    procedure OnShowHintGlobal(var HintStr: string; var CanShow: Boolean; var HintInfo: THintInfo);
+    procedure OnShowHintGlobal(var HintStr: string; var CanShow: Boolean; var {%H-}HintInfo: THintInfo);
 
   public
 
@@ -887,7 +887,7 @@ begin
     Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, FColumnnaOrden, FColumnnaOrden_Direccion, Column <> COLUMNA_RUTA);
   end
   else
-    Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, COLUMNA_TIPO, 0, true);
+    Result := ListSortFuncDos(Data_1^.NodeData, Data_2^.NodeData, COLUMNA_NOMBRE, 0, true);
 end;
 
 procedure TForm_Principal.ListaDblClick(Sender: TObject);
